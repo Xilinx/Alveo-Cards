@@ -1,4 +1,4 @@
-############################################
+﻿############################################
 Alveo Card Debugging
 ############################################
 
@@ -140,7 +140,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
    :caption: Home
    :hidden:
 
-   Alveo Cards Landing Page <https://pages.gitenterprise.xilinx.com/xbb/Alveo-Debug-Guide/master/index.html>
+   Alveo Cards Landing Page <https://xilinx.github.io/Alveo-Cards/master/index.html>
 
 .. toctree::
    :maxdepth: 3
