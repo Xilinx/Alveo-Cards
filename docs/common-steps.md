@@ -574,60 +574,54 @@ On 2020.1 and newer XRT versions you will see the SC version even if there is no
 Once the card is up and running in the system, a deployment platform will need to be flashed onto the card before `xbutil validate` passes and applications can be run. To flash the card with a deployment platform follow the below steps:
 
 1.  Run `sudo xbmgmt flash --scan`
-
 2.  If `Flashable partitions installed in system: (None)`  is the output please install the latest packages from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html) for your installed card(s)
 3.  Follow the process for [Card install](card-install.md) to install the platforms on the machine.
 4.  Run `sudo xbmgmt flash --update --shell <xilinx_uxx>` to flash the platform onto the card. This command should be provided during platform installation, shown below:
-
-   ```
-   Partition package installed successfully.
-   Please flash card manually by running below command:
-   sudo /opt/xilinx/xrt/bin/xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
-
-   ~]$ sudo xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
-   		 Status: shell needs updating
+    ```
+    Partition package installed successfully.
+    Please flash card manually by running below command:
+    sudo /opt/xilinx/xrt/bin/xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
+    
+    ~]$ sudo xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
+    	 Status: shell needs updating
             Current shell: xilinx_u50_GOLDEN_9
             Shell to be flashed: xilinx_u50_gen3x16_xdma_201920_3
-   Are you sure you wish to proceed? [y/n]: y
-
-   Updating shell on card[0000:05:00.0]
-   INFO: ***Found 353 ELA Records
-   Enabled bitstream guard. Bitstream will not be loaded until flashing is finished.
-   Preparing flash chip 0
-   Erasing flash.................
-   Programming flash.................
-   Cleared bitstream guard. Bitstream now active.
-   Successfully flashed Card[0000:05:00.0]
-
-   1 Card(s) flashed successfully.
-   Cold reboot machine to load the new image on card(s).
-
-   ```
+    Are you sure you wish to proceed? [y/n]: y
+    
+    Updating shell on card[0000:05:00.0]
+    INFO: ***Found 353 ELA Records
+    Enabled bitstream guard. Bitstream will not be loaded until flashing is finished.
+    Preparing flash chip 0
+    Erasing flash.................
+    Programming flash.................
+    Cleared bitstream guard. Bitstream now active.
+    Successfully flashed Card[0000:05:00.0]
+    
+    1 Card(s) flashed successfully.
+    Cold reboot machine to load the new image on card(s).
+    ```
 
 5.  Cold boot the server
-
 6.  Run `sudo xbmgmt flash --scan`
-
 7.  Now platform installed in host and card are the same
-
 8.  If this is a DFX-2RP platform, go to [Programming DFX-2RP shell partitions](#programming-dfx-2rp-shell-partitions)
 9.  If there is a different number in the `SC=`  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:
 
-   ```
-:~> sudo xbmgmt flash --update
-      Status: SC needs updating
-      Current SC: 5.0.20
-      SC to be flashed: 5.0.27
-      Updating SC firmware on card[0000:05:00.0]
-      Stopping user function...
-      INFO: found 4 sections
-      .............................
-      INFO: Loading new firmware on SC
-
-      Successfully flashed Card[0000:05:00.0]
-
-      1 Card(s) flashed successfully.
-```
+    ```
+    :~> sudo xbmgmt flash --update
+          Status: SC needs updating
+          Current SC: 5.0.20
+          SC to be flashed: 5.0.27
+          Updating SC firmware on card[0000:05:00.0]
+          Stopping user function...
+          INFO: found 4 sections
+          .............................
+          INFO: Loading new firmware on SC
+    
+          Successfully flashed Card[0000:05:00.0]
+    
+          1 Card(s) flashed successfully.
+    ```
 
 - - -
 ### Programming DFX-2RP shell partitions
@@ -812,7 +806,7 @@ N/A             N/A             N/A             N/A
 
 You can use [this script](scripts/loop_query.sh) in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).
 
-To use, run`./loop_query.sh <CardID>`
+To use, run `./loop_query.sh <CardID>`
 
 - - -
 ### Use system logs to see if the card exceeded power or thermal limits
