@@ -46,7 +46,8 @@ For card installation, you will need to:
 ### Error message during install
 
 * Resolve by noting the error and:
-  * Checking the [Package manager](package-manager.md) section
+  * Checking the [Card not recognized](card-not-recognized.md) section if `lspci` is not recognizing the card
+  * Checking the [Package manager](package-manager.md) section if there is an issue while installing the debs or rpms
   * Searching the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo) for a similar issue
 
 - - -

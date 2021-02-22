@@ -372,6 +372,8 @@
 <li class="toctree-l4"><a class="reference internal" href="#id6">yum</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="#failed-to-create-xsabin">Failed to create xsabin</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flash-update-fails-with-shell-is-not-applicable">Flash update fails with shell is not applicable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#item-not-covered-above">Item not covered above</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
@@ -854,6 +856,35 @@ Error: Nothing to do
 </div>
 </div>
 <hr class="docutils" />
+<div class="section" id="failed-to-create-xsabin">
+<h3>Failed to create xsabin<a class="headerlink" href="#failed-to-create-xsabin" title="Permalink to this headline">¶</a></h3>
+<p>When installing the deployment package, an error message similar to the following is displayed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Failed</span> <span class="n">to</span> <span class="n">create</span> <span class="n">xsabin</span><span class="p">,</span>
+<span class="n">install</span> <span class="ow">is</span> <span class="n">incomplete</span>
+</pre></div>
+</div>
+<p>This error can occur if XRT is built from GitHub sources without Vitis software platform installed and <code class="docutils literal notranslate"><span class="pre">XILINX_VITIS</span></code> environment variable set.</p>
+<p>Next steps:</p>
+<ul class="simple">
+<li><p>Prior to building XRT from GitHub sources, install the Vitis software platform and set up the Vitis environment.</p></li>
+<li><p>See <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/index.html">Vitis Unified Software Platform Documentation</a>.</p></li>
+</ul>
+</div>
+<hr class="docutils" />
+<div class="section" id="flash-update-fails-with-shell-is-not-applicable">
+<h3>Flash update fails with shell is not applicable<a class="headerlink" href="#flash-update-fails-with-shell-is-not-applicable" title="Permalink to this headline">¶</a></h3>
+<p>Updating the flash says specified shell is not applicable as shown in the example below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbmgmt flash --update --shell xilinx_u250_gen3x16_base_2
+WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
+</pre></div>
+</div>
+<p>This can occur if the installed package is not supported for the targeted card.</p>
+<p>Next steps:</p>
+<ul class="simple">
+<li><p>Confirm the right shell is installed</p></li>
+</ul>
+</div>
+<hr class="docutils" />
 <div class="section" id="item-not-covered-above">
 <h3>Item not covered above<a class="headerlink" href="#item-not-covered-above" title="Permalink to this headline">¶</a></h3>
 <p>This guide is not comprehensive package manager and your error condition may not be covered.</p>
@@ -912,7 +943,7 @@ Error: Nothing to do
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 17, 2021.
+        Last updated on February 22, 2021.
       </span>
 
     </p>

@@ -44,7 +44,7 @@ Next step:
 - None, this is expected output
 
 - - -
-### `xbmgmt flash --scan` Returns `bad magic number` Error
+### `xbmgmt flash --scan` returns `bad magic number` error
 
 If `xbmgmt flash --scan` command returns `bad magic number` error as in the example below, there is a chance of a communication break between XRT and CMC.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
 
@@ -66,7 +66,7 @@ Next steps:
 - Cold boot the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - Pull power to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
@@ -74,9 +74,9 @@ Next steps:
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
-### `xbmgmt flash --scan` Returns `XMC not loaded` Error
+### `xbmgmt flash --scan` returns `XMC not loaded` error
 
-If `xbmgmt flash --scan` command returns `XMC not loaded` error as shown below ,there is communication break between XRT and CMC.
+If `xbmgmt flash --scan` command returns `XMC not loaded` error as shown below, there is communication break between XRT and CMC.
 
 ```
 ERROR: Failed to detect XMC, xmc.bin not loaded
@@ -96,7 +96,7 @@ Next steps:
 
  - [Reload XRT Drivers](common-steps.md#unloadreload-xrt-drivers)
  - If issue persists
-   - Pull power to the system
+   - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
    - Perform `xbmgmt flash --scan`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
@@ -106,7 +106,7 @@ Next steps:
 
 - - -
 
-### `xbmgmt flash --scan` Returns `XMC not ready` Error
+### `xbmgmt flash --scan` returns `XMC not ready` error
 
 If `xbmgmt flash --scan` command returns `XMC not ready` error as shown below, there is communication break between XRT and CMC.
 
@@ -130,7 +130,7 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - Pull power to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
@@ -140,7 +140,7 @@ Next steps:
 
 - - -
 
-### `xbmgmt flash --scan` Returns `SC is not ready` Error
+### `xbmgmt flash --scan` returns `SC is not ready` error
 
 If `xbmgmt flash --scan` command returns `SC is not ready ` error as shown below, there is communication break between SC and CMC.
 
@@ -157,7 +157,7 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - Pull power to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
@@ -166,7 +166,7 @@ Next steps:
 
 
 - - -
-### SC Only Displays Two Digits in `Flashable partition running on FPGA`
+### SC only displays two digits in `Flashable partition running on FPGA`
 If `xbmgmt flash --scan` command returns different number of digits of SC versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between XRT and CMC.
 
  ```
@@ -190,7 +190,7 @@ Next steps:
 
 - - -
 
-### The SC Version Displayed Under `Flashable partition running on FPGA` and `Flashable partitions installed in system` Do Not Match.
+### The SC version displayed under `Flashable partition running on FPGA` and `Flashable partitions installed in system` do not match
 
 If `xbmgmt flash --scan` command returns different SC version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
 
@@ -213,7 +213,7 @@ Next steps:
 
 - - -
 
-### `Flashable partition running on FPGA` Displays GOLDEN and There is a Partition Displayed Under `Flashable partitions installed in system`
+### `Flashable partition running on FPGA` displays GOLDEN and there is a partition displayed under `Flashable partitions installed in system`
 
 When `xbmgmt flash --scan` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.
 
@@ -233,7 +233,7 @@ Next step:
 
 - - -
 
-### Partition Displayed Under `Flashable partition running on FPGA` While (None) Displayed Under `Flashable partitions installed in system`
+### Partition displayed under `Flashable partition running on FPGA` while (None) displayed under `Flashable partitions installed in system`
 
 If `xbmgmt flash --scan` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform has not been installed in the system.
 
@@ -251,7 +251,7 @@ Next step:
 - Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
-### Card is Missing from `xbmgmt flash --scan output`
+### Card is missing from `xbmgmt flash --scan output`
 
 If xbmgmt flash command returns `No cards Found` output, as shown below, the OS or XRT is not able to find the card.
 
@@ -266,7 +266,7 @@ Next steps:
 - Else go to [Modifying XRT/platform](modifying-xrt-platform.md)
 
 - - -
-### `xbutil query` Reports a Value of Zero for Voltage or Temperature
+### `xbutil query` reports a value of zero for voltage or temperature
 
 If the `xbutil query` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.
 
@@ -292,7 +292,7 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - Pull power to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)

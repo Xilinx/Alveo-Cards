@@ -45,7 +45,7 @@ Next determine your starting state:
 If XRT is already installed and there is a new platform to be installed on the Alveo card, follow the below steps:
 
  - Download the new platform from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
- - [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrtplatform-compatibility)
+ - [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
     - Download a new XRT if needed
  - [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
  - Remove the old deployment package using
@@ -75,7 +75,7 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 - Download the new XRT package from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Confirm the [host system is compatible](check-system-compatibility.md)
 - Check which platforms are on card with `sudo xbmgmt flash --scan --verbose`
-    - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrtplatform-compatibility)
+    - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
     - If XRT does not support the new platform [Return the card to golden](common-steps.md#reverting-the-card-to-factory-image)
 - Upgrade XRT using one of the commands below
   - Ubuntu: `sudo apt install ./xrt_package_name.deb`
@@ -91,7 +91,7 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:
 
 - Download the platform package from the archive section of the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-- [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrtplatform-compatibility) to make sure XRT that will support the platform
+- [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
     - Download XRT package if needed
 - [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
 - If a different XRT is needed, [Remove XRT](common-steps.md#remove-xrt) and install the replacement XRT package on the system using one of the commands below

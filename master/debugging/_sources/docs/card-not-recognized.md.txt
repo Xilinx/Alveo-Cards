@@ -86,7 +86,7 @@ If none of the above have narrowed down the potential issue:
 
 As a last attempt:
 - Cold boot the system twice
-- Pull power
+- [Pull power](terminology.md#shutdown-and-unplug-pull-power)
 - Reseat the Alveo card
 - Reseat the server risers if applicable
 - Bring system back up
@@ -313,7 +313,7 @@ Next steps:
 Next steps:
 
 - Shut down the system
-- Pull power
+- [Pull power](terminology.md#shutdown-and-unplug-pull-power)
 - Remove the new PCIe device(s)
 - Reseat the Alveo card
   - Reseat the server risers if applicable
@@ -349,7 +349,7 @@ It the blue LED on the card is not illuminated, the FPGA is not being programmed
 Next steps:
 - Try the following:
   - Shut down the system
-  - Pull power
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
   - Reseat the Alveo card
   - Reseat the server risers if applicable
   - Bring system back up
@@ -368,7 +368,7 @@ Next steps:
 - [Determine if the BIOS is in safety mode](#bios-in-safety-mode)
 - If the BIOS is not in safety mode, try the following:
   - Shut down the system
-  - Pull power
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
   - Reseat the Alveo card
   - Reseat the server risers if applicable
   - Bring system back up

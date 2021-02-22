@@ -510,7 +510,7 @@
 <hr class="docutils" />
 <div class="section" id="log-machine-state">
 <h3>Log machine state<a class="headerlink" href="#log-machine-state" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/debugging/docs/scripts/WTSxrtLog.sh">WTSxrtLog.sh</a>  to collect information on the system, XRT, and card state. The script captures:</p>
+<p>Use <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a>  to collect information on the system, XRT, and card state. The script captures:</p>
 <ul class="simple">
 <li><p>Initial dmesg state</p></li>
 <li><p>OS</p></li>
@@ -837,7 +837,7 @@
 <h3>Remove XRT<a class="headerlink" href="#remove-xrt" title="Permalink to this headline">¶</a></h3>
 <p>Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.</p>
 <p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
-<p>Once the card is golden, use the package manager to remove the current XRT package (the package manager will also remove the dependent packages):</p>
+<p>Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">xrt</span></code></p></li>
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">remove xrt</span></code></p></li>
@@ -1238,7 +1238,7 @@ Cold reboot machine to load the new image on card(s).
 </pre></div>
 </div>
 <p>The equation to calculate power is</p>
-<p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">voltage</span> <span class="pre">\*</span> <span class="pre">current.</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">voltage</span> <span class="pre">*</span> <span class="pre">current.</span></code></p>
 <p>From the information provided in the example above HBM is using 8.9W (3.373V * 2.647A).</p>
 <p>An example of the output for the U200/U250/U280 is below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">query</span> <span class="o">-</span><span class="n">d</span> <span class="n">a6</span><span class="p">:</span><span class="mf">00.0</span>
@@ -1292,8 +1292,8 @@ Cold reboot machine to load the new image on card(s).
 <span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
 </pre></div>
 </div>
-<p>You can use <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/debugging/docs/scripts/loop_query.sh">this script</a> in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).</p>
-<p>To use, run<code class="docutils literal notranslate"><span class="pre">./loop_query.sh</span> <span class="pre">&lt;CardID&gt;</span></code></p>
+<p>You can use <a class="reference external" href="scripts/loop_query.sh">this script</a> in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).</p>
+<p>To use, run <code class="docutils literal notranslate"><span class="pre">./loop_query.sh</span> <span class="pre">&lt;CardID&gt;</span></code></p>
 </div>
 <hr class="docutils" />
 <div class="section" id="use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">
@@ -1395,11 +1395,8 @@ Cold reboot machine to load the new image on card(s).
 </ol>
 <p>For the U200/U250/U280:</p>
 <ol class="simple">
-<li><p>Plug in JTAG cable between U200/U250/U280 card and debug machine</p>
-<ol class="simple">
-<li><p>Often the debug machine is a windows laptop</p></li>
-</ol>
-</li>
+<li><p>Plug in JTAG cable between U200/U250/U280 card and debug machine
+a.  Often the debug machine is a windows laptop</p></li>
 <li><p>Open Vivado hardware manager</p></li>
 <li><p>Tools → Auto connect</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">PARAM.FREQUENCY</span> <span class="pre">1000000</span> <span class="pre">[current_hw_target]</span></code></p></li>
@@ -1412,6 +1409,7 @@ Cold reboot machine to load the new image on card(s).
 <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
 </ol>
 </div>
+<hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
@@ -1458,7 +1456,7 @@ Cold reboot machine to load the new image on card(s).
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 17, 2021.
+        Last updated on February 22, 2021.
       </span>
 
     </p>

@@ -245,7 +245,7 @@ or
 - - -
 ### PCIe link check PASSED with warning
 
-If you encounter `PCIE link check PASSED with warning` when running `xbutil validate`, XRT is encountering a PCIe link running slow than the platform limit. The message shows in the context below:
+If you encounter `PCIE link check PASSED with warning` or `Device trained to lower spec` when running `xbutil validate`, XRT is encountering a PCIe link running slower than the platform limit. Examples of these warnings are shown below.
 
 ```
 ...
@@ -255,6 +255,13 @@ Ensure Card is plugged in to Gen3x16, instead of Gen3x8
 Lower performance may be experienced
 WARN: == PCIE link check PASSED with warning
 INFO: == Starting SC firmware version check...
+```
+
+```
+$ INFO: Validating device[0]:
+INFO: Checking PCIE link
+status: FAILED WARNING: Device trained to lower spec. Expect:
+Gen3x16, Current: Gen2x16
 ```
 
 Next steps:
@@ -271,7 +278,6 @@ There are typically BIOS settings to control PCIe Generation (aka link speed). M
 
 - Go into the BIOS and confirm link speed is PCIe Gen3 or higher
   - If the BIOS needed changes, cold boot and confirm link speed.
-
 - - -
 ### SC firmware mismatch error
 
@@ -321,7 +327,7 @@ Next steps:
 
 - Confirm AUX power cable is hooked up
   - Shut down system
-  - Pull power
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
   - Check for the presence of an AUX power cable at the card
     - UG1301 Figures 4 and 5 show the location of the AUX power connector on card
     - If there is no cable, find an 8-pin cable and check the server connection
@@ -401,7 +407,7 @@ Next steps:
 - Check to see if the drivers are present with
   - `lsmod | grep xclmgmt`
   - `lsmod | grep xocl`
-- [Unload/reload XRT drivers](common-steps.md#unloadreload-xrt-drivers)
+- [Unload/reload XRT drivers](common-steps.md#unload-reload-xrt-drivers)
 - See if a similar issue is posted on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
@@ -519,6 +525,15 @@ Next steps
 - [Reflash the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
+### `xbmgmt` commands not working
+
+If `xbmgmt` commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.
+
+Next Step:
+- Reinstall the XRT package.
+
+- - -
+
 
 ### Xilinx Support
 

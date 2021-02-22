@@ -19,6 +19,7 @@ This page defines terms used throughout the guide.
   - [Shutdown and unplug/Pull power](#shutdown-and-unplug-pull-power)
   - [PCIe](#pcie)
   - [BIOS](#bios)
+  - [BMC](#bmc)
 
 ### Alveo Terms
 - [Xilinx Runtime library (XRT)](#xrt)
@@ -36,7 +37,7 @@ This page defines terms used throughout the guide.
 
 - - -
 ### SC
-The Satellite Controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server BMC.
+The Satellite Controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server [BMC](#bmc).
 
 The SC, [CMC](#cmc) and XRT communicate to
 - Monitor card status,
@@ -119,7 +120,7 @@ Pull the Alveo card out of a PCIe slot and putting it back into the same slot in
 
 This can help check for a bad connection between the contacts on the bottom of an Alveo card and the motherboard.
 
-Before reseating an Alveo card it is necessary to [Shutdown and unplug/pull power](#shutdown-and-unplugpull-power) to the machine.
+Before reseating an Alveo card it is necessary to [Shutdown and unplug/Pull power](#shutdown-and-unplug-pull-power) to the machine.
 
 - - -
 ### PCIe
