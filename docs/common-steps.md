@@ -26,7 +26,7 @@ This section covers steps involving the host hardware, BIOS, and OS setup.
 - - -
 ### Log machine state
 
-Use [WTSxrtLog.sh](https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/blob/master/docs/scripts/WTSxrtLog.sh)  to collect information on the system, XRT, and card state. The script captures:
+Use [WTSxrtLog.sh](scripts/WTSxrtLog.sh)  to collect information on the system, XRT, and card state. The script captures:
 
 -   Initial dmesg state
 -   OS
@@ -302,14 +302,6 @@ If the value is `Master`, you are using an un-official release.
 The XOCL and XCLMGMT versions must match. If not, XRT will not operate correctly.
 
 - - -
-### `xbmgmt` commands do not work
-
-If `xbmgmt ` commands do not work , There are no errors indicating this in output.
-
-Next Step:
-- Reinstall the XRT package.
-
-- - -
 ### Determine XRT packages using the package manager
 
 You will want to determine which versions (if any) of the below packages are installed 
@@ -404,7 +396,7 @@ Removing XRT will also remove the deployment and development platforms.  If you
 
 Before removing XRT, run `sudo xbmgmt flash --scan --verbose` and if any cards have a shell on them, [return each card to golden](common-steps.md#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
 
-Once the card is golden, use the package manager to remove the current XRT package (the package manager will also remove the dependent packages):
+Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.
 
 -   Ubuntu: `sudo apt remove xrt`
 -   RHEL/CentOS: `yum remove xrt`
@@ -612,14 +604,14 @@ Once the card is up and running in the system, a deployment platform will need t
 
    ```
 
-4.  Cold boot the server
+5.  Cold boot the server
 
-5.  Run `sudo xbmgmt flash --scan`
+6.  Run `sudo xbmgmt flash --scan`
 
-6.  Now platform installed in host and card are the same
+7.  Now platform installed in host and card are the same
 
-7.  If this is a DFX-2RP platform, go to [Programming DFX-2RP shell partitions](#programming-dfx-2rp-shell-partitions)
-8.  If there is a different number in the `SC=`  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:
+8.  If this is a DFX-2RP platform, go to [Programming DFX-2RP shell partitions](#programming-dfx-2rp-shell-partitions)
+9.  If there is a different number in the `SC=`  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:
 
    ```
 :~> sudo xbmgmt flash --update
@@ -759,7 +751,7 @@ N/A             37214106        37214106        37214105
 The equation to calculate power is
 
 `
-power = voltage \* current.
+power = voltage * current.
 `
 
 From the information provided in the example above HBM is using 8.9W (3.373V * 2.647A).
@@ -818,7 +810,7 @@ N/A             N/A             N/A             N/A
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ````
 
-You can use [this script](https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/blob/master/docs/scripts/loop_query.sh) in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).
+You can use [this script](scripts/loop_query.sh) in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).
 
 To use, run`./loop_query.sh <CardID>`
 
@@ -936,7 +928,7 @@ For the U50:
 For the U200/U250/U280:
 
 1.  Plug in JTAG cable between U200/U250/U280 card and debug machine
-    1.  Often the debug machine is a windows laptop
+    a.  Often the debug machine is a windows laptop
 2.  Open Vivado hardware manager
 3.  Tools → Auto connect
 4.  `set_property PARAM.FREQUENCY 1000000 [current_hw_target]`
@@ -947,6 +939,8 @@ For the U200/U250/U280:
 6. If the device shows up in Vivado HW Manager follow [AR 71757](https://www.xilinx.com/support/answers/71757.html) to revert the card back to the golden image
 7.  Otherwise the FPGA is not working, post on the
 [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+
+- - -
 
 ### Xilinx Support
 
