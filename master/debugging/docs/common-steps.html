@@ -1043,20 +1043,19 @@ Else there may be an platform mismatch.</p>
 <div class="section" id="flash-the-card-with-a-deployment-platform">
 <h3>Flash the card with a deployment platform<a class="headerlink" href="#flash-the-card-with-a-deployment-platform" title="Permalink to this headline">¶</a></h3>
 <p>Once the card is up and running in the system, a deployment platform will need to be flashed onto the card before <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> passes and applications can be run. To flash the card with a deployment platform follow the below steps:</p>
-<ol class="simple">
+<ol>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span> <span class="pre">(None)</span></code>  is the output please install the latest packages from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a> for your installed card(s)</p></li>
 <li><p>Follow the process for <a class="reference internal" href="card-install.html"><span class="doc">Card install</span></a> to install the platforms on the machine.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span> <span class="pre">&lt;xilinx_uxx&gt;</span></code> to flash the platform onto the card. This command should be provided during platform installation, shown below:</p></li>
-</ol>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span> <span class="pre">&lt;xilinx_uxx&gt;</span></code> to flash the platform onto the card. This command should be provided during platform installation, shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Partition package installed successfully.
 Please flash card manually by running below command:
 sudo /opt/xilinx/xrt/bin/xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
 
 ~]$ sudo xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
-		 Status: shell needs updating
-         Current shell: xilinx_u50_GOLDEN_9
-         Shell to be flashed: xilinx_u50_gen3x16_xdma_201920_3
+	 Status: shell needs updating
+        Current shell: xilinx_u50_GOLDEN_9
+        Shell to be flashed: xilinx_u50_gen3x16_xdma_201920_3
 Are you sure you wish to proceed? [y/n]: y
 
 Updating shell on card[0000:05:00.0]
@@ -1072,28 +1071,29 @@ Successfully flashed Card[0000:05:00.0]
 Cold reboot machine to load the new image on card(s).
 </pre></div>
 </div>
-<ol class="simple">
+</li>
 <li><p>Cold boot the server</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
 <li><p>Now platform installed in host and card are the same</p></li>
 <li><p>If this is a DFX-2RP platform, go to <a class="reference external" href="#programming-dfx-2rp-shell-partitions">Programming DFX-2RP shell partitions</a></p></li>
-<li><p>If there is a different number in the <code class="docutils literal notranslate"><span class="pre">SC=</span></code>  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:</p></li>
-</ol>
+<li><p>If there is a different number in the <code class="docutils literal notranslate"><span class="pre">SC=</span></code>  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">update</span>
-   <span class="n">Status</span><span class="p">:</span> <span class="n">SC</span> <span class="n">needs</span> <span class="n">updating</span>
-   <span class="n">Current</span> <span class="n">SC</span><span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">20</span>
-   <span class="n">SC</span> <span class="n">to</span> <span class="n">be</span> <span class="n">flashed</span><span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">27</span>
-   <span class="n">Updating</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-   <span class="n">Stopping</span> <span class="n">user</span> <span class="n">function</span><span class="o">...</span>
-   <span class="n">INFO</span><span class="p">:</span> <span class="n">found</span> <span class="mi">4</span> <span class="n">sections</span>
-   <span class="o">.............................</span>
-   <span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span> <span class="n">new</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">SC</span>
+      <span class="n">Status</span><span class="p">:</span> <span class="n">SC</span> <span class="n">needs</span> <span class="n">updating</span>
+      <span class="n">Current</span> <span class="n">SC</span><span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">20</span>
+      <span class="n">SC</span> <span class="n">to</span> <span class="n">be</span> <span class="n">flashed</span><span class="p">:</span> <span class="mf">5.0</span><span class="o">.</span><span class="mi">27</span>
+      <span class="n">Updating</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
+      <span class="n">Stopping</span> <span class="n">user</span> <span class="n">function</span><span class="o">...</span>
+      <span class="n">INFO</span><span class="p">:</span> <span class="n">found</span> <span class="mi">4</span> <span class="n">sections</span>
+      <span class="o">.............................</span>
+      <span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span> <span class="n">new</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">SC</span>
 
-   <span class="n">Successfully</span> <span class="n">flashed</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
+      <span class="n">Successfully</span> <span class="n">flashed</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
 
-   <span class="mi">1</span> <span class="n">Card</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">flashed</span> <span class="n">successfully</span><span class="o">.</span>
+      <span class="mi">1</span> <span class="n">Card</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">flashed</span> <span class="n">successfully</span><span class="o">.</span>
 </pre></div>
 </div>
+</li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="programming-dfx-2rp-shell-partitions">
