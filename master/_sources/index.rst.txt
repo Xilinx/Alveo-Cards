@@ -33,4 +33,4 @@ Describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U3
    :caption: Satellite Controller
    :hidden:
 
-   Out-of-Band Management Specification <https://xilinx.github.io/Alveo-Cards/master/management-specification/README.html>
+   Out-of-Band Management Specification <https://xilinx.github.io/Alveo-Cards/master/management-specification/index.html>
