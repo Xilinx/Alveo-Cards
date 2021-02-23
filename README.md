@@ -17,7 +17,7 @@ Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT 
 
 
 
-## [Out-of-Band Management Specification](https://xilinx.github.io/Alveo-Cards/master/management-specification/README.html)
+## [Out-of-Band Management Specification](https://xilinx.github.io/Alveo-Cards/master/management-specification/index.html)
 
 
 
