@@ -1,0 +1,746 @@
+Satellite Controller Firmware Update Commands
+---------------------------------------------
+
+    The satellite controller supports an alternative out-of-band method
+    of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW
+    update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC
+    is expected to initiate the FW upgrade process by sending I2C
+    commands to the SC FW. After the initial handshake with the SC FW,
+    the server BMC will need to communicate with the MSP432 boot loader
+    (BSL) to transfer the FW into MSP Flash and complete the upgrade
+    process.
+
+    ***Note*:** Currently, the SC FW upgrades are always force upgrades,
+    there is no version check currently in place. The old FW file will
+    be overwritten by the new FW. Server BMC is expected to check and
+    decide if the SC FW upgrade is needed.
+
+    The following table lists the commands supported/needed for the FW
+    upgrade.
+
+*Table:* **BMC to BSL Commands**
+
++-----------+------------------+------------------------+------------------------------------------------------------+
+| **SI NO** | **Command Code** | **Command Name**       | **Description**                                            |
++===========+==================+========================+============================================================+
+| 1         | 0x04             | GET\_SC\_FW\_VER       | Get SC FW version (xx.yy.zz format)                        |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 2         | 0x31             | GET\_SC\_STATUS        | Returns status about what is running in MSP, FW, or BSL.   |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 3         | 0x32             | ENABLE\_BSL\_MODE      | OOB command to reboot the SC and invoke BSL.               |
++-----------+------------------+------------------------+------------------------------------------------------------+
+
+*Table:* **SMC to BSL Commands**
+
++-----------+------------------+------------------------+------------------------------------------------------------+
+| **SI NO** | **Command Code** | **Command Name**       | **Description**                                            |
++===========+==================+========================+============================================================+
+| 1         | 0x31             | GET\_SC\_STATUS        | Returns status weather SC is in SC FW mode or BSL mode     |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 2         | 0x21             | BSL\_RX\_PASSWORD      | Sends 56 bytes password to unlock the BSL                  |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 3         | 0x15             | BSL\_ERASE\_SC\_FW     | BSL erases old SC FW                                       |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 4         | 0x20             | BSL\_RX\_DATA\_BLOCK   | Sends 32-bit data block to write (256 bytes max)           |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 5         | 0x26             | BSL\_CRC\_CHECK        | Ask BSL to perform CRC check for validation                |
++-----------+------------------+------------------------+------------------------------------------------------------+
+| 6         | 0x27             | BSL\_LOAD\_PC          | Jump to the SC's application FW , after FW upgrade         |
++-----------+------------------+------------------------+------------------------------------------------------------+
+
+GET\_SC\_STATUS (Satellite Controller Firmware)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+    The GET\_SC\_STATUS command serves as the status command, revealing
+    if the MSP432 processor is running in the application code (SC FW)
+    or in BSL mode. Upon receiving this command, the SC FW responds with
+    0x02 in Byte 0.
+
+    ***Note*:** The same command is supported by BSL. BSL will respond
+    saying *'am in BSL mode'*.
+
+*Table:* **GET\_SC\_STATUS Server BMC Request**
+
++-------------------------+------------+
+| **Server BMC Request**               |
++=========================+============+
+| Command code            |     0x31   |
++-------------------------+------------+
+| Data bytes              |     N/A    |
++-------------------------+------------+
+
+*Table:* **GET\_SC\_STATUS Xilinx Alveo Card Response**
+
++----------------+--------------+------------+
+| **Xilinx Alveo Card Response**             |
++================+==============+============+
+| Data bytes     |     Byte 0   |     0x02   |
++----------------+--------------+------------+
+|                |     Byte 1   |     N/A    |
++----------------+--------------+------------+
+
+ENABLE\_BSL\_MODE
+~~~~~~~~~~~~~~~~~
+
+    Upon receiving the ENABLE\_BSL\_MODE command, the SC FW configures
+    FW update mode in the BSL and reboots itself. The next boot up takes
+    the control to BSL mode. Absence of this step results in normal
+    reboots, where the application code/FW will boot-up instead of
+    staying in BSL to enable the FW update process.
+
+    ***Note*:** For this command, the SC FW will not be able to respond
+    to the BMC with success or failure before rebooting itself.
+
+*Table:* **ENABLE\_BSL\_MODE Server BMC Request**
+
++-------------------------+------------+
+| **Server BMC Request**               |
++=========================+============+
+| Command code            |     0x32   |
++-------------------------+------------+
+| Data bytes              |     N/A    |
++-------------------------+------------+
+
+*Table:* **ENABLE\_BSL\_MODE Xilinx Alveo Card Response**
+
++----------------+--------------+------------+
+| **Xilinx Alveo Card Response**             |
++================+==============+============+
+| Data bytes     | N/A          | N/A        |
++----------------+--------------+------------+
+
+BSL Communication
+~~~~~~~~~~~~~~~~~
+
+
+**IMPORTANT!** The following is a recommendation from TI. Refer to TI's MSP432P4xx `SimpleLink Microcontrollers Bootloader user guide <http://www.ti.com/lit/ug/slau622i/slau622i.pdf>`_ (BSL)for more information.
+
+    The I2C protocol used by the BSL is defined as:
+
+-  The master must request data from the BSL slave.
+
+-  7-bit addressing mode is used. By default, the slave listens to
+   address 0x65 (0xCA 8-bit).
+
+-  In addition to the I2C protocol-based hardware ACK, handshake for
+   commands is performed by an acknowledged character in the BSL core
+   response format, as specified in the I2C BSL response table of
+   `MSP432P4xx SimpleLink Microcontrollers Bootloader
+   (BSL) <http://www.ti.com/lit/ug/slau622i/slau622i.pdf>`_.
+
+-  Repeated starts are not required by the BSL, but can be used.
+
+-  TI recommends waiting 1.2 ms after sending a command to the BSL and
+   receiving the response. TI also recommends waiting 1.2 ms before
+   sending the next command after a response was received.
+
+-  The I2C BSL interface supports a maximum clock speed of 400 kHz.
+
+**CRC Calculation**
+               
+
+    For the purposes of CRC calculation in the BSL, the MSP432 device
+    performs a 16-bit CRC check using the CRC16-CCITT standard. This CRC
+    signature is based on the polynomial given in the CRC16-CCITT with
+    the following function:
+
+    *f* (*x*) = *x*\ :sup:`16` + *x*\ :sup:`12` + *x*\ :sup:`5` + 1
+
+**CRC Checksum Low, CRC Checksum High**
+                                   
+
+    The checksum is computed on bytes in the BSL core command section
+    only. The BSL uses CRC16-CCITT for the checksum and computes it
+    using the MSP432 CRC module. CRC bytes (CKL, CKH) are mandatory for
+    all commands. The ACK, header, and length bytes must be ignored.
+
+**Length Low Byte, Length High Byte**
+                                 
+
+    Length low byte, length high byte is the number of bytes in the BSL
+    core data packet, broken into high and low bytes. The number of
+    bytes must include only core data packets, as detailed below, and
+    does not include the length bytes and checksum bytes.
+
+-  Command code
+
+-  All address bytes (if applicable)
+
+-  All data bytes (if applicable)
+
+    **Note:** All commands with prefix BSL\_ are core commands
+    supported by BSL. The request and response bytes are pre-defined by
+    TI.
+
+GET\_SC\_STATUS (BSL)
+~~~~~~~~~~~~~~~~~~~~~~
+
+    The GET\_SC\_STATUS command serves as a status command telling
+    whether the MSP432 processor is running the application code (SC FW)
+    or in BSL mode. Upon receiving this command, BSL responds with 0x01
+    in byte 0 MSP BSL mode. Byte 1 serves as status byte.
+
+    **Note:** The same command is supported by the SC application FW,
+    where the SC responds with SC FW mode.
+
+*Table:* **GET\_SC\_STATUS (BSL) Server BMC Request**
+
++-------------------------+------------+
+| **Server BMC Request**               |
++=========================+============+
+| Command code            |     0x31   |
++-------------------------+------------+
+| Data bytes              |     N/A    |
++-------------------------+------------+
+
+*Table:* **GET\_SC\_STATUS (BSL) Xilinx Alveo Card Response**
+
++----------------+-----------------+---------------------------------+
+| **Xilinx Alveo Card Response**                                     |
++================+=================+=================================+
+| Data bytes     | Byte 0          | 0x01                            |
++----------------+-----------------+---------------------------------+
+|                | Byte 1 (status) | 0x00: BSL\_OK                   |
+|                |                 |                                 |
+|                |                 | 0x01: BSL\_CRC\_CHECK\_FAIL     |
+|                |                 |                                 |
+|                |                 | 0x02: BSL\_PARTIAL\_FW\_UPGRADE |
+|                |                 |                                 |
+|                |                 | 0x03: BSL\_FLASH\_WRITE\_ERROR  |
++----------------+-----------------+---------------------------------+
+
+BSL\_RX\_PASSWORD
+~~~~~~~~~~~~~~~~~
+
+    The BSL core receives the password contained in the packet and
+    unlocks the BSL protected commands if the password matches the 56
+    bytes in the BSL. When an incorrect password is given, BSL responds
+    with *Password Error* and subsequent commands sent to the BSL result
+    in no-operation.
+	
+	**Note:** Contact Xilinx® for the password information.
+
+*Table:* **BSL\_RX\_PASSWORD Server BMC Request**
+
++----------------------+--------------------------------------+
+| **Server BMC Request**                                      |
++======================+======================================+
+| Header               | 0x80                                 |
++----------------------+--------------------------------------+
+| Length (low byte)    | 0x39                                 |
++----------------------+--------------------------------------+
+| Length (high byte)   | 0x00                                 |
++----------------------+--------------------------------------+
+| Command code         | 0x21                                 |
++----------------------+--------------------------------------+
+| Data bytes           | D1…D56                               |
+|                      |                                      |
+|                      | D1-D56–Xilinx Password D57–D256–0xFF |
++----------------------+--------------------------------------+
+
+*Table:* **BSL\_RX\_PASSWORD Xilinx Alveo Card (BSL) Response**
+
++--------------------+---------------+-----------------------------------------------------------------+
+| **Xilinx Alveo Card (BSL) Response**                                                                 |
++====================+===============+=================================================================+
+| Data bytes B0 … B7 | B0: ACK       | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B1: Header    | 0x80                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B2: Length    | 0x02                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B3: Length    | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B4: CMD       | 0x3B                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B5: Message   | 0x00 – Operation successful                                     |
+|                    |               |                                                                 |
+|                    |               | 0x04– BSL locked. Password incorrect resulted in BSL locking    |
+|                    |               |                                                                 |
+|                    |               | 0x05– BSL password error. Incorrect password sent to unlock BSL |
+|                    |               |                                                                 |
+|                    |               | 0x07– Unknown Command                                           |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B6: CKL       | 0x60                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B7: CKH       | 0xC4                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+
+*Table:* **BSL\_RX\_PASSWORD BSL Command Response for a Successful Password**
+
++--------+----------+----------+----------+--------+--------+--------+--------+
+| ACK    | Header   | Length   | Length   | CMD    | MSG    | CKL    | CKH    |
++========+==========+==========+==========+========+========+========+========+
+| 0x00   | 0x80     | 0x02     | 0x00     | 0x3B   | 0x00   | 0x60   | 0xC4   |
++--------+----------+----------+----------+--------+--------+--------+--------+
+
+*Table:* **BSL\_RX\_PASSWORD Command Example** 
+
++---------+--------+--------+-------+--------+--------+--------+--------+--------+--------+
+| Header  | Length | Length |  CMD  |   D1   |   D2   |   D3   |   D4   |   D5   |   D6   |
++=========+========+========+=======+========+========+========+========+========+========+
+| 0x80    | 0x01   | 0x01   | 0x21  | 0xFF   | 0xFF   | 0xFF   | 0xFF   | 0xFF   | 0xFF   |
++---------+--------+--------+-------+--------+--------+--------+--------+--------+--------+
+
+
++--------+---------+---------+---------+--------+--------+--------+---------+-------+-------+
+| D7     | /././.  |  D251   |  D252   |  D253  |  D254  |  D255  |  D256   |  CKL  |  CKH  |
++========+=========+=========+=========+========+========+========+=========+=======+=======+
+| 0xFF   | 0xFF    |   0xFF  | 0xFF    | 0xFF   | 0xFF   |  0xFF  |  0xFF   | 0xAD  | 0x08  |
++--------+---------+---------+---------+--------+--------+--------+---------+-------+-------+
+
+
+BSL\_ERASE\_SC\_FW
+~~~~~~~~~~~~~~~~~~
+
+
+The BSL\_ERASE\_SC\_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.
+
+    ***Note*:** Allow at least 1 second for the erase operation to
+    complete before proceeding with next set of commands.
+
+*Table:* **BSL\_ERASE\_SC\_FW Server BMC Request**
+
++------------------------+------------+
+|     **Server BMC Request**          |
++========================+============+
+|     Header             |     0x80   |
++------------------------+------------+
+|     Length (low byte)  |     0x01   |
++------------------------+------------+
+|     Length (high byte) |     0x00   |
++------------------------+------------+
+|     Command code       |     0x15   |
++------------------------+------------+
+|     CKL                |     TBD    |
++------------------------+------------+
+|     CKH                |     TBD    |
++------------------------+------------+
+
+*Table:* **BSL\_ERASE\_SC\_FW Xilinx Alveo Card (BSL) Response**
+
++--------------------+---------------+-----------------------------------------------------------------+
+| **Xilinx Alveo Card (BSL) Response**                                                                 |
++====================+===============+=================================================================+
+| Data bytes B0 … B7 | B0: ACK       | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B1: Header    | 0x80                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B2: Length    | 0x02                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B3: Length    | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B4: CMD       | 0x3B                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B5: Message   | 0x00 – Operation successful                                     |
+|                    |               |                                                                 |
+|                    |               | 0x04– BSL locked. Password incorrect resulted in BSL locking    |
+|                    |               |                                                                 |
+|                    |               | 0x05– BSL password error. Incorrect password sent to unlock BSL |
+|                    |               |                                                                 |
+|                    |               | 0x07– Unknown Command                                           |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B6: CKL       | 0x60                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B7: CKH       | 0xC4                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+
+**Command Example**
+               
+
+*Table:* **BSL\_ERASE\_SC\_FW Initiate Erase**
+
++-------------+--------------+--------------+------------+------------+------------+
+|     Header  |     Length   |     Length   |     CMD    |     CKL    |     CKH    |
++=============+==============+==============+============+============+============+
+|     0x80    |     0x01     |     0x00     |     0x15   |     0x64   |     0xA3   |
++-------------+--------------+--------------+------------+------------+------------+
+
+*Table:* **BSL\_ERASE\_SC\_FW BSL Response (Successful Operation)**
+
++-------------+--------------+--------------+----------+------------+------------+------------+------------+
+|     ACK     |     Header   |     Length   | Length   |     CMD    |     MSG    |     CKL    |     CKH    |
++=============+==============+==============+==========+============+============+============+============+
+|     0x00    |     0x80     |     0x02     | 0x00     |     0x3B   |     0x00   |     0x60   |     0xC4   |
++-------------+--------------+--------------+----------+------------+------------+------------+------------+
+
+BSL\_RX\_DATA\_BLOCK
+~~~~~~~~~~~~~~~~~~~~
+
+    The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
+    from the location specified in the address fields. The
+    BSL\_RX\_DATA\_BLOCK command allows the BSL to address the device
+    with the full 32-bit range.
+
+*Table:* **BSL\_RX\_DATA\_BLOCK Server BMC Request**
+
++----------------------------+------------+
+|     **Server BMC Request**              |
++============================+============+
+| Header                     |     0x80   |
++----------------------------+------------+
+| Length (low byte)          |     0x05   |
++----------------------------+------------+
+| Length (high byte)         |     0x01   |
++----------------------------+------------+
+| Command code               |     0x20   |
++----------------------------+------------+
+
+*Table:* **BSL\_RX\_DATA\_BLOCK Server BMC Request** *(cont'd)*
+
++-----------------------------+----------------------+
+|     **Server BMC Request**                         |
++=============================+======================+
+|     Address bytes           |     A0, A1, A2, A3   |
++-----------------------------+----------------------+
+|     Data bytes              |     D1 … D256        |
++-----------------------------+----------------------+
+|     CKL                     |     TBD              |
++-----------------------------+----------------------+
+|     CKH                     |     TBD              |
++-----------------------------+----------------------+
+
+*Table:* **BSL\_RX\_DATA\_BLOCK Xilinx Alveo Card (BSL) Response**
+
++--------------------+---------------+-----------------------------------------------------------------+
+| **Xilinx Alveo Card (BSL) Response**                                                                 |
++====================+===============+=================================================================+
+| Data bytes B0 … B7 | B0: ACK       | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B1: Header    | 0x80                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B2: Length    | 0x02                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B3: Length    | 0x00                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B4: CMD       | 0x3B                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B5: Message   | 0x00 – Operation successful                                     |
+|                    |               |                                                                 |
+|                    |               | 0x04– BSL locked. Password incorrect resulted in BSL locking    |
+|                    |               |                                                                 |
+|                    |               | 0x05– BSL password error. Incorrect password sent to unlock BSL |
+|                    |               |                                                                 |
+|                    |               | 0x07– Unknown Command                                           |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B6: CKL       | 0x60                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+|                    | B7: CKH       | 0xC4                                                            |
++--------------------+---------------+-----------------------------------------------------------------+
+
+BSL\_RX\_DATA\_BLOCK Command Example
+                                    
+
+*Table:* **Write Data** 0x76543210 **to Address** 0x0001:0000
+
++---------+----------+----------+------+------+-------+------+------+------+------+------+------+-------+--------+
+| Header  | Length   | Length   | CMD  | A0   |  A1   | A2   | A3   | D1   | D2   | D3   | D4   | CKL   | CKH    |
++=========+==========+==========+======+======+=======+======+======+======+======+======+======+=======+========+
+| 0x80    | 0x09     | 0x00     | 0x20 | 0x00 | 0x00  | 0x01 | 0x00 | 0x10 | 0x32 | 0x54 | 0x76 | 0x66  | 0x96   |
++---------+----------+----------+------+------+-------+------+------+------+------+------+------+-------+--------+
+
+*Table:* **BSL\_RX\_DATA\_BLOCK BSL Response for a Successful Data Write**
+
++------+----------+----------+----------+--------+--------+--------+--------+
+| ACK  | Header   | Length   | Length   | CMD    | MSG    | CKL    | CKH    |
++======+==========+==========+==========+========+========+========+========+
+| 0x00 | 0x80     | 0x02     | 0x00     | 0x3B   | 0x00   | 0x60   | 0xC4   |
++------+----------+----------+----------+--------+--------+--------+--------+
+
+    ***Note*:** The BMC will need to parse through the SC FW file to
+    identify the start location for each segment. To be specific, search
+    for '@' and use the following 4-byte address to frame and send the
+    address bytes: A0, A1, A2, and A3 (LSB first).
+
+	 *Figure:* **Linux grep Command**
+
+.. image:: ./images/sc-segments.png
+   :align: center
+
+
+
+There are 4 segments in the following example:
+
+-  @200– Segment starting at (0x00000200 A0 = 0x00; A1 = 0x02; A2 =
+   0x00; A3 = 0x00)
+
+-  @1f780– Segment starting at 0x0001F780 (A0 = 0x80; A1 = 0xF7; A2 =
+   0x01; A3 = 0x00)
+
+-  @20e58– Segment starting at 0x00020E58 (A0 = 0x58; A1 = 0x0E; A2 =
+   0x02; A3 = 0x00)
+
+-  @0000– Segment starting at 0x00000000 (A0 = 0x00; A1 = 0x00; A2 =
+   0x00; A3 = 0x00)
+
+
+.
+    This figure captures the linux grep command and response for the
+    string '@' within the FW file.
+
+    ***Note*:** The string '@' represents the start of a new section in
+    the flash memory.
+
+    Because the BSL\_RX\_DATA\_BLOCK command's maximum data size is 256
+    bytes, the address needs to be incremented by 256 or 0x100.
+
+-  For the first packet in every segment, the BMC will send the 4-byte
+   address as parsed above
+
+    0x80 0x09 0x00 0x20 0x00 0x02 0x00 0x00 0x00 0x01 .. 0xFF 0x66 0x96.
+
+-  For all subsequent packets, the BMC will increment the address by
+   0x100 while sending the commands 0x80 0x09 0x00 0x20 0x00 0x03 0x00
+   0x00 0x00 0x01 .. 0xFF 0x66 0x96
+   Header-Length-CMD-Address-Data-Checksum.
+
+BSL\_CRC\_CHECK
+~~~~~~~~~~~~~~~
+
+    ***Note*:** The BSL\_CRC\_CHECK command is an optional command.
+
+    The MSP432 device performs a 16-bit CRC check using the CCITT
+    standard. The address given is the first byte of the CRC check; 2
+    bytes are used for the length.
+
+*Table:* **BSL\_CRC\_CHECK Server BMC Request**
+
++--------------------------+----------------------+
+|     **Server BMC Request**                      |
++==========================+======================+
+|     Header               |     0x80             |
++--------------------------+----------------------+
+|     Length (low Byte)    |     TBD              |
++--------------------------+----------------------+
+|     Length (high Byte)   |     0x00             |
++--------------------------+----------------------+
+|     Command code         |     0x26             |
++--------------------------+----------------------+
+|     Address bytes        |     A0, A1, A2, A3   |
++--------------------------+----------------------+
+
+*Table:* **BSL\_CRC\_CHECK Server BMC Request** *(cont'd)*
+
++-------------+----------------------------------------------------+
+|     **Server BMC Request**                                       |
++=============+====================================================+
+| Data bytes  |     D1, D2                                         |
+|             |                                                    |
+|             |     D1: length (low byte) D2: length (high byte)   |
++-------------+----------------------------------------------------+
+| CKL         |     TBD                                            |
++-------------+----------------------------------------------------+
+| CKH         |     TBD                                            |
++-------------+----------------------------------------------------+
+
+*Table:* **BSL\_CRC\_CHECK Xilinx Alveo Card (BSL) Response** 
+
++---------------------+---------------+------------+
+|     **Xilinx Alveo Card (BSL) Response**         |
++=====================+===============+============+
+| Data bytes B0 … B8  |     B0: ACK   |     0x00   |
++---------------------+---------------+------------+
+|                     | B1: Header    |     0x80   |
++---------------------+---------------+------------+
+|                     | B2: Length    |     0x02   |
++---------------------+---------------+------------+
+|                     | B3: Length    |     0x00   |
++---------------------+---------------+------------+
+|                     | B4: CMD       |     0x3A   |
++---------------------+---------------+------------+
+|                     | B5: Data1     |     TBD    |
++---------------------+---------------+------------+
+|                     | B6: Data2     |     TBD    |
++---------------------+---------------+------------+
+|                     |     B7: CKL   |     TBD    |
++---------------------+---------------+------------+
+|                     |     B8: CKH   |     TBD    |
++---------------------+---------------+------------+
+
+BSL\_CRC\_CHECK Command Example
+                               
+
+    Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of
+    1024 bytes of data).
+
+*Table:* **BSL\_CRC\_CHECK Command Example**
+
++----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+| Header   | Length   | Length   | CMD    | A0     | A1     | A2     | A3     | D1     | D2     | CKL    | CKH    |
++==========+==========+==========+========+========+========+========+========+========+========+========+========+
+| 0x80     | 0x07     | 0x00     | 0x26   | 0x00   | 0x44   | 0x00   | 0x00   | 0x00   | 0x04   | 0xF7   | 0xE6   |
++----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
+
+    The BSL response where 0x55 is the low byte of the calculated
+    checksum and 0xAA is the high byte of the calculated checksum:
+
+*Table:* **BSL\_CRC\_CHECK Response for a Successful CRC Calculation**
+
++----------+----------+----------+----------+--------+--------+--------+--------+--------+
+| ACK      | Header   | Length   | Length   | CMD    | D1     | D2     | CKL    | CKH    |
++==========+==========+==========+==========+========+========+========+========+========+
+| 0x00     | 0x80     | 0x03     | 0x00     | 0x3A   | 0x55   | 0xAA   | 0x12   | 0x2B   |
++----------+----------+----------+----------+--------+--------+--------+--------+--------+
+
+    ***Note*:** As noted in the
+    `BSL\_RX\_DATA\_BLOCK <#bsl_rx_data_block>`__ command, BMC will need
+    to parse through the SC FW file to identify the start address for
+    each command.
+
+BSL\_LOAD\_PC
+~~~~~~~~~~~~~
+
+    The BSL\_LOAD\_PC command causes the BSL to jump and begin execution
+    at the given address. The BSL responds with 0x00. In this case, the
+    jump address is 0x0000:0201.
+
+*Table:* **BSL\_LOAD\_PC Server BMC Request**
+
++--------------------+----------------------------------------------------------+
+|     **Server BMC Request**                                                    |
++====================+==========================================================+
+| Header             |     0x80                                                 |
++--------------------+----------------------------------------------------------+
+| Length (low byte)  |     0x05                                                 |
++--------------------+----------------------------------------------------------+
+| Length (high byte) |     0x00                                                 |
++--------------------+----------------------------------------------------------+
+| Command code       |     0x27                                                 |
++--------------------+----------------------------------------------------------+
+| Address bytes      |     A0, A1, A2, A3 A0: 0x01 A1: 0x02 A2: 0x00 A3: 0x00   |
++--------------------+----------------------------------------------------------+
+| CKL                |     TBD                                                  |
++--------------------+----------------------------------------------------------+
+| CKH                |     TBD                                                  |
++--------------------+----------------------------------------------------------+
+
+*Table:* **BSL\_LOAD\_PC Xilinx Alveo Card Response**
+
++-------------+--------------+--------------------+
+|     **Xilinx Alveo Card Response**              |
++=============+==============+====================+
+| Data bytes  |     Byte 0   |     0x00–Success   |
++-------------+--------------+--------------------+
+
+Command Example
+               
+
+    The program counter is set to 0x0000:0201. The server BMC must send
+    the address bytes as A0=0x01, A1=0x02, A2=0x00, and A3=0x00.
+
++----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+
+| Header   | Length   | Length   | CMD    | A0     | A1     | A2     | A3     | CKL    | CKH    |
++==========+==========+==========+========+========+========+========+========+========+========+
+| 0x80     | 0x05     | 0x00     | 0x27   | 0x01   | 0x02   | 0x00   | 0x00   | 0x8E   | 0xBC   |
++----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+
+
+    The BSL responds with 0x00.
+
+    ***Note*:** Functionality of the BSL core command has been modified
+    to improve robustness around the SC FW upgrade process. When BMC
+    issues this command to jump to SC application code, BSL checks the
+    CRC of the entire SC FW image. If the CRC check is successful, BSL
+    loads the new SC application code. If not, the MSP stays in BSL mode
+    with the assumption that SC FW is corrupted/interrupted due to CRC
+    failure.
+
+Sample BSL Commands
+~~~~~~~~~~~~~~~~~~~
+
+    The contents from the following table have been imported from
+    TotalPhase Aardvark I2C adapter.
+
+*Figure:* **I2C Transaction captured using I2C Aardvark Tool**
+
+.. image:: ./images/aardvark_capture_SC_FW_update.PNG
+   :align: center
+
+ 
+Timing Diagram: Normal Flow of OOB SC FW Upgrade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. The BMC sends the 0x31 GET\_SC\_STATUS command to the SC, which
+   responds with 0x02
+
+    MSP SC FW mode.
+
+1. The BMC sends the 0x32 Enable\_BSL\_Mode command to the SC which
+   configures the BSL parameters and reboots itself. The MSP enters BSL
+   mode on the next boot up. No response is sent to BMC.
+
+2. The BMC waits 1 second and sends the 0x31 GET\_SC\_STATUS command to
+   BSL and gets response 0x01 from the BSL MSP in BSL mode.
+
+3. The BMC unlocks the BSL by sending the password (0x21
+   BSL\_RX\_PASSWORD) and the BSL sends the status in response.
+
+4. The BMC sends the 0x15 BSL\_ERASE\_SC\_FW command to the BSL asking
+   that the entire SC FW image to be erased. BSL erases the FW and sends
+   the response back to BMC.
+
+5. The BMC sends the entire SC FW via repeated 0x20 BSL\_RX\_Data
+   command with the correct start address and BSL sends the status in
+   response.
+
+6. The BMC (optionally) sends the 0x26 BSL\_CRC\_CHECK command with the
+   correct start address and the BSL sends the status in response.
+
+7. The BMC sends the 0x27 BSL\_Load\_PC command and the BSL checks the
+   CRC on the full FW. If CRC passes, the new SC FW loads. If not, it
+   stays in BSL mode, enabling the BMC to restart the SC FW upgrade (see
+   step 3).
+
+*Figure:* Timing Diagram: Normal flow of Out-of-Band SC FW Upgrade
+
+
+.. image:: ./images/sc-update-normal-flow.png
+   :align: center
+
+Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+1. If the SC FW upgrade is interrupted mid-way due to power cycle (i.e.,
+   BMC reboot, MSP reboot, etc.,) the BSL takes corrective action by
+   prohibiting the partial/corrupt FW to boot.
+
+2. The BSL disables the SC FW application code and hangs in BSL, waiting
+   for a new SC FW upgrade process by BMC.
+
+3. The BMC will need to retrigger the upgrade process from the start.
+   This is done by sending a 0x31 GET\_SC\_STATUS command to get the
+   status and following `Timing Diagram: Normal Flow of OOB SC FW
+   Upgrade <#timing-diagram-normal-flow-of-oob-sc-fw-upgrade>`__.
+
+    ***Note*:** It is possible the I2C engine in the BSL can get stuck
+    if the transaction got interrupted (as mentioned in step 1). Because
+    the BSL does not have I2C recovery mechanisms, the only way to get
+    back to BSL mode is to reboot the MSP. This can be only done by the
+    AC power cycle of the server.
+
+    *Figure:* **Interrupted flow of OOB SC FW Upgrade**
+
+.. image:: ./images/sc-update-interrupted-flow.png
+   :align: center
+
+**Xilinx Support**
+
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+
+**License**
+
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.
+
+You may obtain a copy of the License at
+`http://www.apache.org/licenses/LICENSE-2.0 <http://www.apache.org/licenses/LICENSE-2.0>`_
+
+All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the "CC-BY-4.0 License"); you may not use this file except in compliance with the CC-BY-4.0 License.
+
+You may obtain a copy of the CC-BY-4.0 License at
+`https://creativecommons.org/licenses/by/4.0/ <https://creativecommons.org/licenses/by/4.0/>`_
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+
+.. raw:: html
+
+	<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
