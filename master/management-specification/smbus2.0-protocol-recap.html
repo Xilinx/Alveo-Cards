@@ -434,8 +434,8 @@
             
   <div class="section" id="i2c-smbus-implementation-and-protocol-recap">
 <h1>I2C/SMBus Implementation and Protocol Recap<a class="headerlink" href="#i2c-smbus-implementation-and-protocol-recap" title="Permalink to this headline">¶</a></h1>
-<p>The latest sensor information is stored locally in the SC FW and is exposed on-demand to server BMC via the OOB channel
-I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification compliant.</p>
+<p>Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at I2C slave address 0x65 (0xCA in 8-bit). The implementation is SMBus v2.0 Specification compliant. This chapter captures some of the frequently used SMBus commands between SC and Server BMC. Note that all the standard SMBus commands between SC and Server BMC are implemented without PEC.</p>
+<p><strong>NOTE:</strong> For detailed SMBus spec, refer <a class="reference external" href="http://smbus.org/specs/smbus20.pdf">System Management Bus Specification - version 2.0</a></p>
 <p><em>Figure:</em> <strong>SMBus Packet</strong></p>
 <img alt="_images/SMBus_Sample_Packet.png" class="align-center" src="_images/SMBus_Sample_Packet.png" />
 <p><em>Table:</em> <strong>SMBus Packet diagram element Key</strong></p>
@@ -462,37 +462,31 @@ I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification
 <tr class="row-odd"><td>W</td>
 <td>Write (bite value of 0)</td>
 </tr>
-<tr class="row-even"><td>x</td>
-<td>When shown under a field, indicates that the field is required to have the value of x.</td>
+<tr class="row-even"><td>A</td>
+<td>ACK</td>
 </tr>
-<tr class="row-odd"><td>A</td>
-<td>Acknowledge (this bit position may be 0 for an ACK or 1 for a NACK)</td>
+<tr class="row-odd"><td>N</td>
+<td>NACK</td>
 </tr>
 <tr class="row-even"><td>P</td>
 <td>Stop condition</td>
 </tr>
-<tr class="row-odd"><td>PEC</td>
-<td>Packet error code</td>
-</tr>
-<tr class="row-even"><td>□</td>
+<tr class="row-odd"><td>□</td>
 <td>Master-to-slave</td>
 </tr>
-<tr class="row-odd"><td>■</td>
+<tr class="row-even"><td>■</td>
 <td>Slave-to-master</td>
+</tr>
+<tr class="row-odd"><td>PEC</td>
+<td>Packet error code</td>
 </tr>
 <tr class="row-even"><td>…</td>
 <td>Continuation of protocol</td>
 </tr>
 </tbody>
 </table>
-<p><em>Read-Byte</em></p>
-<img alt="_images/SMBus_Read_Byte.png" class="align-center" src="_images/SMBus_Read_Byte.png" />
-<p><em>Read-Word</em></p>
-<img alt="_images/SMBus_Read_Word.png" class="align-center" src="_images/SMBus_Read_Word.png" />
-<p><em>Block-Read</em></p>
-<img alt="_images/SMBus_Block_Read.png" class="align-center" src="_images/SMBus_Block_Read.png" />
-<p><em>Block-Write Block-Read</em></p>
-<img alt="_images/SMBus_Block_Write_Block_Read.png" class="align-center" src="_images/SMBus_Block_Write_Block_Read.png" />
+<p><em>Figure:</em> <strong>SMBus Commands</strong></p>
+<img alt="_images/SMBus_Commands_Figure.png" class="align-center" src="_images/SMBus_Commands_Figure.png" />
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
@@ -534,7 +528,7 @@ I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

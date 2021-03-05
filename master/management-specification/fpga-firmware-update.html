@@ -348,7 +348,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">FPGA Flash Update Commands</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#x40-fpga-reset-device">0x40 - FPGA_RESET_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x41-fpga-get-fw-ver">0x41 - FPGA_GET_FW_VER</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x42-fpga-set-update-device">0x42 - FPGA_SET_UPDATE_DEVICE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x42-fpga-set-target-device">0x42 - FPGA_SET_TARGET_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x43-fpga-set-boot-device">0x43 - FPGA_SET_BOOT_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x44-fpga-sc-set-write-enable">0x44 - FPGA_SC_SET_WRITE_ENABLE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x45-flash-set-write-enable">0x45 - FLASH_SET_WRITE_ENABLE</a></li>
@@ -364,6 +364,9 @@
 <li class="toctree-l2"><a class="reference internal" href="#x4f-fpga-get-mac-status">0x4F - FPGA_GET_MAC_STATUS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x50-fpga-set-image-size">0x50 - FPGA_SET_IMAGE_SIZE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x51-notify-wp-to-fpga">0x51 - NOTIFY_WP_TO_FPGA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x52-fpga-uart-debug-control">0x52 - FPGA_UART_DEBUG_CONTROL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x53-set-fpga-flash-readback-sector-range">0x53 - SET_FPGA_FLASH_READBACK_SECTOR_RANGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x54-fpga-flash-tx-data-block">0x54 - FPGA_FLASH_TX_DATA_BLOCK</a></li>
 </ul>
 </li>
 </ul>
@@ -454,40 +457,34 @@
             
   <div class="section" id="fpga-flash-update-commands">
 <h1>FPGA Flash Update Commands<a class="headerlink" href="#fpga-flash-update-commands" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>In the Alveo™ U30, the satellite controller supports an out-of-band method of QSPI flash image upgrade. QSPI flash is where FPGA image is stored. Server BMC is expected to initiate and perform the upgrade process by sending the I2C commands to the satellite controller firmware.</p>
+<p>In the Alveo™ U30, the satellite controller (SC) supports an out-of-band method of FPGA flash image upgrade. Optionally, Server BMC shall initiate and perform the upgrade process by sending the I2C commands to the satellite controller firmware. The out-of-band FPGA FW update is supported at I2C address 0x65 (0xCA in 8-bit).</p>
 <p><strong>*Note*:</strong> The satellite controller will perform I2C clock-stretching, wherever applicable, to perform the requested actions.</p>
-<p><strong>*Note*:</strong> The satellite controller firmware only supports 700 kHz mode on the SMBus (used for the FPGA FW update), therefore the upgrade process could take an extended amount of time. SMBus speed of 1MHz is currently untested and unsupported.</p>
-<p>The table below lists the commands supported/needed for QSPI flash upgrade. The following commands are currently supported only for Alveo U30</p>
-</div></blockquote>
-<ol class="arabic simple">
-<li>FPGA_GET_FW_VER</li>
-<li>FLASH_COPY_FIRMWARE</li>
-<li>FPGA_SET_KEY_NONCE</li>
-<li>FPGA_CALC_MAC</li>
-<li>FPGA_VERIFY_MAC</li>
-<li>FPGA_GET_MAC_STATUS</li>
-</ol>
+<p>In addition to the FPGA flash update via OoB, SC also supports other FPGA flash related operations like:</p>
+<ul class="simple">
+<li>Enable or Disable Write Protect (WP#) settings</li>
+<li>FPGA flash image read-back</li>
+<li>Flash image authentication via MAC/HASH calculation</li>
+<li>Copy of flash image from one flash to another (F2F copy)</li>
+</ul>
+<p>The table below lists all the commands supported/needed for FPGA flash operations. Currently, the FPGA flash operation commands are supported only for Alveo™ U30.</p>
+<p><strong>*Note*:</strong> MAC in this chapter refers to Message Authentication Code and it can also be referred as HASH. MAC/HASH calculation of the entire or sometimes few select FPGA flash sectors is performed at the request of BMC, to validate the flash contents haven’t been tampered with.</p>
 <p><em>Table:</em> <strong>FPGA Flash Upgrade Commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="8%" />
-<col width="12%" />
-<col width="25%" />
-<col width="30%" />
-<col width="26%" />
+<col width="13%" />
+<col width="27%" />
+<col width="33%" />
+<col width="28%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>SI NO</strong></th>
-<th class="head"><strong>Command</strong></th>
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
 <th class="head"><strong>Command Description</strong></th>
 <th class="head"><strong>Server BMC Action</strong></th>
 <th class="head"><strong>SC Action</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>1</td>
-<td>0x40</td>
+<tr class="row-even"><td>0x40</td>
 <td>FPGA_RESET_DEVICE</td>
 <td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA devices</p>
@@ -498,8 +495,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>2</td>
-<td>0x41</td>
+<tr class="row-odd"><td>0x41</td>
 <td>FPGA_GET_FW_VER</td>
 <td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
@@ -512,9 +508,8 @@
 <p class="last">B2 - Major revision</p>
 </td>
 </tr>
-<tr class="row-even"><td>3</td>
-<td>0x42</td>
-<td>FPGA_SET_UPDATE_DEVICE</td>
+<tr class="row-even"><td>0x42</td>
+<td>FPGA_SET_TARGET_DEVICE</td>
 <td><p class="first">B0 from BMC</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
@@ -526,8 +521,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>4</td>
-<td>0x43</td>
+<tr class="row-odd"><td>0x43</td>
 <td>FPGA_SET_BOOT_DEVICE</td>
 <td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
@@ -540,8 +534,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td>5</td>
-<td>0x44</td>
+<tr class="row-even"><td>0x44</td>
 <td><p class="first">FPGA_SC_SET_WRITE</p>
 <p>_ENABLE</p>
 <p>Provides control to SC</p>
@@ -562,8 +555,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>6</td>
-<td>0x45</td>
+<tr class="row-odd"><td>0x45</td>
 <td><p class="first">FLASH_SET_WRITE_ENABLE</p>
 <p>Provides control to SC</p>
 <p>over WP# pins and enables</p>
@@ -583,8 +575,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td>7</td>
-<td>0x46</td>
+<tr class="row-even"><td>0x46</td>
 <td><p class="first">FLASH_GET_WRITE</p>
 <p class="last">_PROTECT_STATES</p>
 </td>
@@ -605,8 +596,7 @@
 <p class="last">0x02: WP disabled</p>
 </td>
 </tr>
-<tr class="row-odd"><td>8</td>
-<td>0x47</td>
+<tr class="row-odd"><td>0x47</td>
 <td><p class="first">FLASH_RX_DATA_BLOCK</p>
 <p>SC accumulates 252 bytes</p>
 <p>from each transaction to</p>
@@ -614,12 +604,11 @@
 <p class="last">it into QSPI flash</p>
 </td>
 <td><p class="first">BMC sends data bytes</p>
-<p class="last">D0…D251</p>
+<p class="last">D0, D1 … D251</p>
 </td>
 <td>N/A</td>
 </tr>
-<tr class="row-even"><td>9</td>
-<td>0x48</td>
+<tr class="row-even"><td>0x48</td>
 <td><p class="first">FLASH_BLOCK_CRC_CHECK</p>
 <p>SC compares CRC, writes 1</p>
 <p>sector to flash, rechecks</p>
@@ -633,8 +622,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>10</td>
-<td>0x49</td>
+<tr class="row-odd"><td>0x49</td>
 <td><p class="first">FLASH_SECTOR_SET_SEQ</p>
 <p class="last">_NUM</p>
 </td>
@@ -646,8 +634,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td>11</td>
-<td>0x4A</td>
+<tr class="row-even"><td>0x4A</td>
 <td>FLASH_COPY_FIRMWARE</td>
 <td><p class="first">B0: Source flash device</p>
 <p>0x01: FPGA1 Primary</p>
@@ -665,8 +652,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>12</td>
-<td>0x4B</td>
+<tr class="row-odd"><td>0x4B</td>
 <td><p class="first">FPGA_GET_FIRMWARE</p>
 <p class="last">_STATUS</p>
 </td>
@@ -676,8 +662,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td>13</td>
-<td>0x4C</td>
+<tr class="row-even"><td>0x4C</td>
 <td><p class="first">FPGA_SET_KEY_NONCE</p>
 <p>BMC sends key and nonce</p>
 <p>that’s randomly generated.</p>
@@ -697,8 +682,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>14</td>
-<td>0x4D</td>
+<tr class="row-odd"><td>0x4D</td>
 <td><p class="first">FPGA_CALC_MAC</p>
 <p>SC increments nonce by 1,</p>
 <p>calculates hash using the</p>
@@ -717,8 +701,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td>15</td>
-<td>0x4E</td>
+<tr class="row-even"><td>0x4E</td>
 <td><p class="first">FPGA_VERIFY_MAC</p>
 <p>SC calculates hash using</p>
 <p>existing key &amp; nonce, and</p>
@@ -736,8 +719,7 @@
 <p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td>16</td>
-<td>0x4F</td>
+<tr class="row-odd"><td>0x4F</td>
 <td><p class="first">FPGA_GET_MAC_STATUS</p>
 <p>SC responds with status of</p>
 <p>MAC/has calculation or</p>
@@ -761,21 +743,19 @@
 <p class="last">16 byte MAC/hash value</p>
 </td>
 </tr>
-<tr class="row-even"><td>17</td>
-<td>0x50</td>
+<tr class="row-even"><td>0x50</td>
 <td>FPGA_SET_IMAGE_SIZE</td>
 <td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
-<p>B1 - B5 from BMC:</p>
+<p>B1 - B5 from BMC (LSB first):</p>
 <p class="last">Size of QSPI image in bytes</p>
 </td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>18</td>
-<td>0x51</td>
+<tr class="row-odd"><td>0x51</td>
 <td>NOTIFY_WP_TO_FPGA</td>
 <td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
@@ -786,6 +766,44 @@
 <td><p class="first">Byte B0 from SC:</p>
 <p>0x01: Operation Success</p>
 <p class="last">0x02: Operation failure</p>
+</td>
+</tr>
+<tr class="row-even"><td>0x52</td>
+<td>FPGA_UART_DEBUG_CONTROL</td>
+<td><p class="first">B0 from BMC:</p>
+<p>0x01: FPGA1</p>
+<p class="last">0x02: FPGA2</p>
+</td>
+<td><blockquote class="first">
+<div>Byte B0 from SC:</div></blockquote>
+<p>0x01: Operation Success</p>
+<p>0x02: Operation failure</p>
+<p class="last">0x03: Operation unsupported</p>
+</td>
+</tr>
+<tr class="row-odd"><td>0x53</td>
+<td><p class="first">SET_FPGA_FLASH_READBACK</p>
+<p class="last">_SECTOR_RANGE</p>
+</td>
+<td><p class="first">B0: Start sector num (low byte)</p>
+<p>B1: Start sector num (high byte)</p>
+<p>B2: End sector num (low byte)</p>
+<p class="last">B4: End sector num (high byte)</p>
+</td>
+<td><p class="first">See table ‘Flash Operation</p>
+<p>Return Codes’ for SC’s</p>
+<p class="last">response</p>
+</td>
+</tr>
+<tr class="row-even"><td>0x54</td>
+<td><p class="first">FPGA_FLASH_TX</p>
+<p class="last">_DATA_BLOCK</p>
+</td>
+<td><p class="first">BMC sends repeated-start</p>
+<p class="last">I2C command</p>
+</td>
+<td><p class="first">SC sends 252 data bytes:</p>
+<p class="last">D0, D1 … D251</p>
 </td>
 </tr>
 </tbody>
@@ -958,7 +976,7 @@
 <tr class="row-odd"><td>0x54</td>
 <td>FPGA2 recovery MAC verification in-progress</td>
 </tr>
-<tr class="row-even"><td>0x55–0xEF</td>
+<tr class="row-even"><td>0x54–0xEF</td>
 <td>Reserved</td>
 </tr>
 <tr class="row-odd"><td>0xFF</td>
@@ -968,12 +986,11 @@
 </table>
 <div class="section" id="x40-fpga-reset-device">
 <h2>0x40 - FPGA_RESET_DEVICE<a class="headerlink" href="#x40-fpga-reset-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC can send the FPGA_RESET_DEVICE command to reset FPGA
+<p>The BMC can send the FPGA_RESET_DEVICE command to reset FPGA
 device(s) or SC FW. For SC reset (warm reset), the satellite
 controller firmware responds with the status and reboots itself. In
 the Alveo U30 the reset command will reset both the FPGA devices
-(ZYNQ1 and ZYNQ2), due to an existing HW limitation.</div></blockquote>
+(ZYNQ1 and ZYNQ2), due to an existing HW limitation.</p>
 <p><em>Table:</em> <strong>FPGA_RESET_DEVICE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1016,8 +1033,7 @@ the Alveo U30 the reset command will reset both the FPGA devices
 </div>
 <div class="section" id="x41-fpga-get-fw-ver">
 <h2>0x41 - FPGA_GET_FW_VER<a class="headerlink" href="#x41-fpga-get-fw-ver" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC sends this command to fetch the FW version running in either FPGA1 or FPGA2 device. This command is currently supported only in the Alveo U30 data accelerator card. The byte 0 (validity byte) in response from SC must be read first.</div></blockquote>
+<p>The BMC sends this command to fetch the FW version running in either FPGA1 or FPGA2 device. This command is currently supported only in the Alveo U30 data accelerator card. The byte 0 (validity byte) in response from SC must be read first.</p>
 <p><em>Table:</em> <strong>FPGA_GET_FW_VER Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1068,12 +1084,11 @@ the Alveo U30 the reset command will reset both the FPGA devices
 </tbody>
 </table>
 </div>
-<div class="section" id="x42-fpga-set-update-device">
-<h2>0x42 - FPGA_SET_UPDATE_DEVICE<a class="headerlink" href="#x42-fpga-set-update-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>BMC sends the FPGA_SET_UPDATE_DEVICE command to select the flash
-device to initiate the FW upgrade.</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SET_UPDATE_DEVICE Server BMC Request</strong></p>
+<div class="section" id="x42-fpga-set-target-device">
+<h2>0x42 - FPGA_SET_TARGET_DEVICE<a class="headerlink" href="#x42-fpga-set-target-device" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends the FPGA_SET_TARGET_DEVICE command to select the flash
+device to initiate the FW upgrade.</p>
+<p><em>Table:</em> <strong>FPGA_SET_TARGET_DEVICE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />
@@ -1096,7 +1111,7 @@ device to initiate the FW upgrade.</div></blockquote>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SET_UPDATE_DEVICE Xilinx Alveo Card Response</strong></p>
+<p><em>Table:</em> <strong>FPGA_SET_TARGET_DEVICE Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -1117,13 +1132,11 @@ device to initiate the FW upgrade.</div></blockquote>
 </div>
 <div class="section" id="x43-fpga-set-boot-device">
 <h2>0x43 - FPGA_SET_BOOT_DEVICE<a class="headerlink" href="#x43-fpga-set-boot-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FPGA_SET_BOOT_DEVICE command to set the boot
+<p>The BMC sends the FPGA_SET_BOOT_DEVICE command to set the boot
 device. The SC FW stores this information in the internal flash memory and
 restores the configuration in case of server cool boot or power cycle.</p>
 <p><strong>*Note*:</strong> Primary flash device is selected as the boot
 device/default configuration in FPGA1 (and FPGA2 if present).</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>FPGA_SET_BOOT_DEVICE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1170,11 +1183,9 @@ device/default configuration in FPGA1 (and FPGA2 if present).</p>
 </div>
 <div class="section" id="x44-fpga-sc-set-write-enable">
 <h2>0x44 - FPGA_SC_SET_WRITE_ENABLE<a class="headerlink" href="#x44-fpga-sc-set-write-enable" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FPGA_SC_SET_WRITE_ENABLE command to enable/disable write protect for SPI mode from the SC. This command must follow FPGA_SET_UPDATE_DEVICE. When the SC has write protect mode enabled, only the SC has the access to QSPI flash. SC can read/ write into the flash via SPI (x1 mode).</p>
+<p>The BMC sends the FPGA_SC_SET_WRITE_ENABLE command to enable/disable write protect for SPI mode from the SC. This command must follow FPGA_SET_TARGET_DEVICE. When the SC has write protect mode enabled, only the SC has the access to QSPI flash. SC can read/ write into the flash via SPI (x1 mode).</p>
 <p>For hyperscaler customers, by default, write protect from the satellite controller is enabled. For OEM customers, default mode will be set as WP# disabled and the SC doesn’t have the access to flash device. The SC FW configures this mode based on the FRU parameters written into its EEPROM.</p>
 <p><strong>*Note*:</strong> The SC will not store this configuration (from command 0x44)  in any persistence memory. A SC reboot or device power cycle results in loss of configuration. During the subsequent boot-up, the SC will restore the default configuration.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>FPGA_SC_SET_WRITE_ENABLE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1224,14 +1235,11 @@ device/default configuration in FPGA1 (and FPGA2 if present).</p>
 </div>
 <div class="section" id="x45-flash-set-write-enable">
 <h2>0x45 - FLASH_SET_WRITE_ENABLE<a class="headerlink" href="#x45-flash-set-write-enable" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC can send the FLASH_SET_WRITE_ENABLE command to enable/disable write protect the QSPI flash device in either ZYNQ
+<p>The BMC can send the FLASH_SET_WRITE_ENABLE command to enable/disable write protect the QSPI flash device in either ZYNQ
 device. This command must follow FPGA_SC_SET_WRITE_ENABLE for any FPGA flash FW upgrade.</p>
 <p>For Hyperscaler customers, by default, the FPGA flash devices are write protected and can only run in x2 SPI mode as a preferred/secured mode.</p>
-<blockquote>
-<div>When write protect is disabled, the QSPI flash device can be accessed in x1, x2, or x4 SPI Mode and FPGA has the write access to the QSPI devices. This is the default mode configured for OEM customers. SC FW configures this mode based on FRU parameters written into its EEPROM.</div></blockquote>
+<p>When write protect is disabled, the QSPI flash device can be accessed in x1, x2, or x4 SPI Mode and FPGA has the write access to the QSPI devices. This is the default mode configured for OEM customers. SC FW configures this mode based on FRU parameters written into its EEPROM.</p>
 <p><strong>*Note*:</strong> The SC will not store this configuration (from command 0x45) in any persistence memory. A SC reboot or device power cycle results in the loss of configuration. During the subsequent boot-up, the SC will restore the default configuration.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>FLASH_SET_WRITE_ENABLE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1281,9 +1289,8 @@ device. This command must follow FPGA_SC_SET_WRITE_ENABLE for any FPGA flash FW 
 </div>
 <div class="section" id="x46-flash-get-write-protect-states">
 <h2>0x46 - FLASH_GET_WRITE_PROTECT_STATES<a class="headerlink" href="#x46-flash-get-write-protect-states" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC can send the FLASH_GET_WRITE_PROTECT_STATES command to
-get the write protect state for all the flash devices.</div></blockquote>
+<p>The BMC can send the FLASH_GET_WRITE_PROTECT_STATES command to
+get the write protect state for all the flash devices.</p>
 <p><em>Table:</em> <strong>FLASH_GET_WRITE_PROTECT_STATES Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1332,10 +1339,8 @@ get the write protect state for all the flash devices.</div></blockquote>
 </div>
 <div class="section" id="x47-flash-rx-data-block">
 <h2>0x47 - FLASH_RX_DATA_BLOCK<a class="headerlink" href="#x47-flash-rx-data-block" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends data blocks using the FLASH_RX_DATA_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA_SET_UPDATE_DEVICE, FPGA_SC_SET_WRITE_ENABLE, and FLASH_SET_WRITE_ENABLE commands.</p>
+<p>The BMC sends data blocks using the FLASH_RX_DATA_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA_SET_TARGET_DEVICE, FPGA_SC_SET_WRITE_ENABLE, and FLASH_SET_WRITE_ENABLE commands.</p>
 <p><strong>*Note*:</strong> The maximum supported size of each I2C transaction is 252 bytes.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>FLASH_RX_DATA_BLOCK Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1379,11 +1384,10 @@ get the write protect state for all the flash devices.</div></blockquote>
 </div>
 <div class="section" id="x48-flash-block-crc-check">
 <h2>0x48 - FLASH_BLOCK_CRC_CHECK<a class="headerlink" href="#x48-flash-block-crc-check" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC sends the FLASH_BLOCK_CRC_CHECK command to check the CRC from the previous block and tracks the number of bytes sent to the SC. After sending 64K bytes, the BMC sends this command to initiate CRC check. The BMC sends 64-bit CRC (data payload and start address of the block) for the previous 64 Kbyte block along with this command request. This command also indicates the completion of the 64 Kbyte block transfer from the BMC to the SC, which immediately
+<p>The BMC sends the FLASH_BLOCK_CRC_CHECK command to check the CRC from the previous block and tracks the number of bytes sent to the SC. After sending 64K bytes, the BMC sends this command to initiate CRC check. The BMC sends 64-bit CRC (data payload and start address of the block) for the previous 64 Kbyte block along with this command request. This command also indicates the completion of the 64 Kbyte block transfer from the BMC to the SC, which immediately
 returns the status CRC_CHECK_IN_PROGRESS. This command is a trigger for the SC to start all the flash write and CRC check
 operations in the background. The BMC can poll the FPGA_GET_FIRMWARE_STATUS command periodically for completion
-status before moving to next sector. See table ‘Flash Operation Return Codes’ for SC’s response</div></blockquote>
+status before moving to next sector. See table ‘Flash Operation Return Codes’ for SC’s response</p>
 <p><em>Table 97:</em> <strong>FLASH_BLOCK_CRC_CHECK Server BMC Server</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1426,12 +1430,10 @@ status before moving to next sector. See table ‘Flash Operation Return Codes�
 </div>
 <div class="section" id="x49-flash-sector-set-seq-num">
 <h2>0x49 - FLASH_SECTOR_SET_SEQ_NUM<a class="headerlink" href="#x49-flash-sector-set-seq-num" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The FPGA flash FW image update needs to be implemented with the retry mechanism in both the server BMC and the Alveo SC.</p>
+<p>The FPGA flash FW image update needs to be implemented with the retry mechanism in both the server BMC and the Alveo SC.</p>
 <p>The BMC sends the FLASH_SECTOR_SET_SEQ_NUM command to set the sequence number (or the sector number) of the sector at which the SC needs to write into the FPGA Flash. This retry mechanism is needed to restart the FPGA FW upgrade process from the point where it was terminated previously. The termination reason could be a reboot of the SC FW, the BMC FW, power loss, or any user triggered event.</p>
 <p>When server BMC wants to restart the FPGA FW upgrade process from the middle, the BMC sends a valid 2-byte sequence number. The BMC may keep track of the sequence number and keep updating by 1 for every successful response from the SC for the command FLASH_BLOCK_CRC_CHECK.</p>
 <p>The SC will calculate the sector start address based on the sequence number and the fixed start offset (expected to be 0x0) of the FW inside flash. Responsibility is on the BMC to send the correct sequence number and its corresponding payload. Otherwise the SC may write into a non- contiguous flash sector and may end up corrupting the FW.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>FLASH_SECTOR_SET_SEQ_NUM Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1475,25 +1477,16 @@ status before moving to next sector. See table ‘Flash Operation Return Codes�
 </div>
 <div class="section" id="x4a-flash-copy-firmware">
 <h2>0x4A - FLASH_COPY_FIRMWARE<a class="headerlink" href="#x4a-flash-copy-firmware" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC sends the FLASH_COPY_FIRMWARE command to initiate the copy of FW from one QSPI flash device to another. The BMC sends the source and destination flash devices via this command. Upon receiving this command the SC:</div></blockquote>
-<ol class="arabic">
-<li><p class="first">Copies the sector contents from the source device into 64 Kbyte SRAM within SC FW.</p>
-</li>
-<li><p class="first">Checks the CRC.</p>
-</li>
-<li><p class="first">Copies the contents into the destination device, checks the CRC, and updates the sector sequence number.</p>
-</li>
-<li><p class="first">If failure occurs in the middle of copy, erase all sectors in destination device (no retry support).</p>
-</li>
-<li><p class="first">If the CRC is copied successfully, proceed with next sector.</p>
-</li>
-<li><p class="first">The BMC can obtain the status of the copy from the FLASH_COPY_FIRMWARE_STATUS command.</p>
-<blockquote>
-<div><p><strong>*Note*:</strong> If the BMC sends another copy command while the previous copy is in-progress, the SC will ignore the request and respond appropriate error code. The BMC must check the status via the COPY_FIRMWARE_STATUS command and re-trigger. This command is currently supported only for Alveo U30.</p>
-</div></blockquote>
-</li>
+<p>The BMC sends the FLASH_COPY_FIRMWARE command to initiate the copy of FW from one QSPI flash device to another. The BMC sends the source and destination flash devices via this command. Upon receiving this command the SC:</p>
+<ol class="arabic simple">
+<li>Copies the sector contents from the source device into 64 Kbyte SRAM within SC FW.</li>
+<li>Checks the CRC.</li>
+<li>Copies the contents into the destination device, checks the CRC, and updates the sector sequence number.</li>
+<li>If failure occurs in the middle of copy, erase all sectors in destination device (no retry support).</li>
+<li>If the CRC is copied successfully, proceed with next sector.</li>
+<li>The BMC can obtain the status of the copy from the FLASH_COPY_FIRMWARE_STATUS command.</li>
 </ol>
+<p><strong>*Note*:</strong> If the BMC sends another copy command while the previous copy is in-progress, the SC will ignore the request and respond appropriate error code. The BMC must check the status via the COPY_FIRMWARE_STATUS command and re-trigger. This command is currently supported only for Alveo U30.</p>
 <p><em>Table:</em> <strong>FPGA_COPY_FIRMWARE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1547,9 +1540,8 @@ status before moving to next sector. See table ‘Flash Operation Return Codes�
 </div>
 <div class="section" id="x4b-fpga-get-firmware-status">
 <h2>0x4B - FPGA_GET_FIRMWARE_STATUS<a class="headerlink" href="#x4b-fpga-get-firmware-status" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC sends the FPGA_GET_FIRMWARE_STATUS command to obtain the status of the previously triggered commands like
-FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</div></blockquote>
+<p>The BMC sends the FPGA_GET_FIRMWARE_STATUS command to obtain the status of the previously triggered commands like
+FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</p>
 <p><em>Table:</em> <strong>FPGA_GET_FIRMWARE_STATUS Server BMC request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1590,13 +1582,9 @@ FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</div></blockquote>
 </div>
 <div class="section" id="x4c-fpga-set-key-nonce">
 <h2>0x4C - FPGA_SET_KEY_NONCE<a class="headerlink" href="#x4c-fpga-set-key-nonce" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>*Note*:</strong> This command is optional and only supported in Alveo U30.</p>
-<blockquote>
-<div><p>BMC provides the SC with a randomly generated key and nonce. The SC writes the 16-byte AES128 key and 96-bit (12-byte) nonce value to the SC internal flash storage. The SC provisions storage for one key and one nonce per flash device.</p>
-<p>SC uses 15-byte nonce, by padding 3 bytes (with 0x00) at the start, to the 12-byte nonce sent by BMC (i.e.) LSB 3 bytes are 0x00. In other words, Bytes[14-3] - 12-bytes of nonce sent by BMC, Bytes[2-0] - 0x00 0x00 0x00. BMC must use the exact nonce scheme to calculate the MAC value for comparison. The BMC is expected to select the target flash device.</p>
-</div></blockquote>
-</div></blockquote>
+<p>BMC provides the SC with a randomly generated key and nonce. The SC writes the 16-byte AES128 key and 96-bit (12-byte) nonce value to the Non-volatile memory. The SC provisions storage for one key and one nonce per flash device.</p>
+<p>SC uses 15-byte nonce, by padding 3 bytes (with 0x00) at the start, to the 12-byte nonce sent by BMC (i.e.) LSB 3 bytes are 0x00. In other words, Bytes[14-3] are the 12-bytes of nonce sent by BMC and Bytes[2-0] are 0x00 0x00 0x00.</p>
+<p>BMC must use the exact nonce scheme to calculate the MAC value for comparison. The BMC is expected to select the target flash device.</p>
 <p><em>Table:</em> <strong>FPGA_SET_KEY_NONCE Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1648,11 +1636,8 @@ FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</div></blockquote>
 </div>
 <div class="section" id="x4d-fpga-calc-mac">
 <h2>0x4D - FPGA_CALC_MAC<a class="headerlink" href="#x4d-fpga-calc-mac" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><blockquote>
-<div><strong>*Note*:</strong> This command is optional. If sent, this command must be preceded by FPGA_SET_KEY_NONCE. This command is only supported in Alveo U30</div></blockquote>
-<p>The BMC is expected to call the FPGA_CALC_MAC command after the entire flash image is written. The BMC is expected to select the target flash device. Upon receiving this command, the SC increments the stored nonce by 1, calculates the MAC of the 128 MByte region using the existing key and the new nonce value, and stores the MAC in the SC internal flash.</p>
-</div></blockquote>
+<p><strong>*Note*:</strong> This command is optional. If sent, this command must be preceded by FPGA_SET_KEY_NONCE. This command is only supported in Alveo U30</p>
+<p>The BMC is expected to call the FPGA_CALC_MAC command after the entire flash image is written. The BMC is expected to select the target flash device. Upon receiving the command 0x4D, SC increments the stored nonce by 1, calculates the MAC of the entire 128 MByte region of the FPGA flash device, using the existing key and the new nonce. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.</p>
 <p><em>Table:</em> <strong>FPGA_CALC_MAC Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1698,14 +1683,8 @@ FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</div></blockquote>
 </div>
 <div class="section" id="x4e-fpga-verify-mac">
 <h2>0x4E - FPGA_VERIFY_MAC<a class="headerlink" href="#x4e-fpga-verify-mac" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>NOTE:</strong> This command must be preceded by
-FPGA_SET_KEY_NONCE. This command is supported only in Alveo U30.*</p>
-<p>The BMC sends the FPGA_VERIFY_MAC command to validate the QSPI
-flash image. The SC calculates the Message Authentication Code (MAC)
-of the 128 MByte region using the existing key and existing nonce
-value and compares the resulting MAC to the stored MAC.</p>
-</div></blockquote>
+<p><strong>NOTE:</strong> This command must be preceded by FPGA_SET_KEY_NONCE. This command is supported only in Alveo U30.</p>
+<p>The BMC sends the FPGA_VERIFY_MAC command to validate the FPGA flash image. The SC calculates the MAC/HASH of the entire 128 MByte region using the existing key and existing nonce value. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.</p>
 <p><em>Table:</em> <strong>FPGA_VERIFY_MAC Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1751,12 +1730,10 @@ value and compares the resulting MAC to the stored MAC.</p>
 </div>
 <div class="section" id="x4f-fpga-get-mac-status">
 <h2>0x4F - FPGA_GET_MAC_STATUS<a class="headerlink" href="#x4f-fpga-get-mac-status" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>This command is only supported in Alveo U30 card. The BMC sends the FPGA_GET_MAC_STATUS command to get the
-status of FPGA_CALC_MAC or FPGA_VERIFY_MAC command. SC responds with the status of MAC calculation or
-verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1 - Byte 16.</p>
-<p><strong>*Note*:</strong> Server BMC must use the same key and nonce that the satellite controller used to compute the MAC value to obtain same results. Refer 0x4C and 0x4D command description for details.</p>
-</div></blockquote>
+<p>This command is only supported in Alveo U30 card. The BMC sends the FPGA_GET_MAC_STATUS command to get the
+status of FPGA_CALC_MAC or FPGA_VERIFY_MAC command. SC responds with the status of MAC/HASH calculation or
+verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.</p>
+<p><strong>*Note*:</strong> Server BMC must use the same key and nonce that the satellite controller used to compute the MAC/HASH value to obtain same results. Refer 0x4C and 0x4D command description for details.</p>
 <p><em>Table:</em> <strong>FPGA_GET_MAC_STATUS Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1810,8 +1787,7 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
 </div>
 <div class="section" id="x50-fpga-set-image-size">
 <h2>0x50 - FPGA_SET_IMAGE_SIZE<a class="headerlink" href="#x50-fpga-set-image-size" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The BMC sends this command to notify the SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 5 (4 bytes, unsigned) represents the size of flash image in bytes.</div></blockquote>
+<p>Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 5 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.</p>
 <p><em>Table:</em> <strong>FPGA_SET_IMAGE_SIZE server BMC request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1859,8 +1835,7 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
 </div>
 <div class="section" id="x51-notify-wp-to-fpga">
 <h2>0x51 - NOTIFY_WP_TO_FPGA<a class="headerlink" href="#x51-notify-wp-to-fpga" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>BMC sends this command to request SC to notify the FPGA device about WP status of the flash device. In turn, SC communicates the flash device WP status to FPGA via UART messages. BMC shall send this command prior to initiating the in-band QSPI FW update so that host OS can read the WP status from PCIe BAR config space.</div></blockquote>
+<p>BMC sends this command to request SC to notify the FPGA device about WP status of the flash device. In turn, SC communicates the flash device WP status to FPGA via UART messages. BMC shall send this command prior to initiating the in-band QSPI FW update so that host OS can read the WP status from PCIe BAR config space.</p>
 <p><em>Table:</em> <strong>NOTIFY_WP_TO_FPGA server BMC request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -1887,9 +1862,9 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
 <p><em>Table:</em> <strong>NOTIFY_WP_TO_FPGA Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="19%" />
-<col width="9%" />
-<col width="72%" />
+<col width="28%" />
+<col width="13%" />
+<col width="59%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
@@ -1898,7 +1873,171 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
 <tbody valign="top">
 <tr class="row-even"><td>Data bytes</td>
 <td>B0</td>
-<td>0x01: Operation Success; 0x02: Operation failure</td>
+<td><p class="first">0x01: Operation Success</p>
+<p class="last">0x02: Operation failure</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x52-fpga-uart-debug-control">
+<h2>0x52 - FPGA_UART_DEBUG_CONTROL<a class="headerlink" href="#x52-fpga-uart-debug-control" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to FPGA to enable/disable the debug UART. SC communicates this information to the respective ZYNQ/FPGA device. By default, the debug UART is disabled during production settings and it can optionally be enabled for debug purposes.</p>
+<p><em>Table:</em> <strong>FPGA_UART_DEBUG_CONTROL server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x52</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01 - FPGA1</p>
+<p class="last">0x02 - FPGA2</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>FPGA_UART_DEBUG_CONTROL Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="13%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01: Operation Success</p>
+<p>0x02: Operation failure</p>
+<p class="last">0x03: Operation unsupported</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>FPGA_SET_FLASH_READBACK_DEVICE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x53-set-fpga-flash-readback-sector-range">
+<h2>0x53 - SET_FPGA_FLASH_READBACK_SECTOR_RANGE<a class="headerlink" href="#x53-set-fpga-flash-readback-sector-range" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to set the start and end sectors for the FPGA flash content read-back. The range is between sectors 0 and 2047. SC fetches 1 sector at a time from FPGA flash device and transfers it to BMC via command 0x54.</p>
+<p><em>Table:</em> <strong>SET_FPGA_FLASH_READBACK_SECTOR_RANGE server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x53</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>Start sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>Byte1</td>
+<td>Start sector number (high byte)</td>
+</tr>
+<tr class="row-odd"><td>Byte2</td>
+<td>End sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>Byte3</td>
+<td>End sector number (high byte)</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>SET_FPGA_FLASH_READBACK_SECTOR_RANGE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x54-fpga-flash-tx-data-block">
+<h2>0x54 - FPGA_FLASH_TX_DATA_BLOCK<a class="headerlink" href="#x54-fpga-flash-tx-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command in repeated-start mode to fetch the data from FPGA flash. Before sending the command 0x54, BMC needs to send the commands in sequence (i.e.) command 0x42 (set target device), command 0x53 (set sectors) and command 0x4B (poll the status).</p>
+<ul class="simple">
+<li>Upon requested, SC will read 1 sector (64 KB) from FPGA flash device, compares the CRC before signaling BMC about read-back readiness (via 0x4B command)</li>
+<li>After SC is ready with the payload, BMC can send the read-back command in repeated-start mode to fetch 1 sector of data. The maximum bytes sent per transaction is limited to 252 bytes.</li>
+<li>After successfully receiving 64 KB payload, BMC needs to poll the status command 0x4B (SC’s readiness for next sector) before proceeding to issue read-back command 0x54 for the next sector</li>
+<li>No retry is supported in case of any failure/interruption in the middle of sector read-back.  But BMC can send the command 0x49 to force set the start sector from which it wants to resume/retry the read-back operation</li>
+<li>Upon receiving the updated start sector number (via 0x49 command), SC starts the read-back process from the beginning of the sector. Once again, BMC needs to follow the same sequence of commands (i.e.) poll the status command 0x4B before issuing 0x54.</li>
+</ul>
+<p><em>Table:</em> <strong>FPGA_FLASH_TX_DATA_BLOCK server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x54</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>BMC sends repeated-start I2C command</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>FPGA_FLASH_TX_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="29%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>D0, D1 … D251</td>
+<td>SC sends 252 data bytes</td>
 </tr>
 </tbody>
 </table>
@@ -1944,7 +2083,7 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

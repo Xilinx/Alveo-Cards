@@ -1,8 +1,8 @@
 I2C/SMBus Commands
 ------------------
 
-	Xilinx® Alveo™ cards support OOB communication via Standard I2C/SMBus commands at 
-	I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:
+Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at 
+I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:
 
 *Table :* **Supported I2C/SMBus Commands**
 
@@ -27,28 +27,28 @@ I2C/SMBus Commands
 +----------------------------+---------------------------------+----------------------+--------------------------+
 
 
-    ***Note*:** Xilinx recommends waiting for 1–2 ms between any two I2C
-    transactions. Without the delay, uninterrupted I2C operation isn’t
-    guaranteed.
+***Note*:** Xilinx recommends waiting for 1–2 ms between any two I2C
+transactions. Without the delay, uninterrupted I2C operation isn’t
+guaranteed.
 
 
 
 0x01–Maximum DIMM Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    ***Note*:** Not applicable for U30 cards.
-	
-    The DIMMs in the Alveo™ cards with the number varying with each
-    model. The primary motivation for server BMC to read the DIMM
-    temperature is to provide closed-loop thermal monitoring. The best
-    way to expose the DIMM temperature is to provide maximum value of
-    all the DIMM temperature values. SC FW keeps track of
-    temperature values internally for all the DIMMs present in the Alveo
-    card, exposing only the maximum DIMM temperature value to
-    server BMC. Server BMC uses command code 0x01 to read the max the
-    DIMM temperature value. The response data from the Xilinx FPGA card
-    is 1-byte temperature data (twos complement) and the range is -128°C
-    to 127°C.
+***Note*:** Not applicable for U30 cards.
+
+The DIMMs in the Alveo™ cards with the number varying with each
+model. The primary motivation for server BMC to read the DIMM
+temperature is to provide closed-loop thermal monitoring. The best
+way to expose the DIMM temperature is to provide maximum value of
+all the DIMM temperature values. SC FW keeps track of
+temperature values internally for all the DIMMs present in the Alveo
+card, exposing only the maximum DIMM temperature value to
+server BMC. Server BMC uses command code 0x01 to read the max the
+DIMM temperature value. The response data from the Xilinx FPGA card
+is 1-byte temperature data (twos complement) and the range is -128°C
+to 127°C.
 
 *Table:* **Maximum DIMM, Server BMC Request**
 
@@ -79,11 +79,9 @@ I2C/SMBus Commands
 0x02–Maximum Board Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Server BMC uses register 0x02 to read the maximum board temperature
-    value. The response data from the Xilinx Alveo™ card is 1-byte
-    temperature data (twos complement) and the range is
-
-    -128°C to 127°C.
+Server BMC uses register 0x02 to read the maximum board temperature
+value. The response data from the Xilinx Alveo™ card is 1-byte
+temperature data (twos complement) and the range is -128°C to 127°C.
 
 *Table:* **Maximum Board Temperature, Server BMC Request**
 
@@ -113,9 +111,9 @@ I2C/SMBus Commands
 
 0x03–Board Power Consumption
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-    Server BMC uses register 0x03 to read the current board power
-    consumption value. The response data from the Xilinx Alveo™ card is
-    2-byte power consumption data (LSB first), unit is in watts (W).
+Server BMC uses register 0x03 to read the current board power
+consumption value. The response data from the Xilinx Alveo™ card is
+2-byte power consumption data (LSB first), unit is in watts (W).
 
 *Table:* **Board Power Consumption, Server BMC Request**
 
@@ -142,9 +140,9 @@ I2C/SMBus Commands
 0x04–Satellite Controller Firmware Version
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Server BMC uses register 0x04 to read the current SC FW version,
-    which follows xx.yy.zz formatting. The response data from the Xilinx
-    Alveo™ card is 4 bytes.
+Server BMC uses register 0x04 to read the current SC FW version,
+which follows xx.yy.zz formatting. The response data from the Xilinx
+Alveo™ card is 4 bytes.
 
 *Table:* ** SC Firmware Version, Server BMC Request**
 
@@ -179,9 +177,9 @@ I2C/SMBus Commands
 0x05–Maximum FPGA Die Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    Server BMC uses register 0x05 to read the maximum FPGA die temperature
-    value. The response data from the Xilinx Alveo™ card is 1-byte
-    temperature data (twos complement) and the range is -128°C to 127°C.
+Server BMC uses register 0x05 to read the maximum FPGA die temperature
+value. The response data from the Xilinx Alveo™ card is 1-byte
+temperature data (twos complement) and the range is -128°C to 127°C.
 
 *Table:* **FPGA Die Temperature**
 
@@ -212,24 +210,22 @@ I2C/SMBus Commands
 0x06–Maximum QSFP Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    ***Note*:** Not applicable for U30 cards.
-	
-    The Alveo™ card comes with network interface (i.e., QSFP or SFP-DD)
-    modules. The number of SFP modules varies depending on the model.
-    The primary incentive for server BMC to read the SFP temperature is
-    to provide closed-loop thermal monitoring. The most effective way to
-    expose the SFP temperature is to provide the maximum value of all
-    the SFP temperature values.
+***Note*:** Not applicable for U30 cards.
 
-    MSP432 FW internally tracks temperature values for all the SFP
-    modules present in an Alveo™ card, exposing only the maximum SFP
-    temperature value to server BMC.
+The Alveo™ card comes with network interface (i.e., QSFP or SFP-DD)
+modules. The number of SFP modules varies depending on the model.
+The primary incentive for server BMC to read the SFP temperature is
+to provide closed-loop thermal monitoring. The most effective way to
+expose the SFP temperature is to provide the maximum value of all
+the SFP temperature values.
 
-    Server BMC uses register 0x06 to read the maximum QSFP temperature
-    value. The response data from the Xilinx FPGA card is 1-byte
-    temperature data (twos complement) and the range is
+MSP432 FW internally tracks temperature values for all the SFP
+modules present in an Alveo™ card, exposing only the maximum SFP
+temperature value to server BMC.
 
-    -128°C to 127°C.
+Server BMC uses register 0x06 to read the maximum QSFP temperature
+value. The response data from the Xilinx FPGA card is 1-byte
+temperature data (twos complement) and the range is -128°C to 127°C.
 
 *Table:* **Maximum QSFP Temperature, Server BMC Request**
 
@@ -291,7 +287,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 0x20–Critical Sensor Data Record (CSDR) Command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.
+The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.
 
 -  Status: Contains TCRIT, PG, ZYNQ error and other status information.
 
@@ -305,48 +301,48 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 
 -  Network status and temperature, if applicable.
 
-\ *Table:* **CSDR Command**
+*Table:* **CSDR Command**
 
 +----------------+----------------------+------------------------------------------+-----------------+
 | **Offset**     | **Number of Bytes**  | **Register Description**                 | **Notes**       |
 +================+======================+==========================================+=================+
 | 0              |     4                | Board status information                 |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 4              |     2                | Board security status information        |                 |
+| 4              |     4                | Board security status information        |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 6              |     1                | Board inlet temperature                  |                 |
+| 8              |     1                | Board inlet temperature                  |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 7              |     1                | Board outlet temperature                 |                 |
+| 9              |     1                | Board outlet temperature                 |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 8              |     4                | Board edge connector 3.3V input sensor   |                 |
+| 10             |     4                | Board edge connector 3.3V input sensor   |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 12             |     4                | Board edge connector 12V input sensor    |                 |
+| 14             |     4                | Board edge connector 12V input sensor    |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 16             |     4                | Board AUX connector 12V input sensor     |                 |
+| 18             |     4                | Board AUX connector 12V input sensor     |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 20             |     2                | Board total power consumption            |                 |
+| 22             |     2                | Board total power consumption            |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 22             |     1                | Device 1 status information              |                 |
+| 24             |     1                | Device 1 status information              |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 23             |     2                | Device 1 junction temperature            |                 |
+| 25             |     2                | Device 1 junction temperature            |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 25             |     10               | Device 1 advanced error counters         |                 |
+| 27             |     10               | Device 1 advanced error counters         |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 35             |     1                | Device 2 status information              |                 |
+| 37             |     1                | Device 2 status information              |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 36             |     2                | Device 2 junction temperature            |                 |
+| 38             |     2                | Device 2 junction temperature            |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 38             |     10               | Device 2 advanced error counters         |                 |
+| 40             |     10               | Device 2 advanced error counters         |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 48             |     1                | Network module 0 temperature             | N/A for U30     |
+| 50             |     1                | Network module 0 temperature             | N/A for U30     |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 49             |     2                | Network module 0 status                  | N/A for U30     |
+| 51             |     2                | Network module 0 status                  | N/A for U30     |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 51             |     1                | Network module 1 temperature             | N/A for U30     |
+| 53             |     1                | Network module 1 temperature             | N/A for U30     |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 52             |     2                | Network module 1 status                  | N/A for U30     |
+| 54             |     2                | Network module 1 status                  | N/A for U30     |
 +----------------+----------------------+------------------------------------------+-----------------+
-| 56             |     10               | Reserved                                 |                 |
+| 56             |     8                | Reserved                                 |                 |
 +----------------+----------------------+------------------------------------------+-----------------+
 
 Critical Sensor Data Record (CSDR) Command Response
@@ -400,13 +396,22 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**     | **Sensor Description**                      |
 +===============+==================================+=====================+=============================================+
-| Bit[15:14]    | Reserved                         |                     |                                             |
+| Bit[31:15]    | Reserved                         |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[13:11]    | Flash authentication status      | 3-bit unsigned;     | Bit 13: DEV ID (0=DEV1, 1=DEV2);            |
+| Bit[15]       | JTAG Access                      | 1-bit unsigned;     | 0: Disabled                                 |
 |               |                                  |                     |                                             |
-|               |                                  | Unit: state         | Bit 12: Flash ID (0=Primary, 1=Recovery)    |
+|               |                                  | Unit: state         | 1: Enabled                                  |
 |               |                                  |                     |                                             |
-|               |                                  |                     | Bit 11: Authentication (0=DONE, 1= NOT DONE)|
++---------------+----------------------------------+---------------------+---------------------------------------------+
+| Bit[14:11]    | Flash authentication status      | 4-bit unsigned;     | State: 0=NOT DONE, 1=DONE                   |
+|               |                                  |                     |                                             |
+|               |                                  | Unit: state         | Bit 14: FPGA2 Recovery flash device         |
+|               |                                  |                     |                                             |
+|               |                                  |                     | Bit 13: FPGA2 Primary flash device          |
+|               |                                  |                     |                                             |
+|               |                                  |                     | Bit 12: FPGA1 Recovery flash device         |
+|               |                                  |                     |                                             |
+|               |                                  |                     | Bit 11: FPGA1 Primary flash device          |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[10]       | SC\_SPI\_DEV2\_CTRL5             | NA                  |     Reserved                                |
@@ -420,7 +425,7 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[8,6]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
 |               |                                  |                     |                                             |
-|               | dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[7]        | SC\_SPI\_DEV2\_CTRL2             | 1-bit unsigned;     | 0: DEV2 primary flash selected              |
@@ -439,7 +444,7 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[3,2]      | SC\_SPI\_DEV1\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
 |               |                                  |                     |                                             |
-|               | dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[1]        | SC\_SPI\_DEV1\_CTRL2             | 1-bit unsigned;     | 0: DEV1 primary flash selected              |

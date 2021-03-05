@@ -613,23 +613,16 @@
 <td>97°C</td>
 <td>107°C</td>
 </tr>
-<tr class="row-odd"><td colspan="4"><strong>U50, U50LV, U55N</strong></td>
-</tr>
-<tr class="row-even"><td>Logical FPGA temperature [2]</td>
-<td>88°C</td>
-<td>97°C</td>
-<td>107°C</td>
-</tr>
 <tr class="row-odd"><td>Board temperature</td>
 <td>100°C</td>
 <td>110°C</td>
 <td>125°C</td>
 </tr>
-<tr class="row-even"><td colspan="4"><strong>U50C</strong></td>
+<tr class="row-even"><td colspan="4"><strong>U50, U50LV, U55N</strong></td>
 </tr>
 <tr class="row-odd"><td>Logical FPGA temperature [2]</td>
 <td>88°C</td>
-<td>100°C</td>
+<td>97°C</td>
 <td>107°C</td>
 </tr>
 <tr class="row-even"><td>Board temperature</td>
@@ -637,16 +630,28 @@
 <td>110°C</td>
 <td>125°C</td>
 </tr>
-<tr class="row-odd"><td colspan="4"><strong>U30</strong> [3]</td>
+<tr class="row-odd"><td colspan="4"><strong>U50C</strong></td>
 </tr>
-<tr class="row-even"><td><p class="first">Max FPGA junction temperature</p>
+<tr class="row-even"><td>Logical FPGA temperature [2]</td>
+<td>88°C</td>
+<td>100°C</td>
+<td>107°C</td>
+</tr>
+<tr class="row-odd"><td>Board temperature</td>
+<td>100°C</td>
+<td>110°C</td>
+<td>125°C</td>
+</tr>
+<tr class="row-even"><td colspan="4"><strong>U30</strong> [3]</td>
+</tr>
+<tr class="row-odd"><td><p class="first">Max FPGA junction temperature</p>
 <p class="last">(Max of ZYNQ1 &amp; ZYNQ2 FPGA)</p>
 </td>
 <td>90°C</td>
 <td>95°C</td>
 <td>100°C</td>
 </tr>
-<tr class="row-odd"><td>Board temperature</td>
+<tr class="row-even"><td>Board temperature</td>
 <td>90°C</td>
 <td>95°C</td>
 <td>125°C</td>
@@ -655,8 +660,8 @@
 </table>
 <p>[2] Logical device temperature is maximum of FPGA die temperature and the HBM temperature.</p>
 <p><strong>Note:</strong> Alveo™ U30 specific</p>
-<p>[3] The OTP (One Time Programmable) values for FPGA die temperature and Board temperature are 100°C and 125°C respectively. The OTP values are programmed onto the device at the time of Manufacturing. The SC FW, on boot-up, programs the temperature device and the automatically shuts down the ZYNQ devices when either of ZYNQ or board temperature exceeds the fatal limit.</p>
-<p>[4] Board temperature is the maximum value among various onboard temperature sensors like inlet, outlet and VCCINT (PWM controller).</p>
+<p>[3] The OTP (One Time Programmable) values are programmed onto the temperature sensor device at the time of Manufacturing. Additionally, on boot-up, SC also configures the temperature device to ensure the temperature sensor device automatically shuts down the ZYNQ devices when either ZYNQ or board temperature exceeds the fatal limit.</p>
+<p>[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VCCINT (PWM controller).</p>
 <p><strong>*Note*:</strong> The SC FW automatically shuts down the power to FPGA when any of the temperature value exceeds the fatal limit.</p>
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
@@ -700,7 +705,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

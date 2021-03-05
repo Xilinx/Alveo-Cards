@@ -451,8 +451,7 @@
             
   <div class="section" id="dmtf-implementation">
 <h1>DMTF Implementation<a class="headerlink" href="#dmtf-implementation" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div>Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR).</div></blockquote>
+<p>Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR).</p>
 <p><strong>PLDM Over MCTP Over SMBus Protocol</strong></p>
 <p>SC supports the SMBus discovery via the default SMBus 2.0 at I2C slave address 0x61 (0xC2 in 8-bit) and the MCTP/PLDM protocol at I2C slave address 0x18 (0x30 in 8-bit). Alveo OoB implementation adheres to the following DMTF specifications:</p>
 <ol class="arabic simple">
@@ -1457,9 +1456,8 @@ the following table.</p>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div>Now the SC knows that the server BMC is requesting a sensor reading
-with sensor ID 0x01.</div></blockquote>
+<p>Now the SC knows that the server BMC is requesting a sensor reading
+with sensor ID 0x01.</p>
 </div>
 <div class="section" id="pldm-response">
 <h2>PLDM Response<a class="headerlink" href="#pldm-response" title="Permalink to this headline">¶</a></h2>
@@ -1563,7 +1561,7 @@ PLDM packet gets built is also provided.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

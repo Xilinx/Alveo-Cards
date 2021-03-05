@@ -330,7 +330,6 @@
               <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#card-management-interfaces">Card Management Interfaces</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#satellite-controller-sc">Satellite Controller (SC)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#out-of-band-communication">Out-of-Band Communication</a></li>
 </ul>
@@ -439,73 +438,44 @@
             
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div>This document describes out-of-band (OoB) support available for the U200,
-U250, U280, U50x, U30 and U55x Alveo™ data center cards. Out-of-band
-support is implemented in the Satellite Controller (SC) firmware,
-which supports communication with the server Board Management
-Controller (BMC) over the SMBus/I2C interface on the PCIe® edge
-connector. The underlying protocols supported are standard I2C
-protocol and  PLDM Over MCTP Over SMBus.</div></blockquote>
-<div class="section" id="card-management-interfaces">
-<h2>Card Management Interfaces<a class="headerlink" href="#card-management-interfaces" title="Permalink to this headline">¶</a></h2>
-<ul class="simple">
-<li>Out-of-band</li>
-<li>In-band</li>
-</ul>
+<p>Xilinx® Alveo™ Data Center cards use the following two communication channels for management.</p>
+<p><em>Out-of-band communication channel:</em>
+The satellite controller communicates with the server baseboard management controller (BMC)
+via SMBus/I2C interface to provide out-of-band card management functionalities.</p>
+<p><em>In-band communication channel:</em>
+The PCIe interface provides in-band management to host for card programming and communication of sensor
+information, such as power and temperature. The host CPU communicates across PCIe to the card management controller (CMC)
+residing on the FPGA, which has a connection to the satellite controller. The CMC firmware (running in MicroBlaze™ on the FPGA)
+and the satellite controller firmware (running in MSP432 MCU) communicates via the UART channel using a Xilinx proprietary
+protocol. All sensor information are passed from the satellite controller to the host through this in-band channel.</p>
+<div class="section" id="satellite-controller-sc">
+<h2>Satellite Controller (SC)<a class="headerlink" href="#satellite-controller-sc" title="Permalink to this headline">¶</a></h2>
+<p>The satellite controller firmware runs on TI’s MSP432 device and is an essential component of Alveo card management, providing in-band and OoB communication mechanisms. The MSP432 MCU, EEPROM and few select
+peripherals reside on the auxiliary power domain (i.e.) 3V3_AUX.</p>
 <p><em>Figure:</em> Alveo communication path block diagram</p>
 <img alt="_images/sc_block_diagram.png" class="align-center" src="_images/sc_block_diagram.png" />
 <p><em>Figure:</em> Alveo U30 specific block diagram</p>
 <img alt="_images/u30_sc_block_diagram.png" class="align-center" src="_images/u30_sc_block_diagram.png" />
 <hr class="docutils" />
-<blockquote>
-<div><p>Xilinx® Alveo™ Data Center cards use the following two communication
-channels for management.</p>
-<p>Out-of-band communication channel: The satellite controller
-communicates with the server baseboard management controller (BMC)
-via SMBus/I2C interface to provide out-of-band card management
-functionalities.</p>
-<p>In-band communication channel: The PCIe interface provides in-band
-management to host for card programming and communication of sensor
-information, such as power and temperature. The host CPU
-communicates across PCIe to the card management controller (CMC)
-residing on the FPGA, which has a connection to the satellite
-controller. The CMC firmware (running in MicroBlaze™ on the FPGA)
-and the satellite controller firmware (running in MSP432 MCU)
-communicates via the UART channel using a Xilinx proprietary
-protocol. All sensor information are passed from the satellite
-controller to the host through this in-band channel.</p>
-</div></blockquote>
-</div>
-<div class="section" id="satellite-controller-sc">
-<h2>Satellite Controller (SC)<a class="headerlink" href="#satellite-controller-sc" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The satellite controller firmware runs on TI’s MSP432 device and is
-an essential component of Alveo card management, providing in-band
-and OoB communication mechanisms. The MSP432 MCU, EEPROM and few select
-peripherals reside on the auxiliary power domain (i.e.) 3V3_AUX.</div></blockquote>
 <p><strong>Satellite Controller Firmware Version</strong></p>
-<blockquote>
-<div>Not all features described in this document are available in older
+<p>Not all features described in this document are available in older
 SC FW. Refer to <em>Alveo Data Center Accelerator Card Platforms User
 Guide</em>
 (<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1120-alveo-platforms.pdf">UG1120</a>)
-to ensure the latest FW is being used.</div></blockquote>
+to ensure the latest FW is being used.</p>
 </div>
 <div class="section" id="out-of-band-communication">
 <h2>Out-of-Band Communication<a class="headerlink" href="#out-of-band-communication" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>When installed in a server, the SC FW communicates with server BMC.
-The main purpose of OOB communication is to respond to requests that
+<p>When installed in a server, the SC FW communicates with server BMC.
+The main purpose of OoB communication is to respond to requests that
 originate from server BMC. It uses this information to take action
 related to power and thermal management (i.e., to ramp-up fans or
 send requests to throttle down power consumption). The MSP432 and
 the sensors and peripherals it accesses reside on the AUX 3.3V
 always-on power domain.</p>
-<p>The SMBus/I2C is used for OOB communication. The OOB communication
+<p>The SMBus/I2C is used for OoB communication. The OoB communication
 supports three protocols. The protocols and the I2C slave address
 (both 7-bit and 8-bit) are given in the following table.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>Slave Addresses and Corresponding Protocols</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -539,33 +509,23 @@ supports three protocols. The protocols and the I2C slave address
 </tbody>
 </table>
 <p><strong>IPMI FRU support</strong></p>
-<blockquote>
-<div>SC FW supports IPMI field replaceable unit (FRU) data read at I2C
-slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte
-addressing mode is supported and the FRU data contents are explained
+<p>SC FW supports IPMI field replaceable unit (FRU) data read at I2C slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte addressing mode is supported and the FRU data contents are explained
 in <em>Alveo FRU Data Specification</em>
-(<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf">UG1378</a>).</div></blockquote>
+(<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf">UG1378</a>).</p>
 <p>See <a class="reference internal" href="alveo-fru.html#alveo-fru-support"><span class="std std-ref">Alveo™ FRU Support</span></a> for more details.</p>
 <p><strong>Standard I2C/SMBus Communication</strong></p>
-<blockquote>
-<div>SC FW supports I2C/SMBus protocol based OOB communication at I2C
+<p>SC FW supports I2C/SMBus protocol based OoB communication at I2C
 slave address 0x65 (0xCA in 8-bit) and provides support for server
 BMC that does not accept PLDM or distributed management task force
 (DMTF) specifications. The following information is exposed via I2C/
-SMBus protocol:</div></blockquote>
-<ul>
-<li><p class="first">Thermal sensors such as FPGA, max Board, max DIMM, and max QSFP temperature</p>
-</li>
-<li><p class="first">Total board power consumption</p>
-</li>
-<li><p class="first">SC FW version number</p>
-</li>
-<li><p class="first">Critical Sensor Data Record (CSDR)</p>
-<blockquote>
-<div><p>See <a class="reference internal" href="std-smbus-commands.html#i2c-smbus-commands"><span class="std std-ref">I2C/SMBus Commands</span></a> I2C command implementation details.</p>
-</div></blockquote>
-</li>
+SMBus protocol:</p>
+<ul class="simple">
+<li>Thermal sensors such as FPGA, max Board, max DIMM, and max QSFP temperature</li>
+<li>Total board power consumption</li>
+<li>SC FW version number</li>
+<li>Critical Sensor Data Record (CSDR)</li>
 </ul>
+<p>See <a class="reference internal" href="std-smbus-commands.html#i2c-smbus-commands"><span class="std std-ref">I2C/SMBus Commands</span></a> I2C command implementation details.</p>
 <p>The following table is a comprehensive list of all OoB commands supported by SC using Standard I2C/SMBus protocols.</p>
 <p><em>Table:</em> <strong>List of standard I2C/SMBus commands</strong></p>
 <table border="1" class="docutils">
@@ -816,7 +776,7 @@ The following MCTP control commands are supported in the SC:</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

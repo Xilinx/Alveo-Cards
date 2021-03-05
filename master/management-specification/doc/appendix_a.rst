@@ -120,6 +120,8 @@ For additional thermal information, refer to the data sheet specific to the Alve
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Logical FPGA temperature [2]    |     88°C                |     97°C                 |     107°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
+| Board temperature               |     100°C               |     110°C                |     125°C             |
++---------------------------------+-------------------------+--------------------------+-----------------------+
 | **U50, U50LV, U55N**                                                                                         |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Logical FPGA temperature [2]    |     88°C                |     97°C                 |     107°C             |
@@ -145,9 +147,9 @@ For additional thermal information, refer to the data sheet specific to the Alve
 
 **Note:** Alveo™ U30 specific
 
-[3] The OTP (One Time Programmable) values for FPGA die temperature and Board temperature are 100°C and 125°C respectively. The OTP values are programmed onto the device at the time of Manufacturing. The SC FW, on boot-up, programs the temperature device and the automatically shuts down the ZYNQ devices when either of ZYNQ or board temperature exceeds the fatal limit.
+[3] The OTP (One Time Programmable) values are programmed onto the temperature sensor device at the time of Manufacturing. Additionally, on boot-up, SC also configures the temperature device to ensure the temperature sensor device automatically shuts down the ZYNQ devices when either ZYNQ or board temperature exceeds the fatal limit.
 
-[4] Board temperature is the maximum value among various onboard temperature sensors like inlet, outlet and VCCINT (PWM controller). 
+[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VCCINT (PWM controller). 
 
 ***Note*:** The SC FW automatically shuts down the power to FPGA when any of the temperature value exceeds the fatal limit.
 

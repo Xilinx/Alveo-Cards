@@ -1,7 +1,7 @@
 DMTF Implementation
 -------------------
 
-    Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR). 
+Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR). 
 	
 **PLDM Over MCTP Over SMBus Protocol**
 
@@ -687,8 +687,8 @@ the following table.
 |     bool8    |     rearmEventState    |     0x00                        |
 +--------------+------------------------+---------------------------------+
 
-    Now the SC knows that the server BMC is requesting a sensor reading
-    with sensor ID 0x01.
+Now the SC knows that the server BMC is requesting a sensor reading
+with sensor ID 0x01.
 
 PLDM Response
 ~~~~~~~~~~~~~

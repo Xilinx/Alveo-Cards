@@ -1,63 +1,55 @@
 Satellite Controller Firmware Update Commands
 ---------------------------------------------
 
-    The satellite controller supports an alternative out-of-band method
-    of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW
-    update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC
-    is expected to initiate the FW upgrade process by sending I2C
-    commands to the SC FW. After the initial handshake with the SC FW,
-    the server BMC will need to communicate with the MSP432 boot loader
-    (BSL) to transfer the FW into MSP Flash and complete the upgrade
-    process.
+In addition to the in-band method, the satellite controller supports an alternative out-of-band method
+of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). 
+Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. 
+After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.
 
-    ***Note*:** Currently, the SC FW upgrades are always force upgrades,
-    there is no version check currently in place. The old FW file will
-    be overwritten by the new FW. Server BMC is expected to check and
-    decide if the SC FW upgrade is needed.
+***Note*:** Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed.
 
-    The following table lists the commands supported/needed for the FW
-    upgrade.
+The following table lists the commands supported/needed for the FW upgrade.
 
 *Table:* **BMC to BSL Commands**
 
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| **SI NO** | **Command Code** | **Command Name**       | **Description**                                            |
-+===========+==================+========================+============================================================+
-| 1         | 0x04             | GET\_SC\_FW\_VER       | Get SC FW version (xx.yy.zz format)                        |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 2         | 0x31             | GET\_SC\_STATUS        | Returns status about what is running in MSP, FW, or BSL.   |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 3         | 0x32             | ENABLE\_BSL\_MODE      | OOB command to reboot the SC and invoke BSL.               |
-+-----------+------------------+------------------------+------------------------------------------------------------+
++------------------+------------------------+------------------------------------------------------------+
+| **Command Code** | **Command Name**       | **Description**                                            |
++==================+========================+============================================================+
+| 0x04             | GET\_SC\_FW\_VER       | Get SC FW version (xx.yy.zz format)                        |
++------------------+------------------------+------------------------------------------------------------+
+| 0x31             | GET\_SC\_STATUS        | Returns status about what is running in MSP, FW, or BSL.   |
++------------------+------------------------+------------------------------------------------------------+
+| 0x32             | ENABLE\_BSL\_MODE      | OoB command to reboot the SC and invoke BSL.               |
++------------------+------------------------+------------------------------------------------------------+
 
 *Table:* **SMC to BSL Commands**
 
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| **SI NO** | **Command Code** | **Command Name**       | **Description**                                            |
-+===========+==================+========================+============================================================+
-| 1         | 0x31             | GET\_SC\_STATUS        | Returns status weather SC is in SC FW mode or BSL mode     |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 2         | 0x21             | BSL\_RX\_PASSWORD      | Sends 56 bytes password to unlock the BSL                  |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 3         | 0x15             | BSL\_ERASE\_SC\_FW     | BSL erases old SC FW                                       |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 4         | 0x20             | BSL\_RX\_DATA\_BLOCK   | Sends 32-bit data block to write (256 bytes max)           |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 5         | 0x26             | BSL\_CRC\_CHECK        | Ask BSL to perform CRC check for validation                |
-+-----------+------------------+------------------------+------------------------------------------------------------+
-| 6         | 0x27             | BSL\_LOAD\_PC          | Jump to the SC's application FW , after FW upgrade         |
-+-----------+------------------+------------------------+------------------------------------------------------------+
++------------------+------------------------+------------------------------------------------------------+
+| **Command Code** | **Command Name**       | **Description**                                            |
++==================+========================+============================================================+
+| 0x31             | GET\_SC\_STATUS        | Returns status weather SC is in SC FW mode or BSL mode     |
++------------------+------------------------+------------------------------------------------------------+
+| 0x21             | BSL\_RX\_PASSWORD      | Sends 56 bytes password to unlock the BSL                  |
++------------------+------------------------+------------------------------------------------------------+
+| 0x15             | BSL\_ERASE\_SC\_FW     | BSL erases old SC FW                                       |
++------------------+------------------------+------------------------------------------------------------+
+| 0x20             | BSL\_RX\_DATA\_BLOCK   | Sends 32-bit data block to write (256 bytes max)           |
++------------------+------------------------+------------------------------------------------------------+
+| 0x26             | BSL\_CRC\_CHECK        | Ask BSL to perform CRC check for validation                |
++------------------+------------------------+------------------------------------------------------------+
+| 0x27             | BSL\_LOAD\_PC          | Jump to the SC's application FW , after FW upgrade         |
++------------------+------------------------+------------------------------------------------------------+
 
 GET\_SC\_STATUS (Satellite Controller Firmware)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-    The GET\_SC\_STATUS command serves as the status command, revealing
-    if the MSP432 processor is running in the application code (SC FW)
-    or in BSL mode. Upon receiving this command, the SC FW responds with
-    0x02 in Byte 0.
+The GET\_SC\_STATUS command serves as the status command, revealing
+if the MSP432 processor is running in the application code (SC FW)
+or in BSL mode. Upon receiving this command, the SC FW responds with
+0x02 in Byte 0.
 
-    ***Note*:** The same command is supported by BSL. BSL will respond
-    saying *'am in BSL mode'*.
+***Note*:** The same command is supported by BSL. BSL will respond
+saying *'am in BSL mode'*.
 
 *Table:* **GET\_SC\_STATUS Server BMC Request**
 
@@ -82,14 +74,14 @@ GET\_SC\_STATUS (Satellite Controller Firmware)
 ENABLE\_BSL\_MODE
 ~~~~~~~~~~~~~~~~~
 
-    Upon receiving the ENABLE\_BSL\_MODE command, the SC FW configures
-    FW update mode in the BSL and reboots itself. The next boot up takes
-    the control to BSL mode. Absence of this step results in normal
-    reboots, where the application code/FW will boot-up instead of
-    staying in BSL to enable the FW update process.
+Upon receiving the ENABLE\_BSL\_MODE command, the SC FW configures
+FW update mode in the BSL and reboots itself. The next boot up takes
+the control to BSL mode. Absence of this step results in normal
+reboots, where the application code/FW will boot-up instead of
+staying in BSL to enable the FW update process.
 
-    ***Note*:** For this command, the SC FW will not be able to respond
-    to the BMC with success or failure before rebooting itself.
+***Note*:** For this command, the SC FW will not be able to respond
+to the BMC with success or failure before rebooting itself.
 
 *Table:* **ENABLE\_BSL\_MODE Server BMC Request**
 
@@ -113,9 +105,9 @@ BSL Communication
 ~~~~~~~~~~~~~~~~~
 
 
-**IMPORTANT!** The following is a recommendation from TI. Refer to TI's MSP432P4xx `SimpleLink Microcontrollers Bootloader user guide <http://www.ti.com/lit/ug/slau622i/slau622i.pdf>`_ (BSL)for more information.
+**IMPORTANT!** The following is a recommendation from TI. Refer to TI's MSP432P4xx `SimpleLink Microcontrollers Bootloader user guide <https://www.ti.com/lit/ug/slau622j/slau622j.pdf>`_ (BSL)for more information.
 
-    The I2C protocol used by the BSL is defined as:
+The I2C protocol used by the BSL is defined as:
 
 -  The master must request data from the BSL slave.
 
@@ -126,7 +118,7 @@ BSL Communication
    commands is performed by an acknowledged character in the BSL core
    response format, as specified in the I2C BSL response table of
    `MSP432P4xx SimpleLink Microcontrollers Bootloader
-   (BSL) <http://www.ti.com/lit/ug/slau622i/slau622i.pdf>`_.
+   (BSL) <https://www.ti.com/lit/ug/slau622j/slau622j.pdf>`_.
 
 -  Repeated starts are not required by the BSL, but can be used.
 
@@ -139,28 +131,28 @@ BSL Communication
 **CRC Calculation**
                
 
-    For the purposes of CRC calculation in the BSL, the MSP432 device
-    performs a 16-bit CRC check using the CRC16-CCITT standard. This CRC
-    signature is based on the polynomial given in the CRC16-CCITT with
-    the following function:
+For the purposes of CRC calculation in the BSL, the MSP432 device
+performs a 16-bit CRC check using the CRC16-CCITT standard. This CRC
+signature is based on the polynomial given in the CRC16-CCITT with
+the following function:
 
-    *f* (*x*) = *x*\ :sup:`16` + *x*\ :sup:`12` + *x*\ :sup:`5` + 1
+*f* (*x*) = *x*\ :sup:`16` + *x*\ :sup:`12` + *x*\ :sup:`5` + 1
 
 **CRC Checksum Low, CRC Checksum High**
                                    
 
-    The checksum is computed on bytes in the BSL core command section
-    only. The BSL uses CRC16-CCITT for the checksum and computes it
-    using the MSP432 CRC module. CRC bytes (CKL, CKH) are mandatory for
-    all commands. The ACK, header, and length bytes must be ignored.
+The checksum is computed on bytes in the BSL core command section
+only. The BSL uses CRC16-CCITT for the checksum and computes it
+using the MSP432 CRC module. CRC bytes (CKL, CKH) are mandatory for
+all commands. The ACK, header, and length bytes must be ignored.
 
 **Length Low Byte, Length High Byte**
                                  
 
-    Length low byte, length high byte is the number of bytes in the BSL
-    core data packet, broken into high and low bytes. The number of
-    bytes must include only core data packets, as detailed below, and
-    does not include the length bytes and checksum bytes.
+Length low byte, length high byte is the number of bytes in the BSL
+core data packet, broken into high and low bytes. The number of
+bytes must include only core data packets, as detailed below, and
+does not include the length bytes and checksum bytes.
 
 -  Command code
 
@@ -175,13 +167,13 @@ BSL Communication
 GET\_SC\_STATUS (BSL)
 ~~~~~~~~~~~~~~~~~~~~~~
 
-    The GET\_SC\_STATUS command serves as a status command telling
-    whether the MSP432 processor is running the application code (SC FW)
-    or in BSL mode. Upon receiving this command, BSL responds with 0x01
-    in byte 0 MSP BSL mode. Byte 1 serves as status byte.
+The GET\_SC\_STATUS command serves as a status command telling
+whether the MSP432 processor is running the application code (SC FW)
+or in BSL mode. Upon receiving this command, BSL responds with 0x01
+in byte 0 MSP BSL mode. Byte 1 serves as status byte.
 
-    **Note:** The same command is supported by the SC application FW,
-    where the SC responds with SC FW mode.
+**Note:** The same command is supported by the SC application FW,
+where the SC responds with SC FW mode.
 
 *Table:* **GET\_SC\_STATUS (BSL) Server BMC Request**
 
@@ -212,13 +204,13 @@ GET\_SC\_STATUS (BSL)
 BSL\_RX\_PASSWORD
 ~~~~~~~~~~~~~~~~~
 
-    The BSL core receives the password contained in the packet and
-    unlocks the BSL protected commands if the password matches the 56
-    bytes in the BSL. When an incorrect password is given, BSL responds
-    with *Password Error* and subsequent commands sent to the BSL result
-    in no-operation.
-	
-	**Note:** Contact Xilinx® for the password information.
+The BSL core receives the password contained in the packet and
+unlocks the BSL protected commands if the password matches the 56
+bytes in the BSL. When an incorrect password is given, BSL responds
+with *Password Error* and subsequent commands sent to the BSL result
+in no-operation.
+
+**Note:** Contact Xilinx® for the password information.
 
 *Table:* **BSL\_RX\_PASSWORD Server BMC Request**
 
@@ -296,8 +288,8 @@ BSL\_ERASE\_SC\_FW
 
 The BSL\_ERASE\_SC\_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.
 
-    ***Note*:** Allow at least 1 second for the erase operation to
-    complete before proceeding with next set of commands.
+***Note*:** Allow at least 1 second for the erase operation to
+complete before proceeding with next set of commands.
 
 *Table:* **BSL\_ERASE\_SC\_FW Server BMC Request**
 
@@ -367,10 +359,10 @@ The BSL\_ERASE\_SC\_FW command erases the entire SC FW code in the MSP432 MCU fl
 BSL\_RX\_DATA\_BLOCK
 ~~~~~~~~~~~~~~~~~~~~
 
-    The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
-    from the location specified in the address fields. The
-    BSL\_RX\_DATA\_BLOCK command allows the BSL to address the device
-    with the full 32-bit range.
+The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
+from the location specified in the address fields. The
+BSL\_RX\_DATA\_BLOCK command allows the BSL to address the device
+with the full 32-bit range.
 
 *Table:* **BSL\_RX\_DATA\_BLOCK Server BMC Request**
 
@@ -447,12 +439,12 @@ BSL\_RX\_DATA\_BLOCK Command Example
 | 0x00 | 0x80     | 0x02     | 0x00     | 0x3B   | 0x00   | 0x60   | 0xC4   |
 +------+----------+----------+----------+--------+--------+--------+--------+
 
-    ***Note*:** The BMC will need to parse through the SC FW file to
-    identify the start location for each segment. To be specific, search
-    for '@' and use the following 4-byte address to frame and send the
-    address bytes: A0, A1, A2, and A3 (LSB first).
+***Note*:** The BMC will need to parse through the SC FW file to
+identify the start location for each segment. To be specific, search
+for '@' and use the following 4-byte address to frame and send the
+address bytes: A0, A1, A2, and A3 (LSB first).
 
-	 *Figure:* **Linux grep Command**
+*Figure:* **Linux grep Command**
 
 .. image:: ./images/sc-segments.png
    :align: center
@@ -474,15 +466,15 @@ There are 4 segments in the following example:
    0x00; A3 = 0x00)
 
 
-.
-    This figure captures the linux grep command and response for the
-    string '@' within the FW file.
 
-    ***Note*:** The string '@' represents the start of a new section in
-    the flash memory.
+This figure captures the linux grep command and response for the
+string '@' within the FW file.
 
-    Because the BSL\_RX\_DATA\_BLOCK command's maximum data size is 256
-    bytes, the address needs to be incremented by 256 or 0x100.
+***Note*:** The string '@' represents the start of a new section in
+the flash memory.
+
+Because the BSL\_RX\_DATA\_BLOCK command's maximum data size is 256
+bytes, the address needs to be incremented by 256 or 0x100.
 
 -  For the first packet in every segment, the BMC will send the 4-byte
    address as parsed above
@@ -497,11 +489,11 @@ There are 4 segments in the following example:
 BSL\_CRC\_CHECK
 ~~~~~~~~~~~~~~~
 
-    ***Note*:** The BSL\_CRC\_CHECK command is an optional command.
+***Note*:** The BSL\_CRC\_CHECK command is an optional command.
 
-    The MSP432 device performs a 16-bit CRC check using the CCITT
-    standard. The address given is the first byte of the CRC check; 2
-    bytes are used for the length.
+The MSP432 device performs a 16-bit CRC check using the CCITT
+standard. The address given is the first byte of the CRC check; 2
+bytes are used for the length.
 
 *Table:* **BSL\_CRC\_CHECK Server BMC Request**
 
@@ -538,7 +530,7 @@ BSL\_CRC\_CHECK
 +---------------------+---------------+------------+
 |     **Xilinx Alveo Card (BSL) Response**         |
 +=====================+===============+============+
-| Data bytes B0 … B8  |     B0: ACK   |     0x00   |
+| Data bytes B0 … B8  | B0: ACK       |     0x00   |
 +---------------------+---------------+------------+
 |                     | B1: Header    |     0x80   |
 +---------------------+---------------+------------+
@@ -552,16 +544,15 @@ BSL\_CRC\_CHECK
 +---------------------+---------------+------------+
 |                     | B6: Data2     |     TBD    |
 +---------------------+---------------+------------+
-|                     |     B7: CKL   |     TBD    |
+|                     | B7: CKL       |     TBD    |
 +---------------------+---------------+------------+
-|                     |     B8: CKH   |     TBD    |
+|                     | B8: CKH       |     TBD    |
 +---------------------+---------------+------------+
 
 BSL\_CRC\_CHECK Command Example
                                
 
-    Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of
-    1024 bytes of data).
+Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of 1024 bytes of data).
 
 *Table:* **BSL\_CRC\_CHECK Command Example**
 
@@ -571,8 +562,7 @@ BSL\_CRC\_CHECK Command Example
 | 0x80     | 0x07     | 0x00     | 0x26   | 0x00   | 0x44   | 0x00   | 0x00   | 0x00   | 0x04   | 0xF7   | 0xE6   |
 +----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+--------+--------+
 
-    The BSL response where 0x55 is the low byte of the calculated
-    checksum and 0xAA is the high byte of the calculated checksum:
+The BSL response where 0x55 is the low byte of the calculated checksum and 0xAA is the high byte of the calculated checksum:
 
 *Table:* **BSL\_CRC\_CHECK Response for a Successful CRC Calculation**
 
@@ -582,17 +572,17 @@ BSL\_CRC\_CHECK Command Example
 | 0x00     | 0x80     | 0x03     | 0x00     | 0x3A   | 0x55   | 0xAA   | 0x12   | 0x2B   |
 +----------+----------+----------+----------+--------+--------+--------+--------+--------+
 
-    ***Note*:** As noted in the
-    `BSL\_RX\_DATA\_BLOCK <#bsl_rx_data_block>`__ command, BMC will need
-    to parse through the SC FW file to identify the start address for
-    each command.
+***Note*:** As noted in the
+`BSL\_RX\_DATA\_BLOCK <#bsl_rx_data_block>`__ command, BMC will need
+to parse through the SC FW file to identify the start address for
+each command.
 
 BSL\_LOAD\_PC
 ~~~~~~~~~~~~~
 
-    The BSL\_LOAD\_PC command causes the BSL to jump and begin execution
-    at the given address. The BSL responds with 0x00. In this case, the
-    jump address is 0x0000:0201.
+The BSL\_LOAD\_PC command causes the BSL to jump and begin execution
+at the given address. The BSL responds with 0x00. In this case, the
+jump address is 0x0000:0201.
 
 *Table:* **BSL\_LOAD\_PC Server BMC Request**
 
@@ -625,8 +615,8 @@ BSL\_LOAD\_PC
 Command Example
                
 
-    The program counter is set to 0x0000:0201. The server BMC must send
-    the address bytes as A0=0x01, A1=0x02, A2=0x00, and A3=0x00.
+The program counter is set to 0x0000:0201. The server BMC must send
+the address bytes as A0=0x01, A1=0x02, A2=0x00, and A3=0x00.
 
 +----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+
 | Header   | Length   | Length   | CMD    | A0     | A1     | A2     | A3     | CKL    | CKH    |
@@ -634,21 +624,21 @@ Command Example
 | 0x80     | 0x05     | 0x00     | 0x27   | 0x01   | 0x02   | 0x00   | 0x00   | 0x8E   | 0xBC   |
 +----------+----------+----------+--------+--------+--------+--------+--------+--------+--------+
 
-    The BSL responds with 0x00.
+The BSL responds with 0x00.
 
-    ***Note*:** Functionality of the BSL core command has been modified
-    to improve robustness around the SC FW upgrade process. When BMC
-    issues this command to jump to SC application code, BSL checks the
-    CRC of the entire SC FW image. If the CRC check is successful, BSL
-    loads the new SC application code. If not, the MSP stays in BSL mode
-    with the assumption that SC FW is corrupted/interrupted due to CRC
-    failure.
+***Note*:** Functionality of the BSL core command has been modified
+to improve robustness around the SC FW upgrade process. When BMC
+issues this command to jump to SC application code, BSL checks the
+CRC of the entire SC FW image. If the CRC check is successful, BSL
+loads the new SC application code. If not, the MSP stays in BSL mode
+with the assumption that SC FW is corrupted/interrupted due to CRC
+failure.
 
 Sample BSL Commands
 ~~~~~~~~~~~~~~~~~~~
 
-    The contents from the following table have been imported from
-    TotalPhase Aardvark I2C adapter.
+The contents from the following table have been imported from
+TotalPhase Aardvark I2C adapter.
 
 *Figure:* **I2C Transaction captured using I2C Aardvark Tool**
 
@@ -656,36 +646,33 @@ Sample BSL Commands
    :align: center
 
  
-Timing Diagram: Normal Flow of OOB SC FW Upgrade
+Timing Diagram: Normal Flow of OoB SC FW Upgrade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-1. The BMC sends the 0x31 GET\_SC\_STATUS command to the SC, which
-   responds with 0x02
+1. The BMC sends the 0x31 GET\_SC\_STATUS command to the SC, which responds with 0x02 - MSP SC FW mode.
 
-    MSP SC FW mode.
-
-1. The BMC sends the 0x32 Enable\_BSL\_Mode command to the SC which
+2. The BMC sends the 0x32 Enable\_BSL\_Mode command to the SC which
    configures the BSL parameters and reboots itself. The MSP enters BSL
    mode on the next boot up. No response is sent to BMC.
 
-2. The BMC waits 1 second and sends the 0x31 GET\_SC\_STATUS command to
+3. The BMC waits 1 second and sends the 0x31 GET\_SC\_STATUS command to
    BSL and gets response 0x01 from the BSL MSP in BSL mode.
 
-3. The BMC unlocks the BSL by sending the password (0x21
+4. The BMC unlocks the BSL by sending the password (0x21
    BSL\_RX\_PASSWORD) and the BSL sends the status in response.
 
-4. The BMC sends the 0x15 BSL\_ERASE\_SC\_FW command to the BSL asking
+5. The BMC sends the 0x15 BSL\_ERASE\_SC\_FW command to the BSL asking
    that the entire SC FW image to be erased. BSL erases the FW and sends
    the response back to BMC.
 
-5. The BMC sends the entire SC FW via repeated 0x20 BSL\_RX\_Data
+6. The BMC sends the entire SC FW via repeated 0x20 BSL\_RX\_Data
    command with the correct start address and BSL sends the status in
    response.
 
-6. The BMC (optionally) sends the 0x26 BSL\_CRC\_CHECK command with the
+7. The BMC (optionally) sends the 0x26 BSL\_CRC\_CHECK command with the
    correct start address and the BSL sends the status in response.
 
-7. The BMC sends the 0x27 BSL\_Load\_PC command and the BSL checks the
+8. The BMC sends the 0x27 BSL\_Load\_PC command and the BSL checks the
    CRC on the full FW. If CRC passes, the new SC FW loads. If not, it
    stays in BSL mode, enabling the BMC to restart the SC FW upgrade (see
    step 3).
@@ -696,7 +683,7 @@ Timing Diagram: Normal Flow of OOB SC FW Upgrade
 .. image:: ./images/sc-update-normal-flow.png
    :align: center
 
-Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade
+Timing Diagram: Interrupted Flow of the OoB SC FW Upgrade
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 1. If the SC FW upgrade is interrupted mid-way due to power cycle (i.e.,
@@ -706,18 +693,18 @@ Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade
 2. The BSL disables the SC FW application code and hangs in BSL, waiting
    for a new SC FW upgrade process by BMC.
 
-3. The BMC will need to retrigger the upgrade process from the start.
+3. The BMC will need to re-trigger the upgrade process from the start.
    This is done by sending a 0x31 GET\_SC\_STATUS command to get the
-   status and following `Timing Diagram: Normal Flow of OOB SC FW
+   status and following `Timing Diagram: Normal Flow of OoB SC FW
    Upgrade <#timing-diagram-normal-flow-of-oob-sc-fw-upgrade>`__.
 
-    ***Note*:** It is possible the I2C engine in the BSL can get stuck
-    if the transaction got interrupted (as mentioned in step 1). Because
-    the BSL does not have I2C recovery mechanisms, the only way to get
-    back to BSL mode is to reboot the MSP. This can be only done by the
-    AC power cycle of the server.
+***Note*:** It is possible the I2C engine in the BSL can get stuck
+if the transaction got interrupted (as mentioned in step 1). Because
+the BSL does not have I2C recovery mechanisms, the only way to get
+back to BSL mode is to reboot the MSP. This can be only done by the
+AC power cycle of the server.
 
-    *Figure:* **Interrupted flow of OOB SC FW Upgrade**
+*Figure:* **Interrupted flow of OoB SC FW Upgrade**
 
 .. image:: ./images/sc-update-interrupted-flow.png
    :align: center

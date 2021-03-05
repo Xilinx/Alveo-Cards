@@ -445,9 +445,8 @@
             
   <div class="section" id="i2c-smbus-commands">
 <h1>I2C/SMBus Commands<a class="headerlink" href="#i2c-smbus-commands" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div>Xilinx® Alveo™ cards support OOB communication via Standard I2C/SMBus commands at
-I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:</div></blockquote>
+<p>Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at
+I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:</p>
 <p><em>Table :</em> <strong>Supported I2C/SMBus Commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -506,14 +505,12 @@ I2C address 0x65 (0xCA in 8-bit). The following table lists the supported comman
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><strong>*Note*:</strong> Xilinx recommends waiting for 1–2 ms between any two I2C
+<p><strong>*Note*:</strong> Xilinx recommends waiting for 1–2 ms between any two I2C
 transactions. Without the delay, uninterrupted I2C operation isn’t
-guaranteed.</div></blockquote>
+guaranteed.</p>
 <div class="section" id="x01maximum-dimm-temperature">
 <h2>0x01–Maximum DIMM Temperature<a class="headerlink" href="#x01maximum-dimm-temperature" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
+<p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
 <p>The DIMMs in the Alveo™ cards with the number varying with each
 model. The primary motivation for server BMC to read the DIMM
 temperature is to provide closed-loop thermal monitoring. The best
@@ -525,7 +522,6 @@ server BMC. Server BMC uses command code 0x01 to read the max the
 DIMM temperature value. The response data from the Xilinx FPGA card
 is 1-byte temperature data (twos complement) and the range is -128°C
 to 127°C.</p>
-</div></blockquote>
 <p><em>Table:</em> <strong>Maximum DIMM, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -571,12 +567,9 @@ to 127°C.</p>
 </div>
 <div class="section" id="x02maximum-board-temperature">
 <h2>0x02–Maximum Board Temperature<a class="headerlink" href="#x02maximum-board-temperature" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Server BMC uses register 0x02 to read the maximum board temperature
+<p>Server BMC uses register 0x02 to read the maximum board temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
-temperature data (twos complement) and the range is</p>
-<p>-128°C to 127°C.</p>
-</div></blockquote>
+temperature data (twos complement) and the range is -128°C to 127°C.</p>
 <p><em>Table:</em> <strong>Maximum Board Temperature, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -622,10 +615,9 @@ temperature data (twos complement) and the range is</p>
 </div>
 <div class="section" id="x03board-power-consumption">
 <h2>0x03–Board Power Consumption<a class="headerlink" href="#x03board-power-consumption" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>Server BMC uses register 0x03 to read the current board power
+<p>Server BMC uses register 0x03 to read the current board power
 consumption value. The response data from the Xilinx Alveo™ card is
-2-byte power consumption data (LSB first), unit is in watts (W).</div></blockquote>
+2-byte power consumption data (LSB first), unit is in watts (W).</p>
 <p><em>Table:</em> <strong>Board Power Consumption, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -669,10 +661,9 @@ consumption value. The response data from the Xilinx Alveo™ card is
 </div>
 <div class="section" id="x04satellite-controller-firmware-version">
 <h2>0x04–Satellite Controller Firmware Version<a class="headerlink" href="#x04satellite-controller-firmware-version" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>Server BMC uses register 0x04 to read the current SC FW version,
+<p>Server BMC uses register 0x04 to read the current SC FW version,
 which follows xx.yy.zz formatting. The response data from the Xilinx
-Alveo™ card is 4 bytes.</div></blockquote>
+Alveo™ card is 4 bytes.</p>
 <p><em>Table:</em> ** SC Firmware Version, Server BMC Request**</p>
 <table border="1" class="docutils">
 <colgroup>
@@ -723,10 +714,9 @@ Alveo™ card is 4 bytes.</div></blockquote>
 </div>
 <div class="section" id="x05maximum-fpga-die-temperature">
 <h2>0x05–Maximum FPGA Die Temperature<a class="headerlink" href="#x05maximum-fpga-die-temperature" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>Server BMC uses register 0x05 to read the maximum FPGA die temperature
+<p>Server BMC uses register 0x05 to read the maximum FPGA die temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
-temperature data (twos complement) and the range is -128°C to 127°C.</div></blockquote>
+temperature data (twos complement) and the range is -128°C to 127°C.</p>
 <p><em>Table:</em> <strong>FPGA Die Temperature</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -773,8 +763,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</div></bl
 </div>
 <div class="section" id="x06maximum-qsfp-temperature">
 <h2>0x06–Maximum QSFP Temperature<a class="headerlink" href="#x06maximum-qsfp-temperature" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
+<p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
 <p>The Alveo™ card comes with network interface (i.e., QSFP or SFP-DD)
 modules. The number of SFP modules varies depending on the model.
 The primary incentive for server BMC to read the SFP temperature is
@@ -786,9 +775,7 @@ modules present in an Alveo™ card, exposing only the maximum SFP
 temperature value to server BMC.</p>
 <p>Server BMC uses register 0x06 to read the maximum QSFP temperature
 value. The response data from the Xilinx FPGA card is 1-byte
-temperature data (twos complement) and the range is</p>
-<p>-128°C to 127°C.</p>
-</div></blockquote>
+temperature data (twos complement) and the range is -128°C to 127°C.</p>
 <p><em>Table:</em> <strong>Maximum QSFP Temperature, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -882,8 +869,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </div>
 <div class="section" id="x20critical-sensor-data-record-csdr-command">
 <h2>0x20–Critical Sensor Data Record (CSDR) Command<a class="headerlink" href="#x20critical-sensor-data-record-csdr-command" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div>The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.</div></blockquote>
+<p>The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.</p>
 <ul class="simple">
 <li>Status: Contains TCRIT, PG, ZYNQ error and other status information.</li>
 <li>Temperature: FPGA, inlet, and outlet sensors.</li>
@@ -914,92 +900,92 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <td>&#160;</td>
 </tr>
 <tr class="row-odd"><td>4</td>
-<td>2</td>
+<td>4</td>
 <td>Board security status information</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>6</td>
+<tr class="row-even"><td>8</td>
 <td>1</td>
 <td>Board inlet temperature</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>7</td>
+<tr class="row-odd"><td>9</td>
 <td>1</td>
 <td>Board outlet temperature</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>8</td>
+<tr class="row-even"><td>10</td>
 <td>4</td>
 <td>Board edge connector 3.3V input sensor</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>12</td>
+<tr class="row-odd"><td>14</td>
 <td>4</td>
 <td>Board edge connector 12V input sensor</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>16</td>
+<tr class="row-even"><td>18</td>
 <td>4</td>
 <td>Board AUX connector 12V input sensor</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>20</td>
+<tr class="row-odd"><td>22</td>
 <td>2</td>
 <td>Board total power consumption</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>22</td>
+<tr class="row-even"><td>24</td>
 <td>1</td>
 <td>Device 1 status information</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>23</td>
+<tr class="row-odd"><td>25</td>
 <td>2</td>
 <td>Device 1 junction temperature</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>25</td>
+<tr class="row-even"><td>27</td>
 <td>10</td>
 <td>Device 1 advanced error counters</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>35</td>
+<tr class="row-odd"><td>37</td>
 <td>1</td>
 <td>Device 2 status information</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>36</td>
+<tr class="row-even"><td>38</td>
 <td>2</td>
 <td>Device 2 junction temperature</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>38</td>
+<tr class="row-odd"><td>40</td>
 <td>10</td>
 <td>Device 2 advanced error counters</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-even"><td>48</td>
+<tr class="row-even"><td>50</td>
 <td>1</td>
 <td>Network module 0 temperature</td>
 <td>N/A for U30</td>
 </tr>
-<tr class="row-odd"><td>49</td>
+<tr class="row-odd"><td>51</td>
 <td>2</td>
 <td>Network module 0 status</td>
 <td>N/A for U30</td>
 </tr>
-<tr class="row-even"><td>51</td>
+<tr class="row-even"><td>53</td>
 <td>1</td>
 <td>Network module 1 temperature</td>
 <td>N/A for U30</td>
 </tr>
-<tr class="row-odd"><td>52</td>
+<tr class="row-odd"><td>54</td>
 <td>2</td>
 <td>Network module 1 status</td>
 <td>N/A for U30</td>
 </tr>
 <tr class="row-even"><td>56</td>
-<td>10</td>
+<td>8</td>
 <td>Reserved</td>
 <td>&#160;</td>
 </tr>
@@ -1110,27 +1096,38 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Bit[15:14]</td>
+<tr class="row-even"><td>Bit[31:15]</td>
 <td>Reserved</td>
 <td>&#160;</td>
 <td>&#160;</td>
 </tr>
-<tr class="row-odd"><td>Bit[13:11]</td>
-<td>Flash authentication status</td>
-<td><p class="first">3-bit unsigned;</p>
+<tr class="row-odd"><td>Bit[15]</td>
+<td>JTAG Access</td>
+<td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
 </td>
-<td><p class="first">Bit 13: DEV ID (0=DEV1, 1=DEV2);</p>
-<p>Bit 12: Flash ID (0=Primary, 1=Recovery)</p>
-<p class="last">Bit 11: Authentication (0=DONE, 1= NOT DONE)</p>
+<td><p class="first">0: Disabled</p>
+<p class="last">1: Enabled</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[10]</td>
+<tr class="row-even"><td>Bit[14:11]</td>
+<td>Flash authentication status</td>
+<td><p class="first">4-bit unsigned;</p>
+<p class="last">Unit: state</p>
+</td>
+<td><p class="first">State: 0=NOT DONE, 1=DONE</p>
+<p>Bit 14: FPGA2 Recovery flash device</p>
+<p>Bit 13: FPGA2 Primary flash device</p>
+<p>Bit 12: FPGA1 Recovery flash device</p>
+<p class="last">Bit 11: FPGA1 Primary flash device</p>
+</td>
+</tr>
+<tr class="row-odd"><td>Bit[10]</td>
 <td>SC_SPI_DEV2_CTRL5</td>
 <td>NA</td>
 <td>Reserved</td>
 </tr>
-<tr class="row-odd"><td>Bit[9]</td>
+<tr class="row-even"><td>Bit[9]</td>
 <td>SC_SPI_DEV2_CTRL4</td>
 <td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1140,9 +1137,9 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">1: Flash write enable</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[8,6]</td>
+<tr class="row-odd"><td>Bit[8,6]</td>
 <td><p class="first">SC_SPI_DEV2_CTRL3,1</p>
-<p class="last">dev flash mode control</p>
+<p class="last">Dev flash mode control</p>
 </td>
 <td><p class="first">2-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1151,7 +1148,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">2b‘01: SC x1 with WP; 2b‘11 Not Valid</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[7]</td>
+<tr class="row-even"><td>Bit[7]</td>
 <td><p class="first">SC_SPI_DEV2_CTRL2</p>
 <p class="last">Primary/Recovery flash selected</p>
 </td>
@@ -1162,12 +1159,12 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">1: DEV2 recovery flash selected</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[5]</td>
+<tr class="row-odd"><td>Bit[5]</td>
 <td>SC_SPI_DEV1_CTRL5</td>
 <td>NA</td>
 <td>Reserved</td>
 </tr>
-<tr class="row-odd"><td>Bit[4]</td>
+<tr class="row-even"><td>Bit[4]</td>
 <td>SC_SPI_DEV1_CTRL4</td>
 <td><p class="first">1-bit unsigned</p>
 <p class="last">Unit: state</p>
@@ -1177,9 +1174,9 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">1: Flash Write Enable</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[3,2]</td>
+<tr class="row-odd"><td>Bit[3,2]</td>
 <td><p class="first">SC_SPI_DEV1_CTRL3,1</p>
-<p class="last">dev flash mode control</p>
+<p class="last">Dev flash mode control</p>
 </td>
 <td><p class="first">2-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1188,7 +1185,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">2b‘01: SC x1 with WP; 2b‘11 Not Valid</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[1]</td>
+<tr class="row-even"><td>Bit[1]</td>
 <td><p class="first">SC_SPI_DEV1_CTRL2</p>
 <p class="last">Primary/Recovery flash selected</p>
 </td>
@@ -1199,7 +1196,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">1: DEV1 recovery flash selected</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[0]</td>
+<tr class="row-odd"><td>Bit[0]</td>
 <td><p class="first">SC_SPI_DEV_SEL; Connects</p>
 <p class="last">SC to SPI MUX of Dev 1 or Dev 2</p>
 </td>
@@ -1797,7 +1794,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 16, 2021.
+        Last updated on March 05, 2021.
       </span>
 
     </p>

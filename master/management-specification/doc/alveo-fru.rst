@@ -1,17 +1,17 @@
 Alveo™ FRU Support 
 ------------------
 
-    The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
+The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
 
-    ***Note*:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
-    
-    The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM's FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.
+***Note*:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
 
-    Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.
+The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM's FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.
 
-    The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.
+Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.
 
-    For the high-level FRU Storage Organization, see the figure below from UG1378 here.
+The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.
+
+For the high-level FRU Storage Organization, see the figure below from UG1378 here.
 
 .. image:: ./images/FRU_organization.png
    :align: center
