@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -362,7 +362,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#cmc">CMC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xmc">XMC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#bmc">BMC</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#alveo-programming-cable">Alveo Programming Cable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#alveo-card-programming-cable">Alveo Card Programming Cable</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reboot-warm-boot-reset-system">Reboot/Warm Boot/Reset System</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cold-boot-power-cycle">Cold Boot/Power Cycle</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#shutdown-and-unplug-pull-power">Shutdown and Unplug/Pull Power</a></li>
@@ -397,7 +397,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -449,7 +449,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Card Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="terminology">
@@ -491,8 +491,8 @@
 <hr class="docutils" />
 <div class="section" id="sc">
 <h3>SC<a class="headerlink" href="#sc" title="Permalink to this headline">¶</a></h3>
-<p>The Satellite Controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server <a class="reference external" href="#bmc">BMC</a>.</p>
-<p>The SC, <a class="reference external" href="#cmc">CMC</a> and XRT communicate to</p>
+<p>The satellite controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server <a class="reference external" href="#bmc">BMC</a>.</p>
+<p>The SC, <a class="reference external" href="#cmc">CMC</a>, and XRT communicate to</p>
 <ul class="simple">
 <li><p>Monitor card status,</p></li>
 <li><p>Communicate with the server BMC</p></li>
@@ -505,8 +505,8 @@
 <hr class="docutils" />
 <div class="section" id="cmc">
 <h3>CMC<a class="headerlink" href="#cmc" title="Permalink to this headline">¶</a></h3>
-<p>The Card Management Controller (CMC) is a microblaze running in the platform and handles FPGA features including communication with XRT.</p>
-<p>XRT only communicates directly with the CMC. CMC ↔ SC communication allows XRT to</p>
+<p>The card management controller (CMC) is a microblaze running in the platform and handles FPGA features including communication with XRT.</p>
+<p>XRT only communicates directly with the CMC. CMC ↔ SC communication allows XRT to:</p>
 <ul class="simple">
 <li><p>Report sensor values</p></li>
 <li><p>Load a xclbin</p></li>
@@ -518,12 +518,12 @@
 <hr class="docutils" />
 <div class="section" id="xmc">
 <h3>XMC<a class="headerlink" href="#xmc" title="Permalink to this headline">¶</a></h3>
-<p>XMC is a deprecated name for the CMC. See <a class="reference external" href="#cmc">CMC</a></p>
+<p>XMC is a deprecated name for the CMC. See <a class="reference external" href="#cmc">CMC</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="bmc">
 <h3>BMC<a class="headerlink" href="#bmc" title="Permalink to this headline">¶</a></h3>
-<p>Baseboard Management Controller (BMC) is a found on server motherboards to allow remote monitoring and system administration.</p>
+<p>Baseboard management controller (BMC) is a found on server motherboards to allow remote monitoring and system administration.</p>
 <p>For supported servers this allows for remote system administration including</p>
 <ul class="simple">
 <li><p>System power and temperature monitoring</p></li>
@@ -533,9 +533,9 @@
 <p>This can be productized on supported servers as a part of a feature like the Dell iDRAC or HP iLO out-of-band management products.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="alveo-programming-cable">
-<h3>Alveo Programming Cable<a class="headerlink" href="#alveo-programming-cable" title="Permalink to this headline">¶</a></h3>
-<p>A special cable that allows the user to interact with the FPGA for certain cards like the U50.</p>
+<div class="section" id="alveo-card-programming-cable">
+<h3>Alveo Card Programming Cable<a class="headerlink" href="#alveo-card-programming-cable" title="Permalink to this headline">¶</a></h3>
+<p>A special cable that allows the you to interact with the FPGA for certain cards, like the U50 card.</p>
 <p>Provides micro-USB support from a host PC to the Alveo card maintenance connector. The Alveo Programming Cable can be ordered as an accessory from <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/accessories.html">Alveo accessories</a>.  See the <a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf">Alveo Programming Cable Guide</a> for details.</p>
 </div>
 <hr class="docutils" />
@@ -585,6 +585,7 @@
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -628,7 +629,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>

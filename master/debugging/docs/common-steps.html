@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -420,7 +420,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -509,7 +509,7 @@
 <hr class="docutils" />
 <div class="section" id="log-machine-state">
 <h3>Log machine state<a class="headerlink" href="#log-machine-state" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a>  to collect information on the system, XRT, and card state. The script captures:</p>
+<p>Use <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a> to collect information on the system, XRT, and card state. The script captures:</p>
 <ul class="simple">
 <li><p>Initial dmesg state</p></li>
 <li><p>OS</p></li>
@@ -1375,12 +1375,9 @@ Cold reboot machine to load the new image on card(s).
 <ol class="simple">
 <li><p>An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager</p></li>
 <li><p>The Alveo Programming Cable is shown in Figure 3 in UG1377: <a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf">UG1377 V1.1</a></p></li>
-<li><p>Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.</p>
-<ol class="simple">
-<li><p>Pages 1-13</p></li>
-<li><p>Often the debug machine is a windows laptop</p></li>
-</ol>
-</li>
+<li><p>Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
+a.  Pages 1-13
+b.  Often the debug machine is a windows laptop</p></li>
 <li><p>Open Vivado hardware manager</p></li>
 <li><p>Tools → Auto connect</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">PARAM.FREQUENCY</span> <span class="pre">1000000</span> <span class="pre">[current_hw_target]</span></code></p></li>
@@ -1412,6 +1409,7 @@ a.  Often the debug machine is a windows laptop</p></li>
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -1455,7 +1453,7 @@ a.  Often the debug machine is a windows laptop</p></li>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>

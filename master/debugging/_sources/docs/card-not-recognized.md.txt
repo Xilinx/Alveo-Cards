@@ -36,7 +36,7 @@ This page details scenarios and recommended steps to take when the card is not r
 Typical causes can be grouped into card and host based issues as given below:
 -   Card based
     -  Poorly seated card
-    -  [USB cable plugged into a U200/U250/U280](#usb-cable-plugged-into-u200-u250-u280)
+    -  [USB cable plugged into a U200/U250/U280](#usb-cable-plugged-into-card)
     -  Card operated out of spec
 -   Host based
     -   Bad or incompatible motherboard slot
@@ -49,7 +49,7 @@ Typical causes can be grouped into card and host based issues as given below:
 ## You Will Need
 
 Before beginning debug, you need to:
-- Have [Root/sudo permissions](common-steps.md#root-sudo-access)
+- Have [Root/sudo permissions](common-steps.html#root-sudo-access)
 
 ## Common Cases
 
@@ -62,13 +62,13 @@ This is a large problem space that can have many potential causes. To narrow lik
 - [Check system compatibility](check-system-compatibility.md)
 -  If the card is in the system, try a warm boot.
     - If this fixes the issue, see [Card recognized after warm boot](#card-recognized-after-a-warm-boot)
-- [Check for unpopulated CPU sockets](common-steps.md#check-for-unpopulated-cpus)
+- [Check for unpopulated CPU sockets](common-steps.html#check-for-unpopulated-cpus)
   - The PCIe controller is built into modern CPUs. If there are one or more missing CPUs you may not be able to use all the PCIe slots, review system documentation to determine which slots are usable.
 
 #### Alveo card
 
 Go through the following scenarios and see if they apply:
- - [USB cable is plugged in](#usb-cable-plugged-into-u200-u250-u280)
+ - [USB cable is plugged in](#usb-cable-plugged-into-card)
  - [Card is not recognized after using Vivado flow](#vivado-flow)
  - [Card is not recognized after programming a shell or reverting to golden image](#card-not-recognized-after-loading-platform-or-golden-image)
  - [Card recognized at first but not after the machine has been on for a while or while in use](#card-not-recognized-during-operation)
@@ -86,7 +86,7 @@ If none of the above have narrowed down the potential issue:
 
 As a last attempt:
 - Cold boot the system twice
-- [Pull power](terminology.md#shutdown-and-unplug-pull-power)
+- [Pull power](terminology.html#shutdown-and-unplug-pull-power)
 - Reseat the Alveo card
 - Reseat the server risers if applicable
 - Bring system back up
@@ -103,9 +103,9 @@ Next steps:
 [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
-### USB cable plugged into U200, U250, U280
+### USB cable plugged into card
 
-If there is a USB cable plugged into the card, it will block the FPGA from enumerating on the PCIe bus.
+For cards with a USB port, including U200, U250 and U280, ensure there is no USB cable plugged into the card as it will block the FPGA from enumerating on the PCIe bus.
 
 Next steps:
  - Unplug USB cable
@@ -145,7 +145,7 @@ The BIOS can start enumerating devices on the PCIe bus 100ms after the system st
 
 Next steps:
 
-- [Disable fastboot](common-steps.md#disable-fastboot)
+- [Disable fastboot](common-steps.html#disable-fastboot)
 
 - - -
 ### Card not recognized after loading platform or golden image
@@ -159,7 +159,7 @@ Next steps:
     - If so go to [Card recognized after warm boot](#card-recognized-after-a-warm-boot)
 - Confirm BIOS is not in [safety mode](#bios-in-safety-mode)
 - Try reseating the card and seeing if the host will recognize
-- See if the FPGA is seen in [Vivado HW Manager](common-steps.md#vivado-hw-manager)
+- See if the FPGA is seen in [Vivado HW Manager](common-steps.html#vivado-hw-manager)
   - If it can be seen, revert the card to golden [AR 71757](https://www.xilinx.com/support/answers/71757.html)
 
 - - -
@@ -171,8 +171,8 @@ If the system does not have enough airflow it is possible the FPGA can overheat 
 
  Next steps:
 
-- [Check for an over temperature event in dmesg](common-steps.md#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits)
-- Use `xbutil query` to [monitor card temperature](common-steps.md#monitor-card-power-and-temperature)
+- [Check for an over temperature event in dmesg](common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits)
+- Use `xbutil query` to [monitor card temperature](common-steps.html#monitor-card-power-and-temperature)
 - If there is an over temperature event or if the card is over 90C in xbutil query
   - Cold boot the system
   - Increasing system airflow
@@ -191,8 +191,8 @@ If the card is tested and recognized in a different PCIe slot on the same machin
 
 Next steps:
 
-- Ensure [PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed) match the platform requirements
-- [Check for unpopulated CPU sockets](common-steps.md#check-for-unpopulated-cpus)
+- Ensure [PCIe slot type and speed](common-steps.html#determine-pcie-slot-type-and-speed) match the platform requirements
+- [Check for unpopulated CPU sockets](common-steps.html#check-for-unpopulated-cpus)
 - Review BIOS settings and see if the BIOS sees the card
 
 - - -
@@ -203,9 +203,9 @@ If the card is tested and recognized in a different machine, there is an issue w
 Next steps:
 
 - Try another PCIe slot
-- [Check for unpopulated CPU sockets](common-steps.md#check-for-unpopulated-cpus)
+- [Check for unpopulated CPU sockets](common-steps.html#check-for-unpopulated-cpus)
 - See if the host has a [New or updated BIOS on the machine](#new-or-updated-bios-on-machine)
-- Ensure [PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed) match the card deployment platform requirements.
+- Ensure [PCIe slot type and speed](common-steps.html#determine-pcie-slot-type-and-speed) match the card deployment platform requirements.
 - Check airflow
 
 - - -
@@ -219,7 +219,7 @@ Next steps:
 - Look at the LEDs on the card:
   - [Card's blue LED not illuminated](#blue-led-not-illuminated)
   - [Card's red LED is illuminated](#red-led-illuminated)
-- See if the FPGA is seen in [Vivado HW Manager](common-steps.md#vivado-hw-manager)
+- See if the FPGA is seen in [Vivado HW Manager](common-steps.html#vivado-hw-manager)
   - If it can be seen, revert the card to golden [AR 71757](https://www.xilinx.com/support/answers/71757.html)
 - If the card isn't visible in the Vivado HW Manager navigate to the [Service Portal](https://www.xilinx.com/support.html) and initiate a return request.
 
@@ -264,7 +264,7 @@ Please refer to the following sections that discuss next steps for different sys
 - Look at the LEDs on the card:
   - [Card's blue LED not illuminated](#blue-led-not-illuminated)
   - [Card's red LED is illuminated](#red-led-illuminated)
-- [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### Riser replacement
  Next steps:
@@ -278,14 +278,14 @@ Please refer to the following sections that discuss next steps for different sys
  - Look at the LEDs on the card:
    - [Card's blue LED not illuminated](#blue-led-not-illuminated)
    - [Card's red LED is illuminated](#red-led-illuminated)
- - [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+ - [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### Additional card installed in system
 Next steps:
 
 - Remove the new card
 - Confirm the [BIOS is not in safety mode](#bios-in-safety-mode)
-- Bring up the system and [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- Bring up the system and [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### New or updated BIOS on machine
  Next steps:
@@ -294,31 +294,31 @@ Next steps:
   - Fix any changes that are incompatible with Alveo cards
 - Cold boot the system
 - See if [BIOS is not in safety mode](#bios-in-safety-mode)
-- Bring up the system and [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- Bring up the system and [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### BIOS settings changed
 Next steps:
 - Review the changes
 - Revert any changes that are incompatible with Alveo Cards
-- Bring up the system and [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- Bring up the system and [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### CPU removal
 Next steps:
 
-- [Check for Unpopulated CPUs](common-steps.md#check-for-unpopulated-cpus)
+- [Check for Unpopulated CPUs](common-steps.html#check-for-unpopulated-cpus)
 - Move card to a usable slot
-- Bring up the system and [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- Bring up the system and [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
 
 #### Other hardware added since last boot
 Next steps:
 
 - Shut down the system
-- [Pull power](terminology.md#shutdown-and-unplug-pull-power)
+- [Pull power](terminology.html#shutdown-and-unplug-pull-power)
 - Remove the new PCIe device(s)
 - Reseat the Alveo card
   - Reseat the server risers if applicable
 - Bring system back up
-- [Confirm the card is recognized](common-steps.md#confirm-system-recognizes-cards)
+- [Confirm the card is recognized](common-steps.html#confirm-system-recognizes-cards)
   - If so progress through card install
   - If not try the card in
     - A different slot
@@ -338,7 +338,7 @@ If the card has been tested in multiple machines and hasn't been recognized in a
 - Look at the LEDs on the card:
   - [Card's blue LED not illuminated](#blue-led-not-illuminated)
   - [Card's red LED is illuminated](#red-led-illuminated)
-- See if the FPGA is seen in [Vivado HW Manager](common-steps.md#vivado-hw-manager)
+- See if the FPGA is seen in [Vivado HW Manager](common-steps.html#vivado-hw-manager)
   - If it can be seen, revert the card to golden [AR 71757](https://www.xilinx.com/support/answers/71757.html)
 
 - - -
@@ -349,13 +349,13 @@ It the blue LED on the card is not illuminated, the FPGA is not being programmed
 Next steps:
 - Try the following:
   - Shut down the system
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power)
   - Reseat the Alveo card
   - Reseat the server risers if applicable
   - Bring system back up
   - Check blue LED illuminated
   - Move card to a different slot/Machine and try these steps again
-- If the blue LED is still not illuminated, see if the FPGA is seen in [Vivado HW Manager](common-steps.md#vivado-hw-manager)
+- If the blue LED is still not illuminated, see if the FPGA is seen in [Vivado HW Manager](common-steps.html#vivado-hw-manager)
   - If it can be seen, revert the card to golden [AR 71757](https://www.xilinx.com/support/answers/71757.html)
 
 - - -
@@ -368,7 +368,7 @@ Next steps:
 - [Determine if the BIOS is in safety mode](#bios-in-safety-mode)
 - If the BIOS is not in safety mode, try the following:
   - Shut down the system
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power)
   - Reseat the Alveo card
   - Reseat the server risers if applicable
   - Bring system back up
@@ -394,7 +394,9 @@ Next step:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

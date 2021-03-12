@@ -1,6 +1,6 @@
 ﻿<table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Card Debug Guide</h1>
    </td>
  </tr>
 </table>
@@ -37,37 +37,38 @@ This page defines terms used throughout the guide.
 
 - - -
 ### SC
-The Satellite Controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server [BMC](#bmc).
+The satellite controller (SC) is a realtime support processor on the Alveo card that provides card management in-band (XRT) and OOB communication mechanisms for the server [BMC](#bmc).
 
-The SC, [CMC](#cmc) and XRT communicate to
+The SC, [CMC](#cmc), and XRT communicate to
 - Monitor card status,
 - Communicate with the server BMC
 - On some cards, provides protections for over temp or over power conditions
 - Program a kernel (xclbin) onto a card
 - On newer cards, like the U50, the SC needs to enable the FPGA power rails
 
-Shown in the center of the [Alveo system diagram](alveo-system.md#alveo-system-diagram) in green.
+Shown in the center of the [Alveo system diagram](alveo-system.html#alveo-system-diagram) in green.
 
 - - -
 ### CMC
-The Card Management Controller (CMC) is a microblaze running in the platform and handles FPGA features including communication with XRT.
+The card management controller (CMC) is a microblaze running in the platform and handles FPGA features including communication with XRT.
 
-XRT only communicates directly with the CMC. CMC ↔ SC communication allows XRT to
+XRT only communicates directly with the CMC. CMC ↔ SC communication allows XRT to:
+
 - Report sensor values
 - Load a xclbin
 - Flash the card
 
-Shown inside the FPGA block in the [Alveo system diagram](alveo-system.md#alveo-system-diagram).
+Shown inside the FPGA block in the [Alveo system diagram](alveo-system.html#alveo-system-diagram).
 
 CMC was previously referred to as XMC and may show up in some XRT messaging.
 
 - - -
 ### XMC
-XMC is a deprecated name for the CMC. See [CMC](#cmc)
+XMC is a deprecated name for the CMC. See [CMC](#cmc).
 
 - - -
 ### BMC
-Baseboard Management Controller (BMC) is a found on server motherboards to allow remote monitoring and system administration.
+Baseboard management controller (BMC) is a found on server motherboards to allow remote monitoring and system administration.
 
 For supported servers this allows for remote system administration including
 - System power and temperature monitoring
@@ -77,9 +78,9 @@ For supported servers this allows for remote system administration including
 This can be productized on supported servers as a part of a feature like the Dell iDRAC or HP iLO out-of-band management products.
 
 - - -
-### Alveo Programming Cable
+### Alveo Card Programming Cable
 
-A special cable that allows the user to interact with the FPGA for certain cards like the U50.
+A special cable that allows the you to interact with the FPGA for certain cards, like the U50 card.
 
 Provides micro-USB support from a host PC to the Alveo card maintenance connector. The Alveo Programming Cable can be ordered as an accessory from [Alveo accessories](https://www.xilinx.com/products/boards-and-kits/alveo/accessories.html).  See the [Alveo Programming Cable Guide](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf) for details.
 
@@ -111,7 +112,7 @@ Pulling power is an easy way to try to reset the SC.
 
 The term golden image or factory image refers to the card's original configuration when shipped.
 
-When changing platforms or XRT versions, it may be necessary to revert the card to it's [golden/factory image](common-steps.md#reverting-the-card-to-factory-image).
+When changing platforms or XRT versions, it may be necessary to revert the card to it's [golden/factory image](common-steps.html#reverting-the-card-to-factory-image).
 
 - - -
 ### Reseat an Alveo Card
@@ -139,7 +140,9 @@ Firmware used during system boot to initialize the computer hardware.
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

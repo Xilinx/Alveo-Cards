@@ -26,7 +26,7 @@ This section covers steps involving the host hardware, BIOS, and OS setup.
 - - -
 ### Log machine state
 
-Use [WTSxrtLog.sh](scripts/WTSxrtLog.sh)  to collect information on the system, XRT, and card state. The script captures:
+Use [WTSxrtLog.sh](scripts/WTSxrtLog.sh) to collect information on the system, XRT, and card state. The script captures:
 
 -   Initial dmesg state
 -   OS
@@ -225,7 +225,7 @@ The green circles show a slot that supports Gen3 x16 cards. The red circles show
 
 - - -
 ### Disable fastboot
-Use this if the [system recognizes the card](common-steps.md#confirm-system-recognizes-cards) only after a warm boot
+Use this if the [system recognizes the card](common-steps.html#confirm-system-recognizes-cards) only after a warm boot
 
 - Boot the system into the BIOS setup menu
     - F12 on many machines
@@ -334,7 +334,7 @@ WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 xrt/now 2.5.309 amd64 [installed,local]
 ```
 
-Use [the XRT release table](common-steps.md#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
+Use [the XRT release table](common-steps.html#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
 
 #### RHEL/CentOS
 
@@ -394,7 +394,7 @@ Order matters for both of these commands. xocl depends on xclmgmt.
 
 Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.
 
-Before removing XRT, run `sudo xbmgmt flash --scan --verbose` and if any cards have a shell on them, [return each card to golden](common-steps.md#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
+Before removing XRT, run `sudo xbmgmt flash --scan --verbose` and if any cards have a shell on them, [return each card to golden](common-steps.html#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
 
 Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.
 
@@ -855,7 +855,7 @@ Level 3 : 0x80004(RECS_CONTINUOUS_RTRANSFERS_MAX_WAIT|RECS_WRITE_TO_BVALID_MAX_W
 Error occurred on: Wed 2020-08-19 13:59:13 MDT
 ```
 
-To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.md#monitor-card-power-and-temperature) section.
+To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.html#monitor-card-power-and-temperature) section.
 
 - - -
 ### Reverting the card to factory image
@@ -906,17 +906,19 @@ For the U50:
 1.  An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager
 2.  The Alveo Programming Cable is shown in Figure 3 in UG1377: [UG1377 V1.1](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf)
 3.  Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
-    1.  Pages 1-13
-    2.  Often the debug machine is a windows laptop
+    a.  Pages 1-13
+    b.  Often the debug machine is a windows laptop
 4.  Open Vivado hardware manager
 5.  Tools → Auto connect
 6.  `set_property PARAM.FREQUENCY 1000000 [current_hw_target]`
 7.  The xu50\_0 should show as below:
 
+
   ![HW Manager](./images/initial_connection.png)
 
+
 8. If the device shows up in Vivado HW Manager follow [AR 71757](https://www.xilinx.com/support/answers/71757.html) to revert the card back to the golden image
-9.  Otherwise the FPGA is not working, post on the
+9. Otherwise the FPGA is not working, post on the
 [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 For the U200/U250/U280:
@@ -938,7 +940,9 @@ For the U200/U250/U280:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

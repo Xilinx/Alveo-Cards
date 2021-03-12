@@ -1,11 +1,8 @@
 ############################################
-Alveo Card Debugging
+Alveo Card Debug Guide
 ############################################
 
-
-
-
-Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT flow, from card installation through hardware validation.
+Quickly isolate, debug, and resolve a wide range of Alveo™ card related issues within the Vitis™/XRT flow, from card install through to hardware validation.
 
 
 *****
@@ -103,7 +100,7 @@ Issue Areas
      - Reference procedures for all debugging sections
 
        - Sudo and root access
-       - System details including OS release, PCIe and CPU status
+       - System details including OS release, PCIe™, and CPU status
        - XRT compatibility
        - Determining platform and SC on card and system
        - Monitoring card power and temperature
@@ -116,7 +113,7 @@ Xilinx Support
 ****************************************
 For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the `Xilinx Support pages <http://www.xilinx.com/support>`_. For additional assistance, post your question on the Xilinx Community Forums – `Alveo Accelerator Card <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
-
+If you have a suggestion or find an issue, please email `alveo_cards_debugging@xilinx.com <alveo_cards_debugging@xilinx.com>`_.
 
 ****************************************
 License

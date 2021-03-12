@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -346,17 +346,18 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-flash-scan-returns-bad-magic-number-error"><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-flash-scan-returns-xmc-not-loaded-error"><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-flash-scan-returns-xmc-not-ready-error"><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-flash-scan-returns-sc-is-not-ready-error"><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span></code> error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#sc-only-displays-two-digits-in-flashable-partition-running-on-fpga">SC only displays two digits in <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#the-sc-version-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-do-not-match">The SC version displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> do not match</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flashable-partition-running-on-fpga-displays-golden-and-there-is-a-partition-displayed-under-flashable-partitions-installed-in-system"><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> displays GOLDEN and there is a partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#partition-displayed-under-flashable-partition-running-on-fpga-while-none-displayed-under-flashable-partitions-installed-in-system">Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> while (None) displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#card-is-missing-from-xbmgmt-flash-scan-output">Card is missing from <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">output</span></code></a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbutil-query-reports-a-value-of-zero-for-voltage-or-temperature"><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> reports a value of zero for voltage or temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical"><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bad-magic-number">Bad magic number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xmc-not-loaded">XMC not loaded</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xmc-not-ready">XMC not ready</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sc-is-not-ready">SC is not ready</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sc-only-displays-two-digits">SC only displays two digits</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sc-versions-do-not-match">SC versions do not match</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#golden-partition-running-on-fpga">GOLDEN partition running on FPGA</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partition-installed-in-system-none">Partition installed in system (None)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#no-cards-found">No cards found</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#voltage-or-temperature-reports-zero">Voltage or temperature reports zero</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failed-to-open-device">Failed to open device</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -392,7 +393,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -470,8 +471,8 @@
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">
-<h3>Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.<a class="headerlink" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">
+<h3><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.<a class="headerlink" href="#flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical" title="Permalink to this headline">¶</a></h3>
 <p>When the platform has been installed correctly, the partition and SC version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command.  An example output is shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
@@ -490,8 +491,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="xbmgmt-flash-scan-returns-bad-magic-number-error">
-<h3><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error<a class="headerlink" href="#xbmgmt-flash-scan-returns-bad-magic-number-error" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="bad-magic-number">
+<h3>Bad magic number<a class="headerlink" href="#bad-magic-number" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between XRT and CMC.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">bad</span> <span class="n">magic</span> <span class="n">number</span><span class="p">:</span> <span class="mi">7</span><span class="n">fff</span>
@@ -529,8 +530,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="xbmgmt-flash-scan-returns-xmc-not-loaded-error">
-<h3><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error<a class="headerlink" href="#xbmgmt-flash-scan-returns-xmc-not-loaded-error" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="xmc-not-loaded">
+<h3>XMC not loaded<a class="headerlink" href="#xmc-not-loaded" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error as shown below, there is communication break between XRT and CMC.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
@@ -563,8 +564,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="xbmgmt-flash-scan-returns-xmc-not-ready-error">
-<h3><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error<a class="headerlink" href="#xbmgmt-flash-scan-returns-xmc-not-ready-error" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="xmc-not-ready">
+<h3>XMC not ready<a class="headerlink" href="#xmc-not-ready" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error as shown below, there is communication break between XRT and CMC.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
@@ -602,8 +603,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="xbmgmt-flash-scan-returns-sc-is-not-ready-error">
-<h3><code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span></code> error<a class="headerlink" href="#xbmgmt-flash-scan-returns-sc-is-not-ready-error" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sc-is-not-ready">
+<h3>SC is not ready<a class="headerlink" href="#sc-is-not-ready" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span> </code> error as shown below, there is communication break between SC and CMC.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">SC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x0</span>
  <span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
@@ -633,8 +634,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="sc-only-displays-two-digits-in-flashable-partition-running-on-fpga">
-<h3>SC only displays two digits in <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code><a class="headerlink" href="#sc-only-displays-two-digits-in-flashable-partition-running-on-fpga" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sc-only-displays-two-digits">
+<h3>SC only displays two digits<a class="headerlink" href="#sc-only-displays-two-digits" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns different number of digits of SC versions for  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, there is a break in communication between XRT and CMC.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
     <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
@@ -655,8 +656,8 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="the-sc-version-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-do-not-match">
-<h3>The SC version displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> do not match<a class="headerlink" href="#the-sc-version-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-do-not-match" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="sc-versions-do-not-match">
+<h3>SC versions do not match<a class="headerlink" href="#sc-versions-do-not-match" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns different SC version displayed under  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
     <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
@@ -676,9 +677,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="flashable-partition-running-on-fpga-displays-golden-and-there-is-a-partition-displayed-under-flashable-partitions-installed-in-system">
-<h3><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> displays GOLDEN and there is a partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code><a class="headerlink" href="#flashable-partition-running-on-fpga-displays-golden-and-there-is-a-partition-displayed-under-flashable-partitions-installed-in-system" title="Permalink to this headline">¶</a></h3>
-<p>When <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">GOLDEN</span> </code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> as shown below, the card is fresh from the factory or the has been returned to factory state.</p>
+<div class="section" id="golden-partition-running-on-fpga">
+<h3>GOLDEN partition running on FPGA<a class="headerlink" href="#golden-partition-running-on-fpga" title="Permalink to this headline">¶</a></h3>
+<p>When <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">GOLDEN</span> </code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> shows only the partitions available on the system.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
     <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
     <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
@@ -694,9 +695,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="partition-displayed-under-flashable-partition-running-on-fpga-while-none-displayed-under-flashable-partitions-installed-in-system">
-<h3>Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> while (None) displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code><a class="headerlink" href="#partition-displayed-under-flashable-partition-running-on-fpga-while-none-displayed-under-flashable-partitions-installed-in-system" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span>&#160;&#160; <span class="pre">(None)</span></code> as shown below, it means the corresponding platform has not been installed in the system.</p>
+<div class="section" id="partition-installed-in-system-none">
+<h3>Partition installed in system (None)<a class="headerlink" href="#partition-installed-in-system-none" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span>&#160;&#160; <span class="pre">(None)</span></code> as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
     <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u250</span>
     <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
@@ -711,9 +712,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="card-is-missing-from-xbmgmt-flash-scan-output">
-<h3>Card is missing from <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">output</span></code><a class="headerlink" href="#card-is-missing-from-xbmgmt-flash-scan-output" title="Permalink to this headline">¶</a></h3>
-<p>If xbmgmt flash command returns <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">cards</span> <span class="pre">Found</span></code> output, as shown below, the OS or XRT is not able to find the card.</p>
+<div class="section" id="no-cards-found">
+<h3>No cards found<a class="headerlink" href="#no-cards-found" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">cards</span> <span class="pre">Found</span></code> as shown below, the OS or XRT is unable to find the card.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>No cards Found !
 </pre></div>
 </div>
@@ -726,9 +727,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="xbutil-query-reports-a-value-of-zero-for-voltage-or-temperature">
-<h3><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> reports a value of zero for voltage or temperature<a class="headerlink" href="#xbutil-query-reports-a-value-of-zero-for-voltage-or-temperature" title="Permalink to this headline">¶</a></h3>
-<p>If the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.</p>
+<div class="section" id="voltage-or-temperature-reports-zero">
+<h3>Voltage or temperature reports zero<a class="headerlink" href="#voltage-or-temperature-reports-zero" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">FRONT</span>   <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">REAR</span>    <span class="n">PCB</span> <span class="n">BTM</span> <span class="n">FRONT</span>   <span class="n">VCCINT</span> <span class="n">TEMP</span>
 <span class="mi">0</span>               <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">0</span>
@@ -766,9 +767,37 @@
 </ul>
 </div>
 <hr class="docutils" />
+<div class="section" id="failed-to-open-device">
+<h3>Failed to open device<a class="headerlink" href="#failed-to-open-device" title="Permalink to this headline">¶</a></h3>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">device:</span></code> as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Failed</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">device</span><span class="p">:</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mf">00.0</span>
+<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="n">total</span> <span class="mi">1</span> <span class="n">card</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="mi">0</span> <span class="n">are</span> <span class="n">usable</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Next steps:</p>
+<ul class="simple">
+<li><p>Cold boot the system</p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>If issue persists</p>
+<ul>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+</ul>
+</li>
+<li><p>If issue persists</p>
+<ul>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+</ul>
+</li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+</ul>
+</div>
+<hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -812,7 +841,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>

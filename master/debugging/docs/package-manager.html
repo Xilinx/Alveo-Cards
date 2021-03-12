@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -412,7 +412,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -872,15 +872,14 @@ Error: Nothing to do
 <hr class="docutils" />
 <div class="section" id="flash-update-fails-with-shell-is-not-applicable">
 <h3>Flash update fails with shell is not applicable<a class="headerlink" href="#flash-update-fails-with-shell-is-not-applicable" title="Permalink to this headline">¶</a></h3>
-<p>Updating the flash says specified shell is not applicable as shown in the example below</p>
+<p>When flashing the card with the command <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span></code> returns <code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">applicable</span></code> as shown in the example below, it indicates that the name of the specified shell is not supported for the targeted card.  This may also occur if the specified shell name is spelled incorrectly.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbmgmt flash --update --shell xilinx_u250_gen3x16_base_2
 WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
 </pre></div>
 </div>
-<p>This can occur if the installed package is not supported for the targeted card.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Confirm the right shell is installed</p></li>
+<li><p>Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -899,6 +898,7 @@ WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -942,7 +942,7 @@ WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>

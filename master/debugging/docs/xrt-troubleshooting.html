@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -388,7 +388,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -607,12 +607,12 @@ Complete!
 <hr class="docutils" />
 <div class="section" id="no-card-is-found">
 <h3>No card is found<a class="headerlink" href="#no-card-is-found" title="Permalink to this headline">¶</a></h3>
-<p>If the xclmgmt management function does not recognize the platform on the card showing <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">card</span> <span class="pre">is</span> <span class="pre">found!</span></code> while <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does recognize the card and shows <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">driver</span> <span class="pre">in</span> <span class="pre">use:</span> <span class="pre">xclmgmt</span></code>, there is a communication issue between XRT and the card. Example output below:</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> command does not recognize the platform on the card it displays <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">card</span> <span class="pre">is</span> <span class="pre">found!</span></code> as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:~&gt; sudo xbmgmt flash --scan --verbose
 No card is found!
 </pre></div>
 </div>
-<p>When there <code class="docutils literal notranslate"><span class="pre">lspci</span></code> shows xclmgmt can attach to the card</p>
+<p>If this occurs and <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does recognize the card (displays <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">driver</span> <span class="pre">in</span> <span class="pre">use:</span> <span class="pre">xclmgmt</span></code> shown below), there is a communication issue between XRT and the card. Example output below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:~&gt; sudo lspci -vd 10ee:
 83:00.0 Processing accelerators: Xilinx Corporation Device 5020
         Subsystem: Xilinx Corporation Device 000e
@@ -660,6 +660,7 @@ No card is found!
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -703,7 +704,7 @@ No card is found!
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>

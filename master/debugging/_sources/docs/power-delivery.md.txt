@@ -19,7 +19,7 @@ Xilinx has two test tools, `xbutil validate` and `xbtest`. `xbutil validate` wil
 
 - A [Compatible host system](check-system-compatibility.md)
 - One or more alveo cards
-- [Root/sudo permissions](common-steps.md#root-sudo-access)
+- [Root/sudo permissions](common-steps.html#root-sudo-access)
 
 Before starting to test the card, gather data
 
@@ -28,7 +28,7 @@ Before starting to test the card, gather data
 3.  To confirm the card is functional, review the output from `xbutil validate > validate.log`
     *  If there are errors go to [Card Validation](card-validation.md) and resolve.
 4.  Confirm card(s) are compatible with the host machine 
-     * [Determine if the card is active or passive](common-steps.md#determine-active-or-passive-card)
+     * [Determine if the card is active or passive](common-steps.html#determine-active-or-passive-card)
     *  Only test a passive card in server system with enough airflow.
     *   If a passive card is not in a [qualified host and card combination](https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html), you may need to maunally increase server airflow by turning up the fan speed for the tests to pass.
 
@@ -144,17 +144,17 @@ Meaning:
 
 Next steps:
 
-- For active cards go to [xbtest for testing power](power-delivery.md#xbtest-for-testing-power) below
+- For active cards go to [xbtest for testing power](power-delivery.html#xbtest-for-testing-power) below
 - For passive cards confirm the following:
   - Server airflow meets card rquirements
     - You can damage the card if there is not enough airflow
   - Lid will be on the server for testing
-  - Go to [xbtest for testing power](power-delivery.md#xbtest-for-testing-power)
+  - Go to [xbtest for testing power](power-delivery.html#xbtest-for-testing-power)
 
 - - -
 ### Shell not listed in xbtest downloads below
 
-The xbtest tool supports the plaforms listed in [AR 75656](https://www.xilinx.com/support/answers/75656.html) To run xbtest, you need to make sure the [platform running on the card and system](common-steps.md#determine-platform-and-sc-on-card-and-system) is listed.
+The xbtest tool supports the plaforms listed in [AR 75656](https://www.xilinx.com/support/answers/75656.html) To run xbtest, you need to make sure the [platform running on the card and system](common-steps.html#determine-platform-and-sc-on-card-and-system) is listed.
 
 If the platform is not one of the ones supported by xtest you need to update the system and card with a supported platform.
 
@@ -169,7 +169,7 @@ If the card overheats or uses more power that the system provides the test appli
 
 Next Steps:
 
-- [Monitor the power and temperature](common-steps.md#monitor-card-power-and-temperature) to make sure the card is operating within temperature and power limits.
+- [Monitor the power and temperature](common-steps.html#monitor-card-power-and-temperature) to make sure the card is operating within temperature and power limits.
 
 
 - - -
@@ -217,7 +217,7 @@ STATUS   : POWER        : PWR_045:       94 sec. remaining; 76C; Power: raw 47.5
 STATUS   : POWER        : PWR_045:       93 sec. remaining; 76C; Power: raw 47.5W; Toggle Rate: 40.0%
 ```
 
-- [Monitor power and temperature](common-steps.md#monitor-card-power-and-temperature)
+- [Monitor power and temperature](common-steps.html#monitor-card-power-and-temperature)
 - Interrupt the test with `CTRL+C` if card temperature goes over 95C or if the temperature suddenly falls.
 -  At the end there will be a test pass or fail.
    - A test pass shows card is good for acceleration loads.
@@ -228,7 +228,9 @@ STATUS   : POWER        : PWR_045:       93 sec. remaining; 76C; Power: raw 47.5
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

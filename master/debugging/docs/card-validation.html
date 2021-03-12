@@ -295,7 +295,7 @@
           
 
           
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debugging
+            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
           
 
           
@@ -346,7 +346,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#memory-bandwidth-test-fails">Memory bandwidth test fails</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hangs-at-start-of-validate-test">Hangs at start of validate test</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#loading-bandwidth-kernel-error">Loading bandwidth kernel error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#verify-kernel-test-skipped-on-the-u250-gen3x16-base-3-platform">Verify kernel test skipped on the u250_gen3x16_base_3 platform</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#verify-kernel-test-skipped">Verify kernel test skipped</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#different-python-versions-for-user-and-root">Different python versions for user and root</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pcie-link-check-passed-with-warning">PCIe link check PASSED with warning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sc-firmware-mismatch-error">SC firmware mismatch error</a></li>
@@ -358,7 +358,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#unsupported-linux-kernel-version">Unsupported Linux kernel version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#failed-to-find-xclbin">Failed to find xclbin</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#incorrect-output-from-kernel">Incorrect output from kernel</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-commands-not-working"><code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands not working</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-commands-not-working">xbmgmt commands not working</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#failed-to-find-xilinx-platform">Failed to find Xilinx platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -399,7 +400,7 @@
       <nav class="wy-nav-top" aria-label="top navigation">
         
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="../README.html">Alveo Card Debugging</a>
+          <a href="../README.html">Alveo Card Debug Guide</a>
         
       </nav>
 
@@ -640,9 +641,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="verify-kernel-test-skipped-on-the-u250-gen3x16-base-3-platform">
-<h3>Verify kernel test skipped on the u250_gen3x16_base_3 platform<a class="headerlink" href="#verify-kernel-test-skipped-on-the-u250-gen3x16-base-3-platform" title="Permalink to this headline">¶</a></h3>
-<p>If you encounter <code class="docutils literal notranslate"><span class="pre">INFO:</span> <span class="pre">==</span> <span class="pre">verify</span> <span class="pre">kernel</span> <span class="pre">test</span> <span class="pre">SKIPPED</span></code> when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> on the u250_gen3x16_base_3 DFX-2RP platform, it is suggesting that the shell partition has not been loaded.  For DFX-2RP platforms, the base partition needs to be flashed and the shell needs to be loaded prior to running an application, including the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> application.</p>
+<div class="section" id="verify-kernel-test-skipped">
+<h3>Verify kernel test skipped<a class="headerlink" href="#verify-kernel-test-skipped" title="Permalink to this headline">¶</a></h3>
+<p>For DFX-2RP platforms such as u250_gen3x16_base_3, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command will display the message <code class="docutils literal notranslate"><span class="pre">INFO:</span> <span class="pre">==</span> <span class="pre">verify</span> <span class="pre">kernel</span> <span class="pre">test</span> <span class="pre">SKIPPED</span></code>, as shown below, if the shell partition has not been first been loaded.  For DFX-2RP platforms, the base partition needs to be flashed and the shell needs to be loaded prior to running an application, including the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> application.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
 <span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
 
@@ -665,13 +666,13 @@
 </div>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Go to <a class="reference external" href="https://www.xilinx.com/support/answers/75975.html">AR 75975</a> for additional details on the 2RP-DFX platform</p></li>
+<li><p>Load the shell partition before running an application.  See <a class="reference external" href="https://www.xilinx.com/support/answers/75975.html">AR 75975</a> details.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="different-python-versions-for-user-and-root">
 <h3>Different python versions for user and root<a class="headerlink" href="#different-python-versions-for-user-and-root" title="Permalink to this headline">¶</a></h3>
-<p>In some cases, you may have different python versions for user and for root which can lead to odd behaviors with the driver.</p>
+<p>In some cases, you may have different python versions for user and for root, as shown below.  This can lead to odd behaviors with the driver.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ python --version
 Python 2.7.5
 ~]$ sudo python --version
@@ -680,10 +681,7 @@ Python 3.6.2
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Reconcile your python environment</p></li>
-</ul>
-<p>or</p>
-<ul class="simple">
+<li><p>Reconcile your python environment or</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">su</span></code> to become root before running card commands</p></li>
 </ul>
 </div>
@@ -978,7 +976,7 @@ ERROR: == verify kernel test FAILED
 </div>
 <hr class="docutils" />
 <div class="section" id="xbmgmt-commands-not-working">
-<h3><code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands not working<a class="headerlink" href="#xbmgmt-commands-not-working" title="Permalink to this headline">¶</a></h3>
+<h3>xbmgmt commands not working<a class="headerlink" href="#xbmgmt-commands-not-working" title="Permalink to this headline">¶</a></h3>
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.</p>
 <p>Next Step:</p>
 <ul class="simple">
@@ -986,9 +984,22 @@ ERROR: == verify kernel test FAILED
 </ul>
 </div>
 <hr class="docutils" />
+<div class="section" id="failed-to-find-xilinx-platform">
+<h3>Failed to find Xilinx platform<a class="headerlink" href="#failed-to-find-xilinx-platform" title="Permalink to this headline">¶</a></h3>
+<p>If XRT fails to find the Xilinx platform as shown below, the <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> script has not been sourced.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">find</span> <span class="n">Xilinx</span> <span class="n">platform</span>
+</pre></div>
+</div>
+<p>Next step:</p>
+<ul class="simple">
+<li><p>Run the following command: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/xilinx/xrt/setup.sh</span></code></p></li>
+</ul>
+</div>
+<hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -1032,7 +1043,7 @@ ERROR: == verify kernel test FAILED
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 22, 2021.
+        Last updated on March 12, 2021.
       </span>
 
     </p>
