@@ -439,7 +439,7 @@
   <div class="section" id="alveo-fru-support">
 <h1>Alveo™ FRU Support<a class="headerlink" href="#alveo-fru-support" title="Permalink to this headline">¶</a></h1>
 <p>The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3</p>
-<p><strong>*Note*:</strong> Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.</p>
+<p><strong>Note:</strong> Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.</p>
 <p>The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM’s FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.</p>
 <p>Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.</p>
 <p>The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.</p>
@@ -454,8 +454,7 @@
 BYTE0, BYTE1…… BYTEN, STOP</p>
 <p>Where: [addr-byte0][addr-byte1] are FRU offsets (block writes)
 [BYTE0][BYTE1]… [BYTEN] are FRU data response (block reads).</p>
-<blockquote>
-<div><strong>*Note*:</strong> 2-byte FRU offset follows [LS Byte] [MS Byte].</div></blockquote>
+<p><strong>Note:</strong> 2-byte FRU offset follows [LS Byte] [MS Byte].</p>
 <p>Example of Read FRU Data Starting at Offset 0x0</p>
 <ul>
 <li><p class="first"><strong>Block Write Operation:</strong> [N] 0x50 0x00 0x00</p>
@@ -484,7 +483,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 </ul>
 <div class="section" id="block-write">
 <h2>Block Write<a class="headerlink" href="#block-write" title="Permalink to this headline">¶</a></h2>
-<p><em>Table:</em> <strong>Block Write, Server BMC Request</strong></p>
+<p><strong>Table: Block Write, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="23%" />
@@ -504,7 +503,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Block Write, Xilinx® Alveo™ Card Response</strong></p>
+<p><strong>Table: Block Write, Xilinx® Alveo™ Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
@@ -523,7 +522,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 </div>
 <div class="section" id="block-read">
 <h2>Block Read<a class="headerlink" href="#block-read" title="Permalink to this headline">¶</a></h2>
-<p><em>Table:</em> <strong>Block Read, Server BMC Request</strong></p>
+<p><strong>Table: Block Read, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="21%" />
@@ -543,7 +542,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Block Read, Xilinx Alveo™ Card Response</strong></p>
+<p><strong>Table: Block Read, Xilinx Alveo™ Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="17%" />
@@ -603,7 +602,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on March 05, 2021.
+        Last updated on April 01, 2021.
       </span>
 
     </p>

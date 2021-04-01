@@ -1,10 +1,11 @@
 I2C/SMBus Commands
 ------------------
 
-Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at 
-I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:
+Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at I2C address 0x65 (0xCA in 8-bit). While 100 KHz and 400 KHz are standard among Server BMCs, I2C speeds between 90 KHz and 700 KHz are tested and supported by Satellite Controller. 
 
-*Table :* **Supported I2C/SMBus Commands**
+The following table lists the supported commands:
+
+**Table: Supported I2C/SMBus Commands**
 
 +----------------------------+---------------------------------+----------------------+--------------------------+
 | **Command/Register Value** | **Command Description**         | **Transaction Type** | **Number of Resp Bytes** |
@@ -27,16 +28,15 @@ I2C address 0x65 (0xCA in 8-bit). The following table lists the supported comman
 +----------------------------+---------------------------------+----------------------+--------------------------+
 
 
-***Note*:** Xilinx recommends waiting for 1–2 ms between any two I2C
+**Note:** Xilinx recommends waiting for 1–2 ms between any two I2C
 transactions. Without the delay, uninterrupted I2C operation isn’t
 guaranteed.
-
 
 
 0x01–Maximum DIMM Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-***Note*:** Not applicable for U30 cards.
+**Note:** Not applicable for U30 cards.
 
 The DIMMs in the Alveo™ cards with the number varying with each
 model. The primary motivation for server BMC to read the DIMM
@@ -50,7 +50,7 @@ DIMM temperature value. The response data from the Xilinx FPGA card
 is 1-byte temperature data (twos complement) and the range is -128°C
 to 127°C.
 
-*Table:* **Maximum DIMM, Server BMC Request**
+**Table: Maximum DIMM, Server BMC Request**
 
 +--------------------------------+------------+
 |     **Server BMC Request**                  |
@@ -60,7 +60,7 @@ to 127°C.
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* **Maximum DIMM, Xilinx Alveo Card Response**
+**Table: Maximum DIMM, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -83,7 +83,7 @@ Server BMC uses register 0x02 to read the maximum board temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.
 
-*Table:* **Maximum Board Temperature, Server BMC Request**
+**Table: Maximum Board Temperature, Server BMC Request**
 
 +--------------------------------+------------+
 |     **Server BMC Request**                  |
@@ -93,7 +93,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* **Maximum Board Temperature, Xilinx Alveo Card Response**
+**Table: Maximum Board Temperature, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -115,7 +115,7 @@ Server BMC uses register 0x03 to read the current board power
 consumption value. The response data from the Xilinx Alveo™ card is
 2-byte power consumption data (LSB first), unit is in watts (W).
 
-*Table:* **Board Power Consumption, Server BMC Request**
+**Table: Board Power Consumption, Server BMC Request**
 
 +--------------------------------+------------+
 |     **Server BMC Request**                  |
@@ -125,7 +125,7 @@ consumption value. The response data from the Xilinx Alveo™ card is
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* **Board Power Consumption, Xilinx Alveo Card Response**
+**Table: Board Power Consumption, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -144,7 +144,7 @@ Server BMC uses register 0x04 to read the current SC FW version,
 which follows xx.yy.zz formatting. The response data from the Xilinx
 Alveo™ card is 4 bytes.
 
-*Table:* ** SC Firmware Version, Server BMC Request**
+**Table:  SC Firmware Version, Server BMC Request**
 
 
 +--------------------------------+------------+
@@ -155,7 +155,7 @@ Alveo™ card is 4 bytes.
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* ** SC Firmware Version, Xilinx Alveo Card Response**
+**Table:  SC Firmware Version, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -181,7 +181,7 @@ Server BMC uses register 0x05 to read the maximum FPGA die temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.
 
-*Table:* **FPGA Die Temperature**
+**Table: FPGA Die Temperature**
 
 +--------------------------------+------------+
 |     **Server BMC Request**                  |
@@ -191,7 +191,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* **Max FPGA die Temperature, Xilinx Alveo Card Response**
+**Table: Max FPGA die Temperature, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -210,7 +210,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.
 0x06–Maximum QSFP Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-***Note*:** Not applicable for U30 cards.
+**Note:** Not applicable for U30 cards.
 
 The Alveo™ card comes with network interface (i.e., QSFP or SFP-DD)
 modules. The number of SFP modules varies depending on the model.
@@ -227,7 +227,7 @@ Server BMC uses register 0x06 to read the maximum QSFP temperature
 value. The response data from the Xilinx FPGA card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.
 
-*Table:* **Maximum QSFP Temperature, Server BMC Request**
+**Table: Maximum QSFP Temperature, Server BMC Request**
 
 +--------------------------------+------------+
 |     **Server BMC Request**                  |
@@ -237,7 +237,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.
 | Data bytes                     |     N/A    |
 +--------------------------------+------------+
 
-*Table:* **Maximum QSFP Temperature, Xilinx Alveo Card Response**
+**Table: Maximum QSFP Temperature, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -259,10 +259,9 @@ temperature data (twos complement) and the range is -128°C to 127°C.
 A reset of the FPGA through the out-of-band channel is a desirable operation to bring the FPGA
 out of any stuck condition (i.e., PCIe link down, FPGA lock-up, user workload corruption/hang)
 leaving any in-band operation ineffective. Server BMC uses register 0x0F to request the reset of
-the FPGA. Wherever applicable, SC has the capability to reset the FPGA. When supported, SC firmware
-responds with the status 0x01 immediately and runs the operation in the background.
+the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This feature/option may not be available in all products and when supported, SC firmware responds with the status 0x01 immediately and runs the operation in the background.
 
-*Table:* **Reset FPGA server BMC request**
+**Table: Reset FPGA server BMC request**
 
 +----------------+-------------------------------------------+
 |     **Server BMC Request**                                 |
@@ -272,7 +271,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 | Data bytes     | B0: 0x01 - Cold reset;  0x02 - Warm reset |
 +----------------+-------------------------------------------+
 
-*Table:* **Reset FPGA, Xilinx Alveo Card Response**
+**Table: Reset FPGA, Xilinx Alveo Card Response**
 
 +------------+----------------+-------------------------------------------------------------+
 | ** Xilinx Alveo™ Card Response **                                                         |
@@ -287,7 +286,13 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 0x20–Critical Sensor Data Record (CSDR) Command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.
+**Note:** Currently, this command is only supported in Alveo™ U30 cards.
+
+The CSDR command implementation is Block Read from server BMC’s perspective and SC sends the data LSB first (i.e.) Byte 0, Byte 1 ... Byte 63 order. 
+
+See Block Read command from :ref:`I2C/SMBus Implementation and Protocol Recap` for more details. 
+
+The following sensor information are packaged into the SDR response (64 bytes): 
 
 -  Status: Contains TCRIT, PG, ZYNQ error and other status information.
 
@@ -301,7 +306,7 @@ The following sensor information are packaged into the SDR response (64 bytes). 
 
 -  Network status and temperature, if applicable.
 
-*Table:* **CSDR Command**
+**Table: CSDR Command**
 
 +----------------+----------------------+------------------------------------------+-----------------+
 | **Offset**     | **Number of Bytes**  | **Register Description**                 | **Notes**       |
@@ -348,7 +353,7 @@ The following sensor information are packaged into the SDR response (64 bytes). 
 Critical Sensor Data Record (CSDR) Command Response
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Board Status Information**
+**Table: Board Status Information**
 
 +---------------+----------------------------------+---------------------+----------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**     | **Sensor Description**           |
@@ -391,12 +396,12 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                     |                                  |
 +---------------+----------------------------------+---------------------+----------------------------------+
 
-*Table:* **Board Security Status Information**
+**Table: Board Security Status Information**
 
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**     | **Sensor Description**                      |
 +===============+==================================+=====================+=============================================+
-| Bit[31:15]    | Reserved                         |                     |                                             |
+| Bit[31:16]    | Reserved                         |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[15]       | JTAG Access                      | 1-bit unsigned;     | 0: Disabled                                 |
 |               |                                  |                     |                                             |
@@ -414,7 +419,7 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                     | Bit 11: FPGA1 Primary flash device          |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[10]       | SC\_SPI\_DEV2\_CTRL5             | NA                  |     Reserved                                |
+| Bit[10]       | SC\_SPI\_DEV2\_CTRL5             | NA                  | Reserved                                    |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[9]        | SC\_SPI\_DEV2\_CTRL4             | 1-bit unsigned;     | For flash control modes 2b'00 and 2b'10:    |
 |               |                                  |                     |                                             |
@@ -423,12 +428,12 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                     | 1: Flash write enable                       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[8,6]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
+| Bit[8,7]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
 |               |                                  |                     |                                             |
 |               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[7]        | SC\_SPI\_DEV2\_CTRL2             | 1-bit unsigned;     | 0: DEV2 primary flash selected              |
+| Bit[6]        | SC\_SPI\_DEV2\_CTRL2             | 1-bit unsigned;     | 0: DEV2 primary flash selected              |
 |               |                                  |                     |                                             |
 |               | Primary/Recovery flash selected  | Unit: state         | 1: DEV2 recovery flash selected             |
 |               |                                  |                     |                                             |
@@ -458,14 +463,14 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 
-*Table:* **Board Temperature, Voltage, Current and Power sensors**
+**Table: Board Temperature, Voltage, Current and Power sensors**
 
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**         | **Sensor Description**                      |
 +===============+==================================+=========================+=============================================+
 | **Board Inlet Temperature**                                                                                              |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
-| Byte 0        | Inlet temp sensor value          | 1-byte two's compliment | Range: 128 to 127°C                         |
+| Byte 0        | Inlet temp sensor value          | 1-byte two's compliment | Range: –128 to 127°C                        |
 |               |                                  |                         |                                             |
 |               | (located at back bracket)        | Unit: Celsius           | Example: 0x21= 33°C, 0xFE = -2°C            |
 |               |                                  |                         |                                             |
@@ -477,7 +482,7 @@ Critical Sensor Data Record (CSDR) Command Response
 |               | (located at IO bracket)          | Unit: Celsius           | Example: 0x21= 33°C, 0xFE = -2°C            |
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
-| **Board Edge Connector 3.3V Input Sensor**                                                                               |
+| **Board Edge Connector 3.3V Input Sensor** - Not applicable for U30 cards                                                |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Byte[3:2]     | Edge Connector 3.3V input voltage| 2-byte unsigned         | Voltage in volts                            |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
@@ -489,7 +494,7 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Byte[1:0]     | Edge connector 12V input current | 2-byte unsigned         | Current in amps, LSB 1.25mA; 0x2710=12.5A   |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
-| **Board AUX Connector 12V Input Sensor**                                                                                 |
+| **Board AUX Connector 12V Input Sensor** - Not applicable for U30 cards                                                  |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Byte[3:2]     | AUX connector 12V input voltage  | 2-byte unsigned         | Voltage in volts                            |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
@@ -503,7 +508,7 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 
-*Table:* **FPGA Device 1 and 2 - Status, Temperature & Error information**
+**Table: FPGA Device 1 and 2 - Status, Temperature & Error information**
 
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**         | **Sensor Description**                      |
@@ -630,14 +635,14 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  | LSB First; Unit: count  | device 2 after device/SC reboot             |
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
-| **[*]** ->  See Zynq UltraScale+ Device Technical Reference Manual Reference Manual for signal definition                |
+| **[*]** ->  See Zynq UltraScale+ Device Technical Reference Manual for signal definition                                 |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | **[**]** -> See UltraScale Architecture Configuration User Guide for signal definition                                   |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 
-*Table:* **Network Module (QSFP) - Temperature and Status information**
+**Table: Network Module (QSFP) - Temperature and Status information**
 
-***Note*:** Not applicable for U30 cards.
+**Note:** Not applicable for U30 cards.
 
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**         | **Sensor Description**                      |

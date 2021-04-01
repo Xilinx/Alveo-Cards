@@ -5,13 +5,13 @@ Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus command
 
 **NOTE:** For detailed SMBus spec, refer `System Management Bus Specification - version 2.0 <http://smbus.org/specs/smbus20.pdf>`_ 
 
-*Figure:* **SMBus Packet**
+**Figure: SMBus Packet**
 
 .. image:: ./images/SMBus_Sample_Packet.png
    :align: center
 
 
-*Table:* **SMBus Packet diagram element Key**
+**Table: SMBus Packet diagram element Key**
 
 +-------------------+----------------------------------------------------------------------------------------------+
 |     **Key**       |     **Description**                                                                          |
@@ -39,9 +39,12 @@ Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus command
 |     ...           |     Continuation of protocol                                                                 |
 +-------------------+----------------------------------------------------------------------------------------------+
 
-*Figure:* **SMBus Commands**
+**Figure: SMBus Commands**
 
-.. image:: ./images/SMBus_Commands_Figure.png
+.. image:: ./images/SMBus_Commands_Figure1.png
+   :align: center
+
+.. image:: ./images/SMBus_Commands_Figure2.png
    :align: center
 
 

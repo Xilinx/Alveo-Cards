@@ -20,7 +20,7 @@ The table below captures the PCIe information for the following Alveo™ product
 -  **Subsystem DID** : ** 0x000E**
 
 
-*Table:* **Alveo PCIe Device ID**
+**Table: Alveo PCIe Device ID**
 
 +-------------------------+----------------------------------------------+
 | **Card/Shell**          | **Device ID**                                |
@@ -73,7 +73,7 @@ PF -> Physical Function
 Temperature Limits
 ~~~~~~~~~~~~~~~~~~
 
-*Table:* **QSFP Temperature Limits**
+**Table: QSFP Temperature Limits**
 
 The following table captures the QSFP temperature limits for all QSFP capable Alveo™ products - U2xx(U200, U250, U280), U50x (U50, U50C, U50LV) , U55x (U55N, U55C) and VCK5000 products.
 
@@ -105,7 +105,7 @@ For additional thermal information, refer to the data sheet specific to the Alve
 
 -  `Alveo U50 <https://www.xilinx.com/support/documentation/data_sheets/ds965-u50.pdf>`__
 
-*Table:* **FPGA and Board Temperature Limits**
+**Table: FPGA and Board Temperature Limits**
 
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 |  **Sensor Name**                |     **Warning Limit**   |     **Critical Limit**   |     **Fatal Limit**   |

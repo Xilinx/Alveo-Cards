@@ -3,7 +3,7 @@ Alveo™ FRU Support
 
 The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
 
-***Note*:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
+**Note:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
 
 The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM's FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.
 
@@ -30,7 +30,7 @@ BYTE0, BYTE1…… BYTEN, STOP
 Where: [addr-byte0][addr-byte1] are FRU offsets (block writes)
 [BYTE0][BYTE1]… [BYTEN] are FRU data response (block reads).
 
-    ***Note*:** 2-byte FRU offset follows [LS Byte] [MS Byte].
+**Note:** 2-byte FRU offset follows [LS Byte] [MS Byte].
 
 Example of Read FRU Data Starting at Offset 0x0
                                                
@@ -57,7 +57,7 @@ Example of Read FRU Data Starting at Offset 50
 Block Write
 ~~~~~~~~~~~
 
-*Table:* **Block Write, Server BMC Request**
+**Table: Block Write, Server BMC Request**
 
 +-----------------+-------------------------+---------------------------------+
 |     **Server BMC Request**                                                  |
@@ -67,7 +67,7 @@ Block Write
 |                 |                         |     [Byte 1] – FRU Offset MSB   |
 +-----------------+-------------------------+---------------------------------+
 
-*Table:* **Block Write, Xilinx® Alveo™ Card Response**
+**Table: Block Write, Xilinx® Alveo™ Card Response**
 
 +-------------+------------------------------+
 |     **Xilinx Alveo™ Card Response**        |
@@ -78,7 +78,7 @@ Block Write
 Block Read
 ~~~~~~~~~~
 
-*Table:* **Block Read, Server BMC Request**
+**Table: Block Read, Server BMC Request**
 
 +------------+-----------+---------------------------------+
 |     **Server BMC Request**                               |
@@ -88,7 +88,7 @@ Block Read
 |            |           |     [Byte 1] – FRU offset MSB   |
 +------------+-----------+---------------------------------+
 
-*Table:* **Block Read, Xilinx Alveo™ Card Response**
+**Table: Block Read, Xilinx Alveo™ Card Response**
 
 +-------------+----------------------------------------+-------------------------+
 |     **Xilinx Alveo™ Card Response**                                            |

@@ -56,7 +56,7 @@ The SMBus/I2C is used for OoB communication. The OoB communication
 supports three protocols. The protocols and the I2C slave address
 (both 7-bit and 8-bit) are given in the following table.
 
-*Table:* **Slave Addresses and Corresponding Protocols**
+**Table: Slave Addresses and Corresponding Protocols**
 
 +-------------------------------+-------------------------------+---------------------------------+
 | **I2C Slave Address (7-bit)** | **I2C Slave Address (8-bit)** | **Protocol/Features Supported** |
@@ -99,7 +99,7 @@ See :ref:`I2C/SMBus Commands` I2C command implementation details.
 The following table is a comprehensive list of all OoB commands supported by SC using Standard I2C/SMBus protocols. 
 
 
-*Table:* **List of standard I2C/SMBus commands**
+**Table: List of standard I2C/SMBus commands**
 
 +------------------+---------------------------+----------------------------+-----------------------+
 | **Command Code** | **Sensor Name**           | **SMBus Transaction Type** | **Num of resp Bytes** |
@@ -155,7 +155,7 @@ For the purposes of SMBus address discovery (at default SMBus address 0xC2 (8-bi
 **MCTP control messages**
 The following MCTP control commands are supported in the SC:
 
-*Table:* **Supported MCTP control commands and description**
+**Table: Supported MCTP control commands and description**
 
 +--------------------------+--------+--------------------------------------------------------------------------------+
 |  **Command**             | **ID** | **Description**                                                                |
@@ -175,7 +175,7 @@ The following MCTP control commands are supported in the SC:
 
 The following PLDM commands are supported in the SC:
 
-*Table:* **Supported PLDM commands and description**
+**Table: Supported PLDM commands and description**
 
 +----------------------+--------+----------------------------------------------------------------------------------+
 |  **Command**         | **ID** | **Description**                                                                  |
@@ -203,7 +203,7 @@ The following PLDM commands are supported in the SC:
 
 These PLDM commands are categorized into type 0 and type 2, as detailed in the following table.
 
-*Table:* **Supported Type 0 and Type 2 PLDM commands**
+**Table: Supported Type 0 and Type 2 PLDM commands**
 
 +----------------------------+-----------------------------+
 |  **PLDM Type 0 Commands**  |  **PLDM Type 2 Commands**   |

@@ -445,9 +445,9 @@
             
   <div class="section" id="i2c-smbus-commands">
 <h1>I2C/SMBus Commands<a class="headerlink" href="#i2c-smbus-commands" title="Permalink to this headline">¶</a></h1>
-<p>Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at
-I2C address 0x65 (0xCA in 8-bit). The following table lists the supported commands:</p>
-<p><em>Table :</em> <strong>Supported I2C/SMBus Commands</strong></p>
+<p>Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at I2C address 0x65 (0xCA in 8-bit). While 100 KHz and 400 KHz are standard among Server BMCs, I2C speeds between 90 KHz and 700 KHz are tested and supported by Satellite Controller.</p>
+<p>The following table lists the supported commands:</p>
+<p><strong>Table: Supported I2C/SMBus Commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="26%" />
@@ -505,12 +505,12 @@ I2C address 0x65 (0xCA in 8-bit). The following table lists the supported comman
 </tr>
 </tbody>
 </table>
-<p><strong>*Note*:</strong> Xilinx recommends waiting for 1–2 ms between any two I2C
+<p><strong>Note:</strong> Xilinx recommends waiting for 1–2 ms between any two I2C
 transactions. Without the delay, uninterrupted I2C operation isn’t
 guaranteed.</p>
 <div class="section" id="x01maximum-dimm-temperature">
 <h2>0x01–Maximum DIMM Temperature<a class="headerlink" href="#x01maximum-dimm-temperature" title="Permalink to this headline">¶</a></h2>
-<p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
+<p><strong>Note:</strong> Not applicable for U30 cards.</p>
 <p>The DIMMs in the Alveo™ cards with the number varying with each
 model. The primary motivation for server BMC to read the DIMM
 temperature is to provide closed-loop thermal monitoring. The best
@@ -522,7 +522,7 @@ server BMC. Server BMC uses command code 0x01 to read the max the
 DIMM temperature value. The response data from the Xilinx FPGA card
 is 1-byte temperature data (twos complement) and the range is -128°C
 to 127°C.</p>
-<p><em>Table:</em> <strong>Maximum DIMM, Server BMC Request</strong></p>
+<p><strong>Table: Maximum DIMM, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -541,7 +541,7 @@ to 127°C.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Maximum DIMM, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Maximum DIMM, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -570,7 +570,7 @@ to 127°C.</p>
 <p>Server BMC uses register 0x02 to read the maximum board temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.</p>
-<p><em>Table:</em> <strong>Maximum Board Temperature, Server BMC Request</strong></p>
+<p><strong>Table: Maximum Board Temperature, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -589,7 +589,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Maximum Board Temperature, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Maximum Board Temperature, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -618,7 +618,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 <p>Server BMC uses register 0x03 to read the current board power
 consumption value. The response data from the Xilinx Alveo™ card is
 2-byte power consumption data (LSB first), unit is in watts (W).</p>
-<p><em>Table:</em> <strong>Board Power Consumption, Server BMC Request</strong></p>
+<p><strong>Table: Board Power Consumption, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -637,7 +637,7 @@ consumption value. The response data from the Xilinx Alveo™ card is
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Board Power Consumption, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Board Power Consumption, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -664,7 +664,7 @@ consumption value. The response data from the Xilinx Alveo™ card is
 <p>Server BMC uses register 0x04 to read the current SC FW version,
 which follows xx.yy.zz formatting. The response data from the Xilinx
 Alveo™ card is 4 bytes.</p>
-<p><em>Table:</em> ** SC Firmware Version, Server BMC Request**</p>
+<p><strong>Table:  SC Firmware Version, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -683,7 +683,7 @@ Alveo™ card is 4 bytes.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> ** SC Firmware Version, Xilinx Alveo Card Response**</p>
+<p><strong>Table:  SC Firmware Version, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -717,7 +717,7 @@ Alveo™ card is 4 bytes.</p>
 <p>Server BMC uses register 0x05 to read the maximum FPGA die temperature
 value. The response data from the Xilinx Alveo™ card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.</p>
-<p><em>Table:</em> <strong>FPGA Die Temperature</strong></p>
+<p><strong>Table: FPGA Die Temperature</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -736,7 +736,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Max FPGA die Temperature, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Max FPGA die Temperature, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -763,7 +763,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 </div>
 <div class="section" id="x06maximum-qsfp-temperature">
 <h2>0x06–Maximum QSFP Temperature<a class="headerlink" href="#x06maximum-qsfp-temperature" title="Permalink to this headline">¶</a></h2>
-<p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
+<p><strong>Note:</strong> Not applicable for U30 cards.</p>
 <p>The Alveo™ card comes with network interface (i.e., QSFP or SFP-DD)
 modules. The number of SFP modules varies depending on the model.
 The primary incentive for server BMC to read the SFP temperature is
@@ -776,7 +776,7 @@ temperature value to server BMC.</p>
 <p>Server BMC uses register 0x06 to read the maximum QSFP temperature
 value. The response data from the Xilinx FPGA card is 1-byte
 temperature data (twos complement) and the range is -128°C to 127°C.</p>
-<p><em>Table:</em> <strong>Maximum QSFP Temperature, Server BMC Request</strong></p>
+<p><strong>Table: Maximum QSFP Temperature, Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="73%" />
@@ -795,7 +795,7 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Maximum QSFP Temperature, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Maximum QSFP Temperature, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -824,9 +824,8 @@ temperature data (twos complement) and the range is -128°C to 127°C.</p>
 <p>A reset of the FPGA through the out-of-band channel is a desirable operation to bring the FPGA
 out of any stuck condition (i.e., PCIe link down, FPGA lock-up, user workload corruption/hang)
 leaving any in-band operation ineffective. Server BMC uses register 0x0F to request the reset of
-the FPGA. Wherever applicable, SC has the capability to reset the FPGA. When supported, SC firmware
-responds with the status 0x01 immediately and runs the operation in the background.</p>
-<p><em>Table:</em> <strong>Reset FPGA server BMC request</strong></p>
+the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This feature/option may not be available in all products and when supported, SC firmware responds with the status 0x01 immediately and runs the operation in the background.</p>
+<p><strong>Table: Reset FPGA server BMC request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="27%" />
@@ -845,7 +844,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Reset FPGA, Xilinx Alveo Card Response</strong></p>
+<p><strong>Table: Reset FPGA, Xilinx Alveo Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -869,7 +868,10 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </div>
 <div class="section" id="x20critical-sensor-data-record-csdr-command">
 <h2>0x20–Critical Sensor Data Record (CSDR) Command<a class="headerlink" href="#x20critical-sensor-data-record-csdr-command" title="Permalink to this headline">¶</a></h2>
-<p>The following sensor information are packaged into the SDR response (64 bytes). The implementation is block read from server BMC’s perspective. Currently, only Alveo™ U30 has two FPGA devices. Hence the Device 2 info are not applicable for other Alveo™ prodcuts.</p>
+<p><strong>Note:</strong> Currently, this command is only supported in Alveo™ U30 cards.</p>
+<p>The CSDR command implementation is Block Read from server BMC’s perspective and SC sends the data LSB first (i.e.) Byte 0, Byte 1 … Byte 63 order.</p>
+<p>See Block Read command from <a class="reference internal" href="smbus2.0-protocol-recap.html#i2c-smbus-implementation-and-protocol-recap"><span class="std std-ref">I2C/SMBus Implementation and Protocol Recap</span></a> for more details.</p>
+<p>The following sensor information are packaged into the SDR response (64 bytes):</p>
 <ul class="simple">
 <li>Status: Contains TCRIT, PG, ZYNQ error and other status information.</li>
 <li>Temperature: FPGA, inlet, and outlet sensors.</li>
@@ -878,7 +880,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <li>PCIe errors: Recoverable and non-recoverable errors.</li>
 <li>Network status and temperature, if applicable.</li>
 </ul>
-<p><em>Table:</em> <strong>CSDR Command</strong></p>
+<p><strong>Table: CSDR Command</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="16%" />
@@ -994,7 +996,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </div>
 <div class="section" id="critical-sensor-data-record-csdr-command-response">
 <h2>Critical Sensor Data Record (CSDR) Command Response<a class="headerlink" href="#critical-sensor-data-record-csdr-command-response" title="Permalink to this headline">¶</a></h2>
-<p><em>Table:</em> <strong>Board Status Information</strong></p>
+<p><strong>Table: Board Status Information</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="14%" />
@@ -1080,7 +1082,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Board Security Status Information</strong></p>
+<p><strong>Table: Board Security Status Information</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -1096,7 +1098,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Bit[31:15]</td>
+<tr class="row-even"><td>Bit[31:16]</td>
 <td>Reserved</td>
 <td>&#160;</td>
 <td>&#160;</td>
@@ -1137,7 +1139,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">1: Flash write enable</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[8,6]</td>
+<tr class="row-odd"><td>Bit[8,7]</td>
 <td><p class="first">SC_SPI_DEV2_CTRL3,1</p>
 <p class="last">Dev flash mode control</p>
 </td>
@@ -1148,7 +1150,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">2b‘01: SC x1 with WP; 2b‘11 Not Valid</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[7]</td>
+<tr class="row-even"><td>Bit[6]</td>
 <td><p class="first">SC_SPI_DEV2_CTRL2</p>
 <p class="last">Primary/Recovery flash selected</p>
 </td>
@@ -1209,7 +1211,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Board Temperature, Voltage, Current and Power sensors</strong></p>
+<p><strong>Table: Board Temperature, Voltage, Current and Power sensors</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -1234,7 +1236,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <td><p class="first">1-byte two’s compliment</p>
 <p class="last">Unit: Celsius</p>
 </td>
-<td><p class="first">Range: 128 to 127°C</p>
+<td><p class="first">Range: –128 to 127°C</p>
 <p class="last">Example: 0x21= 33°C, 0xFE = -2°C</p>
 </td>
 </tr>
@@ -1251,7 +1253,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">Example: 0x21= 33°C, 0xFE = -2°C</p>
 </td>
 </tr>
-<tr class="row-even"><td colspan="4"><strong>Board Edge Connector 3.3V Input Sensor</strong></td>
+<tr class="row-even"><td colspan="4"><strong>Board Edge Connector 3.3V Input Sensor</strong> - Not applicable for U30 cards</td>
 </tr>
 <tr class="row-odd"><td>Byte[3:2]</td>
 <td>Edge Connector 3.3V input voltage</td>
@@ -1275,7 +1277,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <td>2-byte unsigned</td>
 <td>Current in amps, LSB 1.25mA; 0x2710=12.5A</td>
 </tr>
-<tr class="row-even"><td colspan="4"><strong>Board AUX Connector 12V Input Sensor</strong></td>
+<tr class="row-even"><td colspan="4"><strong>Board AUX Connector 12V Input Sensor</strong> - Not applicable for U30 cards</td>
 </tr>
 <tr class="row-odd"><td>Byte[3:2]</td>
 <td>AUX connector 12V input voltage</td>
@@ -1301,7 +1303,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA Device 1 and 2 - Status, Temperature &amp; Error information</strong></p>
+<p><strong>Table: FPGA Device 1 and 2 - Status, Temperature &amp; Error information</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -1523,14 +1525,14 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
 <p class="last">device 2 after device/SC reboot</p>
 </td>
 </tr>
-<tr class="row-even"><td colspan="4"><strong>[*]</strong> -&gt;  See Zynq UltraScale+ Device Technical Reference Manual Reference Manual for signal definition</td>
+<tr class="row-even"><td colspan="4"><strong>[*]</strong> -&gt;  See Zynq UltraScale+ Device Technical Reference Manual for signal definition</td>
 </tr>
 <tr class="row-odd"><td colspan="4"><strong>[</strong>]** -&gt; See UltraScale Architecture Configuration User Guide for signal definition</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Network Module (QSFP) - Temperature and Status information</strong></p>
-<p><strong>*Note*:</strong> Not applicable for U30 cards.</p>
+<p><strong>Table: Network Module (QSFP) - Temperature and Status information</strong></p>
+<p><strong>Note:</strong> Not applicable for U30 cards.</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="13%" />
@@ -1794,7 +1796,7 @@ responds with the status 0x01 immediately and runs the operation in the backgrou
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on March 05, 2021.
+        Last updated on April 01, 2021.
       </span>
 
     </p>
