@@ -428,7 +428,7 @@ Critical Sensor Data Record (CSDR) Command Response
 |               |                                  |                     | 1: Flash write enable                       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[8:7]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
+| Bit[8:7]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV2 x2 with WP; 2b'10 DEV2 x4 no WP |
 |               |                                  |                     |                                             |
 |               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
 |               |                                  |                     |                                             |
@@ -504,7 +504,7 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Byte[1:0]     | Total card power                 | 2-bytes unsigned        | [Byte 0] [Byte 1] = 0x32 0x00               |
 |               |                                  |                         |                                             |
-|               |                                  | LSB first; Unit: watts  |  presents 50W (0x0032)                      |
+|               |                                  | LSB first; Unit: watts  | presents 50W (0x0032)                       |
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 

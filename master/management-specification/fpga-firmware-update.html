@@ -748,7 +748,7 @@
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
-<p>B1 - B5 from BMC (LSB first):</p>
+<p>B1 - B4 from BMC (LSB first):</p>
 <p class="last">Size of QSPI image in bytes</p>
 </td>
 <td>N/A</td>
@@ -1792,7 +1792,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.</p>
 </div>
 <div class="section" id="x50-fpga-set-image-size">
 <h2>0x50 - FPGA_SET_IMAGE_SIZE<a class="headerlink" href="#x50-fpga-set-image-size" title="Permalink to this headline">¶</a></h2>
-<p>Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 5 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.</p>
+<p>Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 4 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.</p>
 <p><strong>NOTE:</strong> On boot-up, SC restores the image size to default 128 MBytes to address entire flash memory.</p>
 <p><em>Table:</em> <strong>FPGA_SET_IMAGE_SIZE server BMC request</strong></p>
 <table border="1" class="docutils">
@@ -1815,7 +1815,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.</p>
 <p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
-<tr class="row-even"><td>Byte 1-5</td>
+<tr class="row-even"><td>Byte 1-4</td>
 <td>Size of QSPI image (in bytes)</td>
 </tr>
 </tbody>
@@ -2089,7 +2089,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 01, 2021.
+        Last updated on April 05, 2021.
       </span>
 
     </p>

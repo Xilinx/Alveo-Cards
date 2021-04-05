@@ -234,7 +234,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 |             |                            |                                  |                             |
 |             |                            | 0x04: FPGA2 Recovery(if present) |                             |
 |             |                            |                                  |                             |
-|             |                            | B1 - B5 from BMC (LSB first):    |                             |
+|             |                            | B1 - B4 from BMC (LSB first):    |                             |
 |             |                            |                                  |                             |
 |             |                            | Size of QSPI image in bytes      |                             |
 |             |                            |                                  |                             |
@@ -959,7 +959,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.
 0x50 - FPGA\_SET\_IMAGE\_SIZE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 5 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.
+Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 4 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.
 
 **NOTE:** On boot-up, SC restores the image size to default 128 MBytes to address entire flash memory.
 
@@ -978,7 +978,7 @@ Optionally, BMC can send the command 0x50 to notify SC about the size of the FPG
 |              |                                                 |
 |              | 0x04 - FPGA2 Recovery flash device              |
 +--------------+-------------------------------------------------+
-| Byte 1-5     | Size of QSPI image (in bytes)                   |
+| Byte 1-4     | Size of QSPI image (in bytes)                   |
 +--------------+-------------------------------------------------+
 
 *Table:* **FPGA\_SET\_IMAGE\_SIZE Xilinx Alveo Card Response**
