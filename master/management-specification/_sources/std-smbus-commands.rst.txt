@@ -286,7 +286,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 0x20–Critical Sensor Data Record (CSDR) Command
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-**Note:** Currently, this command is only supported in Alveo™ U30 cards.
+**Note:** Currently, this command is only supported in Alveo™ U30 Hyperscaler only SKU.
 
 The CSDR command implementation is Block Read from server BMC’s perspective and SC sends the data LSB first (i.e.) Byte 0, Byte 1 ... Byte 63 order. 
 
@@ -358,7 +358,14 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+----------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**     | **Sensor Description**           |
 +===============+==================================+=====================+==================================+
-| Bit[31:19]    | Reserved                         |     N/A             |     N/A                          |
+| Bit[31:26]    | Reserved                         |     N/A             |     N/A                          |
++---------------+----------------------------------+---------------------+----------------------------------+
+| Bit[26:19]    | Total # of SC flash writes       | 8-bits unsigned;    | Total # of writes to SC flash,   |
+|               |                                  |                     |                                  |
+|               |                                  | Unit: count         | represented in multiples of 100s |
+|               |                                  |                     |                                  |
+|               |                                  |                     | Ex: 37 count => 3700 writes      |
+|               |                                  |                     |                                  |
 +---------------+----------------------------------+---------------------+----------------------------------+
 | Bit[18]       | AUX power cable present          | 1-bit unsigned;     | 0 – No AUX power cable           |
 |               |                                  |                     |                                  |
@@ -421,16 +428,18 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[10]       | SC\_SPI\_DEV2\_CTRL5             | NA                  | Reserved                                    |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[9]        | SC\_SPI\_DEV2\_CTRL4             | 1-bit unsigned;     | For flash control modes 2b'00 and 2b'10:    |
+| Bit[9]        | SC\_SPI\_DEV2\_CTRL4             | 1-bit unsigned;     | For flash control modes 2b'00 and 2b'01:    |
 |               |                                  |                     |                                             |
 |               |                                  | Unit: state         | 0: Flash write protect                      |
 |               |                                  |                     |                                             |
 |               |                                  |                     | 1: Flash write enable                       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[8:7]      | SC\_SPI\_DEV2\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV2 x2 with WP; 2b'10 DEV2 x4 no WP |
+| Bit[8:7]      | Bit[8]: SC\_SPI\_DEV2\_CTRL3     | 2-bit unsigned;     | 2b'00: DEV2 x2 with WP; 2b'10 DEV2 x4 no WP |
 |               |                                  |                     |                                             |
-|               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               | Bit[7]: SC\_SPI\_DEV2\_CTRL1     | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               |                                  |                     |                                             |
+|               | DEV2 flash mode control          |                     |                                             |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[6]        | SC\_SPI\_DEV2\_CTRL2             | 1-bit unsigned;     | 0: DEV2 primary flash selected              |
@@ -440,16 +449,18 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[5]        | SC\_SPI\_DEV1\_CTRL5             | NA                  | Reserved                                    |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[4]        | SC\_SPI\_DEV1\_CTRL4             | 1-bit unsigned      | For Flash Control Modes 2b'00 and 2b'10:    |
+| Bit[4]        | SC\_SPI\_DEV1\_CTRL4             | 1-bit unsigned      | For Flash Control Modes 2b'00 and 2b'01:    |
 |               |                                  |                     |                                             |
 |               |                                  | Unit: state         | 0: Flash Write Protect                      |
 |               |                                  |                     |                                             |
 |               |                                  |                     | 1: Flash Write Enable                       |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
-| Bit[3:2]      | SC\_SPI\_DEV1\_CTRL3,1           | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
+| Bit[3:2]      | Bit[3]: SC\_SPI\_DEV1\_CTRL3     | 2-bit unsigned;     | 2b'00: DEV1 x2 with WP; 2b'10 DEV1 x4 no WP |
 |               |                                  |                     |                                             |
-|               | Dev flash mode control           | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               | Bit[2]: SC\_SPI\_DEV1\_CTRL1     | Unit: state         | 2b‘01: SC x1 with WP; 2b‘11 Not Valid       |
+|               |                                  |                     |                                             |
+|               | DEV1 flash mode control          |                     |                                             |
 |               |                                  |                     |                                             |
 +---------------+----------------------------------+---------------------+---------------------------------------------+
 | Bit[1]        | SC\_SPI\_DEV1\_CTRL2             | 1-bit unsigned;     | 0: DEV1 primary flash selected              |

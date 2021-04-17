@@ -16,6 +16,8 @@ The following table shows the revision history for this document.
 +--------------+----------+----------------------------------------------------------------------------------+
 | Apr 01, 2021 |      1.2 | Fix typos; Fix SMBus recap commands; Fix CSDR response                           |
 +--------------+----------+----------------------------------------------------------------------------------+
+| Apr 19, 2021 |      1.3 | Fix typos; Edit CSDR response, Add SC flash & FPGA flash read back commands      |
++--------------+----------+----------------------------------------------------------------------------------+
 
 Xilinx Resources
 ~~~~~~~~~~~~~~~~

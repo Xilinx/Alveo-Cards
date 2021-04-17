@@ -443,10 +443,10 @@
 <p>The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM’s FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.</p>
 <p>Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.</p>
 <p>The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.</p>
-<p>For the high-level FRU Storage Organization, see the figure below from UG1378 here.</p>
+<p>For the high-level FRU Storage Organization, see the figure below:</p>
 <img alt="_images/FRU_organization.png" class="align-center" src="_images/FRU_organization.png" />
-<p>Detailed FRU information like sections, length, field definition and description have been captured in UG1378: <em>Alveo™ FRU Data Specification</em>
-(<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf">UG1378</a>).</p>
+<p>Detailed FRU information like sections, length, field definition and description have been captured in
+(<a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/FRU/index.html">Alveo™ FRU Data Specification</a>).</p>
 <blockquote>
 <div><em>Figure:</em> <strong>FRU Random Read</strong></div></blockquote>
 <img alt="_images/FRU_random_read.png" class="align-center" src="_images/FRU_random_read.png" />
@@ -602,7 +602,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 05, 2021.
+        Last updated on April 17, 2021.
       </span>
 
     </p>

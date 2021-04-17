@@ -1,7 +1,7 @@
 FPGA Flash Update Commands
 --------------------------
 
-In the Alveo™ U30, the satellite controller (SC) supports an out-of-band method of FPGA flash image upgrade. Optionally, Server BMC shall initiate and perform the upgrade process by sending the I2C commands to the satellite controller firmware. The out-of-band FPGA FW update is supported at I2C address 0x65 (0xCA in 8-bit). Currently, Satellite Controller supports only 100 KHz I2C speed for all the FPGA flash update commands mentioned in this section. 
+In the Alveo™ U30 Hyperscaler only SKU, the satellite controller (SC) firmware supports an out-of-band method of FPGA flash image update, read-back and authentication. Server BMC shall initiate and perform all these operations by sending the I2C commands to the SC. FPGA flash operation commands are supported at I2C address 0x65 (0xCA in 8-bit). Currently, Satellite Controller supports only 100 KHz I2C speed for all the FPGA flash update commands mentioned in this section. 
 
 **Note:** The satellite controller will perform I2C clock-stretching, wherever applicable, to perform the requested actions.
 
@@ -21,7 +21,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 
 **Note:** MAC in this chapter refers to Message Authentication Code and it can also be referred as HASH. MAC/HASH calculation of the entire or sometimes few select FPGA flash sectors is performed at the request of BMC, to validate the flash contents haven't been tampered with.
 
-*Table:* **FPGA Flash Upgrade Commands**
+**Table: FPGA Flash Upgrade Commands**
 
 +-------------+----------------------------+----------------------------------+-----------------------------+
 | **Command** | **Command Description**    | **Server BMC Action**            | **SC Action**               |
@@ -113,7 +113,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 |             |                            |                                  | 0x02: WP disabled           |
 |             |                            |                                  |                             |
 +-------------+----------------------------+----------------------------------+-----------------------------+
-|     0x47    | FLASH\_RX\_DATA\_BLOCK     | BMC sends data bytes             | N/A                         |
+|     0x47    | FLASH\_TX\_DATA\_BLOCK     | BMC sends data bytes             | N/A                         |
 |             |                            |                                  |                             |
 |             | SC accumulates 252 bytes   | D0, D1 ... D251                  |                             |
 |             |                            |                                  |                             |
@@ -126,7 +126,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 +-------------+----------------------------+----------------------------------+-----------------------------+
 |     0x48    | FLASH\_BLOCK\_CRC\_CHECK   | BMC sends 8 byte CRC             | See table 'Flash Operation  |
 |             |                            |                                  |                             |
-|             | SC compares CRC, writes 1  | B1, B2 ... B8                    | Return Codes' for SC's      |
+|             | SC compares CRC, writes 1  | B0, B1 ... B7                    | Return Codes' for SC's      |
 |             |                            |                                  |                             |
 |             | sector to flash, rechecks  |                                  | response                    |
 |             |                            |                                  |                             |
@@ -135,7 +135,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 +-------------+----------------------------+----------------------------------+-----------------------------+
 |     0x49    | FLASH\_SECTOR\_SET\_SEQ    | B0: Sector number (low byte)     | See table 'Flash Operation  |
 |             |                            |                                  |                             |
-|             | \_NUM                      | B0: Sector number (high byte)    | Return Codes' for SC's      |
+|             | \_NUM                      | B1: Sector number (high byte)    | Return Codes' for SC's      |
 |             |                            |                                  |                             |
 |             |                            |                                  | response                    |
 |             |                            |                                  |                             |
@@ -150,7 +150,7 @@ The table below lists all the commands supported/needed for FPGA flash operation
 |             |                            |                                  |                             |
 |             |                            | 0x04: FPGA2 Recovery(if present) |                             |
 |             |                            |                                  |                             |
-|             |                            | B0: Destination flash device     |                             |
+|             |                            | B1: Destination flash device     |                             |
 |             |                            |                                  |                             |
 |             |                            | 0x01: FPGA1 Primary              |                             |
 |             |                            |                                  |                             |
@@ -265,131 +265,156 @@ The table below lists all the commands supported/needed for FPGA flash operation
 |             |                            |                                  |                             |
 |             |                            | B2: End sector num (low byte)    | response                    |
 |             |                            |                                  |                             |
-|             |                            | B4: End sector num (high byte)   |                             |
+|             |                            | B3: End sector num (high byte)   |                             |
 |             |                            |                                  |                             |
 +-------------+----------------------------+----------------------------------+-----------------------------+
-|    0x54     | FPGA\_FLASH\_TX            | BMC sends repeated-start         | SC sends 252 data bytes:    |
+|    0x54     | FPGA\_FLASH\_READBACK\_RX  | BMC sends repeated-start         | SC sends 256 data bytes:    |
 |             |                            |                                  |                             |
-|             | \_DATA\_BLOCK              | I2C command                      | D0, D1 ... D251             |
+|             | \_DATA\_BLOCK              | I2C command                      | D0, D1 ... D255             |
+|             |                            |                                  |                             |
++-------------+----------------------------+----------------------------------+-----------------------------+
+|    0x55     | GET\_FPGA\_FLASH\_READBACK | N/A                              | SC sends 8-bytes of CRC :   |
+|             |                            |                                  |                             |
+|             | \_SECTOR\_CRC              |                                  | D0, D1 ... D7               |
 |             |                            |                                  |                             |
 +-------------+----------------------------+----------------------------------+-----------------------------+
 
 
-*Table:* **Flash Operation Return Codes**
+**Table: Flash Operation Return Codes**
 
-+--------------------+----------------------------------------------------------------------------------------+
-| **Response Code**  | **Description**                                                                        |
-+====================+========================================================================================+
-| 0x00               | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x01               | Operation success                                                                      |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x02               | Operation failed                                                                       |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x03               | Operation Not Supported                                                                |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x04               | Flash erase failed. Abort operation, rectify error and re-initiate from start          |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x05               | Flash write failed. Abort operation, rectify error and re-initiate from start          |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x06               | Flash read failed. Abort operation, rectify error and re-initiate from start           |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x07               | Flash CRC failed. Abort operation, rectify error and re-initiate from start            |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x08               | Invalid Selection                                                                      |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x09               | FPGA\_GENERAL\_ERROR                                                                   |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0A               | FPGA\_MAC\_CALCULATION\_INVALID                                                        |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0B               | FPGA\_INVALID\_IMAGE\_LENGTH                                                           |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0C               | QSPI SC disable WP failed. Abort operation, rectify error and re-initiate from start   |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0D               | QSPI wrong MCS file format. Abort operation, rectify error and re-initiate from start  |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0E               | Set the KEY and/or NONCE before proceeding for MAC Calculation                         |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x0F               | MAC calculation not performed. Please send command 0x4D before MAC verify              |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x10               | FLASH\_RX\_DATA\_BLOCK command in-progress                                             |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x11               | FPGA1 primary flash update in-progress                                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x12               | FPGA1 recovery flash update in-progress                                                |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x13               | FPGA2 primary flash update in-progress                                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x14               | FPGA2 recovery flash update in-progress                                                |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x15–0x1F          | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x20               | FLASH\_BLOCK\_CRC\_CHECK command in-progress                                           |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x21               | FPGA\_CRC\_CHECK\_STATUS\_IN\_PROGRESS                                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x22               | QSPI_SET_UPDATE_DEVICE_NOT_SENT (send command 0x42)                                    |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x23               | QSPI_SC_SET_WRITE_NOT_ENABLED (send command 0x44)                                      |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x24–0x2F          | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x30               | FLASH\_COPY\_FIRMWARE command in-progress                                              |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x31               | FPGA1 primary to FPGA1 recovery flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x32               | FPGA1 primary to FPGA2 primary flash copy in-progress                                  |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x33               | FPGA1 primary to FPGA2 recovery flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x34               | FPGA1 recovery to FPGA1 primary flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x35               | FPGA1 recovery to FPGA2 primary flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x36               | FPGA1 recovery to FPGA2 recovery flash copy in-progress                                |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x37               | FPGA2 primary to FPGA1 primary flash copy in-progress                                  |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x38               | FPGA2 primary to FPGA1 recovery flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x39               | FPGA2 primary to FPGA2 recovery flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x3A               | FPGA2 recovery to FPGA1 primary flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x3B               | FPGA2 recovery to FPGA1 recovery flash copy in-progress                                |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x3C               | FPGA2 recovery to FPGA2 primary flash copy in-progress                                 |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x3D–0x3F          | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x40               | FPGA\_CALC\_MAC command in-progress                                                    |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x41               | FPGA1 primary MAC calculation in-progress                                              |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x42               | FPGA1 recovery MAC calculation in-progress                                             |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x43               | FPGA2 primary MAC calculation in-progress                                              |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x44               | FPGA2 recovery MAC calculation in-progress                                             |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x45               | FPGA\_KEY\_NONCE update in-progress                                                    |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x46–0x4F          | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x50               | FPGA\_VERIFY\_MAC command in-progress                                                  |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x51               | FPGA1 primary MAC verification in-progress                                             |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x52               | FPGA1 recovery MAC verification in-progress                                            |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x53               | FPGA2 primary MAC verification in-progress                                             |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x54               | FPGA2 recovery MAC verification in-progress                                            |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0x54–0xEF          | Reserved                                                                               |
-+--------------------+----------------------------------------------------------------------------------------+
-| 0xFF               | FPGA\_NO\_OPERATION                                                                    |
-+--------------------+----------------------------------------------------------------------------------------+
++--------------------+------------------------------------------------------------------------------------------------------+
+| **Response Code**  | **Description**                                                                                      |
++====================+======================================================================================================+
+| 0x00               | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x01               | Operation success                                                                                    |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x02               | Operation failed                                                                                     |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x03               | Operation Not Supported                                                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x04               | Flash erase failed. Abort operation, rectify error and re-initiate from start                        |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x05               | Flash write failed. Abort operation, rectify error and re-initiate from start                        |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x06               | Flash read failed. Abort operation, rectify error and re-initiate from start                         |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x07               | Flash CRC failed. Abort operation, rectify error and re-initiate from start                          |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x08               | Invalid Flash Selection                                                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x09               | FPGA\_GENERAL\_ERROR                                                                                 |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0A               | FPGA\_MAC\_CALCULATION\_INVALID                                                                      |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0B               | FPGA\_INVALID\_IMAGE\_LENGTH                                                                         |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0C               | QSPI SC disable WP failed. Abort operation, rectify error and re-initiate from start                 |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0D               | QSPI wrong MCS file format. Abort operation, rectify error and re-initiate from start                |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0E               | Set the KEY and/or NONCE before proceeding for MAC Calculation                                       |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x0F               | MAC calculation not performed. Please send command 0x4D before MAC verify                            |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x10               | FLASH\_TX\_DATA\_BLOCK command in-progress                                                           |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x11               | FPGA1 primary flash update in-progress                                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x12               | FPGA1 recovery flash update in-progress                                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x13               | FPGA2 primary flash update in-progress                                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x14               | FPGA2 recovery flash update in-progress                                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x15–0x1F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x20               | FLASH\_BLOCK\_CRC\_CHECK command in-progress                                                         |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x21               | FPGA\_CRC\_CHECK\_STATUS\_SECTOR\_RESEND (Resend last sector (0x47))                                 |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x22               | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x23               | QSPI_SET_UPDATE_DEVICE_NOT_SENT (send command 0x42)                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x24               | QSPI_SC_SET_WRITE_NOT_ENABLED (send command 0x44)                                                    |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x25–0x2F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x30               | FLASH\_COPY\_FIRMWARE command in-progress                                                            |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x31               | FPGA1 primary to FPGA1 recovery flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x32               | FPGA1 primary to FPGA2 primary flash copy in-progress                                                |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x33               | FPGA1 primary to FPGA2 recovery flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x34               | FPGA1 recovery to FPGA1 primary flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x35               | FPGA1 recovery to FPGA2 primary flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x36               | FPGA1 recovery to FPGA2 recovery flash copy in-progress                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x37               | FPGA2 primary to FPGA1 primary flash copy in-progress                                                |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x38               | FPGA2 primary to FPGA1 recovery flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x39               | FPGA2 primary to FPGA2 recovery flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x3A               | FPGA2 recovery to FPGA1 primary flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x3B               | FPGA2 recovery to FPGA1 recovery flash copy in-progress                                              |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x3C               | FPGA2 recovery to FPGA2 primary flash copy in-progress                                               |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x3D–0x3F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x40               | FPGA\_CALC\_MAC command in-progress                                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x41               | FPGA1 primary MAC calculation in-progress                                                            |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x42               | FPGA1 recovery MAC calculation in-progress                                                           |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x43               | FPGA2 primary MAC calculation in-progress                                                            |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x44               | FPGA2 recovery MAC calculation in-progress                                                           |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x45               | FPGA\_KEY\_NONCE update in-progress                                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x46–0x4F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x50               | FPGA\_VERIFY\_MAC command in-progress                                                                |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x51               | FPGA1 primary MAC verification in-progress                                                           |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x52               | FPGA1 recovery MAC verification in-progress                                                          |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x53               | FPGA2 primary MAC verification in-progress                                                           |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x54               | FPGA2 recovery MAC verification in-progress                                                          |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x55–0x6F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x70               | MAC verification not performed. Please send command (0x4E) before fetching MAC verification status   |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x71               | FPGA MAC Calculation/Verification failed. (Abort operation, re-initiate MAC Calculation/Verification)|
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x72               | EEPROM read failed                                                                                   |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x73               | EEPROM write failed                                                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x74-0x7F          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x80               | FPGA flash data read-back in progress                                                                |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x81               | FPGA flash data ready for read-back                                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x82               | Invalid FPGA sector range. Check and resend within the valid range (0 - 2047)                        |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0x83–0xEF          | Reserved                                                                                             |
++--------------------+------------------------------------------------------------------------------------------------------+
+| 0xFF               | FPGA\_NO\_OPERATION                                                                                  |
++--------------------+------------------------------------------------------------------------------------------------------+
 
 0x40 - FPGA\_RESET\_DEVICE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -398,7 +423,7 @@ The BMC can send the FPGA\_RESET\_DEVICE command to reset FPGA device(s) or SC F
 controller firmware responds with the status and reboots itself. In Alveo U30, the reset command will reset both the FPGA devices
 (ZYNQ1 and ZYNQ2) and internally, both PS (Processing Subsystem) and PL (Programmable Logic) will reload from flash device.
 
-*Table:* **FPGA\_RESET\_DEVICE Server BMC Request**
+**Table: FPGA\_RESET\_DEVICE Server BMC Request**
 
 +-----------------------+--------------------------------+
 |     **Server BMC Request**                             |
@@ -410,7 +435,7 @@ controller firmware responds with the status and reboots itself. In Alveo U30, t
 |                       |     0x02: SC FW                |
 +-----------------------+--------------------------------+
 
-*Table:* **FPGA\_RESET\_DEVICE Xilinx Alveo Card Response**
+**Table: FPGA\_RESET\_DEVICE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -419,11 +444,11 @@ controller firmware responds with the status and reboots itself. In Alveo U30, t
 +-------------+------+----------------------------------------------------------------+
 
 0x41 - FPGA\_GET\_FW\_VER
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The BMC sends this command to fetch the FW version running in either FPGA1 or FPGA2 device. This command is currently supported only in the Alveo U30 data accelerator card. The byte 0 (validity byte) in response from SC must be read first.
 
-*Table:* **FPGA\_GET\_FW\_VER Server BMC Request**
+**Table: FPGA\_GET\_FW\_VER Server BMC Request**
 
 +--------------------+-----------------------------------------------------+
 |     **Server BMC Request**                                               |
@@ -439,7 +464,7 @@ The BMC sends this command to fetch the FW version running in either FPGA1 or FP
 |                    |     0x04: FPGA2 recovery flash device (if present)  |
 +--------------------+-----------------------------------------------------+
 
-*Table:* **FPGA\_GET\_FW\_VER Xilinx Alveo Card Response**
+**Table: FPGA\_GET\_FW\_VER Xilinx Alveo Card Response**
 
 +-------------+---------+-------------------------------------------+
 | **Xilinx Alveo Card Response**                                    |
@@ -466,7 +491,7 @@ device to initiate the FW upgrade.
 
 **NOTE:** This command is not persistence across SC reboots. On boot-up, SC restores the default configuration (i.e.) Primary flash as teh target device.  
 
-*Table:* **FPGA\_SET\_TARGET\_DEVICE Server BMC Request**
+**Table: FPGA\_SET\_TARGET\_DEVICE Server BMC Request**
 
 +----------------+-------------------------------------------------+
 | **Server BMC Request**                                           |
@@ -482,7 +507,7 @@ device to initiate the FW upgrade.
 |                | 0x04: FPGA2 recovery flash device (if present)  |
 +----------------+-------------------------------------------------+
 
-*Table:* **FPGA\_SET\_TARGET\_DEVICE Xilinx Alveo Card Response**
+**Table: FPGA\_SET\_TARGET\_DEVICE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -500,7 +525,7 @@ restores the configuration in case of server cool boot or power cycle.
 **Note:** Primary flash device is selected as the boot
 device/default configuration in FPGA1 (and FPGA2 if present).
 
-*Table:* **FPGA\_SET\_BOOT\_DEVICE Server BMC Request**
+**Table: FPGA\_SET\_BOOT\_DEVICE Server BMC Request**
 
 +----------------+-------------------------------------------------+
 |     **Server BMC Request**                                       |
@@ -516,7 +541,7 @@ device/default configuration in FPGA1 (and FPGA2 if present).
 |                | 0x04– FPGA2 recovery flash device (if present)  |
 +----------------+-------------------------------------------------+
 
-*Table:* **FPGA\_SET\_BOOT\_DEVICE Xilinx Alveo Card Response**
+**Table: FPGA\_SET\_BOOT\_DEVICE Xilinx Alveo Card Response**
 
 +-------------+-------------+-----------------------------+
 |     **Xilinx Alveo Card Response**                      |
@@ -535,7 +560,7 @@ For both hyperscaler and OEM customers, by default, SC WP# is enabled (i.e.) FPG
 
 **Note:** The SC will not store this configuration (from command 0x44)  in any persistence memory. A SC reboot or device power cycle results in loss of configuration. During the subsequent boot-up, the SC will restore the default configuration (i.e.) WP enabled.
 
-*Table:* **FPGA\_SC\_SET\_WRITE\_ENABLE Server BMC Request**
+**Table: FPGA\_SC\_SET\_WRITE\_ENABLE Server BMC Request**
 
 +-------------------+-----------------------------------------------------+
 |     **Server BMC Request**                                              |
@@ -555,7 +580,7 @@ For both hyperscaler and OEM customers, by default, SC WP# is enabled (i.e.) FPG
 |                   |     0x02: WP disable                                |
 +-------------------+-----------------------------------------------------+
 
-*Table:* **FPGA\_SC\_SET\_WRITE\_ENABLE Xilinx Alveo Card Response**
+**Table: FPGA\_SC\_SET\_WRITE\_ENABLE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -575,7 +600,7 @@ When write protect is disabled, the QSPI flash device can be accessed in x1, x2,
 
 **Note:** The SC will not store this configuration (from command 0x45) in any persistence memory. A SC reboot or device power cycle results in the loss of configuration. During the subsequent boot-up, the SC will restore the default configuration (i.e.) WP enabled.
 
-*Table:* **FLASH\_SET\_WRITE\_ENABLE Server BMC Request**
+**Table: FLASH\_SET\_WRITE\_ENABLE Server BMC Request**
 
 +---------------+-------------------------------------------------+
 |     **Server BMC Request**                                      |
@@ -595,7 +620,7 @@ When write protect is disabled, the QSPI flash device can be accessed in x1, x2,
 |               | 0x02: WP disable                                |
 +---------------+-------------------------------------------------+
 
-*Table:* **FLASH\_SET\_WRITE\_ENABLE Xilinx Alveo Card Response**
+**Table: FLASH\_SET\_WRITE\_ENABLE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -609,7 +634,7 @@ When write protect is disabled, the QSPI flash device can be accessed in x1, x2,
 The BMC can send the FLASH\_GET\_WRITE\_PROTECT\_STATES command to
 get the write protect state for all the flash devices.
 
-*Table:* **FLASH\_GET\_WRITE\_PROTECT\_STATES Server BMC Request**
+**Table: FLASH\_GET\_WRITE\_PROTECT\_STATES Server BMC Request**
 
 +---------------+-------------------------------------------------+
 |     **Server BMC Request**                                      |
@@ -625,7 +650,7 @@ get the write protect state for all the flash devices.
 |               | 0x04: FPGA2 recovery flash device (if present)  |
 +---------------+-------------------------------------------------+
 
-*Table:* **FLASH\_GET\_WRITE\_PROTECT\_STATES Xilinx Alveo Card Response**
+**Table: FLASH\_GET\_WRITE\_PROTECT\_STATES Xilinx Alveo Card Response**
 
 +-------------+-------------+----------------------------------------------+
 |     **Xilinx Alveo Card Response**                                       |
@@ -639,14 +664,14 @@ get the write protect state for all the flash devices.
 |             |             | 0x01: WP enabled ; 0x02: WP disabled         |
 +-------------+-------------+----------------------------------------------+
 
-0x47 - FLASH\_RX\_DATA\_BLOCK
+0x47 - FLASH\_TX\_DATA\_BLOCK
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The BMC sends data blocks using the FLASH\_RX\_DATA\_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA\_SET\_TARGET\_DEVICE, FPGA\_SC\_SET\_WRITE\_ENABLE, and FLASH\_SET\_WRITE\_ENABLE commands.
+The BMC sends data blocks using the FLASH\_TX\_DATA\_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA\_SET\_TARGET\_DEVICE, FPGA\_SC\_SET\_WRITE\_ENABLE, and FLASH\_SET\_WRITE\_ENABLE commands.
 
 **Note:** The maximum supported size of each I2C transaction is 252 bytes.
 
-*Table:* **FLASH\_RX\_DATA\_BLOCK Server BMC Request**
+**Table: FLASH\_TX\_DATA\_BLOCK Server BMC Request**
 
 +---------------+----------------------------------------------------------------+
 | **Server BMC Request**                                                         |
@@ -658,7 +683,7 @@ The BMC sends data blocks using the FLASH\_RX\_DATA\_BLOCK command. Data (or pay
 | Data bytes    | D1, D2, … D252                                                 |
 +---------------+----------------------------------------------------------------+
 
-*Table:* **FLASH\_RX\_DATA\_BLOCK Xilinx Alveo Card Response**
+**Table: FLASH\_TX\_DATA\_BLOCK Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -686,7 +711,7 @@ status before moving to next sector. See table 'Flash Operation Return Codes' fo
 |              | 64-bit CRC data   |
 +--------------+-------------------+
 
-*Table:* **FLASH\_BLOCK\_CRC\_CHECK Xilinx Alveo Card Response**
+**Table: FLASH\_BLOCK\_CRC\_CHECK Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -707,7 +732,7 @@ The SC will calculate the sector start address based on the sequence number and 
 
 **Note:** The SC will not store the sector information in persistence memory. On boot-up, default value 0x00 will be assigned.
 
-*Table:* **FLASH\_SECTOR\_SET\_SEQ\_NUM Server BMC Request**
+**Table: FLASH\_SECTOR\_SET\_SEQ\_NUM Server BMC Request**
 
 +--------------+---------------------------------+
 |     **Server BMC Request**                     |
@@ -719,7 +744,7 @@ The SC will calculate the sector start address based on the sequence number and 
 |              | B1– Sector number (high byte)   |
 +--------------+---------------------------------+
 
-*Table:* **FLASH\_SECTOR\_SET\_SEQ\_NUM Xilinx Alveo Card Response**
+**Table: FLASH\_SECTOR\_SET\_SEQ\_NUM Xilinx Alveo Card Response**
 
 +-------------+-----------------------------+
 |     **Xilinx Alveo Card Response**        |
@@ -750,7 +775,7 @@ The BMC sends the FLASH\_COPY\_FIRMWARE command to initiate the copy of FW from 
 
 **Note:** If the BMC sends another copy command while the previous copy is in-progress, the SC will ignore the request and respond appropriate error code. The BMC must check the status via the COPY\_FIRMWARE\_STATUS command and re-trigger. This command is currently supported only for Alveo U30.
 
-*Table:* **FPGA\_COPY\_FIRMWARE Server BMC Request**
+**Table: FPGA\_COPY\_FIRMWARE Server BMC Request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC Request**                                     |
@@ -778,7 +803,7 @@ The BMC sends the FLASH\_COPY\_FIRMWARE command to initiate the copy of FW from 
 |              | 0x04 - FPGA2 Recovery flash device              |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_COPY\_FIRMWARE Xilinx Alveo Card Response**
+**Table: FPGA\_COPY\_FIRMWARE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -792,7 +817,7 @@ The BMC sends the FLASH\_COPY\_FIRMWARE command to initiate the copy of FW from 
 The BMC sends the FPGA\_GET\_FIRMWARE\_STATUS command to obtain the status of the previously triggered commands like
 FLASH\_BLOCK\_CRC\_CHECK and/or FLASH\_COPY\_FIRMWARE commands.
 
-*Table:* **FPGA\_GET\_FIRMWARE\_STATUS Server BMC request**
+**Table: FPGA\_GET\_FIRMWARE\_STATUS Server BMC request**
 
 +---------------+--------+
 | **Server BMC Request** |
@@ -802,7 +827,7 @@ FLASH\_BLOCK\_CRC\_CHECK and/or FLASH\_COPY\_FIRMWARE commands.
 | Byte0         | N/A    |
 +---------------+--------+
 
-*Table:* **FPGA\_GET\_FIRMWARE\_STATUS Xilinx Alveo Card Response**
+**Table: FPGA\_GET\_FIRMWARE\_STATUS Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -819,7 +844,7 @@ SC uses 15-byte nonce, by padding 3 bytes (with 0x00) at the start, to the 12-by
 
 BMC must use the exact nonce scheme to calculate the MAC value for comparison. The BMC is expected to select the target flash device.
 
-*Table:* **FPGA\_SET\_KEY\_NONCE Server BMC Request**
+**Table: FPGA\_SET\_KEY\_NONCE Server BMC Request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC Request**                                     |
@@ -841,7 +866,7 @@ BMC must use the exact nonce scheme to calculate the MAC value for comparison. T
 | Byte17 - 28  | 12-byte nonce                                   |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_SET\_KEY\_NONCE Xilinx Alveo Card Response**
+**Table: FPGA\_SET\_KEY\_NONCE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -857,7 +882,7 @@ BMC must use the exact nonce scheme to calculate the MAC value for comparison. T
 The BMC is expected to call the FPGA\_CALC\_MAC command after the entire flash image is written. The BMC is expected to select the target flash device. Upon receiving the command 0x4D, SC increments the stored nonce by 1, calculates the MAC of the entire 128 MByte region of the FPGA flash device, using the existing key and the new nonce. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.
 
 
-*Table:* **FPGA\_CALC\_MAC Server BMC Request**
+**Table: FPGA\_CALC\_MAC Server BMC Request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC Request**                                     |
@@ -876,7 +901,7 @@ The BMC is expected to call the FPGA\_CALC\_MAC command after the entire flash i
 +--------------+-------------------------------------------------+
 
 
-*Table:* **FPGA\_CALC\_MAC Xilinx Alveo Card Response**
+**Table: FPGA\_CALC\_MAC Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -891,7 +916,7 @@ The BMC is expected to call the FPGA\_CALC\_MAC command after the entire flash i
 
 The BMC sends the FPGA\_VERIFY\_MAC command to validate the FPGA flash image. The SC calculates the MAC/HASH of the entire 128 MByte region using the existing key and existing nonce value. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.
 
-*Table:* **FPGA\_VERIFY\_MAC Server BMC Request**
+**Table: FPGA\_VERIFY\_MAC Server BMC Request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC Request**                                     |
@@ -909,7 +934,7 @@ The BMC sends the FPGA\_VERIFY\_MAC command to validate the FPGA flash image. Th
 |              | 0x04 - FPGA2 Recovery flash device              |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_VERIFY\_MAC Xilinx Alveo Card Response**
+**Table: FPGA\_VERIFY\_MAC Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -926,7 +951,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.
 
 **Note:** Server BMC must use the same key and nonce that the satellite controller used to compute the MAC/HASH value to obtain same results. Refer 0x4C and 0x4D command description for details.
 
-*Table:* **FPGA\_GET\_MAC\_STATUS Server BMC Request**
+**Table: FPGA\_GET\_MAC\_STATUS Server BMC Request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC Request**                                     |
@@ -946,7 +971,7 @@ verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.
 |              | 0x02 – Get FPGA\_VERIFY\_MAC status             |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_GET\_MAC\_STATUS Xilinx Alveo Card Response**
+**Table: FPGA\_GET\_MAC\_STATUS Xilinx Alveo Card Response**
 
 +-------------+--------------+------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                          |
@@ -963,7 +988,7 @@ Optionally, BMC can send the command 0x50 to notify SC about the size of the FPG
 
 **NOTE:** On boot-up, SC restores the image size to default 128 MBytes to address entire flash memory.
 
-*Table:* **FPGA\_SET\_IMAGE\_SIZE server BMC request**
+**Table: FPGA\_SET\_IMAGE\_SIZE server BMC request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC request**                                     |
@@ -981,7 +1006,7 @@ Optionally, BMC can send the command 0x50 to notify SC about the size of the FPG
 | Byte 1-4     | Size of QSPI image (in bytes)                   |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_SET\_IMAGE\_SIZE Xilinx Alveo Card Response**
+**Table: FPGA\_SET\_IMAGE\_SIZE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -994,7 +1019,7 @@ Optionally, BMC can send the command 0x50 to notify SC about the size of the FPG
 
 BMC sends this command to request SC to notify the FPGA device about WP status of the flash device. In turn, SC communicates the flash device WP status to FPGA via UART messages. BMC shall send this command prior to initiating the in-band QSPI FW update so that host OS can read the WP status from PCIe BAR config space.
 
-*Table:* **NOTIFY\_WP\_TO\_FPGA server BMC request**
+**Table: NOTIFY\_WP\_TO\_FPGA server BMC request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC request**                                     |
@@ -1011,7 +1036,7 @@ BMC sends this command to request SC to notify the FPGA device about WP status o
 +--------------+-------------------------------------------------+
 
 
-*Table:* **NOTIFY\_WP\_TO\_FPGA Xilinx Alveo Card Response**
+**Table: NOTIFY\_WP\_TO\_FPGA Xilinx Alveo Card Response**
 
 +-------------+------+---------------------------+
 | **Xilinx Alveo Card Response**                 |
@@ -1027,7 +1052,7 @@ BMC sends this command to request SC to notify the FPGA device about WP status o
 
 BMC sends this command to FPGA to enable/disable the debug UART. SC communicates this information to the respective ZYNQ/FPGA device. By default, the debug UART is disabled during production settings and it can optionally be enabled for debug purposes. 
 
-*Table:* **FPGA\_UART\_DEBUG\_CONTROL server BMC request**
+**Table: FPGA\_UART\_DEBUG\_CONTROL server BMC request**
 
 +--------------+----------------+
 |     **Server BMC request**    |
@@ -1040,7 +1065,7 @@ BMC sends this command to FPGA to enable/disable the debug UART. SC communicates
 +--------------+----------------+
 
 
-*Table:* **FPGA\_UART\_DEBUG\_CONTROL Xilinx Alveo Card Response**
+**Table: FPGA\_UART\_DEBUG\_CONTROL Xilinx Alveo Card Response**
 
 +-------------+------+-----------------------------+
 | **Xilinx Alveo Card Response**                   |
@@ -1052,22 +1077,12 @@ BMC sends this command to FPGA to enable/disable the debug UART. SC communicates
 |             |      | 0x03: Operation unsupported |
 +-------------+------+-----------------------------+
 
-
-*Table:* **FPGA\_SET\_FLASH\_READBACK\_DEVICE Xilinx Alveo Card Response**
-
-+-------------+------+----------------------------------------------------------------+
-| **Xilinx Alveo Card Response**                                                      |
-+=============+======+================================================================+
-| Data bytes  | B0   | See table 'Flash Operation Return Codes' for SC's response     |
-+-------------+------+----------------------------------------------------------------+
-
-
 0x53 - SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 BMC sends this command to set the start and end sectors for the FPGA flash content read-back. The range is between sectors 0 and 2047. SC fetches 1 sector at a time from FPGA flash device and transfers it to BMC via command 0x54.
 
-*Table:* **SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE server BMC request**
+**Table: SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE server BMC request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC request**                                     |
@@ -1084,7 +1099,7 @@ BMC sends this command to set the start and end sectors for the FPGA flash conte
 +--------------+-------------------------------------------------+
 
 
-*Table:* **SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE Xilinx Alveo Card Response**
+**Table: SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE Xilinx Alveo Card Response**
 
 +-------------+------+----------------------------------------------------------------+
 | **Xilinx Alveo Card Response**                                                      |
@@ -1093,23 +1108,24 @@ BMC sends this command to set the start and end sectors for the FPGA flash conte
 +-------------+------+----------------------------------------------------------------+
 
 
-0x54 - FPGA\_FLASH\_TX\_DATA\_BLOCK
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+0x54 - FPGA\_FLASH\_READBACK\_RX\_DATA\_BLOCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-BMC sends this command in repeated-start mode to fetch the data from FPGA flash. Before sending the command 0x54, BMC needs to send the commands in sequence (i.e.) command 0x42 (set target device), command 0x53 (set sectors) and command 0x4B (poll the status).
+BMC sends this command in repeated-start mode to read the data from FPGA flash. Before sending the command 0x54, BMC needs to send the following commands in sequence (i.e.) command 0x42 (set target device), command 0x53 (set sectors) and command 0x4B (poll the status). 
 
 - Upon requested, SC will read 1 sector (64 KB) from FPGA flash device, compares the CRC before signaling BMC about read-back readiness (via 0x4B command)
 
-- After SC is ready with the payload, BMC can send the read-back command in repeated-start mode to fetch 1 sector of data. The maximum bytes sent per transaction is limited to 252 bytes.
+- After SC is ready with the payload, BMC can send the read-back command in repeated-start mode to fetch 1 sector of data. It takes 256 transactions to transfer 64 KB payload as SC sends 256 bytes per transaction. NOTE that SC can't send partial transactions (i.e.) data less than 256 bytes.
 
-- After successfully receiving 64 KB payload, BMC needs to poll the status command 0x4B (SC's readiness for next sector) before proceeding to issue read-back command 0x54 for the next sector
+- After successfully receiving 64 KB payload, BMC needs to read the sector CRC(via 0x55) before proceeding to read the next sector.
+
+- BMC must poll the status command 0x4B (SC's readiness for next sector) before proceeding to issue read-back command 0x54 for the next sector.
 
 - No retry is supported in case of any failure/interruption in the middle of sector read-back.  But BMC can send the command 0x49 to force set the start sector from which it wants to resume/retry the read-back operation
 
 - Upon receiving the updated start sector number (via 0x49 command), SC starts the read-back process from the beginning of the sector. Once again, BMC needs to follow the same sequence of commands (i.e.) poll the status command 0x4B before issuing 0x54.
 
-
-*Table:* **FPGA\_FLASH\_TX\_DATA\_BLOCK server BMC request**
+**Table: FPGA\_FLASH\_READBACK\_RX\_DATA\_BLOCK server BMC request**
 
 +--------------+-------------------------------------------------+
 |     **Server BMC request**                                     |
@@ -1119,14 +1135,37 @@ BMC sends this command in repeated-start mode to fetch the data from FPGA flash.
 | Byte0        | BMC sends repeated-start I2C command            |
 +--------------+-------------------------------------------------+
 
-*Table:* **FPGA\_FLASH\_TX\_DATA\_BLOCK Xilinx Alveo Card Response**
+**Table: FPGA\_FLASH\_READBACK\_RX\_DATA\_BLOCK Xilinx Alveo Card Response**
 
 +-------------+-----------------+-----------------------------+
 | **Xilinx Alveo Card Response**                              |
 +=============+=================+=============================+
-| Data bytes  | D0, D1 ... D251 | SC sends 252 data bytes     |
+| Data bytes  | D0, D1 ... D255 | SC sends 256 data bytes     |
 +-------------+-----------------+-----------------------------+
 
+
+0x55 - GET\_FPGA\_FLASH\_READBACK\_SECTOR\_CRC
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+BMC sends this command to SC to get the CRC for the previously read-back sector (via command 0x54). SC returns the Micron's CRC-64 back and BMC can use the 8-byte CRC data to compare with the CRC-64 calculated within.
+
+**Table: SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE server BMC request**
+
++---------------+--------+
+| **Server BMC Request** |
++===============+========+
+| Command code  | 0x55   |
++---------------+--------+
+| Byte0         | N/A    |
++---------------+--------+
+
+**Table: SET\_FPGA\_FLASH\_READBACK\_SECTOR\_RANGE Xilinx Alveo Card Response**
+
++-------------+-----------------+-------------------------------------+
+| **Xilinx Alveo Card Response**                                      |
++=============+=================+=====================================+
+| Data bytes  | D0, D1, .. D7   | SC sends 8-bytes of Micron CRC-64   |
++-------------+-----------------+-------------------------------------+
 
 **Xilinx Support**
 

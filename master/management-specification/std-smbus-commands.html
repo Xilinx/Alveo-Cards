@@ -868,7 +868,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 </div>
 <div class="section" id="x20critical-sensor-data-record-csdr-command">
 <h2>0x20–Critical Sensor Data Record (CSDR) Command<a class="headerlink" href="#x20critical-sensor-data-record-csdr-command" title="Permalink to this headline">¶</a></h2>
-<p><strong>Note:</strong> Currently, this command is only supported in Alveo™ U30 cards.</p>
+<p><strong>Note:</strong> Currently, this command is only supported in Alveo™ U30 Hyperscaler only SKU.</p>
 <p>The CSDR command implementation is Block Read from server BMC’s perspective and SC sends the data LSB first (i.e.) Byte 0, Byte 1 … Byte 63 order.</p>
 <p>See Block Read command from <a class="reference internal" href="smbus2.0-protocol-recap.html#i2c-smbus-implementation-and-protocol-recap"><span class="std std-ref">I2C/SMBus Implementation and Protocol Recap</span></a> for more details.</p>
 <p>The following sensor information are packaged into the SDR response (64 bytes):</p>
@@ -1012,12 +1012,22 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Bit[31:19]</td>
+<tr class="row-even"><td>Bit[31:26]</td>
 <td>Reserved</td>
 <td>N/A</td>
 <td>N/A</td>
 </tr>
-<tr class="row-odd"><td>Bit[18]</td>
+<tr class="row-odd"><td>Bit[26:19]</td>
+<td>Total # of SC flash writes</td>
+<td><p class="first">8-bits unsigned;</p>
+<p class="last">Unit: count</p>
+</td>
+<td><p class="first">Total # of writes to SC flash,</p>
+<p>represented in multiples of 100s</p>
+<p class="last">Ex: 37 count =&gt; 3700 writes</p>
+</td>
+</tr>
+<tr class="row-even"><td>Bit[18]</td>
 <td>AUX power cable present</td>
 <td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1026,7 +1036,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">1 – AUX cable present</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[17]</td>
+<tr class="row-odd"><td>Bit[17]</td>
 <td>Network module 1 MODPRSNT</td>
 <td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1035,7 +1045,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">1 – Present</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[16]</td>
+<tr class="row-even"><td>Bit[16]</td>
 <td>Network module 0 MODPRSNT</td>
 <td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1044,7 +1054,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">1 – Present</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[15:12]</td>
+<tr class="row-odd"><td>Bit[15:12]</td>
 <td>HBM_CATTRIP event counter</td>
 <td><p class="first">4-bits unsigned;</p>
 <p class="last">Unit: count</p>
@@ -1053,7 +1063,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">after SC code update</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[11:8]</td>
+<tr class="row-even"><td>Bit[11:8]</td>
 <td>TWARN event counter</td>
 <td><p class="first">4-bits unsigned;</p>
 <p class="last">Unit: count</p>
@@ -1062,7 +1072,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">after SC power up.</p>
 </td>
 </tr>
-<tr class="row-even"><td>Bit[7:4]</td>
+<tr class="row-odd"><td>Bit[7:4]</td>
 <td>Power good event counter</td>
 <td><p class="first">4-bits unsigned;</p>
 <p class="last">Unit: count</p>
@@ -1071,7 +1081,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <p class="last">after SC power up.</p>
 </td>
 </tr>
-<tr class="row-odd"><td>Bit[3:0]</td>
+<tr class="row-even"><td>Bit[3:0]</td>
 <td>TCRIT event counter</td>
 <td><p class="first">4-bits unsigned;</p>
 <p class="last">Unit: count</p>
@@ -1134,14 +1144,15 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <td><p class="first">1-bit unsigned;</p>
 <p class="last">Unit: state</p>
 </td>
-<td><p class="first">For flash control modes 2b‘00 and 2b‘10:</p>
+<td><p class="first">For flash control modes 2b‘00 and 2b‘01:</p>
 <p>0: Flash write protect</p>
 <p class="last">1: Flash write enable</p>
 </td>
 </tr>
 <tr class="row-odd"><td>Bit[8:7]</td>
-<td><p class="first">SC_SPI_DEV2_CTRL3,1</p>
-<p class="last">Dev flash mode control</p>
+<td><p class="first">Bit[8]: SC_SPI_DEV2_CTRL3</p>
+<p>Bit[7]: SC_SPI_DEV2_CTRL1</p>
+<p class="last">DEV2 flash mode control</p>
 </td>
 <td><p class="first">2-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1171,14 +1182,15 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <td><p class="first">1-bit unsigned</p>
 <p class="last">Unit: state</p>
 </td>
-<td><p class="first">For Flash Control Modes 2b‘00 and 2b‘10:</p>
+<td><p class="first">For Flash Control Modes 2b‘00 and 2b‘01:</p>
 <p>0: Flash Write Protect</p>
 <p class="last">1: Flash Write Enable</p>
 </td>
 </tr>
 <tr class="row-odd"><td>Bit[3:2]</td>
-<td><p class="first">SC_SPI_DEV1_CTRL3,1</p>
-<p class="last">Dev flash mode control</p>
+<td><p class="first">Bit[3]: SC_SPI_DEV1_CTRL3</p>
+<p>Bit[2]: SC_SPI_DEV1_CTRL1</p>
+<p class="last">DEV1 flash mode control</p>
 </td>
 <td><p class="first">2-bit unsigned;</p>
 <p class="last">Unit: state</p>
@@ -1795,7 +1807,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 05, 2021.
+        Last updated on April 17, 2021.
       </span>
 
     </p>

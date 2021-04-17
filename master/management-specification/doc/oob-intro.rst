@@ -73,8 +73,7 @@ supports three protocols. The protocols and the I2C slave address
 **IPMI FRU support**
 
 SC FW supports IPMI field replaceable unit (FRU) data read at I2C slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte addressing mode is supported and the FRU data contents are explained
-in *Alveo FRU Data Specification*
-(`UG1378 <https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf>`__).
+in (`Alveo FRU Data Specification <https://xilinx.github.io/Alveo-Cards/master/FRU/index.html>`__).
 
 See :ref:`Alveo™ FRU Support` for more details.
 

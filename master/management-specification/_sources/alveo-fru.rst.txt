@@ -11,13 +11,13 @@ Accessing the FRU data is supported via SMBus block write block read method, whe
 
 The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.
 
-For the high-level FRU Storage Organization, see the figure below from UG1378 here.
+For the high-level FRU Storage Organization, see the figure below:
 
 .. image:: ./images/FRU_organization.png
    :align: center
 
-Detailed FRU information like sections, length, field definition and description have been captured in UG1378: *Alveo™ FRU Data Specification* 
-(`UG1378 <https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf>`__).
+Detailed FRU information like sections, length, field definition and description have been captured in  
+(`Alveo™ FRU Data Specification <https://xilinx.github.io/Alveo-Cards/master/FRU/index.html>`__).
 
     *Figure:* **FRU Random Read**
 

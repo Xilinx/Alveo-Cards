@@ -1,16 +1,15 @@
 Satellite Controller Firmware Update Commands
 ---------------------------------------------
 
-In addition to the in-band method, the satellite controller supports an alternative out-of-band method
-of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). 
-Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. 
+In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method
+of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. 
 After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.
 
-**Note:** Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed.
+**Note:** Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.
 
 The following table lists the commands supported/needed for the FW upgrade.
 
-**Table: BMC to BSL Commands**
+**Table: BMC to SC Commands**
 
 +------------------+------------------------+------------------------------------------------------------+
 | **Command Code** | **Command Name**       | **Description**                                            |
@@ -22,7 +21,7 @@ The following table lists the commands supported/needed for the FW upgrade.
 | 0x32             | ENABLE\_BSL\_MODE      | OoB command to reboot the SC and invoke BSL.               |
 +------------------+------------------------+------------------------------------------------------------+
 
-**Table: SMC to BSL Commands**
+**Table: BMC to BSL Commands**
 
 +------------------+------------------------+------------------------------------------------------------+
 | **Command Code** | **Command Name**       | **Description**                                            |
@@ -40,8 +39,24 @@ The following table lists the commands supported/needed for the FW upgrade.
 | 0x27             | BSL\_LOAD\_PC          | Jump to the SC's application FW , after FW upgrade         |
 +------------------+------------------------+------------------------------------------------------------+
 
-GET\_SC\_STATUS (Satellite Controller Firmware)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+**Table: SC flash write and read-back Commands**
+
++------------------+--------------------------------+-----------------------------------------------+
+| **Command Code** | **Command Name**               | **Description**                               |
++==================+================================+===============================================+
+| 0x34             | GET\_SC\_FLASH\_WRITE\_STATUS  | SC sends the status for SC sector writes      |
++------------------+--------------------------------+-----------------------------------------------+
+| 0x35             | GET\_SC\_WRITE\_SECTOR\_RANGE  | SC sends the SC flash sector range for writes |
++------------------+--------------------------------+-----------------------------------------------+
+| 0x36             | SC\_FLASH\_WRITE\_DATA\_BLOCK  | BMC sends payload for writes into SC sectors  |
++------------------+--------------------------------+-----------------------------------------------+
+| 0x37             | SC\_FLASH\_READ\_DATA\_BLOCK   | SC sends entire SC flash data to BMC          |
++------------------+--------------------------------+-----------------------------------------------+
+
+
+0x31 - GET\_SC\_STATUS (SC firmware)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The GET\_SC\_STATUS command serves as the status command, revealing
 if the MSP432 processor is running in the application code (SC FW)
@@ -71,8 +86,8 @@ saying *'am in BSL mode'*.
 |                |     Byte 1   |     N/A    |
 +----------------+--------------+------------+
 
-ENABLE\_BSL\_MODE
-~~~~~~~~~~~~~~~~~
+0x32 - ENABLE\_BSL\_MODE
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 Upon receiving the ENABLE\_BSL\_MODE command, the SC FW configures
 FW update mode in the BSL and reboots itself. The next boot up takes
@@ -160,12 +175,10 @@ does not include the length bytes and checksum bytes.
 
 -  All data bytes (if applicable)
 
-    **Note:** All commands with prefix BSL\_ are core commands
-    supported by BSL. The request and response bytes are pre-defined by
-    TI.
+**Note:** All commands with prefix BSL\_ are core commands supported by BSL. The request and response bytes are pre-defined by TI.
 
-GET\_SC\_STATUS (BSL)
-~~~~~~~~~~~~~~~~~~~~~~
+0x31 - GET\_SC\_STATUS (BSL)
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The GET\_SC\_STATUS command serves as a status command telling
 whether the MSP432 processor is running the application code (SC FW)
@@ -201,8 +214,8 @@ where the SC responds with SC FW mode.
 |                |                 | 0x03: BSL\_FLASH\_WRITE\_ERROR  |
 +----------------+-----------------+---------------------------------+
 
-BSL\_RX\_PASSWORD
-~~~~~~~~~~~~~~~~~
+0x21 - BSL\_RX\_PASSWORD
+~~~~~~~~~~~~~~~~~~~~~~~~
 
 The BSL core receives the password contained in the packet and
 unlocks the BSL protected commands if the password matches the 56
@@ -282,8 +295,8 @@ in no-operation.
 +--------+---------+---------+---------+--------+--------+--------+---------+-------+-------+
 
 
-BSL\_ERASE\_SC\_FW
-~~~~~~~~~~~~~~~~~~
+0x15 - BSL\_ERASE\_SC\_FW
+~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
 The BSL\_ERASE\_SC\_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.
@@ -356,8 +369,8 @@ complete before proceeding with next set of commands.
 |     0x00    |     0x80     |     0x02     | 0x00     |     0x3B   |     0x00   |     0x60   |     0xC4   |
 +-------------+--------------+--------------+----------+------------+------------+------------+------------+
 
-BSL\_RX\_DATA\_BLOCK
-~~~~~~~~~~~~~~~~~~~~
+0x20 - BSL\_RX\_DATA\_BLOCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
 from the location specified in the address fields. The
@@ -366,31 +379,25 @@ with the full 32-bit range.
 
 **Table: BSL\_RX\_DATA\_BLOCK Server BMC Request**
 
-+----------------------------+------------+
-|     **Server BMC Request**              |
-+============================+============+
-| Header                     |     0x80   |
-+----------------------------+------------+
-| Length (low byte)          |     0x05   |
-+----------------------------+------------+
-| Length (high byte)         |     0x01   |
-+----------------------------+------------+
-| Command code               |     0x20   |
-+----------------------------+------------+
-
-**Table: BSL\_RX\_DATA\_BLOCK Server BMC Request** *(cont'd)*
-
-+-----------------------------+----------------------+
-|     **Server BMC Request**                         |
-+=============================+======================+
-|     Address bytes           |     A0, A1, A2, A3   |
-+-----------------------------+----------------------+
-|     Data bytes              |     D1 … D256        |
-+-----------------------------+----------------------+
-|     CKL                     |     TBD              |
-+-----------------------------+----------------------+
-|     CKH                     |     TBD              |
-+-----------------------------+----------------------+
++----------------------------+------------------+
+|     **Server BMC Request**                    |
++============================+==================+
+| Header                     | 0x80             |
++----------------------------+------------------+
+| Length (low byte)          | 0x05             |
++----------------------------+------------------+
+| Length (high byte)         | 0x01             |
++----------------------------+------------------+
+| Command code               | 0x20             |
++----------------------------+------------------+
+| Address bytes              | A0, A1, A2, A3   |
++----------------------------+------------------+
+| Data bytes                 | D1, D2 ... D256  |
++----------------------------+------------------+
+| CKL                        | TBD              |
++----------------------------+------------------+
+| CKH                        | TBD              |
++----------------------------+------------------+
 
 **Table: BSL\_RX\_DATA\_BLOCK Xilinx Alveo Card (BSL) Response**
 
@@ -444,7 +451,7 @@ identify the start location for each segment. To be specific, search
 for '@' and use the following 4-byte address to frame and send the
 address bytes: A0, A1, A2, and A3 (LSB first).
 
-*Figure:* **Linux grep Command**
+**Figure: Linux grep Command**
 
 .. image:: ./images/sc-segments.png
    :align: center
@@ -486,44 +493,36 @@ bytes, the address needs to be incremented by 256 or 0x100.
    0x00 0x00 0x01 .. 0xFF 0x66 0x96
    Header-Length-CMD-Address-Data-Checksum.
 
-BSL\_CRC\_CHECK
-~~~~~~~~~~~~~~~
+0x26 - BSL\_CRC\_CHECK
+~~~~~~~~~~~~~~~~~~~~~~
 
 **Note:** The BSL\_CRC\_CHECK command is an optional command.
 
-The MSP432 device performs a 16-bit CRC check using the CCITT
-standard. The address given is the first byte of the CRC check; 2
-bytes are used for the length.
+The MSP432 device performs a 16-bit CRC check using the CCITT standard. The address given is the first byte of the CRC check; 2 bytes are used for the length.
 
 **Table: BSL\_CRC\_CHECK Server BMC Request**
 
-+--------------------------+----------------------+
-|     **Server BMC Request**                      |
-+==========================+======================+
-|     Header               |     0x80             |
-+--------------------------+----------------------+
-|     Length (low Byte)    |     TBD              |
-+--------------------------+----------------------+
-|     Length (high Byte)   |     0x00             |
-+--------------------------+----------------------+
-|     Command code         |     0x26             |
-+--------------------------+----------------------+
-|     Address bytes        |     A0, A1, A2, A3   |
-+--------------------------+----------------------+
-
-**Table: BSL\_CRC\_CHECK Server BMC Request** *(cont'd)*
-
-+-------------+----------------------------------------------------+
-|     **Server BMC Request**                                       |
-+=============+====================================================+
-| Data bytes  |     D1, D2                                         |
-|             |                                                    |
-|             |     D1: length (low byte) D2: length (high byte)   |
-+-------------+----------------------------------------------------+
-| CKL         |     TBD                                            |
-+-------------+----------------------------------------------------+
-| CKH         |     TBD                                            |
-+-------------+----------------------------------------------------+
++--------------------------+------------------------+
+|     **Server BMC Request**                        |
++==========================+========================+
+|     Header               |     0x80               |
++--------------------------+------------------------+
+|     Length (low Byte)    |     TBD                |
++--------------------------+------------------------+
+|     Length (high Byte)   |     0x00               |
++--------------------------+------------------------+
+|     Command code         |     0x26               |
++--------------------------+------------------------+
+|     Address bytes        |     A0, A1, A2, A3     |
++--------------------------+------------------------+
+| Data bytes               | D1: length (low byte)  |
+|                          |                        |
+|                          | D2: length (high byte) |
++--------------------------+------------------------+
+| CKL                      |     TBD                |
++--------------------------+------------------------+
+| CKH                      |     TBD                |
++--------------------------+------------------------+
 
 **Table: BSL\_CRC\_CHECK Xilinx Alveo Card (BSL) Response** 
 
@@ -577,8 +576,8 @@ The BSL response where 0x55 is the low byte of the calculated checksum and 0xAA 
 to parse through the SC FW file to identify the start address for
 each command.
 
-BSL\_LOAD\_PC
-~~~~~~~~~~~~~
+0x27 - BSL\_LOAD\_PC
+~~~~~~~~~~~~~~~~~~~~
 
 The BSL\_LOAD\_PC command causes the BSL to jump and begin execution
 at the given address. The BSL responds with 0x00. In this case, the
@@ -640,7 +639,7 @@ Sample BSL Commands
 The contents from the following table have been imported from
 TotalPhase Aardvark I2C adapter.
 
-*Figure:* **I2C Transaction captured using I2C Aardvark Tool**
+**Figure: I2C Transaction captured using I2C Aardvark Tool**
 
 .. image:: ./images/aardvark_capture_SC_FW_update.PNG
    :align: center
@@ -704,10 +703,181 @@ the BSL does not have I2C recovery mechanisms, the only way to get
 back to BSL mode is to reboot the MSP. This can be only done by the
 AC power cycle of the server.
 
-*Figure:* **Interrupted flow of OoB SC FW Upgrade**
+**Figure: Interrupted flow of OoB SC FW Upgrade**
 
 .. image:: ./images/sc-update-interrupted-flow.png
    :align: center
+
+
+SC flash write and read-back Commands
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+0x34 - GET\_SC\_FLASH\_WRITE\_STATUS
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+BMC sends this command to get the status for the SC flash sector write operations.
+
+**Table: GET\_SC\_FLASH\_WRITE\_STATUS Server BMC Request**
+
++---------------+--------+
+| **Server BMC Request** |
++===============+========+
+| Command code  | 0x34   |
++---------------+--------+
+| Byte0         | N/A    |
++---------------+--------+
+
+**Table: GET\_SC\_FLASH\_WRITE\_STATUS Xilinx Alveo Card Response**
+
++-------------+---------+-------------------------------------------+
+| **Xilinx Alveo Card Response**                                    |
++=============+=========+===========================================+
+| Data bytes  | B0      | 0x01 - Operation success (No error)       |
+|             |         |                                           |
+|             |         | 0x02 - Operation failed                   |
+|             |         |                                           |
+|             |         | 0x03 - Operation in progress              |
+|             |         |                                           |
+|             |         | 0x04 - Invalid input parameters           |
+|             |         |                                           |
+|             |         | 0x05 - Device busy, recheck later         |
+|             |         |                                           |
+|             |         | 0x06 - Invalid CRC (for I2C transaction)  |
+|             |         |                                           |
+|             |         | 0x07 - Data sector overflow               |
+|             |         |                                           |
+|             |         | 0x08 - SC flash write error               |
+|             |         |                                           |
+|             |         | 0x09 - Unwritable sector                  |
+|             |         |                                           |
++-------------+---------+-------------------------------------------+
+
+0x35 - GET\_SC\_WRITE\_SECTOR\_RANGE
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The BMC sends this command to get the valid SC flash sector range for the write operations. Based on the response code in Byte 0 and the sector range (B1 - B4), BMC can calculate the total number of bytes of writable data to be sent to SC flash. SC's total flash size is 2 MB and there are 512 sectors (4 KB each) in total. BMC can write only in the writable sectors. Refer the table below for flash sector partition and valid writable sector range (156 - 511). 
+
+**Note:** BMC must send command 0x35 to get valid write sectors before sending the command 0x36 to transfer write data payload. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start & end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed. 
+
+**Table: SC flash sector partition information**
+
++---------------------------+-----------------------------+----------------------+
+| **SC flash sector range** | **Usage**                   | **Writable to BMC**  |
++===========================+=============================+======================+
+| 0 - 127                   | SC firmware                 | NO                   |
++---------------------------+-----------------------------+----------------------+
+| 128 - 129                 | Run-time config data        | NO                   |
++---------------------------+-----------------------------+----------------------+
+| 130 - 147                 | BSL (Boot-loader) firmware  | NO                   |
++---------------------------+-----------------------------+----------------------+
+| 148 - 155                 | Run-time config data & logs | NO                   |
++---------------------------+-----------------------------+----------------------+
+| 156 - 511                 | Unused                      | YES                  |
++---------------------------+-----------------------------+----------------------+
+
+
+**Table: GET\_SC\_WRITE\_SECTOR\_RANGE Server BMC Request**
+
++---------------+--------+
+| **Server BMC Request** |
++===============+========+
+| Command code  | 0x35   |
++---------------+--------+
+| Byte0         | N/A    |
++---------------+--------+
+
+**Table: GET\_SC\_WRITE\_SECTOR\_RANGE Xilinx Alveo Card Response**
+
++-------------+---------+-------------------------------------------+
+| **Xilinx Alveo Card Response**                                    |
++=============+=========+===========================================+
+| Data bytes  | B0      | 0x01 - Operation success (No error)       |
+|             |         |                                           |
+|             |         | 0x02 - Operation failed                   |
+|             |         |                                           |
+|             |         | 0x03 - Unwritable sector range            |
+|             |         |                                           |
++-------------+---------+-------------------------------------------+
+|             | B1      | Start sector number (low byte)            |
++-------------+---------+-------------------------------------------+
+|             | B2      | Start sector number (high byte)           |
++-------------+---------+-------------------------------------------+
+|             | B3      | End sector number (low byte)              |
++-------------+---------+-------------------------------------------+
+|             | B4      | End sector number (high byte)             |
++-------------+---------+-------------------------------------------+
+
+0x36 - SC\_FLASH\_WRITE\_DATA\_BLOCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+BMC sends this command iteratively to send payload to write into SC flash sectors. Upon receiving the write payload, SC automatically starts writing the data from the 1st available writable flash sector as informed via command 0x35. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+*f* (*x*) = *x*\ :sup:`16` + *x*\ :sup:`12` + *x*\ :sup:`5` + 1
+
+In case of CRC mismatch (return code 0x05), BMC must resend the transaction. And it is BMC's responsibility to keep track of the total number of bytes written/sent. After the completion of each transaction, BMC must check the write status via command 0x34 and proceed to next transaction only if SC returns 0x01 as response. SC performs the flash write operation in the background and will not be able to handle parallel/multiple transactions.
+
+**Note:** BMC must send command 0x35 to set valid write sectors before sending the command 0x36 to send write data. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start & end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed.
+
+**Table: SC\_FLASH\_WRITE\_DATA\_BLOCK Server BMC Request**
+
++---------------+---------------------+
+| **Server BMC Request**              |
++===============+=====================+
+| Command code  | 0x36                |
++---------------+---------------------+
+| Data Bytes    | D1, D2, ... D251    |
++---------------+---------------------+
+| CKL           | CRC Low byte        |
++---------------+---------------------+
+| CKH           | CRC High byte       |
++---------------+---------------------+
+
+**Table: SC\_FLASH\_WRITE\_DATA\_BLOCK Xilinx Alveo Card Response**
+
++-------------+---------+-----------------------------------------------+
+| **Xilinx Alveo Card Response**                                        |
++=============+=========+===============================================+
+| Data bytes  | B0      | 0x01 - Operation success (No error)           |
+|             |         |                                               |
+|             |         | 0x02 - Operation failed                       |
+|             |         |                                               |
+|             |         | 0x03 - Invalid CRC (for I2C transaction)      |
+|             |         |                                               |
+|             |         | 0x04 - Send command 0x35 first and retry 0x36 |
+|             |         |                                               |
++-------------+---------+-----------------------------------------------+
+
+0x37 - SC\_FLASH\_READ\_DATA\_BLOCK
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+BMC sends this command iteratively to read the data from entire SC flash. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+*f* (*x*) = *x*\ :sup:`16` + *x*\ :sup:`12` + *x*\ :sup:`5` + 1
+
+At the end of each transaction, BMC must perform CRC check and then only proceed to read the next sector. In case of CRC mismatch, BMC must ask SC to resend the previous transaction. For the last transaction, SC may send a payload less than 251 bytes and it is BMC's responsibility to keep track of the total number of bytes read. 
+
+**Table: SC\_FLASH\_READ\_DATA\_BLOCK Server BMC Request**
+
++---------------+-----------------------------------+
+| **Server BMC Request**                            |
++===============+===================================+
+| Command code  | 0x37                              |
++---------------+-----------------------------------+
+| Byte0         | 0x00: Resend previous transaction |
+|               |                                   |
+|               | 0x01: Send next transaction       |
+|               |                                   |
++---------------+-----------------------------------+
+
+**Table: SC\_FLASH\_READ\_DATA\_BLOCK Xilinx Alveo Card Response**
+
++---------------+---------------------+
+| **Xilinx Alveo Card Response**      |
++===============+=====================+
+| Data Bytes    | D1, D2, ... D251    |
++---------------+---------------------+
+| CKL           | CRC Low byte        |
++---------------+---------------------+
+| CKH           | CRC High byte       |
++---------------+---------------------+
 
 **Xilinx Support**
 

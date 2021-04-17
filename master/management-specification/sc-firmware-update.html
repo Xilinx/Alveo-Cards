@@ -342,18 +342,23 @@
 <p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Satellite Controller Firmware Update Commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-satellite-controller-firmware">GET_SC_STATUS (Satellite Controller Firmware)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#enable-bsl-mode">ENABLE_BSL_MODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x31-get-sc-status-sc-firmware">0x31 - GET_SC_STATUS (SC firmware)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x32-enable-bsl-mode">0x32 - ENABLE_BSL_MODE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bsl-communication">BSL Communication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-bsl">GET_SC_STATUS (BSL)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-password">BSL_RX_PASSWORD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-erase-sc-fw">BSL_ERASE_SC_FW</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-data-block">BSL_RX_DATA_BLOCK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-crc-check">BSL_CRC_CHECK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-load-pc">BSL_LOAD_PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x31-get-sc-status-bsl">0x31 - GET_SC_STATUS (BSL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x21-bsl-rx-password">0x21 - BSL_RX_PASSWORD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x15-bsl-erase-sc-fw">0x15 - BSL_ERASE_SC_FW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x20-bsl-rx-data-block">0x20 - BSL_RX_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x26-bsl-crc-check">0x26 - BSL_CRC_CHECK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x27-bsl-load-pc">0x27 - BSL_LOAD_PC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sample-bsl-commands">Sample BSL Commands</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OoB SC FW Upgrade</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">Timing Diagram: Interrupted Flow of the OoB SC FW Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sc-flash-write-and-read-back-commands">SC flash write and read-back Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x34-get-sc-flash-write-status">0x34 - GET_SC_FLASH_WRITE_STATUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x35-get-sc-write-sector-range">0x35 - GET_SC_WRITE_SECTOR_RANGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x36-sc-flash-write-data-block">0x36 - SC_FLASH_WRITE_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x37-sc-flash-read-data-block">0x37 - SC_FLASH_READ_DATA_BLOCK</a></li>
 </ul>
 </li>
 </ul>
@@ -448,13 +453,12 @@
             
   <div class="section" id="satellite-controller-firmware-update-commands">
 <h1>Satellite Controller Firmware Update Commands<a class="headerlink" href="#satellite-controller-firmware-update-commands" title="Permalink to this headline">¶</a></h1>
-<p>In addition to the in-band method, the satellite controller supports an alternative out-of-band method
-of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit).
-Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW.
+<p>In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method
+of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW.
 After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.</p>
-<p><strong>Note:</strong> Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed.</p>
+<p><strong>Note:</strong> Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.</p>
 <p>The following table lists the commands supported/needed for the FW upgrade.</p>
-<p><strong>Table: BMC to BSL Commands</strong></p>
+<p><strong>Table: BMC to SC Commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -482,7 +486,7 @@ After the initial handshake with the SC FW, the server BMC will need to communic
 </tr>
 </tbody>
 </table>
-<p><strong>Table: SMC to BSL Commands</strong></p>
+<p><strong>Table: BMC to BSL Commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="18%" />
@@ -522,8 +526,40 @@ After the initial handshake with the SC FW, the server BMC will need to communic
 </tr>
 </tbody>
 </table>
-<div class="section" id="get-sc-status-satellite-controller-firmware">
-<h2>GET_SC_STATUS (Satellite Controller Firmware)<a class="headerlink" href="#get-sc-status-satellite-controller-firmware" title="Permalink to this headline">¶</a></h2>
+<p><strong>Table: SC flash write and read-back Commands</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="33%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
+<th class="head"><strong>Command Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x34</td>
+<td>GET_SC_FLASH_WRITE_STATUS</td>
+<td>SC sends the status for SC sector writes</td>
+</tr>
+<tr class="row-odd"><td>0x35</td>
+<td>GET_SC_WRITE_SECTOR_RANGE</td>
+<td>SC sends the SC flash sector range for writes</td>
+</tr>
+<tr class="row-even"><td>0x36</td>
+<td>SC_FLASH_WRITE_DATA_BLOCK</td>
+<td>BMC sends payload for writes into SC sectors</td>
+</tr>
+<tr class="row-odd"><td>0x37</td>
+<td>SC_FLASH_READ_DATA_BLOCK</td>
+<td>SC sends entire SC flash data to BMC</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="x31-get-sc-status-sc-firmware">
+<h2>0x31 - GET_SC_STATUS (SC firmware)<a class="headerlink" href="#x31-get-sc-status-sc-firmware" title="Permalink to this headline">¶</a></h2>
 <p>The GET_SC_STATUS command serves as the status command, revealing
 if the MSP432 processor is running in the application code (SC FW)
 or in BSL mode. Upon receiving this command, the SC FW responds with
@@ -572,8 +608,8 @@ saying <em>‘am in BSL mode’</em>.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="enable-bsl-mode">
-<h2>ENABLE_BSL_MODE<a class="headerlink" href="#enable-bsl-mode" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x32-enable-bsl-mode">
+<h2>0x32 - ENABLE_BSL_MODE<a class="headerlink" href="#x32-enable-bsl-mode" title="Permalink to this headline">¶</a></h2>
 <p>Upon receiving the ENABLE_BSL_MODE command, the SC FW configures
 FW update mode in the BSL and reboots itself. The next boot up takes
 the control to BSL mode. Absence of this step results in normal
@@ -654,22 +690,15 @@ all commands. The ACK, header, and length bytes must be ignored.</p>
 core data packet, broken into high and low bytes. The number of
 bytes must include only core data packets, as detailed below, and
 does not include the length bytes and checksum bytes.</p>
-<ul>
-<li><p class="first">Command code</p>
-</li>
-<li><p class="first">All address bytes (if applicable)</p>
-</li>
-<li><p class="first">All data bytes (if applicable)</p>
-<blockquote>
-<div><p><strong>Note:</strong> All commands with prefix BSL_ are core commands
-supported by BSL. The request and response bytes are pre-defined by
-TI.</p>
-</div></blockquote>
-</li>
+<ul class="simple">
+<li>Command code</li>
+<li>All address bytes (if applicable)</li>
+<li>All data bytes (if applicable)</li>
 </ul>
+<p><strong>Note:</strong> All commands with prefix BSL_ are core commands supported by BSL. The request and response bytes are pre-defined by TI.</p>
 </div>
-<div class="section" id="get-sc-status-bsl">
-<h2>GET_SC_STATUS (BSL)<a class="headerlink" href="#get-sc-status-bsl" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x31-get-sc-status-bsl">
+<h2>0x31 - GET_SC_STATUS (BSL)<a class="headerlink" href="#x31-get-sc-status-bsl" title="Permalink to this headline">¶</a></h2>
 <p>The GET_SC_STATUS command serves as a status command telling
 whether the MSP432 processor is running the application code (SC FW)
 or in BSL mode. Upon receiving this command, BSL responds with 0x01
@@ -722,8 +751,8 @@ where the SC responds with SC FW mode.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="bsl-rx-password">
-<h2>BSL_RX_PASSWORD<a class="headerlink" href="#bsl-rx-password" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x21-bsl-rx-password">
+<h2>0x21 - BSL_RX_PASSWORD<a class="headerlink" href="#x21-bsl-rx-password" title="Permalink to this headline">¶</a></h2>
 <p>The BSL core receives the password contained in the packet and
 unlocks the BSL protected commands if the password matches the 56
 bytes in the BSL. When an incorrect password is given, BSL responds
@@ -927,8 +956,8 @@ in no-operation.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="bsl-erase-sc-fw">
-<h2>BSL_ERASE_SC_FW<a class="headerlink" href="#bsl-erase-sc-fw" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x15-bsl-erase-sc-fw">
+<h2>0x15 - BSL_ERASE_SC_FW<a class="headerlink" href="#x15-bsl-erase-sc-fw" title="Permalink to this headline">¶</a></h2>
 <p>The BSL_ERASE_SC_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.</p>
 <p><strong>Note:</strong> Allow at least 1 second for the erase operation to
 complete before proceeding with next set of commands.</p>
@@ -1079,8 +1108,8 @@ complete before proceeding with next set of commands.</p>
 </tbody>
 </table>
 </div>
-<div class="section" id="bsl-rx-data-block">
-<h2>BSL_RX_DATA_BLOCK<a class="headerlink" href="#bsl-rx-data-block" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x20-bsl-rx-data-block">
+<h2>0x20 - BSL_RX_DATA_BLOCK<a class="headerlink" href="#x20-bsl-rx-data-block" title="Permalink to this headline">¶</a></h2>
 <p>The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
 from the location specified in the address fields. The
 BSL_RX_DATA_BLOCK command allows the BSL to address the device
@@ -1088,8 +1117,8 @@ with the full 32-bit range.</p>
 <p><strong>Table: BSL_RX_DATA_BLOCK Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="70%" />
-<col width="30%" />
+<col width="61%" />
+<col width="39%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
@@ -1108,24 +1137,11 @@ with the full 32-bit range.</p>
 <tr class="row-odd"><td>Command code</td>
 <td>0x20</td>
 </tr>
-</tbody>
-</table>
-<p><strong>Table: BSL_RX_DATA_BLOCK Server BMC Request</strong> <em>(cont’d)</em></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="57%" />
-<col width="43%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
-</tr>
-</thead>
-<tbody valign="top">
 <tr class="row-even"><td>Address bytes</td>
 <td>A0, A1, A2, A3</td>
 </tr>
 <tr class="row-odd"><td>Data bytes</td>
-<td>D1 … D256</td>
+<td>D1, D2 … D256</td>
 </tr>
 <tr class="row-even"><td>CKL</td>
 <td>TBD</td>
@@ -1278,7 +1294,7 @@ with the full 32-bit range.</p>
 identify the start location for each segment. To be specific, search
 for ‘&#64;’ and use the following 4-byte address to frame and send the
 address bytes: A0, A1, A2, and A3 (LSB first).</p>
-<p><em>Figure:</em> <strong>Linux grep Command</strong></p>
+<p><strong>Figure: Linux grep Command</strong></p>
 <img alt="_images/sc-segments.png" class="align-center" src="_images/sc-segments.png" />
 <p>There are 4 segments in the following example:</p>
 <ul class="simple">
@@ -1311,17 +1327,15 @@ Header-Length-CMD-Address-Data-Checksum.</p>
 </li>
 </ul>
 </div>
-<div class="section" id="bsl-crc-check">
-<h2>BSL_CRC_CHECK<a class="headerlink" href="#bsl-crc-check" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x26-bsl-crc-check">
+<h2>0x26 - BSL_CRC_CHECK<a class="headerlink" href="#x26-bsl-crc-check" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note:</strong> The BSL_CRC_CHECK command is an optional command.</p>
-<p>The MSP432 device performs a 16-bit CRC check using the CCITT
-standard. The address given is the first byte of the CRC check; 2
-bytes are used for the length.</p>
+<p>The MSP432 device performs a 16-bit CRC check using the CCITT standard. The address given is the first byte of the CRC check; 2 bytes are used for the length.</p>
 <p><strong>Table: BSL_CRC_CHECK Server BMC Request</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="54%" />
-<col width="46%" />
+<col width="52%" />
+<col width="48%" />
 </colgroup>
 <thead valign="bottom">
 <tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
@@ -1343,28 +1357,15 @@ bytes are used for the length.</p>
 <tr class="row-even"><td>Address bytes</td>
 <td>A0, A1, A2, A3</td>
 </tr>
-</tbody>
-</table>
-<p><strong>Table: BSL_CRC_CHECK Server BMC Request</strong> <em>(cont’d)</em></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="80%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>Data bytes</td>
-<td><p class="first">D1, D2</p>
-<p class="last">D1: length (low byte) D2: length (high byte)</p>
+<tr class="row-odd"><td>Data bytes</td>
+<td><p class="first">D1: length (low byte)</p>
+<p class="last">D2: length (high byte)</p>
 </td>
 </tr>
-<tr class="row-odd"><td>CKL</td>
+<tr class="row-even"><td>CKL</td>
 <td>TBD</td>
 </tr>
-<tr class="row-even"><td>CKH</td>
+<tr class="row-odd"><td>CKH</td>
 <td>TBD</td>
 </tr>
 </tbody>
@@ -1512,8 +1513,8 @@ bytes are used for the length.</p>
 to parse through the SC FW file to identify the start address for
 each command.</p>
 </div>
-<div class="section" id="bsl-load-pc">
-<h2>BSL_LOAD_PC<a class="headerlink" href="#bsl-load-pc" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="x27-bsl-load-pc">
+<h2>0x27 - BSL_LOAD_PC<a class="headerlink" href="#x27-bsl-load-pc" title="Permalink to this headline">¶</a></h2>
 <p>The BSL_LOAD_PC command causes the BSL to jump and begin execution
 at the given address. The BSL responds with 0x00. In this case, the
 jump address is 0x0000:0201.</p>
@@ -1625,7 +1626,7 @@ failure.</p>
 <h2>Sample BSL Commands<a class="headerlink" href="#sample-bsl-commands" title="Permalink to this headline">¶</a></h2>
 <p>The contents from the following table have been imported from
 TotalPhase Aardvark I2C adapter.</p>
-<p><em>Figure:</em> <strong>I2C Transaction captured using I2C Aardvark Tool</strong></p>
+<p><strong>Figure: I2C Transaction captured using I2C Aardvark Tool</strong></p>
 <img alt="_images/aardvark_capture_SC_FW_update.PNG" class="align-center" src="_images/aardvark_capture_SC_FW_update.PNG" />
 </div>
 <div class="section" id="timing-diagram-normal-flow-of-oob-sc-fw-upgrade">
@@ -1673,8 +1674,261 @@ if the transaction got interrupted (as mentioned in step 1). Because
 the BSL does not have I2C recovery mechanisms, the only way to get
 back to BSL mode is to reboot the MSP. This can be only done by the
 AC power cycle of the server.</p>
-<p><em>Figure:</em> <strong>Interrupted flow of OoB SC FW Upgrade</strong></p>
+<p><strong>Figure: Interrupted flow of OoB SC FW Upgrade</strong></p>
 <img alt="_images/sc-update-interrupted-flow.png" class="align-center" src="_images/sc-update-interrupted-flow.png" />
+</div>
+<div class="section" id="sc-flash-write-and-read-back-commands">
+<h2>SC flash write and read-back Commands<a class="headerlink" href="#sc-flash-write-and-read-back-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="x34-get-sc-flash-write-status">
+<h2>0x34 - GET_SC_FLASH_WRITE_STATUS<a class="headerlink" href="#x34-get-sc-flash-write-status" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to get the status for the SC flash sector write operations.</p>
+<p><strong>Table: GET_SC_FLASH_WRITE_STATUS Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x34</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_FLASH_WRITE_STATUS Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="14%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p>0x03 - Operation in progress</p>
+<p>0x04 - Invalid input parameters</p>
+<p>0x05 - Device busy, recheck later</p>
+<p>0x06 - Invalid CRC (for I2C transaction)</p>
+<p>0x07 - Data sector overflow</p>
+<p>0x08 - SC flash write error</p>
+<p class="last">0x09 - Unwritable sector</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x35-get-sc-write-sector-range">
+<h2>0x35 - GET_SC_WRITE_SECTOR_RANGE<a class="headerlink" href="#x35-get-sc-write-sector-range" title="Permalink to this headline">¶</a></h2>
+<p>The BMC sends this command to get the valid SC flash sector range for the write operations. Based on the response code in Byte 0 and the sector range (B1 - B4), BMC can calculate the total number of bytes of writable data to be sent to SC flash. SC’s total flash size is 2 MB and there are 512 sectors (4 KB each) in total. BMC can write only in the writable sectors. Refer the table below for flash sector partition and valid writable sector range (156 - 511).</p>
+<p><strong>Note:</strong> BMC must send command 0x35 to get valid write sectors before sending the command 0x36 to transfer write data payload. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start &amp; end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed.</p>
+<p><strong>Table: SC flash sector partition information</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="37%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>SC flash sector range</strong></th>
+<th class="head"><strong>Usage</strong></th>
+<th class="head"><strong>Writable to BMC</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0 - 127</td>
+<td>SC firmware</td>
+<td>NO</td>
+</tr>
+<tr class="row-odd"><td>128 - 129</td>
+<td>Run-time config data</td>
+<td>NO</td>
+</tr>
+<tr class="row-even"><td>130 - 147</td>
+<td>BSL (Boot-loader) firmware</td>
+<td>NO</td>
+</tr>
+<tr class="row-odd"><td>148 - 155</td>
+<td>Run-time config data &amp; logs</td>
+<td>NO</td>
+</tr>
+<tr class="row-even"><td>156 - 511</td>
+<td>Unused</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_WRITE_SECTOR_RANGE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x35</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_WRITE_SECTOR_RANGE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="14%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p class="last">0x03 - Unwritable sector range</p>
+</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1</td>
+<td>Start sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>B2</td>
+<td>Start sector number (high byte)</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3</td>
+<td>End sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>B4</td>
+<td>End sector number (high byte)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x36-sc-flash-write-data-block">
+<h2>0x36 - SC_FLASH_WRITE_DATA_BLOCK<a class="headerlink" href="#x36-sc-flash-write-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command iteratively to send payload to write into SC flash sectors. Upon receiving the write payload, SC automatically starts writing the data from the 1st available writable flash sector as informed via command 0x35. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+<em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
+<p>In case of CRC mismatch (return code 0x05), BMC must resend the transaction. And it is BMC’s responsibility to keep track of the total number of bytes written/sent. After the completion of each transaction, BMC must check the write status via command 0x34 and proceed to next transaction only if SC returns 0x01 as response. SC performs the flash write operation in the background and will not be able to handle parallel/multiple transactions.</p>
+<p><strong>Note:</strong> BMC must send command 0x35 to set valid write sectors before sending the command 0x36 to send write data. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start &amp; end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed.</p>
+<p><strong>Table: SC_FLASH_WRITE_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x36</td>
+</tr>
+<tr class="row-odd"><td>Data Bytes</td>
+<td>D1, D2, … D251</td>
+</tr>
+<tr class="row-even"><td>CKL</td>
+<td>CRC Low byte</td>
+</tr>
+<tr class="row-odd"><td>CKH</td>
+<td>CRC High byte</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SC_FLASH_WRITE_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p>0x03 - Invalid CRC (for I2C transaction)</p>
+<p class="last">0x04 - Send command 0x35 first and retry 0x36</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x37-sc-flash-read-data-block">
+<h2>0x37 - SC_FLASH_READ_DATA_BLOCK<a class="headerlink" href="#x37-sc-flash-read-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command iteratively to read the data from entire SC flash. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+<em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
+<p>At the end of each transaction, BMC must perform CRC check and then only proceed to read the next sector. In case of CRC mismatch, BMC must ask SC to resend the previous transaction. For the last transaction, SC may send a payload less than 251 bytes and it is BMC’s responsibility to keep track of the total number of bytes read.</p>
+<p><strong>Table: SC_FLASH_READ_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x37</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x00: Resend previous transaction</p>
+<p class="last">0x01: Send next transaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SC_FLASH_READ_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data Bytes</td>
+<td>D1, D2, … D251</td>
+</tr>
+<tr class="row-odd"><td>CKL</td>
+<td>CRC Low byte</td>
+</tr>
+<tr class="row-even"><td>CKH</td>
+<td>CRC High byte</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
@@ -1717,7 +1971,7 @@ AC power cycle of the server.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on April 05, 2021.
+        Last updated on April 17, 2021.
       </span>
 
     </p>
