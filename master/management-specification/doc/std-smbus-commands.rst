@@ -355,6 +355,8 @@ Critical Sensor Data Record (CSDR) Command Response
 
 **Table: Board Status Information**
 
+**Note:** Bits[18:8] are not applicable for Alveo™ U30.
+
 +---------------+----------------------------------+---------------------+----------------------------------+
 | **Bit Field** | **Bit Field Mapping**            | **Data Format**     | **Sensor Description**           |
 +===============+==================================+=====================+==================================+
@@ -533,12 +535,12 @@ Critical Sensor Data Record (CSDR) Command Response
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Bit[3]        | ERRORn\_STATUS                   | 1-bit unsigned;         | Device PS\_ERROR\_STATUS pin status         |
 |               |                                  |                         |                                             |
-|               |                                  | Unit: state             | For details refer [*]                       |
+|               |                                  | Unit: state             | N/A for U30. For details refer [*]          |
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Bit[2]        | ERRORn                           | 1-bit unsigned          | Device PS\_ERROR\_OUT pin status            |
 |               |                                  |                         |                                             |
-|               |                                  | Unit: state             | For details refer [*]                       |
+|               |                                  | Unit: state             | N/A for U30. For details refer [*]          |
 |               |                                  |                         |                                             |
 +---------------+----------------------------------+-------------------------+---------------------------------------------+
 | Bit[1]        | INIT\_B                          | 1-bit unsigned          | Device INIT\_B pin status                   |
