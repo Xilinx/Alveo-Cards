@@ -9,7 +9,7 @@ The satellite controller firmware accesses on-board EEPROM and emulates the trad
 
 Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.
 
-The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.
+The maximum response per transaction is 255 bytes, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 255 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent. Additionally, BMC has the option to request smaller transaction from SC (i.e.) 16 or 32 bytes per transaction.
 
 For the high-level FRU Storage Organization, see the figure below:
 
@@ -93,7 +93,7 @@ Block Read
 +-------------+----------------------------------------+-------------------------+
 |     **Xilinx Alveo™ Card Response**                                            |
 +=============+========================================+=========================+
-| Data bytes  |     [Byte 0] [Byte 1] …. [Byte 255]]   |     256-byte FRU data   |
+| Data bytes  |     [Byte 0] [Byte 1] …. [Byte 254]]   |     255-byte FRU data   |
 +-------------+----------------------------------------+-------------------------+
 
 **Xilinx Support**
