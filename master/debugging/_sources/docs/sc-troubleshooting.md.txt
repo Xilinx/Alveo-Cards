@@ -17,10 +17,10 @@ This page covers issues observed when running the  `xbmgmt flash --scan` and  `x
  
 Before beginning debug, you need to:
 
-- [Root/sudo permissions](common-steps.html#root-sudo-access)
+- [Root/sudo permissions](common-steps.md#root-sudo-access)
 - [Confirm System Compatibility](check-system-compatibility.md)
-- [Determine XRT version](common-steps.html#determine-xrt-version) installed.
-- [Determine platform and SC on card and system](common-steps.html#determine-platform-and-sc-on-card-and-system)
+- [Determine XRT version](common-steps.md#determine-xrt-version) installed.
+- [Determine platform and SC on card and system](common-steps.md#determine-platform-and-sc-on-card-and-system)
   - Card platform and SC must match that installed on system
 
 ## Common Cases
@@ -66,10 +66,10 @@ Next steps:
 - Cold boot the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -94,12 +94,12 @@ Card [0000:d8:00.0]
 
 Next steps:
 
- - [Reload XRT Drivers](common-steps.html#unloadreload-xrt-drivers)
+ - [Reload XRT Drivers](common-steps.md#unloadreload-xrt-drivers)
  - If issue persists
-   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+   - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
    - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
  - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -130,10 +130,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -157,10 +157,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -183,7 +183,7 @@ If `xbmgmt flash --scan` command returns different number of digits of SC versio
  ```
 
 Next steps:
-- [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+- [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
 - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -209,7 +209,7 @@ Card [0000:27:00.0]
 
 Next steps:
 - Flash card with SC version installed on the system
-- See [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
+- See [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
 
@@ -229,7 +229,7 @@ When `xbmgmt flash --scan` command returns `GOLDEN ` under `Flashable partition 
  ```
 
 Next step:
--  Go to [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
+-  Go to [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
 
@@ -248,7 +248,7 @@ Card [0000:03:00.0]
 ```
 
 Next step:
-- Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
+- Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
 ### No cards found
@@ -292,10 +292,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
@@ -313,10 +313,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt flash --scan`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt flash --scan`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 - - -

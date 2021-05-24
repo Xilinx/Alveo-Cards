@@ -6,18 +6,18 @@
 </table>
 
 # Card Validation
-XRT provides a utility to validate the [card installation](card-install.md) using the `xbutil validate` command. This checks for proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the [Vitis Documentation](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904).
+XRT provides the `xbutil` utility which validates [card installation](card-install.md) using the `xbutil validate` command. It checks proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the [Vitis Documentation](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904).  If validation fails, indicated by `ERROR: Some cards failed to validate.` the errors need to be addressed before the card can be used.
 
 ## This Page Covers
 
-This page covers issues users have reported when running the `xbutil validate` command. If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+This page covers issues encountered when using `xbutil validate`.    If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
 
 ## You Will Need
 
 Before beginning debug, you need to:
 
 -  Ensure the card, XRT, and the deployment packages are installed as part of the [card install](card-install.md)
-- Check that the [platform and SC version on the card match the platform and SC version on the system](common-steps.html#determine-platform-and-sc-on-card-and-system)
+- Check that the [platform and SC version on the card match the platform and SC version on the system](common-steps.md#determine-platform-and-sc-on-card-and-system)
 - Determine any failure mode(s) from running `xbutil validate`
 
 
@@ -89,7 +89,7 @@ ERROR: Some cards failed to validate.
 
 Next steps:
 
-- Upgrade to XRT version 2020.1_pu1 or later by following [XRT update directions](modifying-xrt-platform.html#installing-an-xrt-update)
+- Upgrade to XRT version 2020.1_pu1 or later by following [XRT update directions](modifying-xrt-platform.md#installing-an-xrt-update)
 - If it is necessary to use an older XRT version, follow solution outlined in [AR 73055](https://www.xilinx.com/support/answers/73055.html)
 
 - - -
@@ -147,7 +147,7 @@ This could be due to modules being out of date, incompatible versions installed,
 
 Next steps:
 
--  Upgrade to XRT version 2020.1_pu1 or later by following [XRT update directions](modifying-xrt-platform.html#installing-an-xrt-update)
+-  Upgrade to XRT version 2020.1_pu1 or later by following [XRT update directions](modifying-xrt-platform.md#installing-an-xrt-update)
 - Or go to [AR 75294](https://www.xilinx.com/support/answers/75294.html)
 
 - - -
@@ -172,7 +172,7 @@ INFO: == Starting verify kernel test:
 
 Next step:
 
-- Follow the steps in [Loading verify kernel error](card-validation.html#loading-verify-kernel-error)
+- Follow the steps in [Loading verify kernel error](card-validation.md#loading-verify-kernel-error)
 
 - - -
 ### Loading bandwidth kernel error
@@ -190,7 +190,7 @@ ERROR: Some cards failed to validate.
  ```
 
 Next step:
- - Follow the steps in [Loading verify kernel error](card-validation.html#loading-verify-kernel-error)
+ - Follow the steps in [Loading verify kernel error](card-validation.md#loading-verify-kernel-error)
 
 - - -
 ### Verify kernel test skipped
@@ -263,7 +263,7 @@ Gen3x16, Current: Gen2x16
 
 Next steps:
 
-- Ensure that the card is in a slot that supports the PCIe link speed, follow the [Determine PCIe slot type and speed](common-steps.html#determine-pcie-slot-type-and-speed) step
+- Ensure that the card is in a slot that supports the PCIe link speed, follow the [Determine PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed) step
 - If the card is in a full speed slot:
   - Reseat the card, in a different slot if possible
   - Reboot the server
@@ -299,7 +299,7 @@ WARN: == SC firmware version check PASSED with warning
 Next steps:
 
 - Use `sudo xbmgmt flash --scan` to check the SC version on the system vs on the card
-- [Flash the card with the deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform) a second time to update the card's SC version to match the system
+- [Flash the card with the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform) a second time to update the card's SC version to match the system
 
 - - -
 
@@ -324,7 +324,7 @@ Next steps:
 
 - Confirm AUX power cable is hooked up
   - Shut down system
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power)
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power)
   - Check for the presence of an AUX power cable at the card
     - UG1301 Figures 4 and 5 show the location of the AUX power connector on card
     - If there is no cable, find an 8-pin cable and check the server connection
@@ -400,11 +400,11 @@ ERROR: == verify kernel test FAILED
 
 Next steps:
 
-- See if the machine is running a [supported hypervisor](common-steps.html#host-machine-and-hypervisor-information)
+- See if the machine is running a [supported hypervisor](common-steps.md#host-machine-and-hypervisor-information)
 - Check to see if the drivers are present with
   - `lsmod | grep xclmgmt`
   - `lsmod | grep xocl`
-- [Unload/reload XRT drivers](common-steps.html#unload-reload-xrt-drivers)
+- [Unload/reload XRT drivers](common-steps.md#unload-reload-xrt-drivers)
 - See if a similar issue is posted on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
@@ -480,8 +480,8 @@ ERROR: == verify kernel test FAILED
 
 Next steps:
 
-- [Determine packages installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
-- Follow package install steps in [Modifying existing XRT or platform install](modifying-xrt-platform.html#)
+- [Determine packages installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
+- Follow package install steps in [Modifying existing XRT or platform install](modifying-xrt-platform.md)
 
 - - -
 ### Incorrect output from kernel
@@ -518,8 +518,8 @@ FAILED TEST
 
 Next steps
 
-- [Return card to golden](common-steps.html#reverting-the-card-to-factory-image)
-- [Reflash the deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
+- [Return card to golden](common-steps.md#reverting-the-card-to-factory-image)
+- [Reflash the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
 ### xbmgmt commands not working

@@ -14,7 +14,7 @@ This page covers issues users have reported when using XRT. If your issue is not
 ## You Will Need
 Before beginning debug, you need to:
 
-- Have [Root/sudo permissions](common-steps.html#root-sudo-access)
+- Have [Root/sudo permissions](common-steps.md#root-sudo-access)
 - [Confirm System Compatibility](check-system-compatibility.md)
 
 ## Common Cases 
@@ -113,7 +113,7 @@ Next steps:
 - See if the drivers are present on the system with `lsmod`
    * `lsmod | grep xocl`
    * `lsmod | grep xclmgmt`
-- If both drivers are present [Reload the XRT drivers](common-steps.html#unload-reload-xrt-drivers)
+- If both drivers are present [Reload the XRT drivers](common-steps.md#unload-reload-xrt-drivers)
 - If a driver is missing go to [Driver not installed into Kernel](#drivers-not-installed-into-kernel) (below)
 
 - - -
@@ -144,9 +144,9 @@ Complete!
 Next steps:
 
 - Confirm the XRT version is supported by this OS release
-   * [Determine the linux release](common-steps.html#determine-linux-release)
-   * [Determine kernel headers](common-steps.html#determine-linux-kernel-and-header-information) match the release, and are installed correctly
-- [Remove XRT](common-steps.html#remove-xrt)
+   * [Determine the linux release](common-steps.md#determine-linux-release)
+   * [Determine kernel headers](common-steps.md#determine-linux-kernel-and-header-information) match the release, and are installed correctly
+- [Remove XRT](common-steps.md#remove-xrt)
 - Download the latest XRT from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Re-install XRT
    * Check for dependency issues
@@ -189,21 +189,21 @@ If this occurs and `lspci` does recognize the card (displays `Kernel driver in u
 
 Next steps:
 - If card was last used in a Vivado flow, XRT will not be able to communicate to the card. Revert the card to the golden image using [AR 71757](https://www.xilinx.com/support/answers/71757.html).
-- If card wasn't used in Vivado flow, [Remove XRT](common-steps.html#remove-xrt)
+- If card wasn't used in Vivado flow, [Remove XRT](common-steps.md#remove-xrt)
 - Download the latest XRT from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Re-install XRT
 - Install the desired deployment platform
-  - Use the [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility) to ensure the platform and XRT are compatible
-- [Determine platform on card and system](common-steps.html#determine-platform-and-sc-on-card-and-system)
-- If the card does not have the desired platform [Flash the card with the deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
+  - Use the [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility) to ensure the platform and XRT are compatible
+- [Determine platform on card and system](common-steps.md#determine-platform-and-sc-on-card-and-system)
+- If the card does not have the desired platform [Flash the card with the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
 
 ### Nothing else has worked
 
-- [Unload and reload the XRT drivers](common-steps.html#unload-reload-xrt-drivers)
+- [Unload and reload the XRT drivers](common-steps.md#unload-reload-xrt-drivers)
 - Look for similar issues on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
-- [Log machine state](common-steps.html#log-machine-state) and post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- [Log machine state](common-steps.md#log-machine-state) and post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
 

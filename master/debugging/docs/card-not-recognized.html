@@ -356,7 +356,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#card-is-recognized-in-different-pcie-slot-in-same-machine">Card is recognized in different PCIe slot in same machine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-is-recognized-in-another-machine">Card is recognized in another machine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#different-alveo-card-is-recognized-in-same-slot">Different Alveo card is recognized in same slot</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bios-set-to-wrong-pcie-bifurcation">BIOS set to wrong PCIe bifurcation</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pcie-bifurcation-setting">PCIe bifurcation setting</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#recent-system-change">Recent system change</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#motherboard-replacement">Motherboard replacement</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#riser-replacement">Riser replacement</a></li>
@@ -559,7 +559,7 @@
 </ul>
 <p>If none of the above have narrowed down the potential issue:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#bios-set-to-wrong-pcie-bifurcation">Check the BIOS bifurcation settings</a></p></li>
+<li><p><a class="reference external" href="#pcie-bifurcation-setting">Check the BIOS bifurcation settings</a></p></li>
 <li><p>Look at the LEDs on the card:</p>
 <ul>
 <li><p><a class="reference external" href="#blue-led-not-illuminated">Card’s blue LED not illuminated</a></p></li>
@@ -734,13 +734,13 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="bios-set-to-wrong-pcie-bifurcation">
-<h3>BIOS set to wrong PCIe bifurcation<a class="headerlink" href="#bios-set-to-wrong-pcie-bifurcation" title="Permalink to this headline">¶</a></h3>
-<p>Bifurcation allows the BIOS to split 1 PCIe link into 2 (or more) lower speed links. The standard Alveo platforms are expecting a non-bifurcated link.</p>
-<p>The bifurcation configuration is found in the BIOS settings. For many BIOSes “Auto” does not bifurcate the PCI link and the card will work as expected.</p>
+<div class="section" id="pcie-bifurcation-setting">
+<h3>PCIe bifurcation setting<a class="headerlink" href="#pcie-bifurcation-setting" title="Permalink to this headline">¶</a></h3>
+<p>PCIe bifurcation splits the PCIe link into two (or more) smaller buses. The bifurcation setting can be found in the BIOS. Not all systems support bifurcation.
+Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ensure bifurcation is not enabled.</p>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Refer to manufacture’s BIOS documentation to turn off bifurcation</p></li>
+<li><p>Refer to manufacture’s BIOS documentation to turn off bifurcation.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -1018,7 +1018,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on March 12, 2021.
+        Last updated on May 23, 2021.
       </span>
 
     </p>

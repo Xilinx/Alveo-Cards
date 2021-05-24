@@ -83,7 +83,7 @@ Issue Areas
        - XRT drivers not recognizing the card
 
    * - :doc:`docs/sc-troubleshooting`
-     - Common Satellite Controller issues
+     - Common Satellite Controller (SC) issues
 
        - Bad XMC error
        - ``xbgmgmt flash --scan`` reporting SC version mismatches

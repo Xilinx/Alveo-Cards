@@ -509,7 +509,7 @@
 <hr class="docutils" />
 <div class="section" id="log-machine-state">
 <h3>Log machine state<a class="headerlink" href="#log-machine-state" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a> to collect information on the system, XRT, and card state. The script captures:</p>
+<p>Use <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a>  to collect information on the system, XRT, and card state. The script captures:</p>
 <ul class="simple">
 <li><p>Initial dmesg state</p></li>
 <li><p>OS</p></li>
@@ -1124,10 +1124,14 @@ Cold reboot machine to load the new image on card(s).
 <hr class="docutils" />
 <div class="section" id="monitor-card-power-and-temperature">
 <h3>Monitor card power and temperature<a class="headerlink" href="#monitor-card-power-and-temperature" title="Permalink to this headline">¶</a></h3>
-<p>During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version and are detailed in the respective data sheets.</p>
+<p>During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version as detailed below:</p>
 <p>The U50 is rated for 75W, supplied by the motherboard via</p>
 <ul class="simple">
-<li><p>A 10W 3.3V rail</p></li>
+<li><p>A 10W 3.3V rail</p>
+<ul>
+<li><p>Dedicated for HBM power, see <a class="reference external" href="https://www.xilinx.com/support/answers/75222.html">AR 75222</a> for more information</p></li>
+</ul>
+</li>
 <li><p>And a 65W 12V rail</p></li>
 </ul>
 <p>The U200/U250/U280 are rated for 225W</p>
@@ -1453,7 +1457,7 @@ a.  Often the debug machine is a windows laptop</p></li>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on March 12, 2021.
+        Last updated on May 23, 2021.
       </span>
 
     </p>

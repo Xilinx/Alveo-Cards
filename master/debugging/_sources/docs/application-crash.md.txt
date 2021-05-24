@@ -24,7 +24,7 @@ Common software causes include user application bugs, invalid memory addresses, 
 To narrow this down, you can look at hardware causes for a crash by:
 
 * Running a known good [Power delivery test](power-delivery.md) to confirm hardware can pass a stress test.
-*  Ensure the card is running within limits by running your application + kernel while [monitoring power and temperature](common-steps.html#monitor-card-power-and-temperature).
+*  Ensure the card is running within limits by running your application + kernel while [monitoring power and temperature](common-steps.md#monitor-card-power-and-temperature).
 
  If the card passes the stress test, and is operating in power and thermal limits, you are likely to be chasing a software issue covered in more detail in the [Application debugging chapter of UG 1416](https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc;v=latest;d=debuggingapplicationskernels.html).
 
@@ -55,14 +55,14 @@ Next steps:
 - - -
 ### Ensure application is running in the power envelope
 
-During operation the [SC](terminology.html#sc) is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:
+During operation the [SC](terminology.md#sc) is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:
 
 * Shut down the kernel - if the card starts to exceed limits
 * Reset the card - if the card hits a fatal limit
 
 Checking for this will require you to monitor the card while running your application with a work load that will stress the card harware.
-- Use `xbutil query` to [monitor the power rails and temperature](common-steps.html#monitor-card-power-and-temperature) making sure the card is in limits
-- Inspect [system logs](common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits) for over temperature and power events.
+- Use `xbutil query` to [monitor the power rails and temperature](common-steps.md#monitor-card-power-and-temperature) making sure the card is in limits
+- Inspect [system logs](common-steps.md#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits) for over temperature and power events.
 
 Keep in mind that temperature events can take time to occur because the card and heat sinks have some thermal mass. Electical loads can ramp up quickly and can happen on application start up.
 

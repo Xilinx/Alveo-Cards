@@ -457,10 +457,10 @@
  </tr>
 </table><div class="section" id="card-validation">
 <h1>Card Validation<a class="headerlink" href="#card-validation" title="Permalink to this headline">¶</a></h1>
-<p>XRT provides a utility to validate the <a class="reference internal" href="card-install.html"><span class="doc">card installation</span></a> using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command. This checks for proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904">Vitis Documentation</a>.</p>
+<p>XRT provides the <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> utility which validates <a class="reference internal" href="card-install.html"><span class="doc">card installation</span></a> using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command. It checks proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904">Vitis Documentation</a>.  If validation fails, indicated by <code class="docutils literal notranslate"><span class="pre">ERROR:</span> <span class="pre">Some</span> <span class="pre">cards</span> <span class="pre">failed</span> <span class="pre">to</span> <span class="pre">validate.</span></code> the errors need to be addressed before the card can be used.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>This page covers issues users have reported when running the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command. If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
+<p>This page covers issues encountered when using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.    If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
 </div>
 <div class="section" id="you-will-need">
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
@@ -934,7 +934,7 @@ ERROR: == verify kernel test FAILED
 <p>Next steps:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Determine packages installed on the system</a></p></li>
-<li><p>Follow package install steps in <a class="reference external" href="modifying-xrt-platform.html#">Modifying existing XRT or platform install</a></p></li>
+<li><p>Follow package install steps in <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">Modifying existing XRT or platform install</span></a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -1043,7 +1043,7 @@ ERROR: == verify kernel test FAILED
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on March 12, 2021.
+        Last updated on May 23, 2021.
       </span>
 
     </p>

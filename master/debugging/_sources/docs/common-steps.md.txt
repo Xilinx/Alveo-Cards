@@ -26,7 +26,7 @@ This section covers steps involving the host hardware, BIOS, and OS setup.
 - - -
 ### Log machine state
 
-Use [WTSxrtLog.sh](scripts/WTSxrtLog.sh) to collect information on the system, XRT, and card state. The script captures:
+Use [WTSxrtLog.sh](scripts/WTSxrtLog.sh)  to collect information on the system, XRT, and card state. The script captures:
 
 -   Initial dmesg state
 -   OS
@@ -225,7 +225,7 @@ The green circles show a slot that supports Gen3 x16 cards. The red circles show
 
 - - -
 ### Disable fastboot
-Use this if the [system recognizes the card](common-steps.html#confirm-system-recognizes-cards) only after a warm boot
+Use this if the [system recognizes the card](common-steps.md#confirm-system-recognizes-cards) only after a warm boot
 
 - Boot the system into the BIOS setup menu
     - F12 on many machines
@@ -334,7 +334,7 @@ WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 xrt/now 2.5.309 amd64 [installed,local]
 ```
 
-Use [the XRT release table](common-steps.html#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
+Use [the XRT release table](common-steps.md#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
 
 #### RHEL/CentOS
 
@@ -394,7 +394,7 @@ Order matters for both of these commands. xocl depends on xclmgmt.
 
 Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.
 
-Before removing XRT, run `sudo xbmgmt flash --scan --verbose` and if any cards have a shell on them, [return each card to golden](common-steps.html#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
+Before removing XRT, run `sudo xbmgmt flash --scan --verbose` and if any cards have a shell on them, [return each card to golden](common-steps.md#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
 
 Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.
 
@@ -654,10 +654,11 @@ Card [0000:03:00.0]
 - - -
 ### Monitor card power and temperature
 
-During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version and are detailed in the respective data sheets.
+During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version as detailed below:
 
 The U50 is rated for 75W, supplied by the motherboard via
 - A 10W 3.3V rail
+  - Dedicated for HBM power, see [AR 75222](https://www.xilinx.com/support/answers/75222.html) for more information
 - And a 65W 12V rail
 
 The U200/U250/U280 are rated for 225W
@@ -855,7 +856,7 @@ Level 3 : 0x80004(RECS_CONTINUOUS_RTRANSFERS_MAX_WAIT|RECS_WRITE_TO_BVALID_MAX_W
 Error occurred on: Wed 2020-08-19 13:59:13 MDT
 ```
 
-To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.html#monitor-card-power-and-temperature) section.
+To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.md#monitor-card-power-and-temperature) section.
 
 - - -
 ### Reverting the card to factory image

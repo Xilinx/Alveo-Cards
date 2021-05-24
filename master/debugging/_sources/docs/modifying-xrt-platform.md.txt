@@ -29,12 +29,12 @@ If you want to install:
 
 Before modifying XRT, you need to:
 
-- Have [Root/sudo permissions](common-steps.html#root-sudo-access)
+- Have [Root/sudo permissions](common-steps.md#root-sudo-access)
 -  Ensure the card(s), XRT, and the deployment packages are installed and working as expected as part of the [card install](card-install.md)
 
 Next determine your starting state:
-- [Determine XRT and platform packages installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
-- [Determine platform running on the card](common-steps.html#determine-platform-and-sc-on-card-and-system)
+- [Determine XRT and platform packages installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
+- [Determine platform running on the card](common-steps.md#determine-platform-and-sc-on-card-and-system)
 
 ## Common Cases
 
@@ -45,9 +45,9 @@ Next determine your starting state:
 If XRT is already installed and there is a new platform to be installed on the Alveo card, follow the below steps:
 
  - Download the new platform from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
- - [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility)
+ - [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
     - Download a new XRT if needed
- - [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
+ - [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
  - Remove the old deployment package using
     - Ubuntu: `sudo apt remove installed_platform_name`
     - RHEL/CentOS: `sudo yum remove installed_platform_name`
@@ -75,8 +75,8 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 - Download the new XRT package from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Confirm the [host system is compatible](check-system-compatibility.md)
 - Check which platforms are on card with `sudo xbmgmt flash --scan --verbose`
-    - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility)
-    - If XRT does not support the new platform [Return the card to golden](common-steps.html#reverting-the-card-to-factory-image)
+    - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
+    - If XRT does not support the new platform [Return the card to golden](common-steps.md#reverting-the-card-to-factory-image)
 - Upgrade XRT using one of the commands below
   - Ubuntu: `sudo apt install ./xrt_package_name.deb`
   - RHEL/CentOS: `sudo yum install xrt_package_name.rpm`
@@ -91,14 +91,14 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:
 
 - Download the platform package from the archive section of the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-- [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
+- [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
     - Download XRT package if needed
-- [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
-- If a different XRT is needed, [Remove XRT](common-steps.html#remove-xrt) and install the replacement XRT package on the system using one of the commands below
+- [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
+- If a different XRT is needed, [Remove XRT](common-steps.md#remove-xrt) and install the replacement XRT package on the system using one of the commands below
     - Ubuntu: `sudo apt install ./xrt_package_name.deb`
     - RHEL/CentOS: `sudo yum install xrt_package_name.rpm`
 - Else remove the current deployment package with `sudo apt remove` or `sudo yum remove`
-  - If needed use the package manager to find the installed [package names](common-steps.html#determine-xrt-packages-using-the-package-manager)
+  - If needed use the package manager to find the installed [package names](common-steps.md#determine-xrt-packages-using-the-package-manager)
 - Install the replacement deployment package on the system using one of the below
   - Ubuntu: `sudo apt install ./platform_package_name.deb`
   - RHEL/CentOS: `sudo yum install platform_package_name.rpm`
@@ -118,8 +118,8 @@ If XRT is already installed and an older version of XRT is to be installed, foll
   - Make sure to have the package to re-install the platform
 - Determine which platform is on the card
 - If the platform is different
-  - [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
-- [Remove XRT](common-steps.html#remove-xrt)
+  - [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
+- [Remove XRT](common-steps.md#remove-xrt)
 - Install the replacement xrt package on the system using one of commands the below
   - Ubuntu: `sudo apt install ./xrt_package_name.deb`
   - RHEL/CentOS: `sudo yum install xrt_package_name.rpm`
@@ -138,7 +138,7 @@ If XRT is already installed and an older version of XRT is to be installed, foll
 After XRT is installed and once it has been decided on the platform that will be used on the Alveo card, follow the below steps to install the development platform:
 
 - Ensure XRT is installed
-- [Determine platform running on the card](common-steps.html#determine-platform-and-sc-on-card-and-system)
+- [Determine platform running on the card](common-steps.md#determine-platform-and-sc-on-card-and-system)
 - Go to the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html) to download the matching development platform
 - Use `apt install` or `yum install` to install the platform package
 
@@ -159,7 +159,7 @@ The steps to re-install a platform are given below.
 
 Removing XRT will also remove any packages that depend on XRT, for example the platforms. Please follow the below link to remove XRT:
 
-  - Go to [Remove XRT](common-steps.html#remove-xrt)
+  - Go to [Remove XRT](common-steps.md#remove-xrt)
 
 - - -
 
