@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE HTML>
@@ -334,6 +334,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
+<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
@@ -472,7 +476,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="common-steps">
@@ -679,7 +683,7 @@
 <hr class="docutils" />
 <div class="section" id="disable-fastboot">
 <h3>Disable fastboot<a class="headerlink" href="#disable-fastboot" title="Permalink to this headline">¶</a></h3>
-<p>Use this if the <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
+<p>Use this if the <a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
 <ul class="simple">
 <li><p>Boot the system into the BIOS setup menu</p>
 <ul>
@@ -783,7 +787,7 @@
 <span class="n">xrt</span><span class="o">/</span><span class="n">now</span> <span class="mf">2.5</span><span class="o">.</span><span class="mi">309</span> <span class="n">amd64</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Use <a class="reference external" href="common-steps.html#xrt-release-versions-and-download-locations">the XRT release table</a>  to see if the XRT version is an official release.</p>
+<p>Use <a class="reference external" href="common-steps.md#xrt-release-versions-and-download-locations">the XRT release table</a>  to see if the XRT version is an official release.</p>
 </div>
 <div class="section" id="id2">
 <h4>RHEL/CentOS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
@@ -835,7 +839,7 @@
 <div class="section" id="remove-xrt">
 <h3>Remove XRT<a class="headerlink" href="#remove-xrt" title="Permalink to this headline">¶</a></h3>
 <p>Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.</p>
-<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
+<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
 <p>Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">xrt</span></code></p></li>
@@ -884,6 +888,10 @@ Else there may be an platform mismatch.</p>
 <tr>
 <td>2020.2 <br> XRT 2.8.743 <br>See <a href="https://www.xilinx.com/support/answers/76088.html">AR 76088</a></td>
 <td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
+</tr>
+<tr>
+<td>2020.2_pu1 <br> XRT 2.9.317</td>
+<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
 </tr>
 </tbody>
 </table></div>
@@ -1334,7 +1342,7 @@ Cold reboot machine to load the new image on card(s).
 <span class="n">Error</span> <span class="n">occurred</span> <span class="n">on</span><span class="p">:</span> <span class="n">Wed</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span> <span class="mi">13</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">13</span> <span class="n">MDT</span>
 </pre></div>
 </div>
-<p>To actively monitor the card’s power and temperature during runtime, use the script provided in the <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitoring power and temperature</a> section.</p>
+<p>To actively monitor the card’s power and temperature during runtime, use the script provided in the <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitoring power and temperature</a> section.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="reverting-the-card-to-factory-image">
@@ -1457,7 +1465,7 @@ a.  Often the debug machine is a windows laptop</p></li>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 23, 2021.
+        Last updated on July 7, 2021.
       </span>
 
     </p>

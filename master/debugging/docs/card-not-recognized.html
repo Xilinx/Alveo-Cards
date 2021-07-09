@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE HTML>
@@ -334,6 +334,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
+<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
@@ -461,7 +465,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="card-not-recognized">
@@ -517,7 +521,7 @@
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">Root/sudo permissions</a></p></li>
 </ul>
 </div>
 <div class="section" id="common-cases">
@@ -535,7 +539,7 @@
 <li><p>If this fixes the issue, see <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p>
+<li><p><a class="reference external" href="common-steps.md#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p>
 <ul>
 <li><p>The PCIe controller is built into modern CPUs. If there are one or more missing CPUs you may not be able to use all the PCIe slots, review system documentation to determine which slots are usable.</p></li>
 </ul>
@@ -570,7 +574,7 @@
 <p>As a last attempt:</p>
 <ul class="simple">
 <li><p>Cold boot the system twice</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
@@ -631,7 +635,7 @@
 <p>The BIOS can start enumerating devices on the PCIe bus 100ms after the system starts to boot. Sometimes Alveo cards take longer than that to program the static region of the shell containing the PCIe core. Once programmed the card’s PCIe core remains active even during a warm boot. Since a warm boot will cause the BIOS to re-enumerate devices on the PCIe bus, if the Alveo card is recognized, it suggests the BIOS is enumerating before the Alveo card’s PCIe core is active.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#disable-fastboot">Disable fastboot</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#disable-fastboot">Disable fastboot</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -648,7 +652,7 @@
 </li>
 <li><p>Confirm BIOS is not in <a class="reference external" href="#bios-in-safety-mode">safety mode</a></p></li>
 <li><p>Try reseating the card and seeing if the host will recognize</p></li>
-<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.html#vivado-hw-manager">Vivado HW Manager</a></p>
+<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.md#vivado-hw-manager">Vivado HW Manager</a></p>
 <ul>
 <li><p>If it can be seen, revert the card to golden <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a></p></li>
 </ul>
@@ -662,8 +666,8 @@
 <p>If the system does not have enough airflow it is possible the FPGA can overheat taking out the PCIe core on the FPGA.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">Check for an over temperature event in dmesg</a></p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor card temperature</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">Check for an over temperature event in dmesg</a></p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitor card temperature</a></p></li>
 <li><p>If there is an over temperature event or if the card is over 90C in xbutil query</p>
 <ul>
 <li><p>Cold boot the system</p></li>
@@ -694,8 +698,8 @@
 <p>If the card is tested and recognized in a different PCIe slot on the same machine, there is an issue with the intended motherboard slot.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Ensure <a class="reference external" href="common-steps.html#determine-pcie-slot-type-and-speed">PCIe slot type and speed</a> match the platform requirements</p></li>
-<li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p></li>
+<li><p>Ensure <a class="reference external" href="common-steps.md#determine-pcie-slot-type-and-speed">PCIe slot type and speed</a> match the platform requirements</p></li>
+<li><p><a class="reference external" href="common-steps.md#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p></li>
 <li><p>Review BIOS settings and see if the BIOS sees the card</p></li>
 </ul>
 </div>
@@ -706,9 +710,9 @@
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Try another PCIe slot</p></li>
-<li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p></li>
 <li><p>See if the host has a <a class="reference external" href="#new-or-updated-bios-on-machine">New or updated BIOS on the machine</a></p></li>
-<li><p>Ensure <a class="reference external" href="common-steps.html#determine-pcie-slot-type-and-speed">PCIe slot type and speed</a> match the card deployment platform requirements.</p></li>
+<li><p>Ensure <a class="reference external" href="common-steps.md#determine-pcie-slot-type-and-speed">PCIe slot type and speed</a> match the card deployment platform requirements.</p></li>
 <li><p>Check airflow</p></li>
 </ul>
 </div>
@@ -725,7 +729,7 @@
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.html#vivado-hw-manager">Vivado HW Manager</a></p>
+<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.md#vivado-hw-manager">Vivado HW Manager</a></p>
 <ul>
 <li><p>If it can be seen, revert the card to golden <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a></p></li>
 </ul>
@@ -787,7 +791,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="riser-replacement">
@@ -809,7 +813,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="additional-card-installed-in-system">
@@ -818,7 +822,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p>Remove the new card</p></li>
 <li><p>Confirm the <a class="reference external" href="#bios-in-safety-mode">BIOS is not in safety mode</a></p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="new-or-updated-bios-on-machine">
@@ -833,7 +837,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 </li>
 <li><p>Cold boot the system</p></li>
 <li><p>See if <a class="reference external" href="#bios-in-safety-mode">BIOS is not in safety mode</a></p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="bios-settings-changed">
@@ -842,16 +846,16 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p>Review the changes</p></li>
 <li><p>Revert any changes that are incompatible with Alveo Cards</p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="cpu-removal">
 <h4>CPU removal<a class="headerlink" href="#cpu-removal" title="Permalink to this headline">¶</a></h4>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for Unpopulated CPUs</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#check-for-unpopulated-cpus">Check for Unpopulated CPUs</a></p></li>
 <li><p>Move card to a usable slot</p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="other-hardware-added-since-last-boot">
@@ -859,7 +863,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Remove the new PCIe device(s)</p></li>
 <li><p>Reseat the Alveo card</p>
 <ul>
@@ -867,7 +871,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 </ul>
 </li>
 <li><p>Bring system back up</p></li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p>
+<li><p><a class="reference external" href="common-steps.md#confirm-system-recognizes-cards">Confirm the card is recognized</a></p>
 <ul>
 <li><p>If so progress through card install</p></li>
 <li><p>If not try the card in</p>
@@ -904,7 +908,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.html#vivado-hw-manager">Vivado HW Manager</a></p>
+<li><p>See if the FPGA is seen in <a class="reference external" href="common-steps.md#vivado-hw-manager">Vivado HW Manager</a></p>
 <ul>
 <li><p>If it can be seen, revert the card to golden <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a></p></li>
 </ul>
@@ -920,7 +924,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p>Try the following:</p>
 <ul>
 <li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
@@ -928,7 +932,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p>Move card to a different slot/Machine and try these steps again</p></li>
 </ul>
 </li>
-<li><p>If the blue LED is still not illuminated, see if the FPGA is seen in <a class="reference external" href="common-steps.html#vivado-hw-manager">Vivado HW Manager</a></p>
+<li><p>If the blue LED is still not illuminated, see if the FPGA is seen in <a class="reference external" href="common-steps.md#vivado-hw-manager">Vivado HW Manager</a></p>
 <ul>
 <li><p>If it can be seen, revert the card to golden <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a></p></li>
 </ul>
@@ -945,7 +949,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p>If the BIOS is not in safety mode, try the following:</p>
 <ul>
 <li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
@@ -1018,7 +1022,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 23, 2021.
+        Last updated on July 7, 2021.
       </span>
 
     </p>

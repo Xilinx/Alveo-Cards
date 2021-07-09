@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE HTML>
@@ -334,6 +334,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
+<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
@@ -442,7 +446,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="power-delivery">
@@ -462,7 +466,7 @@
 <ul class="simple">
 <li><p>A <a class="reference internal" href="check-system-compatibility.html"><span class="doc">Compatible host system</span></a></p></li>
 <li><p>One or more alveo cards</p></li>
-<li><p><a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#root-sudo-access">Root/sudo permissions</a></p></li>
 </ul>
 <p>Before starting to test the card, gather data</p>
 <ol class="simple">
@@ -475,7 +479,7 @@
 </li>
 <li><p>Confirm card(s) are compatible with the host machine</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#determine-active-or-passive-card">Determine if the card is active or passive</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#determine-active-or-passive-card">Determine if the card is active or passive</a></p></li>
 <li><p>Only test a passive card in server system with enough airflow.</p></li>
 <li><p>If a passive card is not in a <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html">qualified host and card combination</a>, you may need to maunally increase server airflow by turning up the fan speed for the tests to pass.</p></li>
 </ul>
@@ -542,7 +546,7 @@
 </ul>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>For active cards go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
+<li><p>For active cards go to <a class="reference external" href="power-delivery.md#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
 <li><p>For passive cards confirm the following:</p>
 <ul>
 <li><p>Server airflow meets card rquirements</p>
@@ -551,7 +555,7 @@
 </ul>
 </li>
 <li><p>Lid will be on the server for testing</p></li>
-<li><p>Go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a></p></li>
+<li><p>Go to <a class="reference external" href="power-delivery.md#xbtest-for-testing-power">xbtest for testing power</a></p></li>
 </ul>
 </li>
 </ul>
@@ -559,7 +563,7 @@
 <hr class="docutils" />
 <div class="section" id="shell-not-listed-in-xbtest-downloads-below">
 <h3>Shell not listed in xbtest downloads below<a class="headerlink" href="#shell-not-listed-in-xbtest-downloads-below" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">platform running on the card and system</a> is supported.</p>
+<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.md#determine-platform-and-sc-on-card-and-system">platform running on the card and system</a> is supported.</p>
 <p>If the platform is not supported you need to update the system and card with a supported platform.</p>
 <p>Next steps:</p>
 <ul class="simple">
@@ -573,7 +577,7 @@
 <p>If the card overheats or uses more power that the system provides the test application, card, or system could crash.</p>
 <p>Next Steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor the power and temperature</a> to make sure the card is operating within temperature and power limits.</p></li>
+<li><p><a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">Monitor the power and temperature</a> to make sure the card is operating within temperature and power limits.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -620,7 +624,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor power and temperature</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">Monitor power and temperature</a></p></li>
 <li><p>Interrupt the test with <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> if card temperature goes over 95C or if the temperature suddenly falls.</p></li>
 <li><p>At the end there will be a test pass or fail.</p>
 <ul>
@@ -679,7 +683,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 23, 2021.
+        Last updated on July 7, 2021.
       </span>
 
     </p>

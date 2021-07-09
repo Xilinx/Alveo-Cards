@@ -1,6 +1,6 @@
 ﻿<table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table>
@@ -94,7 +94,7 @@ Next steps:
 
 - - -
 ### Memory bandwidth test fails
- Before XRT 2020.1 PU1, `xbutil validate` depended on Python 2.7 and support packages. If you observe errors with a `.py` file, `pyopenCL`, or `numpy` as shown below, there is an issue with those pacakges.
+ Before XRT 2020.1 PU1, `xbutil validate` depended on Python 2.7 and support packages. If you observe errors with a `.py` file, `pyopenCL`, or `numpy` as shown below, there is an issue with those packages.
 
  ```
  xbutil validate
@@ -481,7 +481,7 @@ ERROR: == verify kernel test FAILED
 Next steps:
 
 - [Determine packages installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
-- Follow package install steps in [Modifying existing XRT or platform install](modifying-xrt-platform.md)
+- Follow package install steps in [Modifying existing XRT or platform install](modifying-xrt-platform.md#)
 
 - - -
 ### Incorrect output from kernel

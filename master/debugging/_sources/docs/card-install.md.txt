@@ -1,6 +1,6 @@
 ﻿<table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table>
@@ -17,7 +17,7 @@ For Alveo card and software installation, follow the procedures outlined in the 
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | U50  | [Alveo U50 Data Center Accelerator Card Installation Guide v1.7 (UG1370)]( https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1370-u50-installation.pdf)                                   |
 | U200 | [Getting Started with Alveo Data Center Acceleration Cards v1.7 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
-| U250 | [Getting Started with Alveo Data Center Acceleration Cards v1.7 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
+| U250 | [Getting Started with Alveo Data Center Acceleration Cards v1.9 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_9/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
 | U280 | [Getting Started with Alveo Data Center Acceleration Cards v1.5 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_5/ug1301-getting-started-guide-alveo-accelerator-cards.pdf) |
 
 

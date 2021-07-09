@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE HTML>
@@ -334,6 +334,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
+<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
@@ -440,7 +444,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="xrt-troubleshooting">
@@ -454,7 +458,7 @@
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">Root/sudo permissions</a></p></li>
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Confirm System Compatibility</span></a></p></li>
 </ul>
 </div>
@@ -561,7 +565,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xclmgmt</span></code></p></li>
 </ul>
 </li>
-<li><p>If both drivers are present <a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Reload the XRT drivers</a></p></li>
+<li><p>If both drivers are present <a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Reload the XRT drivers</a></p></li>
 <li><p>If a driver is missing go to <a class="reference external" href="#drivers-not-installed-into-kernel">Driver not installed into Kernel</a> (below)</p></li>
 </ul>
 </div>
@@ -589,11 +593,11 @@ Complete!
 <ul class="simple">
 <li><p>Confirm the XRT version is supported by this OS release</p>
 <ul>
-<li><p><a class="reference external" href="common-steps.html#determine-linux-release">Determine the linux release</a></p></li>
-<li><p><a class="reference external" href="common-steps.html#determine-linux-kernel-and-header-information">Determine kernel headers</a> match the release, and are installed correctly</p></li>
+<li><p><a class="reference external" href="common-steps.md#determine-linux-release">Determine the linux release</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#determine-linux-kernel-and-header-information">Determine kernel headers</a> match the release, and are installed correctly</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
 <li><p>Download the latest XRT from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Re-install XRT</p>
 <ul>
@@ -635,25 +639,25 @@ No card is found!
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>If card was last used in a Vivado flow, XRT will not be able to communicate to the card. Revert the card to the golden image using <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a>.</p></li>
-<li><p>If card wasn’t used in Vivado flow, <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
+<li><p>If card wasn’t used in Vivado flow, <a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
 <li><p>Download the latest XRT from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Re-install XRT</p></li>
 <li><p>Install the desired deployment platform</p>
 <ul>
-<li><p>Use the <a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to ensure the platform and XRT are compatible</p></li>
+<li><p>Use the <a class="reference external" href="common-steps.md#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to ensure the platform and XRT are compatible</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">Determine platform on card and system</a></p></li>
-<li><p>If the card does not have the desired platform <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#determine-platform-and-sc-on-card-and-system">Determine platform on card and system</a></p></li>
+<li><p>If the card does not have the desired platform <a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="nothing-else-has-worked">
 <h3>Nothing else has worked<a class="headerlink" href="#nothing-else-has-worked" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Unload and reload the XRT drivers</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Unload and reload the XRT drivers</a></p></li>
 <li><p>Look for similar issues on <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
-<li><p><a class="reference external" href="common-steps.html#log-machine-state">Log machine state</a> and post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p><a class="reference external" href="common-steps.md#log-machine-state">Log machine state</a> and post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -704,7 +708,7 @@ No card is found!
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 23, 2021.
+        Last updated on July 7, 2021.
       </span>
 
     </p>

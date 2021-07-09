@@ -1,4 +1,4 @@
-﻿
+
 
 
 <!DOCTYPE HTML>
@@ -334,6 +334,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
+<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
+</ul>
 <p class="caption"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
@@ -437,7 +441,7 @@
             
   <table class="sphinxhide">
  <tr>
-   <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
+   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="application-crash">
@@ -458,7 +462,7 @@
 <p>To narrow this down, you can look at hardware causes for a crash by:</p>
 <ul class="simple">
 <li><p>Running a known good <a class="reference internal" href="power-delivery.html"><span class="doc">Power delivery test</span></a> to confirm hardware can pass a stress test.</p></li>
-<li><p>Ensure the card is running within limits by running your application + kernel while <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitoring power and temperature</a>.</p></li>
+<li><p>Ensure the card is running within limits by running your application + kernel while <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitoring power and temperature</a>.</p></li>
 </ul>
 <p>If the card passes the stress test, and is operating in power and thermal limits, you are likely to be chasing a software issue covered in more detail in the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>
 </div>
@@ -490,15 +494,15 @@
 <hr class="docutils" />
 <div class="section" id="ensure-application-is-running-in-the-power-envelope">
 <h3>Ensure application is running in the power envelope<a class="headerlink" href="#ensure-application-is-running-in-the-power-envelope" title="Permalink to this headline">¶</a></h3>
-<p>During operation the <a class="reference external" href="terminology.html#sc">SC</a> is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:</p>
+<p>During operation the <a class="reference external" href="terminology.md#sc">SC</a> is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:</p>
 <ul class="simple">
 <li><p>Shut down the kernel - if the card starts to exceed limits</p></li>
 <li><p>Reset the card - if the card hits a fatal limit</p></li>
 </ul>
 <p>Checking for this will require you to monitor the card while running your application with a work load that will stress the card harware.</p>
 <ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor the power rails and temperature</a> making sure the card is in limits</p></li>
-<li><p>Inspect <a class="reference external" href="common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">system logs</a> for over temperature and power events.</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitor the power rails and temperature</a> making sure the card is in limits</p></li>
+<li><p>Inspect <a class="reference external" href="common-steps.md#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">system logs</a> for over temperature and power events.</p></li>
 </ul>
 <p>Keep in mind that temperature events can take time to occur because the card and heat sinks have some thermal mass. Electical loads can ramp up quickly and can happen on application start up.</p>
 <p>If the power testing is good this crash is a software application issue, go to the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>
@@ -565,7 +569,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on May 23, 2021.
+        Last updated on July 7, 2021.
       </span>
 
     </p>

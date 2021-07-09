@@ -55,8 +55,7 @@
   <link rel="stylesheet" href="../_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="../_static/css/pro.min.css" media="all" />
     <link rel="index" title="Index" href="../genindex.html" />
-    <link rel="search" title="Search" href="../search.html" />
-    <link rel="prev" title="Terminology" href="terminology.html" /> 
+    <link rel="search" title="Search" href="../search.html" /> 
 	</head>
 	<body>
 		<div class="xilinx-bs3"/>
@@ -351,23 +350,16 @@
 <li class="toctree-l1"><a class="reference internal" href="common-steps.html">Common Steps</a></li>
 </ul>
 <p class="caption"><span class="caption-text">Other Topics</span></p>
-<ul class="current">
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="check-system-compatibility.html">Checking System Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Alveo System</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#alveo-system-diagram">Alveo System Diagram</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
-</ul>
-</li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-system.html">Alveo System</a></li>
 </ul>
 
             
 			<p class="caption"><span class="caption-text">This Page</span></p>
 				<ul class="current">
-				  <li class="toctree-l1"><a href="../_sources/docs/alveo-system.md.txt"
+				  <li class="toctree-l1"><a href="../_sources/docs/index.rst.txt"
 						rel="nofollow">Show Source</a></li>						
 				</ul>
           
@@ -413,13 +405,13 @@
     
       <li><a href="../README.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Alveo System</li>
+      <li>Alveo Debug Guide</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="../_sources/docs/alveo-system.md.txt" rel="nofollow"> View page source</a>
+            <a href="../_sources/docs/index.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -432,43 +424,35 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <table class="sphinxhide">
- <tr>
-   <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
-   </td>
- </tr>
-</table><div class="section" id="alveo-system">
-<h1>Alveo System<a class="headerlink" href="#alveo-system" title="Permalink to this headline">¶</a></h1>
-<p>The following generic Alveo card system diagram visualizes the interaction between the various areas of the card and can be useful during debugging.</p>
-<div class="section" id="alveo-system-diagram">
-<h2>Alveo System Diagram<a class="headerlink" href="#alveo-system-diagram" title="Permalink to this headline">¶</a></h2>
-<p>The key points of the diagram include:</p>
-<ul class="simple">
-<li><p>The host communicates via <a class="reference external" href="terminology.md#xrt">XRT</a> drivers and utilities with the card’s FPGA based <a class="reference external" href="terminology.md#cmc">CMC</a> over the PCIe bus</p></li>
-<li><p>The Satellite Controller (<a class="reference external" href="terminology.md#sc">SC</a>) communicates with the CMC to provide sensor data and card status</p>
-<ul>
-<li><p>Only the SC reads the on-card sensors</p></li>
-</ul>
-</li>
-<li><p>For XRT status requests and card management, the communication path occurs via the PCIe bus ↔ CMC ↔ SC</p></li>
-<li><p>On servers there is a direct connection between the SC and the Sever BMC via a <a class="reference external" href="https://www.kernel.org/doc/html/latest/i2c/summary.html">SMBus</a> communication path</p></li>
-</ul>
-<p><img alt="Alveo Card System Diagram" src="../_images/AlveoCardSystemDiagram.png" /></p>
-<div class="section" id="xilinx-support">
-<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
-<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+  <div class="section" id="alveo-debug-guide">
+<h1>Alveo Debug Guide<a class="headerlink" href="#alveo-debug-guide" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
 </div>
-<div class="section" id="license">
-<h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
-<p>All software including scripts in this distribution are licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
-<p>You may obtain a copy of the License at
-<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
-<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
-<p>You may obtain a copy of the CC-BY-4.0 License at
-<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
-<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD027 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
+</div>
+<div class="toctree-wrapper compound">
 </div>
 </div>
 
@@ -485,13 +469,6 @@
 	  
 	  
 	  <!-- Sphinx Page Footer block -->
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-      
-        <a href="terminology.html" class="btn btn-neutral float-left" title="Terminology" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>

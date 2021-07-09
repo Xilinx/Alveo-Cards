@@ -5,15 +5,18 @@ Alveo Card Debug Guide
 Quickly isolate, debug, and resolve a wide range of Alveo™ card related issues within the Vitis™/XRT flow, from card install through to hardware validation.
 
 
+
+.. attention::
+   In the 2021.1 version of XRT, there are new default subcommands for the xbmgmt and xbutil tools. For more information, see :doc:`docs/xrt-2021-1`.
+
+
+
+
 *****
 Usage
 *****
 
-Similar issues are grouped into categories in the table below allowing
-you to quickly narrow down the problem area. Click on the link matching
-your issue to be taken to the category. Within each category, an
-extensive list of encountered issues along with detailed error messages,
-symptoms and resolution steps are provided.
+Similar issues are grouped into categories in the table below allowing you to quickly narrow down the problem area. Click on the link matching your issue to be taken to the category. Within each category, an extensive list of encountered issues along with detailed error messages, symptoms and resolution steps are provided.
 
 .. sidebar:: Terminology
     :subtitle: This guide uses terms like reboot, shut down, cold boot, and unplug.
@@ -138,6 +141,13 @@ Unless required by applicable law or agreed to in writing, software distributed 
    :hidden:
 
    Alveo Cards Landing Page <https://xilinx.github.io/Alveo-Cards/master/index.html>
+
+.. toctree::
+   :maxdepth: 3
+   :caption: 2021.1 XRT
+   :hidden:
+
+   Command Updates <docs/xrt-2021-1>
 
 .. toctree::
    :maxdepth: 3
