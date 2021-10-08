@@ -345,7 +345,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#error-message-during-install">Error message during install</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pcie-slot-provides-75w-power">PCIe slot provides &lt;75W power</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-requires-pcie-aux-power-but-not-supplied-by-the-host">Card requires PCIe AUX power but not supplied by the host</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#more-cards-than-in-spec-slots">More cards than in-spec slots</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#more-cards-than-compatible-pcie-slots">More cards than compatible PCIe slots</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-operates-for-a-while-then-shuts-down">Card operates for a while, then shuts down</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
@@ -449,7 +449,7 @@
 <p>This page will help guide your installation of one or more Alveo™ cards into a host server or workstation for a Vitis™ flow.  In addition, it covers various use cases.  If you are just starting to debug, please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine if this is the best page for your purposes.</p>
 <div class="section" id="card-installation-guides">
 <h2>Card Installation Guides<a class="headerlink" href="#card-installation-guides" title="Permalink to this headline">¶</a></h2>
-<p>For Alveo card and software installation, follow the procedures outlined in the respective installation guide outlined in the table below.  For additional card details see the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a>.</p>
+<p>Card installation consists of intalling the card into a server and software installation.  The installation steps for both are provided in the respective card installation guide.  Links to various guides are given in the table below.  The <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a> provides additional card details along with links to software installation downloads.</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -460,19 +460,19 @@
 <tbody>
 <tr>
 <td>U50</td>
-<td><a href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1370-u50-installation.pdf">Alveo U50 Data Center Accelerator Card Installation Guide v1.7 (UG1370)</a></td>
+<td><a href="https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1370-u50-installation.pdf">Alveo U50 Data Center Accelerator Card Installation Guide (UG1370)</a></td>
 </tr>
 <tr>
 <td>U200</td>
-<td><a href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards v1.7 (UG1301)</a></td>
+<td><a href="https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards (UG1301)</a></td>
 </tr>
 <tr>
 <td>U250</td>
-<td><a href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_9/ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards v1.9 (UG1301)</a></td>
+<td><a href="https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards (UG1301)</a></td>
 </tr>
 <tr>
 <td>U280</td>
-<td><a href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_5/ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards v1.5 (UG1301)</a></td>
+<td><a href="https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards (UG1301)</a></td>
 </tr>
 </tbody>
 </table></div>
@@ -482,66 +482,58 @@
 <ul class="simple">
 <li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
 <li><p>Confirm <a class="reference internal" href="check-system-compatibility.html"><span class="doc">System compatibility</span></a></p></li>
-<li><p>Confirm proper airflow, these requirements are located in the respective Alveo Data Sheets from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
+<li><p>Confirm proper airflow requirements are met.  See the respective Alveo card Data Sheet from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 </ul>
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="installing-a-passive-card-into-a-workstation">
 <h3>Installing a passive card into a workstation<a class="headerlink" href="#installing-a-passive-card-into-a-workstation" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>This is not supported.</p></li>
 <li><p>Passive cards are only supported in servers.</p></li>
 </ul>
-<p><strong>WARNING:</strong> Workstations do not provide enough airflow to cool passive cards. It is easy to damage passive cards in a workstation.</p>
+<p>IMPORTANT: Since workstations do not provide enough airflow to cool passive cards, it is easy to damage passive cards in a workstation.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-used-in-vivado-flow">
 <h3>Card used in Vivado flow<a class="headerlink" href="#card-used-in-vivado-flow" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p>This debug guide is for Vitis flow only.</p></li>
-<li><p>See the <a class="reference external" href="https://www.xilinx.com/member/alveo-vivado.html">Alveo-Vivado page</a> for Vivado™ related content.</p></li>
+<li><p>This guide only covers Vitis flow.</p></li>
+<li><p>Request access to the <a class="reference external" href="https://www.xilinx.com/member/alveo-vivado.html">Alveo-Vivado lounge</a> for Vivado™ related content.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="error-message-during-install">
 <h3>Error message during install<a class="headerlink" href="#error-message-during-install" title="Permalink to this headline">¶</a></h3>
+<p>If you encounter an error during card installation, search the following sections for support</p>
 <ul class="simple">
-<li><p>Resolve by noting the error and:</p>
-<ul>
-<li><p>Checking the <a class="reference internal" href="card-not-recognized.html"><span class="doc">Card not recognized</span></a> section if <code class="docutils literal notranslate"><span class="pre">lspci</span></code> is not recognizing the card</p></li>
-<li><p>Checking the <a class="reference internal" href="package-manager.html"><span class="doc">Package manager</span></a> section if there is an issue while installing the debs or rpms</p></li>
-<li><p>Searching the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a> for a similar issue</p></li>
-</ul>
-</li>
+<li><p><a class="reference internal" href="card-not-recognized.html"><span class="doc">Card not recognized</span></a> helps when card is not recognized by the host.</p></li>
+<li><p>See <a class="reference internal" href="package-manager.html"><span class="doc">Package manager</span></a> for issues while installing the <code class="docutils literal notranslate"><span class="pre">.deb</span></code> or <code class="docutils literal notranslate"><span class="pre">.rpm</span></code> installation packages</p></li>
+<li><p>Search the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a> for a similar issue</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="pcie-slot-provides-75w-power">
 <h3>PCIe slot provides &lt;75W power<a class="headerlink" href="#pcie-slot-provides-75w-power" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>This configuration is not tested by Xilinx. This is not supported.</p></li>
-</ul>
+<p>PCIe slots providing less than 75W of power are not tested by Xilinx. This is not supported.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-requires-pcie-aux-power-but-not-supplied-by-the-host">
 <h3>Card requires PCIe AUX power but not supplied by the host<a class="headerlink" href="#card-requires-pcie-aux-power-but-not-supplied-by-the-host" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>This configuration is not tested by Xilinx. This is not supported.</p></li>
-</ul>
+<p>This configuration is not tested by Xilinx. This is not supported.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="more-cards-than-in-spec-slots">
-<h3>More cards than in-spec slots<a class="headerlink" href="#more-cards-than-in-spec-slots" title="Permalink to this headline">¶</a></h3>
-<ul class="simple">
-<li><p>Limit the number of cards you will install.</p></li>
-</ul>
+<div class="section" id="more-cards-than-compatible-pcie-slots">
+<h3>More cards than compatible PCIe slots<a class="headerlink" href="#more-cards-than-compatible-pcie-slots" title="Permalink to this headline">¶</a></h3>
+<p>Each Alveo card is designed to be installed in a compatible PCIe slot. Slot requirements and card form factors are documented in each card’s <a class="reference external" href="card-install.html#card-installation-guides">installation guide</a>. A host which is populated with more cards than compatible PCIe slots, as in the case of a PCIe expander, may cause issues with the host or card.  Xilinx recommends limiting the number of installed cards to match the number of compatible PCIe slots.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-operates-for-a-while-then-shuts-down">
 <h3>Card operates for a while, then shuts down<a class="headerlink" href="#card-operates-for-a-while-then-shuts-down" title="Permalink to this headline">¶</a></h3>
+<p>The card may be overheating and subsequently shutting down.  Ensure adequate air flow.  See <a class="reference external" href="card-not-recognized.html#card-not-recognized-during-operation">Card not recognized during operation</a></p>
 <ul class="simple">
-<li><p>Ensure adequate air flow.  See <a class="reference external" href="card-not-recognized.html#card-not-recognized-during-operation">Card not recognized during operation</a></p></li>
 <li><p>For operating conditions, including airflow requirements, reference the respective Alveo Data Sheets within the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a>.</p></li>
 </ul>
 </div>
@@ -549,7 +541,7 @@
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -593,7 +585,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

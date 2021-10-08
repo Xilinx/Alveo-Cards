@@ -471,7 +471,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </li>
 <li><p>An older XRT</p>
 <ul>
-<li><p>Go to <a class="reference external" href="#installing-an-older-XRT">Installing an older XRT</a></p></li>
+<li><p>Go to <a class="reference external" href="#installing-an-older-xrt">Installing an older XRT</a></p></li>
 </ul>
 </li>
 <li><p>A development platform to match a deployment platform</p>
@@ -491,197 +491,208 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <p>Next determine your starting state:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Determine XRT and platform packages installed on the system</a></p></li>
-<li><p><a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">Determine platform running on the card</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
 </ul>
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="installing-a-new-platform">
 <h3>Installing a new platform<a class="headerlink" href="#installing-a-new-platform" title="Permalink to this headline">¶</a></h3>
 <p>If XRT is already installed and there is a new platform to be installed on the Alveo card, follow the below steps:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>Download the new platform from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p><a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p>
-<ul>
+<ul class="simple">
 <li><p>Download a new XRT if needed</p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
 <li><p>Remove the old deployment package using</p>
-<ul>
+<ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">installed_platform_name</span></code></p></li>
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span> <span class="pre">installed_platform_name</span></code></p></li>
 </ul>
 </li>
 <li><p>If a new XRT is needed, upgrade XRT using one of the commands below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./xrt_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">xrt_package_name.rpm</span></code></p></li>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
 <li><p>Install the new deployment package on the system using one of the commands below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./platform_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">platform_package_name.rpm</span></code></p></li>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Flash the FPGA image onto the card(s) using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span> <span class="pre">&lt;name&gt;</span></code></p>
-<ul>
-<li><p>If needed, you can determine the shell name with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get a list of management BDFs</p></li>
+<li><p>For each management BDF, program the FPGA image onto the card(s) using <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p>
+<ul class="simple">
+<li><p>If needed, you can determine the platform name with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
-<li><p>Cold boot the machine</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> to make sure the platform and the SC image on card match those installed on the system</p>
-<ul>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code> for each card to make sure the platform and the SC image on card match those installed on the system</p>
+<ul class="simple">
 <li><p>Some platforms require a second flash to update the SC image</p></li>
-<li><p>If the SC image mismatches run the flash command a second time</p></li>
+<li><p>If the SC image mismatches, run the flash command a second time</p></li>
 </ul>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> to determine install is working</p></li>
-<li><p>Optionally download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
-</ul>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> to get a list of user BDFs</p></li>
+<li><p>For each user BDF, run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">--device</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code> to confirm the card install is working</p></li>
+<li><p>Optionally, download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="installing-an-xrt-update">
 <h3>Installing an XRT update<a class="headerlink" href="#installing-an-xrt-update" title="Permalink to this headline">¶</a></h3>
 <p>If XRT is already installed and you want to install a newer XRT version, follow the below steps:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>Download the new XRT package from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Confirm the <a class="reference internal" href="check-system-compatibility.html"><span class="doc">host system is compatible</span></a></p></li>
-<li><p>Check which platforms are on card with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code></p>
-<ul>
-<li><p>For each card that has a platform installed <a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p></li>
+<li><p>Check which platforms are on card with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span></code></p>
+<ul class="simple">
+<li><p>For each card that has a platform installed <a class="reference external" href="common-steps.html#confirm-xrtplatform-compatibility">Confirm XRT/Platform compatibility</a></p></li>
 <li><p>If XRT does not support the new platform <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return the card to golden</a></p></li>
 </ul>
 </li>
 <li><p>Upgrade XRT using one of the commands below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./xrt_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">xrt_package_name.rpm</span></code></p></li>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Warm boot the machine</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">version</span></code> to confirm the XRT version</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> to determine install is working</p></li>
-</ul>
+<li><p><a class="reference external" href="terminology.html#reboot-warm-boot-reset-system">Warm boot</a> the machine</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> to confirm the XRT version</p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> to see the user BDF for each installed card</p></li>
+<li><p>For each card, confirm functionality by running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="installing-an-older-platform">
 <h3>Installing an older platform<a class="headerlink" href="#installing-an-older-platform" title="Permalink to this headline">¶</a></h3>
 <p>If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>Download the platform package from the archive section of the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
-<li><p><a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to make sure XRT that will support the platform</p>
-<ul>
+<li><p><a class="reference external" href="common-steps.html#confirm-xrtplatform-compatibility">Confirm XRT/Platform compatibility</a> to make sure XRT that will support the platform</p>
+<ul class="simple">
 <li><p>Download XRT package if needed</p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
 <li><p>If a different XRT is needed, <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a> and install the replacement XRT package on the system using one of the commands below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./xrt_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">xrt_package_name.rpm</span></code></p></li>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
 <li><p>Else remove the current deployment package with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span></code></p>
-<ul>
+<ul class="simple">
 <li><p>If needed use the package manager to find the installed <a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">package names</a></p></li>
 </ul>
 </li>
-<li><p>Install the replacement deployment package on the system using one of the below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./platform_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">platform_package_name.rpm</span></code></p></li>
+<li><p>Install the replacement deployment package on the system using one of the commands below</p>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Flash the card with the command given during package install</p></li>
-<li><p>Cold boot the machine to update the FPGA</p></li>
-<li><p>Confirm card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
+<li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
+<li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>Optionally download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
-</ul>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="installing-an-older-xrt">
 <h3>Installing an older XRT<a class="headerlink" href="#installing-an-older-xrt" title="Permalink to this headline">¶</a></h3>
 <p>If XRT is already installed and an older version of XRT is to be installed, follow the below steps:</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>Download the XRT package from the archives section of the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Determine which platform will be used</p>
-<ul>
-<li><p>Make sure to have the package to re-install the platform</p></li>
+<ul class="simple">
+<li><p>Make sure to have the package(s) to re-install the platform</p></li>
 </ul>
 </li>
-<li><p>Determine which platform is on the card</p></li>
-<li><p>If the platform is different</p>
-<ul>
-<li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
-</ul>
-</li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
+<li><p>If the platform is different, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
 <li><p><a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
-<li><p>Install the replacement xrt package on the system using one of commands the below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./xrt_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">xrt_package_name.rpm</span></code></p></li>
+<li><p>Install the replacement XRT package on the system using one of the commands below</p>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Install the replacement deployment package on the system using one of commands the below</p>
-<ul>
-<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./platform_package_name.deb</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">platform_package_name.rpm</span></code></p></li>
+<li><p>Install the replacement deployment package on the system using one of the commands below</p>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Flash the card with the command given during package install</p></li>
-<li><p>Cold boot the machine to update the FPGA</p></li>
-<li><p>Confirm card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
+<li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
+<li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>Optionally download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
-</ul>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="installing-a-development-platform">
 <h3>Installing a development platform<a class="headerlink" href="#installing-a-development-platform" title="Permalink to this headline">¶</a></h3>
 <p>After XRT is installed and once it has been decided on the platform that will be used on the Alveo card, follow the below steps to install the development platform:</p>
-<ul class="simple">
-<li><p>Ensure XRT is installed</p></li>
-<li><p><a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">Determine platform running on the card</a></p></li>
+<ol class="simple">
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on the card</a></p></li>
 <li><p>Go to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a> to download the matching development platform</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">apt</span> <span class="pre">install</span></code> or <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span></code> to install the platform package</p></li>
+<li><p>Install the deployment package on the system using one of the commands below</p>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
+</li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="platform-re-install">
 <h3>Platform Re-Install<a class="headerlink" href="#platform-re-install" title="Permalink to this headline">¶</a></h3>
 <p>The steps to re-install a platform are given below.</p>
+<ol class="simple">
+<li><p>Uninstall the deployment package on the system using one of the commands below</p>
 <ul class="simple">
-<li><p>Uninstall the packages first</p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span> <span class="pre">./&lt;xrt_package_name&gt;</span></code> (or)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">./&lt;xrt_package_name&gt;</span></code></p></li>
+<li><p>Redhat/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span> <span class="pre">./&lt;platform_package_name&gt;</span></code></p></li>
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">./&lt;platform_package_name&gt;</span></code></p></li>
 </ul>
 </li>
-<li><p>Go to <a class="reference external" href="#installing-an-older-xrt">Installing an older XRT</a></p></li>
+<li><p>Install the replacement deployment package on the system using one of the commands below</p>
+<ul class="simple">
+<li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.deb</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
+</li>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="uninstalling-xrt">
 <h3>Uninstalling XRT<a class="headerlink" href="#uninstalling-xrt" title="Permalink to this headline">¶</a></h3>
-<p>Removing XRT will also remove any packages that depend on XRT, for example the platforms. Please follow the below link to remove XRT:</p>
-<ul class="simple">
+<p>Removing XRT will also remove any packages that depend on XRT, for example the deployment platforms. Please follow the below link to remove XRT:</p>
+<ol class="simple">
 <li><p>Go to <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
-</ul>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="no-xrt-installed">
 <h3>No XRT installed<a class="headerlink" href="#no-xrt-installed" title="Permalink to this headline">¶</a></h3>
 <p>If you have Alveo cards in a system and no XRT drivers, treat this as a new install.</p>
-<ul class="simple">
+<ol class="simple">
 <li><p>Go to the <a class="reference internal" href="card-install.html"><span class="doc">software install and card validation</span></a> of the appropriate install guide</p></li>
-</ul>
+</ol>
 </div>
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -725,7 +736,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

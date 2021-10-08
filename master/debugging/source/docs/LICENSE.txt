@@ -1,7 +1,7 @@
 All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the "CC-BY-4.0 License"); you may not use this file except in compliance with the CC-BY-4.0 License.
 
 You may obtain a copy of the CC-BY-4.0 License at
-[https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+[https://creativecommons.org/licenses/by/4.0/]( https://creativecommons.org/licenses/by/4.0/)
 
 
 All software including scripts in this distribution are licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License.

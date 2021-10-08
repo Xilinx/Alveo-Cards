@@ -7,46 +7,66 @@
 
 # SC Troubleshooting
 
-This can help to determine if any communication break has happened between SC<->CMC . It is part of the larger Alveo debug guide. If you are just starting to debug please consult [main page](../README.md).
+This can help to determine if any communication break has happened in the [SC](terminology.html#sc) <-> [CMC](terminology.html#cmc) path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult [main page](../README.md).
 
 ## This Page Covers
 
-This page covers issues observed when running the  `xbmgmt flash --scan` and  `xbutil query` commands and which can be related to SC issues.
+This page covers issues observed when running the  `xbmgmt examine` and  `xbutil examine` commands and which can be related to SC issues.
 
 ## You Will Need
  
 Before beginning debug, you need to:
 
-- [Root/sudo permissions](common-steps.html#root-sudo-access)
+- Have [root/sudo permissions](common-steps.html#root-sudo-access)
 - [Confirm System Compatibility](check-system-compatibility.md)
 - [Determine XRT version](common-steps.html#determine-xrt-version) installed.
-- [Determine platform and SC on card and system](common-steps.html#determine-platform-and-sc-on-card-and-system)
-  - Card platform and SC must match that installed on system
+- [Display card and host platform and SC versions](common-steps.html#display-card-and-host-platform-and-sc-versions)
+  - Card platform and [SC](terminology.html#sc) version must match those installed on the host system
 
 ## Common Cases
 
-### `Flashable partition running on FPGA` and `Flashable partitions installed in system` are identical.
+### Partition displayed under `Flashable partition running on FPGA` and `Flashable partitions installed in system` are identical.
 
-When the platform has been installed correctly, the partition and SC version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt flash --scan` command.  An example output is shown below.
+When the platform has been installed correctly, the partition and [SC](terminology.html#sc) version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt examine -r platform` command.  An example output is shown below.
 
  ```
- Card [0000:c3:00.0]
-    Card type:          u50
-    Flash type:         SPI
-    Flashable partition running on FPGA:
-        xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
-            Logic UUID:
-            f465b0a3ae8c64f619bc150384ace69b
-    Flashable partitions installed in system:
-        xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
+ ------------------------------------------------------
+1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
+------------------------------------------------------
+Flash properties
+  Type                 : spi
+  Serial Number        : 50121119CSPC
+
+Device properties
+  Type                 : u50
+  Name                 : ALVEO U50 PQ
+  Config Mode          : 7
+  Max Power            : 75W
+
+Flashable partitions running on FPGA
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+
+Flashable partitions installed in system
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+
+
+  Mac Address          : 00:0A:35:06:6E:96
+                       : 00:0A:35:06:6E:97
+                       : 00:0A:35:06:6E:98
+                       : 00:0A:35:06:6E:99
  ```
 Next step:
 - None, this is expected output
 
----
-### Bad magic number
+- - -
+### xbmgmt examine -r platform Returns `bad magic number` Error
 
-If `xbmgmt flash --scan` command returns `bad magic number` error as in the example below, there is a chance of a communication break between XRT and CMC.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
+If xbmgmt examine -r platform command returns `bad magic number` error as in the example below, there is a chance of a communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
 
  ```
  read reg ERROR
@@ -64,19 +84,19 @@ If `xbmgmt flash --scan` command returns `bad magic number` error as in the exam
  ```
 Next steps:
 - Cold boot the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
----
+- - -
 ### XMC not loaded
 
-If `xbmgmt flash --scan` command returns `XMC not loaded` error as shown below, there is communication break between XRT and CMC.
+If `xbmgmt examine -r platform` command returns `XMC not loaded` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
 ```
 ERROR: Failed to detect XMC, xmc.bin not loaded
@@ -97,18 +117,18 @@ Next steps:
  - [Reload XRT Drivers](common-steps.html#unloadreload-xrt-drivers)
  - If issue persists
    - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-   - Perform `xbmgmt flash --scan`
+   - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
  - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 
----
+- - -
 
 ### XMC not ready
 
-If `xbmgmt flash --scan` command returns `XMC not ready` error as shown below, there is communication break between XRT and CMC.
+If `xbmgmt examine -r platform` command returns `XMC not ready` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
  ```
  ERROR: XMC is not ready: 0x3
@@ -128,21 +148,21 @@ If `xbmgmt flash --scan` command returns `XMC not ready` error as shown below, t
  ```
 Next steps:
 - Cold boot the system
-- Perform `xbmgmt flash --scan`
+- Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 
----
+- - -
 
 ### SC is not ready
 
-If `xbmgmt flash --scan` command returns `SC is not ready ` error as shown below, there is communication break between SC and CMC.
+If `xbmgmt examine -r platform` command returns `SC is not ready ` error as shown below, there is communication break between the [SC](terminology.html#sc) and the [CMC](terminology.html#cmc).
 
  ```
  ERROR: SC is not ready: 0x0
@@ -155,120 +175,205 @@ If `xbmgmt flash --scan` command returns `SC is not ready ` error as shown below
 
 Next steps:
 - Cold boot the system
-- Perform `xbmgmt flash --scan`
+- Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 
----
+- - -
 ### SC only displays two digits
-If `xbmgmt flash --scan` command returns different number of digits of SC versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between XRT and CMC.
+If xbmgmt examine -r platform command returns different number of digits of between the [SC](terminology.html#sc) versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
  ```
- Card [0000:07:00.0]
-     Card type:          u50
-     Flash type:         SPI
-     Flashable partition running on FPGA:
-         xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0]
-             Logic UUID:
-             f465b0a3ae8c64f619bc150384ace69b
-     Flashable partitions installed in system:
-         xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
+------------------------------------------------------
+1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
+------------------------------------------------------
+Flash properties
+  Type                 : spi
+  Serial Number        : 50121119CSPC
 
+Device properties
+  Type                 : u50
+  Name                 : ALVEO U50 PQ
+  Config Mode          : 7
+  Max Power            : 75W
+
+Flashable partitions running on FPGA
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.0
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+
+Flashable partitions installed in system
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+
+
+  Mac Address          : 00:0A:35:06:6E:96
+                       : 00:0A:35:06:6E:97
+                       : 00:0A:35:06:6E:98
+                       : 00:0A:35:06:6E:99
+
+WARNING  : SC image on the device is not up-to-date.
  ```
 
 Next steps:
 - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-- Perform `xbmgmt flash --scan`
+- Perform `xbmgmt examine -r platform`
+- Flash the satellite controller with the version installed on the system: `xbmgmt program --base --device <management BDF>`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 
----
+- - -
 
 ### SC versions do not match
 
-If `xbmgmt flash --scan` command returns different SC version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
+If `xbmgmt examine -r platform` command returns different [SC](terminology.html#sc) version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
 
 ```
-Card [0000:27:00.0]
-    Card type:          u50
-    Flash type:         SPI
-    Flashable partition running on FPGA:
-        xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.13]
-            Logic UUID:
-            f465b0a3ae8c64f619bc150384ace69b
-    Flashable partitions installed in system:
-        xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
+------------------------------------------------------
+1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
+------------------------------------------------------
+Flash properties
+  Type                 : spi
+  Serial Number        : 50121119CSPC
+
+Device properties
+  Type                 : u50
+  Name                 : ALVEO U50 PQ
+  Config Mode          : 7
+  Max Power            : 75W
+
+Flashable partitions running on FPGA
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.0.13
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+
+Flashable partitions installed in system
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+
+
+  Mac Address          : 00:0A:35:06:6E:96
+                       : 00:0A:35:06:6E:97
+                       : 00:0A:35:06:6E:98
+                       : 00:0A:35:06:6E:99
+
+WARNING  : SC image on the device is not up-to-date.
 
 ```
 
 Next steps:
-- Flash card with SC version installed on the system
+- Flash the satellite controller with the version installed on the system: `xbmgmt program --base --device <management BDF>`
 - See [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
----
+- - -
 
 ### GOLDEN partition running on FPGA 
 
-When `xbmgmt flash --scan` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under `Flashable partitions installed in system` shows only the partitions available on the system.
+When `xbmgmt examine -r platform` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under `Flashable partitions installed in system` shows only the partitions available on the system.
 
  ```
- Card [0000:d3:00.0]
-     Card type:          u50
-     Flash type:         SPI
-     Flashable partition running on FPGA:
-         xilinx_u50_GOLDEN_9,[SC=INACTIVE]
-     Flashable partitions installed in system:
-         xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
+---------------------------------------
+1/1 [0000:04:00.0] : xilinx_u50_GOLDEN
+---------------------------------------
+Flash properties
+  Type                 : spi
+  Serial Number        : N/A
+
+Device properties
+  Type                 : u50
+  Name                 : N/A
+  Config Mode          : 0
+  Max Power            : N/A
+
+Flashable partitions running on FPGA
+  Platform             : xilinx_u50_GOLDEN_9
+  SC Version           : INACTIVE
+  Platform ID          : N/A
+
+Flashable partitions installed in system
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+
+WARNING  : Device is not up-to-date.
 
  ```
 
 Next step:
 -  Go to [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
----
+- - -
 
 ### Partition installed in system (None)
 
-If `xbmgmt flash --scan` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under `Flashable partitions running on FPGA` will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.
+If `xbmgmt examine -r platform` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under `Flashable partitions running on FPGA` will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.
 
 ```
-Card [0000:03:00.0]
-    Card type:          u250
-    Flash type:         SPI
-    Flashable partition running on FPGA:
-        xilinx_u250_xdma_201830_2,[ID=0x5d14fbe6]
-    Flashable partitions installed in system:   (None)
+------------------------------------------------------
+1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
+------------------------------------------------------
+Flash properties
+  Type                 : spi
+  Serial Number        : 50121B39AN35
+
+Device properties
+  Type                 : u50
+  Name                 : ALVEO U50 PQ
+  Config Mode          : 7
+  Max Power            : 75W
+
+Flashable partitions running on FPGA
+  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  SC Version           : 5.2.6
+  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+
+Flashable partitions installed in system
+  <none found>        
+
+
+  Mac Address          : 00:0A:35:06:47:49
+                       : 00:0A:35:06:47:4A
+                       : 00:0A:35:06:47:4B
+                       : 00:0A:35:06:47:4C
+
+WARNING  : No shell is installed on the system.
 
 ```
 
 Next step:
 - Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
----
+- - -
 ### No cards found
 
-If `xbmgmt flash --scan` command returns `No cards Found` as shown below, the OS or XRT is unable to find the card.
+If `xbmgmt examine -r platform` command returns `0 devices found` as shown below, the OS or [XRT](terminology.html#XRT) is unable to find the card.
 
   ```
-  No cards Found !
+ Devices present
+  0 devices found
   ```
 
 Next steps:
 - Run  `sudo lspci -vd 10ee:`
 - If this does not show any cards
-- Go to [Card not recognized](card-not-recognized.md)
+  - Go to [Card not recognized](card-not-recognized.md)
 - Else go to [Modifying XRT/platform](modifying-xrt-platform.md)
 
----
+- - -
 ### Voltage or temperature reports zero
 
-If `xbutil query` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.
+If `xbutil examine -r thermal electrical -d <user BDF>` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between the [XRT](terminology.html#xrt)/[CMC](terminology.html#cmc)/[SC](terminology.html#sc) components.
 
 ```
 Temperature(C)
@@ -286,24 +391,55 @@ Electrical(mV|mA)
 0               N/A             0               N/A
 3V3 PEX         3V3 AUX         DDR VPP BOTTOM  DDR VPP TOP
 0               N/A             N/A             N/A
+
+
+*mockup*
+------------------------------------------------------
+1/1 [0000:82:00.1] : xilinx_u50_gen3x16_xdma_201920_3
+------------------------------------------------------
+Thermals
+  PCB Top Front          : 0 C
+  PCB Top Rear           : 0 C
+  Cage0                  : 0 C
+  FPGA                   : 0 C
+  Int Vcc                : 0 C
+
+Electrical
+  Max Power              : 75 Watts
+  Power                  : N/A Watts
+  Power Warning          : false
+
+  Power Rails            : Voltage   Current
+  12 Volts PCI Express   :  0 V,  	0 A
+  3.3 Volts PCI Express  :  0 V,  	0 A
+  Internal FPGA Vcc      :  0 V,  	0 A
+  Internal FPGA Vcc IO   :  0 V,  	0 A
+  5.5 Volts System       :  0 V
+  1.8 Volts Top          :  0 V
+  0.9 Volts Vcc          :  0 V
+  Mgt Vtt                :  0 V
+  3.3 Volts Vcc          :  0 V
+  1.2 Volts HBM          :  0 V
+  Vpp 2.5 Volts          :  0 V
+
 ```
 
 Next steps:
 - Cold boot the system
-- Perform `xbmgmt flash --scan`
+- Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 
----
+- - -
 ### Failed to open device
 
-If `xbmgmt flash --scan` command returns `Failed to open device:` as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.
+If `xbmgmt examine -r platform` command returns `Failed to open device:` as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.
 
 ```
 Failed to open device: 0000:3b:00.0
@@ -311,21 +447,21 @@ INFO: Found total 1 card(s); 0 are usable.
 ```
 Next steps:
 - Cold boot the system
-- Perform `xbmgmt flash --scan`
+- Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt flash --scan`
+  - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
----
+- - -
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
 
-If you have a suggestion, or find an issue, send an email to alveo_cards_debugging@xilinx.com .
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 
@@ -337,7 +473,7 @@ You may obtain a copy of the License at
 All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the "CC-BY-4.0 License"); you may not use this file except in compliance with the CC-BY-4.0 License.
 
 You may obtain a copy of the CC-BY-4.0 License at
-[https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+[https://creativecommons.org/licenses/by/4.0/]( https://creativecommons.org/licenses/by/4.0/)
 
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

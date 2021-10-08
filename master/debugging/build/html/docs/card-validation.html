@@ -341,25 +341,15 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#loading-verify-kernel-error">Loading verify kernel error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#convert-parameter-error">Convert parameter error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#memory-bandwidth-test-fails">Memory bandwidth test fails</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#dma-test-error">DMA test error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#hangs-at-start-of-validate-test">Hangs at start of validate test</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#loading-bandwidth-kernel-error">Loading bandwidth kernel error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#verify-kernel-test-skipped">Verify kernel test skipped</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#different-python-versions-for-user-and-root">Different python versions for user and root</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#pcie-link-check-passed-with-warning">PCIe link check PASSED with warning</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sc-firmware-mismatch-error">SC firmware mismatch error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#aux-power-not-connected-error">AUX power not connected error</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#aux-power-connector-not-available">AUX power connector not available</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xclmgmt-driver-issues">xclmgmt driver issues</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#p2p-bar-is-not-enabled">P2P BAR is not enabled</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#m2m-is-not-available">M2M is not available</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#unsupported-linux-kernel-version">Unsupported Linux kernel version</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#failed-to-find-xclbin">Failed to find xclbin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#incorrect-output-from-kernel">Incorrect output from kernel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xbmgmt-commands-not-working">xbmgmt commands not working</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#failed-to-find-xilinx-platform">Failed to find Xilinx platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -458,255 +448,137 @@
  </tr>
 </table><div class="section" id="card-validation">
 <h1>Card Validation<a class="headerlink" href="#card-validation" title="Permalink to this headline">¶</a></h1>
-<p>XRT provides the <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> utility which validates <a class="reference internal" href="card-install.html"><span class="doc">card installation</span></a> using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command. It checks proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the <a class="reference external" href="https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904">Vitis Documentation</a>. If validation fails, indicated by <code class="docutils literal notranslate"><span class="pre">ERROR:</span> <span class="pre">Some</span> <span class="pre">cards</span> <span class="pre">failed</span> <span class="pre">to</span> <span class="pre">validate.</span></code> the errors need to be addressed before the card can be used.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> utility, which is installed with XRT, can be used to validate the <a class="reference internal" href="card-install.html"><span class="doc">card installation</span></a> using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command. The command validates power connection, PCIe connection, SC version, as well as running various memory and bandwidth tests. Full details on this command can be found in the <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">XRT Documentation</a>.  If validation fails, indicated by <code class="docutils literal notranslate"><span class="pre">Validation</span> <span class="pre">failed</span></code> in the command output, the errors need to be addressed before the card can be used.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>This page covers issues encountered when using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>. If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
+<p>This page covers issues encountered when using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.    If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
 </div>
 <div class="section" id="you-will-need">
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
-<p>Before beginning debug, you need to:</p>
+<p>Before beginning debug:</p>
 <ul class="simple">
 <li><p>Ensure the card, XRT, and the deployment packages are installed as part of the <a class="reference internal" href="card-install.html"><span class="doc">card install</span></a></p></li>
-<li><p>Check that the <a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">platform and SC version on the card match the platform and SC version on the system</a></p></li>
+<li><p>Confirm the <a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">platform and SC version</a> on the card and system match</p></li>
 <li><p>Determine any failure mode(s) from running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
 </ul>
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="loading-verify-kernel-error">
-<h3>Loading verify kernel error<a class="headerlink" href="#loading-verify-kernel-error" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">[XRT]</span> <span class="pre">ERROR:</span> <span class="pre">Xclbin</span> <span class="pre">on</span> <span class="pre">card</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">use</span></code> or <code class="docutils literal notranslate"><span class="pre">ERROR:</span> <span class="pre">XMC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span></code> is seen when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, there may be a SC issue or a driver disconnect.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
-
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span>
+<hr class="docutils" />
+<div class="section" id="dma-test-error">
+<h3>DMA test error<a class="headerlink" href="#dma-test-error" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">DMA</span> <span class="pre">test</span> <span class="pre">data</span> <span class="pre">integrity</span> <span class="pre">check</span> <span class="pre">failed</span></code> error, as shown below, can be caused by multiple conditions and may be spurrious.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">83</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">DMA</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6669.4</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6226.3</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+   <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">5770.7</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">5572.0</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+   <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6247.9</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">5620.6</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6686.4</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6042.9</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+   <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6803.3</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6394.4</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+   <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+                           <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6520.6</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">5507.2</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">-&gt;</span> <span class="n">PCIe</span> <span class="o">-&gt;</span> <span class="n">FPGA</span> <span class="n">write</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">6949.5</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+                           <span class="n">Host</span> <span class="o">&lt;-</span> <span class="n">PCIe</span> <span class="o">&lt;-</span> <span class="n">FPGA</span> <span class="n">read</span> <span class="n">bandwidth</span> <span class="o">=</span> <span class="mf">5795.6</span> <span class="n">MB</span><span class="o">/</span><span class="n">s</span>
+   <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">data</span> <span class="n">integrity</span> <span class="n">check</span> <span class="n">failed</span><span class="o">.</span><span class="p">:</span> <span class="n">Input</span><span class="o">/</span><span class="n">output</span> <span class="n">error</span>
 <span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">XRT</span> <span class="n">build</span> <span class="n">version</span><span class="p">:</span> <span class="mf">2.6.646</span>
-<span class="n">Build</span> <span class="nb">hash</span><span class="p">:</span> <span class="n">a6d38d37b4c565b5c8fc93ad232ca5508153a264</span>
-<span class="n">Build</span> <span class="n">date</span><span class="p">:</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">05</span><span class="o">-</span><span class="mi">20</span> <span class="mi">18</span><span class="p">:</span><span class="mi">09</span><span class="p">:</span><span class="mi">18</span>
-<span class="n">Git</span> <span class="n">branch</span><span class="p">:</span> <span class="mf">2020.1</span>
-<span class="n">PID</span><span class="p">:</span> <span class="mi">13863</span>
-<span class="n">UID</span><span class="p">:</span> <span class="mi">0</span>
-<span class="p">[</span><span class="n">Mon</span> <span class="n">Jun</span> <span class="mi">1</span> <span class="mi">09</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">00</span> <span class="mi">2020</span><span class="p">]</span>
-<span class="n">HOST</span><span class="p">:</span> <span class="n">xcoswappshp385</span><span class="o">-</span><span class="mi">2</span>
-<span class="n">EXE</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">unwrapped</span><span class="o">/</span><span class="n">xbutil</span>
-<span class="p">[</span><span class="n">XRT</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">Xclbin</span> <span class="n">on</span> <span class="n">card</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">use</span><span class="p">,</span> <span class="n">can</span><span class="s1">&#39;t change.</span>
-<span class="p">[</span><span class="n">XRT</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">See</span> <span class="n">dmesg</span> <span class="n">log</span> <span class="k">for</span> <span class="n">details</span><span class="o">.</span> <span class="n">err</span><span class="o">=-</span><span class="mi">16</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">download</span> <span class="n">xclbin</span><span class="p">:</span> <span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span> <span class="n">FAILED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Some</span> <span class="n">cards</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Validation</span> <span class="n">failed</span><span class="o">.</span> <span class="n">Please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">command</span> <span class="s1">&#39;--verbose&#39;</span> <span class="n">option</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
+<p>Follow the steps below to reset system state.</p>
 <ul class="simple">
 <li><p>Warm boot the machine</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
 <li><p>If issues persist</p>
 <ul>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code></p></li>
-<li><p>See the resulting output is covered in <a class="reference internal" href="sc-troubleshooting.html"><span class="doc">SC troubleshooting</span></a></p></li>
+<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">all</span></code></p></li>
+<li><p>See if the resulting output is covered in <a class="reference internal" href="sc-troubleshooting.html"><span class="doc">SC troubleshooting</span></a></p></li>
 </ul>
 </li>
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="convert-parameter-error">
-<h3>Convert parameter error<a class="headerlink" href="#convert-parameter-error" title="Permalink to this headline">¶</a></h3>
-<p>Before XRT 2020.1 PU1, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> depended on Python 2.7 plus some support packages. If you observe <code class="docutils literal notranslate"><span class="pre">Error</span> <span class="pre">Exception:</span> <span class="pre">argument</span> <span class="pre">1:</span> <span class="pre">&lt;type</span> <span class="pre">'exceptions.TypeError'&gt;:</span> <span class="pre">Don't</span> <span class="pre">know</span> <span class="pre">how</span>&#160; <span class="pre">to</span> <span class="pre">convert</span> <span class="pre">parameter</span> <span class="pre">1</span></code> as shown below, the packages have not been installed as needed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u200_xdma_201830_2</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">Host</span> <span class="n">buffer</span> <span class="n">alignment</span> <span class="mi">4096</span> <span class="nb">bytes</span>
-<span class="n">Compiled</span> <span class="n">kernel</span> <span class="o">=</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">dsa</span><span class="o">/</span><span class="n">xilinx_u200_xdma_201830_2</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span>
-<span class="n">Error</span>
-<span class="ne">Exception</span><span class="p">:</span>
-<span class="n">argument</span> <span class="mi">1</span><span class="p">:</span> <span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;exceptions.TypeError&#39;</span><span class="o">&gt;</span><span class="p">:</span> <span class="n">Don</span><span class="s1">&#39;t know how to convert parameter 1</span>
-<span class="n">FAILED</span> <span class="n">TEST</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span> <span class="n">FAILED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Some</span> <span class="n">cards</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>Next steps:</p>
-<ul class="simple">
-<li><p>Upgrade to XRT version 2020.1_pu1 or later by following <a class="reference external" href="modifying-xrt-platform.html#installing-an-xrt-update">XRT update directions</a></p></li>
-<li><p>If it is necessary to use an older XRT version, follow solution outlined in <a class="reference external" href="https://www.xilinx.com/support/answers/73055.html">AR 73055</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="memory-bandwidth-test-fails">
-<h3>Memory bandwidth test fails<a class="headerlink" href="#memory-bandwidth-test-fails" title="Permalink to this headline">¶</a></h3>
-<p>Before XRT 2020.1 PU1, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> depended on Python 2.7 and support packages. If you observe errors with a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file, <code class="docutils literal notranslate"><span class="pre">pyopenCL</span></code>, or <code class="docutils literal notranslate"><span class="pre">numpy</span></code> as shown below, there is an issue with those packages.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u200_xdma_201830_2</span>
-<span class="o">....</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span><span class="p">:</span>
-<span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="n">_multiarray_umath</span>
-<span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-  <span class="n">File</span> <span class="s2">&quot;/opt/xilinx/xrt/test/23_bandwidth.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">1</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="kn">import</span> <span class="nn">pyopencl</span> <span class="k">as</span> <span class="nn">cl</span>
-  <span class="n">File</span> <span class="s2">&quot;/usr/lib64/python2.7/site-packages/pyopencl/__init__.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">39</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-    <span class="kn">import</span> <span class="nn">pyopencl._cl</span> <span class="k">as</span> <span class="nn">_cl</span>
-<span class="ne">ImportError</span><span class="p">:</span> <span class="ne">ImportError</span><span class="p">:</span> <span class="n">numpy</span><span class="o">.</span><span class="n">core</span><span class="o">.</span><span class="n">multiarray</span> <span class="n">failed</span> <span class="n">to</span> <span class="kn">import</span>
-
-<span class="nn">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span> <span class="n">FAILED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Some</span> <span class="n">cards</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>or</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">xbutil</span> <span class="n">validate</span>
- <span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u250_xdma_201830_2</span>
- <span class="o">...</span>
- <span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">PASSED</span>
- <span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span><span class="p">:</span>
- <span class="n">Traceback</span> <span class="p">(</span><span class="n">most</span> <span class="n">recent</span> <span class="n">call</span> <span class="n">last</span><span class="p">):</span>
-   <span class="n">File</span> <span class="s2">&quot;/opt/xilinx/xrt/test/23_bandwidth.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">20</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-     <span class="kn">import</span> <span class="nn">pyopencl</span> <span class="k">as</span> <span class="nn">cl</span>
-   <span class="n">File</span> <span class="s2">&quot;/usr/local/lib/python2.7/dist-packages/pyopencl/__init__.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">33</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-     <span class="kn">import</span> <span class="nn">pyopencl.cltypes</span>  <span class="c1"># noqa: F401</span>
-   <span class="n">File</span> <span class="s2">&quot;/usr/local/lib/python2.7/dist-packages/pyopencl/cltypes.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">24</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-     <span class="kn">from</span> <span class="nn">pyopencl.tools</span> <span class="kn">import</span> <span class="n">get_or_register_dtype</span>
-   <span class="n">File</span> <span class="s2">&quot;/usr/local/lib/python2.7/dist-packages/pyopencl/tools.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">38</span><span class="p">,</span> <span class="ow">in</span> <span class="o">&lt;</span><span class="n">module</span><span class="o">&gt;</span>
-     <span class="kn">from</span> <span class="nn">pytools</span> <span class="kn">import</span> <span class="n">memoize</span><span class="p">,</span> <span class="n">memoize_method</span>
-   <span class="n">File</span> <span class="s2">&quot;/usr/local/lib/python2.7/dist-packages/pytools/__init__.py&quot;</span><span class="p">,</span> <span class="n">line</span> <span class="mi">249</span>
-     <span class="vm">__slots__</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
-              <span class="o">^</span>
- <span class="ne">SyntaxError</span><span class="p">:</span> <span class="n">invalid</span> <span class="n">syntax</span>
-
- <span class="n">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span> <span class="n">FAILED</span>
- <span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-
- <span class="n">ERROR</span><span class="p">:</span> <span class="n">Some</span> <span class="n">cards</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>This could be due to modules being out of date, incompatible versions installed, multiple versions of python or modules exist, or required modules (such as setuptools or numpy) missing. XRT releases now use python3 without needing numpy or pyopencl.</p>
-<p>Next steps:</p>
-<ul class="simple">
-<li><p>Upgrade to XRT version 2020.1_pu1 or later by following <a class="reference external" href="modifying-xrt-platform.html#installing-an-xrt-update">XRT update directions</a></p></li>
-<li><p>Or go to <a class="reference external" href="https://www.xilinx.com/support/answers/75294.html">AR 75294</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
 <div class="section" id="hangs-at-start-of-validate-test">
 <h3>Hangs at start of validate test<a class="headerlink" href="#hangs-at-start-of-validate-test" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> output has paused at <code class="docutils literal notranslate"><span class="pre">INFO:</span> <span class="pre">==</span> <span class="pre">Starting</span> <span class="pre">verify</span> <span class="pre">kernel</span> <span class="pre">test:</span></code> for more than a minute and the test is not displaying any progress, the kernel was not successfully loaded and the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> has hung.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> output displays <code class="docutils literal notranslate"><span class="pre">Verify</span> <span class="pre">kernel:</span> <span class="pre">Running</span> <span class="pre">Test</span></code> for more than a minute and the test is not displaying any progress, the kernel has not successfully loaded and the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command has hung.  An example of the output is shown below.</p>
 <p>Example Output:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u280_xdma_201920_3</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="ow">not</span> <span class="n">available</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span> <span class="n">SKIPPED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span><span class="p">:</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">83</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Verify</span> <span class="n">kernel</span>
+<span class="p">[</span><span class="o">&gt;</span>                   <span class="p">]</span>  <span class="mi">0</span><span class="o">%</span><span class="p">:</span> <span class="n">Running</span> <span class="n">Test</span><span class="o">...</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="n">s</span> <span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Follow the steps in <a class="reference external" href="card-validation.html#loading-verify-kernel-error">Loading verify kernel error</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="loading-bandwidth-kernel-error">
-<h3>Loading bandwidth kernel error<a class="headerlink" href="#loading-bandwidth-kernel-error" title="Permalink to this headline">¶</a></h3>
-<p>If you observere <code class="docutils literal notranslate"><span class="pre">ERROR:</span> <span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">download</span> <span class="pre">xclbin:</span></code> when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, it means XRT can not program the FGPA with the kernel needed for the test.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">download</span> <span class="n">xclbin</span><span class="p">:</span> <span class="n">bandwidth</span><span class="o">.</span><span class="n">xclbin</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">device</span> <span class="n">memory</span> <span class="n">bandwidth</span> <span class="n">test</span> <span class="n">FAILED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Some</span> <span class="n">cards</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">validate</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>Next step:</p>
-<ul class="simple">
-<li><p>Follow the steps in <a class="reference external" href="card-validation.html#loading-verify-kernel-error">Loading verify kernel error</a></p></li>
+<li><p>Reset the system state by following the steps in <a class="reference external" href="card-validation.html#dma-test-error">DMA test error</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="verify-kernel-test-skipped">
 <h3>Verify kernel test skipped<a class="headerlink" href="#verify-kernel-test-skipped" title="Permalink to this headline">¶</a></h3>
-<p>For DFX-2RP platforms such as u250_gen3x16_base_3, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command will display the message <code class="docutils literal notranslate"><span class="pre">INFO:</span> <span class="pre">==</span> <span class="pre">verify</span> <span class="pre">kernel</span> <span class="pre">test</span> <span class="pre">SKIPPED</span></code>, as shown below, if the shell partition has not been first been loaded.  For DFX-2RP platforms, the base partition needs to be flashed and the shell needs to be loaded prior to running an application, including the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> application.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
+<p>For <a class="reference external" href="https://xilinx.github.io/XRT/master/html/platforms_partitions.html#two-stage-platforms">DFX-2RP platforms</a> (also know as two stage platforms), the base partition needs to be flashed and the shell partition needs to be loaded prior to running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.</p>
+<p>For DFX-2RP platforms such as u250_gen3x16_base_3, the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command will skip tests, as shown below, if the shell partition has not been first been loaded.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span> <span class="o">-</span><span class="n">d</span> <span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span>
+<span class="n">Starting</span> <span class="n">validation</span> <span class="k">for</span> <span class="mi">1</span> <span class="n">devices</span>
 
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u250_gen3x16_base_3</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Power</span> <span class="n">warning</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Power</span> <span class="n">warning</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">Verify</span> <span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span><span class="o">.</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span> <span class="n">SKIPPED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="n">validated</span> <span class="n">successfully</span><span class="o">.</span>
+<span class="n">Validate</span> <span class="n">Device</span>           <span class="p">:</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>
+   <span class="n">Platform</span>              <span class="p">:</span> <span class="n">xilinx_u250_gen3x16_base_3</span>
+   <span class="n">SC</span> <span class="n">Version</span>            <span class="p">:</span> <span class="mf">4.6.11</span>
+   <span class="n">Platform</span> <span class="n">ID</span>           <span class="p">:</span> <span class="mh">0x0</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Aux</span> <span class="n">connection</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">2</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">PCIE</span> <span class="n">link</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">SC</span> <span class="n">version</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Verify</span> <span class="n">kernel</span>
+<span class="n">Test</span> <span class="mi">5</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">iops</span>
+<span class="n">Test</span> <span class="mi">6</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Bandwidth</span> <span class="n">kernel</span>
+<span class="n">Test</span> <span class="mi">7</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d8</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">vcu</span>
+<span class="n">Validation</span> <span class="n">completed</span><span class="o">.</span> <span class="n">Please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">command</span> <span class="s1">&#39;--verbose&#39;</span> <span class="n">option</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span>
 </pre></div>
 </div>
 <p>Next step:</p>
 <ul class="simple">
+<li><p>Rerun validate inlcuding the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> switch. If the user shell is not loaded the output will indicate that Verify kernel and other tests are not supported</p></li>
 <li><p>Load the shell partition before running an application.  See <a class="reference external" href="https://www.xilinx.com/support/answers/75975.html">AR 75975</a> details.</p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="different-python-versions-for-user-and-root">
-<h3>Different python versions for user and root<a class="headerlink" href="#different-python-versions-for-user-and-root" title="Permalink to this headline">¶</a></h3>
-<p>In some cases, you may have different python versions for user and for root, as shown below.  This can lead to odd behaviors with the driver.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ python --version
-Python 2.7.5
-~]$ sudo python --version
-Python 3.6.2
-</pre></div>
-</div>
-<p>Next steps:</p>
-<ul class="simple">
-<li><p>Reconcile your python environment or</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">su</span></code> to become root before running card commands</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="pcie-link-check-passed-with-warning">
 <h3>PCIe link check PASSED with warning<a class="headerlink" href="#pcie-link-check-passed-with-warning" title="Permalink to this headline">¶</a></h3>
-<p>If you encounter <code class="docutils literal notranslate"><span class="pre">PCIE</span> <span class="pre">link</span> <span class="pre">check</span> <span class="pre">PASSED</span> <span class="pre">with</span> <span class="pre">warning</span></code> or <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">trained</span> <span class="pre">to</span> <span class="pre">lower</span> <span class="pre">spec</span></code> when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, XRT is encountering a PCIe link running slower than the platform limit. Examples of these warnings are shown below.</p>
+<p>If you encounter <code class="docutils literal notranslate"><span class="pre">PCIE</span> <span class="pre">link</span> <span class="pre">check</span> <span class="pre">PASSED</span> <span class="pre">with</span> <span class="pre">warning</span></code> or <code class="docutils literal notranslate"><span class="pre">Device</span> <span class="pre">trained</span> <span class="pre">to</span> <span class="pre">lower</span> <span class="pre">spec</span></code> when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, XRT is encountering a PCIe link running slower than the platform limit. An example of these warnings is shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">LINK</span> <span class="n">ACTIVE</span><span class="p">,</span> <span class="n">ATTENTION</span>
-<span class="n">Ensure</span> <span class="n">Card</span> <span class="ow">is</span> <span class="n">plugged</span> <span class="ow">in</span> <span class="n">to</span> <span class="n">Gen3x16</span><span class="p">,</span> <span class="n">instead</span> <span class="n">of</span> <span class="n">Gen3x8</span>
-<span class="n">Lower</span> <span class="n">performance</span> <span class="n">may</span> <span class="n">be</span> <span class="n">experienced</span>
-<span class="n">WARN</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span> <span class="n">PASSED</span> <span class="k">with</span> <span class="n">warning</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span><span class="o">...</span>
-</pre></div>
-</div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ INFO: Validating device[0]:
-INFO: Checking PCIE link
-status: FAILED WARNING: Device trained to lower spec. Expect:
-Gen3x16, Current: Gen2x16
+<span class="n">Test</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">83</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">PCIE</span> <span class="n">link</span>
+    <span class="ne">Warning</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>            <span class="p">:</span> <span class="n">Link</span> <span class="ow">is</span> <span class="n">active</span>
+                            <span class="n">Please</span> <span class="n">make</span> <span class="n">sure</span> <span class="n">that</span> <span class="n">the</span> <span class="n">device</span> <span class="ow">is</span> <span class="n">plugged</span> <span class="n">into</span> <span class="n">Gen</span> <span class="mi">3</span><span class="n">x16</span><span class="p">,</span>
+                            <span class="n">instead</span> <span class="n">of</span> <span class="n">Gen</span> <span class="mi">3</span><span class="n">x8</span><span class="o">.</span> <span class="n">Lower</span> <span class="n">performance</span> <span class="n">maybe</span> <span class="n">experienced</span><span class="o">.</span>
+    <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span> <span class="n">WITH</span> <span class="n">WARNINGS</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Ensure that the card is in a slot that supports the PCIe link speed, follow the <a class="reference external" href="common-steps.html#determine-pcie-slot-type-and-speed">Determine PCIe slot type and speed</a> step</p></li>
+<li><p>Ensure that the card is in a slot that supports the PCIe link speed
+-See section <a class="reference external" href="common-steps.html#determine-pcie-slot-type-and-speed">Determine PCIe slot type and speed</a></p></li>
 <li><p>If the card is in a full speed slot:</p>
 <ul>
 <li><p>Reseat the card, in a different slot if possible</p></li>
@@ -717,11 +589,11 @@ Gen3x16, Current: Gen2x16
 </li>
 <li><p>BIOS may be limiting link speed</p></li>
 </ul>
-<p>There are typically BIOS settings to control PCIe Generation (aka link speed). Many BIOSes support limiting a a card to PCIe Gen 1, Gen 2, or Gen 3. The menu structure differs from vendor to vendor and may differ between servers and workstations. Please refer to the manufacturer’s documentation for information on your BIOS settings.</p>
+<p>There are typically BIOS settings to control PCIe Generation (aka link speed). Many BIOSes support limiting a card to PCIe Gen 1, Gen 2, or Gen 3. The menu structure differs from vendor to vendor and may differ between servers and workstations. Please refer to the manufacturer’s documentation for information on your BIOS settings.</p>
 <ul class="simple">
 <li><p>Go into the BIOS and confirm link speed is PCIe Gen3 or higher</p>
 <ul>
-<li><p>If the BIOS needed changes, cold boot and confirm link speed</p></li>
+<li><p>If the BIOS settings were changed, cold boot and confirm link speed.</p></li>
 </ul>
 </li>
 </ul>
@@ -730,52 +602,45 @@ Gen3x16, Current: Gen2x16
 <div class="section" id="sc-firmware-mismatch-error">
 <h3>SC firmware mismatch error<a class="headerlink" href="#sc-firmware-mismatch-error" title="Permalink to this headline">¶</a></h3>
 <p>The platform installed on the host has a different SC firmware version than installed on the card.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u200_xdma_201830_2</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">AUX</span> <span class="n">power</span> <span class="n">connector</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="n">check</span> <span class="n">PASSED</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">SC</span> <span class="n">FIRMWARE</span> <span class="n">MISMATCH</span><span class="p">,</span> <span class="n">ATTENTION</span>
-<span class="n">SC</span> <span class="n">firmware</span> <span class="n">running</span> <span class="n">on</span> <span class="n">board</span><span class="p">:</span> <span class="mf">1.8</span><span class="o">.</span> <span class="n">Expected</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="kn">from</span> <span class="nn">installed</span> <span class="n">Shell</span><span class="p">:</span> <span class="mf">4.2.0</span>
-<span class="n">Please</span> <span class="n">use</span> <span class="s2">&quot;xbmgmt flash --scan&quot;</span> <span class="n">to</span> <span class="n">check</span> <span class="n">installed</span> <span class="n">Shell</span><span class="o">.</span>
-<span class="n">WARN</span><span class="p">:</span> <span class="o">==</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span> <span class="k">with</span> <span class="n">warning</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.1</span>
+<span class="o">...</span>
+<span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">SC</span> <span class="n">version</span>
+   <span class="ne">Warning</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>            <span class="p">:</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">mismatch</span>
+                           <span class="n">SC</span> <span class="n">firmware</span> <span class="n">version</span> <span class="mf">4.6.6</span> <span class="ow">is</span> <span class="n">running</span> <span class="n">on</span> <span class="n">the</span> <span class="n">board</span><span class="p">,</span> <span class="n">but</span> <span class="n">SC</span>
+                           <span class="n">firmware</span> <span class="n">version</span> <span class="mf">4.6.11</span> <span class="ow">is</span> <span class="n">expected</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">installed</span>
+                           <span class="n">shell</span><span class="o">.</span> <span class="n">Please</span> <span class="n">use</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="n">to</span> <span class="n">check</span> <span class="n">the</span> <span class="n">installed</span>
+                           <span class="n">shell</span><span class="o">.</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span> <span class="n">WITH</span> <span class="n">WARNINGS</span><span class="p">]</span>
 <span class="o">.....</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> to check the SC version on the system vs on the card</p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a> and confirm they match</p></li>
 <li><p><a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a> a second time to update the card’s SC version to match the system</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="aux-power-not-connected-error">
 <h3>AUX power not connected error<a class="headerlink" href="#aux-power-not-connected-error" title="Permalink to this headline">¶</a></h3>
-<p>For cards supporting &gt;75W power, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> will display the following warning if the PCIe AUX power is not connected or not delivering power.  Cards such as the U200/U250/U280 require the PCIe AUX power connected when running applications in the Vitis™ flow.</p>
-<p>Example of intial output after running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> ~]$ xbutil validate
-INFO: Found 1 cards
-INFO: Validating card[0]: xilinx_u280_xdma_201920_3
-INFO: == Starting Kernel version check:
-INFO: == Kernel version check PASSED
-INFO: == Starting AUX power connector check:
-AUX POWER NOT CONNECTED, ATTENTION
-Board not stable for heavy acceleration tasks.
-WARN: == AUX power connector check PASSED with warning
-.....
+<p>For cards supporting &gt;75W power, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> will display the following warning if the PCIe AUX power is not connected or not correctly delivering power.  Cards such as the U200/U250/U280 must have the PCIe AUX power connected to the card to deliver 225W required to run applications in the Vitis™ flow.</p>
+<p>Example of <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command warning for card without PCIe AUX power connected.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbutil validate -d 17:00.1
+...
+Test 1 [0000:17:00.1]     : Aux connection
+   Warning(s)            : Aux power is not connected
+                           Device is not stable for heavy acceleration tasks
+   Test Status           : [PASSED WITH WARNINGS]
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Confirm AUX power cable is hooked up</p>
 <ul>
-<li><p>Shut down system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="#shutdown-and-unplug-pull-power">Shutdown system and unplug/Pull power</a></p></li>
 <li><p>Check for the presence of an AUX power cable at the card</p>
 <ul>
-<li><p>UG1301 Figures 4 and 5 show the location of the AUX power connector on card</p></li>
+<li><p>See <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards%3Bv=latest%3Bd=ug1301-getting-started-guide-alveo-accelerator-cards.pdf">Getting Started with Alveo Data Center Acceleration Cards (UG1301)</a> for the location of the AUX power connector on card</p></li>
 <li><p>If there is no cable, find an 8-pin cable and check the server connection</p></li>
 </ul>
 </li>
@@ -789,66 +654,35 @@ WARN: == AUX power connector check PASSED with warning
 </li>
 <li><p>Close up the system</p></li>
 <li><p>Reboot</p></li>
-<li><p>Confirm power is good by running the following command
-<code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;card</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p>If power is not seen move to next step:</p></li>
+<li><p>Confirm <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">expected power level</a></p></li>
+<li><p>Confirm the card passes validation by running the following command
+<code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
+<li><p>If power is not registering in XRT, there may be a communication issue between the SC and CMC, go to <a class="reference external" href="sc-troubleshooting.html#voltage-or-temperature-reports-zero">SC troubleshooting</a></p></li>
 </ul>
 </li>
-<li><p>Look at the card power sensor values</p></li>
 </ul>
-<p>The card has built in voltage and current sensors, to display the output from these sensors, use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code>.</p>
-<ul class="simple">
-<li><p>12V AUX should show a value of 12000 +/- 5%</p>
-<ul>
-<li><p>The range is 11400 → 12600</p></li>
-</ul>
-</li>
-<li><p>If AUX power is within range, re-run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
-<li><p>If AUX power is not within range double check cable seating</p></li>
-<li><p>If the 12V PEX or 12V AUX voltages are 0 there is a communication issue between the SC and CMC, go to <a class="reference internal" href="sc-troubleshooting.html"><span class="doc">SC troubleshooting</span></a></p></li>
-</ul>
-<p>The following show <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> outputs for card with and without AUX power connected.</p>
-<p><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> output for card with AUX power connected</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Electrical</span><span class="p">(</span><span class="n">mV</span><span class="o">|</span><span class="n">mA</span><span class="p">)</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span> <span class="n">Current</span> <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span> <span class="n">Current</span>
-<span class="mi">12107</span>           <span class="mi">12103</span>           <span class="mi">1579</span>            <span class="mi">1414</span>
-</pre></div>
-</div>
-<p><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> output for card without AUX power connected</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Electrical</span><span class="p">(</span><span class="n">mV</span><span class="o">|</span><span class="n">mA</span><span class="p">)</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span> <span class="n">Current</span> <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span> <span class="n">Current</span>
-<span class="mi">12384</span>           <span class="mi">450</span>             <span class="mi">1636</span>            <span class="mi">20</span>
-</pre></div>
-</div>
-</div>
-<hr class="docutils" />
-<div class="section" id="aux-power-connector-not-available">
-<h3>AUX power connector not available<a class="headerlink" href="#aux-power-connector-not-available" title="Permalink to this headline">¶</a></h3>
-<p>For cards without AUX power connections, the following information message will be displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbutil validate
-INFO: Found 1 cards
-
-INFO: Validating card[0]: xilinx_u50_gen3x16_xdma_201920_3
-INFO: == Starting Kernel version check:
-INFO: == Kernel version check PASSED
-INFO: == Starting AUX power connector check:
-AUX power connector not available. Skipping validation
-INFO: == AUX power connector check SKIPPED
-</pre></div>
-</div>
-<p>This message is normal and is for informational purposes only.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xclmgmt-driver-issues">
 <h3>xclmgmt driver issues<a class="headerlink" href="#xclmgmt-driver-issues" title="Permalink to this headline">¶</a></h3>
 <p>If the following error is displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, it suggests the management driver is not working correctly.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>HOST: xcoswappshp385-2
-EXE: /opt/xilinx/xrt/bin/unwrapped/xbutil
-[XRT] ERROR: Can&#39;t reach out to mgmt for xclbin downloading
-[XRT] ERROR: Is xclmgmt driver loaded? Or is MSD/MPD running?
-[XRT] ERROR: See dmesg log for details. err=-110
-ERROR: Failed to download xclbin: verify.xclbin
-ERROR: == verify kernel test FAILED
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Verify</span> <span class="n">kernel</span>
+    <span class="n">Error</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>              <span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">tests</span><span class="o">/</span><span class="n">validate</span><span class="o">/</span><span class="n">common</span><span class="o">/</span><span class="n">includes</span><span class="o">/</span><span class="n">xcl2</span><span class="o">/</span><span class="n">xcl2</span><span class="o">.</span><span class="n">cpp</span><span class="p">:</span><span class="mi">34</span>
+                            <span class="n">Error</span> <span class="n">calling</span> <span class="n">err</span> <span class="o">=</span> <span class="n">cl</span><span class="p">::</span><span class="n">Platform</span><span class="p">::</span><span class="n">get</span><span class="p">(</span><span class="o">&amp;</span><span class="n">platforms</span><span class="p">),</span> <span class="n">error</span>
+                            <span class="n">code</span> <span class="ow">is</span><span class="p">:</span> <span class="o">-</span><span class="mi">1001</span>
+                            <span class="n">XRT</span> <span class="n">build</span> <span class="n">version</span><span class="p">:</span> <span class="mf">2.12.385</span>
+                            <span class="n">Build</span> <span class="nb">hash</span><span class="p">:</span> <span class="n">daaee8839f2b1760d7715055e3d96630c0a3ae68</span>
+                            <span class="n">Build</span> <span class="n">date</span><span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">19</span> <span class="mi">14</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">20</span>
+                            <span class="n">Git</span> <span class="n">branch</span><span class="p">:</span> <span class="n">master</span>
+                            <span class="n">PID</span><span class="p">:</span> <span class="mi">7099</span>
+                            <span class="n">UID</span><span class="p">:</span> <span class="mi">16119</span>
+                            <span class="p">[</span><span class="n">Tue</span> <span class="n">Sep</span> <span class="mi">21</span> <span class="mi">00</span><span class="p">:</span><span class="mi">15</span><span class="p">:</span><span class="mi">24</span> <span class="mi">2021</span> <span class="n">GMT</span><span class="p">]</span>
+                            <span class="n">HOST</span><span class="p">:</span> <span class="n">xcodpeascoe41</span>
+                            <span class="n">EXE</span><span class="p">:</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">validate</span><span class="o">.</span><span class="n">exe</span>
+                            <span class="p">[</span><span class="n">XRT</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">devices</span> <span class="n">found</span>
+                            <span class="p">[</span><span class="n">XRT</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">devices</span> <span class="n">found</span>
+                            <span class="p">[</span><span class="n">XRT</span><span class="p">]</span> <span class="n">ERROR</span><span class="p">:</span> <span class="n">No</span> <span class="n">devices</span> <span class="n">found</span>
+    <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">FAILED</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
@@ -860,118 +694,43 @@ ERROR: == verify kernel test FAILED
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xocl</span></code></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Unload/reload XRT drivers</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#unloadreload-xrt-drivers">Unload/reload XRT drivers</a></p></li>
 <li><p>See if a similar issue is posted on <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="p2p-bar-is-not-enabled">
-<h3>P2P BAR is not enabled<a class="headerlink" href="#p2p-bar-is-not-enabled" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">P2P</span> <span class="pre">BAR</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">enabled.</span> <span class="pre">Skipping</span> <span class="pre">validation</span></code> is displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, it implies P2P has not been enabled.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
-
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">PCIE</span> <span class="n">peer</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">peer</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">P2P</span> <span class="n">BAR</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">enabled</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">PCIE</span> <span class="n">peer</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">peer</span> <span class="n">test</span> <span class="n">SKIPPED</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>Next step:</p>
-<ul class="simple">
-<li><p>Go to <a class="reference external" href="https://xilinx.github.io/XRT/master/html/p2p.html">Enable P2P</a> if the application requires P2P.</p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="m2m-is-not-available">
-<h3>M2M is not available<a class="headerlink" href="#m2m-is-not-available" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">M2M</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">available.</span> <span class="pre">Skipping</span> <span class="pre">validation</span></code> is displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>, it implies M2M has not been enabled.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="mi">1</span> <span class="n">cards</span>
-
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Validating</span> <span class="n">card</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">memory</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">memory</span> <span class="n">DMA</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">M2M</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">available</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">memory</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">memory</span> <span class="n">DMA</span> <span class="n">test</span> <span class="n">SKIPPED</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>Next step:</p>
-<ul class="simple">
-<li><p>Go to <a class="reference external" href="https://xilinx.github.io/XRT/master/html/m2m.html">Enable M2M</a> if the application requires M2M.</p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="unsupported-linux-kernel-version">
-<h3>Unsupported Linux kernel version<a class="headerlink" href="#unsupported-linux-kernel-version" title="Permalink to this headline">¶</a></h3>
-<p>If an unsupported kernel is installed, the following message will be displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span><span class="p">:</span>
-<span class="n">WARNING</span><span class="p">:</span> <span class="n">Kernel</span> <span class="n">verison</span> <span class="mf">5.4.0</span><span class="o">-</span><span class="mi">47</span><span class="o">-</span><span class="n">generic</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">officially</span> <span class="n">supported</span><span class="o">.</span> <span class="mf">5.3.0</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">latest</span> <span class="n">supported</span> <span class="n">version</span>
-<span class="n">WARN</span><span class="p">:</span> <span class="o">==</span> <span class="n">Kernel</span> <span class="n">version</span> <span class="n">check</span> <span class="n">PASSED</span> <span class="k">with</span> <span class="n">warning</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>Next step:</p>
-<ul class="simple">
-<li><p>The kernel is not officially supported or tested - review <a class="reference external" href="https://www.xilinx.com/search/site-keyword-search.html#q=ug1451">UG1451</a> for supported operating systems.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="failed-to-find-xclbin">
 <h3>Failed to find xclbin<a class="headerlink" href="#failed-to-find-xclbin" title="Permalink to this headline">¶</a></h3>
 <p>If the following message is displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> it suggests there is an issue with the installed deployment package.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">find</span> <span class="n">xclbin</span> <span class="ow">in</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">firmware</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">find</span> <span class="mi">22</span><span class="n">_verify</span><span class="o">.</span><span class="n">py</span> <span class="ow">or</span> <span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span><span class="p">,</span> <span class="n">Shell</span> <span class="n">package</span> <span class="ow">not</span> <span class="n">installed</span> <span class="n">properly</span><span class="o">.</span>
-<span class="n">ERROR</span><span class="p">:</span> <span class="o">==</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span> <span class="n">FAILED</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Verify</span> <span class="n">kernel</span>
+<span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">iops</span>
+<span class="n">Test</span> <span class="mi">5</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Bandwidth</span> <span class="n">kernel</span>
+<span class="n">Test</span> <span class="mi">6</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">vcu</span>
+<span class="n">Validation</span> <span class="n">completed</span><span class="p">,</span> <span class="n">but</span> <span class="k">with</span> <span class="n">warnings</span><span class="o">.</span> <span class="n">Please</span> <span class="n">run</span> <span class="n">the</span> <span class="n">command</span> <span class="s1">&#39;--verbose&#39;</span> <span class="n">option</span> <span class="k">for</span> <span class="n">more</span> <span class="n">details</span>
 </pre></div>
 </div>
+<p>Rerun validate adding the <code class="docutils literal notranslate"><span class="pre">--verbose</span></code> switch and look for output including the following</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Test</span> <span class="mi">6</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">iops</span>
+  <span class="n">Description</span>           <span class="p">:</span> <span class="n">Run</span> <span class="n">scheduler</span> <span class="n">performance</span> <span class="n">measure</span> <span class="n">test</span>
+  <span class="n">Details</span>               <span class="p">:</span> <span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span>
+                          <span class="n">Verify</span> <span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span> <span class="ow">or</span> <span class="n">shell</span> <span class="n">partition</span> <span class="ow">is</span> <span class="ow">not</span>
+                          <span class="n">programmed</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span><span class="o">.</span>
+  <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">SKIPPED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">7</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Bandwidth</span> <span class="n">kernel</span>
+  <span class="n">Description</span>           <span class="p">:</span> <span class="n">Run</span> <span class="s1">&#39;bandwidth kernel&#39;</span> <span class="ow">and</span> <span class="n">check</span> <span class="n">the</span> <span class="n">throughput</span>
+  <span class="n">Details</span>               <span class="p">:</span> <span class="n">bandwidth</span><span class="o">.</span><span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span>
+                          <span class="n">Verify</span> <span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span> <span class="ow">or</span> <span class="n">shell</span> <span class="n">partition</span> <span class="ow">is</span> <span class="ow">not</span>
+                          <span class="n">programmed</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span><span class="o">.</span>
+  <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">SKIPPED</span><span class="p">]</span>
+<span class="o">------------------------------------------</span>
+</pre></div>
+</div>
+<p>If either xclbin is not available, follow next steps below.</p>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Determine packages installed on the system</a></p></li>
 <li><p>Follow package install steps in <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">Modifying existing XRT or platform install</span></a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="incorrect-output-from-kernel">
-<h3>Incorrect output from kernel<a class="headerlink" href="#incorrect-output-from-kernel" title="Permalink to this headline">¶</a></h3>
-<p>There maybe an issue reading on card memory if an <code class="docutils literal notranslate"><span class="pre">Incorrect</span> <span class="pre">output</span> <span class="pre">from</span> <span class="pre">kernel</span></code> message is displayed when running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code>.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">...</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="o">==</span> <span class="n">Starting</span> <span class="n">verify</span> <span class="n">kernel</span> <span class="n">test</span><span class="p">:</span>
-<span class="n">Host</span> <span class="n">buffer</span> <span class="n">alignment</span> <span class="mi">4096</span> <span class="nb">bytes</span>
-<span class="n">Compiled</span> <span class="n">kernel</span> <span class="o">=</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">dsa</span><span class="o">/</span><span class="n">xilinx_u200_xdma_201830_3</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span>
-<span class="n">Shell</span> <span class="o">=</span> <span class="sa">b</span><span class="s1">&#39;xilinx_u200_xdma_201830_3&#39;</span>
-<span class="n">Index</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">PCIe</span> <span class="o">=</span> <span class="n">GEN3</span> <span class="n">x</span> <span class="mi">16</span>
-<span class="n">OCL</span> <span class="n">Frequency</span> <span class="o">=</span> <span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">500</span><span class="p">)</span> <span class="n">MHz</span>
-<span class="n">DDR</span> <span class="n">Bank</span> <span class="o">=</span> <span class="mi">4</span>
-<span class="n">Device</span> <span class="n">Temp</span> <span class="o">=</span> <span class="mi">38</span> <span class="n">C</span>
-<span class="n">MIG</span> <span class="n">Calibration</span> <span class="o">=</span> <span class="kc">True</span>
-<span class="n">Finished</span> <span class="n">downloading</span> <span class="n">bitstream</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">dsa</span><span class="o">/</span><span class="n">xilinx_u200_xdma_201830_3</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">verify</span><span class="o">.</span><span class="n">xclbin</span>
-<span class="n">CU</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="sa">b</span><span class="s1">&#39;hello:hello_1&#39;</span> <span class="o">@</span><span class="mh">0x1800000</span>
-<span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="sa">b</span><span class="s1">&#39;bank0&#39;</span> <span class="o">@</span><span class="mh">0x4000000000</span>
-<span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="sa">b</span><span class="s1">&#39;bank1&#39;</span> <span class="o">@</span><span class="mh">0x5000000000</span>
-<span class="n">Original</span> <span class="n">string</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Original</span> <span class="n">string</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="n">Issue</span> <span class="n">kernel</span> <span class="n">start</span> <span class="n">requests</span>
-<span class="n">Now</span> <span class="n">wait</span> <span class="k">for</span> <span class="n">the</span> <span class="n">kernels</span> <span class="n">to</span> <span class="n">finish</span> <span class="n">using</span> <span class="n">xrtRunWait</span><span class="p">()</span>
-<span class="n">Get</span> <span class="n">the</span> <span class="n">output</span> <span class="n">data</span> <span class="n">produced</span> <span class="n">by</span> <span class="n">the</span> <span class="mi">2</span> <span class="n">kernel</span> <span class="n">runs</span> <span class="kn">from</span> <span class="nn">the</span> <span class="n">device</span>
-<span class="n">Result</span> <span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">Hello</span> <span class="n">Worl</span><span class="p">]</span>
-<span class="n">Result</span> <span class="n">string</span> <span class="o">=</span> <span class="p">[</span><span class="n">Hello</span> <span class="n">World</span><span class="p">]</span>
-<span class="n">Incorrect</span> <span class="n">output</span> <span class="kn">from</span> <span class="nn">kernel</span>
-<span class="n">FAILED</span> <span class="n">TEST</span>
-<span class="o">...</span>
-</pre></div>
-</div>
-<p>Next steps</p>
-<ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return card to golden</a></p></li>
-<li><p><a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">Reflash the deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -980,26 +739,14 @@ ERROR: == verify kernel test FAILED
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.</p>
 <p>Next Step:</p>
 <ul class="simple">
-<li><p>Reinstall the XRT package.</p></li>
-</ul>
-</div>
-<hr class="docutils" />
-<div class="section" id="failed-to-find-xilinx-platform">
-<h3>Failed to find Xilinx platform<a class="headerlink" href="#failed-to-find-xilinx-platform" title="Permalink to this headline">¶</a></h3>
-<p>If XRT fails to find the Xilinx platform as shown below, the <code class="docutils literal notranslate"><span class="pre">setup.sh</span></code> script has not been sourced.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Error</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">find</span> <span class="n">Xilinx</span> <span class="n">platform</span>
-</pre></div>
-</div>
-<p>Next step:</p>
-<ul class="simple">
-<li><p>Run the following command: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/xilinx/xrt/setup.sh</span></code></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#installing-an-older-xrt">Reinstall the XRT packages</a> with your existing XRT and platform packages</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -1043,7 +790,7 @@ ERROR: == verify kernel test FAILED
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

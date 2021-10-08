@@ -21,9 +21,9 @@ The key points of the diagram include:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
 
-If you have a suggestion, or find an issue, send an email to alveo_cards_debugging@xilinx.com .
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 
@@ -35,7 +35,7 @@ You may obtain a copy of the License at
 All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the "CC-BY-4.0 License"); you may not use this file except in compliance with the CC-BY-4.0 License.
 
 You may obtain a copy of the CC-BY-4.0 License at
-[https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+[https://creativecommons.org/licenses/by/4.0/]( https://creativecommons.org/licenses/by/4.0/)
 
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

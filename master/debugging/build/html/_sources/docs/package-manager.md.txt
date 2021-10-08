@@ -22,12 +22,11 @@ Before beginning debug, you need to:
 - Determine which package(s) are failing and failure mode(s)
 
 ## Common Cases
-
+- - - -
 ### Installation package is not found
-
 During installation, the package manager reports it can not find file(s) and a message similar to the following is displayed.
 
-```
+ ```
 ~]$ sudo apt install xrt_202010.2.6.655_18.04-amd64-xrt.deb
 Reading package lists... Done
 Building dependency tree
@@ -35,7 +34,7 @@ Reading state information... Done
 E: Unable to locate package xrt_202010.2.6.655_18.04-amd64-xrt.deb
 E: Couldn't find any package by glob 'xrt_202010.2.6.655_18.04-amd64-xrt.deb'
 E: Couldn't find any package by regex 'xrt_202010.2.6.655_18.04-amd64-xrt.deb'
-```
+ ```
 
 Although the file(s) exists, apt is unable to locate them.  This occurs when just `file_name.deb` is used instead of a complete path to the .deb file.
 
@@ -45,22 +44,17 @@ Next steps:
   - The simplest complete path is `./file_name.deb`
   - For example `sudo apt install ./file_name.deb`
 
----
-
+- - -
 ### Package installation fails with permission denied
-
 XRT or platform packages will fail to install if you don't have root permission.  Examples of the displayed error for apt and yum are shown below.
 
 #### apt
-
 ```
 ~]$ sudo apt install ./xrt_202010.2.6.655_18.04-amd64-xrt.deb
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
 ```
-
 #### yum
-
 ```
 ~]$ sudo yum install xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm
 Loaded plugins: fastestmirror, langpacks
@@ -70,13 +64,11 @@ You need to be root to perform this command.
 ```
 
 Next steps:
+ - [Confirm you have permission to install](common-steps.html#root-sudo-access)
+ - Repeat the install with `sudo command` or as root
 
-- [Confirm you have permission to install](common-steps.html#root-sudo-access)
-- Repeat the install with `sudo command` or as root
-
----
-
-### Installation package is not supported
+- - -
+###  Installation package is not supported
 
 The package manager says installation package is not supported as shown in the example below.
 
@@ -93,8 +85,7 @@ Next steps:
 - Confirm the right version of the deb/rpm for the OS
 - Confirm the right mix of apt/yum and file extension
 
----
-
+- - -
 ### Installation package cannot be opened
 
 The .deb/.rpm package is corrupt and there are errors indicating the package manager can not handle the file as shown in the examples below.
@@ -124,15 +115,13 @@ Error: Nothing to do
 The file is not in the expected format or the file was corrupted during download.
 
 Next steps:
-
 - Compare the checksum on the suspect file against a re-downloaded file with:
     `md5sum file.deb/rpm`
 - If the checksums do not match download the file onto the machine directly from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Regenerate and compare the checksum after download
 - Re-install the packages
 
----
-
+- - -
 ### Nothing to do error
 
 During XRT installation, yum displays the message `Error: Nothing to do` as shown in the Red Hat example below.
@@ -162,8 +151,7 @@ Next steps:
 - Read the error message and if it ends in .deb, the wrong package is being used.
 - Otherwise it could be a bad file see [Installation package can't be opened](#installation-package-cannot-be-opened).
 
----
-
+- - -
 ### Installation package dependency error
 
  Installation fails with `"_ Error: Package: <name> Requires <dependency>"`.  Packages have dependencies on other packages and this occurs when one or more dependencies can not be found as shown below.  
@@ -210,17 +198,15 @@ Next steps:
   - Easiest way to sync up the dependencies including epel-release on RHEL/CentOS
   - If a package can not be installed please work with your IT department
 
----
-
+- - -
 ### Kernel header error
-
 During XRT installation a message indicating kernel headers for the kernel have not been installed similar to the following is displayed.
 
-```
+ ```
  Building for 3.10.0-862.el7.x86_64
 Module build for kernel 3.10.0-862.el7.x86_64 was skipped since the
 kernel headers for this kernel does not seem to be installed.
-```
+ ```
 
 This occurs when there is a mismatch between kernel and kernel headers installed on machine.  Part of XRT is compiled against the user kernel and the compiler needs the headers for that exact kernel version. In the above example the headers for `1127` are installed while `862` are needed.
 
@@ -230,8 +216,7 @@ Next steps:
 - Confirm they match
 - If they do not, run the [xrtdeps.sh](https://github.com/Xilinx/XRT/blob/master/src/runtime_src/tools/scripts/xrtdeps.sh) script to install dependencies
 
----
-
+- - -
 ### Installation package is older
 
 During package installation, yum fails with `does not update installed package` or apt indicates the package will be `DOWNGRADED` as shown below.
@@ -246,7 +231,6 @@ Repository 'opencl' is missing name in configuration, using id
 Examining alveo/platforms/2020.1_web/xrt/xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm: xrt-2.6.655-1.x86_64
 alveo/platforms/2020.1_web/xrt/xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm: does not update installed package.
 ```
-
 #### apt
 
 ```
@@ -269,7 +253,7 @@ Next steps:
 - Confirm that a downgrade is wanted
 - [Capture a list of platforms installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
 - Remove items to be downgrade with `apt remove` or `yum remove`
-- If this is for XRT, follow [remove XRT](common-steps.html#remove-xrt)
+ - If this is for XRT, follow [remove XRT](common-steps.html#remove-xrt)
 - Install desired packages with the desired versions with apt and yum
 
 Notes:
@@ -277,29 +261,9 @@ Notes:
 - XRT needs to be installed before the platforms can be installed
 - Deployment platforms need to be installed before development platforms can be installed
 
----
-
-### No pyopencl error
-
-During XRT installation a message similar to the following is displayed.
-
-```
-ImportError: No module named pyopencl
-```
-
-This occurs when XRT encounters issues installing third party libraries like numpy or pyopencl.
-
-Next steps:
-
-- Install the latest XRT via the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-  - The latest XRT no longer has a dependency on numpy/pyopencl
-- Otherwise refer to [AR 73055](https://www.xilinx.com/support/answers/73055.html)
-
----
-
+- - - -
 ### XRT installation fails with Linux kernel V5.xx
-
-During XRT installation, on a Ubuntu system with Linux kernel 5.xx, an error message similar to the following is displayed.
+ During XRT installation, on a Ubuntu system with Linux kernel 5.xx, an error message similar to the following is displayed.
 
  ```
  Module build for kernel 5.07.0xxxx.x86_64 was skipped since the
@@ -309,13 +273,11 @@ kernel headers for this kernel does not seem to be installed.
 Next steps:
 
 - Install XRT 2020.2 or later via the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-
----
+- - -
 
 ### Held broken packages error
 
-Incorrectly using the insallation package on the wrong OS can result in the error `you have held broken packages`, as shown below.
-
+ Incorrectly using the insallation package on the wrong OS can result in the error `you have held broken packages` as shown below.
 ```
 ~]$ sudo apt install ./xrt_202010.2.7.761_16.04-amd64-xrt.deb
 Reading package lists... Done
@@ -345,12 +307,10 @@ Next steps:
   - Ubuntu: apt and .deb
   - RHEL/CentOS: yum and .rpm
 
----
-
-### Installation package missing permissions
+- - -
+###  Installation package missing permissions
 
 The package install fails with one of the following errors:
-
 - `...couldn't be accessed by user '_apt'` or
 - `..could not be parsed or opened` or
 - `Cannot open:`
@@ -359,21 +319,13 @@ Examples of these errors are shown below.
 
 #### apt
 
-- Missing x permission
+  - Missing x permission
 
 ```
-Setting up xilinx-cmc-u50 (1.0.20-2853996) ...
-Setting up xilinx-u50lv-gen3x4-xdma-validate (2-2902115) ...
-Setting up xilinx-sc-fw-u50 (5.0.27-2.e289be9) ...
-Setting up xilinx-u50lv-gen3x4-xdma-base (2-2902115) ...
-Partition package installed successfully.
-Please flash card manually by running below command:
-sudo /opt/xilinx/xrt/bin/xbmgmt flash --update --shell xilinx_u50lv_gen3x4_xdma_base_2
 N: Download is performed unsandboxed as root as file '/scratch/alveo_cycle_test/xrt_shell_downloads/xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb' couldn't be accessed by user '_apt'. - pkgAcquire::Run (13: Permission denied)
 
 ```
-
-- Missing r permission
+ - Missing r permission
 
 ```
 ~]$ sudo apt install ./*deb
@@ -398,16 +350,17 @@ Error: Nothing to do
 
 Note this looks the same as a corrupt file. See also [Installation package can't be opened](#installation-package-cannot-be-opened)
 
+
 This can occur if there is a Linux file permissions issue with the package.  
 
 Next steps:
 
-- Use `ls -al <filename>` to check the file permissions
+- Use `ls -al <filename> `  to check the file permissions
 - If `rx` are missing update the file permissions with
   - Ubuntu: `chmod a+rx *.deb`
   - RHEL/Centos: `chmod a+rx *.rpm`
 
----
+- - -
 ### Failed to create xsabin
 
 When installing the deployment package, an error message similar to the following is displayed.
@@ -416,32 +369,35 @@ When installing the deployment package, an error message similar to the followin
 Failed to create xsabin,
 install is incomplete
 ```
-
 This error can occur if XRT is built from GitHub sources without Vitis software platform installed and `XILINX_VITIS` environment variable set.
 
 Next steps:
-
 - Prior to building XRT from GitHub sources, install the Vitis software platform and set up the Vitis environment.
 - See [Vitis Unified Software Platform Documentation](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/index.html).
+- - -
+### Program base fails with specified base not found
 
----
-
-### Flash update fails with shell is not applicable
-
-When flashing the card with the command `xbmgmt flash --update --shell` returns `shell is not applicable` as shown in the example below, it indicates that the name of the specified shell is not supported for the targeted card.  This may also occur if the specified shell name is spelled incorrectly.
+When flashing the card with the command `xbmgmt program --base --image <base_platform_name> --device <bdf>` returns `specified base not found` as shown in the example below, it indicates that the name of the specified base is not supported for the targeted card.  This may also occur if the specified base name is spelled incorrectly.
 
 ```
-~]$ xbmgmt flash --update --shell xilinx_u250_gen3x16_base_2
-WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
-
+$ sudo xbmgmt program --base --image invalid_name --device af:00.0
+XRT build version: 2.12.361
+Build hash: 3f2c4ea02c1538b3bfc354fd6a72c9b0ce30d371
+Build date: 2021-09-13 00:47:58
+Git branch: master
+PID: 11582
+UID: 0
+[Fri Sep 17 16:47:30 2021 GMT]
+HOST: host.xilinx.com
+EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
+[xbmgmt] ERROR: Specified base not found on the system: Invalid argument
 ```
 
 Next steps:
 
-- Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the `xbmgmt flash --scan` command. 
+- Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the `xbmgmt examine --device <bdf>` command. 
 
----
-
+- - -
 ### Item not covered above
 
 This guide is not comprehensive package manager and your error condition may not be covered.
@@ -453,14 +409,14 @@ Next steps:
 - Check for similar issues on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 - Post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
----
+- - -
 
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
 
-If you have a suggestion, or find an issue, send an email to alveo_cards_debugging@xilinx.com .
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 
@@ -472,7 +428,7 @@ You may obtain a copy of the License at
 All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the "CC-BY-4.0 License"); you may not use this file except in compliance with the CC-BY-4.0 License.
 
 You may obtain a copy of the CC-BY-4.0 License at
-[https://creativecommons.org/licenses/by/4.0/](https://creativecommons.org/licenses/by/4.0/)
+[https://creativecommons.org/licenses/by/4.0/]( https://creativecommons.org/licenses/by/4.0/)
 
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

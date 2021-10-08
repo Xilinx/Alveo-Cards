@@ -346,7 +346,6 @@
 <li class="toctree-l1"><a class="reference internal" href="application-crash.html">Application Crash</a></li>
 <li class="toctree-l1"><a class="reference internal" href="power-delivery.html">Power Delivery</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Common Steps</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#system-steps">System Steps</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#log-machine-state">Log machine state</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#root-sudo-access">Root sudo access</a></li>
@@ -378,13 +377,22 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#card-steps">Card Steps</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#confirm-system-recognizes-cards">Confirm system recognizes cards</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#displaying-card-bdf-values">Displaying Card BDF Values</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#management-bdf">Management BDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#user-bdf">User BDF</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#bdf-displayed-using-lspci">BDF displayed using lspci</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#card-pcie-ids">Card PCIe IDs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#determine-platform-and-sc-on-card-and-system">Determine platform and SC on card and system</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#flash-the-card-with-a-deployment-platform">Flash the card with a deployment platform</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#programming-dfx-2rp-shell-partitions">Programming DFX-2RP shell partitions</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#determine-active-or-passive-card">Determine active or passive card</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#monitor-card-power-and-temperature">Monitor card power and temperature</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#monitor-card-power-and-temperature">Monitor card power and temperature</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#power">Power</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#temperature">Temperature</a></li>
+</ul>
+</li>
 <li class="toctree-l3"><a class="reference internal" href="#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">Use system logs to see if the card exceeded power or thermal limits</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#reverting-the-card-to-factory-image">Reverting the card to factory image</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#vivado-hw-manager">Vivado HW Manager</a></li>
@@ -478,10 +486,8 @@
  </tr>
 </table><div class="section" id="common-steps">
 <h1>Common Steps<a class="headerlink" href="#common-steps" title="Permalink to this headline">¶</a></h1>
-<p>This page provides sets of techniques, used by other pages in the debug guide, which can help facilitate debugging. It is not intended to be used stand alone. If you are just starting to debug please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine the best starting point for your needs.</p>
-<div class="section" id="this-page-covers">
-<h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>This page covers instructions for common debug steps over the following three sections:</p>
+<p>This page covers various support and debugging techniques used across other pages in the debug guide. If you are just starting to debug please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine the best starting point for your needs.</p>
+<p>The techniques have been grouped into the following three sections:</p>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -503,14 +509,13 @@
 <td>Card programming and operation</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="system-steps">
+</table><div class="section" id="system-steps">
 <h2>System Steps<a class="headerlink" href="#system-steps" title="Permalink to this headline">¶</a></h2>
 <p>This section covers steps involving the host hardware, BIOS, and OS setup.</p>
 <hr class="docutils" />
 <div class="section" id="log-machine-state">
 <h3>Log machine state<a class="headerlink" href="#log-machine-state" title="Permalink to this headline">¶</a></h3>
-<p>Use <a class="reference external" href="./scripts/WTSxrtLog.sh">WTSxrtLog.sh</a> to collect information on the system, XRT, and card state. The script captures:</p>
+<p>To quickly collect system and card information during debugging download and run the following script: <a class="reference external" href="scripts/WTSxrtLog.sh">WTSxrtLog.sh</a>. The script captures:</p>
 <ul class="simple">
 <li><p>Initial dmesg state</p></li>
 <li><p>OS</p></li>
@@ -520,7 +525,6 @@
 <li><p>Determine which cards validate</p></li>
 <li><p>dmesg state after XRT commands</p></li>
 </ul>
-<p>This information is used to provide reference information while debugging.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="root-sudo-access">
@@ -531,7 +535,7 @@
  <span class="n">root</span>
 </pre></div>
 </div>
-<p>If the response is <code class="docutils literal notranslate"><span class="pre">root</span></code>, you have the needed permissions. Otherwise, try the following:</p>
+<p>If the response is <code class="docutils literal notranslate"><span class="pre">root</span></code>, you have the needed permissions. Otherwise try</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">whoami</span>
 <span class="n">root</span>
 </pre></div>
@@ -549,7 +553,7 @@
 <li><p>Model</p></li>
 <li><p>BIOS version</p></li>
 </ol>
-<p>As of 2020.2 XRT has support for the KVM hypervisor and virtual machines. The dmidecode output has enough information to confirm if XRT is running on a physical machine vs a virtual machine using the manufacturer and product name lines in the beginning of the report. You can also use this information to determine if the machine is a workstation or a server, with a web search.</p>
+<p>As of 2020.2 XRT has support for the KVM hypervisor and virtual machines. The dmidecode output has enough information to confirm if XRT is running on a physical machine versus a virtual machine using the manufacturer and product name lines in the beginning of the report. You can also use this information to determine if the machine is a workstation or a server, with a web search.</p>
 <p>A physical machine will report the manufacturer and model of the hardware. Common manufacturers include Dell, HP, SuperMicro and IBM.  An example of this output, for a Dell server, is displayed below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Handle</span> <span class="mh">0x0100</span><span class="p">,</span> <span class="n">DMI</span> <span class="nb">type</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">27</span> <span class="nb">bytes</span>
 <span class="n">System</span> <span class="n">Information</span>
@@ -580,27 +584,28 @@
 <h3>Determine Linux release<a class="headerlink" href="#determine-linux-release" title="Permalink to this headline">¶</a></h3>
 <p>Use the <code class="docutils literal notranslate"><span class="pre">cat</span> <span class="pre">/etc/*release</span></code> command to determine the Linux release</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/*</span><span class="n">release</span>
-<span class="n">CentOS</span> <span class="n">Linux</span> <span class="n">release</span> <span class="mf">7.4.1708</span> <span class="p">(</span><span class="n">Core</span><span class="p">)</span>
+<span class="n">CentOS</span> <span class="n">Linux</span> <span class="n">release</span> <span class="mf">8.2.2004</span> <span class="p">(</span><span class="n">Core</span><span class="p">)</span> 
 <span class="n">NAME</span><span class="o">=</span><span class="s2">&quot;CentOS Linux&quot;</span>
-<span class="n">VERSION</span><span class="o">=</span><span class="s2">&quot;7 (Core)&quot;</span>
+<span class="n">VERSION</span><span class="o">=</span><span class="s2">&quot;8 (Core)&quot;</span>
 <span class="n">ID</span><span class="o">=</span><span class="s2">&quot;centos&quot;</span>
 <span class="n">ID_LIKE</span><span class="o">=</span><span class="s2">&quot;rhel fedora&quot;</span>
-<span class="n">VERSION_ID</span><span class="o">=</span><span class="s2">&quot;7&quot;</span>
-<span class="n">PRETTY_NAME</span><span class="o">=</span><span class="s2">&quot;CentOS Linux 7 (Core)&quot;</span>
+<span class="n">VERSION_ID</span><span class="o">=</span><span class="s2">&quot;8&quot;</span>
+<span class="n">PLATFORM_ID</span><span class="o">=</span><span class="s2">&quot;platform:el8&quot;</span>
+<span class="n">PRETTY_NAME</span><span class="o">=</span><span class="s2">&quot;CentOS Linux 8 (Core)&quot;</span>
 <span class="n">ANSI_COLOR</span><span class="o">=</span><span class="s2">&quot;0;31&quot;</span>
-<span class="n">CPE_NAME</span><span class="o">=</span><span class="s2">&quot;cpe:/o:centos:centos:7&quot;</span>
+<span class="n">CPE_NAME</span><span class="o">=</span><span class="s2">&quot;cpe:/o:centos:centos:8&quot;</span>
 <span class="n">HOME_URL</span><span class="o">=</span><span class="s2">&quot;https://www.centos.org/&quot;</span>
 <span class="n">BUG_REPORT_URL</span><span class="o">=</span><span class="s2">&quot;https://bugs.centos.org/&quot;</span>
 
-<span class="n">CENTOS_MANTISBT_PROJECT</span><span class="o">=</span><span class="s2">&quot;CentOS-7&quot;</span>
-<span class="n">CENTOS_MANTISBT_PROJECT_VERSION</span><span class="o">=</span><span class="s2">&quot;7&quot;</span>
+<span class="n">CENTOS_MANTISBT_PROJECT</span><span class="o">=</span><span class="s2">&quot;CentOS-8&quot;</span>
+<span class="n">CENTOS_MANTISBT_PROJECT_VERSION</span><span class="o">=</span><span class="s2">&quot;8&quot;</span>
 <span class="n">REDHAT_SUPPORT_PRODUCT</span><span class="o">=</span><span class="s2">&quot;centos&quot;</span>
-<span class="n">REDHAT_SUPPORT_PRODUCT_VERSION</span><span class="o">=</span><span class="s2">&quot;7&quot;</span>
+<span class="n">REDHAT_SUPPORT_PRODUCT_VERSION</span><span class="o">=</span><span class="s2">&quot;8&quot;</span>
 
-<span class="n">CentOS</span> <span class="n">Linux</span> <span class="n">release</span> <span class="mf">7.4.1708</span> <span class="p">(</span><span class="n">Core</span><span class="p">)</span>
+<span class="n">CentOS</span> <span class="n">Linux</span> <span class="n">release</span> <span class="mf">8.2.2004</span> <span class="p">(</span><span class="n">Core</span><span class="p">)</span> 
 </pre></div>
 </div>
-<p>In this example, the first line tells us the system is running CentOS 7.4</p>
+<p>In this example, the first line tells us the system is running CentOS 8.2</p>
 <p>Ubuntu or RHEL outputs look similar.</p>
 </div>
 <hr class="docutils" />
@@ -608,7 +613,7 @@
 <h3>Determine Linux kernel and header information<a class="headerlink" href="#determine-linux-kernel-and-header-information" title="Permalink to this headline">¶</a></h3>
 <p>For XRT usage, the machine needs to have compilation header files that match the machine’s linux kernel. Run <code class="docutils literal notranslate"><span class="pre">uname</span> <span class="pre">-r</span></code> to get the kernel version as below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">uname</span> <span class="o">-</span><span class="n">r</span>
-<span class="mf">4.15.0</span><span class="o">-</span><span class="mi">112</span><span class="o">-</span><span class="n">generic</span>
+<span class="mf">4.18.0</span><span class="o">-</span><span class="mf">193.</span><span class="n">el8</span><span class="o">.</span><span class="n">x86_64</span>
 </pre></div>
 </div>
 <p>In this example the system is running kernel version 4. For Ubuntu, only the GA kernels released with the LTS are supported and not the HWE kernels (refer to the latest XRT Release Notes for supported OS/kernel versions in <a class="reference external" href="https://www.xilinx.com/search/site-keyword-search.html#q=ug1451">UG1451</a></p>
@@ -626,12 +631,10 @@
 <h4>RHEL/CentOS<a class="headerlink" href="#rhel-centos" title="Permalink to this headline">¶</a></h4>
 <p>Run <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">kernel-</span></code> to check what versions of the <code class="docutils literal notranslate"><span class="pre">kernel-devel</span></code> and <code class="docutils literal notranslate"><span class="pre">kernel-headers</span></code> packages are install as displayed below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">yum</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="n">kernel</span><span class="o">-</span>
-<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-<span class="n">Repository</span> <span class="s1">&#39;opencl&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-<span class="n">kernel</span><span class="o">-</span><span class="n">devel</span><span class="o">.</span><span class="n">x86_64</span>                        <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">693.</span><span class="n">el7</span>         <span class="nd">@anaconda</span>
-<span class="n">kernel</span><span class="o">-</span><span class="n">headers</span><span class="o">.</span><span class="n">x86_64</span>                      <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">693.</span><span class="n">el7</span>         <span class="nd">@anaconda</span>
-<span class="o">....</span>
-<span class="n">kernel</span><span class="o">-</span><span class="n">tools</span><span class="o">-</span><span class="n">libs</span><span class="o">-</span><span class="n">devel</span><span class="o">.</span><span class="n">x86_64</span>             <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">693.</span><span class="n">el7</span>         <span class="n">xlnx</span><span class="o">-</span><span class="n">base</span>
+<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">kernel</span><span class="o">-</span><span class="n">core</span><span class="o">.</span><span class="n">x86_64</span>                                                <span class="mf">4.18.0</span><span class="o">-</span><span class="mf">193.</span><span class="n">el8</span>                                   <span class="nd">@anaconda</span>      
+<span class="n">kernel</span><span class="o">-</span><span class="n">devel</span><span class="o">.</span><span class="n">x86_64</span>                                               <span class="mf">4.18.0</span><span class="o">-</span><span class="mf">193.</span><span class="n">el8</span>                                   <span class="nd">@anaconda</span>      
+<span class="n">kernel</span><span class="o">-</span><span class="n">headers</span><span class="o">.</span><span class="n">x86_64</span>                                             <span class="mf">4.18.0</span><span class="o">-</span><span class="mf">193.</span><span class="n">el8</span>                                   <span class="nd">@anaconda</span>      
 </pre></div>
 </div>
 </div>
@@ -651,7 +654,7 @@
         <span class="n">Characteristics</span><span class="p">:</span>
                 <span class="mf">3.3</span> <span class="n">V</span> <span class="ow">is</span> <span class="n">provided</span>
                 <span class="n">PME</span> <span class="n">signal</span> <span class="ow">is</span> <span class="n">supported</span>
-        <span class="n">Bus</span> <span class="n">Address</span><span class="p">:</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span>
+        <span class="n">Bus</span> <span class="n">Address</span><span class="p">:</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span>
 </pre></div>
 </div>
 <p>The  <code class="docutils literal notranslate"><span class="pre">Type:</span></code> field shows this is a x16 slot. Any other value display will indicate it is not a x16 slot.</p>
@@ -661,18 +664,31 @@
                 <span class="n">LnkCap</span><span class="p">:</span> <span class="n">Port</span> <span class="c1">#0, Speed 8GT/s, Width x4, ASPM not supported, Exit Latency L0s unlimited, L1 unlimited</span>
 </pre></div>
 </div>
-<p>If the card is running slower than the slot, review the shell capabilities with <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> as shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span>
-<span class="o">...</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50lv</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xca1bd5610169a52c</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
+<p>If the card is running slower than the slot, review the shell capabilities with <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-d</span> <span class="pre">&lt;bdf&gt;</span></code> as shown below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span>
+
+<span class="o">-----------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span>
+<span class="o">-----------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">123456789</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50lv</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">LV</span> <span class="n">PQ</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.0.27</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">CA1BD561</span><span class="o">-</span><span class="mi">0169</span><span class="o">-</span><span class="n">A52C</span><span class="o">-</span><span class="n">E463</span><span class="o">-</span><span class="n">B3300DF98172</span>
+  <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">05</span><span class="n">A5E9D4</span><span class="o">-</span><span class="n">E079</span><span class="o">-</span><span class="mf">740E-76</span><span class="n">C7</span><span class="o">-</span><span class="mi">499</span><span class="n">FEEC81DB3</span>
 </pre></div>
 </div>
 <p>This is a Gen3 x4 shell. The x4 link is expected.</p>
-<p><strong>NOTE:</strong> Make sure to match the BDF (c3:00.0 in this case) with the output from <code class="docutils literal notranslate"><span class="pre">dmidecode</span></code> to ensure you are looking at the right card.</p>
+<p><strong>NOTE:</strong> Make sure to match the BDF (04:00.0 in this case) with the output from <code class="docutils literal notranslate"><span class="pre">dmidecode</span></code> to ensure you are looking at the right card.</p>
 <p>Another option is to look directly at the the silk screening on a motherboard or in the case of a server it may be on the risers. Here is an example picture:</p>
 <p><img alt="motherboard labeling Diagram " src="../_images/mb_labeling.png" /></p>
 <p>The green circles show a slot that supports Gen3 x16 cards. The red circles show a Gen3 x8 that do not support Gen3 x16 speeds.</p>
@@ -680,7 +696,7 @@
 <hr class="docutils" />
 <div class="section" id="disable-fastboot">
 <h3>Disable fastboot<a class="headerlink" href="#disable-fastboot" title="Permalink to this headline">¶</a></h3>
-<p>Use this if the <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
+<p>Use this if the <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
 <ul class="simple">
 <li><p>Boot the system into the BIOS setup menu</p>
 <ul>
@@ -729,6 +745,7 @@
 <p>Not all machines have mokutil installed - its an optional package. You may have to install the package or check the Secure Boot setting in the system BIOS.</p>
 </div>
 </div>
+<hr class="docutils" />
 <div class="section" id="xrt-steps">
 <h2>XRT Steps<a class="headerlink" href="#xrt-steps" title="Permalink to this headline">¶</a></h2>
 <p>This section covers steps involving XRT installation and operation.</p>
@@ -740,17 +757,31 @@
 <hr class="docutils" />
 <div class="section" id="determine-xrt-version">
 <h3>Determine XRT version<a class="headerlink" href="#determine-xrt-version" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">Build</span> <span class="pre">Version</span> <span class="pre">Branch:</span></code> field shows the XRT github branch. It is normally tied to a release like <code class="docutils literal notranslate"><span class="pre">2019.2</span></code>, <code class="docutils literal notranslate"><span class="pre">2019.2_PU2</span></code>, or <code class="docutils literal notranslate"><span class="pre">2020.2</span></code>.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">Branch:</span></code> field shows the XRT github branch. It is normally tied to a release like <code class="docutils literal notranslate"><span class="pre">2021.1</span></code> or <code class="docutils literal notranslate"><span class="pre">2021.2</span></code>.</p>
 <p>If the value is <code class="docutils literal notranslate"><span class="pre">Master</span></code>, you are using an un-official release.</p>
-<p><code class="docutils literal notranslate"><span class="pre">XRT</span> <span class="pre">Build</span> <span class="pre">Version</span></code>: indicates the build as seen via the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> example below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="o">--</span><span class="n">version</span>
-       <span class="n">XRT</span> <span class="n">Build</span> <span class="n">Version</span><span class="p">:</span> <span class="mf">2.8.726</span>
-    <span class="n">Build</span> <span class="n">Version</span> <span class="n">Branch</span><span class="p">:</span> <span class="mf">2020.2</span>
-      <span class="n">Build</span> <span class="n">Version</span> <span class="n">Hash</span><span class="p">:</span> <span class="mi">7</span><span class="n">c93966ead2dec777b92bdc379893f22b5bd561e</span>
- <span class="n">Build</span> <span class="n">Version</span> <span class="n">Hash</span> <span class="n">Date</span><span class="p">:</span> <span class="n">Wed</span><span class="p">,</span> <span class="mi">11</span> <span class="n">Nov</span> <span class="mi">2020</span> <span class="mi">13</span><span class="p">:</span><span class="mi">45</span><span class="p">:</span><span class="mi">32</span> <span class="o">-</span><span class="mi">0800</span>
-      <span class="n">Build</span> <span class="n">Version</span> <span class="n">Date</span><span class="p">:</span> <span class="n">Thu</span><span class="p">,</span> <span class="mi">12</span> <span class="n">Nov</span> <span class="mi">2020</span> <span class="mi">04</span><span class="p">:</span><span class="mi">28</span><span class="p">:</span><span class="mi">18</span> <span class="o">+</span><span class="mi">0000</span>
-                    <span class="n">XOCL</span><span class="p">:</span> <span class="mf">2.8.726</span><span class="p">,</span><span class="mi">7</span><span class="n">c93966ead2dec777b92bdc379893f22b5bd561e</span>
-                 <span class="n">XCLMGMT</span><span class="p">:</span> <span class="mf">2.8.726</span><span class="p">,</span><span class="mi">7</span><span class="n">c93966ead2dec777b92bdc379893f22b5bd561e</span>
+<p><code class="docutils literal notranslate"><span class="pre">Version</span></code>: indicates the build as seen via the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> example below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">examine</span>
+<span class="n">System</span> <span class="n">Configuration</span>
+  <span class="n">OS</span> <span class="n">Name</span>              <span class="p">:</span> <span class="n">Linux</span>
+  <span class="n">Release</span>              <span class="p">:</span> <span class="mf">5.8.0</span><span class="o">-</span><span class="mi">63</span><span class="o">-</span><span class="n">generic</span>
+  <span class="n">Version</span>              <span class="p">:</span> <span class="c1">#71~20.04.1-Ubuntu SMP Thu Jul 15 17:46:08 UTC 2021</span>
+  <span class="n">Machine</span>              <span class="p">:</span> <span class="n">x86_64</span>
+  <span class="n">CPU</span> <span class="n">Cores</span>            <span class="p">:</span> <span class="mi">8</span>
+  <span class="n">Memory</span>               <span class="p">:</span> <span class="mi">64277</span> <span class="n">MB</span>
+  <span class="n">Distribution</span>         <span class="p">:</span> <span class="n">Ubuntu</span> <span class="mf">20.04.2</span> <span class="n">LTS</span>
+  <span class="n">GLIBC</span>                <span class="p">:</span> <span class="mf">2.31</span>
+  <span class="n">Model</span>                <span class="p">:</span> <span class="n">Precision</span>
+
+<span class="n">XRT</span>
+  <span class="n">Version</span>              <span class="p">:</span> <span class="mf">2.11.634</span>
+  <span class="n">Branch</span>               <span class="p">:</span> <span class="mf">2021.1</span>
+  <span class="n">Hash</span>                 <span class="p">:</span> <span class="mi">5</span><span class="n">ad5998d67080f00bca5bf15b3838cf35e0a7b26</span>
+  <span class="n">Hash</span> <span class="n">Date</span>            <span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">06</span><span class="o">-</span><span class="mi">08</span> <span class="mi">22</span><span class="p">:</span><span class="mi">08</span><span class="p">:</span><span class="mi">45</span>
+  <span class="n">XOCL</span>                 <span class="p">:</span> <span class="mf">2.11.634</span><span class="p">,</span> <span class="mi">5</span><span class="n">ad5998d67080f00bca5bf15b3838cf35e0a7b26</span>
+  <span class="n">XCLMGMT</span>              <span class="p">:</span> <span class="mf">2.11.634</span><span class="p">,</span> <span class="mi">5</span><span class="n">ad5998d67080f00bca5bf15b3838cf35e0a7b26</span>
+
+<span class="n">Devices</span> <span class="n">present</span>
+  <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u250_gen3x16_xdma_shell_3_1</span>
 </pre></div>
 </div>
 <p>The XOCL and XCLMGMT versions must match. If not, XRT will not operate correctly.</p>
@@ -767,51 +798,52 @@
 </ul>
 <div class="section" id="id1">
 <h4>Ubuntu<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
-<p>Determine the platform and xbtest packages with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xilinx-</span></code>. The machine in the example example below has the U250 xdma 201830_2 development and deployment platforms for the U250. No xbtest is installed.</p>
+<p>Determine the platform and xbtest packages with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xilinx-</span></code>. The machine in the example below has the U250 DFX-2RP XDMA 3.1 deployment and development platforms installed; xbtest is not installed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">xilinx</span><span class="o">-</span>
 
 <span class="n">WARNING</span><span class="p">:</span> <span class="n">apt</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">CLI</span> <span class="n">interface</span><span class="o">.</span> <span class="n">Use</span> <span class="k">with</span> <span class="n">caution</span> <span class="ow">in</span> <span class="n">scripts</span><span class="o">.</span>
 
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">xdma</span><span class="o">/</span><span class="n">now</span> <span class="mf">201830.2</span><span class="o">-</span><span class="mi">2580015</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">now</span> <span class="mf">201830.2</span><span class="o">-</span><span class="mi">2580015</span> <span class="n">amd64</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">cmc</span><span class="o">-</span><span class="n">u200</span><span class="o">-</span><span class="n">u250</span><span class="o">/</span><span class="n">now</span> <span class="mf">1.2.15</span><span class="o">-</span><span class="mf">2.3186334</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">sc</span><span class="o">-</span><span class="n">fw</span><span class="o">-</span><span class="n">u200</span><span class="o">-</span><span class="n">u250</span><span class="o">/</span><span class="n">now</span> <span class="mf">4.6.11</span><span class="o">-</span><span class="mf">2.0766885</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">base</span><span class="o">/</span><span class="n">now</span> <span class="mi">3</span><span class="o">-</span><span class="mi">3060459</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="mf">3.1</span><span class="o">-</span><span class="mi">202020</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dev</span><span class="o">/</span><span class="n">now</span> <span class="mi">1</span><span class="o">-</span><span class="mi">3233485</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">shell</span><span class="o">/</span><span class="n">now</span> <span class="mf">3.1</span><span class="o">-</span><span class="mi">3063142</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xilinx</span><span class="o">-</span><span class="n">u250</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">validate</span><span class="o">/</span><span class="n">now</span> <span class="mf">3.1</span><span class="o">-</span><span class="mi">3061241</span> <span class="nb">all</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Determine the XRT package with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xrt</span></code>. The example below has xrt 2.5.309 installed.</p>
+<p>Determine the XRT package with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xrt</span></code>. The example below has xrt 2.11.634 installed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">xrt</span>
 
 <span class="n">WARNING</span><span class="p">:</span> <span class="n">apt</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">have</span> <span class="n">a</span> <span class="n">stable</span> <span class="n">CLI</span> <span class="n">interface</span><span class="o">.</span> <span class="n">Use</span> <span class="k">with</span> <span class="n">caution</span> <span class="ow">in</span> <span class="n">scripts</span><span class="o">.</span>
 
-<span class="n">xrt</span><span class="o">/</span><span class="n">now</span> <span class="mf">2.5.309</span> <span class="n">amd64</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
+<span class="n">xrt</span><span class="o">/</span><span class="n">now</span> <span class="mf">2.11.634</span> <span class="n">amd64</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Use <a class="reference external" href="common-steps.html#xrt-release-versions-and-download-locations">the XRT release table</a>  to see if the XRT version is an official release.</p>
 </div>
 <div class="section" id="id2">
 <h4>RHEL/CentOS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
-<p>Determine the platform and xbtest packages with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xilinx-</span></code> The machine in the example below has two different U50 platforms installed and xbtest only installed for the gen3x16 platform. No development platforms are installed.</p>
+<p>Determine the platform and xbtest packages with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xilinx-</span></code> The machine in the example below has the Gen3x16 U50 deployment platform installed as well as the associated xbtest; no development platforms are installed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">yum</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">xilinx</span><span class="o">-</span>
-<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-<span class="n">Repository</span> <span class="s1">&#39;opencl&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-
-<span class="n">xilinx</span><span class="o">-</span><span class="n">cmc</span><span class="o">-</span><span class="n">u50</span><span class="o">.</span><span class="n">noarch</span>                     <span class="mf">1.0.20</span><span class="o">-</span><span class="mi">2853996</span>        <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">cmc</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="mf">1.0.20</span><span class="o">-</span><span class="mf">2853996.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">sc</span><span class="o">-</span><span class="n">fw</span><span class="o">-</span><span class="n">u50</span><span class="o">.</span><span class="n">noarch</span>                   <span class="mf">5.0.33</span><span class="o">-</span><span class="mf">1.6</span><span class="n">a767ec</span>      <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">sc</span><span class="o">-</span><span class="n">fw</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="mf">5.0.33</span><span class="o">-</span><span class="mf">1.6</span><span class="n">a767ec</span><span class="o">.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">.</span><span class="n">noarch</span>        <span class="mi">1</span><span class="o">-</span><span class="mi">2784799</span>             <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="mf">201920.3</span><span class="o">-</span><span class="mf">2784799.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">noarch</span>        <span class="mf">201920.3</span><span class="o">-</span><span class="mi">2784799</span>      <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="mf">201920.3</span><span class="o">-</span><span class="mf">2784799.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">202010</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dev</span><span class="o">.</span><span class="n">noarch</span>
-                                          <span class="mi">1</span><span class="o">-</span><span class="mi">2902115</span>             <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mi">202010</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="n">dev</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mf">2902115.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">base</span><span class="o">.</span><span class="n">noarch</span>        <span class="mi">2</span><span class="o">-</span><span class="mi">2902115</span>             <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">base</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mf">2902115.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">validate</span><span class="o">.</span><span class="n">noarch</span>    <span class="mi">2</span><span class="o">-</span><span class="mi">2902115</span>             <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">validate</span><span class="o">-</span><span class="mi">2</span><span class="o">-</span><span class="mf">2902115.</span><span class="n">noarch</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">x86_64</span>               <span class="mf">1.0</span><span class="o">-</span><span class="mf">1.7.4.1708</span>        <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">common</span><span class="o">-</span><span class="mf">1.0</span><span class="o">-</span><span class="mf">1.7.4.1708</span><span class="o">.</span><span class="n">x86_64</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">sw</span><span class="o">-</span><span class="mf">4.</span><span class="n">x86_64</span>                 <span class="mi">0</span><span class="o">-</span><span class="mf">1.7.4.1708</span>          <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">sw</span><span class="o">-</span><span class="mi">4</span><span class="o">-</span><span class="mi">0</span><span class="o">-</span><span class="mf">1.7.4.1708</span><span class="o">.</span><span class="n">x86_64</span>
-<span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">-</span><span class="mf">1.</span><span class="n">noarch</span>
-                                          <span class="mf">4.0</span><span class="o">-</span><span class="mi">2787592</span>           <span class="o">@/</span><span class="n">xilinx</span><span class="o">-</span><span class="n">xbtest</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">-</span><span class="mi">1</span><span class="o">-</span><span class="mf">4.0</span><span class="o">-</span><span class="mf">2787592.</span><span class="n">noarch</span>
+<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">xbtest</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">-</span><span class="mf">1.</span><span class="n">noarch</span>                       <span class="mf">5.0</span><span class="o">-</span><span class="mi">3055365</span>                                        <span class="o">@</span><span class="nd">@commandline</span>  
+<span class="n">xilinx</span><span class="o">-</span><span class="n">cmc</span><span class="o">-</span><span class="n">u50</span><span class="o">.</span><span class="n">noarch</span>                                             <span class="mf">1.0.27</span><span class="o">-</span><span class="mi">3041182</span>                                     <span class="o">@</span><span class="nd">@commandline</span>  
+<span class="n">xilinx</span><span class="o">-</span><span class="n">sc</span><span class="o">-</span><span class="n">fw</span><span class="o">-</span><span class="n">u50</span><span class="o">.</span><span class="n">noarch</span>                                           <span class="mf">5.1.7</span><span class="o">-</span><span class="mf">1.</span><span class="n">f121ae9</span>                                    <span class="o">@</span><span class="nd">@commandline</span>  
+<span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">.</span><span class="n">noarch</span>                                <span class="mi">1</span><span class="o">-</span><span class="mi">2784799</span>                                          <span class="o">@</span><span class="nd">@commandline</span>  
 </pre></div>
 </div>
-<p>Determine the XRT package with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xrt</span></code>. The example below has xrt 2.7.766 installed.</p>
+<p>There are 2 additional xbtest packages that can be seen with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xbtest-</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">yum</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">xbtest</span>
+<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">xbtest</span><span class="o">-</span><span class="n">common</span><span class="o">.</span><span class="n">x86_64</span>                                              <span class="mf">1.1</span><span class="o">-</span><span class="mi">1</span>                                              <span class="o">@</span><span class="nd">@commandline</span>  
+<span class="n">xbtest</span><span class="o">-</span><span class="n">sw</span><span class="o">-</span><span class="mf">5.</span><span class="n">x86_64</span>                                                <span class="mi">0</span><span class="o">-</span><span class="mi">1</span>                                                <span class="o">@</span><span class="nd">@commandline</span>  
+<span class="n">xbtest</span><span class="o">-</span><span class="n">xilinx</span><span class="o">-</span><span class="n">u50</span><span class="o">-</span><span class="n">gen3x16</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">blp</span><span class="o">-</span><span class="mf">1.</span><span class="n">noarch</span>                       <span class="mf">5.0</span><span class="o">-</span><span class="mi">3055365</span>                                        <span class="o">@</span><span class="nd">@commandline</span>  
+</pre></div>
+</div>
+<p>Determine the XRT package with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">list</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">-i</span> <span class="pre">xrt</span></code>. The example below has xrt 2.8.743 installed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">yum</span> <span class="nb">list</span> <span class="o">|</span> <span class="n">grep</span> <span class="o">-</span><span class="n">i</span> <span class="n">xrt</span>
-<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-<span class="n">Repository</span> <span class="s1">&#39;opencl&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span>
-<span class="n">xrt</span><span class="o">.</span><span class="n">x86_64</span>                                <span class="mf">2.7.766</span><span class="o">-</span><span class="mi">1</span>             <span class="o">@/</span><span class="n">xrt_202010</span><span class="mf">.2.7.766_7.4.1708</span><span class="o">-</span><span class="n">x86_64</span><span class="o">-</span><span class="n">xrt</span>
+<span class="n">Repository</span> <span class="s1">&#39;UIM_install&#39;</span> <span class="ow">is</span> <span class="n">missing</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">configuration</span><span class="p">,</span> <span class="n">using</span> <span class="nb">id</span><span class="o">.</span>
+<span class="n">xrt</span><span class="o">.</span><span class="n">x86_64</span>                                                        <span class="mf">2.8.743</span><span class="o">-</span><span class="mi">1</span>                                          <span class="o">@</span><span class="nd">@commandline</span> 
 </pre></div>
 </div>
 <p>Use the <a class="reference external" href="#xrt-release-versions-and-download-locations">XRT release table</a> to see if the XRT version is an official release.</p>
@@ -836,18 +868,18 @@
 <div class="section" id="remove-xrt">
 <h3>Remove XRT<a class="headerlink" href="#remove-xrt" title="Permalink to this headline">¶</a></h3>
 <p>Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.</p>
-<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
+<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
 <p>Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">xrt</span></code></p></li>
-<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">remove xrt</span></code></p></li>
+<li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove xrt</span></code></p></li>
 </ul>
 <p><span style="color: rgb(255,0,0);"> <span style="color: rgb(0,0,0);">If needed use the package manager to find the installed package names.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="xclbin-fails-to-load">
 <h3>xclbin fails to load<a class="headerlink" href="#xclbin-fails-to-load" title="Permalink to this headline">¶</a></h3>
-<p>The first time an accelerator is run on a card, XRT loads the binary description of the accelerator, stored in an .xclbin file.<br />If the .xclbin fails to load, run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> .  If the output displays errors, see <a class="reference internal" href="sc-troubleshooting.html"><span class="doc">sc-troubleshooting.md</span></a>.
+<p>The first time an accelerator is run on a card, XRT loads the binary description of the accelerator, stored in an .xclbin file.<br />If the .xclbin fails to load, run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code> .  If the output displays errors, see <a class="reference internal" href="sc-troubleshooting.html"><span class="doc">SC Troubleshooting</span></a>.
 Else there may be an platform mismatch.</p>
 </div>
 <hr class="docutils" />
@@ -863,241 +895,142 @@ Else there may be an platform mismatch.</p>
 </thead>
 <tbody>
 <tr>
-<td>2019.2 <br> XRT 2.3.1301</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.3.1301_7.4.1708-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.3.1301_16.04-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.3.1301_18.04-xrt.deb">Ubuntu 18.04</a></li></td>
-</tr>
-<tr>
-<td>2019.2_pu2 <br> XRT 2.5.309</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.5.309_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.5.309_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_201920.2.5.309_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li></td>
-</tr>
-<tr>
-<td>2020.1 <br> XRT 2.6.655</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li></td>
-</tr>
-<tr>
-<td>2020.1_pu1 <br> XRT 2.7.766</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.1</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_18.04-amd64-xrt.deb">Ubuntu 18.04</a></td>
-</tr>
-<tr>
-<td>2020.2 <br> XRT 2.8.726</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
-</tr>
-<tr>
-<td>2020.2 <br> XRT 2.8.743 <br>See <a href="https://www.xilinx.com/support/answers/76088.html">AR 76088</a></td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
-</tr>
-<tr>
-<td>2020.2_pu1 <br> XRT 2.9.317</td>
-<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_7.4.1708-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
+<td>2021.1_pu1 <br> XRT 2.11.634</td>
+<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
 </tr>
 </tbody>
-</table></div>
+</table><p>If you are looking for an older XRT the uses the legacy commands go to TODO:Need to link to legacy.</p>
 </div>
+</div>
+<hr class="docutils" />
 <div class="section" id="card-steps">
 <h2>Card Steps<a class="headerlink" href="#card-steps" title="Permalink to this headline">¶</a></h2>
-<p>Provides various techniques which can be used for debugging Alveo cards.</p>
-<hr class="docutils" />
-<div class="section" id="confirm-system-recognizes-cards">
-<h3>Confirm system recognizes cards<a class="headerlink" href="#confirm-system-recognizes-cards" title="Permalink to this headline">¶</a></h3>
-<p>Use the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> command to confirm the system recognizes the card on the PCIe bus and the correct kernel drivers are in use.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">lspci</span></code> command provides details on all of the PCIe buses and devices in the system. The verbose switch (-v) will provide greater detail and the device ID switch (-d) will filter for specific vendors.  For Xilinx, the device ID is <code class="docutils literal notranslate"><span class="pre">10ee:</span></code> .</p>
-<p>Each card will output details for both management and user functions and display the respective Bus:Device:Function (BDF).  The function digit of the displayed BDF will be zero for management functions and one for user functions.</p>
-<ul class="simple">
-<li><p>For management functions:</p>
-<ul>
-<li><p>The BDF will have the following form <code class="docutils literal notranslate"><span class="pre">xx:yy.0</span></code></p></li>
-<li><p>Kernel driver in use: xclmgmt</p></li>
-</ul>
-</li>
-<li><p>For user functions,</p>
-<ul>
-<li><p>The BDF will have the following form <code class="docutils literal notranslate"><span class="pre">xx:yy.1</span></code></p></li>
-<li><p>Kernel driver in use: xocl</p></li>
-</ul>
-</li>
-</ul>
-<p>The user function BDF only exists once a shell has been flashed onto the card. Cards with the factory golden image will only have the <code class="docutils literal notranslate"><span class="pre">xx:yy.0</span></code> BDF.</p>
-<p>Below is an example of the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> output.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:~&gt; sudo lspci -vd 10ee:
-8a:00.0 Processing accelerators: Xilinx Corporation Device 5000
-        Subsystem: Xilinx Corporation Device 000e
-        Flags: bus master, fast devsel, latency 0, NUMA node 1
-        Memory at 2fff2000000 (64-bit, prefetchable) [size=32M]
-        Memory at 2fff4040000 (64-bit, prefetchable) [size=256K]
-        Capabilities: [40] Power Management version 3
-        Capabilities: [60] MSI-X: Enable+ Count=32 Masked-
-        Capabilities: [70] Express Endpoint, MSI 00
-        Capabilities: [100] Advanced Error Reporting
-        Capabilities: [1c0] #19
-        Capabilities: [400] Access Control Services
-        Capabilities: [410] #15
-        Capabilities: [480] Vendor Specific Information: ID=0020 Rev=0 Len=010 &lt;?&gt;
-        Kernel driver in use: xclmgmt
-        Kernel modules: xclmgmt
-
-8a:00.1 Processing accelerators: Xilinx Corporation Device 5001
-        Subsystem: Xilinx Corporation Device 000e
-        Flags: bus master, fast devsel, latency 0, IRQ 39, NUMA node 1
-        Memory at 2fff0000000 (64-bit, prefetchable) [size=32M]
-        Memory at 2fff4000000 (64-bit, prefetchable) [size=256K]
-        Memory at 2ffe0000000 (64-bit, prefetchable) [size=256M]
-        Capabilities: [40] Power Management version 3
-        Capabilities: [60] MSI-X: Enable+ Count=32 Masked-
-        Capabilities: [70] Express Endpoint, MSI 00
-        Capabilities: [100] Advanced Error Reporting
-        Capabilities: [400] Access Control Services
-        Capabilities: [410] #15
-        Capabilities: [480] Vendor Specific Information: ID=0020 Rev=0 Len=010 &lt;?&gt;
-        Kernel driver in use: xocl
-        Kernel modules: xocl
+<p>Provides various techniques for debugging Alveo cards.</p>
+<div class="section" id="displaying-card-bdf-values">
+<h3>Displaying Card BDF Values<a class="headerlink" href="#displaying-card-bdf-values" title="Permalink to this headline">¶</a></h3>
+<p>Each Alveo card is assigned both a management and an user <a class="reference external" href="terminology.html#bdf">BDF</a> (Bus:Device:Function).   For a given card, the management and user BDF values differ only by the Function digit.</p>
+<p>To obtain the management and user BDF values for installed cards, use the following commands.  It requires XRT to be installed.</p>
+<p>The <a class="reference external" href="https://xilinx.github.io/XRT/master/html/platforms.html#xrt-and-vitis-platform-overview">XRT documentation</a> provides detailed descriptions on the management and user functions.</p>
+<div class="section" id="management-bdf">
+<h4>Management BDF<a class="headerlink" href="#management-bdf" title="Permalink to this headline">¶</a></h4>
+<p>To display the management BDF values of installed cards, use the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span></code></p>
+<p>The management BDF values of installed cards are given in the square brackets under ‘Devices present’ and has the form <code class="docutils literal notranslate"><span class="pre">vvvv:xx:yy.0</span></code>.  In the below example, only one device is present and has a management BDF of <code class="docutils literal notranslate"><span class="pre">0000:af:00.0</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Devices</span> <span class="n">present</span>
+  <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
 </pre></div>
 </div>
-<p>In a multi card system you may need to cross reference <code class="docutils literal notranslate"><span class="pre">lspci</span></code> output and <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> output to determine if there is a card missing</p>
+</div>
+<div class="section" id="user-bdf">
+<h4>User BDF<a class="headerlink" href="#user-bdf" title="Permalink to this headline">¶</a></h4>
+<p>To display the user BDF values of installed cards, use the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code></p>
+<p>The user BDF values of installed cards are given in the square brackets under ‘Devices present’ and has the form <code class="docutils literal notranslate"><span class="pre">vvvv:xx:yy.1</span></code>.  In the below example, only one device is present and has a user BDF of <code class="docutils literal notranslate"><span class="pre">0000:af:00.1</span></code>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Devices</span> <span class="n">present</span>
+  <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+</pre></div>
+</div>
+<p>NOTE: The user BDF only exists once a shell has been flashed onto the card. Cards with the factory golden image will only have a management BDF.</p>
+</div>
+<div class="section" id="bdf-displayed-using-lspci">
+<h4>BDF displayed using lspci<a class="headerlink" href="#bdf-displayed-using-lspci" title="Permalink to this headline">¶</a></h4>
+<p>Alveo card BDF values can also be displayed using the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> Linux command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lspci</span> <span class="pre">-vd</span> <span class="pre">10ee:</span></code></p>
+<p>See <a class="reference external" href="card-not-recognized.html#card-not-recognized">Card Not Recognized</a> for lspci field details.</p>
+<p>In a multi card system you may need to cross reference <code class="docutils literal notranslate"><span class="pre">lspci</span></code> output and <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--verbose</span></code> output to determine if there is a card missing.</p>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-pcie-ids">
 <h3>Card PCIe IDs<a class="headerlink" href="#card-pcie-ids" title="Permalink to this headline">¶</a></h3>
-<p>The card PCIe ID changes depending on the image loaded to the card. The card PCIe ID for golden images are given in the table below:</p>
-<table border="1" class="docutils">
-<thead>
-<tr>
-<th>Card</th>
-<th>Golden ID</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>U200</td>
-<td>d000</td>
-</tr>
-<tr>
-<td>U250</td>
-<td>d004</td>
-</tr>
-<tr>
-<td>U280</td>
-<td>d00c</td>
-</tr>
-<tr>
-<td>U50</td>
-<td>d020</td>
-</tr>
-</tbody>
-</table><p>Refer to <a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1363-alveo-out-of-band-user-guide.pdf">https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1363-alveo-out-of-band-user-guide.pdf</a> for the lscpi id per platform/shell.</p>
+<p>Alveo card PCIe ID information is given <a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/management-specification/appendix_a.html#alveo-pcie-information">here</a>.  It provides the PCIe ID for both the golden image and for the shell installed.</p>
 </div>
 <hr class="docutils" />
-<div class="section" id="determine-platform-and-sc-on-card-and-system">
-<h3>Determine platform and SC on card and system<a class="headerlink" href="#determine-platform-and-sc-on-card-and-system" title="Permalink to this headline">¶</a></h3>
-<p>When debugging an issue it can be useful to know what is installed on the system and what is running on the card. If XRT is installed and working, the easiest way to see this is with the <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> command.</p>
-<p>The first case below shows that the card is running the same platform that is installed on the system. However the SC has a different version. <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--card</span> <span class="pre">xx:00.0</span></code> needs to be run to update the SC.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.13</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">f465b0a3ae8c64f619bc150384ace69b</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">f465b0a3ae8c64f619bc150384ace69b</span>
-    <span class="n">Card</span> <span class="n">name</span>                   <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
-    <span class="n">Card</span> <span class="n">S</span><span class="o">/</span><span class="n">N</span><span class="p">:</span>                   <span class="mi">50121119</span><span class="n">CSJ8</span>
-    <span class="n">Config</span> <span class="n">mode</span><span class="p">:</span>                <span class="mi">7</span>
-    <span class="n">Fan</span> <span class="n">presence</span><span class="p">:</span>               <span class="n">P</span>
-    <span class="n">Max</span> <span class="n">power</span> <span class="n">level</span><span class="p">:</span>            <span class="mi">75</span><span class="n">W</span>
-    <span class="n">MAC</span> <span class="n">address0</span><span class="p">:</span>               <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">70</span><span class="p">:</span><span class="mi">08</span>
-    <span class="n">MAC</span> <span class="n">address1</span><span class="p">:</span>               <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">70</span><span class="p">:</span><span class="mi">09</span>
-    <span class="n">MAC</span> <span class="n">address2</span><span class="p">:</span>               <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">70</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span>
-    <span class="n">MAC</span> <span class="n">address3</span><span class="p">:</span>               <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">70</span><span class="p">:</span><span class="mi">0</span><span class="n">B</span>
+<div class="section" id="display-card-and-host-platform-and-sc-versions">
+<h3>Display card and host platform and SC versions<a class="headerlink" href="#display-card-and-host-platform-and-sc-versions" title="Permalink to this headline">¶</a></h3>
+<p>If the platform or SC running on the card does not match what is installed on the host system, applications will be unable to run correctly. To display the partition and SC version installed on the system and running on the card, use the following command:</p>
+<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p>
+<p>See <a class="reference external" href="#displaying-card-bdf-values">Displaying Card BDF Values</a> for obtaining the management BDF value.</p>
+<p>An output similar to this will be displayed.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="n">XFL13K1ZFSI3</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+  <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+
+
+  <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">71</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">72</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">73</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">40</span><span class="p">:</span><span class="mi">74</span>
 </pre></div>
 </div>
-<p>It is also possible that there is a deployment platform installed on the system and a golden image installed on the card. For most cards the partition on the FPGA will end in a string like <code class="docutils literal notranslate"><span class="pre">_golden_5</span></code>. The one exception is the U50LV which calls the golden image the <code class="docutils literal notranslate"><span class="pre">_recovery</span></code> image as below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50lv</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50lv_recovery</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x2</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="n">INACTIVE</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="mi">00000000000000020004000002836260</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xca1bd5610169a52c</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">ca1bd5610169a52ce463b3300df98172</span>
+<p>When a card has successfully been installed and the firmware has been updated, both entries for <code class="docutils literal notranslate"><span class="pre">Platform</span></code> and <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">version</span></code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> must match.  If they do not match, the system will be unable to correctly run applications on your card.</p>
+<p>To confirm they match, visually compare the ‘Platform’ and ‘SC Version’ entries under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>.</p>
+<p>In the above example, the Platform (xilinx_u50_gen3x16_xdma_201920_3) and SC version (5.2.6) displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> both match.  If they don’t match, follow the steps in the card’s installation guide to install the deployment software.</p>
+<p>If the platform under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> has the word <code class="docutils literal notranslate"><span class="pre">golden</span></code> in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card’s installation guide.  See <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Reverting the card to factory image</a> for details on the factory image.</p>
+<p>Finally, if there is a platform displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> but none under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, as shown in the example below, the deployment platform will first need to be installed on the system in order to run applications on the card.  Follow the steps in the card’s installation guide to install the deployment software.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">--</span><span class="n">device</span> <span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.0</span>
+
+<span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="n">XFL13K1ZFSI3</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+  <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+  <span class="o">&lt;</span><span class="n">none</span> <span class="n">found</span><span class="o">&gt;</span>        
+
+
+  <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">49</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">A</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">B</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">C</span>
+
+<span class="n">WARNING</span>  <span class="p">:</span> <span class="n">No</span> <span class="n">shell</span> <span class="ow">is</span> <span class="n">installed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">system</span><span class="o">.</span>
 </pre></div>
 </div>
-<p>In both cases the card is running the factory FPGA image, the card will need to be flashed before use.</p>
-<p>The case below shows there is a platform running on the card with no platform on the system, the deployment platform will first need to be installed on the system.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50lv</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xca1bd5610169a52c</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">ca1bd5610169a52ce463b3300df98172</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>   <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>On 2020.1 and newer XRT versions you will see the SC version even if there is no deployment package installed on the system.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="flash-the-card-with-a-deployment-platform">
 <h3>Flash the card with a deployment platform<a class="headerlink" href="#flash-the-card-with-a-deployment-platform" title="Permalink to this headline">¶</a></h3>
-<p>Once the card is up and running in the system, a deployment platform will need to be flashed onto the card before <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> passes and applications can be run. To flash the card with a deployment platform follow the below steps:</p>
-<ol>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
-<li><p>If <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span> <span class="pre">(None)</span></code>  is the output please install the latest packages from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a> for your installed card(s)</p></li>
-<li><p>Follow the process for <a class="reference internal" href="card-install.html"><span class="doc">Card install</span></a> to install the platforms on the machine.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span> <span class="pre">&lt;xilinx_uxx&gt;</span></code> to flash the platform onto the card. This command should be provided during platform installation, shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Partition package installed successfully.
-Please flash card manually by running below command:
-sudo /opt/xilinx/xrt/bin/xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
-
-~]$ sudo xbmgmt flash --update --shell xilinx_u50_gen3x16_xdma_201920_3
-	 Status: shell needs updating
-        Current shell: xilinx_u50_GOLDEN_9
-        Shell to be flashed: xilinx_u50_gen3x16_xdma_201920_3
-Are you sure you wish to proceed? [y/n]: y
-
-Updating shell on card[0000:05:00.0]
-INFO: ***Found 353 ELA Records
-Enabled bitstream guard. Bitstream will not be loaded until flashing is finished.
-Preparing flash chip 0
-Erasing flash.................
-Programming flash.................
-Cleared bitstream guard. Bitstream now active.
-Successfully flashed Card[0000:05:00.0]
-
-1 Card(s) flashed successfully.
-Cold reboot machine to load the new image on card(s).
+<p>Once the card has been installed in the system, a deployment platform must be flashed onto the card before the card can run an application. To flash the card with a deployment platform, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">program</span> <span class="o">--</span><span class="n">base</span> <span class="o">--</span><span class="n">device</span> <span class="o">&lt;</span><span class="n">management</span> <span class="n">BDF</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-</li>
-<li><p>Cold boot the server</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
-<li><p>Now platform installed in host and card are the same</p></li>
-<li><p>If this is a DFX-2RP platform, go to <a class="reference external" href="#programming-dfx-2rp-shell-partitions">Programming DFX-2RP shell partitions</a></p></li>
-<li><p>If there is a different number in the <code class="docutils literal notranslate"><span class="pre">SC=</span></code>  line between the FPGA and the system for the platform on the card, update the SC firmware, example below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">update</span>
-      <span class="n">Status</span><span class="p">:</span> <span class="n">SC</span> <span class="n">needs</span> <span class="n">updating</span>
-      <span class="n">Current</span> <span class="n">SC</span><span class="p">:</span> <span class="mf">5.0.20</span>
-      <span class="n">SC</span> <span class="n">to</span> <span class="n">be</span> <span class="n">flashed</span><span class="p">:</span> <span class="mf">5.0.27</span>
-      <span class="n">Updating</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-      <span class="n">Stopping</span> <span class="n">user</span> <span class="n">function</span><span class="o">...</span>
-      <span class="n">INFO</span><span class="p">:</span> <span class="n">found</span> <span class="mi">4</span> <span class="n">sections</span>
-      <span class="o">.............................</span>
-      <span class="n">INFO</span><span class="p">:</span> <span class="n">Loading</span> <span class="n">new</span> <span class="n">firmware</span> <span class="n">on</span> <span class="n">SC</span>
-
-      <span class="n">Successfully</span> <span class="n">flashed</span> <span class="n">Card</span><span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-
-      <span class="mi">1</span> <span class="n">Card</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="n">flashed</span> <span class="n">successfully</span><span class="o">.</span>
-</pre></div>
-</div>
-</li>
-</ol>
+<p>See <a class="reference external" href="#displaying-card-bdf-values">Displaying Card BDF Values</a> for obtaining the management BDF value.</p>
+<p>It is recommended to follow the installation steps in the card’s installation guide.  See <a class="reference external" href="card-install#card-installation-guides">Card Installation Guides</a> for links to the installation guide, or navigate to your card’s landing page under the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo Boards and Kits web page</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="programming-dfx-2rp-shell-partitions">
@@ -1108,22 +1041,34 @@ Cold reboot machine to load the new image on card(s).
 <hr class="docutils" />
 <div class="section" id="determine-active-or-passive-card">
 <h3>Determine active or passive card<a class="headerlink" href="#determine-active-or-passive-card" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> command can be used to determine if a card is active or passive as it reports the fan presence as below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u250</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5eeb5a43</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.9</span><span class="p">]</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5eeb5a43</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.9</span><span class="p">]</span>
-<span class="o">...</span>
-    <span class="n">Fan</span> <span class="n">presence</span><span class="p">:</span>               <span class="n">P</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">mechanical</span></code> command can be used to determine if a card is active or passive based on the fan presence.
+An active card shows as below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="n">a6</span><span class="p">:</span><span class="mf">00.0</span> <span class="o">-</span><span class="n">r</span> <span class="n">mechanical</span>
+
+<span class="o">-----------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">a6</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u280_xdma_201920_3</span>
+<span class="o">-----------------------------------------------</span>
+<span class="n">Mechanical</span>
+  <span class="n">Fans</span>
+    <span class="n">FPGA</span> <span class="n">Fan</span> <span class="mi">1</span>
+      <span class="n">Critical</span> <span class="n">Trigger</span> <span class="n">Temp</span> <span class="p">:</span> <span class="mi">49</span> <span class="n">C</span>
+      <span class="n">Speed</span>                 <span class="p">:</span> <span class="mi">1410</span> <span class="n">RPM</span>
+</pre></div>
+</div>
+<p>A passive card shows as below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">r</span> <span class="n">mechanical</span> <span class="o">-</span><span class="n">d</span> <span class="mi">82</span><span class="p">:</span><span class="mf">00.0</span>
+
+<span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">82</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Mechanical</span>
+  <span class="n">Fans</span>
+    <span class="n">Not</span> <span class="n">present</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Fan</span> <span class="pre">presence:</span> <span class="pre">A</span></code> means the card has a fan. The card is actively cooled, suitable for workstations.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Fan</span> <span class="pre">presence:</span> <span class="pre">P</span></code> means the card is passively cooled and depends on server fans for cooling.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fans</span></code> with a fan listed indicates the card has a fan. The card is actively cooled, suitable for workstations.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Fans:</span> <span class="pre">Not</span> <span class="pre">present</span></code> means the card is passively cooled and depends on server fans for cooling.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -1144,12 +1089,15 @@ Cold reboot machine to load the new image on card(s).
 <li><p>75W from the motherboard via</p>
 <ul>
 <li><p>A 10W 3.3V rail</p></li>
-<li><p>And a 65W 12V rail
-- Plus 150W power from an 8 pin PCIe AUX power source.</p></li>
+<li><p>And a 65W 12V rail</p></li>
 </ul>
 </li>
+<li><p>Plus 150W power from an 8 pin PCIe AUX power source.</p></li>
 </ul>
-<p>Depending on how the card was installed, the card may have the following power limits:</p>
+<div class="section" id="power">
+<h4>Power<a class="headerlink" href="#power" title="Permalink to this headline">¶</a></h4>
+<p>Use the following command to display a card’s maximum power along with its current power consumption.<br /><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span> <span class="pre">--report</span> <span class="pre">electrical</span></code></p>
+<p>Depending on the card and how the card was installed, the card may have the following maximum power limits.</p>
 <ul class="simple">
 <li><p>75W</p>
 <ul>
@@ -1170,23 +1118,35 @@ Cold reboot machine to load the new image on card(s).
 </ul>
 </li>
 </ul>
-<p>Use <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> command to determine each cards power supply by reviewing the <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span> <span class="pre">level</span></code> value displayed.  In the example below, the maximum power level is 225W.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">a6</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u280</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u280_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5e278820</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.10</span><span class="p">]</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u280_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5e278820</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.10</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="n">name</span>                   <span class="n">ALVEO</span> <span class="n">U280</span> <span class="n">PQ</span>
-	<span class="o">....</span>
-    <span class="n">Max</span> <span class="n">power</span> <span class="n">level</span><span class="p">:</span>            <span class="mi">225</span><span class="n">W</span>
+<p>An example output is shown below.  The maximum power level for the card is 225W and displays the current power being consumed by the card at 23.88W.  It provides a breakdown of the various power rails.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">--------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">65</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u250_gen3x16_xdma_shell_3_1</span>
+<span class="o">--------------------------------------------------------</span>
+<span class="n">Electrical</span>
+  <span class="n">Max</span> <span class="n">Power</span>              <span class="p">:</span> <span class="mi">225</span> <span class="n">Watts</span>
+  <span class="n">Power</span>                  <span class="p">:</span> <span class="mf">23.882647</span> <span class="n">Watts</span>
+  <span class="n">Power</span> <span class="ne">Warning</span>          <span class="p">:</span> <span class="n">false</span>
+
+  <span class="n">Power</span> <span class="n">Rails</span>            <span class="p">:</span> <span class="n">Voltage</span>   <span class="n">Current</span>
+  <span class="mi">12</span> <span class="n">Volts</span> <span class="n">Auxillary</span>     <span class="p">:</span> <span class="mf">12.123</span> <span class="n">V</span><span class="p">,</span>  <span class="mf">0.847</span> <span class="n">A</span>
+  <span class="mi">12</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>   <span class="p">:</span> <span class="mf">12.091</span> <span class="n">V</span><span class="p">,</span>  <span class="mf">1.126</span> <span class="n">A</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>  <span class="p">:</span>  <span class="mf">3.356</span> <span class="n">V</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">Auxillary</span>    <span class="p">:</span>  <span class="mf">3.342</span> <span class="n">V</span>
+  <span class="n">Internal</span> <span class="n">FPGA</span> <span class="n">Vcc</span>      <span class="p">:</span>  <span class="mf">0.851</span> <span class="n">V</span><span class="p">,</span> <span class="mf">10.584</span> <span class="n">A</span>
+  <span class="n">DDR</span> <span class="n">Vpp</span> <span class="n">Bottom</span>         <span class="p">:</span>  <span class="mf">2.500</span> <span class="n">V</span>
+  <span class="n">DDR</span> <span class="n">Vpp</span> <span class="n">Top</span>            <span class="p">:</span>  <span class="mf">2.500</span> <span class="n">V</span>
+  <span class="mf">5.5</span> <span class="n">Volts</span> <span class="n">System</span>       <span class="p">:</span>  <span class="mf">5.512</span> <span class="n">V</span>
+  <span class="n">Vcc</span> <span class="mf">1.2</span> <span class="n">Volts</span> <span class="n">Top</span>      <span class="p">:</span>  <span class="mf">1.198</span> <span class="n">V</span>
+  <span class="n">Vcc</span> <span class="mf">1.2</span> <span class="n">Volts</span> <span class="n">Bottom</span>   <span class="p">:</span>  <span class="mf">1.200</span> <span class="n">V</span>
+  <span class="mf">1.8</span> <span class="n">Volts</span> <span class="n">Top</span>          <span class="p">:</span>  <span class="mf">1.836</span> <span class="n">V</span>
+  <span class="mf">0.9</span> <span class="n">Volts</span> <span class="n">Vcc</span>          <span class="p">:</span>  <span class="mf">0.910</span> <span class="n">V</span>
+  <span class="mi">12</span> <span class="n">Volts</span> <span class="n">SW</span>            <span class="p">:</span> <span class="mf">12.111</span> <span class="n">V</span>
+  <span class="n">Mgt</span> <span class="n">Vtt</span>                <span class="p">:</span>  <span class="mf">1.205</span> <span class="n">V</span>
 </pre></div>
 </div>
-<p>To display the card temperature and the power consumption use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code>.  It reports the temperature and each power rail. The following are the three key power rails:</p>
+<p>The following are the three key power rails:</p>
 <ul class="simple">
-<li><p>12V PEX and 12V PEX Current</p>
+<li><p>12V PCI Express</p>
 <ul>
 <li><p>12V motherboard rail</p>
 <ul>
@@ -1196,7 +1156,7 @@ Cold reboot machine to load the new image on card(s).
 <li><p>Current should be =&lt;5.5A</p></li>
 </ul>
 </li>
-<li><p>3V3 PEX and 3V3 PEX Current</p>
+<li><p>3V3 PCI Express</p>
 <ul>
 <li><p>3.3 Volt motherboard rail</p>
 <ul>
@@ -1206,102 +1166,66 @@ Cold reboot machine to load the new image on card(s).
 <li><p>Current should be =&lt; 3A</p></li>
 </ul>
 </li>
-<li><p>12V AUX and 12V AUX Current (For U200/U250/U280)</p>
+<li><p>12V Auxillary (For U200/U250/U280)</p>
 <ul>
-<li><p>These lines will be near 0 if PCIe Aux is not hooked up</p></li>
+<li><p>These lines will report a near 0 value if PCIe Aux power is not supplied</p></li>
 <li><p>Current should be =&lt;12.5A for 225W operation</p></li>
 </ul>
 </li>
 </ul>
-<p>In the U50, the 3.3V rail powers the HBM while the 12V rail powers the rest of the card except the SC. Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to determine if the HBM power is within it’s limits by looking at the <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> and <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span> <span class="pre">CURR</span></code> values, reported in mV and mA respectively, as shown below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">query</span> <span class="o">-</span><span class="n">d</span> <span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="n">total</span> <span class="mi">2</span> <span class="n">card</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="mi">2</span> <span class="n">are</span> <span class="n">usable</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">System</span> <span class="n">Configuration</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">XRT</span> <span class="n">Information</span>
-<span class="n">Version</span><span class="p">:</span>        <span class="mf">2.6.655</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Shell</span>                           <span class="n">FPGA</span>                            <span class="n">IDCode</span>
-<span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>                                <span class="mh">0x14b77093</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Temperature</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Electrical</span><span class="p">(</span><span class="n">mV</span><span class="o">|</span><span class="n">mA</span><span class="p">)</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span> <span class="n">Current</span> <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span> <span class="n">Current</span>
-<span class="mi">12045</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">1002</span>            <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="mi">3</span><span class="n">V3</span> <span class="n">PEX</span>         <span class="mi">3</span><span class="n">V3</span> <span class="n">AUX</span>         <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">BOTTOM</span>  <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">TOP</span>
-<span class="mi">3373</span>            <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="mi">3</span><span class="n">V3</span> <span class="n">PEX</span> <span class="n">CURR</span>    <span class="n">VCCINT</span> <span class="n">IO</span> <span class="n">CURR</span>  <span class="n">HBM1V2</span> <span class="n">VOL</span>      <span class="n">VPP2V5</span> <span class="n">VOL</span>
-<span class="mi">2647</span>            <span class="mi">200</span>             <span class="mi">1198</span>            <span class="mi">2502</span>
-<span class="n">VCC1V2</span> <span class="n">CURR</span>     <span class="n">V12</span> <span class="n">I</span> <span class="n">CURR</span>      <span class="n">V12</span> <span class="n">AUX0</span> <span class="n">CURR</span>   <span class="n">V12</span> <span class="n">AUX1</span> <span class="n">CURR</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">AUX1</span> <span class="n">VOL</span>    <span class="n">VCCAUX</span> <span class="n">VOL</span>      <span class="n">VCCAUX</span> <span class="n">PMC</span> <span class="n">VOL</span>  <span class="n">VCCRAM</span> <span class="n">VOL</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">37214106</span>        <span class="mi">37214106</span>        <span class="mi">37214105</span>
+<p>For the U50, the 3.3V rail powers the HBM while the 12V rail powers the rest of the card except the SC.  One can confirm the HBM power is within it’s limits by looking at the <code class="docutils literal notranslate"><span class="pre">3.3</span> <span class="pre">Volts</span> <span class="pre">PCI</span> <span class="pre">Express</span></code> Voltage and Current values.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">examine</span> <span class="o">-</span><span class="n">r</span> <span class="n">thermal</span> <span class="n">electrical</span> <span class="o">-</span><span class="n">d</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">83</span><span class="p">:</span><span class="mf">00.1</span>
+<span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">83</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Electrical</span>
+  <span class="n">Max</span> <span class="n">Power</span>              <span class="p">:</span> <span class="mi">75</span> <span class="n">Watts</span>
+  <span class="n">Power</span>                  <span class="p">:</span> <span class="mf">65.196971</span> <span class="n">Watts</span>
+  <span class="n">Power</span> <span class="ne">Warning</span>          <span class="p">:</span> <span class="n">false</span>
+
+  <span class="n">Power</span> <span class="n">Rails</span>            <span class="p">:</span> <span class="n">Voltage</span>   <span class="n">Current</span>
+  <span class="mi">12</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>   <span class="p">:</span> <span class="mf">12.182</span> <span class="n">V</span><span class="p">,</span>  <span class="mf">4.678</span> <span class="n">A</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>  <span class="p">:</span>  <span class="mf">3.317</span> <span class="n">V</span><span class="p">,</span>  <span class="mf">2.475</span> <span class="n">A</span>
+  <span class="n">Internal</span> <span class="n">FPGA</span> <span class="n">Vcc</span>      <span class="p">:</span>  <span class="mf">0.852</span> <span class="n">V</span><span class="p">,</span> <span class="mf">41.800</span> <span class="n">A</span>
+  <span class="n">Internal</span> <span class="n">FPGA</span> <span class="n">Vcc</span> <span class="n">IO</span>   <span class="p">:</span>  <span class="mf">0.848</span> <span class="n">V</span><span class="p">,</span>  <span class="mf">4.900</span> <span class="n">A</span>
+  <span class="mf">5.5</span> <span class="n">Volts</span> <span class="n">System</span>       <span class="p">:</span>  <span class="mf">4.947</span> <span class="n">V</span>
+  <span class="mf">1.8</span> <span class="n">Volts</span> <span class="n">Top</span>          <span class="p">:</span>  <span class="mf">1.808</span> <span class="n">V</span>
+  <span class="mf">0.9</span> <span class="n">Volts</span> <span class="n">Vcc</span>          <span class="p">:</span>  <span class="mf">0.905</span> <span class="n">V</span>
+  <span class="n">Mgt</span> <span class="n">Vtt</span>                <span class="p">:</span>  <span class="mf">1.209</span> <span class="n">V</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">Vcc</span>          <span class="p">:</span>  <span class="mf">3.359</span> <span class="n">V</span>
+  <span class="mf">1.2</span> <span class="n">Volts</span> <span class="n">HBM</span>          <span class="p">:</span>  <span class="mf">1.208</span> <span class="n">V</span>
+  <span class="n">Vpp</span> <span class="mf">2.5</span> <span class="n">Volts</span>          <span class="p">:</span>  <span class="mf">2.494</span> <span class="n">V</span>
+
+<span class="n">Thermals</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Front</span>          <span class="p">:</span> <span class="mi">45</span> <span class="n">C</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Rear</span>           <span class="p">:</span> <span class="mi">47</span> <span class="n">C</span>
+  <span class="n">FPGA</span>                   <span class="p">:</span> <span class="mi">70</span> <span class="n">C</span>
+  <span class="n">Int</span> <span class="n">Vcc</span>                <span class="p">:</span> <span class="mi">69</span> <span class="n">C</span>
+  <span class="n">FPGA</span> <span class="n">HBM</span>               <span class="p">:</span> <span class="mi">65</span> <span class="n">C</span>
 </pre></div>
 </div>
 <p>The equation to calculate power is</p>
-<p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">voltage</span> <span class="pre">*</span> <span class="pre">current.</span></code></p>
-<p>From the information provided in the example above HBM is using 8.9W (3.373V * 2.647A).</p>
-<p>An example of the output for the U200/U250/U280 is below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="n">query</span> <span class="o">-</span><span class="n">d</span> <span class="n">a6</span><span class="p">:</span><span class="mf">00.0</span>
-<span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="n">total</span> <span class="mi">1</span> <span class="n">card</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="mi">1</span> <span class="n">are</span> <span class="n">usable</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">System</span> <span class="n">Configuration</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">XRT</span> <span class="n">Information</span>
-<span class="n">Version</span><span class="p">:</span>        <span class="mf">2.6.655</span>
-<span class="o">&lt;</span><span class="n">cut</span><span class="o">&gt;</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Shell</span>                           <span class="n">FPGA</span>                            <span class="n">IDCode</span>
-<span class="n">xilinx_u280_xdma_201920_3</span>       <span class="n">xcu280</span><span class="o">-</span><span class="n">fsvh2892</span><span class="o">-</span><span class="mi">2</span><span class="n">L</span><span class="o">-</span><span class="n">e</span>            <span class="mh">0x14b7d093</span>
-<span class="n">Vendor</span>          <span class="n">Device</span>          <span class="n">SubDevice</span>       <span class="n">SubVendor</span>       <span class="n">SerNum</span>
-<span class="mh">0x10ee</span>          <span class="mh">0x500d</span>          <span class="mh">0x000e</span>          <span class="mh">0x10ee</span>          <span class="mi">21760394</span><span class="n">R01L</span>
-<span class="n">DDR</span> <span class="n">size</span>        <span class="n">DDR</span> <span class="n">count</span>       <span class="n">Clock0</span>          <span class="n">Clock1</span>          <span class="n">Clock2</span>
-<span class="mi">32</span> <span class="n">GB</span>           <span class="mi">2</span>               <span class="mi">250</span>             <span class="mi">500</span>             <span class="mi">450</span>
-<span class="n">PCIe</span>            <span class="n">DMA</span> <span class="n">chan</span><span class="p">(</span><span class="n">bidir</span><span class="p">)</span> <span class="n">MIG</span> <span class="n">Calibrated</span>  <span class="n">P2P</span> <span class="n">Enabled</span>     <span class="n">OEM</span> <span class="n">ID</span>
-<span class="n">GEN</span> <span class="mi">3</span><span class="n">x16</span>        <span class="mi">2</span>               <span class="n">true</span>            <span class="n">false</span>           <span class="mh">0xb1880640</span><span class="p">(</span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="p">)</span>
-<span class="n">DNA</span>
-
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Temperature</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
-<span class="n">PCB</span> <span class="n">TOP</span> <span class="n">FRONT</span>   <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">REAR</span>    <span class="n">PCB</span> <span class="n">BTM</span> <span class="n">FRONT</span>   <span class="n">VCCINT</span> <span class="n">TEMP</span>
-<span class="mi">37</span>              <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="n">FPGA</span> <span class="n">TEMP</span>       <span class="n">TCRIT</span> <span class="n">Temp</span>      <span class="n">FAN</span> <span class="n">Presence</span>    <span class="n">FAN</span> <span class="n">Speed</span><span class="p">(</span><span class="n">RPM</span><span class="p">)</span>
-<span class="mi">51</span>              <span class="mi">47</span>              <span class="n">A</span>               <span class="mi">1244</span>
-<span class="n">QSFP</span> <span class="mi">0</span>          <span class="n">QSFP</span> <span class="mi">1</span>          <span class="n">QSFP</span> <span class="mi">2</span>          <span class="n">QSFP</span> <span class="mi">3</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="n">HBM</span> <span class="n">TEMP</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
-<span class="n">Electrical</span><span class="p">(</span><span class="n">mV</span><span class="o">|</span><span class="n">mA</span><span class="p">)</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">PEX</span> <span class="n">Current</span> <span class="mi">12</span><span class="n">V</span> <span class="n">AUX</span> <span class="n">Current</span>
-<span class="mi">12136</span>           <span class="mi">12111</span>           <span class="mi">1578</span>            <span class="mi">1560</span>
-<span class="mi">3</span><span class="n">V3</span> <span class="n">PEX</span>         <span class="mi">3</span><span class="n">V3</span> <span class="n">AUX</span>         <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">BOTTOM</span>  <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">TOP</span>
-<span class="mi">3272</span>            <span class="mi">3327</span>            <span class="mi">2500</span>            <span class="mi">2500</span>
-<span class="n">SYS</span> <span class="mi">5</span><span class="n">V5</span>         <span class="mi">1</span><span class="n">V2</span> <span class="n">TOP</span>         <span class="mi">1</span><span class="n">V8</span> <span class="n">TOP</span>         <span class="mi">0</span><span class="n">V85</span>
-<span class="mi">5495</span>            <span class="mi">1207</span>            <span class="mi">1804</span>            <span class="mi">865</span>
-<span class="n">MGT</span> <span class="mi">0</span><span class="n">V9</span>         <span class="mi">12</span><span class="n">V</span> <span class="n">SW</span>          <span class="n">MGT</span> <span class="n">VTT</span>         <span class="mi">1</span><span class="n">V2</span> <span class="n">BTM</span>
-<span class="mi">904</span>             <span class="mi">12044</span>           <span class="mi">1206</span>            <span class="mi">1207</span>
-<span class="n">VCCINT</span> <span class="n">VOL</span>      <span class="n">VCCINT</span> <span class="n">CURR</span>     <span class="n">VCCINT</span> <span class="n">IO</span> <span class="n">VOL</span>   <span class="n">VCC3V3</span> <span class="n">VOL</span>
-<span class="mi">850</span>             <span class="mi">12870</span>           <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="mi">3</span><span class="n">V3</span> <span class="n">PEX</span> <span class="n">CURR</span>    <span class="n">VCCINT</span> <span class="n">IO</span> <span class="n">CURR</span>  <span class="n">HBM1V2</span> <span class="n">VOL</span>      <span class="n">VPP2V5</span> <span class="n">VOL</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="n">VCC1V2</span> <span class="n">CURR</span>     <span class="n">V12</span> <span class="n">I</span> <span class="n">CURR</span>      <span class="n">V12</span> <span class="n">AUX0</span> <span class="n">CURR</span>   <span class="n">V12</span> <span class="n">AUX1</span> <span class="n">CURR</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="mi">12</span><span class="n">V</span> <span class="n">AUX1</span> <span class="n">VOL</span>    <span class="n">VCCAUX</span> <span class="n">VOL</span>      <span class="n">VCCAUX</span> <span class="n">PMC</span> <span class="n">VOL</span>  <span class="n">VCCRAM</span> <span class="n">VOL</span>
-<span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
-<span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
+<p><code class="docutils literal notranslate"><span class="pre">power</span> <span class="pre">=</span> <span class="pre">voltage</span> <span class="pre">\*</span> <span class="pre">current.</span></code>
+From the information provided in the example above HBM is using 8.21W (3.317V * 2.475A).</p>
+<p>You can use <a class="reference external" href="scripts/loop_examine.sh">this script</a> in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).</p>
+<p>To use, run <code class="docutils literal notranslate"><span class="pre">./loop_examine.sh</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code>
+See <a class="reference external" href="#displaying-card-bdf-values">Displaying Card BDF Values</a> for obtaining the management BDF value.</p>
+</div>
+<div class="section" id="temperature">
+<h4>Temperature<a class="headerlink" href="#temperature" title="Permalink to this headline">¶</a></h4>
+<p>Use the following command to display the value of various temperature sensors on the card.<br /><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span> <span class="pre">--report</span> <span class="pre">thermal</span></code></p>
+<p>An example of the output is shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_x3522pv_gen4x8_xdma_base_1</span>
+<span class="o">-------------------------------------------------------</span>
+<span class="n">Thermals</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Front</span>          <span class="p">:</span> <span class="mi">31</span> <span class="n">C</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Rear</span>           <span class="p">:</span> <span class="mi">33</span> <span class="n">C</span>
+  <span class="n">FPGA</span>                   <span class="p">:</span> <span class="mi">42</span> <span class="n">C</span>
+  <span class="n">Int</span> <span class="n">Vcc</span>                <span class="p">:</span> <span class="mi">40</span> <span class="n">C</span>
 </pre></div>
 </div>
-<p>You can use <a class="reference external" href="./scripts/loop_query.sh">this script</a> in a second terminal to monitor temperatures and voltages on a card while a design is running. Make sure to modify the script loop for the time required (this is based on the loop count in line 17 and the seconds of delay in between calls on line 19).</p>
-<p>To use, run <code class="docutils literal notranslate"><span class="pre">./loop_query.sh</span> <span class="pre">&lt;CardID&gt;</span></code></p>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">
@@ -1324,13 +1248,13 @@ Cold reboot machine to load the new image on card(s).
 <span class="p">[</span><span class="mf">686836.200333</span><span class="p">]</span> <span class="n">xocl</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">05</span><span class="p">:</span><span class="mf">00.1</span><span class="p">:</span>  <span class="n">ffff8a0e1e23f098</span> <span class="n">_xocl_drvinst_open</span><span class="p">:</span> <span class="n">OPEN</span> <span class="mi">2</span>
 </pre></div>
 </div>
-<p>If the limits are exceeded in either case the device will be shut down. Often via a firewall trip as below:</p>
+<p>If the limits are exceeded in either case, the device will be shut down. Often a firewall trip can be observed as below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="mf">67066.484066</span><span class="p">]</span> <span class="n">firewall</span><span class="o">.</span><span class="n">m</span> <span class="n">firewall</span><span class="o">.</span><span class="n">m</span><span class="mf">.10485760</span><span class="p">:</span> <span class="n">dev</span> <span class="n">ffff9b24390edc10</span><span class="p">,</span> <span class="n">check_firewall</span><span class="p">:</span> <span class="n">AXI</span> <span class="n">Firewall</span> <span class="mi">3</span> <span class="n">tripped</span><span class="p">,</span> <span class="n">status</span><span class="p">:</span> <span class="mh">0x4</span><span class="p">,</span> <span class="n">bar</span> <span class="n">offset</span> <span class="mh">0x3000</span><span class="p">,</span> <span class="n">resource</span> <span class="n">ep_firewall_ctrl_user_00</span> <span class="mi">1</span> <span class="mi">0</span> <span class="mi">1</span>
 <span class="p">[</span><span class="mf">67066.484070</span><span class="p">]</span> <span class="n">xclmgmt</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">:</span> <span class="n">health_check_cb</span><span class="p">:</span> <span class="n">Card</span> <span class="ow">is</span> <span class="ow">in</span> <span class="n">a</span> <span class="n">Bad</span> <span class="n">state</span><span class="p">,</span> <span class="n">notify</span> <span class="n">userpf</span>
 </pre></div>
 </div>
 <p>This indicates the device was shutdown to protect it.</p>
-<p>You can also expect to see a firewall trip message in xbutil query as shown below:</p>
+<p>You can also expect to see a firewall trip message in <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> as shown below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="n">Power</span><span class="p">(</span><span class="n">W</span><span class="p">)</span>
 <span class="mi">16</span>
 <span class="o">~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</span>
@@ -1344,36 +1268,13 @@ Cold reboot machine to load the new image on card(s).
 <hr class="docutils" />
 <div class="section" id="reverting-the-card-to-factory-image">
 <h3>Reverting the card to factory image<a class="headerlink" href="#reverting-the-card-to-factory-image" title="Permalink to this headline">¶</a></h3>
-<p>The Alveo card can be reverted to the factory image, also known as golden. This requires that XRT release 2019.2 or later is installed on the same system as the Alveo accelerator card. The steps to revert the card using this method are listed below.</p>
-<ol>
-<li><p>Open a terminal window.</p></li>
-<li><p>Run the following command, where card_bdf is the BDF of the card to revert to golden.</p>
-<p><code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--factory_reset</span> <span class="pre">--card</span> <span class="pre">&lt;card_bdf&gt;</span></code></p>
-</li>
-<li><p>Enter <code class="docutils literal notranslate"><span class="pre">y</span></code> to continue. The following message is displayed on completion.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Shell</span> <span class="ow">is</span> <span class="n">reset</span> <span class="n">succesfully</span>
-<span class="n">Cold</span> <span class="n">reboot</span> <span class="n">machine</span> <span class="n">to</span> <span class="n">load</span> <span class="n">new</span> <span class="n">shell</span> <span class="n">on</span> <span class="n">card</span>
-</pre></div>
-</div>
-</li>
-<li><p>Cold boot the system so the card FPGA uses the new image.</p></li>
-<li><p>Confirm the card has been reverted to factory image by running the following command.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo xbmgmt flash --scan
-</pre></div>
-</div>
-</li>
-</ol>
-<p>An output similar to the following is displayed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">65</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-<span class="n">Card</span> <span class="nb">type</span><span class="p">:</span> <span class="n">uxx</span>
-<span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span> <span class="n">SPI</span>
-<span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-<span class="n">xilinx_uxx_GOLDEN_x</span><span class="p">,[</span><span class="n">SC</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">x</span><span class="p">]</span>
-<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span> <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
-</pre></div>
-</div>
-<p>In this output, under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, note GOLDEN in the name. This indicates that the card has successfully been reverted to the factory image.</p>
-<p>IMPORTANT! If the GOLDEN_2 image is running on the FPGA, carefully review the design advisory for Alveo data center Accelerator card golden corruption, found in <a class="reference external" href="https://www.xilinx.com/support/answers/71915.html">AR 71915</a>. Complete the repair instructions associated with the Xilinx Answer prior to proceeding.</p>
+<p>Xilinx Alveo cards might need to be reverted to their factory (or golden) image. This is recommended when:</p>
+<ul class="simple">
+<li><p>Preparing to flash a different shell onto the card</p></li>
+<li><p>Preparing to upgrade or change the version of XRT installed on the host</p></li>
+<li><p>The card no longer appears on lspci after programming a custom image onto the card</p></li>
+</ul>
+<p><a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR71757 Reverting Card to Factory image</a> provides methods to revert the card using either the Vitis/XRT or Vivado flow.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="vivado-hw-manager">
@@ -1381,35 +1282,34 @@ Cold reboot machine to load the new image on card(s).
 <p><em><strong>This is for the more advanced user comfortable with manually programming FPGAs</strong></em></p>
 <p>If a card can’t be seen by multiple systems via <code class="docutils literal notranslate"><span class="pre">lspci</span></code>, the next step is to see if the FPGA is alive by determining if it can be seen in Vivado HW manager. The steps for connecting the U50 and U200/250/280 cards are below.</p>
 <p>For the U50:</p>
-<ol>
+<ol class="simple">
 <li><p>An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager</p></li>
 <li><p>The Alveo Programming Cable is shown in Figure 3 in UG1377: <a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf">UG1377 V1.1</a></p></li>
-<li><p>Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.</p>
-<ol class="simple">
-<li><p>Pages 1-13</p></li>
-<li><p>Often the debug machine is a windows laptop</p></li>
-</ol>
-</li>
+<li><p>Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
+a.  Pages 1-13
+b.  Often the debug machine is a windows laptop</p></li>
 <li><p>Open Vivado hardware manager</p></li>
 <li><p>Tools → Auto connect</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">PARAM.FREQUENCY</span> <span class="pre">1000000</span> <span class="pre">[current_hw_target]</span></code></p></li>
-<li><p>The xu50_0 should show as below:</p>
+<li><p>The xu50_0 should show as below:</p></li>
+</ol>
 <p><img alt="HW Manager" src="../_images/initial_connection.png" /></p>
-</li>
+<ol class="simple">
 <li><p>If the device shows up in Vivado HW Manager follow <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a> to revert the card back to the golden image</p></li>
 <li><p>Otherwise the FPGA is not working, post on the
 <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
 </ol>
 <p>For the U200/U250/U280:</p>
-<ol>
+<ol class="simple">
 <li><p>Plug in JTAG cable between U200/U250/U280 card and debug machine
 a.  Often the debug machine is a windows laptop</p></li>
 <li><p>Open Vivado hardware manager</p></li>
 <li><p>Tools → Auto connect</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">PARAM.FREQUENCY</span> <span class="pre">1000000</span> <span class="pre">[current_hw_target]</span></code></p></li>
-<li><p>The xcu200_0 should show as below:</p>
+<li><p>The xcu200_0 should show as below:</p></li>
+</ol>
 <p><img alt="HW Manager" src="../_images/initial_connection_u2xx.PNG" /></p>
-</li>
+<ol class="simple">
 <li><p>If the device shows up in Vivado HW Manager follow <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a> to revert the card back to the golden image</p></li>
 <li><p>Otherwise the FPGA is not working, post on the
 <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -1419,7 +1319,7 @@ a.  Often the debug machine is a windows laptop</p></li>
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -1463,7 +1363,7 @@ a.  Often the debug machine is a windows laptop</p></li>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

@@ -364,7 +364,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#id4">apt</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#no-pyopencl-error">No pyopencl error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xrt-installation-fails-with-linux-kernel-v5-xx">XRT installation fails with Linux kernel V5.xx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#held-broken-packages-error">Held broken packages error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-package-missing-permissions">Installation package missing permissions</a><ul>
@@ -373,7 +372,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#failed-to-create-xsabin">Failed to create xsabin</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#flash-update-fails-with-shell-is-not-applicable">Flash update fails with shell is not applicable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#program-base-fails-with-specified-base-not-found">Program base fails with specified base not found</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#item-not-covered-above">Item not covered above</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
@@ -486,6 +485,7 @@
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="installation-package-is-not-found">
 <h3>Installation package is not found<a class="headerlink" href="#installation-package-is-not-found" title="Permalink to this headline">¶</a></h3>
 <p>During installation, the package manager reports it can not find file(s) and a message similar to the following is displayed.</p>
@@ -670,7 +670,7 @@ Error: Package: xrt-2.7.766-1.x86_64 (/xrt_202010.2.7.766_7.4.1708-x86_64-xrt)
 <div class="section" id="kernel-header-error">
 <h3>Kernel header error<a class="headerlink" href="#kernel-header-error" title="Permalink to this headline">¶</a></h3>
 <p>During XRT installation a message indicating kernel headers for the kernel have not been installed similar to the following is displayed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">Building</span> <span class="k">for</span> <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">862.</span><span class="n">el7</span><span class="o">.</span><span class="n">x86_64</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Building</span> <span class="k">for</span> <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">862.</span><span class="n">el7</span><span class="o">.</span><span class="n">x86_64</span>
 <span class="n">Module</span> <span class="n">build</span> <span class="k">for</span> <span class="n">kernel</span> <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">862.</span><span class="n">el7</span><span class="o">.</span><span class="n">x86_64</span> <span class="n">was</span> <span class="n">skipped</span> <span class="n">since</span> <span class="n">the</span>
 <span class="n">kernel</span> <span class="n">headers</span> <span class="k">for</span> <span class="n">this</span> <span class="n">kernel</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">seem</span> <span class="n">to</span> <span class="n">be</span> <span class="n">installed</span><span class="o">.</span>
 </pre></div>
@@ -728,24 +728,6 @@ Do you want to continue? [Y/n]
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="no-pyopencl-error">
-<h3>No pyopencl error<a class="headerlink" href="#no-pyopencl-error" title="Permalink to this headline">¶</a></h3>
-<p>During XRT installation a message similar to the following is displayed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ne">ImportError</span><span class="p">:</span> <span class="n">No</span> <span class="n">module</span> <span class="n">named</span> <span class="n">pyopencl</span>
-</pre></div>
-</div>
-<p>This occurs when XRT encounters issues installing third party libraries like numpy or pyopencl.</p>
-<p>Next steps:</p>
-<ul class="simple">
-<li><p>Install the latest XRT via the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p>
-<ul>
-<li><p>The latest XRT no longer has a dependency on numpy/pyopencl</p></li>
-</ul>
-</li>
-<li><p>Otherwise refer to <a class="reference external" href="https://www.xilinx.com/support/answers/73055.html">AR 73055</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
 <div class="section" id="xrt-installation-fails-with-linux-kernel-v5-xx">
 <h3>XRT installation fails with Linux kernel V5.xx<a class="headerlink" href="#xrt-installation-fails-with-linux-kernel-v5-xx" title="Permalink to this headline">¶</a></h3>
 <p>During XRT installation, on a Ubuntu system with Linux kernel 5.xx, an error message similar to the following is displayed.</p>
@@ -761,7 +743,7 @@ Do you want to continue? [Y/n]
 <hr class="docutils" />
 <div class="section" id="held-broken-packages-error">
 <h3>Held broken packages error<a class="headerlink" href="#held-broken-packages-error" title="Permalink to this headline">¶</a></h3>
-<p>Incorrectly using the insallation package on the wrong OS can result in the error <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">have</span> <span class="pre">held</span> <span class="pre">broken</span> <span class="pre">packages</span></code>, as shown below.</p>
+<p>Incorrectly using the insallation package on the wrong OS can result in the error <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">have</span> <span class="pre">held</span> <span class="pre">broken</span> <span class="pre">packages</span></code> as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./xrt_202010.2.7.761_16.04-amd64-xrt.deb
 Reading package lists... Done
 Building dependency tree
@@ -808,14 +790,7 @@ E: Unable to correct problems, you have held broken packages.
 <ul class="simple">
 <li><p>Missing x permission</p></li>
 </ul>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Setting</span> <span class="n">up</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">cmc</span><span class="o">-</span><span class="n">u50</span> <span class="p">(</span><span class="mf">1.0.20</span><span class="o">-</span><span class="mi">2853996</span><span class="p">)</span> <span class="o">...</span>
-<span class="n">Setting</span> <span class="n">up</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">u50lv</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">validate</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">2902115</span><span class="p">)</span> <span class="o">...</span>
-<span class="n">Setting</span> <span class="n">up</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">sc</span><span class="o">-</span><span class="n">fw</span><span class="o">-</span><span class="n">u50</span> <span class="p">(</span><span class="mf">5.0.27</span><span class="o">-</span><span class="mf">2.e289</span><span class="n">be9</span><span class="p">)</span> <span class="o">...</span>
-<span class="n">Setting</span> <span class="n">up</span> <span class="n">xilinx</span><span class="o">-</span><span class="n">u50lv</span><span class="o">-</span><span class="n">gen3x4</span><span class="o">-</span><span class="n">xdma</span><span class="o">-</span><span class="n">base</span> <span class="p">(</span><span class="mi">2</span><span class="o">-</span><span class="mi">2902115</span><span class="p">)</span> <span class="o">...</span>
-<span class="n">Partition</span> <span class="n">package</span> <span class="n">installed</span> <span class="n">successfully</span><span class="o">.</span>
-<span class="n">Please</span> <span class="n">flash</span> <span class="n">card</span> <span class="n">manually</span> <span class="n">by</span> <span class="n">running</span> <span class="n">below</span> <span class="n">command</span><span class="p">:</span>
-<span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">update</span> <span class="o">--</span><span class="n">shell</span> <span class="n">xilinx_u50lv_gen3x4_xdma_base_2</span>
-<span class="n">N</span><span class="p">:</span> <span class="n">Download</span> <span class="ow">is</span> <span class="n">performed</span> <span class="n">unsandboxed</span> <span class="k">as</span> <span class="n">root</span> <span class="k">as</span> <span class="n">file</span> <span class="s1">&#39;/scratch/alveo_cycle_test/xrt_shell_downloads/xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb&#39;</span> <span class="n">couldn</span><span class="s1">&#39;t be accessed by user &#39;</span><span class="n">_apt</span><span class="s1">&#39;. - pkgAcquire::Run (13: Permission denied)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">N</span><span class="p">:</span> <span class="n">Download</span> <span class="ow">is</span> <span class="n">performed</span> <span class="n">unsandboxed</span> <span class="k">as</span> <span class="n">root</span> <span class="k">as</span> <span class="n">file</span> <span class="s1">&#39;/scratch/alveo_cycle_test/xrt_shell_downloads/xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb&#39;</span> <span class="n">couldn</span><span class="s1">&#39;t be accessed by user &#39;</span><span class="n">_apt</span><span class="s1">&#39;. - pkgAcquire::Run (13: Permission denied)</span>
 </pre></div>
 </div>
 <ul class="simple">
@@ -844,7 +819,7 @@ Error: Nothing to do
 <p>This can occur if there is a Linux file permissions issue with the package.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span> <span class="pre">&lt;filename&gt;</span></code> to check the file permissions</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">ls</span> <span class="pre">-al</span> <span class="pre">&lt;filename&gt;</span> </code>  to check the file permissions</p></li>
 <li><p>If <code class="docutils literal notranslate"><span class="pre">rx</span></code> are missing update the file permissions with</p>
 <ul>
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">a+rx</span> <span class="pre">*.deb</span></code></p></li>
@@ -870,16 +845,25 @@ Error: Nothing to do
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="flash-update-fails-with-shell-is-not-applicable">
-<h3>Flash update fails with shell is not applicable<a class="headerlink" href="#flash-update-fails-with-shell-is-not-applicable" title="Permalink to this headline">¶</a></h3>
-<p>When flashing the card with the command <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--update</span> <span class="pre">--shell</span></code> returns <code class="docutils literal notranslate"><span class="pre">shell</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">applicable</span></code> as shown in the example below, it indicates that the name of the specified shell is not supported for the targeted card.  This may also occur if the specified shell name is spelled incorrectly.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbmgmt flash --update --shell xilinx_u250_gen3x16_base_2
-WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
+<div class="section" id="program-base-fails-with-specified-base-not-found">
+<h3>Program base fails with specified base not found<a class="headerlink" href="#program-base-fails-with-specified-base-not-found" title="Permalink to this headline">¶</a></h3>
+<p>When flashing the card with the command <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--image</span> <span class="pre">&lt;base_platform_name&gt;</span> <span class="pre">--device</span> <span class="pre">&lt;bdf&gt;</span></code> returns <code class="docutils literal notranslate"><span class="pre">specified</span> <span class="pre">base</span> <span class="pre">not</span> <span class="pre">found</span></code> as shown in the example below, it indicates that the name of the specified base is not supported for the targeted card.  This may also occur if the specified base name is spelled incorrectly.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo xbmgmt program --base --image invalid_name --device af:00.0
+XRT build version: 2.12.361
+Build hash: 3f2c4ea02c1538b3bfc354fd6a72c9b0ce30d371
+Build date: 2021-09-13 00:47:58
+Git branch: master
+PID: 11582
+UID: 0
+[Fri Sep 17 16:47:30 2021 GMT]
+HOST: host.xilinx.com
+EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
+[xbmgmt] ERROR: Specified base not found on the system: Invalid argument
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command.</p></li>
+<li><p>Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;bdf&gt;</span></code> command.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -898,7 +882,7 @@ WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -942,7 +926,7 @@ WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

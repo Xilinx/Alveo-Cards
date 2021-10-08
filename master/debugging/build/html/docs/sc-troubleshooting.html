@@ -346,8 +346,8 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical"><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#bad-magic-number">Bad magic number</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error">xbmgmt examine -r platform Returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> Error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xmc-not-loaded">XMC not loaded</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xmc-not-ready">XMC not ready</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sc-is-not-ready">SC is not ready</a></li>
@@ -451,39 +451,59 @@
  </tr>
 </table><div class="section" id="sc-troubleshooting">
 <h1>SC Troubleshooting<a class="headerlink" href="#sc-troubleshooting" title="Permalink to this headline">¶</a></h1>
-<p>This can help to determine if any communication break has happened between SC&lt;-&gt;CMC . It is part of the larger Alveo debug guide. If you are just starting to debug please consult <a class="reference internal" href="../README.html"><span class="doc">main page</span></a>.</p>
+<p>This can help to determine if any communication break has happened in the <a class="reference external" href="terminology.html#sc">SC</a> &lt;-&gt; <a class="reference external" href="terminology.html#cmc">CMC</a> path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult <a class="reference internal" href="../README.html"><span class="doc">main page</span></a>.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>This page covers issues observed when running the  <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> and  <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> commands and which can be related to SC issues.</p>
+<p>This page covers issues observed when running the  <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> and  <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> commands and which can be related to SC issues.</p>
 </div>
 <div class="section" id="you-will-need">
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Confirm System Compatibility</span></a></p></li>
 <li><p><a class="reference external" href="common-steps.html#determine-xrt-version">Determine XRT version</a> installed.</p></li>
-<li><p><a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">Determine platform and SC on card and system</a></p>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a></p>
 <ul>
-<li><p>Card platform and SC must match that installed on system</p></li>
+<li><p>Card platform and <a class="reference external" href="terminology.html#sc">SC</a> version must match those installed on the host system</p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">
-<h3><code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.<a class="headerlink" href="#flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical" title="Permalink to this headline">¶</a></h3>
-<p>When the platform has been installed correctly, the partition and SC version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command.  An example output is shown below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-   <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
-   <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-   <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-       <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
-           <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-           <span class="n">f465b0a3ae8c64f619bc150384ace69b</span>
-   <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-       <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
+<div class="section" id="partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">
+<h3>Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.<a class="headerlink" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical" title="Permalink to this headline">¶</a></h3>
+<p>When the platform has been installed correctly, the partition and <a class="reference external" href="terminology.html#sc">SC</a> version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command.  An example output is shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+ <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">50121119</span><span class="n">CSPC</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+ <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+ <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+ <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+ <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+ <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+ <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+
+
+ <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">96</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">97</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">98</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">99</span>
 </pre></div>
 </div>
 <p>Next step:</p>
@@ -492,9 +512,9 @@
 </ul>
 </div>
 <hr class="docutils" />
-<div class="section" id="bad-magic-number">
-<h3>Bad magic number<a class="headerlink" href="#bad-magic-number" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between XRT and CMC.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
+<div class="section" id="xbmgmt-examine-r-platform-returns-bad-magic-number-error">
+<h3>xbmgmt examine -r platform Returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> Error<a class="headerlink" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error" title="Permalink to this headline">¶</a></h3>
+<p>If xbmgmt examine -r platform command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">bad</span> <span class="n">magic</span> <span class="n">number</span><span class="p">:</span> <span class="mi">7</span><span class="n">fff</span>
 <span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
@@ -512,19 +532,19 @@
 <ul class="simple">
 <li><p>Cold boot the system</p>
 <ul>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -533,7 +553,7 @@
 <hr class="docutils" />
 <div class="section" id="xmc-not-loaded">
 <h3>XMC not loaded<a class="headerlink" href="#xmc-not-loaded" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error as shown below, there is communication break between XRT and CMC.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
@@ -552,13 +572,13 @@
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -567,7 +587,7 @@
 <hr class="docutils" />
 <div class="section" id="xmc-not-ready">
 <h3>XMC not ready<a class="headerlink" href="#xmc-not-ready" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error as shown below, there is communication break between XRT and CMC.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
@@ -587,17 +607,17 @@
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Cold boot the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -606,7 +626,7 @@
 <hr class="docutils" />
 <div class="section" id="sc-is-not-ready">
 <h3>SC is not ready<a class="headerlink" href="#sc-is-not-ready" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span> </code> error as shown below, there is communication break between SC and CMC.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span> </code> error as shown below, there is communication break between the <a class="reference external" href="terminology.html#sc">SC</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">SC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x0</span>
  <span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
  <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span> <span class="n">u50lv</span>
@@ -618,17 +638,17 @@
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Cold boot the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -637,57 +657,119 @@
 <hr class="docutils" />
 <div class="section" id="sc-only-displays-two-digits">
 <h3>SC only displays two digits<a class="headerlink" href="#sc-only-displays-two-digits" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns different number of digits of SC versions for  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, there is a break in communication between XRT and CMC.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">f465b0a3ae8c64f619bc150384ace69b</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
+<p>If xbmgmt examine -r platform command returns different number of digits of between the <a class="reference external" href="terminology.html#sc">SC</a> versions for  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, there is a break in communication between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+ <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">50121119</span><span class="n">CSPC</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+ <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+ <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+ <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.0</span>
+ <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+ <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+ <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+
+
+ <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">96</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">97</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">98</span>
+                      <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">99</span>
+
+<span class="n">WARNING</span>  <span class="p">:</span> <span class="n">SC</span> <span class="n">image</span> <span class="n">on</span> <span class="n">the</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
+<li><p>Flash the satellite controller with the version installed on the system: <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="sc-versions-do-not-match">
 <h3>SC versions do not match<a class="headerlink" href="#sc-versions-do-not-match" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns different SC version displayed under  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">27</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.13</span><span class="p">]</span>
-            <span class="n">Logic</span> <span class="n">UUID</span><span class="p">:</span>
-            <span class="n">f465b0a3ae8c64f619bc150384ace69b</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns different <a class="reference external" href="terminology.html#sc">SC</a> version displayed under  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">50121119</span><span class="n">CSPC</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.0.13</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+  <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+
+
+  <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">96</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">97</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">98</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">6</span><span class="n">E</span><span class="p">:</span><span class="mi">99</span>
+
+<span class="n">WARNING</span>  <span class="p">:</span> <span class="n">SC</span> <span class="n">image</span> <span class="n">on</span> <span class="n">the</span> <span class="n">device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Flash card with SC version installed on the system</p></li>
+<li><p>Flash the satellite controller with the version installed on the system: <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>See <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="golden-partition-running-on-fpga">
 <h3>GOLDEN partition running on FPGA<a class="headerlink" href="#golden-partition-running-on-fpga" title="Permalink to this headline">¶</a></h3>
-<p>When <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">GOLDEN</span> </code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> shows only the partitions available on the system.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">d3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u50</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u50_GOLDEN_9</span><span class="p">,[</span><span class="n">SC</span><span class="o">=</span><span class="n">INACTIVE</span><span class="p">]</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0xf465b0a3ae8c64f6</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">5.0.27</span><span class="p">]</span>
+<p>When <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">GOLDEN</span> </code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> shows only the partitions available on the system.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_GOLDEN</span>
+<span class="o">---------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+ <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+ <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+ <span class="n">Name</span>                 <span class="p">:</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+ <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">0</span>
+ <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_GOLDEN_9</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="n">INACTIVE</span>
+ <span class="n">Platform</span> <span class="n">ID</span>          <span class="p">:</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+ <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+ <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+ <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+
+<span class="n">WARNING</span>  <span class="p">:</span> <span class="n">Device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Next step:</p>
@@ -698,13 +780,36 @@
 <hr class="docutils" />
 <div class="section" id="partition-installed-in-system-none">
 <h3>Partition installed in system (None)<a class="headerlink" href="#partition-installed-in-system-none" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span>&#160;&#160; <span class="pre">(None)</span></code> as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u250</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_2</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5d14fbe6</span><span class="p">]</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>   <span class="p">(</span><span class="kc">None</span><span class="p">)</span>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system:</span>&#160;&#160; <span class="pre">(None)</span></code> as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">50121</span><span class="n">B39AN35</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u50</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">ALVEO</span> <span class="n">U50</span> <span class="n">PQ</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">75</span><span class="n">W</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span>
+  <span class="n">Platform</span>             <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+  <span class="n">SC</span> <span class="n">Version</span>           <span class="p">:</span> <span class="mf">5.2.6</span>
+  <span class="n">Platform</span> <span class="n">UUID</span>        <span class="p">:</span> <span class="n">F465B0A3</span><span class="o">-</span><span class="n">AE8C</span><span class="o">-</span><span class="mi">64</span><span class="n">F6</span><span class="o">-</span><span class="mi">19</span><span class="n">BC</span><span class="o">-</span><span class="mi">150384</span><span class="n">ACE69B</span>
+  <span class="n">Interface</span> <span class="n">UUID</span>       <span class="p">:</span> <span class="mi">862</span><span class="n">C7020</span><span class="o">-</span><span class="n">A250</span><span class="o">-</span><span class="mf">293E-3203</span><span class="o">-</span><span class="mi">6</span><span class="n">F19956669E5</span>
+
+<span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span>
+  <span class="o">&lt;</span><span class="n">none</span> <span class="n">found</span><span class="o">&gt;</span>        
+
+
+  <span class="n">Mac</span> <span class="n">Address</span>          <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">49</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">A</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">B</span>
+                       <span class="p">:</span> <span class="mi">00</span><span class="p">:</span><span class="mi">0</span><span class="n">A</span><span class="p">:</span><span class="mi">35</span><span class="p">:</span><span class="mi">06</span><span class="p">:</span><span class="mi">47</span><span class="p">:</span><span class="mi">4</span><span class="n">C</span>
+
+<span class="n">WARNING</span>  <span class="p">:</span> <span class="n">No</span> <span class="n">shell</span> <span class="ow">is</span> <span class="n">installed</span> <span class="n">on</span> <span class="n">the</span> <span class="n">system</span><span class="o">.</span>
 </pre></div>
 </div>
 <p>Next step:</p>
@@ -715,22 +820,26 @@
 <hr class="docutils" />
 <div class="section" id="no-cards-found">
 <h3>No cards found<a class="headerlink" href="#no-cards-found" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">No</span> <span class="pre">cards</span> <span class="pre">Found</span></code> as shown below, the OS or XRT is unable to find the card.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>No cards Found !
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">found</span></code> as shown below, the OS or <a class="reference external" href="terminology.html#XRT">XRT</a> is unable to find the card.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Devices</span> <span class="n">present</span>
+<span class="mi">0</span> <span class="n">devices</span> <span class="n">found</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Run  <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lspci</span> <span class="pre">-vd</span> <span class="pre">10ee:</span></code></p></li>
-<li><p>If this does not show any cards</p></li>
+<li><p>If this does not show any cards</p>
+<ul>
 <li><p>Go to <a class="reference internal" href="card-not-recognized.html"><span class="doc">Card not recognized</span></a></p></li>
+</ul>
+</li>
 <li><p>Else go to <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">Modifying XRT/platform</span></a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="voltage-or-temperature-reports-zero">
 <h3>Voltage or temperature reports zero<a class="headerlink" href="#voltage-or-temperature-reports-zero" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between the <a class="reference external" href="terminology.html#xrt">XRT</a>/<a class="reference external" href="terminology.html#cmc">CMC</a>/<a class="reference external" href="terminology.html#sc">SC</a> components.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">FRONT</span>   <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">REAR</span>    <span class="n">PCB</span> <span class="n">BTM</span> <span class="n">FRONT</span>   <span class="n">VCCINT</span> <span class="n">TEMP</span>
 <span class="mi">0</span>               <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">0</span>
@@ -746,22 +855,52 @@
 <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>
 <span class="mi">3</span><span class="n">V3</span> <span class="n">PEX</span>         <span class="mi">3</span><span class="n">V3</span> <span class="n">AUX</span>         <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">BOTTOM</span>  <span class="n">DDR</span> <span class="n">VPP</span> <span class="n">TOP</span>
 <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="n">N</span><span class="o">/</span><span class="n">A</span>
+
+
+<span class="o">*</span><span class="n">mockup</span><span class="o">*</span>
+<span class="o">------------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">82</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
+<span class="o">------------------------------------------------------</span>
+<span class="n">Thermals</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Front</span>          <span class="p">:</span> <span class="mi">0</span> <span class="n">C</span>
+  <span class="n">PCB</span> <span class="n">Top</span> <span class="n">Rear</span>           <span class="p">:</span> <span class="mi">0</span> <span class="n">C</span>
+  <span class="n">Cage0</span>                  <span class="p">:</span> <span class="mi">0</span> <span class="n">C</span>
+  <span class="n">FPGA</span>                   <span class="p">:</span> <span class="mi">0</span> <span class="n">C</span>
+  <span class="n">Int</span> <span class="n">Vcc</span>                <span class="p">:</span> <span class="mi">0</span> <span class="n">C</span>
+
+<span class="n">Electrical</span>
+  <span class="n">Max</span> <span class="n">Power</span>              <span class="p">:</span> <span class="mi">75</span> <span class="n">Watts</span>
+  <span class="n">Power</span>                  <span class="p">:</span> <span class="n">N</span><span class="o">/</span><span class="n">A</span> <span class="n">Watts</span>
+  <span class="n">Power</span> <span class="ne">Warning</span>          <span class="p">:</span> <span class="n">false</span>
+
+  <span class="n">Power</span> <span class="n">Rails</span>            <span class="p">:</span> <span class="n">Voltage</span>   <span class="n">Current</span>
+  <span class="mi">12</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>   <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span><span class="p">,</span>  	<span class="mi">0</span> <span class="n">A</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">PCI</span> <span class="n">Express</span>  <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span><span class="p">,</span>  	<span class="mi">0</span> <span class="n">A</span>
+  <span class="n">Internal</span> <span class="n">FPGA</span> <span class="n">Vcc</span>      <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span><span class="p">,</span>  	<span class="mi">0</span> <span class="n">A</span>
+  <span class="n">Internal</span> <span class="n">FPGA</span> <span class="n">Vcc</span> <span class="n">IO</span>   <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span><span class="p">,</span>  	<span class="mi">0</span> <span class="n">A</span>
+  <span class="mf">5.5</span> <span class="n">Volts</span> <span class="n">System</span>       <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="mf">1.8</span> <span class="n">Volts</span> <span class="n">Top</span>          <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="mf">0.9</span> <span class="n">Volts</span> <span class="n">Vcc</span>          <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="n">Mgt</span> <span class="n">Vtt</span>                <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="mf">3.3</span> <span class="n">Volts</span> <span class="n">Vcc</span>          <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="mf">1.2</span> <span class="n">Volts</span> <span class="n">HBM</span>          <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
+  <span class="n">Vpp</span> <span class="mf">2.5</span> <span class="n">Volts</span>          <span class="p">:</span>  <span class="mi">0</span> <span class="n">V</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Cold boot the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -770,7 +909,7 @@
 <hr class="docutils" />
 <div class="section" id="failed-to-open-device">
 <h3>Failed to open device<a class="headerlink" href="#failed-to-open-device" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">device:</span></code> as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">Failed</span> <span class="pre">to</span> <span class="pre">open</span> <span class="pre">device:</span></code> as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Failed</span> <span class="n">to</span> <span class="nb">open</span> <span class="n">device</span><span class="p">:</span> <span class="mi">0000</span><span class="p">:</span><span class="mi">3</span><span class="n">b</span><span class="p">:</span><span class="mf">00.0</span>
 <span class="n">INFO</span><span class="p">:</span> <span class="n">Found</span> <span class="n">total</span> <span class="mi">1</span> <span class="n">card</span><span class="p">(</span><span class="n">s</span><span class="p">);</span> <span class="mi">0</span> <span class="n">are</span> <span class="n">usable</span><span class="o">.</span>
 </pre></div>
@@ -778,17 +917,17 @@
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Cold boot the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
-<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span></code></p></li>
+<li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
@@ -798,7 +937,7 @@
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -842,7 +981,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

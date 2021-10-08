@@ -347,7 +347,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#power-delivery-test-fails">Power delivery test fails</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power-delivery-test-fails">Power delivery test fails.</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#power-delivery-test-passes">Power delivery test passes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#ensure-application-is-running-in-the-power-envelope">Ensure application is running in the power envelope</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-operating-in-limits-and-your-application-crashes">Card operating in limits and your application crashes</a></li>
@@ -446,9 +446,9 @@
 <p>This page will help you determine if a Vitis™/XRT application crash is caused by card hardware. It is part of the larger Alveo™ debug guide. If you are just starting to debug please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine if this is the best page for your purposes.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>Techniques to help you determine if an application crash is caused by hardware or software. Hardware crashes can be caused by an issue in the system hardware, operating the card out of spec, or a bug in the application. This page covers the common cases to determine either that the host and card hardware are operating as expected. Common hardware causes for an application crash are:</p>
+<p>Techniques to help you determine if an application crash is caused by hardware or software. Hardware crashes can be caused by an issue in the system hardware, operating the card out of spec, or a bug in the application. This page covers the common cases to determine whether the host and card hardware are operating as expected. Common hardware causes for an application crash are:</p>
 <ul class="simple">
-<li><p>Insufficient power delivered to card - leading to card brown out or SC initiated shutdown</p></li>
+<li><p>Insufficient power delivered to card - leading to card brown out or <a class="reference external" href="terminology.html#sc">SC</a> initiated shutdown</p></li>
 <li><p>Insufficient cooling - leading to a card overheat or SC initiated shutdown</p></li>
 <li><p>Kernel using more power than the card can provide</p></li>
 </ul>
@@ -465,8 +465,9 @@
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="power-delivery-test-fails">
-<h3><a class="reference internal" href="power-delivery.html"><span class="doc">Power delivery test</span></a> fails<a class="headerlink" href="#power-delivery-test-fails" title="Permalink to this headline">¶</a></h3>
+<h3><a class="reference internal" href="power-delivery.html"><span class="doc">Power delivery test</span></a> fails.<a class="headerlink" href="#power-delivery-test-fails" title="Permalink to this headline">¶</a></h3>
 <p>This means the system is not providing the expected power or cooling. You will see messaging during the diagnostic testing.</p>
 <p>Next steps:</p>
 <ul class="simple">
@@ -476,11 +477,11 @@
 <hr class="docutils" />
 <div class="section" id="power-delivery-test-passes">
 <h3><a class="reference internal" href="power-delivery.html"><span class="doc">Power delivery test</span></a> passes<a class="headerlink" href="#power-delivery-test-passes" title="Permalink to this headline">¶</a></h3>
-<p>If both <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and the xbtest stress test pass. The system should have enough power deliver and cooling to run the card within specs.</p>
+<p>If both <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and the xbtest stress test pass. The system should have enough power delivery and cooling to run the card within specs.</p>
 <p>Meaning:</p>
 <ul class="simple">
-<li><p>The hardware passes the first round of testing with a known test application</p></li>
-<li><p>It is possible the your application is exceeding card limits</p></li>
+<li><p>The hardware passes the first round of testing with a known test application.</p></li>
+<li><p>It is possible that your application is exceeding card limits</p></li>
 </ul>
 <p>Next steps:</p>
 <ul class="simple">
@@ -495,13 +496,13 @@
 <li><p>Shut down the kernel - if the card starts to exceed limits</p></li>
 <li><p>Reset the card - if the card hits a fatal limit</p></li>
 </ul>
-<p>Checking for this will require you to monitor the card while running your application with a work load that will stress the card harware.</p>
+<p>Checking for this will require you to monitor the card while running your application with a work load that will stress the card hardware.</p>
 <ul class="simple">
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor the power rails and temperature</a> making sure the card is in limits</p></li>
+<li><p>Use <a class="reference external" href="scripts/loop_examine.sh">the script</a> in <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor the power rails and temperature</a> to make sure the card runs within limits</p></li>
 <li><p>Inspect <a class="reference external" href="common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">system logs</a> for over temperature and power events.</p></li>
 </ul>
 <p>Keep in mind that temperature events can take time to occur because the card and heat sinks have some thermal mass. Electical loads can ramp up quickly and can happen on application start up.</p>
-<p>If the power testing is good this crash is a software application issue, go to the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>
+<p>If the power testing is good, this crash is a software application issue. Go to the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-operating-in-limits-and-your-application-crashes">
@@ -521,7 +522,7 @@
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -565,7 +566,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

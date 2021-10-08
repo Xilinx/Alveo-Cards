@@ -22,14 +22,12 @@ function log() {
 
 echo "Running XRT log creation script"
 echo "This will take a couple minutes"
-echo "You will need sudo access and may be promped for your password"
+echo "You will need sudo access and may be prompted for your password"
 
 if [ -z "$XILINX_XRT" ] 
 then
 	echo "XRT environment does not appear to be setup. Sourcing /opt/xilinx/xrt/setup.sh"
 	source /opt/xilinx/xrt/setup.sh
-fi
-
 
 rm $FILE
 log "dmesg"
@@ -40,19 +38,18 @@ log "sudo lspci -vv -d 10ee:"
 log "sudo dmidecode"
 log "ps -au"
 
-echo "running xbutil query"
-#copied from ISV/VAR script
-number_of_cards=$( /opt/xilinx/xrt/bin/xbutil list | grep  INFO | sed  's/.*\([0-9]\) card.*$/\1/' )
-#Need to modify to look at all cards on the system
-for d in $(eval echo "{0..$((number_of_cards-1))}"); do 
-	log "/opt/xilinx/xrt/bin/xbutil query -d $d"
-done
+number_of_cards=$( /opt/xilinx/xrt/bin/xbutil examine | grep -c ....:..:...1 )
 
-log "/opt/xilinx/xrt/bin/xbutil scan"
-log "sudo /opt/xilinx/xrt/bin/xbmgmt scan" 
-log "sudo /opt/xilinx/xrt/bin/xbmgmt flash --scan --verbose" 
-log "xbutil validate"
-log "xbutil scan"
+echo "Number of cards found: $number_of_cards"
+
+for d in $(eval echo "{1..$((number_of_cards))}"); do 
+	mbdf=$( /opt/xilinx/xrt/bin/xbmgmt examine | grep -o ....:..:...0 | sed -n "$d"p)
+	log "sudo /opt/xilinx/xrt/bin/xbmgmt examine -d $mbdf"	
+	ubdf=$( /opt/xilinx/xrt/bin/xbutil examine | grep -o ....:..:...1 | sed -n "$d"p)
+	log "/opt/xilinx/xrt/bin/xbutil examine -d $ubdf -r all"
+	log "/opt/xilinx/xrt/bin/xbutil validate -d $ubdf --verbose"
+	
+done
 log "dmesg"
 
 

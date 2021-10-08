@@ -455,59 +455,66 @@
 <p>Xilinx has two test tools, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>.</p>
 <ul class="simple">
 <li><p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> is an XRT utility that does basic checks to determine the card is installed and operating correctly. It does not test the power envelope.  See <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> for additional details.</p></li>
-<li><p>The <code class="docutils literal notranslate"><span class="pre">xbtest</span></code> provides extra card testing via different a host application and additional test kernels. This application will load up the FPGA to test on card memory, host/card power delivery, and cooling. This test can help determine if the system is stable while the card is running accleration tasks.  See the <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for details.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">xbtest</span></code> utility provides extra card testing via different host applications and additional test kernels. This application will load up the FPGA to test on-card memory, host/card power delivery, and cooling. This test can help determine if the system is stable while the card is running accleration tasks.  See the <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for details.</p></li>
 </ul>
 </div>
 <div class="section" id="you-will-need">
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>A <a class="reference internal" href="check-system-compatibility.html"><span class="doc">Compatible host system</span></a></p></li>
-<li><p>One or more alveo cards</p></li>
+<li><p>One or more Alveo cards</p></li>
 <li><p><a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
 </ul>
 <p>Before starting to test the card, gather data</p>
 <ol class="simple">
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Check system compatibility</span></a></p></li>
-<li><p>Based on your cards and OS download the correct version of xbtest from <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a>.</p></li>
+<li><p>Based on your card(s) and OS, download the correct version of xbtest from the <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a>.</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and review the output to confirm the card is operating normally.</p>
 <ul class="simple">
-<li><p>If there are errors go to <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> and resolve.</p></li>
+<li><p>If there are errors, go to <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> and resolve.</p></li>
 </ul>
 </li>
 <li><p>Confirm card(s) are compatible with the host machine</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#determine-active-or-passive-card">Determine if the card is active or passive</a></p></li>
-<li><p>Only test a passive card in server system with enough airflow.</p></li>
-<li><p>If a passive card is not in a <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html">qualified host and card combination</a>, you may need to maunally increase server airflow by turning up the fan speed for the tests to pass.</p></li>
+<li><p>Only test a passive card in server system with sufficient airflow.</p></li>
+<li><p>If a passive card is not in a <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html">qualified host and card combination</a>, you may need to manually increase server airflow by turning up the fan speed for the tests to pass.</p></li>
 </ul>
 </li>
 </ol>
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
 <div class="section" id="a-u200-u250-or-u280-has-less-than-225w-power">
 <h3>A U200, U250, or U280 has less than 225W power<a class="headerlink" href="#a-u200-u250-or-u280-has-less-than-225w-power" title="Permalink to this headline">¶</a></h3>
-<p>The U200, U250, and U280 cards require 225W power to run Vitis™ acceleration loads and  <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>. If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span> <span class="pre">level:</span></code> is &lt; 225W the server will not provide the power needed for the test.</p>
-<p>You can confirm the maximum power level by using <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--scan</span> <span class="pre">--verbose</span></code> as given below.  In this example, the card has insufficient power.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u250</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5eeb5a43</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.9</span><span class="p">]</span>
-<span class="o">...</span>
-    <span class="n">Max</span> <span class="n">power</span> <span class="n">level</span><span class="p">:</span>            <span class="mi">150</span><span class="n">W</span>
+<p>The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>. If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is &lt; 225W, the server will not provide the power needed for the test.</p>
+<p>You can confirm the maximum power available by using <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> as given below.  In this example, the card has insufficient power.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span>
+
+<span class="o">-----------------------------------------------------</span>
+<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u200_gen3x16_xdma_base_1</span>
+<span class="o">-----------------------------------------------------</span>
+<span class="n">Flash</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">2129048</span><span class="n">AJ048</span>
+
+<span class="n">Device</span> <span class="n">properties</span>
+  <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u200</span>
+  <span class="n">Name</span>                 <span class="p">:</span> <span class="n">AU200A64G</span>
+  <span class="n">Config</span> <span class="n">Mode</span>          <span class="p">:</span> <span class="mi">7</span>
+  <span class="n">Max</span> <span class="n">Power</span>            <span class="p">:</span> <span class="mi">150</span><span class="n">W</span>
 </pre></div>
 </div>
 <p>What to look for:</p>
 <ul class="simple">
-<li><p>Look for the value reported by <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span> <span class="pre">level:</span></code></p></li>
+<li><p>Look for the value reported by <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code></p></li>
 <li><p>Should be <code class="docutils literal notranslate"><span class="pre">225W</span></code> for U200, U250, and U280 cards being used in Vitis flows</p></li>
 </ul>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Delay testing until sufficient power.</p></li>
-<li><p>Safely hook up 8 pin AUX power, see the <a class="reference internal" href="card-install.html"><span class="doc">Card installation guide</span></a></p></li>
+<li><p>Delay testing until sufficient power can be supplied.</p></li>
+<li><p>Safely hook up 8-pin PCIe AUX power, see the <a class="reference external" href="card-install.html#card-installation-guides">Card installation guides</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -515,42 +522,22 @@
 <h3>Card is in a suitable machine<a class="headerlink" href="#card-is-in-a-suitable-machine" title="Permalink to this headline">¶</a></h3>
 <p>Alveo cards have two different cooling solutions</p>
 <ul class="simple">
-<li><p>Actively cooled - the card has a fan intended to cool the card in a workstation</p></li>
+<li><p>Actively cooled - the card has a fan intended to cool the card when installed in a workstation</p></li>
 <li><p>Passively cooled - the card depends on host chassis airflow for cooling.</p></li>
 </ul>
-<p>Passivley cooled cards should only be placed in a server with sufficient airflow.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">xbmgmt</span> <span class="n">flash</span> <span class="o">--</span><span class="n">scan</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
-    <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span>          <span class="n">u250</span>
-    <span class="n">Flash</span> <span class="nb">type</span><span class="p">:</span>         <span class="n">SPI</span>
-    <span class="n">Flashable</span> <span class="n">partition</span> <span class="n">running</span> <span class="n">on</span> <span class="n">FPGA</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5eeb5a43</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.9</span><span class="p">]</span>
-    <span class="n">Flashable</span> <span class="n">partitions</span> <span class="n">installed</span> <span class="ow">in</span> <span class="n">system</span><span class="p">:</span>
-        <span class="n">xilinx_u250_xdma_201830_3</span><span class="p">,[</span><span class="n">ID</span><span class="o">=</span><span class="mh">0x5eeb5a43</span><span class="p">],[</span><span class="n">SC</span><span class="o">=</span><span class="mf">4.3.9</span><span class="p">]</span>
-<span class="o">...</span>
-    <span class="n">Fan</span> <span class="n">presence</span><span class="p">:</span>        <span class="n">P</span>
-</pre></div>
-</div>
-<p>What to look for:</p>
-<ul class="simple">
-<li><p>Look for the value reported by Fan presence:</p></li>
-</ul>
-<p>Meaning:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">Fan</span> <span class="pre">presence:</span> <span class="pre">A</span></code> means the card has a fan and is suitable for use in a workstation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Fan</span> <span class="pre">presence:</span> <span class="pre">P</span></code> means the card depends on server fans for cooling</p></li>
-</ul>
+<p>See <a class="reference external" href="common-steps.html#determine-active-or-passive-card">Determine active or passive card</a> to determine if a card is actively or passively cooled.
+Passively cooled cards should only be placed in a server with sufficient airflow.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>For active cards go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
-<li><p>For passive cards confirm the following:</p>
+<li><p>For active cards, go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
+<li><p>For passive cards, confirm the following:</p>
 <ul>
-<li><p>Server airflow meets card rquirements</p>
+<li><p>Server airflow meets card requirements</p>
 <ul>
-<li><p>You can damage the card if there is not enough airflow</p></li>
+<li><p>The card can be damaged when operated in a system without sufficient airflow</p></li>
 </ul>
 </li>
-<li><p>Lid will be on the server for testing</p></li>
+<li><p>Lid needs to be on the server for testing</p></li>
 <li><p>Go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a></p></li>
 </ul>
 </li>
@@ -559,18 +546,18 @@
 <hr class="docutils" />
 <div class="section" id="shell-not-listed-in-xbtest-downloads-below">
 <h3>Shell not listed in xbtest downloads below<a class="headerlink" href="#shell-not-listed-in-xbtest-downloads-below" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.html#determine-platform-and-sc-on-card-and-system">platform running on the card and system</a> is supported.</p>
-<p>If the platform is not supported you need to update the system and card with a supported platform.</p>
+<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">platform running on the card and system</a> is supported.</p>
+<p>If the platform is not supported, you need to update the system and card with a supported platform.</p>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Download one of the supported platforms from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
-<li><p>Follow installation directions for <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">modifying a XRT install</span></a> making sure XRT and xbtest both support the platform.</p></li>
+<li><p>Follow installation directions for <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">modifying an XRT install</span></a> making sure both XRT and xbtest support the platform.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-or-system-crashes-during-test">
 <h3>Card or system crashes during test<a class="headerlink" href="#card-or-system-crashes-during-test" title="Permalink to this headline">¶</a></h3>
-<p>If the card overheats or uses more power that the system provides the test application, card, or system could crash.</p>
+<p>If the card overheats or demands more power than the host system provides, the test application, card, or system could crash.</p>
 <p>Next Steps:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor the power and temperature</a> to make sure the card is operating within temperature and power limits.</p></li>
@@ -596,7 +583,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 </ul>
 <p>Next Steps:</p>
 <ul class="simple">
-<li><p>Confirm the you are testing the right card and platform</p></li>
+<li><p>Confirm the right card and platform are being targeted</p></li>
 <li><p>Re-install the development platform for the card from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 </ul>
 </div>
@@ -606,17 +593,14 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 <div class="section" id="xbtest-for-testing-power">
 <h3>xbtest for Testing Power<a class="headerlink" href="#xbtest-for-testing-power" title="Permalink to this headline">¶</a></h3>
 <p>The xbtest stress test syntax changes from release to release. A version 4 cheat sheet follows:</p>
-<ul>
+<ul class="simple">
 <li><p>Install xbtest following the directions in 1361</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/xilinx/xrt/setup.(c)sh</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/xilinx/xbtest/setup.(c)sh</span></code></p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">list</span></code> to determine the card device ID for the card</p></li>
-<li><p>Run the predefined stress test with- <code class="docutils literal notranslate"><span class="pre">xbtest</span> <span class="pre">-c</span> <span class="pre">stress</span> <span class="pre">-d</span> <span class="pre">(device</span> <span class="pre">ID)</span></code></p>
-<blockquote>
-<div><p><strong>Note</strong>: xbtest version 4 still uses device ID syntax (for example:<code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">3</span></code>). It does not accept card BDF syntax (for example:<code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">a3:00.0</span></code>)</p>
-</div></blockquote>
-</li>
-<li><p>The test will ramp up the toggle rate, increasing power. As the test runs xbtest will report card temperature and power</p></li>
+<li><p>Run the predefined stress test with- <code class="docutils literal notranslate"><span class="pre">xbtest</span> <span class="pre">-c</span> <span class="pre">stress</span> <span class="pre">-d</span> <span class="pre">(device</span> <span class="pre">ID)</span></code>
+<br>Note: xbtest version 4 still uses device ID syntax (for example:<code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">3</span></code>). It does not accept card BDF syntax (for example:<code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">a3:00.0</span></code>)</p></li>
+<li><p>The test will ramp up the toggle rate, increasing power. As the test runs, xbtest will report card temperature and power</p></li>
 </ul>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">STATUS</span>   <span class="p">:</span> <span class="n">POWER</span>        <span class="p">:</span> <span class="n">PWR_045</span><span class="p">:</span>       <span class="mi">94</span> <span class="n">sec</span><span class="o">.</span> <span class="n">remaining</span><span class="p">;</span> <span class="mi">76</span><span class="n">C</span><span class="p">;</span> <span class="n">Power</span><span class="p">:</span> <span class="n">raw</span> <span class="mf">47.5</span><span class="n">W</span><span class="p">;</span> <span class="n">Toggle</span> <span class="n">Rate</span><span class="p">:</span> <span class="mf">40.0</span><span class="o">%</span>
 <span class="n">STATUS</span>   <span class="p">:</span> <span class="n">POWER</span>        <span class="p">:</span> <span class="n">PWR_045</span><span class="p">:</span>       <span class="mi">93</span> <span class="n">sec</span><span class="o">.</span> <span class="n">remaining</span><span class="p">;</span> <span class="mi">76</span><span class="n">C</span><span class="p">;</span> <span class="n">Power</span><span class="p">:</span> <span class="n">raw</span> <span class="mf">47.5</span><span class="n">W</span><span class="p">;</span> <span class="n">Toggle</span> <span class="n">Rate</span><span class="p">:</span> <span class="mf">40.0</span><span class="o">%</span>
@@ -624,8 +608,8 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 </div>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor power and temperature</a></p></li>
-<li><p>Interrupt the test with <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> if card temperature goes over 95C or if the temperature suddenly falls.</p></li>
-<li><p>At the end there will be a test pass or fail.</p>
+<li><p>Interrupt the test with <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> if card temperature exceeds 95C or if the temperature suddenly falls.</p></li>
+<li><p>At the end of the test, a pass or fail is indicated.</p>
 <ul>
 <li><p>A test pass shows card is good for acceleration loads.</p></li>
 <li><p>A failure indicates there may be an issue, follow normal escalation procedures.</p></li>
@@ -638,7 +622,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -682,7 +666,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>

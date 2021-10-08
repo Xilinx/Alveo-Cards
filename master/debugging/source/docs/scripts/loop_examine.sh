@@ -10,12 +10,12 @@
 ######################
 
 if [ "$#" -ne 1 ]; then
-	echo "This script expects only one command line arguement specifying the cardID."
-	echo "Please enter: loop_query.sh <cardID> on the command line"
+	echo "This script expects only one command line arguement specifying a card's user BDF."
+	echo "Please enter: loop_examine.sh <user BDF> on the command line"
 else
 	card=$1
 	for j in {1..400}; do
-		/opt/xilinx/xrt/bin/xbutil query -d $card | grep -A 28 PCB
+		/opt/xilinx/xrt/bin/xbutil examine -d $card -r thermal electrical
 		sleep 3
 		echo "-----------------------"
 		echo "-----------------------"

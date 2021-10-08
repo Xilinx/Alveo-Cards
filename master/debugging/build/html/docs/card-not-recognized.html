@@ -343,6 +343,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#confirm-system-recognizes-cards">Confirm system recognizes cards</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-not-recognized-under-lspci">Card not recognized under <code class="docutils literal notranslate"><span class="pre">lspci</span></code></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#host-machine">Host machine</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#alveo-card">Alveo card</a></li>
@@ -467,26 +468,7 @@
  </tr>
 </table><div class="section" id="card-not-recognized">
 <h1>Card Not Recognized<a class="headerlink" href="#card-not-recognized" title="Permalink to this headline">¶</a></h1>
-<p>When Alveo™ card(s) are installed and functioning correctly within a host machine, the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> Linux command will correctly identify and report their details as shown in the example below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">lspci</span> <span class="o">-</span><span class="n">vd</span> <span class="mi">10</span><span class="n">ee</span><span class="p">:</span>
-<span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Processing</span> <span class="n">accelerators</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">5004</span>
-        <span class="n">Subsystem</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">000</span><span class="n">e</span>
-        <span class="n">Physical</span> <span class="n">Slot</span><span class="p">:</span> <span class="mi">4</span>
-        <span class="n">Flags</span><span class="p">:</span> <span class="n">bus</span> <span class="n">master</span><span class="p">,</span> <span class="n">fast</span> <span class="n">devsel</span><span class="p">,</span> <span class="n">latency</span> <span class="mi">0</span><span class="p">,</span> <span class="n">NUMA</span> <span class="n">node</span> <span class="mi">0</span>
-        <span class="n">Memory</span> <span class="n">at</span> <span class="n">d2000000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">,</span> <span class="n">prefetchable</span><span class="p">)</span> <span class="p">[</span><span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="n">M</span><span class="p">]</span>
-        <span class="n">Memory</span> <span class="n">at</span> <span class="n">d4000000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">,</span> <span class="n">prefetchable</span><span class="p">)</span> <span class="p">[</span><span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="n">K</span><span class="p">]</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">]</span> <span class="n">Power</span> <span class="n">Management</span> <span class="n">version</span> <span class="mi">3</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span> <span class="n">MSI</span><span class="o">-</span><span class="n">X</span><span class="p">:</span> <span class="n">Enable</span><span class="o">+</span> <span class="n">Count</span><span class="o">=</span><span class="mi">33</span> <span class="n">Masked</span><span class="o">-</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">]</span> <span class="n">Express</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">MSI</span> <span class="mi">00</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="n">Advanced</span> <span class="n">Error</span> <span class="n">Reporting</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="n">c0</span><span class="p">]</span> <span class="c1">#19</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">]</span> <span class="n">Access</span> <span class="n">Control</span> <span class="n">Services</span>
-        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">410</span><span class="p">]</span> <span class="c1">#15</span>
-        <span class="n">Kernel</span> <span class="n">driver</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span> <span class="n">xclmgmt</span>
-        <span class="n">Kernel</span> <span class="n">modules</span><span class="p">:</span> <span class="n">xclmgmt</span>
-</pre></div>
-</div>
-<p>However, there are times when the card is not recognized by the host OS and <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does not list the card. This section covers techniques to determine the root cause. If you are just starting to debug, please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine if this is the best page for your purposes.</p>
+<p>When Alveo™ card(s) are installed and functioning correctly within a host machine, the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> Linux command will correctly identify and report their details.  However, there are times when the card is not recognized by the host OS and <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does not list the card. This section covers techniques to determine the root cause.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
 <p>This page details scenarios and recommended steps to take when the card is not recognized by the host. If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
@@ -495,7 +477,7 @@
 <li><p>Card based</p>
 <ul>
 <li><p>Poorly seated card</p></li>
-<li><p><a class="reference external" href="#usb-cable-plugged-into-card">USB cable plugged into a U200/U250/U280</a></p></li>
+<li><p>Remove <a class="reference external" href="#usb-cable-plugged-into-card">USB cable plugged into a U200/U250/U280</a></p></li>
 <li><p>Card operated out of spec</p></li>
 </ul>
 </li>
@@ -523,39 +505,68 @@
 </div>
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<div class="section" id="confirm-system-recognizes-cards">
+<h3>Confirm system recognizes cards<a class="headerlink" href="#confirm-system-recognizes-cards" title="Permalink to this headline">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">lspci</span></code> command can be used to confirm the system recognizes the card and provides details on all the PCIe buses and devices in the system. The verbose switch (-v) provides greater detail while the device ID switch (-d) filters specific vendors.  For Xilinx, the device ID is <code class="docutils literal notranslate"><span class="pre">10ee:</span></code>. The resulting command is <code class="docutils literal notranslate"><span class="pre">lspci</span> <span class="pre">-vd</span> <span class="pre">10ee:</span></code>, refered to as lspci in the document.</p>
+<p>Below is an example of the lspci output of an Alveo card recognized by the system.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">lspci</span> <span class="o">-</span><span class="n">vd</span> <span class="mi">10</span><span class="n">ee</span><span class="p">:</span>
+<span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Processing</span> <span class="n">accelerators</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">5004</span>
+        <span class="n">Subsystem</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">000</span><span class="n">e</span>
+        <span class="n">Physical</span> <span class="n">Slot</span><span class="p">:</span> <span class="mi">4</span>
+        <span class="n">Flags</span><span class="p">:</span> <span class="n">bus</span> <span class="n">master</span><span class="p">,</span> <span class="n">fast</span> <span class="n">devsel</span><span class="p">,</span> <span class="n">latency</span> <span class="mi">0</span><span class="p">,</span> <span class="n">NUMA</span> <span class="n">node</span> <span class="mi">0</span>
+        <span class="n">Memory</span> <span class="n">at</span> <span class="n">d2000000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">,</span> <span class="n">prefetchable</span><span class="p">)</span> <span class="p">[</span><span class="n">size</span><span class="o">=</span><span class="mi">32</span><span class="n">M</span><span class="p">]</span>
+        <span class="n">Memory</span> <span class="n">at</span> <span class="n">d4000000</span> <span class="p">(</span><span class="mi">64</span><span class="o">-</span><span class="n">bit</span><span class="p">,</span> <span class="n">prefetchable</span><span class="p">)</span> <span class="p">[</span><span class="n">size</span><span class="o">=</span><span class="mi">128</span><span class="n">K</span><span class="p">]</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">40</span><span class="p">]</span> <span class="n">Power</span> <span class="n">Management</span> <span class="n">version</span> <span class="mi">3</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">60</span><span class="p">]</span> <span class="n">MSI</span><span class="o">-</span><span class="n">X</span><span class="p">:</span> <span class="n">Enable</span><span class="o">+</span> <span class="n">Count</span><span class="o">=</span><span class="mi">33</span> <span class="n">Masked</span><span class="o">-</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">70</span><span class="p">]</span> <span class="n">Express</span> <span class="n">Endpoint</span><span class="p">,</span> <span class="n">MSI</span> <span class="mi">00</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">100</span><span class="p">]</span> <span class="n">Advanced</span> <span class="n">Error</span> <span class="n">Reporting</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="n">c0</span><span class="p">]</span> <span class="c1">#19</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">400</span><span class="p">]</span> <span class="n">Access</span> <span class="n">Control</span> <span class="n">Services</span>
+        <span class="n">Capabilities</span><span class="p">:</span> <span class="p">[</span><span class="mi">410</span><span class="p">]</span> <span class="c1">#15</span>
+        <span class="n">Kernel</span> <span class="n">driver</span> <span class="ow">in</span> <span class="n">use</span><span class="p">:</span> <span class="n">xclmgmt</span>
+        <span class="n">Kernel</span> <span class="n">modules</span><span class="p">:</span> <span class="n">xclmgmt</span>
+</pre></div>
+</div>
+<p>If not cards are in the system, the output will not display anything as illustrated below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">lspci</span> <span class="o">-</span><span class="n">vd</span> <span class="mi">10</span><span class="n">ee</span><span class="p">:</span>
+<span class="p">:</span><span class="o">~&gt;</span>
+</pre></div>
+</div>
+</div>
 <div class="section" id="card-not-recognized-under-lspci">
 <h3>Card not recognized under <code class="docutils literal notranslate"><span class="pre">lspci</span></code><a class="headerlink" href="#card-not-recognized-under-lspci" title="Permalink to this headline">¶</a></h3>
-<p>This is a large problem space that can have many potential causes. To narrow likely causes we need to consider both the host machine and the card.</p>
+<p>There can be many potential causes if a card is not recognized using <code class="docutils literal notranslate"><span class="pre">lspci</span></code>. To narrow the likely causes it is necessary to consider both the host machine and the card.</p>
 <div class="section" id="host-machine">
 <h4>Host machine<a class="headerlink" href="#host-machine" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Check system compatibility</span></a></p></li>
-<li><p>If the card is in the system, try a warm boot.</p>
+<li><p>If the card is installed in the system, try a <a class="reference external" href="#reboot-warm-boot-reset-system">warm reboot</a>.</p>
 <ul>
-<li><p>If this fixes the issue, see <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a></p></li>
+<li><p>If this fixes the issue, see <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a> to resolove the underlying cause.</p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for unpopulated CPU sockets</a></p>
 <ul>
-<li><p>The PCIe controller is built into modern CPUs. If there are one or more missing CPUs you may not be able to use all the PCIe slots, review system documentation to determine which slots are usable.</p></li>
+<li><p>The PCIe controller is built into modern CPUs. If there are one or more missing CPUs you may not be able to use all the PCIe slots.  Review the system documentation to determine which slots are usable.</p></li>
 </ul>
 </li>
 </ul>
 </div>
 <div class="section" id="alveo-card">
 <h4>Alveo card<a class="headerlink" href="#alveo-card" title="Permalink to this headline">¶</a></h4>
-<p>Go through the following scenarios and see if they apply:</p>
+<p>Review the following scenarios and see if they apply:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#usb-cable-plugged-into-card">USB cable is plugged in</a></p></li>
+<li><p>Remove <a class="reference external" href="#usb-cable-plugged-into-card">USB cable plugged into a U200/U250/U280 card</a></p></li>
 <li><p><a class="reference external" href="#vivado-flow">Card is not recognized after using Vivado flow</a></p></li>
 <li><p><a class="reference external" href="#card-not-recognized-after-loading-platform-or-golden-image">Card is not recognized after programming a shell or reverting to golden image</a></p></li>
 <li><p><a class="reference external" href="#card-not-recognized-during-operation">Card recognized at first but not after the machine has been on for a while or while in use</a></p></li>
 </ul>
 <p>If the above scenarios don’t apply, test the card/machine for the following:</p>
 <ul class="simple">
-<li><p>Test the card in another slot in the same machine. If this works, go to <a class="reference external" href="#card-is-recognized-in-different-pcie-slot-in-same-machine">the card is recognized in a another slot in the same machine</a></p></li>
-<li><p>Test the card in another machine (if possible, one where other Alveo cards have worked). If the card works, then go to <a class="reference external" href="#card-is-recognized-in-another-machine">the card works in a another machine</a></p></li>
-<li><p>If another card is available, test in the same slot. If the alternate card is recognized, go to <a class="reference external" href="#different-alveo-card-is-recognized-in-same-slot">a second Alveo card is recognized in the same slot</a></p></li>
+<li><p>Test the card in another slot in the same machine.  If this works go to <a class="reference external" href="#card-is-recognized-in-different-pcie-slot-in-same-machine">the card is recognized in a another slot in the same machine</a></p></li>
+<li><p>Test the card in another machine, if possible, one where other Alveo cards have worked. If the card works, go to <a class="reference external" href="#card-is-recognized-in-another-machine">the card works in a another machine</a></p></li>
+<li><p>If another card is available, test in the same slot. If the alternate card is recognized go to <a class="reference external" href="#different-alveo-card-is-recognized-in-same-slot">a second Alveo card is recognized in the same slot</a></p></li>
 </ul>
 <p>If none of the above have narrowed down the potential issue:</p>
 <ul class="simple">
@@ -569,7 +580,7 @@
 </ul>
 <p>As a last attempt:</p>
 <ul class="simple">
-<li><p>Cold boot the system twice</p></li>
+<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system twice</p></li>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
@@ -593,23 +604,23 @@
 <hr class="docutils" />
 <div class="section" id="usb-cable-plugged-into-card">
 <h3>USB cable plugged into card<a class="headerlink" href="#usb-cable-plugged-into-card" title="Permalink to this headline">¶</a></h3>
-<p>For cards with a USB port, including U200, U250 and U280, ensure there is no USB cable plugged into the card as it will block the FPGA from enumerating on the PCIe bus.</p>
+<p>For cards with a USB port, including U200, U250 and U280, ensure no USB cable is plugged into the card as it will block the FPGA from enumerating on the PCIe bus.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Unplug USB cable</p></li>
-<li><p>Cold boot the system</p></li>
+<li><p>Unplug USB cable from the card</p></li>
+<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="card-recognized-after-a-warm-boot">
 <h3>Card recognized after a warm boot<a class="headerlink" href="#card-recognized-after-a-warm-boot" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does not recognize the Alveo card after the machine first powers on, one of the first tests is to perform a warm reboot. If the card is recognized after a warm reboot, this may suggest that there is a BIOS issue.</p>
-<p>Before warmboot <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does not recognize the installed card.</p>
+<p>If lspci does not recognize the Alveo card after the machine first powers on, one of the first tests is to perform a warm reboot. If the card is recognized after a warm reboot, this may suggest that there is a BIOS issue.</p>
+<p>Before warmboot <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lspci</span> <span class="pre">-vd</span> <span class="pre">10ee:</span></code> does not recognize the installed card.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">lspci</span> <span class="o">-</span><span class="n">vd</span> <span class="mi">10</span><span class="n">ee</span><span class="p">:</span>
 <span class="p">:</span><span class="o">~&gt;</span>
 </pre></div>
 </div>
-<p>After warmboot, the same <code class="docutils literal notranslate"><span class="pre">lspci</span></code> command recognizes the installed card.</p>
+<p>After warmboot, the same lspci command recognizes the installed card.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">sudo</span> <span class="n">lspci</span> <span class="o">-</span><span class="n">vd</span> <span class="mi">10</span><span class="n">ee</span><span class="p">:</span>
 <span class="mi">03</span><span class="p">:</span><span class="mf">00.0</span> <span class="n">Processing</span> <span class="n">accelerators</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">5004</span>
         <span class="n">Subsystem</span><span class="p">:</span> <span class="n">Xilinx</span> <span class="n">Corporation</span> <span class="n">Device</span> <span class="mi">000</span><span class="n">e</span>
@@ -640,8 +651,8 @@
 <p>If the card is no longer recognized after loading a platform or reverting to the golden image, there is an issue with the host to card communication.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Cold boot the computer and see if host will recognize</p></li>
-<li><p>Run a warmboot and see if the card is recognized</p>
+<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system and see if the card is recognized</p></li>
+<li><p><a class="reference external" href="#reboot-warm-boot-reset-system">Warm reboot</a> and see if the card is recognized</p>
 <ul>
 <li><p>If so go to <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a></p></li>
 </ul>
@@ -658,15 +669,14 @@
 <hr class="docutils" />
 <div class="section" id="card-not-recognized-during-operation">
 <h3>Card not recognized during operation<a class="headerlink" href="#card-not-recognized-during-operation" title="Permalink to this headline">¶</a></h3>
-<p>If the card is no longer recognized under <code class="docutils literal notranslate"><span class="pre">lspci</span></code> while the machine is on, the card may be overheating, which causes the FPGA to shutdown and be no longer recognized on the PCIe bus.</p>
-<p>If the system does not have enough airflow it is possible the FPGA can overheat taking out the PCIe core on the FPGA.</p>
+<p>If the card is no longer recognized by lspci while the machine is on, the card may be overheating, which causes the FPGA to shutdown and no longer detect on the PCIe bus.  Overheating can be caused by not having enough airflow.  See the respective card data sheet for airflow requirements.</p>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">Check for an over temperature event in dmesg</a></p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">query</span></code> to <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor card temperature</a></p></li>
-<li><p>If there is an over temperature event or if the card is over 90C in xbutil query</p>
+<li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor card power and temperature</a></p></li>
+<li><p>If there is an over temperature event or if the card is over 90C in xbutil examine</p>
 <ul>
-<li><p>Cold boot the system</p></li>
+<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 <li><p>Increasing system airflow</p>
 <ul>
 <li><p>May need to turn up fan speed</p></li>
@@ -787,22 +797,19 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p><a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="riser-replacement">
 <h4>Riser replacement<a class="headerlink" href="#riser-replacement" title="Permalink to this headline">¶</a></h4>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Have the technician check the seating of everything touched</p>
-<ul>
+<li><p>Have the technician check the seating of everything touched</p></li>
 <li><p>Risers</p></li>
 <li><p>Card seating</p></li>
 <li><p>Power cabling</p>
 <ul>
 <li><p>Especially PCIe AUX to applicable cards</p></li>
-</ul>
-</li>
 </ul>
 </li>
 <li><p>Bring up the system</p></li>
@@ -812,7 +819,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#red-led-illuminated">Card’s red LED is illuminated</a></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p><a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="additional-card-installed-in-system">
@@ -821,7 +828,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p>Remove the new card</p></li>
 <li><p>Confirm the <a class="reference external" href="#bios-in-safety-mode">BIOS is not in safety mode</a></p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="new-or-updated-bios-on-machine">
@@ -834,9 +841,9 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p>Fix any changes that are incompatible with Alveo cards</p></li>
 </ul>
 </li>
-<li><p>Cold boot the system</p></li>
+<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 <li><p>See if <a class="reference external" href="#bios-in-safety-mode">BIOS is not in safety mode</a></p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="bios-settings-changed">
@@ -845,7 +852,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p>Review the changes</p></li>
 <li><p>Revert any changes that are incompatible with Alveo Cards</p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="cpu-removal">
@@ -854,15 +861,14 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p><a class="reference external" href="common-steps.html#check-for-unpopulated-cpus">Check for Unpopulated CPUs</a></p></li>
 <li><p>Move card to a usable slot</p></li>
-<li><p>Bring up the system and <a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
+<li><p>Bring up the system and <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
 </div>
 <div class="section" id="other-hardware-added-since-last-boot">
 <h4>Other hardware added since last boot<a class="headerlink" href="#other-hardware-added-since-last-boot" title="Permalink to this headline">¶</a></h4>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Shut down the system and pull power</a></p></li>
 <li><p>Remove the new PCIe device(s)</p></li>
 <li><p>Reseat the Alveo card</p>
 <ul>
@@ -870,7 +876,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 </ul>
 </li>
 <li><p>Bring system back up</p></li>
-<li><p><a class="reference external" href="common-steps.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p>
+<li><p><a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p>
 <ul>
 <li><p>If so progress through card install</p></li>
 <li><p>If not try the card in</p>
@@ -922,8 +928,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <ul class="simple">
 <li><p>Try the following:</p>
 <ul>
-<li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Shut down the system and pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
@@ -933,7 +938,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 </li>
 <li><p>If the blue LED is still not illuminated, see if the FPGA is seen in <a class="reference external" href="common-steps.html#vivado-hw-manager">Vivado HW Manager</a></p>
 <ul>
-<li><p>If it can be seen, revert the card to golden <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a></p></li>
+<li><p>If it can be seen, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">revert the card to factory image</a></p></li>
 </ul>
 </li>
 </ul>
@@ -947,8 +952,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p><a class="reference external" href="#bios-in-safety-mode">Determine if the BIOS is in safety mode</a></p></li>
 <li><p>If the BIOS is not in safety mode, try the following:</p>
 <ul>
-<li><p>Shut down the system</p></li>
-<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Shut down the system and pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
@@ -977,7 +981,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
-<p>If you have a suggestion, or find an issue, send an email to alveo_cards_debugging&#64;xilinx.com .</p>
+<p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
 <h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
@@ -1021,7 +1025,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 12, 2021.
+        Last updated on October 5, 2021.
       </span>
 
     </p>
