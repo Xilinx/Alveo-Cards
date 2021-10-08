@@ -6,11 +6,11 @@
 </table>
 
 # Card Validation
-XRT provides a utility to validate the [card installation](card-install.md) using the `xbutil validate` command. This checks for proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the [Vitis Documentation](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904).
+XRT provides the `xbutil` utility which validates [card installation](card-install.md) using the `xbutil validate` command. It checks proper power connection, PCIe connection, SC version, as well as running bandwidth tests. Full details on this command can be found in the [Vitis Documentation](https://www.xilinx.com/html_docs/xilinx2020_2/vitis_doc/xbutilutility.html#fpx1536961754904).  If validation fails, indicated by `ERROR: Some cards failed to validate.` the errors need to be addressed before the card can be used.
 
 ## This Page Covers
 
-This page covers issues users have reported when running the `xbutil validate` command. If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+This page covers issues encountered when using `xbutil validate`.    If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
 
 ## You Will Need
 
@@ -94,7 +94,7 @@ Next steps:
 
 - - -
 ### Memory bandwidth test fails
- Before XRT 2020.1 PU1, `xbutil validate` depended on Python 2.7 and support packages. If you observe errors with a `.py` file, `pyopenCL`, or `numpy` as shown below, there is an issue with those pacakges.
+ Before XRT 2020.1 PU1, `xbutil validate` depended on Python 2.7 and support packages. If you observe errors with a `.py` file, `pyopenCL`, or `numpy` as shown below, there is an issue with those packages.
 
  ```
  xbutil validate
@@ -193,9 +193,9 @@ Next step:
  - Follow the steps in [Loading verify kernel error](card-validation.md#loading-verify-kernel-error)
 
 - - -
-### Verify kernel test skipped on the u250_gen3x16_base_3 platform
+### Verify kernel test skipped
 
-If you encounter `INFO: == verify kernel test SKIPPED` when running `xbutil validate` on the u250_gen3x16_base_3 DFX-2RP platform, it is suggesting that the shell partition has not been loaded.  For DFX-2RP platforms, the base partition needs to be flashed and the shell needs to be loaded prior to running an application, including the `xbutil validate` application.
+For DFX-2RP platforms such as u250_gen3x16_base_3, `xbutil validate` command will display the message `INFO: == verify kernel test SKIPPED`, as shown below, if the shell partition has not been first been loaded.  For DFX-2RP platforms, the base partition needs to be flashed and the shell needs to be loaded prior to running an application, including the `xbutil validate` application.
 
  ```
  xbutil validate
@@ -219,12 +219,12 @@ INFO: Card[0] validated successfully.
  ```
 
 Next step:
-- Go to [AR 75975](https://www.xilinx.com/support/answers/75975.html) for additional details on the 2RP-DFX platform
+- Load the shell partition before running an application.  See [AR 75975](https://www.xilinx.com/support/answers/75975.html) details.
 
 - - -
 ### Different python versions for user and root
 
-In some cases, you may have different python versions for user and for root which can lead to odd behaviors with the driver.
+In some cases, you may have different python versions for user and for root, as shown below.  This can lead to odd behaviors with the driver.
 
 
  ```
@@ -236,10 +236,7 @@ Python 3.6.2
 
 Next steps:
 
-- Reconcile your python environment
-
-or
-
+- Reconcile your python environment or
 - Use `sudo su` to become root before running card commands
 
 - - -
@@ -525,7 +522,7 @@ Next steps
 - [Reflash the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
-### `xbmgmt` commands not working
+### xbmgmt commands not working
 
 If `xbmgmt` commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.
 
@@ -533,11 +530,21 @@ Next Step:
 - Reinstall the XRT package.
 
 - - -
+### Failed to find Xilinx platform
+If XRT fails to find the Xilinx platform as shown below, the `setup.sh` script has not been sourced.
 
+```
+Error: Failed to find Xilinx platform
+```
+Next step:
+- Run the following command: `source /opt/xilinx/xrt/setup.sh`
+- - -  
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

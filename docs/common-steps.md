@@ -423,7 +423,8 @@ Available XRT releases along with download links are given in the table below.
 |2020.1 <br> XRT 2.6.655|<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.6.655_18.04-amd64-xrt.deb)</li>|
 |2020.1_pu1 <br> XRT 2.7.766|<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_7.4.1708-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.1](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202010.2.7.766_18.04-amd64-xrt.deb)|
 |2020.2 <br> XRT 2.8.726|<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_7.4.1708-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.726_20.04-amd64-xrt.deb)</li>|
-|2020.2 <br> XRT 2.8.743 <br>See [AR 76088](https://www.xilinx.com/support/answers/76088.html)|<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_7.4.1708-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_20.04-amd64-xrt.deb)</li>
+|2020.2 <br> XRT 2.8.743 <br>See [AR 76088](https://www.xilinx.com/support/answers/76088.html)|<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_7.4.1708-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.8.743_20.04-amd64-xrt.deb)</li>|
+|2020.2_pu1 <br> XRT 2.9.317 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_7.4.1708-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202020.2.9.317_20.04-amd64-xrt.deb)</li>
 
 
 
@@ -654,10 +655,11 @@ Card [0000:03:00.0]
 - - -
 ### Monitor card power and temperature
 
-During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version and are detailed in the respective data sheets.
+During operation it is necessary to ensure the card operates within the power and thermal limits. These limits are dependent on the card version as detailed below:
 
 The U50 is rated for 75W, supplied by the motherboard via
 - A 10W 3.3V rail
+  - Dedicated for HBM power, see [AR 75222](https://www.xilinx.com/support/answers/75222.html) for more information
 - And a 65W 12V rail
 
 The U200/U250/U280 are rated for 225W
@@ -906,17 +908,19 @@ For the U50:
 1.  An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager
 2.  The Alveo Programming Cable is shown in Figure 3 in UG1377: [UG1377 V1.1](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf)
 3.  Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
-    1.  Pages 1-13
-    2.  Often the debug machine is a windows laptop
+    a.  Pages 1-13
+    b.  Often the debug machine is a windows laptop
 4.  Open Vivado hardware manager
 5.  Tools → Auto connect
 6.  `set_property PARAM.FREQUENCY 1000000 [current_hw_target]`
 7.  The xu50\_0 should show as below:
 
+
   ![HW Manager](./images/initial_connection.png)
 
+
 8. If the device shows up in Vivado HW Manager follow [AR 71757](https://www.xilinx.com/support/answers/71757.html) to revert the card back to the golden image
-9.  Otherwise the FPGA is not working, post on the
+9. Otherwise the FPGA is not working, post on the
 [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 For the U200/U250/U280:
@@ -938,7 +942,9 @@ For the U200/U250/U280:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

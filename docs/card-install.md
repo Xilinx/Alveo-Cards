@@ -17,7 +17,7 @@ For Alveo card and software installation, follow the procedures outlined in the 
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | U50  | [Alveo U50 Data Center Accelerator Card Installation Guide v1.7 (UG1370)]( https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1370-u50-installation.pdf)                                   |
 | U200 | [Getting Started with Alveo Data Center Acceleration Cards v1.7 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
-| U250 | [Getting Started with Alveo Data Center Acceleration Cards v1.7 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_7/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
+| U250 | [Getting Started with Alveo Data Center Acceleration Cards v1.9 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_9/ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
 | U280 | [Getting Started with Alveo Data Center Acceleration Cards v1.5 (UG1301)](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/1_5/ug1301-getting-started-guide-alveo-accelerator-cards.pdf) |
 
 
@@ -68,14 +68,16 @@ For card installation, you will need to:
 - - -
 ### Card operates for a while, then shuts down
 
- * Ensure adequate air flow.  
+ * Ensure adequate air flow.  See [Card not recognized during operation](card-not-recognized.md#card-not-recognized-during-operation)
  * For operating conditions, including airflow requirements, reference the respective Alveo Data Sheets within the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html).
 
  - - -
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

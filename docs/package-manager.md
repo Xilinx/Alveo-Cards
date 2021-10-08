@@ -400,18 +400,18 @@ Next steps:
 - - -
 ### Flash update fails with shell is not applicable
 
-Updating the flash says specified shell is not applicable as shown in the example below
+When flashing the card with the command `xbmgmt flash --update --shell` returns `shell is not applicable` as shown in the example below, it indicates that the name of the specified shell is not supported for the targeted card.  This may also occur if the specified shell name is spelled incorrectly.
 
 ```
 ~]$ xbmgmt flash --update --shell xilinx_u250_gen3x16_base_2
 WARNING: Failed to flash Card[0000:05:00.0]: Specified shell is not applicable
 
 ```
-This can occur if the installed package is not supported for the targeted card.
 
 Next steps:
 
-- Confirm the right shell is installed
+- Confirm the correct shell name is installed and the correct name is used in the command.  To obtain the necessary shell name, run the `xbmgmt flash --scan` command. 
+
 - - -
 ### Item not covered above
 
@@ -429,7 +429,9 @@ Next steps:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

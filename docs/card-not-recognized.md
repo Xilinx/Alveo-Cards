@@ -36,7 +36,7 @@ This page details scenarios and recommended steps to take when the card is not r
 Typical causes can be grouped into card and host based issues as given below:
 -   Card based
     -  Poorly seated card
-    -  [USB cable plugged into a U200/U250/U280](#usb-cable-plugged-into-u200-u250-u280)
+    -  [USB cable plugged into a U200/U250/U280](#usb-cable-plugged-into-card)
     -  Card operated out of spec
 -   Host based
     -   Bad or incompatible motherboard slot
@@ -68,7 +68,7 @@ This is a large problem space that can have many potential causes. To narrow lik
 #### Alveo card
 
 Go through the following scenarios and see if they apply:
- - [USB cable is plugged in](#usb-cable-plugged-into-u200-u250-u280)
+ - [USB cable is plugged in](#usb-cable-plugged-into-card)
  - [Card is not recognized after using Vivado flow](#vivado-flow)
  - [Card is not recognized after programming a shell or reverting to golden image](#card-not-recognized-after-loading-platform-or-golden-image)
  - [Card recognized at first but not after the machine has been on for a while or while in use](#card-not-recognized-during-operation)
@@ -79,7 +79,7 @@ If the above scenarios don't apply, test the card/machine for the following:
  - If another card is available, test in the same slot. If the alternate card is recognized go to [a second Alveo card is recognized in the same slot](#different-alveo-card-is-recognized-in-same-slot)
 
 If none of the above have narrowed down the potential issue:
-- [Check the BIOS bifurcation settings](#bios-set-to-wrong-pcie-bifurcation)
+- [Check the BIOS bifurcation settings](#pcie-bifurcation-setting)
 - Look at the LEDs on the card:
   - [Card's blue LED not illuminated](#blue-led-not-illuminated)
   - [Card's red LED is illuminated](#red-led-illuminated)
@@ -103,9 +103,9 @@ Next steps:
 [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
-### USB cable plugged into U200, U250, U280
+### USB cable plugged into card
 
-If there is a USB cable plugged into the card, it will block the FPGA from enumerating on the PCIe bus.
+For cards with a USB port, including U200, U250 and U280, ensure there is no USB cable plugged into the card as it will block the FPGA from enumerating on the PCIe bus.
 
 Next steps:
  - Unplug USB cable
@@ -224,14 +224,13 @@ Next steps:
 - If the card isn't visible in the Vivado HW Manager navigate to the [Service Portal](https://www.xilinx.com/support.html) and initiate a return request.
 
 - - -
-### BIOS set to wrong PCIe bifurcation
+### PCIe bifurcation setting
 
-Bifurcation allows the BIOS to split 1 PCIe link into 2 (or more) lower speed links. The standard Alveo platforms are expecting a non-bifurcated link.
-
-The bifurcation configuration is found in the BIOS settings. For many BIOSes "Auto" does not bifurcate the PCI link and the card will work as expected.
+PCIe bifurcation splits the PCIe link into two (or more) smaller buses. The bifurcation setting can be found in the BIOS. Not all systems support bifurcation.
+Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ensure bifurcation is not enabled.
 
 Next step:
-- Refer to manufacture's BIOS documentation to turn off bifurcation
+- Refer to manufacture's BIOS documentation to turn off bifurcation.
 
 - - -
 ### Recent system change
@@ -394,7 +393,9 @@ Next step:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

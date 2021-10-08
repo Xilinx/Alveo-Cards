@@ -25,7 +25,7 @@ Before beginning debug, you need to:
 
 ## Common Cases
 
-### Partition displayed under `Flashable partition running on FPGA` and `Flashable partitions installed in system` are identical.
+### `Flashable partition running on FPGA` and `Flashable partitions installed in system` are identical.
 
 When the platform has been installed correctly, the partition and SC version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt flash --scan` command.  An example output is shown below.
 
@@ -44,7 +44,7 @@ Next step:
 - None, this is expected output
 
 - - -
-### `xbmgmt flash --scan` returns `bad magic number` error
+### Bad magic number
 
 If `xbmgmt flash --scan` command returns `bad magic number` error as in the example below, there is a chance of a communication break between XRT and CMC.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
 
@@ -74,7 +74,7 @@ Next steps:
 - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
 
 - - -
-### `xbmgmt flash --scan` returns `XMC not loaded` error
+### XMC not loaded
 
 If `xbmgmt flash --scan` command returns `XMC not loaded` error as shown below, there is communication break between XRT and CMC.
 
@@ -106,7 +106,7 @@ Next steps:
 
 - - -
 
-### `xbmgmt flash --scan` returns `XMC not ready` error
+### XMC not ready
 
 If `xbmgmt flash --scan` command returns `XMC not ready` error as shown below, there is communication break between XRT and CMC.
 
@@ -140,7 +140,7 @@ Next steps:
 
 - - -
 
-### `xbmgmt flash --scan` returns `SC is not ready` error
+### SC is not ready
 
 If `xbmgmt flash --scan` command returns `SC is not ready ` error as shown below, there is communication break between SC and CMC.
 
@@ -166,7 +166,7 @@ Next steps:
 
 
 - - -
-### SC only displays two digits in `Flashable partition running on FPGA`
+### SC only displays two digits
 If `xbmgmt flash --scan` command returns different number of digits of SC versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between XRT and CMC.
 
  ```
@@ -190,7 +190,7 @@ Next steps:
 
 - - -
 
-### The SC version displayed under `Flashable partition running on FPGA` and `Flashable partitions installed in system` do not match
+### SC versions do not match
 
 If `xbmgmt flash --scan` command returns different SC version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
 
@@ -213,9 +213,9 @@ Next steps:
 
 - - -
 
-### `Flashable partition running on FPGA` displays GOLDEN and there is a partition displayed under `Flashable partitions installed in system`
+### GOLDEN partition running on FPGA 
 
-When `xbmgmt flash --scan` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.
+When `xbmgmt flash --scan` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under `Flashable partitions installed in system` shows only the partitions available on the system.
 
  ```
  Card [0000:d3:00.0]
@@ -233,9 +233,9 @@ Next step:
 
 - - -
 
-### Partition displayed under `Flashable partition running on FPGA` while (None) displayed under `Flashable partitions installed in system`
+### Partition installed in system (None)
 
-If `xbmgmt flash --scan` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform has not been installed in the system.
+If `xbmgmt flash --scan` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under `Flashable partitions running on FPGA` will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.
 
 ```
 Card [0000:03:00.0]
@@ -251,9 +251,9 @@ Next step:
 - Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
 
 - - -
-### Card is missing from `xbmgmt flash --scan output`
+### No cards found
 
-If xbmgmt flash command returns `No cards Found` output, as shown below, the OS or XRT is not able to find the card.
+If `xbmgmt flash --scan` command returns `No cards Found` as shown below, the OS or XRT is unable to find the card.
 
   ```
   No cards Found !
@@ -266,9 +266,9 @@ Next steps:
 - Else go to [Modifying XRT/platform](modifying-xrt-platform.md)
 
 - - -
-### `xbutil query` reports a value of zero for voltage or temperature
+### Voltage or temperature reports zero
 
-If the `xbutil query` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.
+If `xbutil query` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between in XRT/CMC/SC.
 
 ```
 Temperature(C)
@@ -301,10 +301,31 @@ Next steps:
 
 
 - - -
+### Failed to open device
+
+If `xbmgmt flash --scan` command returns `Failed to open device:` as shown below, it means the driver was not successfully loaded or the card was not successfully flashed.
+
+```
+Failed to open device: 0000:3b:00.0
+INFO: Found total 1 card(s); 0 are usable.
+```
+Next steps:
+- Cold boot the system
+- Perform `xbmgmt flash --scan`
+- If issue persists
+  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - Perform `xbmgmt flash --scan`
+- If issue persists
+  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - Perform `xbmgmt flash --scan`
+- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- - -
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 

@@ -157,14 +157,16 @@ Next steps:
 
 ### No card is found
 
-If the xclmgmt management function does not recognize the platform on the card showing `No card is found!` while `lspci` does recognize the card and shows `Kernel driver in use: xclmgmt`, there is a communication issue between XRT and the card. Example output below:
+If the `xbmgmt flash --scan --verbose` command does not recognize the platform on the card it displays `No card is found!` as shown below.  
 
 ```
 :~> sudo xbmgmt flash --scan --verbose
 No card is found!
 ```
 
-When there `lspci` shows xclmgmt can attach to the card
+If this occurs and `lspci` does recognize the card (displays `Kernel driver in use: xclmgmt` shown below), there is a communication issue between XRT and the card. Example output below:
+
+
 ```
 :~> sudo lspci -vd 10ee:
 83:00.0 Processing accelerators: Xilinx Corporation Device 5020
@@ -207,7 +209,9 @@ Next steps:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+
+Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
 ### License
 
