@@ -28,6 +28,7 @@ if [ -z "$XILINX_XRT" ]
 then
 	echo "XRT environment does not appear to be setup. Sourcing /opt/xilinx/xrt/setup.sh"
 	source /opt/xilinx/xrt/setup.sh
+fi
 
 rm $FILE
 log "dmesg"

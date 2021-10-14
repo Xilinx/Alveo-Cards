@@ -347,7 +347,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error">xbmgmt examine -r platform Returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> Error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error">xbmgmt examine -r platform returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xmc-not-loaded">XMC not loaded</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xmc-not-ready">XMC not ready</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#sc-is-not-ready">SC is not ready</a></li>
@@ -513,7 +513,7 @@
 </div>
 <hr class="docutils" />
 <div class="section" id="xbmgmt-examine-r-platform-returns-bad-magic-number-error">
-<h3>xbmgmt examine -r platform Returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> Error<a class="headerlink" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error" title="Permalink to this headline">¶</a></h3>
+<h3>xbmgmt examine -r platform returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error<a class="headerlink" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error" title="Permalink to this headline">¶</a></h3>
 <p>If xbmgmt examine -r platform command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">bad</span> <span class="n">magic</span> <span class="n">number</span><span class="p">:</span> <span class="mi">7</span><span class="n">fff</span>
@@ -547,7 +547,7 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -581,7 +581,7 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -620,7 +620,7 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -651,7 +651,7 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -696,7 +696,7 @@
 <li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>Flash the satellite controller with the version installed on the system: <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -820,7 +820,7 @@
 <hr class="docutils" />
 <div class="section" id="no-cards-found">
 <h3>No cards found<a class="headerlink" href="#no-cards-found" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">found</span></code> as shown below, the OS or <a class="reference external" href="terminology.html#XRT">XRT</a> is unable to find the card.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">found</span></code> as shown below, the OS or <a class="reference external" href="terminology.html#xrt">XRT</a> is unable to find the card.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Devices</span> <span class="n">present</span>
 <span class="mi">0</span> <span class="n">devices</span> <span class="n">found</span>
 </pre></div>
@@ -903,7 +903,7 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -930,13 +930,13 @@
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
-<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
-<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
 <p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
@@ -981,7 +981,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 5, 2021.
+        Last updated on October 14, 2021.
       </span>
 
     </p>

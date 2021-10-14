@@ -364,7 +364,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#id4">apt</a></li>
 </ul>
 </li>
-<li class="toctree-l3"><a class="reference internal" href="#xrt-installation-fails-with-linux-kernel-v5-xx">XRT installation fails with Linux kernel V5.xx</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#held-broken-packages-error">Held broken packages error</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#installation-package-missing-permissions">Installation package missing permissions</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#id5">apt</a></li>
@@ -478,8 +477,8 @@
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
-<li><p>Confirm <a class="reference internal" href="check-system-compatibility.html"><span class="doc">System compatibility</span></a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
+<li><p>Confirm <a class="reference internal" href="check-system-compatibility.html"><span class="doc">system compatibility</span></a></p></li>
 <li><p>Determine which package(s) are failing and failure mode(s)</p></li>
 </ul>
 </div>
@@ -728,22 +727,9 @@ Do you want to continue? [Y/n]
 </div>
 </div>
 <hr class="docutils" />
-<div class="section" id="xrt-installation-fails-with-linux-kernel-v5-xx">
-<h3>XRT installation fails with Linux kernel V5.xx<a class="headerlink" href="#xrt-installation-fails-with-linux-kernel-v5-xx" title="Permalink to this headline">¶</a></h3>
-<p>During XRT installation, on a Ubuntu system with Linux kernel 5.xx, an error message similar to the following is displayed.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Module</span> <span class="n">build</span> <span class="k">for</span> <span class="n">kernel</span> <span class="mf">5.07.0</span><span class="n">xxxx</span><span class="o">.</span><span class="n">x86_64</span> <span class="n">was</span> <span class="n">skipped</span> <span class="n">since</span> <span class="n">the</span>
-<span class="n">kernel</span> <span class="n">headers</span> <span class="k">for</span> <span class="n">this</span> <span class="n">kernel</span> <span class="n">does</span> <span class="ow">not</span> <span class="n">seem</span> <span class="n">to</span> <span class="n">be</span> <span class="n">installed</span><span class="o">.</span>
-</pre></div>
-</div>
-<p>Next steps:</p>
-<ul class="simple">
-<li><p>Install XRT 2020.2 or later via the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
-</ul>
-</div>
-<hr class="docutils" />
 <div class="section" id="held-broken-packages-error">
 <h3>Held broken packages error<a class="headerlink" href="#held-broken-packages-error" title="Permalink to this headline">¶</a></h3>
-<p>Incorrectly using the insallation package on the wrong OS can result in the error <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">have</span> <span class="pre">held</span> <span class="pre">broken</span> <span class="pre">packages</span></code> as shown below.</p>
+<p>Incorrectly using the installation package on the wrong OS can result in the error <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">have</span> <span class="pre">held</span> <span class="pre">broken</span> <span class="pre">packages</span></code> as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./xrt_202010.2.7.761_16.04-amd64-xrt.deb
 Reading package lists... Done
 Building dependency tree
@@ -874,14 +860,14 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
 <ul class="simple">
 <li><p>Do a web search for the error</p></li>
 <li><p>Look for a fix on a site like <a class="reference external" href="https://stackoverflow.com/">StackOverflow</a>, Ubuntu or Red Hat support</p></li>
-<li><p>Check for similar issues on <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
-<li><p>Post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<li><p>Check for similar issues on <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
+<li><p>Post on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
-<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
 <p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
@@ -926,7 +912,7 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 5, 2021.
+        Last updated on October 14, 2021.
       </span>
 
     </p>

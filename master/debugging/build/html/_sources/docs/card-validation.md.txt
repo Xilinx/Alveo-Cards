@@ -10,7 +10,7 @@ The `xbutil` utility, which is installed with XRT, can be used to validate the [
 
 ## This Page Covers
 
-This page covers issues encountered when using `xbutil validate`.    If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+This page covers issues encountered when using `xbutil validate`.    If your issue is not covered, please post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 ## You Will Need
 
@@ -242,8 +242,8 @@ Next steps:
 - Check to see if the drivers are present with
   - `lsmod | grep xclmgmt`
   - `lsmod | grep xocl`
-- [Unload/reload XRT drivers](common-steps.html#unloadreload-xrt-drivers)
-- See if a similar issue is posted on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- [Unload/reload XRT drivers](common-steps.html#unload-reload-xrt-drivers)
+- See if a similar issue is posted on [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 ### Failed to find xclbin
@@ -294,7 +294,7 @@ Next Step:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

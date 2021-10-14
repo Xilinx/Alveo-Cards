@@ -30,7 +30,7 @@ If you want to install:
 
 Before modifying XRT, you need to:
 
-- Have [Root/sudo permissions](common-steps.md#root-sudo-access)
+- Have [root/sudo permissions](common-steps.md#root-sudo-access)
 - Ensure the card(s), XRT, and the deployment packages are installed and working as expected as part of the [card install](card-install.md)
 
 Next determine your starting state:
@@ -182,7 +182,7 @@ If you have Alveo cards in a system and no XRT drivers, treat this as a new inst
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

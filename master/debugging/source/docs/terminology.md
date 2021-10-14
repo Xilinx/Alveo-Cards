@@ -14,8 +14,8 @@ This page provides definitions of various terms used throughout the [Alveo Debug
 This page defines terms used throughout the guide.
 
 ### Host Terms
-  - [Reboot/Warm boot/Reset system](#reboot-warm-boot-reset-system)
-  - [Cold boot/Power cycle](#cold-boot-power-cycle)
+  - [Reboot/Warm boot/Reset system](terminology.md#reboot-warm-boot-reset-system)
+  - [Cold boot/Power cycle](terminology.md#cold-boot-power-cycle)
   - [Shutdown and unplug/Pull power](#shutdown-and-unplug-pull-power)
   - [PCIe](#pcie)
   - [BIOS](#bios)
@@ -109,7 +109,7 @@ This removes power from the CPU, main PCIe bus, and the FPGA on the Alveo card, 
 
 Initiate a cold boot. Once the system is down completely remove power.  Unplugging the system from external power.
 
-This removes power from the CPU, main PCIe bus and lower PCIe Auxiliary bus and is required to install, remove, or reseat an Alveo card. It also power-down the Satellite Controller. Due to capacitive power in some power supplies, the power must remain unplugged for 3-5 minutes.
+This removes power from the CPU, main PCIe bus and lower PCIe Auxiliary bus and is required to install, remove, or reseat an Alveo card. This will also power-down the Satellite Controller. Due to capacitive power in some power supplies, the power must remain unplugged for 3-5 minutes.
 
 Pulling power is an easy way to try to reset the SC.
 
@@ -146,7 +146,7 @@ Firmware used during system boot to initialize the computer hardware.
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

@@ -64,7 +64,7 @@ Next step:
 - None, this is expected output
 
 - - -
-### xbmgmt examine -r platform Returns `bad magic number` Error
+### xbmgmt examine -r platform returns `bad magic number` error
 
 If xbmgmt examine -r platform command returns `bad magic number` error as in the example below, there is a chance of a communication break between [XRT](terminology.md#xrt) and the [CMC](terminology.md#cmc).  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
 
@@ -91,7 +91,7 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 ### XMC not loaded
@@ -121,7 +121,7 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt examine -r platform`
- - If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+ - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
@@ -155,7 +155,7 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
@@ -182,7 +182,7 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
@@ -227,7 +227,7 @@ Next steps:
 - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
 - Perform `xbmgmt examine -r platform`
 - Flash the satellite controller with the version installed on the system: `xbmgmt program --base --device <management BDF>`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
@@ -357,7 +357,7 @@ Next step:
 - - -
 ### No cards found
 
-If `xbmgmt examine -r platform` command returns `0 devices found` as shown below, the OS or [XRT](terminology.md#XRT) is unable to find the card.
+If `xbmgmt examine -r platform` command returns `0 devices found` as shown below, the OS or [XRT](terminology.md#xrt) is unable to find the card.
 
   ```
  Devices present
@@ -433,7 +433,7 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbutil examine -r thermal electrical -d <user BDF>`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
@@ -454,12 +454,12 @@ Next steps:
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
   - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 - - -
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

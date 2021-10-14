@@ -11,7 +11,7 @@ When Alveo™ card(s) are installed and functioning correctly within a host mach
 
 ## This Page Covers
 
-This page details scenarios and recommended steps to take when the card is not recognized by the host. If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+This page details scenarios and recommended steps to take when the card is not recognized by the host. If your issue is not covered, please post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 Typical causes can be grouped into card and host based issues as given below:
 -   Card based
@@ -71,7 +71,7 @@ There can be many potential causes if a card is not recognized using `lspci`. To
 #### Host machine
 
 - [Check system compatibility](check-system-compatibility.md)
--  If the card is installed in the system, try a [warm reboot](#reboot-warm-boot-reset-system).
+-  If the card is installed in the system, try a [warm reboot](terminology.html#reboot-warm-boot-reset-system).
     - If this fixes the issue, see [Card recognized after warm boot](#card-recognized-after-a-warm-boot) to resolove the underlying cause.
 - [Check for unpopulated CPU sockets](common-steps.html#check-for-unpopulated-cpus)
   - The PCIe controller is built into modern CPUs. If there are one or more missing CPUs you may not be able to use all the PCIe slots.  Review the system documentation to determine which slots are usable.
@@ -96,14 +96,14 @@ If none of the above have narrowed down the potential issue:
   - [Card's red LED is illuminated](#red-led-illuminated)
 
 As a last attempt:
-- [Cold boot](#cold-boot-power-cycle) the system twice
+- [Cold boot](terminology.html#cold-boot-power-cycle) the system twice
 - [Pull power](terminology.html#shutdown-and-unplug-pull-power)
 - Reseat the Alveo card
 - Reseat the server risers if applicable
 - Bring system back up
 - Check to see if the card is recognized
 
-If the issue hasn't been addressed, please post your situation and the steps that you have gone through to the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+If the issue hasn't been addressed, please post your situation and the steps that you have gone through to the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 - - -
 ### Vivado flow
 This guide does not cover Vivado™ flow debug.
@@ -111,7 +111,7 @@ This guide does not cover Vivado™ flow debug.
 Next steps:
 -  You can revert to golden using [AR 71757](https://www.xilinx.com/support/answers/71757.html) to go back to a Vitis™ flow
 -  Search for answers on the
-[Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+[Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 ### USB cable plugged into card
@@ -120,7 +120,7 @@ For cards with a USB port, including U200, U250 and U280, ensure no USB cable is
 
 Next steps:
  - Unplug USB cable from the card
-- [Cold boot](#cold-boot-power-cycle) the system
+- [Cold boot](terminology.html#cold-boot-power-cycle) the system
 
 - - -
 ### Card recognized after a warm boot
@@ -165,8 +165,8 @@ If the card is no longer recognized after loading a platform or reverting to the
 
 Next steps:
 
-- [Cold boot](#cold-boot-power-cycle) the system and see if the card is recognized
-- [Warm reboot](#reboot-warm-boot-reset-system) and see if the card is recognized
+- [Cold boot](terminology.html#cold-boot-power-cycle) the system and see if the card is recognized
+- [Warm reboot](terminology.html#reboot-warm-boot-reset-system) and see if the card is recognized
     - If so go to [Card recognized after warm boot](#card-recognized-after-a-warm-boot)
 - Confirm BIOS is not in [safety mode](#bios-in-safety-mode)
 - Try reseating the card and seeing if the host will recognize
@@ -183,7 +183,7 @@ If the card is no longer recognized by lspci while the machine is on, the card m
 - [Check for an over temperature event in dmesg](common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits)
 - [Monitor card power and temperature](common-steps.html#monitor-card-power-and-temperature)
 - If there is an over temperature event or if the card is over 90C in xbutil examine
-  - [Cold boot](#cold-boot-power-cycle) the system
+  - [Cold boot](terminology.html#cold-boot-power-cycle) the system
   - Increasing system airflow
     - May need to turn up fan speed
     - May need to close lid
@@ -300,7 +300,7 @@ Next steps:
 - See if there is an AR for this machine and BIOS
 - Review manufacture's BIOS change log for changes
   - Fix any changes that are incompatible with Alveo cards
-- [Cold boot](#cold-boot-power-cycle) the system
+- [Cold boot](terminology.html#cold-boot-power-cycle) the system
 - See if [BIOS is not in safety mode](#bios-in-safety-mode)
 - Bring up the system and [Confirm the card is recognized](card-not-recognized.html#confirm-system-recognizes-cards)
 
@@ -399,7 +399,7 @@ Next step:
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

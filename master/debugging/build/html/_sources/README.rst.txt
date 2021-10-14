@@ -9,7 +9,7 @@ Quickly isolate, debug, and resolve a wide range of Alveo™ card related issues
 .. attention::
    The guide has been updated based on the new default subcommands for the xbmgmt and xbutil tools found XRT 2021.1 release and greater (:doc:`docs/xrt-2021-1`).
    
-   Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/tree/2020.2>`_.
+   Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://github.com/Xilinx/Alveo-Cards/tree/2020.2_24Aug2021>`_.
 
 
 
@@ -79,7 +79,6 @@ Issue Areas
 
        - yum/apt
        - rpms/debs
-       - pyopencl
        - Package manager install dependencies
 
    * - :doc:`docs/xrt-troubleshooting`
@@ -116,7 +115,7 @@ Issue Areas
 ****************************************
 Xilinx Support
 ****************************************
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the `Xilinx Support pages <http://www.xilinx.com/support>`_. For additional assistance, post your question on the Xilinx Community Forums – `Alveo Accelerator Card <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the `Xilinx Support pages <http://www.xilinx.com/support>`_. For additional assistance, post your question on the Xilinx Community Forums – `Alveo Accelerator Card <https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards>`_.
 
 If you have a suggestion or find an issue, please email `alveo_cards_debugging@xilinx.com <alveo_cards_debugging@xilinx.com>`_.
 

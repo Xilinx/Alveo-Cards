@@ -48,7 +48,7 @@ IMPORTANT: Since workstations do not provide enough airflow to cool passive card
 If you encounter an error during card installation, search the following sections for support
   * [Card not recognized](card-not-recognized.md) helps when card is not recognized by the host.
   * See [Package manager](package-manager.md) for issues while installing the `.deb` or `.rpm` installation packages
-  * Search the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo) for a similar issue
+  * Search the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards) for a similar issue
 
 - - -
 ### PCIe slot provides <75W power
@@ -74,7 +74,7 @@ Each Alveo card is designed to be installed in a compatible PCIe slot. Slot requ
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Cards](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

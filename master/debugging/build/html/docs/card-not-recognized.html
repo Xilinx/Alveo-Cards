@@ -471,7 +471,7 @@
 <p>When Alveo™ card(s) are installed and functioning correctly within a host machine, the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> Linux command will correctly identify and report their details.  However, there are times when the card is not recognized by the host OS and <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does not list the card. This section covers techniques to determine the root cause.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
-<p>This page details scenarios and recommended steps to take when the card is not recognized by the host. If your issue is not covered, please post on the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
+<p>This page details scenarios and recommended steps to take when the card is not recognized by the host. If your issue is not covered, please post on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a>.</p>
 <p>Typical causes can be grouped into card and host based issues as given below:</p>
 <ul class="simple">
 <li><p>Card based</p>
@@ -541,7 +541,7 @@
 <h4>Host machine<a class="headerlink" href="#host-machine" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Check system compatibility</span></a></p></li>
-<li><p>If the card is installed in the system, try a <a class="reference external" href="#reboot-warm-boot-reset-system">warm reboot</a>.</p>
+<li><p>If the card is installed in the system, try a <a class="reference external" href="terminology.html#reboot-warm-boot-reset-system">warm reboot</a>.</p>
 <ul>
 <li><p>If this fixes the issue, see <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a> to resolove the underlying cause.</p></li>
 </ul>
@@ -580,14 +580,14 @@
 </ul>
 <p>As a last attempt:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system twice</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the system twice</p></li>
 <li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a></p></li>
 <li><p>Reseat the Alveo card</p></li>
 <li><p>Reseat the server risers if applicable</p></li>
 <li><p>Bring system back up</p></li>
 <li><p>Check to see if the card is recognized</p></li>
 </ul>
-<p>If the issue hasn’t been addressed, please post your situation and the steps that you have gone through to the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a>.</p>
+<p>If the issue hasn’t been addressed, please post your situation and the steps that you have gone through to the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a>.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -598,7 +598,7 @@
 <ul class="simple">
 <li><p>You can revert to golden using <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a> to go back to a Vitis™ flow</p></li>
 <li><p>Search for answers on the
-<a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Xilinx forums</a></p></li>
+<a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -608,7 +608,7 @@
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Unplug USB cable from the card</p></li>
-<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -651,8 +651,8 @@
 <p>If the card is no longer recognized after loading a platform or reverting to the golden image, there is an issue with the host to card communication.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system and see if the card is recognized</p></li>
-<li><p><a class="reference external" href="#reboot-warm-boot-reset-system">Warm reboot</a> and see if the card is recognized</p>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the system and see if the card is recognized</p></li>
+<li><p><a class="reference external" href="terminology.html#reboot-warm-boot-reset-system">Warm reboot</a> and see if the card is recognized</p>
 <ul>
 <li><p>If so go to <a class="reference external" href="#card-recognized-after-a-warm-boot">Card recognized after warm boot</a></p></li>
 </ul>
@@ -676,7 +676,7 @@
 <li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor card power and temperature</a></p></li>
 <li><p>If there is an over temperature event or if the card is over 90C in xbutil examine</p>
 <ul>
-<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 <li><p>Increasing system airflow</p>
 <ul>
 <li><p>May need to turn up fan speed</p></li>
@@ -841,7 +841,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <li><p>Fix any changes that are incompatible with Alveo cards</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="#cold-boot-power-cycle">Cold boot</a> the system</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the system</p></li>
 <li><p>See if <a class="reference external" href="#bios-in-safety-mode">BIOS is not in safety mode</a></p></li>
 <li><p>Bring up the system and <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">Confirm the card is recognized</a></p></li>
 </ul>
@@ -980,7 +980,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
-<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Card</a>.</p>
+<p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
 <p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
@@ -1025,7 +1025,7 @@ Alveo platforms detailed in this guide are expecting a non-bifurcated link.  Ens
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 5, 2021.
+        Last updated on October 14, 2021.
       </span>
 
     </p>

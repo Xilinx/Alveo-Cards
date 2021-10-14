@@ -79,7 +79,6 @@ Issue Areas
 
        - yum/apt
        - rpms/debs
-       - pyopencl
        - Package manager install dependencies
 
    * - :doc:`docs/xrt-troubleshooting`
@@ -116,7 +115,7 @@ Issue Areas
 ****************************************
 Xilinx Support
 ****************************************
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the `Xilinx Support pages <http://www.xilinx.com/support>`_. For additional assistance, post your question on the Xilinx Community Forums – `Alveo Accelerator Card <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the `Xilinx Support pages <http://www.xilinx.com/support>`_. For additional assistance, post your question on the Xilinx Community Forums – `Alveo Accelerator Card <https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards>`_.
 
 If you have a suggestion or find an issue, please email `alveo_cards_debugging@xilinx.com <alveo_cards_debugging@xilinx.com>`_.
 

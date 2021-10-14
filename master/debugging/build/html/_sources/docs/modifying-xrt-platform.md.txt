@@ -30,7 +30,7 @@ If you want to install:
 
 Before modifying XRT, you need to:
 
-- Have [Root/sudo permissions](common-steps.html#root-sudo-access)
+- Have [root/sudo permissions](common-steps.html#root-sudo-access)
 - Ensure the card(s), XRT, and the deployment packages are installed and working as expected as part of the [card install](card-install.md)
 
 Next determine your starting state:
@@ -79,7 +79,7 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 1. Download the new XRT package from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 1. Confirm the [host system is compatible](check-system-compatibility.md)
 1. Check which platforms are on card with `sudo xbmgmt examine`
-   - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrtplatform-compatibility)
+   - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility)
    - If XRT does not support the new platform [Return the card to golden](common-steps.html#reverting-the-card-to-factory-image)
 1. Upgrade XRT using one of the commands below
    - Ubuntu: `sudo apt install ./<xrt_package_name>.deb`
@@ -96,7 +96,7 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:
 
 1. Download the platform package from the archive section of the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-1. [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrtplatform-compatibility) to make sure XRT that will support the platform
+1. [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
    - Download XRT package if needed
 1. [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
 1. If a different XRT is needed, [Remove XRT](common-steps.html#remove-xrt) and install the replacement XRT package on the system using one of the commands below
@@ -182,7 +182,7 @@ If you have Alveo cards in a system and no XRT drivers, treat this as a new inst
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

@@ -9,7 +9,7 @@
 The Xilinx Runtime library [(XRT)](terminology.html#xrt) is an open-source easy to use software stack that facilitates management and usage of Alveo accelerator cards. Users use familiar programming languages like C/C++ or Python to write host code which uses XRT to interact with the FPGA on the Alveo card. For more information on XRT, please go to the [XRT Github page](https://xilinx.github.io/XRT/master/html/index.html). If you are just starting to debug, please consult the [main page](../README.md) to determine if this is the best page for your purposes.
 
 ## This Page Covers
-This page covers issues users have reported when using XRT. If your issue is not covered, please post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+This page covers issues users have reported when using XRT. If your issue is not covered, please post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 ## You Will Need
 Before beginning debug, you need to:
@@ -160,7 +160,7 @@ Next steps:
 - Re-install XRT
    * Check for dependency issues
    * For RH/Centos, follow the steps on the [Xilinx Runtime install](https://xilinx.github.io/XRT/master/html/install.html) to enable the optional-rpms, or epel-release
-- If issue persists capture error messages and post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo).
+- If issue persists capture error messages and post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 - - -
 
@@ -233,14 +233,14 @@ Next steps:
 ### Nothing else has worked
 
 - [Unload and reload the XRT drivers](common-steps.html#unload-reload-xrt-drivers)
-- Look for similar issues on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
-- [Log machine state](common-steps.html#log-machine-state) and post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- Look for similar issues on [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
+- [Log machine state](common-steps.html#log-machine-state) and post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 

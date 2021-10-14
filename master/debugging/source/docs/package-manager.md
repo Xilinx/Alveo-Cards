@@ -17,8 +17,8 @@ This page covers some of the package manager issues we have had reported. If you
 
 Before beginning debug, you need to:
 
-- Have [Root/sudo permissions](common-steps.md#root-sudo-access)
-- Confirm [System compatibility](check-system-compatibility.md)
+- Have [root/sudo permissions](common-steps.md#root-sudo-access)
+- Confirm [system compatibility](check-system-compatibility.md)
 - Determine which package(s) are failing and failure mode(s)
 
 ## Common Cases
@@ -262,22 +262,10 @@ Notes:
 - Deployment platforms need to be installed before development platforms can be installed
 
 - - - -
-### XRT installation fails with Linux kernel V5.xx
- During XRT installation, on a Ubuntu system with Linux kernel 5.xx, an error message similar to the following is displayed.
-
- ```
- Module build for kernel 5.07.0xxxx.x86_64 was skipped since the
-kernel headers for this kernel does not seem to be installed.
- ```
-
-Next steps:
-
-- Install XRT 2020.2 or later via the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-- - -
 
 ### Held broken packages error
 
- Incorrectly using the insallation package on the wrong OS can result in the error `you have held broken packages` as shown below.
+ Incorrectly using the installation package on the wrong OS can result in the error `you have held broken packages` as shown below.
 ```
 ~]$ sudo apt install ./xrt_202010.2.7.761_16.04-amd64-xrt.deb
 Reading package lists... Done
@@ -406,15 +394,15 @@ Next steps:
 
 - Do a web search for the error
 - Look for a fix on a site like [StackOverflow](https://stackoverflow.com/), Ubuntu or Red Hat support
-- Check for similar issues on [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
-- Post on the [Xilinx forums](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo)
+- Check for similar issues on [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
+- Post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 
 
 ### Xilinx Support
 
-For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo). 
+For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the [Xilinx Support pages](http://www.xilinx.com/support). For additional assistance, post your question on the Xilinx Community Forums – [Alveo Accelerator Card](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards). 
 
 Have a suggestion, or found an issue please send an email to alveo_cards_debugging@xilinx.com .
 
