@@ -114,7 +114,7 @@ Card [0000:d8:00.0]
 
 Next steps:
 
- - [Reload XRT Drivers](common-steps.md#unloadreload-xrt-drivers)
+ - [Reload XRT Drivers](common-steps.md#unload-reload-xrt-drivers)
  - If issue persists
    - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
    - Perform `xbmgmt examine -r platform`

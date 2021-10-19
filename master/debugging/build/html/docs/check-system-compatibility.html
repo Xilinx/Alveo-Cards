@@ -454,11 +454,9 @@
 </li>
 </ul>
 </li>
-<li><p>For U200/U250/U280 Alveo cards, ensure the 8-pin PCIe AUX power is connected</p>
+<li><p>Review <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">card power expectations</a> and ensure the system can provide the expected electrical power.</p>
 <ul>
 <li><p>If AUX power is missing contact your system vendor to acquire the needed cabling.  This <a class="reference external" href="https://www.xilinx.com/support/answers/72298.html">AR 72298</a> provides additional guidance.</p></li>
-<li><p>For each card, review the output from <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-d</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code> for confirmation of PCIe AUX power</p></li>
-<li><p>A 225W card will have the entry: <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">Power</span>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160; <span class="pre">:</span> <span class="pre">225W</span></code></p></li>
 </ul>
 </li>
 </ul>

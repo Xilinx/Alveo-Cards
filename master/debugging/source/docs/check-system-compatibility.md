@@ -17,10 +17,8 @@ Ensure your system is compatible with XRT and the Alveo Card by confirming the f
    * Ensure the [PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed) match the card deployment platform requirements.
    * Confirm the PCIe slot provides 75W
      * Covered in the host computer's documentation
-- For U200/U250/U280 Alveo cards, ensure the 8-pin PCIe AUX power is connected
+- Review [card power expectations](common-steps.md#monitor-card-power-and-temperature) and ensure the system can provide the expected electrical power.
      * If AUX power is missing contact your system vendor to acquire the needed cabling.  This [AR 72298](https://www.xilinx.com/support/answers/72298.html) provides additional guidance.
-     *  For each card, review the output from `sudo xbmgmt examine -d <management BDF>` for confirmation of PCIe AUX power
-     *  A 225W card will have the entry: `Max Power            : 225W`
 
 
 ### Xilinx Support
