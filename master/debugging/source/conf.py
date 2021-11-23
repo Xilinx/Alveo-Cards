@@ -31,13 +31,13 @@ author = 'Xilinx, Inc.'
 # version = '1.0.2'
 # The full version, including alpha/beta/rc tags
 # release = '1.0.2'
-html_last_updated_fmt = 'October 14, 2021'
+html_last_updated_fmt = 'November 23, 2021'
 
 # -- General configuration ---------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
 #
-# needs_sphinx = '1.0'
+# needs_sphinx = '3.5.4'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom

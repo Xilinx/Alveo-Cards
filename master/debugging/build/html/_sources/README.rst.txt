@@ -9,7 +9,7 @@ Quickly isolate, debug, and resolve a wide range of Alveo™ card related issues
 .. attention::
    The guide has been updated based on the new default subcommands for the xbmgmt and xbutil tools found XRT 2021.1 release and greater (:doc:`docs/xrt-2021-1`).
    
-   Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://github.com/Xilinx/Alveo-Cards/tree/2020.2_24Aug2021>`_.
+   Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/tree/2020.2>`_.
 
 
 
@@ -30,6 +30,7 @@ Similar issues are grouped into categories in the table below allowing you to qu
 Supported Cards
 ***********************************
 
+-  U55C
 -  U50
 -  U50LV
 -  U200

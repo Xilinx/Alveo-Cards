@@ -898,8 +898,12 @@ Else there may be an platform mismatch.</p>
 <td>2021.1_pu1 <br> XRT 2.11.634</td>
 <td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb">Ubuntu 16.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
 </tr>
+<tr>
+<td>2021.2 <br> XRT 2.12.427</td>
+<td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
+</tr>
 </tbody>
-</table><p>If you are looking for an older XRT that uses the legacy commands go to the previous <a class="reference external" href="https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/blob/2020.2/docs/common-steps.md#xrt-release-versions-and-download-locations">XRT release versions and download locations</a>.</p>
+</table><p>If you are looking for an older XRT that uses the legacy commands go to the previous <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations">XRT release versions and download locations</a>.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -1280,10 +1284,10 @@ See <a class="reference external" href="#displaying-card-bdf-values">Displaying 
 <div class="section" id="vivado-hw-manager">
 <h3>Vivado HW Manager<a class="headerlink" href="#vivado-hw-manager" title="Permalink to this headline">¶</a></h3>
 <p><em><strong>This is for the more advanced user comfortable with manually programming FPGAs</strong></em></p>
-<p>If a card can’t be seen by multiple systems via <code class="docutils literal notranslate"><span class="pre">lspci</span></code>, the next step is to see if the FPGA is alive by determining if it can be seen in Vivado HW manager. The steps for connecting the U50 and U200/250/280 cards are below.</p>
-<p>For the U50:</p>
+<p>If a card can’t be seen by multiple systems via <code class="docutils literal notranslate"><span class="pre">lspci</span></code>, the next step is to see if the FPGA is alive by determining if it can be seen in Vivado HW manager. The steps for connecting the U50/U55C and U200/250/280 cards are below.</p>
+<p>For the U50 and U55C:</p>
 <ol class="simple">
-<li><p>An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager</p></li>
+<li><p>An Alveo Programming Cable is necessary to see the U50/U55C in Vivado Hardware Manager</p></li>
 <li><p>The Alveo Programming Cable is shown in Figure 3 in UG1377: <a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf">UG1377 V1.1</a></p></li>
 <li><p>Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
 a.  Pages 1-13
@@ -1291,7 +1295,7 @@ b.  Often the debug machine is a windows laptop</p></li>
 <li><p>Open Vivado hardware manager</p></li>
 <li><p>Tools → Auto connect</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">set_property</span> <span class="pre">PARAM.FREQUENCY</span> <span class="pre">1000000</span> <span class="pre">[current_hw_target]</span></code></p></li>
-<li><p>The xu50_0 should show as below:</p></li>
+<li><p>The FPGA should be displayed.  In the following example the xu50_0 is displayed:</p></li>
 </ol>
 <p><img alt="HW Manager" src="../_images/initial_connection.png" /></p>
 <ol class="simple">
@@ -1363,7 +1367,7 @@ a.  Often the debug machine is a windows laptop</p></li>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 14, 2021.
+        Last updated on November 23, 2021.
       </span>
 
     </p>

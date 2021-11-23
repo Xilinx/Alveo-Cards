@@ -37,11 +37,19 @@ Before starting to test the card, gather data
 ## Common Cases
 
 - - -
-###  A U200, U250, or U280 has less than 225W power
+###  Power Requirement for Vitis™ based applications
 
-The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  `xbtest`. If `Max power` is < 225W, the server will not provide the power needed for the test.  
+Vitis™ based applications in addition to the `xbtest` application require cards be installed with PCIe AUX power connected (where applicable) to allow full card power.  Without full power, these applications may not run correctly.
 
-You can confirm the maximum power available by using `xbmgmt examine` as given below.  In this example, the card has insufficient power.
+For cards with PCIe AUX power connector, follow the instructions in the installation guide to install the PCIe AUX cable.
+
+The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  `xbtest`.  The U55C requires 115W.
+
+
+You can display the maximum available card power using `xbmgmt examine` command as shown below.  If `Max power` is less than the maximum required, the server will not provide the power needed for the application.  
+
+
+In this example, the `Max power` is 150W, however the U200 card requires 225W and requires the PCIe AUX power connector to be connected.
 
 ```
  sudo xbmgmt examine -d 17:00.0

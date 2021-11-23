@@ -58,7 +58,7 @@ Below is an example of the lspci output of an Alveo card recognized by the syste
         Kernel modules: xclmgmt
 ```
 
-If not cards are in the system, the output will not display anything as illustrated below.
+If no cards are in the system, the output will not display anything as illustrated below.
 ```
 :~> sudo lspci -vd 10ee:
 :~>

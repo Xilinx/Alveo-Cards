@@ -447,8 +447,9 @@ Available XRT releases along with download links are given in the table below.
 | Release      | Download Link |
 | ----------- | ----------- |
 |2021.1_pu1 <br> XRT 2.11.634 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb)</li>
+|2021.2 <br> XRT 2.12.427 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb)</li>
 
-If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://gitenterprise.xilinx.com/XBB/Alveo-Debug-Guide/blob/2020.2/docs/common-steps.md#xrt-release-versions-and-download-locations).
+If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations).
 - - -
 
 ## Card Steps
@@ -852,11 +853,11 @@ Xilinx Alveo cards might need to be reverted to their factory (or golden) image.
 
 ***This is for the more advanced user comfortable with manually programming FPGAs***
 
-If a card can't be seen by multiple systems via `lspci`, the next step is to see if the FPGA is alive by determining if it can be seen in Vivado HW manager. The steps for connecting the U50 and U200/250/280 cards are below.
+If a card can't be seen by multiple systems via `lspci`, the next step is to see if the FPGA is alive by determining if it can be seen in Vivado HW manager. The steps for connecting the U50/U55C and U200/250/280 cards are below.
 
-For the U50:
+For the U50 and U55C:
 
-1.  An Alveo Programming Cable is necessary to see the U50 in Vivado Hardware Manager
+1.  An Alveo Programming Cable is necessary to see the U50/U55C in Vivado Hardware Manager
 2.  The Alveo Programming Cable is shown in Figure 3 in UG1377: [UG1377 V1.1](https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1377-alveo-programming-cable-user-guide.pdf)
 3.  Follow the directions in UG1377 to connect the Alveo Programming Cable between a computer and the card.
     a.  Pages 1-13
@@ -864,7 +865,7 @@ For the U50:
 4.  Open Vivado hardware manager
 5.  Tools → Auto connect
 6.  `set_property PARAM.FREQUENCY 1000000 [current_hw_target]`
-7.  The xu50\_0 should show as below:
+7.  The FPGA should be displayed.  In the following example the xu50\_0 is displayed:
 
 
   ![HW Manager](./images/initial_connection.png)

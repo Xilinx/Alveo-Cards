@@ -348,7 +348,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#this-page-covers">This Page Covers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#you-will-need">You Will Need</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#common-cases">Common Cases</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#a-u200-u250-or-u280-has-less-than-225w-power">A U200, U250, or U280 has less than 225W power</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power-requirement-for-vitis-based-applications">Power Requirement for Vitis™ based applications</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-is-in-a-suitable-machine">Card is in a suitable machine</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#shell-not-listed-in-xbtest-downloads-below">Shell not listed in xbtest downloads below</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#card-or-system-crashes-during-test">Card or system crashes during test</a></li>
@@ -486,10 +486,13 @@
 <div class="section" id="common-cases">
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
 <hr class="docutils" />
-<div class="section" id="a-u200-u250-or-u280-has-less-than-225w-power">
-<h3>A U200, U250, or U280 has less than 225W power<a class="headerlink" href="#a-u200-u250-or-u280-has-less-than-225w-power" title="Permalink to this headline">¶</a></h3>
-<p>The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>. If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is &lt; 225W, the server will not provide the power needed for the test.</p>
-<p>You can confirm the maximum power available by using <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> as given below.  In this example, the card has insufficient power.</p>
+<div class="section" id="power-requirement-for-vitis-based-applications">
+<h3>Power Requirement for Vitis™ based applications<a class="headerlink" href="#power-requirement-for-vitis-based-applications" title="Permalink to this headline">¶</a></h3>
+<p>Vitis™ based applications in addition to the <code class="docutils literal notranslate"><span class="pre">xbtest</span></code> application require cards be installed with PCIe AUX power connected (where applicable) to allow full card power.  Without full power, these applications may not run correctly.</p>
+<p>For cards with PCIe AUX power connector, follow the instructions in the installation guide to install the PCIe AUX cable.</p>
+<p>The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>.  The U55C requires 115W.</p>
+<p>You can display the maximum available card power using <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> command as shown below.  If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is less than the maximum required, the server will not provide the power needed for the application.</p>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is 150W, however the U200 card requires 225W and requires the PCIe AUX power connector to be connected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span>
 
 <span class="o">-----------------------------------------------------</span>
@@ -666,7 +669,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 14, 2021.
+        Last updated on November 23, 2021.
       </span>
 
     </p>
