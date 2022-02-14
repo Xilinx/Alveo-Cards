@@ -14,8 +14,8 @@ This page provides definitions of various terms used throughout the [Alveo Debug
 This page defines terms used throughout the guide.
 
 ### Host Terms
-  - [Reboot/Warm boot/Reset system](terminology.html#reboot-warm-boot-reset-system)
-  - [Cold boot/Power cycle](terminology.html#cold-boot-power-cycle)
+  - [Reboot/Warm boot/Reset system](terminology.md#reboot-warm-boot-reset-system)
+  - [Cold boot/Power cycle](terminology.md#cold-boot-power-cycle)
   - [Shutdown and unplug/Pull power](#shutdown-and-unplug-pull-power)
   - [PCIe](#pcie)
   - [BIOS](#bios)
@@ -47,7 +47,7 @@ The SC, [CMC](#cmc), and XRT communicate to
 - Program a kernel (xclbin) onto a card
 - On newer cards, like the U50, the SC needs to enable the FPGA power rails
 
-Shown in the center of the [Alveo system diagram](alveo-system.html#alveo-system-diagram) in green.
+Shown in the center of the [Alveo system diagram](alveo-system.md#alveo-system-diagram) in green.
 
 - - -
 ### CMC
@@ -59,7 +59,7 @@ XRT only communicates directly with the CMC. CMC ↔ SC communication allows XRT
 - Load a xclbin
 - Flash the card
 
-Shown inside the FPGA block in the [Alveo system diagram](alveo-system.html#alveo-system-diagram).
+Shown inside the FPGA block in the [Alveo system diagram](alveo-system.md#alveo-system-diagram).
 
 CMC was previously referred to as XMC and may show up in some XRT messaging.
 
@@ -82,7 +82,7 @@ The Bus:Device:Function (BDF) a unique PCI and PCIe card identifier allocated by
 
  The notation for the BDF is a follows: the PCI Domain number followed by a colon, the PCI Bus number followed by a colon, the PCI Device number followed by a decimal point, and the PCI Function number. All numbers would be given in hexadecimal. i.e. [vvvv:xx:yy.z]
 
- Details on displaying management and user BDF values see section [Displaying Card BDF Values](common-steps.html#displaying-card-bdf-values).
+ Details on displaying management and user BDF values see section [Displaying Card BDF Values](common-steps.md#displaying-card-bdf-values).
 - - -
 ### Alveo Card Programming Cable
 
@@ -118,7 +118,7 @@ Pulling power is an easy way to try to reset the SC.
 
 The term golden image or factory image refers to the card's original configuration when shipped.
 
-When changing platforms or XRT versions, it may be necessary to revert the card to it's [golden/factory image](common-steps.html#reverting-the-card-to-factory-image).
+When changing platforms or XRT versions, it may be necessary to revert the card to it's [golden/factory image](common-steps.md#reverting-the-card-to-factory-image).
 
 - - -
 ### Reseat an Alveo Card

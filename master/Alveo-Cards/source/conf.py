@@ -24,14 +24,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'Alveo Cards Home'
-copyright = '2021, Xilinx, Inc.'
+copyright = '2021-2022, Xilinx, Inc.'
 author = 'Xilinx, Inc.'
 
 # The short X.Y version
 # version = '1.0.2'
 # The full version, including alpha/beta/rc tags
 # release = '1.0.2'
-html_last_updated_fmt = 'September 12, 2021'
+html_last_updated_fmt = 'February 14, 2022'
 
 # -- General configuration ---------------------------------------------------
 
@@ -74,7 +74,7 @@ pdf_documents = [('index', u'SOM', u'KV260 GitHub Docs', u'Xilinx, Inc.'),]
 
 
 # Configure 'Edit on GitHub' extension
-edit_on_github_project = 'Xilinx/VVA'
+edit_on_github_project = 'Xilinx/Alveo-Cards'
 edit_on_github_branch = 'master'
 
 # Add any paths that contain templates here, relative to this directory.
@@ -154,7 +154,7 @@ html_static_path = ['_static']
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'SOM'
+htmlhelp_basename = 'Alveo-Cards'
 
 
 # -- Options for LaTeX output ------------------------------------------------

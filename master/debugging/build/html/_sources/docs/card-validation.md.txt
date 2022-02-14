@@ -17,7 +17,7 @@ This page covers issues encountered when using `xbutil validate`.    If your iss
 Before beginning debug:
 
 - Ensure the card, XRT, and the deployment packages are installed as part of the [card install](card-install.md)
-- Confirm the [platform and SC version](common-steps.html#display-card-and-host-platform-and-sc-versions) on the card and system match
+- Confirm the [platform and SC version](common-steps.md#display-card-and-host-platform-and-sc-versions) on the card and system match
 - Determine any failure mode(s) from running `xbutil validate`
 
 
@@ -85,7 +85,7 @@ Test 3 [0000:83:00.1]     : Verify kernel
 
 Next step:
 
-- Reset the system state by following the steps in [DMA test error](card-validation.html#dma-test-error)
+- Reset the system state by following the steps in [DMA test error](card-validation.md#dma-test-error)
 
 
 - - -
@@ -141,7 +141,7 @@ Test 1 [0000:83:00.1]     : PCIE link
 Next steps:
 
 - Ensure that the card is in a slot that supports the PCIe link speed
-  -See section [Determine PCIe slot type and speed](common-steps.html#determine-pcie-slot-type-and-speed)
+  -See section [Determine PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed)
 - If the card is in a full speed slot:
   - Reseat the card, in a different slot if possible
   - Reboot the server
@@ -174,8 +174,8 @@ Test 3 [0000:17:00.1]     : SC version
 
 Next steps:
 
-- [Display card and host platform and SC versions](common-steps.html#display-card-and-host-platform-and-sc-versions) and confirm they match
-- [Flash the card with the deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform) a second time to update the card's SC version to match the system
+- [Display card and host platform and SC versions](common-steps.md#display-card-and-host-platform-and-sc-versions) and confirm they match
+- [Flash the card with the deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform) a second time to update the card's SC version to match the system
 
 - - -
 
@@ -206,10 +206,10 @@ Next steps:
     - Confirm there is a good connection at the motherboard side
   - Close up the system
   - Reboot
-  - Confirm [expected power level](common-steps.html#monitor-card-power-and-temperature)
+  - Confirm [expected power level](common-steps.md#monitor-card-power-and-temperature)
   - Confirm the card passes validation by running the following command
   `xbutil validate -d <user BDF>`
-  - If power is not registering in XRT, there may be a communication issue between the SC and CMC, go to [SC troubleshooting](sc-troubleshooting.html#voltage-or-temperature-reports-zero)
+  - If power is not registering in XRT, there may be a communication issue between the SC and CMC, go to [SC troubleshooting](sc-troubleshooting.md#voltage-or-temperature-reports-zero)
 
 - - -
 ### xclmgmt driver issues
@@ -238,11 +238,11 @@ Test 4 [0000:17:00.1]     : Verify kernel
 
 Next steps:
 
-- See if the machine is running a [supported hypervisor](common-steps.html#host-machine-and-hypervisor-information)
+- See if the machine is running a [supported hypervisor](common-steps.md#host-machine-and-hypervisor-information)
 - Check to see if the drivers are present with
   - `lsmod | grep xclmgmt`
   - `lsmod | grep xocl`
-- [Unload/reload XRT drivers](common-steps.html#unload-reload-xrt-drivers)
+- [Unload/reload XRT drivers](common-steps.md#unload-reload-xrt-drivers)
 - See if a similar issue is posted on [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
@@ -279,7 +279,7 @@ If either xclbin is not available, follow next steps below.
 
 Next steps:
 
-- [Determine packages installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
+- [Determine packages installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
 - Follow package install steps in [Modifying existing XRT or platform install](modifying-xrt-platform.md)
 
 - - -
@@ -288,7 +288,7 @@ Next steps:
 If `xbmgmt` commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.
 
 Next Step:
-- [Reinstall the XRT packages](modifying-xrt-platform.html#installing-an-older-xrt) with your existing XRT and platform packages
+- [Reinstall the XRT packages](modifying-xrt-platform.md#installing-an-older-xrt) with your existing XRT and platform packages
 
 - - -  
 

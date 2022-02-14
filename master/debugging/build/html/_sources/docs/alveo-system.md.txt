@@ -10,8 +10,8 @@ The following generic Alveo card system diagram visualizes the interaction betwe
 
 ## Alveo System Diagram
 The key points of the diagram include:
-- The host communicates via [XRT](terminology.html#xrt) drivers and utilities with the card's FPGA based [CMC](terminology.html#cmc) over the PCIe bus
-- The Satellite Controller ([SC](terminology.html#sc)) communicates with the CMC to provide sensor data and card status
+- The host communicates via [XRT](terminology.md#xrt) drivers and utilities with the card's FPGA based [CMC](terminology.md#cmc) over the PCIe bus
+- The Satellite Controller ([SC](terminology.md#sc)) communicates with the CMC to provide sensor data and card status
   - Only the SC reads the on-card sensors
 - For XRT status requests and card management, the communication path occurs via the PCIe bus ↔ CMC ↔ SC
 - On servers there is a direct connection between the SC and the Sever BMC via a [SMBus](https://www.kernel.org/doc/html/latest/i2c/summary.html) communication path
