@@ -380,7 +380,7 @@ body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container
 body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container .scroll-wrapper button.submit{margin-top:60px}
 body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container .scroll-wrapper form{padding:0}
 body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container.active{right:0;left:initial}
-.xilinx-bs3 footer{font-size:13px;z-index:1000;background:#171c2d;color:#fff;padding-top:20px;padding-bottom:20px}
+.xilinx-bs3 footer{font-size:13px;z-index:0;background:#171c2d;color:#fff;padding-top:20px;padding-bottom:20px}
 .xilinx-bs3 footer .main-footer{border-bottom:1px solid #282d3f;padding-bottom:15px}
 .xilinx-bs3 footer .main-footer .xilinxList .container-fluid{padding-left:15px;padding-right:15px}
 .xilinx-bs3 footer .main-footer .col-md-2{text-align:center;padding:0}
@@ -403,7 +403,7 @@ body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container
 .xilinx-bs3 footer a{color:#fff}
 .xilinx-bs3 footer a:hover,.xilinx-bs3 footer a:focus{color:#e00000;text-decoration:none}
 .xilinx-bs3 footer ul{list-style:none;padding-left:0}
-.xilinx-bs3 footer .sub-footer{margin-top:0px}
+.xilinx-bs3 footer .sub-footer{margin-top:30px}
 .xilinx-bs3 footer .sub-footer span.copyright{font-size:12px;text-align:center;padding:25px 15px 0 0;float:left;width:100%}
 .xilinx-bs3 footer .sub-footer .lang-select{text-align:center;margin-bottom:20px}
 .xilinx-bs3 footer .sub-footer .lang-select button{width:160px;-moz-border-radius:5px;-webkit-border-radius:5px;border-radius:5px;background:#282d3f;padding:4px 10px}
@@ -453,7 +453,7 @@ body .xilinx-bs3 header.site-header nav .main-nav .navbar-column .cart-container
 .xilinx-bs3 footer .main-footer .col-md-2 .logo{margin-top:0}
 .xilinx-bs3 footer .main-footer .col-md-2 .logo img{max-width:70%}
 .xilinx-bs3 footer .main-footer .col-md-2 .collapse,.xilinx-bs3 footer .main-footer .col-md-2 .collapsing{height:auto !important;display:block;border:0;background-color:transparent;padding-top:0}
-.xilinx-bs3 footer .main-footer .col-md-2 .collapse .col-xs-12,.xilinx-bs3 footer .main-footer .col-md-2 .collapsing .col-xs-12{padding:10}
+.xilinx-bs3 footer .main-footer .col-md-2 .collapse .col-xs-12,.xilinx-bs3 footer .main-footer .col-md-2 .collapsing .col-xs-12{padding:0}
 .xilinx-bs3 footer .main-footer .col-md-2 .collapse .xilinxList ul li,.xilinx-bs3 footer .main-footer .col-md-2 .collapsing .xilinxList ul li{padding:4px 0}
 .xilinx-bs3 footer .main-footer p.submit{text-align:left;font-size:13px;margin-top:30px}
 .xilinx-bs3 footer .main-footer a.btn.submit{max-width:none;margin:0}
