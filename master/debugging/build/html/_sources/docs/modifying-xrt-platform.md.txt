@@ -30,13 +30,13 @@ If you want to install:
 
 Before modifying XRT, you need to:
 
-- Have [root/sudo permissions](common-steps.md#root-sudo-access)
+- Have [root/sudo permissions](common-steps.html#root-sudo-access)
 - Ensure the card(s), XRT, and the deployment packages are installed and working as expected as part of the [card install](card-install.md)
 
 Next determine your starting state:
 
-- [Determine XRT and platform packages installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
-- [Determine platform running on each card](common-steps.md#display-card-and-host-platform-and-sc-versions)
+- [Determine XRT and platform packages installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
+- [Determine platform running on each card](common-steps.html#display-card-and-host-platform-and-sc-versions)
 
 ## Common Cases
 
@@ -47,9 +47,9 @@ Next determine your starting state:
 If XRT is already installed and there is a new platform to be installed on the Alveo card, follow the below steps:
 
 1. Download the new platform from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-1. [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
+1. [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility)
    - Download a new XRT if needed
-1. [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
+1. [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
 1. Remove the old deployment package using
    - Ubuntu: `sudo apt remove installed_platform_name`
    - RHEL/CentOS: `sudo yum remove installed_platform_name`
@@ -62,7 +62,7 @@ If XRT is already installed and there is a new platform to be installed on the A
 1. Run `sudo xbmgmt examine` to get a list of management BDFs
 1. For each management BDF, program the FPGA image onto the card(s) using `sudo xbmgmt program --base --device <management BDF>`
    - If needed, you can determine the platform name with `sudo xbmgmt examine --device <management BDF>`
-1. [Cold boot](terminology.md#cold-boot-power-cycle) the machine
+1. [Cold boot](terminology.html#cold-boot-power-cycle) the machine
 1. Use `sudo xbmgmt examine --device <management BDF>` for each card to make sure the platform and the SC image on card match those installed on the system
    - Some platforms require a second flash to update the SC image
    - If the SC image mismatches, run the flash command a second time
@@ -79,12 +79,12 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 1. Download the new XRT package from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 1. Confirm the [host system is compatible](check-system-compatibility.md)
 1. Check which platforms are on card with `sudo xbmgmt examine`
-   - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility)
-   - If XRT does not support the new platform [Return the card to golden](common-steps.md#reverting-the-card-to-factory-image)
+   - For each card that has a platform installed [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility)
+   - If XRT does not support the new platform [Return the card to golden](common-steps.html#reverting-the-card-to-factory-image)
 1. Upgrade XRT using one of the commands below
    - Ubuntu: `sudo apt install ./<xrt_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<xrt_package_name>.rpm`
-1. [Warm boot](terminology.md#reboot-warm-boot-reset-system) the machine
+1. [Warm boot](terminology.html#reboot-warm-boot-reset-system) the machine
 1. Run `xbutil --version` to confirm the XRT version
 1. Run `xbutil examine` to see the user BDF for each installed card
 1. For each card, confirm functionality by running `xbutil validate -d <user BDF>`
@@ -96,20 +96,20 @@ If XRT is already installed and you want to install a newer XRT version, follow 
 If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:
 
 1. Download the platform package from the archive section of the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
-1. [Confirm XRT/Platform compatibility](common-steps.md#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
+1. [Confirm XRT/Platform compatibility](common-steps.html#confirm-xrt-platform-compatibility) to make sure XRT that will support the platform
    - Download XRT package if needed
-1. [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
-1. If a different XRT is needed, [Remove XRT](common-steps.md#remove-xrt) and install the replacement XRT package on the system using one of the commands below
+1. [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
+1. If a different XRT is needed, [Remove XRT](common-steps.html#remove-xrt) and install the replacement XRT package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<xrt_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<xrt_package_name>.rpm`
 1. Else remove the current deployment package with `sudo apt remove` or `sudo yum remove`
-   - If needed use the package manager to find the installed [package names](common-steps.md#determine-xrt-packages-using-the-package-manager)
+   - If needed use the package manager to find the installed [package names](common-steps.html#determine-xrt-packages-using-the-package-manager)
 1. Install the replacement deployment package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<platform_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<platform_package_name>.rpm`
 1. Run `xbmgmt examine` to get the list of management BDFs
 1. For each compatible card run `sudo xbmgmt program --base --device <management BDF>`
-1. [Cold boot](terminology.md#cold-boot-power-cycle) the machine to update the FPGA
+1. [Cold boot](terminology.html#cold-boot-power-cycle) the machine to update the FPGA
 1. Confirm each card validates using `xbutil validate -d <user BDF>`
 1. Optionally download and [install the development platform](#installing-a-development-platform)
 
@@ -122,9 +122,9 @@ If XRT is already installed and an older version of XRT is to be installed, foll
 1. Download the XRT package from the archives section of the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 1. Determine which platform will be used
    - Make sure to have the package(s) to re-install the platform
-1. [Determine platform running on each card](common-steps.md#display-card-and-host-platform-and-sc-versions)
-1. If the platform is different, [Return each card to golden](common-steps.md#reverting-the-card-to-factory-image)
-1. [Remove XRT](common-steps.md#remove-xrt)
+1. [Determine platform running on each card](common-steps.html#display-card-and-host-platform-and-sc-versions)
+1. If the platform is different, [Return each card to golden](common-steps.html#reverting-the-card-to-factory-image)
+1. [Remove XRT](common-steps.html#remove-xrt)
 1. Install the replacement XRT package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<xrt_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<xrt_package_name>.rpm`
@@ -133,7 +133,7 @@ If XRT is already installed and an older version of XRT is to be installed, foll
    - RHEL/CentOS: `sudo yum install ./<platform_package_name>.rpm`
 1. Run `xbmgmt examine` to get the list of management BDFs
 1. For each compatible card run `sudo xbmgmt program --base --device <management BDF>`
-1. [Cold boot](terminology.md#cold-boot-power-cycle) the machine to update the FPGA
+1. [Cold boot](terminology.html#cold-boot-power-cycle) the machine to update the FPGA
 1. Confirm each card validates using `xbutil validate -d <user BDF>`
 1. Optionally download and [install the development platform](#installing-a-development-platform)
 
@@ -143,7 +143,7 @@ If XRT is already installed and an older version of XRT is to be installed, foll
 
 After XRT is installed and once it has been decided on the platform that will be used on the Alveo card, follow the below steps to install the development platform:
 
-1. [Determine platform running on the card](common-steps.md#display-card-and-host-platform-and-sc-versions)
+1. [Determine platform running on the card](common-steps.html#display-card-and-host-platform-and-sc-versions)
 1. Go to the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html) to download the matching development platform
 1. Install the deployment package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<platform_package_name>.deb`
@@ -168,7 +168,7 @@ The steps to re-install a platform are given below.
 
 Removing XRT will also remove any packages that depend on XRT, for example the deployment platforms. Please follow the below link to remove XRT:
 
-1. Go to [Remove XRT](common-steps.md#remove-xrt)
+1. Go to [Remove XRT](common-steps.html#remove-xrt)
 
 - - -
 

@@ -406,13 +406,13 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before modifying XRT, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
 <li><p>Ensure the card(s), XRT, and the deployment packages are installed and working as expected as part of the <a class="reference internal" href="card-install.html"><span class="doc">card install</span></a></p></li>
 </ul>
 <p>Next determine your starting state:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#determine-xrt-packages-using-the-package-manager">Determine XRT and platform packages installed on the system</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Determine XRT and platform packages installed on the system</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
 </ul>
 </div>
 <div class="section" id="common-cases">
@@ -423,12 +423,12 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <p>If XRT is already installed and there is a new platform to be installed on the Alveo card, follow the below steps:</p>
 <ol class="simple">
 <li><p>Download the new platform from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p>
+<li><p><a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p>
 <ul class="simple">
 <li><p>Download a new XRT if needed</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
 <li><p>Remove the old deployment package using</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">installed_platform_name</span></code></p></li>
@@ -453,7 +453,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>If needed, you can determine the platform name with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="terminology.md#cold-boot-power-cycle">Cold boot</a> the machine</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine</p></li>
 <li><p>Use <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code> for each card to make sure the platform and the SC image on card match those installed on the system</p>
 <ul class="simple">
 <li><p>Some platforms require a second flash to update the SC image</p></li>
@@ -474,8 +474,8 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>Confirm the <a class="reference internal" href="check-system-compatibility.html"><span class="doc">host system is compatible</span></a></p></li>
 <li><p>Check which platforms are on card with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span></code></p>
 <ul class="simple">
-<li><p>For each card that has a platform installed <a class="reference external" href="common-steps.md#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p></li>
-<li><p>If XRT does not support the new platform <a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">Return the card to golden</a></p></li>
+<li><p>For each card that has a platform installed <a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a></p></li>
+<li><p>If XRT does not support the new platform <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return the card to golden</a></p></li>
 </ul>
 </li>
 <li><p>Upgrade XRT using one of the commands below</p>
@@ -484,7 +484,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="terminology.md#reboot-warm-boot-reset-system">Warm boot</a> the machine</p></li>
+<li><p><a class="reference external" href="terminology.html#reboot-warm-boot-reset-system">Warm boot</a> the machine</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> to confirm the XRT version</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> to see the user BDF for each installed card</p></li>
 <li><p>For each card, confirm functionality by running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
@@ -496,13 +496,13 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <p>If XRT is already installed and there is a older platform to be installed on the Alveo card, follow the below steps:</p>
 <ol class="simple">
 <li><p>Download the platform package from the archive section of the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to make sure XRT that will support the platform</p>
+<li><p><a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to make sure XRT that will support the platform</p>
 <ul class="simple">
 <li><p>Download XRT package if needed</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
-<li><p>If a different XRT is needed, <a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a> and install the replacement XRT package on the system using one of the commands below</p>
+<li><p><a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
+<li><p>If a different XRT is needed, <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a> and install the replacement XRT package on the system using one of the commands below</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.rpm</span></code></p></li>
@@ -510,7 +510,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </li>
 <li><p>Else remove the current deployment package with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">remove</span></code></p>
 <ul class="simple">
-<li><p>If needed use the package manager to find the installed <a class="reference external" href="common-steps.md#determine-xrt-packages-using-the-package-manager">package names</a></p></li>
+<li><p>If needed use the package manager to find the installed <a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">package names</a></p></li>
 </ul>
 </li>
 <li><p>Install the replacement deployment package on the system using one of the commands below</p>
@@ -521,7 +521,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
 <li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p><a class="reference external" href="terminology.md#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
 <li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>Optionally download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
 </ol>
@@ -537,9 +537,9 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>Make sure to have the package(s) to re-install the platform</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
-<li><p>If the platform is different, <a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on each card</a></p></li>
+<li><p>If the platform is different, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Return each card to golden</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
 <li><p>Install the replacement XRT package on the system using one of the commands below</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">install</span> <span class="pre">./&lt;xrt_package_name&gt;.deb</span></code></p></li>
@@ -554,7 +554,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
 <li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p><a class="reference external" href="terminology.md#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
+<li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
 <li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>Optionally download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
 </ol>
@@ -564,7 +564,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <h3>Installing a development platform<a class="headerlink" href="#installing-a-development-platform" title="Permalink to this headline">¶</a></h3>
 <p>After XRT is installed and once it has been decided on the platform that will be used on the Alveo card, follow the below steps to install the development platform:</p>
 <ol class="simple">
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Determine platform running on the card</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform running on the card</a></p></li>
 <li><p>Go to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a> to download the matching development platform</p></li>
 <li><p>Install the deployment package on the system using one of the commands below</p>
 <ul class="simple">
@@ -598,7 +598,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <h3>Uninstalling XRT<a class="headerlink" href="#uninstalling-xrt" title="Permalink to this headline">¶</a></h3>
 <p>Removing XRT will also remove any packages that depend on XRT, for example the deployment platforms. Please follow the below link to remove XRT:</p>
 <ol class="simple">
-<li><p>Go to <a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
+<li><p>Go to <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
 </ol>
 </div>
 <hr class="docutils" />

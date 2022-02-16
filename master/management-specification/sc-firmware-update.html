@@ -1,0 +1,1705 @@
+﻿
+
+
+<!DOCTYPE HTML>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		<meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description"/>
+		<meta name="keywords"/>
+		<meta property="og:title" content=""/>
+		<meta property="og:description"/>
+		<!-- favicon -->
+		<link rel="icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
+
+	
+		<!-- Google Tag Manager -->
+	<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+	<!-- End Google Tag Manager -->
+	
+        <!-- Google Tag Manager -->
+        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+        <!-- End Google Tag Manager -->	
+
+  
+  
+  
+  
+
+  
+      <script type="text/javascript" src="_static/js/jquery.min.js"></script>
+	  <script type="text/javascript" src="_static/js/gtm.js"></script>
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="_static/js/d3dd8c60ed.js"></script>
+    <script type="text/javascript" src="_static/js/common-ui-all.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script type="text/javascript" src="_static/js/linkid.js"></script>
+    <script type="text/javascript" src="_static/js/Searchbox.min.js"></script>
+    <script type="text/javascript" src="_static/js/header-footer.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="FPGA Flash Update Commands" href="fpga-firmware-update.html" />
+    <link rel="prev" title="I2C/SMBus Commands" href="std-smbus-commands.html" /> 
+	</head>
+	<body>
+		<div class="xilinx-bs3"/>
+		<div class="root responsivegrid">
+			<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 aem-Grid--large--16 aem-Grid--xlarge--16 aem-Grid--xxlarge--16 aem-Grid--xxxlarge--16 ">
+ <div class="xilinxExperienceFragments experiencefragment aem-GridColumn aem-GridColumn--default--12">
+
+    
+    
+
+    
+
+
+
+<div class="xf-content-height">
+    
+
+<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+    
+    <div class="header parbase aem-GridColumn aem-GridColumn--default--12"><noindex>
+	<header data-component="header" class="site-header">
+		<nav class="navbar navbar-default">
+			<div class="container-fluid main-nav">
+				<div class="row">
+					<div class="navbar-column col-xs-4 col-sm-5">
+						<ul class="nav navbar-nav hidden-xs">
+							<li>
+									<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
+								</li>
+							<li>
+									<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
+								</li>
+							<li>
+									<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
+								</li>
+							</ul>
+							
+						<ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
+							<li>
+									<button data-target="#header-container-0" data-function="toggle">Solutions</button>
+								</li>
+							<li>
+									<button data-target="#header-container-1" data-function="toggle">Products</button>
+								</li>
+							<li>
+									<button data-target="#header-container-2" data-function="toggle">Company</button>
+								</li>
+							</ul>
+							
+						<div id="header-container-0" class="menu-container">
+								<div class="navbar-nav-container">
+									<ul class="nav navbar-nav">
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
+												</li>
+										</ul>
+									<button data-function="close-menu">
+										<span class="fal fa-times" aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							<div id="header-container-1" class="menu-container">
+								<div class="navbar-nav-container">
+									<ul class="nav navbar-nav">
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
+												</li>
+										</ul>
+									<button data-function="close-menu">
+										<span class="fal fa-times" aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							<div id="header-container-2" class="menu-container">
+								<div class="navbar-nav-container">
+									<ul class="nav navbar-nav">
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
+												</li>
+										<li>
+												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
+												</li>
+										</ul>
+									<button data-function="close-menu">
+										<span class="fal fa-times" aria-hidden="true"></span>
+									</button>
+								</div>
+							</div>
+							</div>
+					<div class="logo-column col-xs-4 col-sm-2">
+						<div class="logo">
+							<a target="_blank" href="https://www.xilinx.com/">
+								<img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-header-logo.svg?raw=true" title="Xilinx Inc"/>
+							</a>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			</nav></header></noindex></div>
+		
+	
+</div>
+
+    
+</div>
+</div>
+
+<div class="calloutBanner parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16"><div class="callout-banner">
+    Xilinx is now a part of <a target="_blank" href="https://www.amd.com/en/corporate/xilinx-acquisition">AMD</a> |  <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Learn More</a>
+</div>
+</div>
+				<div class="parsys aem-GridColumn--xxxlarge--none aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+						<div class="container-fluid">
+							<div class="row">
+							<div class="col-xs-12">
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Satellite Controller
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+      
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Alveo FRU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">SC firwmare update via OoB</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Satellite Controller Firmware Update Commands</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-satellite-controller-firmware">GET_SC_STATUS (Satellite Controller Firmware)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enable-bsl-mode">ENABLE_BSL_MODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-communication">BSL Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-bsl">GET_SC_STATUS (BSL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-password">BSL_RX_PASSWORD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-erase-sc-fw">BSL_ERASE_SC_FW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-data-block">BSL_RX_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-crc-check">BSL_CRC_CHECK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bsl-load-pc">BSL_LOAD_PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-bsl-commands">Sample BSL Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OOB SC FW Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">DMTF support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
+</ul>
+
+            
+			
+			<p class="caption"><span class="caption-text">This Page</span></p>
+				<ul class="current">
+				  <li class="toctree-l1"><a href="_sources/sc-firmware-update.rst.txt"
+						rel="nofollow">Show Source</a></li>
+				</ul>
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Satellite Controller</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Satellite Controller Firmware Update Commands</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/sc-firmware-update.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="satellite-controller-firmware-update-commands">
+<h1>Satellite Controller Firmware Update Commands<a class="headerlink" href="#satellite-controller-firmware-update-commands" title="Permalink to this headline">¶</a></h1>
+<blockquote>
+<div><p>The satellite controller supports an alternative out-of-band method
+of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW
+update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC
+is expected to initiate the FW upgrade process by sending I2C
+commands to the SC FW. After the initial handshake with the SC FW,
+the server BMC will need to communicate with the MSP432 boot loader
+(BSL) to transfer the FW into MSP Flash and complete the upgrade
+process.</p>
+<p><strong>*Note*:</strong> Currently, the SC FW upgrades are always force upgrades,
+there is no version check currently in place. The old FW file will
+be overwritten by the new FW. Server BMC is expected to check and
+decide if the SC FW upgrade is needed.</p>
+<p>The following table lists the commands supported/needed for the FW
+upgrade.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BMC to BSL Commands</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>SI NO</strong></p></th>
+<th class="head"><p><strong>Command Code</strong></p></th>
+<th class="head"><p><strong>Command Name</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0x04</p></td>
+<td><p>GET_SC_FW_VER</p></td>
+<td><p>Get SC FW version (xx.yy.zz format)</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0x31</p></td>
+<td><p>GET_SC_STATUS</p></td>
+<td><p>Returns status about what is running in MSP, FW, or BSL.</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0x32</p></td>
+<td><p>ENABLE_BSL_MODE</p></td>
+<td><p>OOB command to reboot the SC and invoke BSL.</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>SMC to BSL Commands</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p><strong>SI NO</strong></p></th>
+<th class="head"><p><strong>Command Code</strong></p></th>
+<th class="head"><p><strong>Command Name</strong></p></th>
+<th class="head"><p><strong>Description</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>0x31</p></td>
+<td><p>GET_SC_STATUS</p></td>
+<td><p>Returns status weather SC is in SC FW mode or BSL mode</p></td>
+</tr>
+<tr class="row-odd"><td><p>2</p></td>
+<td><p>0x21</p></td>
+<td><p>BSL_RX_PASSWORD</p></td>
+<td><p>Sends 56 bytes password to unlock the BSL</p></td>
+</tr>
+<tr class="row-even"><td><p>3</p></td>
+<td><p>0x15</p></td>
+<td><p>BSL_ERASE_SC_FW</p></td>
+<td><p>BSL erases old SC FW</p></td>
+</tr>
+<tr class="row-odd"><td><p>4</p></td>
+<td><p>0x20</p></td>
+<td><p>BSL_RX_DATA_BLOCK</p></td>
+<td><p>Sends 32-bit data block to write (256 bytes max)</p></td>
+</tr>
+<tr class="row-even"><td><p>5</p></td>
+<td><p>0x26</p></td>
+<td><p>BSL_CRC_CHECK</p></td>
+<td><p>Ask BSL to perform CRC check for validation</p></td>
+</tr>
+<tr class="row-odd"><td><p>6</p></td>
+<td><p>0x27</p></td>
+<td><p>BSL_LOAD_PC</p></td>
+<td><p>Jump to the SC’s application FW , after FW upgrade</p></td>
+</tr>
+</tbody>
+</table>
+<section id="get-sc-status-satellite-controller-firmware">
+<h2>GET_SC_STATUS (Satellite Controller Firmware)<a class="headerlink" href="#get-sc-status-satellite-controller-firmware" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The GET_SC_STATUS command serves as the status command, revealing
+if the MSP432 processor is running in the application code (SC FW)
+or in BSL mode. Upon receiving this command, the SC FW responds with
+0x02 in Byte 0.</p>
+<p><strong>*Note*:</strong> The same command is supported by BSL. BSL will respond
+saying <em>‘am in BSL mode’</em>.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>GET_SC_STATUS Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command code</p></td>
+<td><p>0x31</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data bytes</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>GET_SC_STATUS Xilinx Alveo Card Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>Byte 0</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Byte 1</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="enable-bsl-mode">
+<h2>ENABLE_BSL_MODE<a class="headerlink" href="#enable-bsl-mode" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Upon receiving the ENABLE_BSL_MODE command, the SC FW configures
+FW update mode in the BSL and reboots itself. The next boot up takes
+the control to BSL mode. Absence of this step results in normal
+reboots, where the application code/FW will boot-up instead of
+staying in BSL to enable the FW update process.</p>
+<p><strong>*Note*:</strong> For this command, the SC FW will not be able to respond
+to the BMC with success or failure before rebooting itself.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>ENABLE_BSL_MODE Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command code</p></td>
+<td><p>0x32</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data bytes</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>ENABLE_BSL_MODE Xilinx Alveo Card Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>N/A</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bsl-communication">
+<h2>BSL Communication<a class="headerlink" href="#bsl-communication" title="Permalink to this headline">¶</a></h2>
+<p><strong>IMPORTANT!</strong> The following is a recommendation from TI. Refer to TI’s MSP432P4xx <a class="reference external" href="http://www.ti.com/lit/ug/slau622i/slau622i.pdf">SimpleLink Microcontrollers Bootloader user guide</a> (BSL)for more information.</p>
+<blockquote>
+<div><p>The I2C protocol used by the BSL is defined as:</p>
+</div></blockquote>
+<ul class="simple">
+<li><p>The master must request data from the BSL slave.</p></li>
+<li><p>7-bit addressing mode is used. By default, the slave listens to
+address 0x65 (0xCA 8-bit).</p></li>
+<li><p>In addition to the I2C protocol-based hardware ACK, handshake for
+commands is performed by an acknowledged character in the BSL core
+response format, as specified in the I2C BSL response table of
+<a class="reference external" href="http://www.ti.com/lit/ug/slau622i/slau622i.pdf">MSP432P4xx SimpleLink Microcontrollers Bootloader
+(BSL)</a>.</p></li>
+<li><p>Repeated starts are not required by the BSL, but can be used.</p></li>
+<li><p>TI recommends waiting 1.2 ms after sending a command to the BSL and
+receiving the response. TI also recommends waiting 1.2 ms before
+sending the next command after a response was received.</p></li>
+<li><p>The I2C BSL interface supports a maximum clock speed of 400 kHz.</p></li>
+</ul>
+<p><strong>CRC Calculation</strong></p>
+<blockquote>
+<div><p>For the purposes of CRC calculation in the BSL, the MSP432 device
+performs a 16-bit CRC check using the CRC16-CCITT standard. This CRC
+signature is based on the polynomial given in the CRC16-CCITT with
+the following function:</p>
+<p><em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
+</div></blockquote>
+<p><strong>CRC Checksum Low, CRC Checksum High</strong></p>
+<blockquote>
+<div><p>The checksum is computed on bytes in the BSL core command section
+only. The BSL uses CRC16-CCITT for the checksum and computes it
+using the MSP432 CRC module. CRC bytes (CKL, CKH) are mandatory for
+all commands. The ACK, header, and length bytes must be ignored.</p>
+</div></blockquote>
+<p><strong>Length Low Byte, Length High Byte</strong></p>
+<blockquote>
+<div><p>Length low byte, length high byte is the number of bytes in the BSL
+core data packet, broken into high and low bytes. The number of
+bytes must include only core data packets, as detailed below, and
+does not include the length bytes and checksum bytes.</p>
+</div></blockquote>
+<ul>
+<li><p>Command code</p></li>
+<li><p>All address bytes (if applicable)</p></li>
+<li><p>All data bytes (if applicable)</p>
+<blockquote>
+<div><p><strong>Note:</strong> All commands with prefix BSL_ are core commands
+supported by BSL. The request and response bytes are pre-defined by
+TI.</p>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="get-sc-status-bsl">
+<h2>GET_SC_STATUS (BSL)<a class="headerlink" href="#get-sc-status-bsl" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The GET_SC_STATUS command serves as a status command telling
+whether the MSP432 processor is running the application code (SC FW)
+or in BSL mode. Upon receiving this command, BSL responds with 0x01
+in byte 0 MSP BSL mode. Byte 1 serves as status byte.</p>
+<p><strong>Note:</strong> The same command is supported by the SC application FW,
+where the SC responds with SC FW mode.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>GET_SC_STATUS (BSL) Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Command code</p></td>
+<td><p>0x31</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data bytes</p></td>
+<td><p>N/A</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>GET_SC_STATUS (BSL) Xilinx Alveo Card Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>Byte 0</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>Byte 1 (status)</p></td>
+<td><p>0x00: BSL_OK</p>
+<p>0x01: BSL_CRC_CHECK_FAIL</p>
+<p>0x02: BSL_PARTIAL_FW_UPGRADE</p>
+<p>0x03: BSL_FLASH_WRITE_ERROR</p>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bsl-rx-password">
+<h2>BSL_RX_PASSWORD<a class="headerlink" href="#bsl-rx-password" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The BSL core receives the password contained in the packet and
+unlocks the BSL protected commands if the password matches the 56
+bytes in the BSL. When an incorrect password is given, BSL responds
+with <em>Password Error</em> and subsequent commands sent to the BSL result
+in no-operation.</p>
+<blockquote>
+<div><p><strong>Note:</strong> Contact Xilinx® for the password information.</p>
+</div></blockquote>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_RX_PASSWORD Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length (low byte)</p></td>
+<td><p>0x39</p></td>
+</tr>
+<tr class="row-even"><td><p>Length (high byte)</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command code</p></td>
+<td><p>0x21</p></td>
+</tr>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>D1…D56</p>
+<p>D1-D56–Xilinx Password D57–D256–0xFF</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_PASSWORD Xilinx Alveo Card (BSL) Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
+<td><p>B0: ACK</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B1: Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B2: Length</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B3: Length</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B4: CMD</p></td>
+<td><p>0x3B</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B5: Message</p></td>
+<td><p>0x00 – Operation successful</p>
+<p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
+<p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
+<p>0x07– Unknown Command</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B6: CKL</p></td>
+<td><p>0x60</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B7: CKH</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_PASSWORD BSL Command Response for a Successful Password</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>MSG</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x80</p></td>
+<td><p>0x02</p></td>
+<td><p>0x00</p></td>
+<td><p>0x3B</p></td>
+<td><p>0x00</p></td>
+<td><p>0x60</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_PASSWORD Command Example</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>D1</p></th>
+<th class="head"><p>D2</p></th>
+<th class="head"><p>D3</p></th>
+<th class="head"><p>D4</p></th>
+<th class="head"><p>D5</p></th>
+<th class="head"><p>D6</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>0x01</p></td>
+<td><p>0x01</p></td>
+<td><p>0x21</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+</tr>
+</tbody>
+</table>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>D7</p></th>
+<th class="head"><p>/././.</p></th>
+<th class="head"><p>D251</p></th>
+<th class="head"><p>D252</p></th>
+<th class="head"><p>D253</p></th>
+<th class="head"><p>D254</p></th>
+<th class="head"><p>D255</p></th>
+<th class="head"><p>D256</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xFF</p></td>
+<td><p>0xAD</p></td>
+<td><p>0x08</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bsl-erase-sc-fw">
+<h2>BSL_ERASE_SC_FW<a class="headerlink" href="#bsl-erase-sc-fw" title="Permalink to this headline">¶</a></h2>
+<p>The BSL_ERASE_SC_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.</p>
+<blockquote>
+<div><p><strong>*Note*:</strong> Allow at least 1 second for the erase operation to
+complete before proceeding with next set of commands.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length (low byte)</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-even"><td><p>Length (high byte)</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command code</p></td>
+<td><p>0x15</p></td>
+</tr>
+<tr class="row-even"><td><p>CKL</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td><p>CKH</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Xilinx Alveo Card (BSL) Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
+<td><p>B0: ACK</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B1: Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B2: Length</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B3: Length</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B4: CMD</p></td>
+<td><p>0x3B</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B5: Message</p></td>
+<td><p>0x00 – Operation successful</p>
+<p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
+<p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
+<p>0x07– Unknown Command</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B6: CKL</p></td>
+<td><p>0x60</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B7: CKH</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Command Example</strong></p>
+<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Initiate Erase</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>0x01</p></td>
+<td><p>0x00</p></td>
+<td><p>0x15</p></td>
+<td><p>0x64</p></td>
+<td><p>0xA3</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_ERASE_SC_FW BSL Response (Successful Operation)</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>MSG</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x80</p></td>
+<td><p>0x02</p></td>
+<td><p>0x00</p></td>
+<td><p>0x3B</p></td>
+<td><p>0x00</p></td>
+<td><p>0x60</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="bsl-rx-data-block">
+<h2>BSL_RX_DATA_BLOCK<a class="headerlink" href="#bsl-rx-data-block" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
+from the location specified in the address fields. The
+BSL_RX_DATA_BLOCK command allows the BSL to address the device
+with the full 32-bit range.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length (low byte)</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-even"><td><p>Length (high byte)</p></td>
+<td><p>0x01</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command code</p></td>
+<td><p>0x20</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Server BMC Request</strong> <em>(cont’d)</em></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Address bytes</p></td>
+<td><p>A0, A1, A2, A3</p></td>
+</tr>
+<tr class="row-odd"><td><p>Data bytes</p></td>
+<td><p>D1 … D256</p></td>
+</tr>
+<tr class="row-even"><td><p>CKL</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td><p>CKH</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Xilinx Alveo Card (BSL) Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
+<td><p>B0: ACK</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B1: Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B2: Length</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B3: Length</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B4: CMD</p></td>
+<td><p>0x3B</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B5: Message</p></td>
+<td><p>0x00 – Operation successful</p>
+<p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
+<p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
+<p>0x07– Unknown Command</p>
+</td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B6: CKL</p></td>
+<td><p>0x60</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B7: CKH</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+<p>BSL_RX_DATA_BLOCK Command Example</p>
+<p><em>Table:</em> <strong>Write Data</strong> 0x76543210 <strong>to Address</strong> 0x0001:0000</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>A0</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>A3</p></th>
+<th class="head"><p>D1</p></th>
+<th class="head"><p>D2</p></th>
+<th class="head"><p>D3</p></th>
+<th class="head"><p>D4</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>0x09</p></td>
+<td><p>0x00</p></td>
+<td><p>0x20</p></td>
+<td><p>0x00</p></td>
+<td><p>0x00</p></td>
+<td><p>0x01</p></td>
+<td><p>0x00</p></td>
+<td><p>0x10</p></td>
+<td><p>0x32</p></td>
+<td><p>0x54</p></td>
+<td><p>0x76</p></td>
+<td><p>0x66</p></td>
+<td><p>0x96</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK BSL Response for a Successful Data Write</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>MSG</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x80</p></td>
+<td><p>0x02</p></td>
+<td><p>0x00</p></td>
+<td><p>0x3B</p></td>
+<td><p>0x00</p></td>
+<td><p>0x60</p></td>
+<td><p>0xC4</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>*Note*:</strong> The BMC will need to parse through the SC FW file to
+identify the start location for each segment. To be specific, search
+for ‘&#64;’ and use the following 4-byte address to frame and send the
+address bytes: A0, A1, A2, and A3 (LSB first).</p>
+<blockquote>
+<div><p><em>Figure:</em> <strong>Linux grep Command</strong></p>
+</div></blockquote>
+</div></blockquote>
+<img alt="_images/sc-segments.png" class="align-center" src="_images/sc-segments.png" />
+<p>There are 4 segments in the following example:</p>
+<ul class="simple">
+<li><p>&#64;200– Segment starting at (0x00000200 A0 = 0x00; A1 = 0x02; A2 =
+0x00; A3 = 0x00)</p></li>
+<li><p>&#64;1f780– Segment starting at 0x0001F780 (A0 = 0x80; A1 = 0xF7; A2 =
+0x01; A3 = 0x00)</p></li>
+<li><p>&#64;20e58– Segment starting at 0x00020E58 (A0 = 0x58; A1 = 0x0E; A2 =
+0x02; A3 = 0x00)</p></li>
+<li><p>&#64;0000– Segment starting at 0x00000000 (A0 = 0x00; A1 = 0x00; A2 =
+0x00; A3 = 0x00)</p></li>
+</ul>
+<dl>
+<dt>.</dt><dd><p>This figure captures the linux grep command and response for the
+string ‘&#64;’ within the FW file.</p>
+<p><strong>*Note*:</strong> The string ‘&#64;’ represents the start of a new section in
+the flash memory.</p>
+<p>Because the BSL_RX_DATA_BLOCK command’s maximum data size is 256
+bytes, the address needs to be incremented by 256 or 0x100.</p>
+</dd>
+</dl>
+<ul>
+<li><p>For the first packet in every segment, the BMC will send the 4-byte
+address as parsed above</p>
+<blockquote>
+<div><p>0x80 0x09 0x00 0x20 0x00 0x02 0x00 0x00 0x00 0x01 .. 0xFF 0x66 0x96.</p>
+</div></blockquote>
+</li>
+<li><p>For all subsequent packets, the BMC will increment the address by
+0x100 while sending the commands 0x80 0x09 0x00 0x20 0x00 0x03 0x00
+0x00 0x00 0x01 .. 0xFF 0x66 0x96
+Header-Length-CMD-Address-Data-Checksum.</p></li>
+</ul>
+</section>
+<section id="bsl-crc-check">
+<h2>BSL_CRC_CHECK<a class="headerlink" href="#bsl-crc-check" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p><strong>*Note*:</strong> The BSL_CRC_CHECK command is an optional command.</p>
+<p>The MSP432 device performs a 16-bit CRC check using the CCITT
+standard. The address given is the first byte of the CRC check; 2
+bytes are used for the length.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_CRC_CHECK Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length (low Byte)</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p>Length (high Byte)</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command code</p></td>
+<td><p>0x26</p></td>
+</tr>
+<tr class="row-even"><td><p>Address bytes</p></td>
+<td><p>A0, A1, A2, A3</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_CRC_CHECK Server BMC Request</strong> <em>(cont’d)</em></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>D1, D2</p>
+<p>D1: length (low byte) D2: length (high byte)</p>
+</td>
+</tr>
+<tr class="row-odd"><td><p>CKL</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p>CKH</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_CRC_CHECK Xilinx Alveo Card (BSL) Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes B0 … B8</p></td>
+<td><p>B0: ACK</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B1: Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B2: Length</p></td>
+<td><p>0x02</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B3: Length</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B4: CMD</p></td>
+<td><p>0x3A</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B5: Data1</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B6: Data2</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-odd"><td></td>
+<td><p>B7: CKL</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td></td>
+<td><p>B8: CKH</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+<p>BSL_CRC_CHECK Command Example</p>
+<blockquote>
+<div><p>Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of
+1024 bytes of data).</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_CRC_CHECK Command Example</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>A0</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>A3</p></th>
+<th class="head"><p>D1</p></th>
+<th class="head"><p>D2</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>0x07</p></td>
+<td><p>0x00</p></td>
+<td><p>0x26</p></td>
+<td><p>0x00</p></td>
+<td><p>0x44</p></td>
+<td><p>0x00</p></td>
+<td><p>0x00</p></td>
+<td><p>0x00</p></td>
+<td><p>0x04</p></td>
+<td><p>0xF7</p></td>
+<td><p>0xE6</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>The BSL response where 0x55 is the low byte of the calculated
+checksum and 0xAA is the high byte of the calculated checksum:</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_CRC_CHECK Response for a Successful CRC Calculation</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ACK</p></th>
+<th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>D1</p></th>
+<th class="head"><p>D2</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x00</p></td>
+<td><p>0x80</p></td>
+<td><p>0x03</p></td>
+<td><p>0x00</p></td>
+<td><p>0x3A</p></td>
+<td><p>0x55</p></td>
+<td><p>0xAA</p></td>
+<td><p>0x12</p></td>
+<td><p>0x2B</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p><strong>*Note*:</strong> As noted in the
+<a class="reference external" href="#bsl_rx_data_block">BSL_RX_DATA_BLOCK</a> command, BMC will need
+to parse through the SC FW file to identify the start address for
+each command.</p>
+</div></blockquote>
+</section>
+<section id="bsl-load-pc">
+<h2>BSL_LOAD_PC<a class="headerlink" href="#bsl-load-pc" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The BSL_LOAD_PC command causes the BSL to jump and begin execution
+at the given address. The BSL responds with 0x00. In this case, the
+jump address is 0x0000:0201.</p>
+</div></blockquote>
+<p><em>Table:</em> <strong>BSL_LOAD_PC Server BMC Request</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Header</p></td>
+<td><p>0x80</p></td>
+</tr>
+<tr class="row-odd"><td><p>Length (low byte)</p></td>
+<td><p>0x05</p></td>
+</tr>
+<tr class="row-even"><td><p>Length (high byte)</p></td>
+<td><p>0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>Command code</p></td>
+<td><p>0x27</p></td>
+</tr>
+<tr class="row-even"><td><p>Address bytes</p></td>
+<td><p>A0, A1, A2, A3 A0: 0x01 A1: 0x02 A2: 0x00 A3: 0x00</p></td>
+</tr>
+<tr class="row-odd"><td><p>CKL</p></td>
+<td><p>TBD</p></td>
+</tr>
+<tr class="row-even"><td><p>CKH</p></td>
+<td><p>TBD</p></td>
+</tr>
+</tbody>
+</table>
+<p><em>Table:</em> <strong>BSL_LOAD_PC Xilinx Alveo Card Response</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Data bytes</p></td>
+<td><p>Byte 0</p></td>
+<td><p>0x00–Success</p></td>
+</tr>
+</tbody>
+</table>
+<p>Command Example</p>
+<blockquote>
+<div><p>The program counter is set to 0x0000:0201. The server BMC must send
+the address bytes as A0=0x01, A1=0x02, A2=0x00, and A3=0x00.</p>
+</div></blockquote>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Header</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>Length</p></th>
+<th class="head"><p>CMD</p></th>
+<th class="head"><p>A0</p></th>
+<th class="head"><p>A1</p></th>
+<th class="head"><p>A2</p></th>
+<th class="head"><p>A3</p></th>
+<th class="head"><p>CKL</p></th>
+<th class="head"><p>CKH</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>0x80</p></td>
+<td><p>0x05</p></td>
+<td><p>0x00</p></td>
+<td><p>0x27</p></td>
+<td><p>0x01</p></td>
+<td><p>0x02</p></td>
+<td><p>0x00</p></td>
+<td><p>0x00</p></td>
+<td><p>0x8E</p></td>
+<td><p>0xBC</p></td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<div><p>The BSL responds with 0x00.</p>
+<p><strong>*Note*:</strong> Functionality of the BSL core command has been modified
+to improve robustness around the SC FW upgrade process. When BMC
+issues this command to jump to SC application code, BSL checks the
+CRC of the entire SC FW image. If the CRC check is successful, BSL
+loads the new SC application code. If not, the MSP stays in BSL mode
+with the assumption that SC FW is corrupted/interrupted due to CRC
+failure.</p>
+</div></blockquote>
+</section>
+<section id="sample-bsl-commands">
+<h2>Sample BSL Commands<a class="headerlink" href="#sample-bsl-commands" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>The contents from the following table have been imported from
+TotalPhase Aardvark I2C adapter.</p>
+</div></blockquote>
+<p><em>Figure:</em> <strong>I2C Transaction captured using I2C Aardvark Tool</strong></p>
+<img alt="_images/aardvark_capture_SC_FW_update.PNG" class="align-center" src="_images/aardvark_capture_SC_FW_update.PNG" />
+</section>
+<section id="timing-diagram-normal-flow-of-oob-sc-fw-upgrade">
+<h2>Timing Diagram: Normal Flow of OOB SC FW Upgrade<a class="headerlink" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>The BMC sends the 0x31 GET_SC_STATUS command to the SC, which
+responds with 0x02</p>
+<blockquote>
+<div><p>MSP SC FW mode.</p>
+</div></blockquote>
+</li>
+</ol>
+<ol class="arabic simple">
+<li><p>The BMC sends the 0x32 Enable_BSL_Mode command to the SC which
+configures the BSL parameters and reboots itself. The MSP enters BSL
+mode on the next boot up. No response is sent to BMC.</p></li>
+<li><p>The BMC waits 1 second and sends the 0x31 GET_SC_STATUS command to
+BSL and gets response 0x01 from the BSL MSP in BSL mode.</p></li>
+<li><p>The BMC unlocks the BSL by sending the password (0x21
+BSL_RX_PASSWORD) and the BSL sends the status in response.</p></li>
+<li><p>The BMC sends the 0x15 BSL_ERASE_SC_FW command to the BSL asking
+that the entire SC FW image to be erased. BSL erases the FW and sends
+the response back to BMC.</p></li>
+<li><p>The BMC sends the entire SC FW via repeated 0x20 BSL_RX_Data
+command with the correct start address and BSL sends the status in
+response.</p></li>
+<li><p>The BMC (optionally) sends the 0x26 BSL_CRC_CHECK command with the
+correct start address and the BSL sends the status in response.</p></li>
+<li><p>The BMC sends the 0x27 BSL_Load_PC command and the BSL checks the
+CRC on the full FW. If CRC passes, the new SC FW loads. If not, it
+stays in BSL mode, enabling the BMC to restart the SC FW upgrade (see
+step 3).</p></li>
+</ol>
+<p><em>Figure:</em> Timing Diagram: Normal flow of Out-of-Band SC FW Upgrade</p>
+<img alt="_images/sc-update-normal-flow.png" class="align-center" src="_images/sc-update-normal-flow.png" />
+</section>
+<section id="timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">
+<h2>Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade<a class="headerlink" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>If the SC FW upgrade is interrupted mid-way due to power cycle (i.e.,
+BMC reboot, MSP reboot, etc.,) the BSL takes corrective action by
+prohibiting the partial/corrupt FW to boot.</p></li>
+<li><p>The BSL disables the SC FW application code and hangs in BSL, waiting
+for a new SC FW upgrade process by BMC.</p></li>
+<li><p>The BMC will need to retrigger the upgrade process from the start.
+This is done by sending a 0x31 GET_SC_STATUS command to get the
+status and following <a class="reference external" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OOB SC FW
+Upgrade</a>.</p>
+<blockquote>
+<div><p><strong>*Note*:</strong> It is possible the I2C engine in the BSL can get stuck
+if the transaction got interrupted (as mentioned in step 1). Because
+the BSL does not have I2C recovery mechanisms, the only way to get
+back to BSL mode is to reboot the MSP. This can be only done by the
+AC power cycle of the server.</p>
+<p><em>Figure:</em> <strong>Interrupted flow of OOB SC FW Upgrade</strong></p>
+</div></blockquote>
+</li>
+</ol>
+<img alt="_images/sc-update-interrupted-flow.png" class="align-center" src="_images/sc-update-interrupted-flow.png" />
+<p><strong>Xilinx Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
+<p><strong>License</strong></p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
+<p>You may obtain a copy of the CC-BY-4.0 License at
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+<!-- Atalwar: Moved the footer code to layout.html to resolve conflict with the Xilinx template -->
+</footer>
+
+        </div>
+      </div>
+
+
+	  <!-- Sphinx Page Footer block -->
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="fpga-firmware-update.html" class="btn btn-neutral float-right" title="FPGA Flash Update Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="std-smbus-commands.html" class="btn btn-neutral float-left" title="I2C/SMBus Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo" class="copyright">
+    <p class="footerinfo">
+      <span class="lastupdated">
+        Last updated on February 14, 2022.
+      </span>
+
+    </p>
+	<br>
+  </div>
+      </div>
+    </section>
+
+
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+   <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+
+  <script type="text/javascript" id="searchindexloader"></script>
+
+
+  
+  
+    
+  
+
+
+
+  <!--  Xilinx template footer block -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+					<div class="xf-content-height">
+						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+							<div class="footer parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+								<noindex>
+                  <!-- make footer fixed - NileshP -->
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+                  <!-- make footer fixed NileshP-->
+									<footer>
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+													<div class="row">
+														<div class="footerSocial parbase">
+														
+															<div class="col-md-push-6 col-lg-push-6 col-md-6 col-lg-6">
+																<div class="lang-select dropup hidden-md hidden-lg">
+		<button data-toggle="dropdown">
+			<span class="fas fa-globe" aria-hidden="true"></span>
+			<span>
+				
+					English
+				</span>
+		<span class="far fa-angle-down" aria-hidden="true"></span>
+	</button>
+	<ul class="dropdown-menu">
+		<li>
+				<a target="_blank" href="https://japan.xilinx.com/" target="_self">
+					日本語
+				</a>
+			</li>
+		<li>
+				<a target="_blank" href="https://china.xilinx.com/" target="_self">
+					简体中文
+				</a>
+			</li>
+		</ul>
+	</div>
+																<ul class="list-inline pull-right social-menu">
+																	<li>
+																		<a target="_blank" href="https://www.linkedin.com/company/xilinx">
+																		<span class="linkedin icon"></span>
+																		<span class="sr-only">Connect on LinkedIn</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a target="_blank" href="https://www.twitter.com/XilinxInc">
+																		<span class="twitter icon"></span>
+																		<span class="sr-only">Follow us on Twitter</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a target="_blank" href="https://www.facebook.com/XilinxInc">
+																		<span class="facebook icon"></span>
+																		<span class="sr-only">Connect on Facebook</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a target="_blank" href="https://www.youtube.com/XilinxInc">
+																		<span class="youtube icon"></span>
+																		<span class="sr-only">Watch us on YouTube</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a target="_blank" href="https://www.xilinx.com/registration/subscriber-signup.html">
+																		<span class="newsletter icon"></span>
+																		<span class="sr-only">Subscribe to Newsletter</span>
+																		</a>
+																	</li>
+																</ul>
+																	<div class="lang-select dropup hidden-xs hidden-sm">
+	<button data-toggle="dropdown">
+		<span class="fas fa-globe" aria-hidden="true"></span>
+		<span>
+			
+				English
+			</span>
+		<span class="far fa-angle-down" aria-hidden="true"></span>
+	</button>
+	<ul class="dropdown-menu">
+		<li>
+				<a target="_blank" href="https://japan.xilinx.com/" target="_self">
+					日本語
+				</a>
+			</li>
+		<li>
+				<a target="_blank" href="https://china.xilinx.com/" target="_self">
+					简体中文
+				</a>
+			</li>
+		</ul>
+	</div>
+															</div>
+														</div>
+														<div class="col-md-pull-5 col-lg-pull-5 col-md-5 col-lg-5">
+															<span class="copyright">©2022 Advanced Micro Devices, Inc</span>
+														</div>
+
+													</div>
+													                    <div class="movethisrowtoleft row">
+                        <div class="col-xs-24">
+                            <ul class="sub-menu">
+                                <li><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a></li>
+                                <li><a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a></li>
+								<li><a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a></li>
+                                <li><a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></li>
+                            </ul>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+									</footer>
+								</noindex>
+							</div>
+						</div>
+					</div>
+				</div>
+<div class="backToTop parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16"><noindex>
+    <span data-component="backToTopButton" class="backToTopButton loaded">
+        <ul>
+            <li>
+                <a href="https://www.author.xilinx.com/xx/rebrand/amd/en-amd-xilinx-header-footer.html#top" class="btn top">
+                    <span class="fas fa-angle-up" aria-hidden="true"></span>
+                </a>
+            </li>
+        </ul>
+    </span>
+</noindex></div>
+			</div>
+		</div>
+
+
+		<script>window.CQ = window.CQ || {}</script>
+		<script src="https://static.cloud.coveo.com/searchui/v2.4382/js/CoveoJsSearch.Lazy.min.js"></script>
+		<script>
+			var underscoreSetup = function () {
+			  _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
+			  _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
+			  _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
+			}
+
+			underscoreSetup();
+		</script>
+	</body>
+</html>

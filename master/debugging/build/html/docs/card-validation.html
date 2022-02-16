@@ -379,7 +379,7 @@ function OptanonWrapper() { }
 <p>Before beginning debug:</p>
 <ul class="simple">
 <li><p>Ensure the card, XRT, and the deployment packages are installed as part of the <a class="reference internal" href="card-install.html"><span class="doc">card install</span></a></p></li>
-<li><p>Confirm the <a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">platform and SC version</a> on the card and system match</p></li>
+<li><p>Confirm the <a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">platform and SC version</a> on the card and system match</p></li>
 <li><p>Determine any failure mode(s) from running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code></p></li>
 </ul>
 </div>
@@ -446,7 +446,7 @@ function OptanonWrapper() { }
 </div>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Reset the system state by following the steps in <a class="reference external" href="card-validation.md#dma-test-error">DMA test error</a></p></li>
+<li><p>Reset the system state by following the steps in <a class="reference external" href="card-validation.html#dma-test-error">DMA test error</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -499,7 +499,7 @@ function OptanonWrapper() { }
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Ensure that the card is in a slot that supports the PCIe link speed
--See section <a class="reference external" href="common-steps.md#determine-pcie-slot-type-and-speed">Determine PCIe slot type and speed</a></p></li>
+-See section <a class="reference external" href="common-steps.html#determine-pcie-slot-type-and-speed">Determine PCIe slot type and speed</a></p></li>
 <li><p>If the card is in a full speed slot:</p>
 <ul>
 <li><p>Reseat the card, in a different slot if possible</p></li>
@@ -537,8 +537,8 @@ function OptanonWrapper() { }
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a> and confirm they match</p></li>
-<li><p><a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a> a second time to update the card’s SC version to match the system</p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a> and confirm they match</p></li>
+<li><p><a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a> a second time to update the card’s SC version to match the system</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -575,10 +575,10 @@ Test 1 [0000:17:00.1]     : Aux connection
 </li>
 <li><p>Close up the system</p></li>
 <li><p>Reboot</p></li>
-<li><p>Confirm <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">expected power level</a></p></li>
+<li><p>Confirm <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">expected power level</a></p></li>
 <li><p>Confirm the card passes validation by running the following command
 <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p>If power is not registering in XRT, there may be a communication issue between the SC and CMC, go to <a class="reference external" href="sc-troubleshooting.md#voltage-or-temperature-reports-zero">SC troubleshooting</a></p></li>
+<li><p>If power is not registering in XRT, there may be a communication issue between the SC and CMC, go to <a class="reference external" href="sc-troubleshooting.html#voltage-or-temperature-reports-zero">SC troubleshooting</a></p></li>
 </ul>
 </li>
 </ul>
@@ -608,14 +608,14 @@ Test 1 [0000:17:00.1]     : Aux connection
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>See if the machine is running a <a class="reference external" href="common-steps.md#host-machine-and-hypervisor-information">supported hypervisor</a></p></li>
+<li><p>See if the machine is running a <a class="reference external" href="common-steps.html#host-machine-and-hypervisor-information">supported hypervisor</a></p></li>
 <li><p>Check to see if the drivers are present with</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xclmgmt</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xocl</span></code></p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Unload/reload XRT drivers</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Unload/reload XRT drivers</a></p></li>
 <li><p>See if a similar issue is posted on <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
@@ -650,7 +650,7 @@ Test 1 [0000:17:00.1]     : Aux connection
 <p>If either xclbin is not available, follow next steps below.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#determine-xrt-packages-using-the-package-manager">Determine packages installed on the system</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Determine packages installed on the system</a></p></li>
 <li><p>Follow package install steps in <a class="reference internal" href="modifying-xrt-platform.html"><span class="doc">Modifying existing XRT or platform install</span></a></p></li>
 </ul>
 </div>
@@ -660,7 +660,7 @@ Test 1 [0000:17:00.1]     : Aux connection
 <p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands are not working and there are no errors displayed, it may indicate an error with the XRT installation package.</p>
 <p>Next Step:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="modifying-xrt-platform.md#installing-an-older-xrt">Reinstall the XRT packages</a> with your existing XRT and platform packages</p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#installing-an-older-xrt">Reinstall the XRT packages</a> with your existing XRT and platform packages</p></li>
 </ul>
 </div>
 <hr class="docutils" />

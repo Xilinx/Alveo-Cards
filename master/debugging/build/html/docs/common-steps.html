@@ -617,7 +617,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="disable-fastboot">
 <h3>Disable fastboot<a class="headerlink" href="#disable-fastboot" title="Permalink to this headline">¶</a></h3>
-<p>Use this if the <a class="reference external" href="card-not-recognized.md#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
+<p>Use this if the <a class="reference external" href="card-not-recognized.html#confirm-system-recognizes-cards">system recognizes the card</a> only after a warm boot</p>
 <ul class="simple">
 <li><p>Boot the system into the BIOS setup menu</p>
 <ul>
@@ -740,7 +740,7 @@ function OptanonWrapper() { }
 <span class="n">xrt</span><span class="o">/</span><span class="n">now</span> <span class="mf">2.11.634</span> <span class="n">amd64</span> <span class="p">[</span><span class="n">installed</span><span class="p">,</span><span class="n">local</span><span class="p">]</span>
 </pre></div>
 </div>
-<p>Use <a class="reference external" href="common-steps.md#xrt-release-versions-and-download-locations">the XRT release table</a>  to see if the XRT version is an official release.</p>
+<p>Use <a class="reference external" href="common-steps.html#xrt-release-versions-and-download-locations">the XRT release table</a>  to see if the XRT version is an official release.</p>
 </div>
 <div class="section" id="id2">
 <h4>RHEL/CentOS<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
@@ -789,7 +789,7 @@ function OptanonWrapper() { }
 <div class="section" id="remove-xrt">
 <h3>Remove XRT<a class="headerlink" href="#remove-xrt" title="Permalink to this headline">¶</a></h3>
 <p>Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.</p>
-<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
+<p>Before removing XRT, run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> and if any cards have a shell on them, <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">return each card to golden</a>. This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.</p>
 <p>Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.</p>
 <ul class="simple">
 <li><p>Ubuntu: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">apt</span> <span class="pre">remove</span> <span class="pre">xrt</span></code></p></li>
@@ -824,7 +824,7 @@ Else there may be an platform mismatch.</p>
 <td><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm">RHEL/CentOS 7.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm">RHEL/CentOS 8.x</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb">Ubuntu 18.04</a></li><li><a href="https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb">Ubuntu 20.04</a></li></td>
 </tr>
 </tbody>
-</table><p>If you are looking for an older XRT that uses the legacy commands go to the previous <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations">XRT release versions and download locations</a>.</p>
+</table><p>If you are looking for an older XRT that uses the legacy commands go to the previous <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.html#xrt-release-versions-and-download-locations">XRT release versions and download locations</a>.</p>
 </div>
 </div>
 <hr class="docutils" />
@@ -833,7 +833,7 @@ Else there may be an platform mismatch.</p>
 <p>Provides various techniques for debugging Alveo cards.</p>
 <div class="section" id="displaying-card-bdf-values">
 <h3>Displaying Card BDF Values<a class="headerlink" href="#displaying-card-bdf-values" title="Permalink to this headline">¶</a></h3>
-<p>Each Alveo card is assigned both a management and an user <a class="reference external" href="terminology.md#bdf">BDF</a> (Bus:Device:Function).   For a given card, the management and user BDF values differ only by the Function digit.</p>
+<p>Each Alveo card is assigned both a management and an user <a class="reference external" href="terminology.html#bdf">BDF</a> (Bus:Device:Function).   For a given card, the management and user BDF values differ only by the Function digit.</p>
 <p>To obtain the management and user BDF values for installed cards, use the following commands.  It requires XRT to be installed.</p>
 <p>The <a class="reference external" href="https://xilinx.github.io/XRT/master/html/platforms.html#xrt-and-vitis-platform-overview">XRT documentation</a> provides detailed descriptions on the management and user functions.</p>
 <div class="section" id="management-bdf">
@@ -861,7 +861,7 @@ Else there may be an platform mismatch.</p>
 <h4>BDF displayed using lspci<a class="headerlink" href="#bdf-displayed-using-lspci" title="Permalink to this headline">¶</a></h4>
 <p>Alveo card BDF values can also be displayed using the <code class="docutils literal notranslate"><span class="pre">lspci</span></code> Linux command:</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">lspci</span> <span class="pre">-vd</span> <span class="pre">10ee:</span></code></p>
-<p>See <a class="reference external" href="card-not-recognized.md#card-not-recognized">Card Not Recognized</a> for lspci field details.</p>
+<p>See <a class="reference external" href="card-not-recognized.html#card-not-recognized">Card Not Recognized</a> for lspci field details.</p>
 <p>In a multi card system you may need to cross reference <code class="docutils literal notranslate"><span class="pre">lspci</span></code> output and <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--verbose</span></code> output to determine if there is a card missing.</p>
 </div>
 </div>
@@ -911,7 +911,7 @@ Else there may be an platform mismatch.</p>
 <p>When a card has successfully been installed and the firmware has been updated, both entries for <code class="docutils literal notranslate"><span class="pre">Platform</span></code> and <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">version</span></code> under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> must match.  If they do not match, the system will be unable to correctly run applications on your card.</p>
 <p>To confirm they match, visually compare the ‘Platform’ and ‘SC Version’ entries under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>.</p>
 <p>In the above example, the Platform (xilinx_u50_gen3x16_xdma_201920_3) and SC version (5.2.6) displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> both match.  If they don’t match, follow the steps in the card’s installation guide to install the deployment software.</p>
-<p>If the platform under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> has the word <code class="docutils literal notranslate"><span class="pre">golden</span></code> in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card’s installation guide.  See <a class="reference external" href="common-steps.md#reverting-the-card-to-factory-image">Reverting the card to factory image</a> for details on the factory image.</p>
+<p>If the platform under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> has the word <code class="docutils literal notranslate"><span class="pre">golden</span></code> in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card’s installation guide.  See <a class="reference external" href="common-steps.html#reverting-the-card-to-factory-image">Reverting the card to factory image</a> for details on the factory image.</p>
 <p>Finally, if there is a platform displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> but none under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, as shown in the example below, the deployment platform will first need to be installed on the system in order to run applications on the card.  Follow the steps in the card’s installation guide to install the deployment software.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">--</span><span class="n">device</span> <span class="mi">0000</span><span class="p">:</span><span class="n">af</span><span class="p">:</span><span class="mf">00.0</span>
 
@@ -1188,7 +1188,7 @@ See <a class="reference external" href="#displaying-card-bdf-values">Displaying 
 <span class="n">Error</span> <span class="n">occurred</span> <span class="n">on</span><span class="p">:</span> <span class="n">Wed</span> <span class="mi">2020</span><span class="o">-</span><span class="mi">08</span><span class="o">-</span><span class="mi">19</span> <span class="mi">13</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">13</span> <span class="n">MDT</span>
 </pre></div>
 </div>
-<p>To actively monitor the card’s power and temperature during runtime, use the script provided in the <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitoring power and temperature</a> section.</p>
+<p>To actively monitor the card’s power and temperature during runtime, use the script provided in the <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitoring power and temperature</a> section.</p>
 </div>
 <hr class="docutils" />
 <div class="section" id="reverting-the-card-to-factory-image">

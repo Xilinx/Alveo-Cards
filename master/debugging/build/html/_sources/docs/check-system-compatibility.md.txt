@@ -11,13 +11,13 @@ This page will help you determine if your host machine is compatible with the Vi
 ## System Compatibility Checks
 Ensure your system is compatible with XRT and the Alveo Card by confirming the following:
 
-- The [Linux OS](common-steps.md#determine-linux-release) and [Kernel](common-steps.md#determine-linux-kernel-and-header-information) are compatible with those supported by the [XRT drivers](https://github.com/Xilinx/XRT/blob/master/src/runtime_src/doc/toc/system_requirements.rst).
-- The [host machine and hypervisor](common-steps.md#host-machine-and-hypervisor-information) are compatible.
+- The [Linux OS](common-steps.html#determine-linux-release) and [Kernel](common-steps.html#determine-linux-kernel-and-header-information) are compatible with those supported by the [XRT drivers](https://github.com/Xilinx/XRT/blob/master/src/runtime_src/doc/toc/system_requirements.rst).
+- The [host machine and hypervisor](common-steps.html#host-machine-and-hypervisor-information) are compatible.
 - PCIe slot is compatible
-   * Ensure the [PCIe slot type and speed](common-steps.md#determine-pcie-slot-type-and-speed) match the card deployment platform requirements.
+   * Ensure the [PCIe slot type and speed](common-steps.html#determine-pcie-slot-type-and-speed) match the card deployment platform requirements.
    * Confirm the PCIe slot provides 75W
      * Covered in the host computer's documentation
-- Review [card power expectations](common-steps.md#monitor-card-power-and-temperature) and ensure the system can provide the expected electrical power.
+- Review [card power expectations](common-steps.html#monitor-card-power-and-temperature) and ensure the system can provide the expected electrical power.
      * If AUX power is missing contact your system vendor to acquire the needed cabling.  This [AR 72298](https://www.xilinx.com/support/answers/72298.html) provides additional guidance.
 
 

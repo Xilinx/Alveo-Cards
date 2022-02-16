@@ -398,7 +398,7 @@ function OptanonWrapper() { }
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
 <li><p>Confirm <a class="reference internal" href="check-system-compatibility.html"><span class="doc">system compatibility</span></a></p></li>
 <li><p>Determine which package(s) are failing and failure mode(s)</p></li>
 </ul>
@@ -452,7 +452,7 @@ You need to be root to perform this command.
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#root-sudo-access">Confirm you have permission to install</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#root-sudo-access">Confirm you have permission to install</a></p></li>
 <li><p>Repeat the install with <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">command</span></code> or as root</p></li>
 </ul>
 </div>
@@ -598,7 +598,7 @@ Error: Package: xrt-2.7.766-1.x86_64 (/xrt_202010.2.7.766_7.4.1708-x86_64-xrt)
 <p>This occurs when there is a mismatch between kernel and kernel headers installed on machine.  Part of XRT is compiled against the user kernel and the compiler needs the headers for that exact kernel version. In the above example the headers for <code class="docutils literal notranslate"><span class="pre">1127</span></code> are installed while <code class="docutils literal notranslate"><span class="pre">862</span></code> are needed.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#determine-linux-kernel-and-header-information">Determine the Linux kernel version and headers</a> required</p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-linux-kernel-and-header-information">Determine the Linux kernel version and headers</a> required</p></li>
 <li><p>Confirm they match</p></li>
 <li><p>If they do not, run the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/runtime_src/tools/scripts/xrtdeps.sh">xrtdeps.sh</a> script to install dependencies</p></li>
 </ul>
@@ -635,9 +635,9 @@ Do you want to continue? [Y/n]
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Confirm that a downgrade is wanted</p></li>
-<li><p><a class="reference external" href="common-steps.md#determine-xrt-packages-using-the-package-manager">Capture a list of platforms installed on the system</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-xrt-packages-using-the-package-manager">Capture a list of platforms installed on the system</a></p></li>
 <li><p>Remove items to be downgrade with <code class="docutils literal notranslate"><span class="pre">apt</span> <span class="pre">remove</span></code> or <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">remove</span></code></p></li>
-<li><p>If this is for XRT, follow <a class="reference external" href="common-steps.md#remove-xrt">remove XRT</a></p></li>
+<li><p>If this is for XRT, follow <a class="reference external" href="common-steps.html#remove-xrt">remove XRT</a></p></li>
 <li><p>Install desired packages with the desired versions with apt and yum</p></li>
 </ul>
 <p>Notes:</p>
@@ -673,7 +673,7 @@ E: Unable to correct problems, you have held broken packages.
 <p>This occurs if you attempt to install a .rpm package using apt or a .deb package using yum. Ubuntu/apt only supports .deb files while RHEL/yum only supports .rpm files.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>Determine the <a class="reference external" href="common-steps.md#determine-linux-release">machine OS</a></p></li>
+<li><p>Determine the <a class="reference external" href="common-steps.html#determine-linux-release">machine OS</a></p></li>
 <li><p>Use the correct set of OS and file type</p>
 <ul>
 <li><p>Ubuntu: apt and .deb</p></li>

@@ -372,7 +372,7 @@ function OptanonWrapper() { }
  </tr>
 </table><div class="section" id="sc-troubleshooting">
 <h1>SC Troubleshooting<a class="headerlink" href="#sc-troubleshooting" title="Permalink to this headline">¶</a></h1>
-<p>This can help to determine if any communication break has happened in the <a class="reference external" href="terminology.md#sc">SC</a> &lt;-&gt; <a class="reference external" href="terminology.md#cmc">CMC</a> path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult <a class="reference internal" href="../README.html"><span class="doc">main page</span></a>.</p>
+<p>This can help to determine if any communication break has happened in the <a class="reference external" href="terminology.html#sc">SC</a> &lt;-&gt; <a class="reference external" href="terminology.html#cmc">CMC</a> path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult <a class="reference internal" href="../README.html"><span class="doc">main page</span></a>.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
 <p>This page covers issues observed when running the  <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> and  <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> commands and which can be related to SC issues.</p>
@@ -381,12 +381,12 @@ function OptanonWrapper() { }
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Confirm System Compatibility</span></a></p></li>
-<li><p><a class="reference external" href="common-steps.md#determine-xrt-version">Determine XRT version</a> installed.</p></li>
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a></p>
+<li><p><a class="reference external" href="common-steps.html#determine-xrt-version">Determine XRT version</a> installed.</p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Display card and host platform and SC versions</a></p>
 <ul>
-<li><p>Card platform and <a class="reference external" href="terminology.md#sc">SC</a> version must match those installed on the host system</p></li>
+<li><p>Card platform and <a class="reference external" href="terminology.html#sc">SC</a> version must match those installed on the host system</p></li>
 </ul>
 </li>
 </ul>
@@ -395,7 +395,7 @@ function OptanonWrapper() { }
 <h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical">
 <h3>Partition displayed under <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code> and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> are identical.<a class="headerlink" href="#partition-displayed-under-flashable-partition-running-on-fpga-and-flashable-partitions-installed-in-system-are-identical" title="Permalink to this headline">¶</a></h3>
-<p>When the platform has been installed correctly, the partition and <a class="reference external" href="terminology.md#sc">SC</a> version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command.  An example output is shown below.</p>
+<p>When the platform has been installed correctly, the partition and <a class="reference external" href="terminology.html#sc">SC</a> version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command.  An example output is shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
 <span class="o">------------------------------------------------------</span>
@@ -435,7 +435,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xbmgmt-examine-r-platform-returns-bad-magic-number-error">
 <h3>xbmgmt examine -r platform returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error<a class="headerlink" href="#xbmgmt-examine-r-platform-returns-bad-magic-number-error" title="Permalink to this headline">¶</a></h3>
-<p>If xbmgmt examine -r platform command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between <a class="reference external" href="terminology.md#xrt">XRT</a> and the <a class="reference external" href="terminology.md#cmc">CMC</a>.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
+<p>If xbmgmt examine -r platform command returns <code class="docutils literal notranslate"><span class="pre">bad</span> <span class="pre">magic</span> <span class="pre">number</span></code> error as in the example below, there is a chance of a communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">bad</span> <span class="n">magic</span> <span class="n">number</span><span class="p">:</span> <span class="mi">7</span><span class="n">fff</span>
 <span class="n">read</span> <span class="n">reg</span> <span class="n">ERROR</span>
@@ -458,13 +458,13 @@ function OptanonWrapper() { }
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
@@ -474,7 +474,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xmc-not-loaded">
 <h3>XMC not loaded<a class="headerlink" href="#xmc-not-loaded" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.md#xrt">XRT</a> and the <a class="reference external" href="terminology.md#cmc">CMC</a>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">loaded</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">Failed</span> <span class="n">to</span> <span class="n">detect</span> <span class="n">XMC</span><span class="p">,</span> <span class="n">xmc</span><span class="o">.</span><span class="n">bin</span> <span class="ow">not</span> <span class="n">loaded</span>
@@ -489,16 +489,16 @@ function OptanonWrapper() { }
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Reload XRT Drivers</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Reload XRT Drivers</a></p></li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
@@ -508,7 +508,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xmc-not-ready">
 <h3>XMC not ready<a class="headerlink" href="#xmc-not-ready" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.md#xrt">XRT</a> and the <a class="reference external" href="terminology.md#cmc">CMC</a>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">XMC</span> <span class="pre">not</span> <span class="pre">ready</span></code> error as shown below, there is communication break between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
 <span class="n">ERROR</span><span class="p">:</span> <span class="n">XMC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x3</span>
@@ -531,13 +531,13 @@ function OptanonWrapper() { }
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
@@ -547,7 +547,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="sc-is-not-ready">
 <h3>SC is not ready<a class="headerlink" href="#sc-is-not-ready" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span> </code> error as shown below, there is communication break between the <a class="reference external" href="terminology.md#sc">SC</a> and the <a class="reference external" href="terminology.md#cmc">CMC</a>.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">SC</span> <span class="pre">is</span> <span class="pre">not</span> <span class="pre">ready</span> </code> error as shown below, there is communication break between the <a class="reference external" href="terminology.html#sc">SC</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ERROR</span><span class="p">:</span> <span class="n">SC</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">ready</span><span class="p">:</span> <span class="mh">0x0</span>
  <span class="n">Card</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="n">c3</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span>
  <span class="n">Card</span> <span class="nb">type</span><span class="p">:</span> <span class="n">u50lv</span>
@@ -562,13 +562,13 @@ function OptanonWrapper() { }
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
@@ -578,7 +578,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="sc-only-displays-two-digits">
 <h3>SC only displays two digits<a class="headerlink" href="#sc-only-displays-two-digits" title="Permalink to this headline">¶</a></h3>
-<p>If xbmgmt examine -r platform command returns different number of digits of between the <a class="reference external" href="terminology.md#sc">SC</a> versions for  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, there is a break in communication between <a class="reference external" href="terminology.md#xrt">XRT</a> and the <a class="reference external" href="terminology.md#cmc">CMC</a>.</p>
+<p>If xbmgmt examine -r platform command returns different number of digits of between the <a class="reference external" href="terminology.html#sc">SC</a> versions for  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code>, there is a break in communication between <a class="reference external" href="terminology.html#xrt">XRT</a> and the <a class="reference external" href="terminology.html#cmc">CMC</a>.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
 <span class="o">------------------------------------------------------</span>
@@ -614,7 +614,7 @@ function OptanonWrapper() { }
 </div>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>Flash the satellite controller with the version installed on the system: <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>If these steps do not resolve the issue look on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
@@ -623,7 +623,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="sc-versions-do-not-match">
 <h3>SC versions do not match<a class="headerlink" href="#sc-versions-do-not-match" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns different <a class="reference external" href="terminology.md#sc">SC</a> version displayed under  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns different <a class="reference external" href="terminology.html#sc">SC</a> version displayed under  <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partition</span> <span class="pre">running</span> <span class="pre">on</span> <span class="pre">FPGA</span></code>, and <code class="docutils literal notranslate"><span class="pre">Flashable</span> <span class="pre">partitions</span> <span class="pre">installed</span> <span class="pre">in</span> <span class="pre">system</span></code> sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">------------------------------------------------------</span>
 <span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">04</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u50_gen3x16_xdma_201920_3</span>
 <span class="o">------------------------------------------------------</span>
@@ -660,7 +660,7 @@ function OptanonWrapper() { }
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Flash the satellite controller with the version installed on the system: <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
-<li><p>See <a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
+<li><p>See <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -695,7 +695,7 @@ function OptanonWrapper() { }
 </div>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Go to <a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
+<li><p>Go to <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -735,13 +735,13 @@ function OptanonWrapper() { }
 </div>
 <p>Next step:</p>
 <ul class="simple">
-<li><p>Follow the steps to install the platform on the host in section <a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
+<li><p>Follow the steps to install the platform on the host in section <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">flashing the card with a deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="no-cards-found">
 <h3>No cards found<a class="headerlink" href="#no-cards-found" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">found</span></code> as shown below, the OS or <a class="reference external" href="terminology.md#xrt">XRT</a> is unable to find the card.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code> command returns <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">found</span></code> as shown below, the OS or <a class="reference external" href="terminology.html#xrt">XRT</a> is unable to find the card.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Devices</span> <span class="n">present</span>
 <span class="mi">0</span> <span class="n">devices</span> <span class="n">found</span>
 </pre></div>
@@ -760,7 +760,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="voltage-or-temperature-reports-zero">
 <h3>Voltage or temperature reports zero<a class="headerlink" href="#voltage-or-temperature-reports-zero" title="Permalink to this headline">¶</a></h3>
-<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between the <a class="reference external" href="terminology.md#xrt">XRT</a>/<a class="reference external" href="terminology.md#cmc">CMC</a>/<a class="reference external" href="terminology.md#sc">SC</a> components.</p>
+<p>If <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code> command reports a zero value in <code class="docutils literal notranslate"><span class="pre">FPGA</span> <span class="pre">TEMP</span></code>, <code class="docutils literal notranslate"><span class="pre">12V</span> <span class="pre">PEX</span></code> or <code class="docutils literal notranslate"><span class="pre">3V3</span> <span class="pre">PEX</span></code> as shown in the example below, there is a chance of communication break between the <a class="reference external" href="terminology.html#xrt">XRT</a>/<a class="reference external" href="terminology.html#cmc">CMC</a>/<a class="reference external" href="terminology.html#sc">SC</a> components.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Temperature</span><span class="p">(</span><span class="n">C</span><span class="p">)</span>
 <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">FRONT</span>   <span class="n">PCB</span> <span class="n">TOP</span> <span class="n">REAR</span>    <span class="n">PCB</span> <span class="n">BTM</span> <span class="n">FRONT</span>   <span class="n">VCCINT</span> <span class="n">TEMP</span>
 <span class="mi">0</span>               <span class="mi">0</span>               <span class="n">N</span><span class="o">/</span><span class="n">A</span>             <span class="mi">0</span>
@@ -814,13 +814,13 @@ function OptanonWrapper() { }
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">thermal</span> <span class="pre">electrical</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ul>
 </li>
@@ -841,13 +841,13 @@ function OptanonWrapper() { }
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="terminology.md#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
+<li><p><a class="reference external" href="terminology.html#shutdown-and-unplug-pull-power">Pull power</a> to the system</p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>
 <li><p>If issue persists</p>
 <ul>
-<li><p><a class="reference external" href="modifying-xrt-platform.md#platform-re-install">Reinstall the platforms</a></p></li>
+<li><p><a class="reference external" href="modifying-xrt-platform.html#platform-re-install">Reinstall the platforms</a></p></li>
 <li><p>Perform <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-r</span> <span class="pre">platform</span></code></p></li>
 </ul>
 </li>

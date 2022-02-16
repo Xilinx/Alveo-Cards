@@ -384,7 +384,7 @@ function OptanonWrapper() { }
 <ul class="simple">
 <li><p>A <a class="reference internal" href="check-system-compatibility.html"><span class="doc">Compatible host system</span></a></p></li>
 <li><p>One or more Alveo cards</p></li>
-<li><p><a class="reference external" href="common-steps.md#root-sudo-access">Root/sudo permissions</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#root-sudo-access">Root/sudo permissions</a></p></li>
 </ul>
 <p>Before starting to test the card, gather data</p>
 <ol class="simple">
@@ -397,7 +397,7 @@ function OptanonWrapper() { }
 </li>
 <li><p>Confirm card(s) are compatible with the host machine</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#determine-active-or-passive-card">Determine if the card is active or passive</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-active-or-passive-card">Determine if the card is active or passive</a></p></li>
 <li><p>Only test a passive card in server system with sufficient airflow.</p></li>
 <li><p>If a passive card is not in a <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html">qualified host and card combination</a>, you may need to manually increase server airflow by turning up the fan speed for the tests to pass.</p></li>
 </ul>
@@ -438,7 +438,7 @@ function OptanonWrapper() { }
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Delay testing until sufficient power can be supplied.</p></li>
-<li><p>Safely hook up 8-pin PCIe AUX power, see the <a class="reference external" href="card-install.md#card-installation-guides">Card installation guides</a></p></li>
+<li><p>Safely hook up 8-pin PCIe AUX power, see the <a class="reference external" href="card-install.html#card-installation-guides">Card installation guides</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -449,11 +449,11 @@ function OptanonWrapper() { }
 <li><p>Actively cooled - the card has a fan intended to cool the card when installed in a workstation</p></li>
 <li><p>Passively cooled - the card depends on host chassis airflow for cooling.</p></li>
 </ul>
-<p>See <a class="reference external" href="common-steps.md#determine-active-or-passive-card">Determine active or passive card</a> to determine if a card is actively or passively cooled.
+<p>See <a class="reference external" href="common-steps.html#determine-active-or-passive-card">Determine active or passive card</a> to determine if a card is actively or passively cooled.
 Passively cooled cards should only be placed in a server with sufficient airflow.</p>
 <p>Next steps:</p>
 <ul class="simple">
-<li><p>For active cards, go to <a class="reference external" href="power-delivery.md#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
+<li><p>For active cards, go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a> below</p></li>
 <li><p>For passive cards, confirm the following:</p>
 <ul>
 <li><p>Server airflow meets card requirements</p>
@@ -462,7 +462,7 @@ Passively cooled cards should only be placed in a server with sufficient airflow
 </ul>
 </li>
 <li><p>Lid needs to be on the server for testing</p></li>
-<li><p>Go to <a class="reference external" href="power-delivery.md#xbtest-for-testing-power">xbtest for testing power</a></p></li>
+<li><p>Go to <a class="reference external" href="power-delivery.html#xbtest-for-testing-power">xbtest for testing power</a></p></li>
 </ul>
 </li>
 </ul>
@@ -470,7 +470,7 @@ Passively cooled cards should only be placed in a server with sufficient airflow
 <hr class="docutils" />
 <div class="section" id="shell-not-listed-in-xbtest-downloads-below">
 <h3>Shell not listed in xbtest downloads below<a class="headerlink" href="#shell-not-listed-in-xbtest-downloads-below" title="Permalink to this headline">¶</a></h3>
-<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">platform running on the card and system</a> is supported.</p>
+<p>See <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for supported plaforms.  To run xbtest, ensure the <a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">platform running on the card and system</a> is supported.</p>
 <p>If the platform is not supported, you need to update the system and card with a supported platform.</p>
 <p>Next steps:</p>
 <ul class="simple">
@@ -484,7 +484,7 @@ Passively cooled cards should only be placed in a server with sufficient airflow
 <p>If the card overheats or demands more power than the host system provides, the test application, card, or system could crash.</p>
 <p>Next Steps:</p>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">Monitor the power and temperature</a> to make sure the card is operating within temperature and power limits.</p></li>
+<li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor the power and temperature</a> to make sure the card is operating within temperature and power limits.</p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -531,7 +531,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">Monitor power and temperature</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">Monitor power and temperature</a></p></li>
 <li><p>Interrupt the test with <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> if card temperature exceeds 95C or if the temperature suddenly falls.</p></li>
 <li><p>At the end of the test, a pass or fail is indicated.</p>
 <ul>

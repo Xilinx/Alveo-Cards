@@ -7,7 +7,7 @@
 
 # SC Troubleshooting
 
-This can help to determine if any communication break has happened in the [SC](terminology.md#sc) <-> [CMC](terminology.md#cmc) path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult [main page](../README.md).
+This can help to determine if any communication break has happened in the [SC](terminology.html#sc) <-> [CMC](terminology.html#cmc) path. It is part of the larger Alveo debug guide. If you are just starting to debug please consult [main page](../README.md).
 
 ## This Page Covers
 
@@ -17,17 +17,17 @@ This page covers issues observed when running the  `xbmgmt examine` and  `xbutil
  
 Before beginning debug, you need to:
 
-- Have [root/sudo permissions](common-steps.md#root-sudo-access)
+- Have [root/sudo permissions](common-steps.html#root-sudo-access)
 - [Confirm System Compatibility](check-system-compatibility.md)
-- [Determine XRT version](common-steps.md#determine-xrt-version) installed.
-- [Display card and host platform and SC versions](common-steps.md#display-card-and-host-platform-and-sc-versions)
-  - Card platform and [SC](terminology.md#sc) version must match those installed on the host system
+- [Determine XRT version](common-steps.html#determine-xrt-version) installed.
+- [Display card and host platform and SC versions](common-steps.html#display-card-and-host-platform-and-sc-versions)
+  - Card platform and [SC](terminology.html#sc) version must match those installed on the host system
 
 ## Common Cases
 
 ### Partition displayed under `Flashable partition running on FPGA` and `Flashable partitions installed in system` are identical.
 
-When the platform has been installed correctly, the partition and [SC](terminology.md#sc) version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt examine -r platform` command.  An example output is shown below.
+When the platform has been installed correctly, the partition and [SC](terminology.html#sc) version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt examine -r platform` command.  An example output is shown below.
 
  ```
  ------------------------------------------------------
@@ -66,7 +66,7 @@ Next step:
 - - -
 ### xbmgmt examine -r platform returns `bad magic number` error
 
-If xbmgmt examine -r platform command returns `bad magic number` error as in the example below, there is a chance of a communication break between [XRT](terminology.md#xrt) and the [CMC](terminology.md#cmc).  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
+If xbmgmt examine -r platform command returns `bad magic number` error as in the example below, there is a chance of a communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
 
  ```
  read reg ERROR
@@ -86,17 +86,17 @@ Next steps:
 - Cold boot the system
   - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 - - -
 ### XMC not loaded
 
-If `xbmgmt examine -r platform` command returns `XMC not loaded` error as shown below, there is communication break between [XRT](terminology.md#xrt) and the [CMC](terminology.md#cmc).
+If `xbmgmt examine -r platform` command returns `XMC not loaded` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
 ```
 ERROR: Failed to detect XMC, xmc.bin not loaded
@@ -114,12 +114,12 @@ Card [0000:d8:00.0]
 
 Next steps:
 
- - [Reload XRT Drivers](common-steps.md#unload-reload-xrt-drivers)
+ - [Reload XRT Drivers](common-steps.html#unload-reload-xrt-drivers)
  - If issue persists
-   - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
    - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbmgmt examine -r platform`
  - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
@@ -128,7 +128,7 @@ Next steps:
 
 ### XMC not ready
 
-If `xbmgmt examine -r platform` command returns `XMC not ready` error as shown below, there is communication break between [XRT](terminology.md#xrt) and the [CMC](terminology.md#cmc).
+If `xbmgmt examine -r platform` command returns `XMC not ready` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
  ```
  ERROR: XMC is not ready: 0x3
@@ -150,10 +150,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
@@ -162,7 +162,7 @@ Next steps:
 
 ### SC is not ready
 
-If `xbmgmt examine -r platform` command returns `SC is not ready ` error as shown below, there is communication break between the [SC](terminology.md#sc) and the [CMC](terminology.md#cmc).
+If `xbmgmt examine -r platform` command returns `SC is not ready ` error as shown below, there is communication break between the [SC](terminology.html#sc) and the [CMC](terminology.html#cmc).
 
  ```
  ERROR: SC is not ready: 0x0
@@ -177,17 +177,17 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
 ### SC only displays two digits
-If xbmgmt examine -r platform command returns different number of digits of between the [SC](terminology.md#sc) versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between [XRT](terminology.md#xrt) and the [CMC](terminology.md#cmc).
+If xbmgmt examine -r platform command returns different number of digits of between the [SC](terminology.html#sc) versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
  ```
 ------------------------------------------------------
@@ -224,7 +224,7 @@ WARNING  : SC image on the device is not up-to-date.
  ```
 
 Next steps:
-- [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+- [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
 - Perform `xbmgmt examine -r platform`
 - Flash the satellite controller with the version installed on the system: `xbmgmt program --base --device <management BDF>`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
@@ -234,7 +234,7 @@ Next steps:
 
 ### SC versions do not match
 
-If `xbmgmt examine -r platform` command returns different [SC](terminology.md#sc) version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
+If `xbmgmt examine -r platform` command returns different [SC](terminology.html#sc) version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
 
 ```
 ------------------------------------------------------
@@ -273,7 +273,7 @@ WARNING  : SC image on the device is not up-to-date.
 
 Next steps:
 - Flash the satellite controller with the version installed on the system: `xbmgmt program --base --device <management BDF>`
-- See [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
+- See [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
 - - -
 
@@ -310,7 +310,7 @@ WARNING  : Device is not up-to-date.
  ```
 
 Next step:
--  Go to [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
+-  Go to [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
 - - -
 
@@ -352,12 +352,12 @@ WARNING  : No shell is installed on the system.
 ```
 
 Next step:
-- Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.md#flash-the-card-with-a-deployment-platform)
+- Follow the steps to install the platform on the host in section [flashing the card with a deployment platform](common-steps.html#flash-the-card-with-a-deployment-platform)
 
 - - -
 ### No cards found
 
-If `xbmgmt examine -r platform` command returns `0 devices found` as shown below, the OS or [XRT](terminology.md#xrt) is unable to find the card.
+If `xbmgmt examine -r platform` command returns `0 devices found` as shown below, the OS or [XRT](terminology.html#xrt) is unable to find the card.
 
   ```
  Devices present
@@ -373,7 +373,7 @@ Next steps:
 - - -
 ### Voltage or temperature reports zero
 
-If `xbutil examine -r thermal electrical -d <user BDF>` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between the [XRT](terminology.md#xrt)/[CMC](terminology.md#cmc)/[SC](terminology.md#sc) components.
+If `xbutil examine -r thermal electrical -d <user BDF>` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between the [XRT](terminology.html#xrt)/[CMC](terminology.html#cmc)/[SC](terminology.html#sc) components.
 
 ```
 Temperature(C)
@@ -428,10 +428,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If issue persists
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
   - Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbutil examine -r thermal electrical -d <user BDF>`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
@@ -449,10 +449,10 @@ Next steps:
 - Cold boot the system
 - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Pull power](terminology.md#shutdown-and-unplug-pull-power) to the system
+  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
   - Perform `xbmgmt examine -r platform`
 - If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.md#platform-re-install)
+  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
   - Perform `xbmgmt examine -r platform`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 - - -

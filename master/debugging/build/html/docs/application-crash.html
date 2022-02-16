@@ -369,7 +369,7 @@ function OptanonWrapper() { }
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
 <p>Techniques to help you determine if an application crash is caused by hardware or software. Hardware crashes can be caused by an issue in the system hardware, operating the card out of spec, or a bug in the application. This page covers the common cases to determine whether the host and card hardware are operating as expected. Common hardware causes for an application crash are:</p>
 <ul class="simple">
-<li><p>Insufficient power delivered to card - leading to card brown out or <a class="reference external" href="terminology.md#sc">SC</a> initiated shutdown</p></li>
+<li><p>Insufficient power delivered to card - leading to card brown out or <a class="reference external" href="terminology.html#sc">SC</a> initiated shutdown</p></li>
 <li><p>Insufficient cooling - leading to a card overheat or SC initiated shutdown</p></li>
 <li><p>Kernel using more power than the card can provide</p></li>
 </ul>
@@ -380,7 +380,7 @@ function OptanonWrapper() { }
 <p>To narrow this down, you can look at hardware causes for a crash by:</p>
 <ul class="simple">
 <li><p>Running a known good <a class="reference internal" href="power-delivery.html"><span class="doc">Power delivery test</span></a> to confirm hardware can pass a stress test.</p></li>
-<li><p>Ensure the card is running within limits by running your application + kernel while <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitoring power and temperature</a>.</p></li>
+<li><p>Ensure the card is running within limits by running your application + kernel while <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitoring power and temperature</a>.</p></li>
 </ul>
 <p>If the card passes the stress test, and is operating in power and thermal limits, you are likely to be chasing a software issue covered in more detail in the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>
 </div>
@@ -412,15 +412,15 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="ensure-application-is-running-in-the-power-envelope">
 <h3>Ensure application is running in the power envelope<a class="headerlink" href="#ensure-application-is-running-in-the-power-envelope" title="Permalink to this headline">¶</a></h3>
-<p>During operation the <a class="reference external" href="terminology.md#sc">SC</a> is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:</p>
+<p>During operation the <a class="reference external" href="terminology.html#sc">SC</a> is monitoring power and thermal conditions. If the card conditions start to encroach on the limits, the SC can:</p>
 <ul class="simple">
 <li><p>Shut down the kernel - if the card starts to exceed limits</p></li>
 <li><p>Reset the card - if the card hits a fatal limit</p></li>
 </ul>
 <p>Checking for this will require you to monitor the card while running your application with a work load that will stress the card hardware.</p>
 <ul class="simple">
-<li><p>Use <a class="reference external" href="scripts/loop_examine.sh">the script</a> in <a class="reference external" href="common-steps.md#monitor-card-power-and-temperature">monitor the power rails and temperature</a> to make sure the card runs within limits</p></li>
-<li><p>Inspect <a class="reference external" href="common-steps.md#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">system logs</a> for over temperature and power events.</p></li>
+<li><p>Use <a class="reference external" href="scripts/loop_examine.sh">the script</a> in <a class="reference external" href="common-steps.html#monitor-card-power-and-temperature">monitor the power rails and temperature</a> to make sure the card runs within limits</p></li>
+<li><p>Inspect <a class="reference external" href="common-steps.html#use-system-logs-to-see-if-the-card-exceeded-power-or-thermal-limits">system logs</a> for over temperature and power events.</p></li>
 </ul>
 <p>Keep in mind that temperature events can take time to occur because the card and heat sinks have some thermal mass. Electical loads can ramp up quickly and can happen on application start up.</p>
 <p>If the power testing is good, this crash is a software application issue. Go to the <a class="reference external" href="https://www.xilinx.com/cgi-bin/docs/rdoc?t=vitis+doc%3Bv=latest%3Bd=debuggingapplicationskernels.html">Application debugging chapter of UG 1416</a>.</p>

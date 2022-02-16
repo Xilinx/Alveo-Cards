@@ -367,7 +367,7 @@ function OptanonWrapper() { }
  </tr>
 </table><div class="section" id="xrt-troubleshooting">
 <h1>XRT Troubleshooting<a class="headerlink" href="#xrt-troubleshooting" title="Permalink to this headline">¶</a></h1>
-<p>The Xilinx Runtime library <a class="reference external" href="terminology.md#xrt">(XRT)</a> is an open-source easy to use software stack that facilitates management and usage of Alveo accelerator cards. Users use familiar programming languages like C/C++ or Python to write host code which uses XRT to interact with the FPGA on the Alveo card. For more information on XRT, please go to the <a class="reference external" href="https://xilinx.github.io/XRT/master/html/index.html">XRT Github page</a>. If you are just starting to debug, please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine if this is the best page for your purposes.</p>
+<p>The Xilinx Runtime library <a class="reference external" href="terminology.html#xrt">(XRT)</a> is an open-source easy to use software stack that facilitates management and usage of Alveo accelerator cards. Users use familiar programming languages like C/C++ or Python to write host code which uses XRT to interact with the FPGA on the Alveo card. For more information on XRT, please go to the <a class="reference external" href="https://xilinx.github.io/XRT/master/html/index.html">XRT Github page</a>. If you are just starting to debug, please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine if this is the best page for your purposes.</p>
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
 <p>This page covers issues users have reported when using XRT. If your issue is not covered, please post on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a>.</p>
@@ -376,7 +376,7 @@ function OptanonWrapper() { }
 <h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
-<li><p>Have <a class="reference external" href="common-steps.md#root-sudo-access">root/sudo permissions</a></p></li>
+<li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Confirm System Compatibility</span></a></p></li>
 </ul>
 </div>
@@ -385,7 +385,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="driver-build-succeeds">
 <h3>Driver build succeeds<a class="headerlink" href="#driver-build-succeeds" title="Permalink to this headline">¶</a></h3>
-<p>During <a class="reference external" href="terminology.md#xrt">XRT</a> package installation, the XRT drivers are compiled and added to the linux kernel.  Look for messages that the drivers are built and registered with the linux kernel.</p>
+<p>During <a class="reference external" href="terminology.html#xrt">XRT</a> package installation, the XRT drivers are compiled and added to the linux kernel.  Look for messages that the drivers are built and registered with the linux kernel.</p>
 <p>The following example is the expected output for a successful installation:
 <br></p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Building</span> <span class="n">initial</span> <span class="n">module</span> <span class="k">for</span> <span class="mf">4.18.0</span><span class="o">-</span><span class="mf">240.</span><span class="n">el8</span><span class="o">.</span><span class="n">x86_64</span>
@@ -418,7 +418,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="install-hits-an-issue-while-apt-yum-are-running">
 <h3>Install hits an issue while apt/yum are running<a class="headerlink" href="#install-hits-an-issue-while-apt-yum-are-running" title="Permalink to this headline">¶</a></h3>
-<p>If there are one or more error messages while apt or yum are running the install of <a class="reference external" href="terminology.md#xrt">XRT</a> or the installation fails without an error message, there is an issue with the package manager.</p>
+<p>If there are one or more error messages while apt or yum are running the install of <a class="reference external" href="terminology.html#xrt">XRT</a> or the installation fails without an error message, there is an issue with the package manager.</p>
 <p>Next step:</p>
 <ul class="simple">
 <li><p>Go to <a class="reference internal" href="package-manager.html"><span class="doc">Package manager</span></a></p>
@@ -431,7 +431,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xdma-driver-on-the-system">
 <h3>xdma driver on the system<a class="headerlink" href="#xdma-driver-on-the-system" title="Permalink to this headline">¶</a></h3>
-<p>If the xdma driver is installed and talking to the Alveo card this prevents <a class="reference external" href="terminology.md#xrt">XRT</a> from talking to the card. This can be confirmed either with the  <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xdma</span></code> command showing the xdma driver running or <code class="docutils literal notranslate"><span class="pre">lspci</span></code> showing the xdma driver attached to the card. Examples of the output with each command are shown below.</p>
+<p>If the xdma driver is installed and talking to the Alveo card this prevents <a class="reference external" href="terminology.html#xrt">XRT</a> from talking to the card. This can be confirmed either with the  <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xdma</span></code> command showing the xdma driver running or <code class="docutils literal notranslate"><span class="pre">lspci</span></code> showing the xdma driver attached to the card. Examples of the output with each command are shown below.</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span></code> would show</p></li>
 </ul>
@@ -466,7 +466,7 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xrt-reports-unknown-driver-version">
 <h3>XRT reports unknown driver version<a class="headerlink" href="#xrt-reports-unknown-driver-version" title="Permalink to this headline">¶</a></h3>
-<p>If <a class="reference external" href="terminology.md#xrt">XRT</a> shows that <code class="docutils literal notranslate"><span class="pre">XOCL:</span> <span class="pre">unknown</span></code> or <code class="docutils literal notranslate"><span class="pre">XCLMGMT:</span> <span class="pre">unknown</span></code>, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> below:</p>
+<p>If <a class="reference external" href="terminology.html#xrt">XRT</a> shows that <code class="docutils literal notranslate"><span class="pre">XOCL:</span> <span class="pre">unknown</span></code> or <code class="docutils literal notranslate"><span class="pre">XCLMGMT:</span> <span class="pre">unknown</span></code>, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="o">--</span><span class="n">version</span>
 <span class="n">Version</span>              <span class="p">:</span> <span class="mf">2.12.385</span>
 <span class="n">Branch</span>               <span class="p">:</span> <span class="n">master</span>
@@ -484,14 +484,14 @@ function OptanonWrapper() { }
 <li><p><code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xclmgmt</span></code></p></li>
 </ul>
 </li>
-<li><p>If both drivers are present <a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Reload the XRT drivers</a></p></li>
+<li><p>If both drivers are present <a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Reload the XRT drivers</a></p></li>
 <li><p>If a driver is missing go to <a class="reference external" href="#drivers-not-installed-into-kernel">Driver not installed into Kernel</a> (below)</p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="drivers-not-installed-into-kernel">
 <h3>Drivers not installed into kernel<a class="headerlink" href="#drivers-not-installed-into-kernel" title="Permalink to this headline">¶</a></h3>
-<p>If the <a class="reference external" href="terminology.md#xrt">XRT</a> drivers aren’t visible on <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> with the <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xocl</span></code> and <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xclmgmt</span></code> commands, there was an issue with the installation. During XRT package installation, the XRT drivers are compiled and added to the linux kernel. Review the installation messages in the console for messages like those below:</p>
+<p>If the <a class="reference external" href="terminology.html#xrt">XRT</a> drivers aren’t visible on <code class="docutils literal notranslate"><span class="pre">lsmod</span></code> with the <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xocl</span></code> and <code class="docutils literal notranslate"><span class="pre">lsmod</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">xclmgmt</span></code> commands, there was an issue with the installation. During XRT package installation, the XRT drivers are compiled and added to the linux kernel. Review the installation messages in the console for messages like those below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">DKMS</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">install</span> <span class="n">XRT</span> <span class="n">drivers</span><span class="o">.</span>
 </pre></div>
 </div>
@@ -520,11 +520,11 @@ Complete!
 <ul class="simple">
 <li><p>Confirm the XRT version is supported by this OS release</p>
 <ul>
-<li><p><a class="reference external" href="common-steps.md#determine-linux-release">Determine the linux release</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#determine-linux-kernel-and-header-information">Determine kernel headers</a> match the release, and are installed correctly</p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-linux-release">Determine the linux release</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#determine-linux-kernel-and-header-information">Determine kernel headers</a> match the release, and are installed correctly</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
 <li><p>Download the latest XRT from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Re-install XRT</p>
 <ul>
@@ -588,25 +588,25 @@ Complete!
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>If card was last used in a Vivado flow, XRT will not be able to communicate to the card. Revert the card to the golden image using <a class="reference external" href="https://www.xilinx.com/support/answers/71757.html">AR 71757</a>.</p></li>
-<li><p>If card wasn’t used in Vivado flow, <a class="reference external" href="common-steps.md#remove-xrt">Remove XRT</a></p></li>
+<li><p>If card wasn’t used in Vivado flow, <a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
 <li><p>Download the latest XRT from the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo.html">Alveo landing page</a></p></li>
 <li><p>Re-install XRT</p></li>
 <li><p>Install the desired deployment platform</p>
 <ul>
-<li><p>Use the <a class="reference external" href="common-steps.md#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to ensure the platform and XRT are compatible</p></li>
+<li><p>Use the <a class="reference external" href="common-steps.html#confirm-xrt-platform-compatibility">Confirm XRT/Platform compatibility</a> to ensure the platform and XRT are compatible</p></li>
 </ul>
 </li>
-<li><p><a class="reference external" href="common-steps.md#display-card-and-host-platform-and-sc-versions">Determine platform on card and system</a></p></li>
-<li><p>If the card does not have the desired platform <a class="reference external" href="common-steps.md#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#display-card-and-host-platform-and-sc-versions">Determine platform on card and system</a></p></li>
+<li><p>If the card does not have the desired platform <a class="reference external" href="common-steps.html#flash-the-card-with-a-deployment-platform">Flash the card with the deployment platform</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
 <div class="section" id="nothing-else-has-worked">
 <h3>Nothing else has worked<a class="headerlink" href="#nothing-else-has-worked" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="common-steps.md#unload-reload-xrt-drivers">Unload and reload the XRT drivers</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#unload-reload-xrt-drivers">Unload and reload the XRT drivers</a></p></li>
 <li><p>Look for similar issues on <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
-<li><p><a class="reference external" href="common-steps.md#log-machine-state">Log machine state</a> and post on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
+<li><p><a class="reference external" href="common-steps.html#log-machine-state">Log machine state</a> and post on the <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Xilinx forums</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />

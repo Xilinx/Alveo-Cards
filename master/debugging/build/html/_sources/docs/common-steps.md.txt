@@ -234,7 +234,7 @@ The green circles show a slot that supports Gen3 x16 cards. The red circles show
 
 - - -
 ### Disable fastboot
-Use this if the [system recognizes the card](card-not-recognized.md#confirm-system-recognizes-cards) only after a warm boot
+Use this if the [system recognizes the card](card-not-recognized.html#confirm-system-recognizes-cards) only after a warm boot
 
 - Boot the system into the BIOS setup menu
     - F12 on many machines
@@ -363,7 +363,7 @@ WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 xrt/now 2.11.634 amd64 [installed,local]
 ```
 
-Use [the XRT release table](common-steps.md#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
+Use [the XRT release table](common-steps.html#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
 
 #### RHEL/CentOS
 
@@ -422,7 +422,7 @@ Order matters for both of these commands. xocl depends on xclmgmt.
 
 Removing XRT will also remove the deployment and development platforms.  If you plan to re-install XRT, get a  snapshot of XRT, platform, and xbtest packages installed on the system.
 
-Before removing XRT, run `sudo xbmgmt examine -r platform` and if any cards have a shell on them, [return each card to golden](common-steps.md#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
+Before removing XRT, run `sudo xbmgmt examine -r platform` and if any cards have a shell on them, [return each card to golden](common-steps.html#reverting-the-card-to-factory-image). This is necessary because not all XRT versions work with all platforms. All XRT versions work with a card that has been factory reset. Performing this step makes future card installs easier.
 
 Once each card is returned to golden, use the package manager to remove the current XRT package using the following command.  Note, the package manager will also remove the dependent packages.
 
@@ -449,14 +449,14 @@ Available XRT releases along with download links are given in the table below.
 |2021.1_pu1 <br> XRT 2.11.634 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb)</li>
 |2021.2 <br> XRT 2.12.427 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb)</li>
 
-If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations).
+If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.html#xrt-release-versions-and-download-locations).
 - - -
 
 ## Card Steps
 Provides various techniques for debugging Alveo cards.
 
 ### Displaying Card BDF Values
-Each Alveo card is assigned both a management and an user [BDF](terminology.md#bdf) (Bus:Device:Function).   For a given card, the management and user BDF values differ only by the Function digit.
+Each Alveo card is assigned both a management and an user [BDF](terminology.html#bdf) (Bus:Device:Function).   For a given card, the management and user BDF values differ only by the Function digit.
 
 To obtain the management and user BDF values for installed cards, use the following commands.  It requires XRT to be installed.
 
@@ -494,7 +494,7 @@ Alveo card BDF values can also be displayed using the `lspci` Linux command:
 
 `sudo lspci -vd 10ee:`
 
-See [Card Not Recognized](card-not-recognized.md#card-not-recognized) for lspci field details.
+See [Card Not Recognized](card-not-recognized.html#card-not-recognized) for lspci field details.
 
 In a multi card system you may need to cross reference `lspci` output and `xbmgmt examine --verbose` output to determine if there is a card missing.
 
@@ -553,7 +553,7 @@ To confirm they match, visually compare the 'Platform' and 'SC Version' entries 
 
 In the above example, the Platform (xilinx_u50_gen3x16_xdma_201920_3) and SC version (5.2.6) displayed under `Flashable partitions running on FPGA` and `Flashable partitions installed in system` both match.  If they don't match, follow the steps in the card's installation guide to install the deployment software.
 
-If the platform under `Flashable partitions running on FPGA` has the word `golden` in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card's installation guide.  See [Reverting the card to factory image](common-steps.md#reverting-the-card-to-factory-image) for details on the factory image.
+If the platform under `Flashable partitions running on FPGA` has the word `golden` in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card's installation guide.  See [Reverting the card to factory image](common-steps.html#reverting-the-card-to-factory-image) for details on the factory image.
 
 Finally, if there is a platform displayed under `Flashable partition running on FPGA` but none under `Flashable partitions installed in system`, as shown in the example below, the deployment platform will first need to be installed on the system in order to run applications on the card.  Follow the steps in the card's installation guide to install the deployment software.
 
@@ -833,7 +833,7 @@ Level 3 : 0x80004(RECS_CONTINUOUS_RTRANSFERS_MAX_WAIT|RECS_WRITE_TO_BVALID_MAX_W
 Error occurred on: Wed 2020-08-19 13:59:13 MDT
 ```
 
-To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.md#monitor-card-power-and-temperature) section.
+To actively monitor the card's power and temperature during runtime, use the script provided in the [monitoring power and temperature](common-steps.html#monitor-card-power-and-temperature) section.
 
 - - -
 ### Reverting the card to factory image
