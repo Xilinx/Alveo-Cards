@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,7 +21,12 @@
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
 
-	
+	<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="37701bd4-e5c0-4ee3-9329-e7475d0b13a7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
 		<!-- Google Tag Manager -->
 	<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -54,10 +58,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -69,8 +72,6 @@
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -247,39 +248,39 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+              <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">DMTF support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">I2C/SMBus Implementation and Protocol Recap</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<p class="caption"><span class="caption-text">References</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
 </ul>
@@ -353,63 +354,62 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="i2c-smbus-implementation-and-protocol-recap">
+  <div class="section" id="i2c-smbus-implementation-and-protocol-recap">
 <h1>I2C/SMBus Implementation and Protocol Recap<a class="headerlink" href="#i2c-smbus-implementation-and-protocol-recap" title="Permalink to this headline">¶</a></h1>
-<p>The latest sensor information is stored locally in the SC FW and is exposed on-demand to server BMC via the OOB channel
-I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification compliant.</p>
-<p><em>Figure:</em> <strong>SMBus Packet</strong></p>
+<p>Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at I2C slave address 0x65 (0xCA in 8-bit). The implementation is SMBus v2.0 Specification compliant. This chapter captures some of the frequently used SMBus commands between SC and Server BMC. Note that all the standard SMBus commands between SC and Server BMC are implemented without PEC.</p>
+<p><strong>NOTE:</strong> For detailed SMBus spec, refer <a class="reference external" href="http://smbus.org/specs/smbus20.pdf">System Management Bus Specification - version 2.0</a></p>
+<p><strong>Figure: SMBus Packet</strong></p>
 <img alt="_images/SMBus_Sample_Packet.png" class="align-center" src="_images/SMBus_Sample_Packet.png" />
-<p><em>Table:</em> <strong>SMBus Packet diagram element Key</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Key</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
+<p><strong>Table: SMBus Packet diagram element Key</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Key</strong></th>
+<th class="head"><strong>Description</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>S</p></td>
-<td><p>Start condition</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>S</td>
+<td>Start condition</td>
 </tr>
-<tr class="row-odd"><td><p>Sr</p></td>
-<td><p>Repeated start condition</p></td>
+<tr class="row-odd"><td>Sr</td>
+<td>Repeated start condition</td>
 </tr>
-<tr class="row-even"><td><p>R</p></td>
-<td><p>Read (bit value of 1)</p></td>
+<tr class="row-even"><td>R</td>
+<td>Read (bit value of 1)</td>
 </tr>
-<tr class="row-odd"><td><p>W</p></td>
-<td><p>Write (bite value of 0)</p></td>
+<tr class="row-odd"><td>W</td>
+<td>Write (bite value of 0)</td>
 </tr>
-<tr class="row-even"><td><p>x</p></td>
-<td><p>When shown under a field, indicates that the field is required to have the value of x.</p></td>
+<tr class="row-even"><td>A</td>
+<td>ACK</td>
 </tr>
-<tr class="row-odd"><td><p>A</p></td>
-<td><p>Acknowledge (this bit position may be 0 for an ACK or 1 for a NACK)</p></td>
+<tr class="row-odd"><td>N</td>
+<td>NACK</td>
 </tr>
-<tr class="row-even"><td><p>P</p></td>
-<td><p>Stop condition</p></td>
+<tr class="row-even"><td>P</td>
+<td>Stop condition</td>
 </tr>
-<tr class="row-odd"><td><p>PEC</p></td>
-<td><p>Packet error code</p></td>
+<tr class="row-odd"><td>□</td>
+<td>Master-to-slave</td>
 </tr>
-<tr class="row-even"><td><p>□</p></td>
-<td><p>Master-to-slave</p></td>
+<tr class="row-even"><td>■</td>
+<td>Slave-to-master</td>
 </tr>
-<tr class="row-odd"><td><p>■</p></td>
-<td><p>Slave-to-master</p></td>
+<tr class="row-odd"><td>PEC</td>
+<td>Packet error code</td>
 </tr>
-<tr class="row-even"><td><p>…</p></td>
-<td><p>Continuation of protocol</p></td>
+<tr class="row-even"><td>…</td>
+<td>Continuation of protocol</td>
 </tr>
 </tbody>
 </table>
-<p><em>Read-Byte</em></p>
-<img alt="_images/SMBus_Read_Byte.png" class="align-center" src="_images/SMBus_Read_Byte.png" />
-<p><em>Read-Word</em></p>
-<img alt="_images/SMBus_Read_Word.png" class="align-center" src="_images/SMBus_Read_Word.png" />
-<p><em>Block-Read</em></p>
-<img alt="_images/SMBus_Block_Read.png" class="align-center" src="_images/SMBus_Block_Read.png" />
-<p><em>Block-Write Block-Read</em></p>
-<img alt="_images/SMBus_Block_Write_Block_Read.png" class="align-center" src="_images/SMBus_Block_Write_Block_Read.png" />
+<p><strong>Figure: SMBus Commands</strong></p>
+<img alt="_images/SMBus_Commands_Figure1.png" class="align-center" src="_images/SMBus_Commands_Figure1.png" />
+<img alt="_images/SMBus_Commands_Figure2.png" class="align-center" src="_images/SMBus_Commands_Figure2.png" />
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
@@ -420,7 +420,7 @@ I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></section>
+<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
 
 
            </div>
@@ -451,7 +451,7 @@ I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on February 17, 2022.
       </span>
 
     </p>

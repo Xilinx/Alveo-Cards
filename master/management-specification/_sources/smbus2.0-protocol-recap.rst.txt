@@ -1,16 +1,17 @@
 I2C/SMBus Implementation and Protocol Recap
 -------------------------------------------
 
-The latest sensor information is stored locally in the SC FW and is exposed on-demand to server BMC via the OOB channel
-I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification compliant.
+Xilinx® Alveo™ cards support OoB communication via Standard I2C/SMBus commands at I2C slave address 0x65 (0xCA in 8-bit). The implementation is SMBus v2.0 Specification compliant. This chapter captures some of the frequently used SMBus commands between SC and Server BMC. Note that all the standard SMBus commands between SC and Server BMC are implemented without PEC. 
 
-*Figure:* **SMBus Packet**
+**NOTE:** For detailed SMBus spec, refer `System Management Bus Specification - version 2.0 <http://smbus.org/specs/smbus20.pdf>`_ 
+
+**Figure: SMBus Packet**
 
 .. image:: ./images/SMBus_Sample_Packet.png
    :align: center
 
 
-*Table:* **SMBus Packet diagram element Key**
+**Table: SMBus Packet diagram element Key**
 
 +-------------------+----------------------------------------------------------------------------------------------+
 |     **Key**       |     **Description**                                                                          |
@@ -23,40 +24,29 @@ I2C/SMBus, at slave address 0x65. The implementation is SMBus v2.0 Specification
 +-------------------+----------------------------------------------------------------------------------------------+
 |     W             |     Write (bite value of 0)                                                                  |
 +-------------------+----------------------------------------------------------------------------------------------+
-|     x             |     When shown under a field, indicates that the field is required to have the value of x.   |
+|     A             |     ACK                                                                                      |
 +-------------------+----------------------------------------------------------------------------------------------+
-|     A             |     Acknowledge (this bit position may be 0 for an ACK or 1 for a NACK)                      |
+|     N             |     NACK                                                                                     |
 +-------------------+----------------------------------------------------------------------------------------------+
 |     P             |     Stop condition                                                                           |
-+-------------------+----------------------------------------------------------------------------------------------+
-|     PEC           |     Packet error code                                                                        |
 +-------------------+----------------------------------------------------------------------------------------------+
 |     □             |     Master-to-slave                                                                          |
 +-------------------+----------------------------------------------------------------------------------------------+
 |     ■             |     Slave-to-master                                                                          |
 +-------------------+----------------------------------------------------------------------------------------------+
+|     PEC           |     Packet error code                                                                        |
++-------------------+----------------------------------------------------------------------------------------------+
 |     ...           |     Continuation of protocol                                                                 |
 +-------------------+----------------------------------------------------------------------------------------------+
 
-*Read-Byte*
+**Figure: SMBus Commands**
 
-.. image:: ./images/SMBus_Read_Byte.png
+.. image:: ./images/SMBus_Commands_Figure1.png
    :align: center
 
-*Read-Word*
-
-.. image:: ./images/SMBus_Read_Word.png
+.. image:: ./images/SMBus_Commands_Figure2.png
    :align: center
 
-*Block-Read*
-
-.. image:: ./images/SMBus_Block_Read.png
-   :align: center
-
-*Block-Write Block-Read*
-
-.. image:: ./images/SMBus_Block_Write_Block_Read.png
-   :align: center
 
 **Xilinx Support**
 

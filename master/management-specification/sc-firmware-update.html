@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,7 +21,12 @@
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
 
-	
+	<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="37701bd4-e5c0-4ee3-9329-e7475d0b13a7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
 		<!-- Google Tag Manager -->
 	<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -54,10 +58,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -69,8 +72,6 @@
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -247,53 +248,58 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+              <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Satellite Controller Firmware Update Commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-satellite-controller-firmware">GET_SC_STATUS (Satellite Controller Firmware)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#enable-bsl-mode">ENABLE_BSL_MODE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x31-get-sc-status-sc-firmware">0x31 - GET_SC_STATUS (SC firmware)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x32-enable-bsl-mode">0x32 - ENABLE_BSL_MODE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bsl-communication">BSL Communication</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#get-sc-status-bsl">GET_SC_STATUS (BSL)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-password">BSL_RX_PASSWORD</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-erase-sc-fw">BSL_ERASE_SC_FW</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-rx-data-block">BSL_RX_DATA_BLOCK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-crc-check">BSL_CRC_CHECK</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#bsl-load-pc">BSL_LOAD_PC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x31-get-sc-status-bsl">0x31 - GET_SC_STATUS (BSL)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x21-bsl-rx-password">0x21 - BSL_RX_PASSWORD</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x15-bsl-erase-sc-fw">0x15 - BSL_ERASE_SC_FW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x20-bsl-rx-data-block">0x20 - BSL_RX_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x26-bsl-crc-check">0x26 - BSL_CRC_CHECK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x27-bsl-load-pc">0x27 - BSL_LOAD_PC</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#sample-bsl-commands">Sample BSL Commands</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OOB SC FW Upgrade</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OoB SC FW Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">Timing Diagram: Interrupted Flow of the OoB SC FW Upgrade</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sc-flash-write-and-read-back-commands">SC flash write and read-back Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x34-get-sc-flash-write-status">0x34 - GET_SC_FLASH_WRITE_STATUS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x35-get-sc-write-sector-range">0x35 - GET_SC_WRITE_SECTOR_RANGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x36-sc-flash-write-data-block">0x36 - SC_FLASH_WRITE_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x37-sc-flash-read-data-block">0x37 - SC_FLASH_READ_DATA_BLOCK</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">DMTF support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<p class="caption"><span class="caption-text">References</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
 </ul>
@@ -367,1105 +373,1484 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="satellite-controller-firmware-update-commands">
+  <div class="section" id="satellite-controller-firmware-update-commands">
 <h1>Satellite Controller Firmware Update Commands<a class="headerlink" href="#satellite-controller-firmware-update-commands" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>The satellite controller supports an alternative out-of-band method
-of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW
-update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC
-is expected to initiate the FW upgrade process by sending I2C
-commands to the SC FW. After the initial handshake with the SC FW,
-the server BMC will need to communicate with the MSP432 boot loader
-(BSL) to transfer the FW into MSP Flash and complete the upgrade
-process.</p>
-<p><strong>*Note*:</strong> Currently, the SC FW upgrades are always force upgrades,
-there is no version check currently in place. The old FW file will
-be overwritten by the new FW. Server BMC is expected to check and
-decide if the SC FW upgrade is needed.</p>
-<p>The following table lists the commands supported/needed for the FW
-upgrade.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BMC to BSL Commands</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>SI NO</strong></p></th>
-<th class="head"><p><strong>Command Code</strong></p></th>
-<th class="head"><p><strong>Command Name</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
+<p>In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method
+of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW.
+After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.</p>
+<p><strong>Note:</strong> Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.</p>
+<p>The following table lists the commands supported/needed for the FW upgrade.</p>
+<p><strong>Table: BMC to SC Commands</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
+<th class="head"><strong>Command Name</strong></th>
+<th class="head"><strong>Description</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>0x04</p></td>
-<td><p>GET_SC_FW_VER</p></td>
-<td><p>Get SC FW version (xx.yy.zz format)</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x04</td>
+<td>GET_SC_FW_VER</td>
+<td>Get SC FW version (xx.yy.zz format)</td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p>0x31</p></td>
-<td><p>GET_SC_STATUS</p></td>
-<td><p>Returns status about what is running in MSP, FW, or BSL.</p></td>
+<tr class="row-odd"><td>0x31</td>
+<td>GET_SC_STATUS</td>
+<td>Returns status about what is running in MSP, FW, or BSL.</td>
 </tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>0x32</p></td>
-<td><p>ENABLE_BSL_MODE</p></td>
-<td><p>OOB command to reboot the SC and invoke BSL.</p></td>
+<tr class="row-even"><td>0x32</td>
+<td>ENABLE_BSL_MODE</td>
+<td>OoB command to reboot the SC and invoke BSL.</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>SMC to BSL Commands</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>SI NO</strong></p></th>
-<th class="head"><p><strong>Command Code</strong></p></th>
-<th class="head"><p><strong>Command Name</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
+<p><strong>Table: BMC to BSL Commands</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="24%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
+<th class="head"><strong>Command Name</strong></th>
+<th class="head"><strong>Description</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>0x31</p></td>
-<td><p>GET_SC_STATUS</p></td>
-<td><p>Returns status weather SC is in SC FW mode or BSL mode</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x31</td>
+<td>GET_SC_STATUS</td>
+<td>Returns status weather SC is in SC FW mode or BSL mode</td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p>0x21</p></td>
-<td><p>BSL_RX_PASSWORD</p></td>
-<td><p>Sends 56 bytes password to unlock the BSL</p></td>
+<tr class="row-odd"><td>0x21</td>
+<td>BSL_RX_PASSWORD</td>
+<td>Sends 56 bytes password to unlock the BSL</td>
 </tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>0x15</p></td>
-<td><p>BSL_ERASE_SC_FW</p></td>
-<td><p>BSL erases old SC FW</p></td>
+<tr class="row-even"><td>0x15</td>
+<td>BSL_ERASE_SC_FW</td>
+<td>BSL erases old SC FW</td>
 </tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td><p>0x20</p></td>
-<td><p>BSL_RX_DATA_BLOCK</p></td>
-<td><p>Sends 32-bit data block to write (256 bytes max)</p></td>
+<tr class="row-odd"><td>0x20</td>
+<td>BSL_RX_DATA_BLOCK</td>
+<td>Sends 32-bit data block to write (256 bytes max)</td>
 </tr>
-<tr class="row-even"><td><p>5</p></td>
-<td><p>0x26</p></td>
-<td><p>BSL_CRC_CHECK</p></td>
-<td><p>Ask BSL to perform CRC check for validation</p></td>
+<tr class="row-even"><td>0x26</td>
+<td>BSL_CRC_CHECK</td>
+<td>Ask BSL to perform CRC check for validation</td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>0x27</p></td>
-<td><p>BSL_LOAD_PC</p></td>
-<td><p>Jump to the SC’s application FW , after FW upgrade</p></td>
+<tr class="row-odd"><td>0x27</td>
+<td>BSL_LOAD_PC</td>
+<td>Jump to the SC’s application FW , after FW upgrade</td>
 </tr>
 </tbody>
 </table>
-<section id="get-sc-status-satellite-controller-firmware">
-<h2>GET_SC_STATUS (Satellite Controller Firmware)<a class="headerlink" href="#get-sc-status-satellite-controller-firmware" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The GET_SC_STATUS command serves as the status command, revealing
+<p><strong>Table: SC flash write and read-back Commands</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="33%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
+<th class="head"><strong>Command Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x34</td>
+<td>GET_SC_FLASH_WRITE_STATUS</td>
+<td>SC sends the status for SC sector writes</td>
+</tr>
+<tr class="row-odd"><td>0x35</td>
+<td>GET_SC_WRITE_SECTOR_RANGE</td>
+<td>SC sends the SC flash sector range for writes</td>
+</tr>
+<tr class="row-even"><td>0x36</td>
+<td>SC_FLASH_WRITE_DATA_BLOCK</td>
+<td>BMC sends payload for writes into SC sectors</td>
+</tr>
+<tr class="row-odd"><td>0x37</td>
+<td>SC_FLASH_READ_DATA_BLOCK</td>
+<td>SC sends entire SC flash data to BMC</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="x31-get-sc-status-sc-firmware">
+<h2>0x31 - GET_SC_STATUS (SC firmware)<a class="headerlink" href="#x31-get-sc-status-sc-firmware" title="Permalink to this headline">¶</a></h2>
+<p>The GET_SC_STATUS command serves as the status command, revealing
 if the MSP432 processor is running in the application code (SC FW)
 or in BSL mode. Upon receiving this command, the SC FW responds with
 0x02 in Byte 0.</p>
-<p><strong>*Note*:</strong> The same command is supported by BSL. BSL will respond
+<p><strong>Note:</strong> The same command is supported by BSL. BSL will respond
 saying <em>‘am in BSL mode’</em>.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>GET_SC_STATUS Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: GET_SC_STATUS Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x31</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x31</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>N/A</p></td>
+<tr class="row-odd"><td>Data bytes</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>GET_SC_STATUS Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: GET_SC_STATUS Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="33%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte 0</p></td>
-<td><p>0x02</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>Byte 0</td>
+<td>0x02</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>Byte 1</p></td>
-<td><p>N/A</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Byte 1</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="enable-bsl-mode">
-<h2>ENABLE_BSL_MODE<a class="headerlink" href="#enable-bsl-mode" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>Upon receiving the ENABLE_BSL_MODE command, the SC FW configures
+</div>
+<div class="section" id="x32-enable-bsl-mode">
+<h2>0x32 - ENABLE_BSL_MODE<a class="headerlink" href="#x32-enable-bsl-mode" title="Permalink to this headline">¶</a></h2>
+<p>Upon receiving the ENABLE_BSL_MODE command, the SC FW configures
 FW update mode in the BSL and reboots itself. The next boot up takes
 the control to BSL mode. Absence of this step results in normal
 reboots, where the application code/FW will boot-up instead of
 staying in BSL to enable the FW update process.</p>
-<p><strong>*Note*:</strong> For this command, the SC FW will not be able to respond
+<p><strong>Note:</strong> For this command, the SC FW will not be able to respond
 to the BMC with success or failure before rebooting itself.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>ENABLE_BSL_MODE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: ENABLE_BSL_MODE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x32</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x32</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>N/A</p></td>
+<tr class="row-odd"><td>Data bytes</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>ENABLE_BSL_MODE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: ENABLE_BSL_MODE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="33%" />
+<col width="29%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>N/A</p></td>
-<td><p>N/A</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>N/A</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="bsl-communication">
+</div>
+<div class="section" id="bsl-communication">
 <h2>BSL Communication<a class="headerlink" href="#bsl-communication" title="Permalink to this headline">¶</a></h2>
-<p><strong>IMPORTANT!</strong> The following is a recommendation from TI. Refer to TI’s MSP432P4xx <a class="reference external" href="http://www.ti.com/lit/ug/slau622i/slau622i.pdf">SimpleLink Microcontrollers Bootloader user guide</a> (BSL)for more information.</p>
-<blockquote>
-<div><p>The I2C protocol used by the BSL is defined as:</p>
-</div></blockquote>
+<p><strong>IMPORTANT!</strong> The following is a recommendation from TI. Refer to TI’s MSP432P4xx <a class="reference external" href="https://www.ti.com/lit/ug/slau622j/slau622j.pdf">SimpleLink Microcontrollers Bootloader user guide</a> (BSL)for more information.</p>
+<p>The I2C protocol used by the BSL is defined as:</p>
 <ul class="simple">
-<li><p>The master must request data from the BSL slave.</p></li>
-<li><p>7-bit addressing mode is used. By default, the slave listens to
-address 0x65 (0xCA 8-bit).</p></li>
-<li><p>In addition to the I2C protocol-based hardware ACK, handshake for
+<li>The master must request data from the BSL slave.</li>
+<li>7-bit addressing mode is used. By default, the slave listens to
+address 0x65 (0xCA 8-bit).</li>
+<li>In addition to the I2C protocol-based hardware ACK, handshake for
 commands is performed by an acknowledged character in the BSL core
 response format, as specified in the I2C BSL response table of
-<a class="reference external" href="http://www.ti.com/lit/ug/slau622i/slau622i.pdf">MSP432P4xx SimpleLink Microcontrollers Bootloader
-(BSL)</a>.</p></li>
-<li><p>Repeated starts are not required by the BSL, but can be used.</p></li>
-<li><p>TI recommends waiting 1.2 ms after sending a command to the BSL and
+<a class="reference external" href="https://www.ti.com/lit/ug/slau622j/slau622j.pdf">MSP432P4xx SimpleLink Microcontrollers Bootloader
+(BSL)</a>.</li>
+<li>Repeated starts are not required by the BSL, but can be used.</li>
+<li>TI recommends waiting 1.2 ms after sending a command to the BSL and
 receiving the response. TI also recommends waiting 1.2 ms before
-sending the next command after a response was received.</p></li>
-<li><p>The I2C BSL interface supports a maximum clock speed of 400 kHz.</p></li>
+sending the next command after a response was received.</li>
+<li>The I2C BSL interface supports a maximum clock speed of 400 kHz.</li>
 </ul>
 <p><strong>CRC Calculation</strong></p>
-<blockquote>
-<div><p>For the purposes of CRC calculation in the BSL, the MSP432 device
+<p>For the purposes of CRC calculation in the BSL, the MSP432 device
 performs a 16-bit CRC check using the CRC16-CCITT standard. This CRC
 signature is based on the polynomial given in the CRC16-CCITT with
 the following function:</p>
 <p><em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
-</div></blockquote>
 <p><strong>CRC Checksum Low, CRC Checksum High</strong></p>
-<blockquote>
-<div><p>The checksum is computed on bytes in the BSL core command section
+<p>The checksum is computed on bytes in the BSL core command section
 only. The BSL uses CRC16-CCITT for the checksum and computes it
 using the MSP432 CRC module. CRC bytes (CKL, CKH) are mandatory for
 all commands. The ACK, header, and length bytes must be ignored.</p>
-</div></blockquote>
 <p><strong>Length Low Byte, Length High Byte</strong></p>
-<blockquote>
-<div><p>Length low byte, length high byte is the number of bytes in the BSL
+<p>Length low byte, length high byte is the number of bytes in the BSL
 core data packet, broken into high and low bytes. The number of
 bytes must include only core data packets, as detailed below, and
 does not include the length bytes and checksum bytes.</p>
-</div></blockquote>
-<ul>
-<li><p>Command code</p></li>
-<li><p>All address bytes (if applicable)</p></li>
-<li><p>All data bytes (if applicable)</p>
-<blockquote>
-<div><p><strong>Note:</strong> All commands with prefix BSL_ are core commands
-supported by BSL. The request and response bytes are pre-defined by
-TI.</p>
-</div></blockquote>
-</li>
+<ul class="simple">
+<li>Command code</li>
+<li>All address bytes (if applicable)</li>
+<li>All data bytes (if applicable)</li>
 </ul>
-</section>
-<section id="get-sc-status-bsl">
-<h2>GET_SC_STATUS (BSL)<a class="headerlink" href="#get-sc-status-bsl" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The GET_SC_STATUS command serves as a status command telling
+<p><strong>Note:</strong> All commands with prefix BSL_ are core commands supported by BSL. The request and response bytes are pre-defined by TI.</p>
+</div>
+<div class="section" id="x31-get-sc-status-bsl">
+<h2>0x31 - GET_SC_STATUS (BSL)<a class="headerlink" href="#x31-get-sc-status-bsl" title="Permalink to this headline">¶</a></h2>
+<p>The GET_SC_STATUS command serves as a status command telling
 whether the MSP432 processor is running the application code (SC FW)
 or in BSL mode. Upon receiving this command, BSL responds with 0x01
 in byte 0 MSP BSL mode. Byte 1 serves as status byte.</p>
 <p><strong>Note:</strong> The same command is supported by the SC application FW,
 where the SC responds with SC FW mode.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>GET_SC_STATUS (BSL) Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: GET_SC_STATUS (BSL) Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="68%" />
+<col width="32%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x31</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x31</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>N/A</p></td>
+<tr class="row-odd"><td>Data bytes</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>GET_SC_STATUS (BSL) Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: GET_SC_STATUS (BSL) Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="26%" />
+<col width="50%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte 0</p></td>
-<td><p>0x01</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>Byte 0</td>
+<td>0x01</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>Byte 1 (status)</p></td>
-<td><p>0x00: BSL_OK</p>
+<tr class="row-odd"><td>&#160;</td>
+<td>Byte 1 (status)</td>
+<td><p class="first">0x00: BSL_OK</p>
 <p>0x01: BSL_CRC_CHECK_FAIL</p>
 <p>0x02: BSL_PARTIAL_FW_UPGRADE</p>
-<p>0x03: BSL_FLASH_WRITE_ERROR</p>
+<p class="last">0x03: BSL_FLASH_WRITE_ERROR</p>
 </td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="bsl-rx-password">
-<h2>BSL_RX_PASSWORD<a class="headerlink" href="#bsl-rx-password" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BSL core receives the password contained in the packet and
+</div>
+<div class="section" id="x21-bsl-rx-password">
+<h2>0x21 - BSL_RX_PASSWORD<a class="headerlink" href="#x21-bsl-rx-password" title="Permalink to this headline">¶</a></h2>
+<p>The BSL core receives the password contained in the packet and
 unlocks the BSL protected commands if the password matches the 56
 bytes in the BSL. When an incorrect password is given, BSL responds
 with <em>Password Error</em> and subsequent commands sent to the BSL result
 in no-operation.</p>
-<blockquote>
-<div><p><strong>Note:</strong> Contact Xilinx® for the password information.</p>
-</div></blockquote>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_RX_PASSWORD Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Note:</strong> Contact Xilinx® for the password information.</p>
+<p><strong>Table: BSL_RX_PASSWORD Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="37%" />
+<col width="63%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Header</p></td>
-<td><p>0x80</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-odd"><td><p>Length (low byte)</p></td>
-<td><p>0x39</p></td>
+<tr class="row-odd"><td>Length (low byte)</td>
+<td>0x39</td>
 </tr>
-<tr class="row-even"><td><p>Length (high byte)</p></td>
-<td><p>0x00</p></td>
+<tr class="row-even"><td>Length (high byte)</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td><p>Command code</p></td>
-<td><p>0x21</p></td>
+<tr class="row-odd"><td>Command code</td>
+<td>0x21</td>
 </tr>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>D1…D56</p>
-<p>D1-D56–Xilinx Password D57–D256–0xFF</p>
+<tr class="row-even"><td>Data bytes</td>
+<td><p class="first">D1…D56</p>
+<p class="last">D1-D56–Xilinx Password D57–D256–0xFF</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_RX_PASSWORD Xilinx Alveo Card (BSL) Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+<p><strong>Table: BSL_RX_PASSWORD Xilinx Alveo Card (BSL) Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card (BSL) Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
-<td><p>B0: ACK</p></td>
-<td><p>0x00</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes B0 … B7</td>
+<td>B0: ACK</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B1: Header</p></td>
-<td><p>0x80</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1: Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B2: Length</p></td>
-<td><p>0x02</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B2: Length</td>
+<td>0x02</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B3: Length</p></td>
-<td><p>0x00</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3: Length</td>
+<td>0x00</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B4: CMD</p></td>
-<td><p>0x3B</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B4: CMD</td>
+<td>0x3B</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B5: Message</p></td>
-<td><p>0x00 – Operation successful</p>
+<tr class="row-odd"><td>&#160;</td>
+<td>B5: Message</td>
+<td><p class="first">0x00 – Operation successful</p>
 <p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
 <p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
-<p>0x07– Unknown Command</p>
+<p class="last">0x07– Unknown Command</p>
 </td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B6: CKL</p></td>
-<td><p>0x60</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B6: CKL</td>
+<td>0x60</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B7: CKH</p></td>
-<td><p>0xC4</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B7: CKH</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_RX_PASSWORD BSL Command Response for a Successful Password</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>ACK</p></th>
-<th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>MSG</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p><strong>Table: BSL_RX_PASSWORD BSL Command Response for a Successful Password</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="14%" />
+<col width="14%" />
+<col width="14%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ACK</th>
+<th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">MSG</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x80</p></td>
-<td><p>0x02</p></td>
-<td><p>0x00</p></td>
-<td><p>0x3B</p></td>
-<td><p>0x00</p></td>
-<td><p>0x60</p></td>
-<td><p>0xC4</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x00</td>
+<td>0x80</td>
+<td>0x02</td>
+<td>0x00</td>
+<td>0x3B</td>
+<td>0x00</td>
+<td>0x60</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_RX_PASSWORD Command Example</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>D1</p></th>
-<th class="head"><p>D2</p></th>
-<th class="head"><p>D3</p></th>
-<th class="head"><p>D4</p></th>
-<th class="head"><p>D5</p></th>
-<th class="head"><p>D6</p></th>
+<p><strong>Table: BSL_RX_PASSWORD Command Example</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="10%" />
+<col width="10%" />
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">D1</th>
+<th class="head">D2</th>
+<th class="head">D3</th>
+<th class="head">D4</th>
+<th class="head">D5</th>
+<th class="head">D6</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x80</p></td>
-<td><p>0x01</p></td>
-<td><p>0x01</p></td>
-<td><p>0x21</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x80</td>
+<td>0x01</td>
+<td>0x01</td>
+<td>0x21</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
 </tr>
 </tbody>
 </table>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>D7</p></th>
-<th class="head"><p>/././.</p></th>
-<th class="head"><p>D251</p></th>
-<th class="head"><p>D252</p></th>
-<th class="head"><p>D253</p></th>
-<th class="head"><p>D254</p></th>
-<th class="head"><p>D255</p></th>
-<th class="head"><p>D256</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="11%" />
+<col width="11%" />
+<col width="11%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="11%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">D7</th>
+<th class="head">/././.</th>
+<th class="head">D251</th>
+<th class="head">D252</th>
+<th class="head">D253</th>
+<th class="head">D254</th>
+<th class="head">D255</th>
+<th class="head">D256</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xFF</p></td>
-<td><p>0xAD</p></td>
-<td><p>0x08</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xFF</td>
+<td>0xAD</td>
+<td>0x08</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="bsl-erase-sc-fw">
-<h2>BSL_ERASE_SC_FW<a class="headerlink" href="#bsl-erase-sc-fw" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="x15-bsl-erase-sc-fw">
+<h2>0x15 - BSL_ERASE_SC_FW<a class="headerlink" href="#x15-bsl-erase-sc-fw" title="Permalink to this headline">¶</a></h2>
 <p>The BSL_ERASE_SC_FW command erases the entire SC FW code in the MSP432 MCU flash. Other flash sectors will not be erased. This function does not erase RAM.</p>
-<blockquote>
-<div><p><strong>*Note*:</strong> Allow at least 1 second for the erase operation to
+<p><strong>Note:</strong> Allow at least 1 second for the erase operation to
 complete before proceeding with next set of commands.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: BSL_ERASE_SC_FW Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="67%" />
+<col width="33%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Header</p></td>
-<td><p>0x80</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-odd"><td><p>Length (low byte)</p></td>
-<td><p>0x01</p></td>
+<tr class="row-odd"><td>Length (low byte)</td>
+<td>0x01</td>
 </tr>
-<tr class="row-even"><td><p>Length (high byte)</p></td>
-<td><p>0x00</p></td>
+<tr class="row-even"><td>Length (high byte)</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td><p>Command code</p></td>
-<td><p>0x15</p></td>
+<tr class="row-odd"><td>Command code</td>
+<td>0x15</td>
 </tr>
-<tr class="row-even"><td><p>CKL</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>CKL</td>
+<td>TBD</td>
 </tr>
-<tr class="row-odd"><td><p>CKH</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>CKH</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Xilinx Alveo Card (BSL) Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+<p><strong>Table: BSL_ERASE_SC_FW Xilinx Alveo Card (BSL) Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card (BSL) Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
-<td><p>B0: ACK</p></td>
-<td><p>0x00</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes B0 … B7</td>
+<td>B0: ACK</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B1: Header</p></td>
-<td><p>0x80</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1: Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B2: Length</p></td>
-<td><p>0x02</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B2: Length</td>
+<td>0x02</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B3: Length</p></td>
-<td><p>0x00</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3: Length</td>
+<td>0x00</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B4: CMD</p></td>
-<td><p>0x3B</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B4: CMD</td>
+<td>0x3B</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B5: Message</p></td>
-<td><p>0x00 – Operation successful</p>
+<tr class="row-odd"><td>&#160;</td>
+<td>B5: Message</td>
+<td><p class="first">0x00 – Operation successful</p>
 <p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
 <p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
-<p>0x07– Unknown Command</p>
+<p class="last">0x07– Unknown Command</p>
 </td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B6: CKL</p></td>
-<td><p>0x60</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B6: CKL</td>
+<td>0x60</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B7: CKH</p></td>
-<td><p>0xC4</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B7: CKH</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Command Example</strong></p>
-<p><em>Table:</em> <strong>BSL_ERASE_SC_FW Initiate Erase</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p><strong>Table: BSL_ERASE_SC_FW Initiate Erase</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="18%" />
+<col width="18%" />
+<col width="16%" />
+<col width="16%" />
+<col width="16%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x80</p></td>
-<td><p>0x01</p></td>
-<td><p>0x00</p></td>
-<td><p>0x15</p></td>
-<td><p>0x64</p></td>
-<td><p>0xA3</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x80</td>
+<td>0x01</td>
+<td>0x00</td>
+<td>0x15</td>
+<td>0x64</td>
+<td>0xA3</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_ERASE_SC_FW BSL Response (Successful Operation)</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>ACK</p></th>
-<th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>MSG</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p><strong>Table: BSL_ERASE_SC_FW BSL Response (Successful Operation)</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="14%" />
+<col width="14%" />
+<col width="10%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ACK</th>
+<th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">MSG</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x80</p></td>
-<td><p>0x02</p></td>
-<td><p>0x00</p></td>
-<td><p>0x3B</p></td>
-<td><p>0x00</p></td>
-<td><p>0x60</p></td>
-<td><p>0xC4</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x00</td>
+<td>0x80</td>
+<td>0x02</td>
+<td>0x00</td>
+<td>0x3B</td>
+<td>0x00</td>
+<td>0x60</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="bsl-rx-data-block">
-<h2>BSL_RX_DATA_BLOCK<a class="headerlink" href="#bsl-rx-data-block" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
+</div>
+<div class="section" id="x20-bsl-rx-data-block">
+<h2>0x20 - BSL_RX_DATA_BLOCK<a class="headerlink" href="#x20-bsl-rx-data-block" title="Permalink to this headline">¶</a></h2>
+<p>The BSL core writes bytes data byte 1 (D1)–data byte n (Dn) starting
 from the location specified in the address fields. The
 BSL_RX_DATA_BLOCK command allows the BSL to address the device
 with the full 32-bit range.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: BSL_RX_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="61%" />
+<col width="39%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Header</p></td>
-<td><p>0x80</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-odd"><td><p>Length (low byte)</p></td>
-<td><p>0x05</p></td>
+<tr class="row-odd"><td>Length (low byte)</td>
+<td>0x05</td>
 </tr>
-<tr class="row-even"><td><p>Length (high byte)</p></td>
-<td><p>0x01</p></td>
+<tr class="row-even"><td>Length (high byte)</td>
+<td>0x01</td>
 </tr>
-<tr class="row-odd"><td><p>Command code</p></td>
-<td><p>0x20</p></td>
+<tr class="row-odd"><td>Command code</td>
+<td>0x20</td>
+</tr>
+<tr class="row-even"><td>Address bytes</td>
+<td>A0, A1, A2, A3</td>
+</tr>
+<tr class="row-odd"><td>Data bytes</td>
+<td>D1, D2 … D256</td>
+</tr>
+<tr class="row-even"><td>CKL</td>
+<td>TBD</td>
+</tr>
+<tr class="row-odd"><td>CKH</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Server BMC Request</strong> <em>(cont’d)</em></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: BSL_RX_DATA_BLOCK Xilinx Alveo Card (BSL) Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="15%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card (BSL) Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Address bytes</p></td>
-<td><p>A0, A1, A2, A3</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes B0 … B7</td>
+<td>B0: ACK</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>D1 … D256</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1: Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-even"><td><p>CKL</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B2: Length</td>
+<td>0x02</td>
 </tr>
-<tr class="row-odd"><td><p>CKH</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3: Length</td>
+<td>0x00</td>
 </tr>
-</tbody>
-</table>
-<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK Xilinx Alveo Card (BSL) Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+<tr class="row-even"><td>&#160;</td>
+<td>B4: CMD</td>
+<td>0x3B</td>
 </tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes B0 … B7</p></td>
-<td><p>B0: ACK</p></td>
-<td><p>0x00</p></td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p>B1: Header</p></td>
-<td><p>0x80</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p>B2: Length</p></td>
-<td><p>0x02</p></td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p>B3: Length</p></td>
-<td><p>0x00</p></td>
-</tr>
-<tr class="row-even"><td></td>
-<td><p>B4: CMD</p></td>
-<td><p>0x3B</p></td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p>B5: Message</p></td>
-<td><p>0x00 – Operation successful</p>
+<tr class="row-odd"><td>&#160;</td>
+<td>B5: Message</td>
+<td><p class="first">0x00 – Operation successful</p>
 <p>0x04– BSL locked. Password incorrect resulted in BSL locking</p>
 <p>0x05– BSL password error. Incorrect password sent to unlock BSL</p>
-<p>0x07– Unknown Command</p>
+<p class="last">0x07– Unknown Command</p>
 </td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B6: CKL</p></td>
-<td><p>0x60</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B6: CKL</td>
+<td>0x60</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B7: CKH</p></td>
-<td><p>0xC4</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B7: CKH</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
 <p>BSL_RX_DATA_BLOCK Command Example</p>
-<p><em>Table:</em> <strong>Write Data</strong> 0x76543210 <strong>to Address</strong> 0x0001:0000</p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>A0</p></th>
-<th class="head"><p>A1</p></th>
-<th class="head"><p>A2</p></th>
-<th class="head"><p>A3</p></th>
-<th class="head"><p>D1</p></th>
-<th class="head"><p>D2</p></th>
-<th class="head"><p>D3</p></th>
-<th class="head"><p>D4</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p><strong>Table: Write Data</strong> 0x76543210 <strong>to Address</strong> 0x0001:0000</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="10%" />
+<col width="10%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="6%" />
+<col width="7%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">A0</th>
+<th class="head">A1</th>
+<th class="head">A2</th>
+<th class="head">A3</th>
+<th class="head">D1</th>
+<th class="head">D2</th>
+<th class="head">D3</th>
+<th class="head">D4</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x80</p></td>
-<td><p>0x09</p></td>
-<td><p>0x00</p></td>
-<td><p>0x20</p></td>
-<td><p>0x00</p></td>
-<td><p>0x00</p></td>
-<td><p>0x01</p></td>
-<td><p>0x00</p></td>
-<td><p>0x10</p></td>
-<td><p>0x32</p></td>
-<td><p>0x54</p></td>
-<td><p>0x76</p></td>
-<td><p>0x66</p></td>
-<td><p>0x96</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x80</td>
+<td>0x09</td>
+<td>0x00</td>
+<td>0x20</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x01</td>
+<td>0x00</td>
+<td>0x10</td>
+<td>0x32</td>
+<td>0x54</td>
+<td>0x76</td>
+<td>0x66</td>
+<td>0x96</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_RX_DATA_BLOCK BSL Response for a Successful Data Write</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>ACK</p></th>
-<th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>MSG</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p><strong>Table: BSL_RX_DATA_BLOCK BSL Response for a Successful Data Write</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="9%" />
+<col width="15%" />
+<col width="15%" />
+<col width="15%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ACK</th>
+<th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">MSG</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x80</p></td>
-<td><p>0x02</p></td>
-<td><p>0x00</p></td>
-<td><p>0x3B</p></td>
-<td><p>0x00</p></td>
-<td><p>0x60</p></td>
-<td><p>0xC4</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x00</td>
+<td>0x80</td>
+<td>0x02</td>
+<td>0x00</td>
+<td>0x3B</td>
+<td>0x00</td>
+<td>0x60</td>
+<td>0xC4</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p><strong>*Note*:</strong> The BMC will need to parse through the SC FW file to
+<p><strong>Note:</strong> The BMC will need to parse through the SC FW file to
 identify the start location for each segment. To be specific, search
 for ‘&#64;’ and use the following 4-byte address to frame and send the
 address bytes: A0, A1, A2, and A3 (LSB first).</p>
-<blockquote>
-<div><p><em>Figure:</em> <strong>Linux grep Command</strong></p>
-</div></blockquote>
-</div></blockquote>
+<p><strong>Figure: Linux grep Command</strong></p>
 <img alt="_images/sc-segments.png" class="align-center" src="_images/sc-segments.png" />
 <p>There are 4 segments in the following example:</p>
 <ul class="simple">
-<li><p>&#64;200– Segment starting at (0x00000200 A0 = 0x00; A1 = 0x02; A2 =
-0x00; A3 = 0x00)</p></li>
-<li><p>&#64;1f780– Segment starting at 0x0001F780 (A0 = 0x80; A1 = 0xF7; A2 =
-0x01; A3 = 0x00)</p></li>
-<li><p>&#64;20e58– Segment starting at 0x00020E58 (A0 = 0x58; A1 = 0x0E; A2 =
-0x02; A3 = 0x00)</p></li>
-<li><p>&#64;0000– Segment starting at 0x00000000 (A0 = 0x00; A1 = 0x00; A2 =
-0x00; A3 = 0x00)</p></li>
+<li>&#64;200– Segment starting at (0x00000200 A0 = 0x00; A1 = 0x02; A2 =
+0x00; A3 = 0x00)</li>
+<li>&#64;1f780– Segment starting at 0x0001F780 (A0 = 0x80; A1 = 0xF7; A2 =
+0x01; A3 = 0x00)</li>
+<li>&#64;20e58– Segment starting at 0x00020E58 (A0 = 0x58; A1 = 0x0E; A2 =
+0x02; A3 = 0x00)</li>
+<li>&#64;0000– Segment starting at 0x00000000 (A0 = 0x00; A1 = 0x00; A2 =
+0x00; A3 = 0x00)</li>
 </ul>
-<dl>
-<dt>.</dt><dd><p>This figure captures the linux grep command and response for the
+<p>This figure captures the linux grep command and response for the
 string ‘&#64;’ within the FW file.</p>
-<p><strong>*Note*:</strong> The string ‘&#64;’ represents the start of a new section in
+<p><strong>Note:</strong> The string ‘&#64;’ represents the start of a new section in
 the flash memory.</p>
 <p>Because the BSL_RX_DATA_BLOCK command’s maximum data size is 256
 bytes, the address needs to be incremented by 256 or 0x100.</p>
-</dd>
-</dl>
 <ul>
-<li><p>For the first packet in every segment, the BMC will send the 4-byte
+<li><p class="first">For the first packet in every segment, the BMC will send the 4-byte
 address as parsed above</p>
 <blockquote>
 <div><p>0x80 0x09 0x00 0x20 0x00 0x02 0x00 0x00 0x00 0x01 .. 0xFF 0x66 0x96.</p>
 </div></blockquote>
 </li>
-<li><p>For all subsequent packets, the BMC will increment the address by
+<li><p class="first">For all subsequent packets, the BMC will increment the address by
 0x100 while sending the commands 0x80 0x09 0x00 0x20 0x00 0x03 0x00
 0x00 0x00 0x01 .. 0xFF 0x66 0x96
-Header-Length-CMD-Address-Data-Checksum.</p></li>
+Header-Length-CMD-Address-Data-Checksum.</p>
+</li>
 </ul>
-</section>
-<section id="bsl-crc-check">
-<h2>BSL_CRC_CHECK<a class="headerlink" href="#bsl-crc-check" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>*Note*:</strong> The BSL_CRC_CHECK command is an optional command.</p>
-<p>The MSP432 device performs a 16-bit CRC check using the CCITT
-standard. The address given is the first byte of the CRC check; 2
-bytes are used for the length.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_CRC_CHECK Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+</div>
+<div class="section" id="x26-bsl-crc-check">
+<h2>0x26 - BSL_CRC_CHECK<a class="headerlink" href="#x26-bsl-crc-check" title="Permalink to this headline">¶</a></h2>
+<p><strong>Note:</strong> The BSL_CRC_CHECK command is an optional command.</p>
+<p>The MSP432 device performs a 16-bit CRC check using the CCITT standard. The address given is the first byte of the CRC check; 2 bytes are used for the length.</p>
+<p><strong>Table: BSL_CRC_CHECK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="52%" />
+<col width="48%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Header</p></td>
-<td><p>0x80</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-odd"><td><p>Length (low Byte)</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>Length (low Byte)</td>
+<td>TBD</td>
 </tr>
-<tr class="row-even"><td><p>Length (high Byte)</p></td>
-<td><p>0x00</p></td>
+<tr class="row-even"><td>Length (high Byte)</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td><p>Command code</p></td>
-<td><p>0x26</p></td>
+<tr class="row-odd"><td>Command code</td>
+<td>0x26</td>
 </tr>
-<tr class="row-even"><td><p>Address bytes</p></td>
-<td><p>A0, A1, A2, A3</p></td>
+<tr class="row-even"><td>Address bytes</td>
+<td>A0, A1, A2, A3</td>
 </tr>
-</tbody>
-</table>
-<p><em>Table:</em> <strong>BSL_CRC_CHECK Server BMC Request</strong> <em>(cont’d)</em></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>D1, D2</p>
-<p>D1: length (low byte) D2: length (high byte)</p>
+<tr class="row-odd"><td>Data bytes</td>
+<td><p class="first">D1: length (low byte)</p>
+<p class="last">D2: length (high byte)</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>CKL</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>CKL</td>
+<td>TBD</td>
 </tr>
-<tr class="row-even"><td><p>CKH</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>CKH</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_CRC_CHECK Xilinx Alveo Card (BSL) Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card (BSL) Response</strong></p></th>
+<p><strong>Table: BSL_CRC_CHECK Xilinx Alveo Card (BSL) Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="44%" />
+<col width="31%" />
+<col width="25%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card (BSL) Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes B0 … B8</p></td>
-<td><p>B0: ACK</p></td>
-<td><p>0x00</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes B0 … B8</td>
+<td>B0: ACK</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B1: Header</p></td>
-<td><p>0x80</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1: Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B2: Length</p></td>
-<td><p>0x02</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B2: Length</td>
+<td>0x02</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B3: Length</p></td>
-<td><p>0x00</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3: Length</td>
+<td>0x00</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B4: CMD</p></td>
-<td><p>0x3A</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B4: CMD</td>
+<td>0x3A</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B5: Data1</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B5: Data1</td>
+<td>TBD</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B6: Data2</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B6: Data2</td>
+<td>TBD</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>B7: CKL</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>B7: CKL</td>
+<td>TBD</td>
 </tr>
-<tr class="row-even"><td></td>
-<td><p>B8: CKH</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>&#160;</td>
+<td>B8: CKH</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
 <p>BSL_CRC_CHECK Command Example</p>
-<blockquote>
-<div><p>Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of
-1024 bytes of data).</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_CRC_CHECK Command Example</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>A0</p></th>
-<th class="head"><p>A1</p></th>
-<th class="head"><p>A2</p></th>
-<th class="head"><p>A3</p></th>
-<th class="head"><p>D1</p></th>
-<th class="head"><p>D2</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p>Perform a CRC check from address 0x0000:4400 to 0x0000:47FF (size of 1024 bytes of data).</p>
+<p><strong>Table: BSL_CRC_CHECK Command Example</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+<col width="8%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">A0</th>
+<th class="head">A1</th>
+<th class="head">A2</th>
+<th class="head">A3</th>
+<th class="head">D1</th>
+<th class="head">D2</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x80</p></td>
-<td><p>0x07</p></td>
-<td><p>0x00</p></td>
-<td><p>0x26</p></td>
-<td><p>0x00</p></td>
-<td><p>0x44</p></td>
-<td><p>0x00</p></td>
-<td><p>0x00</p></td>
-<td><p>0x00</p></td>
-<td><p>0x04</p></td>
-<td><p>0xF7</p></td>
-<td><p>0xE6</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x80</td>
+<td>0x07</td>
+<td>0x00</td>
+<td>0x26</td>
+<td>0x00</td>
+<td>0x44</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x04</td>
+<td>0xF7</td>
+<td>0xE6</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p>The BSL response where 0x55 is the low byte of the calculated
-checksum and 0xAA is the high byte of the calculated checksum:</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_CRC_CHECK Response for a Successful CRC Calculation</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>ACK</p></th>
-<th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>D1</p></th>
-<th class="head"><p>D2</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<p>The BSL response where 0x55 is the low byte of the calculated checksum and 0xAA is the high byte of the calculated checksum:</p>
+<p><strong>Table: BSL_CRC_CHECK Response for a Successful CRC Calculation</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="13%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+<col width="10%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">ACK</th>
+<th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">D1</th>
+<th class="head">D2</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x00</p></td>
-<td><p>0x80</p></td>
-<td><p>0x03</p></td>
-<td><p>0x00</p></td>
-<td><p>0x3A</p></td>
-<td><p>0x55</p></td>
-<td><p>0xAA</p></td>
-<td><p>0x12</p></td>
-<td><p>0x2B</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x00</td>
+<td>0x80</td>
+<td>0x03</td>
+<td>0x00</td>
+<td>0x3A</td>
+<td>0x55</td>
+<td>0xAA</td>
+<td>0x12</td>
+<td>0x2B</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p><strong>*Note*:</strong> As noted in the
+<p><strong>Note:</strong> As noted in the
 <a class="reference external" href="#bsl_rx_data_block">BSL_RX_DATA_BLOCK</a> command, BMC will need
 to parse through the SC FW file to identify the start address for
 each command.</p>
-</div></blockquote>
-</section>
-<section id="bsl-load-pc">
-<h2>BSL_LOAD_PC<a class="headerlink" href="#bsl-load-pc" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BSL_LOAD_PC command causes the BSL to jump and begin execution
+</div>
+<div class="section" id="x27-bsl-load-pc">
+<h2>0x27 - BSL_LOAD_PC<a class="headerlink" href="#x27-bsl-load-pc" title="Permalink to this headline">¶</a></h2>
+<p>The BSL_LOAD_PC command causes the BSL to jump and begin execution
 at the given address. The BSL responds with 0x00. In this case, the
 jump address is 0x0000:0201.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>BSL_LOAD_PC Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: BSL_LOAD_PC Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Header</p></td>
-<td><p>0x80</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Header</td>
+<td>0x80</td>
 </tr>
-<tr class="row-odd"><td><p>Length (low byte)</p></td>
-<td><p>0x05</p></td>
+<tr class="row-odd"><td>Length (low byte)</td>
+<td>0x05</td>
 </tr>
-<tr class="row-even"><td><p>Length (high byte)</p></td>
-<td><p>0x00</p></td>
+<tr class="row-even"><td>Length (high byte)</td>
+<td>0x00</td>
 </tr>
-<tr class="row-odd"><td><p>Command code</p></td>
-<td><p>0x27</p></td>
+<tr class="row-odd"><td>Command code</td>
+<td>0x27</td>
 </tr>
-<tr class="row-even"><td><p>Address bytes</p></td>
-<td><p>A0, A1, A2, A3 A0: 0x01 A1: 0x02 A2: 0x00 A3: 0x00</p></td>
+<tr class="row-even"><td>Address bytes</td>
+<td>A0, A1, A2, A3 A0: 0x01 A1: 0x02 A2: 0x00 A3: 0x00</td>
 </tr>
-<tr class="row-odd"><td><p>CKL</p></td>
-<td><p>TBD</p></td>
+<tr class="row-odd"><td>CKL</td>
+<td>TBD</td>
 </tr>
-<tr class="row-even"><td><p>CKH</p></td>
-<td><p>TBD</p></td>
+<tr class="row-even"><td>CKH</td>
+<td>TBD</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>BSL_LOAD_PC Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: BSL_LOAD_PC Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="30%" />
+<col width="43%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte 0</p></td>
-<td><p>0x00–Success</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>Byte 0</td>
+<td>0x00–Success</td>
 </tr>
 </tbody>
 </table>
 <p>Command Example</p>
-<blockquote>
-<div><p>The program counter is set to 0x0000:0201. The server BMC must send
+<p>The program counter is set to 0x0000:0201. The server BMC must send
 the address bytes as A0=0x01, A1=0x02, A2=0x00, and A3=0x00.</p>
-</div></blockquote>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p>Header</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>Length</p></th>
-<th class="head"><p>CMD</p></th>
-<th class="head"><p>A0</p></th>
-<th class="head"><p>A1</p></th>
-<th class="head"><p>A2</p></th>
-<th class="head"><p>A3</p></th>
-<th class="head"><p>CKL</p></th>
-<th class="head"><p>CKH</p></th>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="12%" />
+<col width="12%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+<col width="9%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Header</th>
+<th class="head">Length</th>
+<th class="head">Length</th>
+<th class="head">CMD</th>
+<th class="head">A0</th>
+<th class="head">A1</th>
+<th class="head">A2</th>
+<th class="head">A3</th>
+<th class="head">CKL</th>
+<th class="head">CKH</th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x80</p></td>
-<td><p>0x05</p></td>
-<td><p>0x00</p></td>
-<td><p>0x27</p></td>
-<td><p>0x01</p></td>
-<td><p>0x02</p></td>
-<td><p>0x00</p></td>
-<td><p>0x00</p></td>
-<td><p>0x8E</p></td>
-<td><p>0xBC</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x80</td>
+<td>0x05</td>
+<td>0x00</td>
+<td>0x27</td>
+<td>0x01</td>
+<td>0x02</td>
+<td>0x00</td>
+<td>0x00</td>
+<td>0x8E</td>
+<td>0xBC</td>
 </tr>
 </tbody>
 </table>
-<blockquote>
-<div><p>The BSL responds with 0x00.</p>
-<p><strong>*Note*:</strong> Functionality of the BSL core command has been modified
+<p>The BSL responds with 0x00.</p>
+<p><strong>Note:</strong> Functionality of the BSL core command has been modified
 to improve robustness around the SC FW upgrade process. When BMC
 issues this command to jump to SC application code, BSL checks the
 CRC of the entire SC FW image. If the CRC check is successful, BSL
 loads the new SC application code. If not, the MSP stays in BSL mode
 with the assumption that SC FW is corrupted/interrupted due to CRC
 failure.</p>
-</div></blockquote>
-</section>
-<section id="sample-bsl-commands">
+</div>
+<div class="section" id="sample-bsl-commands">
 <h2>Sample BSL Commands<a class="headerlink" href="#sample-bsl-commands" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The contents from the following table have been imported from
+<p>The contents from the following table have been imported from
 TotalPhase Aardvark I2C adapter.</p>
-</div></blockquote>
-<p><em>Figure:</em> <strong>I2C Transaction captured using I2C Aardvark Tool</strong></p>
+<p><strong>Figure: I2C Transaction captured using I2C Aardvark Tool</strong></p>
 <img alt="_images/aardvark_capture_SC_FW_update.PNG" class="align-center" src="_images/aardvark_capture_SC_FW_update.PNG" />
-</section>
-<section id="timing-diagram-normal-flow-of-oob-sc-fw-upgrade">
-<h2>Timing Diagram: Normal Flow of OOB SC FW Upgrade<a class="headerlink" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p>The BMC sends the 0x31 GET_SC_STATUS command to the SC, which
-responds with 0x02</p>
-<blockquote>
-<div><p>MSP SC FW mode.</p>
-</div></blockquote>
-</li>
-</ol>
+</div>
+<div class="section" id="timing-diagram-normal-flow-of-oob-sc-fw-upgrade">
+<h2>Timing Diagram: Normal Flow of OoB SC FW Upgrade<a class="headerlink" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic simple">
-<li><p>The BMC sends the 0x32 Enable_BSL_Mode command to the SC which
+<li>The BMC sends the 0x31 GET_SC_STATUS command to the SC, which responds with 0x02 - MSP SC FW mode.</li>
+<li>The BMC sends the 0x32 Enable_BSL_Mode command to the SC which
 configures the BSL parameters and reboots itself. The MSP enters BSL
-mode on the next boot up. No response is sent to BMC.</p></li>
-<li><p>The BMC waits 1 second and sends the 0x31 GET_SC_STATUS command to
-BSL and gets response 0x01 from the BSL MSP in BSL mode.</p></li>
-<li><p>The BMC unlocks the BSL by sending the password (0x21
-BSL_RX_PASSWORD) and the BSL sends the status in response.</p></li>
-<li><p>The BMC sends the 0x15 BSL_ERASE_SC_FW command to the BSL asking
+mode on the next boot up. No response is sent to BMC.</li>
+<li>The BMC waits 1 second and sends the 0x31 GET_SC_STATUS command to
+BSL and gets response 0x01 from the BSL MSP in BSL mode.</li>
+<li>The BMC unlocks the BSL by sending the password (0x21
+BSL_RX_PASSWORD) and the BSL sends the status in response.</li>
+<li>The BMC sends the 0x15 BSL_ERASE_SC_FW command to the BSL asking
 that the entire SC FW image to be erased. BSL erases the FW and sends
-the response back to BMC.</p></li>
-<li><p>The BMC sends the entire SC FW via repeated 0x20 BSL_RX_Data
+the response back to BMC.</li>
+<li>The BMC sends the entire SC FW via repeated 0x20 BSL_RX_Data
 command with the correct start address and BSL sends the status in
-response.</p></li>
-<li><p>The BMC (optionally) sends the 0x26 BSL_CRC_CHECK command with the
-correct start address and the BSL sends the status in response.</p></li>
-<li><p>The BMC sends the 0x27 BSL_Load_PC command and the BSL checks the
+response.</li>
+<li>The BMC (optionally) sends the 0x26 BSL_CRC_CHECK command with the
+correct start address and the BSL sends the status in response.</li>
+<li>The BMC sends the 0x27 BSL_Load_PC command and the BSL checks the
 CRC on the full FW. If CRC passes, the new SC FW loads. If not, it
 stays in BSL mode, enabling the BMC to restart the SC FW upgrade (see
-step 3).</p></li>
+step 3).</li>
 </ol>
 <p><em>Figure:</em> Timing Diagram: Normal flow of Out-of-Band SC FW Upgrade</p>
 <img alt="_images/sc-update-normal-flow.png" class="align-center" src="_images/sc-update-normal-flow.png" />
-</section>
-<section id="timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">
-<h2>Timing Diagram: Interrupted Flow of the OOB SC FW Upgrade<a class="headerlink" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
-<ol class="arabic">
-<li><p>If the SC FW upgrade is interrupted mid-way due to power cycle (i.e.,
+</div>
+<div class="section" id="timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade">
+<h2>Timing Diagram: Interrupted Flow of the OoB SC FW Upgrade<a class="headerlink" href="#timing-diagram-interrupted-flow-of-the-oob-sc-fw-upgrade" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>If the SC FW upgrade is interrupted mid-way due to power cycle (i.e.,
 BMC reboot, MSP reboot, etc.,) the BSL takes corrective action by
-prohibiting the partial/corrupt FW to boot.</p></li>
-<li><p>The BSL disables the SC FW application code and hangs in BSL, waiting
-for a new SC FW upgrade process by BMC.</p></li>
-<li><p>The BMC will need to retrigger the upgrade process from the start.
+prohibiting the partial/corrupt FW to boot.</li>
+<li>The BSL disables the SC FW application code and hangs in BSL, waiting
+for a new SC FW upgrade process by BMC.</li>
+<li>The BMC will need to re-trigger the upgrade process from the start.
 This is done by sending a 0x31 GET_SC_STATUS command to get the
-status and following <a class="reference external" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OOB SC FW
-Upgrade</a>.</p>
-<blockquote>
-<div><p><strong>*Note*:</strong> It is possible the I2C engine in the BSL can get stuck
+status and following <a class="reference external" href="#timing-diagram-normal-flow-of-oob-sc-fw-upgrade">Timing Diagram: Normal Flow of OoB SC FW
+Upgrade</a>.</li>
+</ol>
+<p><strong>Note:</strong> It is possible the I2C engine in the BSL can get stuck
 if the transaction got interrupted (as mentioned in step 1). Because
 the BSL does not have I2C recovery mechanisms, the only way to get
 back to BSL mode is to reboot the MSP. This can be only done by the
 AC power cycle of the server.</p>
-<p><em>Figure:</em> <strong>Interrupted flow of OOB SC FW Upgrade</strong></p>
-</div></blockquote>
-</li>
-</ol>
+<p><strong>Figure: Interrupted flow of OoB SC FW Upgrade</strong></p>
 <img alt="_images/sc-update-interrupted-flow.png" class="align-center" src="_images/sc-update-interrupted-flow.png" />
+</div>
+<div class="section" id="sc-flash-write-and-read-back-commands">
+<h2>SC flash write and read-back Commands<a class="headerlink" href="#sc-flash-write-and-read-back-commands" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="x34-get-sc-flash-write-status">
+<h2>0x34 - GET_SC_FLASH_WRITE_STATUS<a class="headerlink" href="#x34-get-sc-flash-write-status" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to get the status for the SC flash sector write operations.</p>
+<p><strong>Table: GET_SC_FLASH_WRITE_STATUS Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x34</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_FLASH_WRITE_STATUS Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="14%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p>0x03 - Operation in progress</p>
+<p>0x04 - Invalid input parameters</p>
+<p>0x05 - Device busy, recheck later</p>
+<p>0x06 - Invalid CRC (for I2C transaction)</p>
+<p>0x07 - Data sector overflow</p>
+<p>0x08 - SC flash write error</p>
+<p class="last">0x09 - Unwritable sector</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x35-get-sc-write-sector-range">
+<h2>0x35 - GET_SC_WRITE_SECTOR_RANGE<a class="headerlink" href="#x35-get-sc-write-sector-range" title="Permalink to this headline">¶</a></h2>
+<p>The BMC sends this command to get the valid SC flash sector range for the write operations. Based on the response code in Byte 0 and the sector range (B1 - B4), BMC can calculate the total number of bytes of writable data to be sent to SC flash. SC’s total flash size is 2 MB and there are 512 sectors (4 KB each) in total. BMC can write only in the writable sectors. Refer the table below for flash sector partition and valid writable sector range (156 - 511).</p>
+<p><strong>Note:</strong> BMC must send command 0x35 to get valid write sectors before sending the command 0x36 to transfer write data payload. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start &amp; end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed.</p>
+<p><strong>Table: SC flash sector partition information</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="37%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>SC flash sector range</strong></th>
+<th class="head"><strong>Usage</strong></th>
+<th class="head"><strong>Writable to BMC</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0 - 127</td>
+<td>SC firmware</td>
+<td>NO</td>
+</tr>
+<tr class="row-odd"><td>128 - 129</td>
+<td>Run-time config data</td>
+<td>NO</td>
+</tr>
+<tr class="row-even"><td>130 - 147</td>
+<td>BSL (Boot-loader) firmware</td>
+<td>NO</td>
+</tr>
+<tr class="row-odd"><td>148 - 155</td>
+<td>Run-time config data &amp; logs</td>
+<td>NO</td>
+</tr>
+<tr class="row-even"><td>156 - 511</td>
+<td>Unused</td>
+<td>YES</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_WRITE_SECTOR_RANGE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x35</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: GET_SC_WRITE_SECTOR_RANGE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="14%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p class="last">0x03 - Unwritable sector range</p>
+</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>B1</td>
+<td>Start sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>B2</td>
+<td>Start sector number (high byte)</td>
+</tr>
+<tr class="row-odd"><td>&#160;</td>
+<td>B3</td>
+<td>End sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>&#160;</td>
+<td>B4</td>
+<td>End sector number (high byte)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x36-sc-flash-write-data-block">
+<h2>0x36 - SC_FLASH_WRITE_DATA_BLOCK<a class="headerlink" href="#x36-sc-flash-write-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command iteratively to send payload to write into SC flash sectors. Upon receiving the write payload, SC automatically starts writing the data from the 1st available writable flash sector as informed via command 0x35. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+<em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
+<p>In case of CRC mismatch (return code 0x05), BMC must resend the transaction. And it is BMC’s responsibility to keep track of the total number of bytes written/sent. After the completion of each transaction, BMC must check the write status via command 0x34 and proceed to next transaction only if SC returns 0x01 as response. SC performs the flash write operation in the background and will not be able to handle parallel/multiple transactions.</p>
+<p><strong>Note:</strong> BMC must send command 0x35 to set valid write sectors before sending the command 0x36 to send write data. Additionally, if BMC resends the command 0x35 in the middle of the write data payload transfer, SC will reset the entire write flow (i.e.) the start &amp; end sectors. Optionally, BMC can also send the command 0x35 to reset the flow, in case it is needed.</p>
+<p><strong>Table: SC_FLASH_WRITE_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x36</td>
+</tr>
+<tr class="row-odd"><td>Data Bytes</td>
+<td>D1, D2, … D251</td>
+</tr>
+<tr class="row-even"><td>CKL</td>
+<td>CRC Low byte</td>
+</tr>
+<tr class="row-odd"><td>CKH</td>
+<td>CRC High byte</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SC_FLASH_WRITE_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="13%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01 - Operation success (No error)</p>
+<p>0x02 - Operation failed</p>
+<p>0x03 - Invalid CRC (for I2C transaction)</p>
+<p class="last">0x04 - Send command 0x35 first and retry 0x36</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x37-sc-flash-read-data-block">
+<h2>0x37 - SC_FLASH_READ_DATA_BLOCK<a class="headerlink" href="#x37-sc-flash-read-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command iteratively to read the data from entire SC flash. Each transaction is limited to 251 bytes to accommodate 2 bytes of CRC. BMC must use the CRC16-CCITT signature based on the polynomial function below:
+<em>f</em> (<em>x</em>) = <em>x</em><sup>16</sup> + <em>x</em><sup>12</sup> + <em>x</em><sup>5</sup> + 1</p>
+<p>At the end of each transaction, BMC must perform CRC check and then only proceed to read the next sector. In case of CRC mismatch, BMC must ask SC to resend the previous transaction. For the last transaction, SC may send a payload less than 251 bytes and it is BMC’s responsibility to keep track of the total number of bytes read.</p>
+<p><strong>Table: SC_FLASH_READ_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x37</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x00: Resend previous transaction</p>
+<p class="last">0x01: Send next transaction</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SC_FLASH_READ_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data Bytes</td>
+<td>D1, D2, … D251</td>
+</tr>
+<tr class="row-odd"><td>CKL</td>
+<td>CRC Low byte</td>
+</tr>
+<tr class="row-even"><td>CKH</td>
+<td>CRC High byte</td>
+</tr>
+</tbody>
+</table>
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
@@ -1476,8 +1861,8 @@ AC power cycle of the server.</p>
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></section>
-</section>
+<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+</div>
 
 
            </div>
@@ -1508,7 +1893,7 @@ AC power cycle of the server.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on February 17, 2022.
       </span>
 
     </p>

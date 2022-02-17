@@ -1,7 +1,7 @@
 DMTF Implementation
 -------------------
 
-    Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR). 
+Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is exposed on-demand to server BMC via PLDM Type-2 commands. Sensor information is stored and represented in the platform descriptor record (PDR). 
 	
 **PLDM Over MCTP Over SMBus Protocol**
 
@@ -26,7 +26,7 @@ For the purposes of SMBus address discovery (at default SMBus address 0xC2 (8-bi
 **MCTP control messages**
 The following MCTP control commands are supported in the SC:
 
-*Table:* **Supported MCTP control commands and description**
+**Table: Supported MCTP control commands and description**
 
 +--------------------------+--------+--------------------------------------------------------------------------------+
 |  **Command**             | **ID** | **Description**                                                                |
@@ -46,7 +46,7 @@ The following MCTP control commands are supported in the SC:
 
 The following PLDM commands are supported in the SC:
 
-*Table:* **Supported PLDM commands and description**
+**Table: Supported PLDM commands and description**
 
 +----------------------------+--------+----------------------------------------------------------------------------------+
 |  **Command**               | **ID** | **Description**                                                                  |
@@ -76,7 +76,7 @@ The following PLDM commands are supported in the SC:
 
 These PLDM commands are categorized into type 0 and type 2, as detailed in the following table.
 
-*Table:* **Supported Type 0 and Type 2 PLDM commands**
+**Table: Supported Type 0 and Type 2 PLDM commands**
 
 +----------------------------+----------------------------------+
 |  **PLDM Type 0 Commands**  |  **PLDM Type 2 Commands**        |
@@ -126,7 +126,7 @@ Terminus Locator PDR
 
 The terminus locator PDR provides information that associates a PLDM terminus handle with values that uniquely identify the device or software that contains the PLDM terminus. The fields populated in the terminus locator PDR are listed in the following table.
 
-*Table:* **Populated Terminus Locator Fields**
+**Table: Populated Terminus Locator Fields**
 
 +------------------------+-----------------+
 |     **Field**          |     **Value**   |
@@ -138,7 +138,7 @@ The terminus locator PDR provides information that associates a PLDM terminus ha
 | CONTAINER\_ID          |     0x7f7f      |
 +------------------------+-----------------+
 
-*Table:* **Populated Terminus Locator Fields** *(cont'd)*
+**Table: Populated Terminus Locator Fields** *(cont'd)*
 
 +------------------------------+-------------------------------------------------------+
 |     **Field**                |     **Value**                                         |
@@ -160,7 +160,7 @@ The numeric sensor PDR is primarily used to describe the semantics of a PLDM num
 Numeric Sensor PDR for FPGA Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Numeric Sensor PDR for FPGA Temperature Fields**
+**Table: Numeric Sensor PDR for FPGA Temperature Fields**
 
 +-----------------------------------------+------------------------------------------------+
 |     **Field**                           |     **Value**                                  |
@@ -257,7 +257,7 @@ Numeric Sensor PDR for FPGA Temperature
 Numeric Sensor PDR for Board Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Numeric Sensor PDR for Board Temperature Fields**
+**Table: Numeric Sensor PDR for Board Temperature Fields**
 
 +-----------------------------------------+------------------------------------------------+
 |     **Field**                           |     **Value**                                  |
@@ -354,7 +354,7 @@ Numeric Sensor PDR for Board Temperature
 Numeric Sensor PDR for QSFP0 Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Numeric Sensor PDR for QSFPO Temperature Fields**
+**Table: Numeric Sensor PDR for QSFPO Temperature Fields**
 
 +-----------------------------------------+------------------------------------------------+
 |     **Field**                           |     **Value**                                  |
@@ -553,7 +553,7 @@ The sensor auxiliary names PDR may be used to provide optional information that 
 Sensor Auxiliary Names PDR for FPGA Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Sensor Auxiliary Names PDR for FPGFA Temperature Fields**
+**Table: Sensor Auxiliary Names PDR for FPGFA Temperature Fields**
 
 +-----------------------------+------------------------+
 |     **Field**               |     **Value**          |
@@ -574,7 +574,7 @@ Sensor Auxiliary Names PDR for FPGA Temperature
 Sensor Auxiliary Names PDR for Board Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Sensor Auxiliary Names PDR for Board Temperature Fields**
+**Table: Sensor Auxiliary Names PDR for Board Temperature Fields**
 
 +-----------------------------+------------------------+
 |     **Field**               |     **Value**          |
@@ -595,7 +595,7 @@ Sensor Auxiliary Names PDR for Board Temperature
 Sensor Auxiliary Names PDR for QSFP0 Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Sensor Auxiliary Names PDR for QSFP0 Temperature Fields**
+**Table: Sensor Auxiliary Names PDR for QSFP0 Temperature Fields**
 
 +-----------------------------+------------------------+
 |     **Field**               |     **Value**          |
@@ -616,7 +616,7 @@ Sensor Auxiliary Names PDR for QSFP0 Temperature
 Sensor Auxiliary Names PDR for QSFP1 Temperature
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-*Table:* **Sensor Auxiliary Names PDR for QSFP1 Temperature Fields**
+**Table: Sensor Auxiliary Names PDR for QSFP1 Temperature Fields**
 
 +-----------------------------+------------------------+
 |     **Field**               |     **Value**          |
@@ -657,7 +657,7 @@ A request sent from the BMC to the SC will resemble the following table.
 
 The blue section is the PLDM message that can be decoded, as explained in the *PLDM Base Specification*
 
-*Table:* **PLDM Message Payload**
+**Table: PLDM Message Payload**
 
 .. image:: ./images/payload.png
    :align: center
@@ -667,7 +667,7 @@ messages.
 
 The blue section in the previous message decoded using the PLDM message scheme resembles the following figure.
 
-*Table:* **PLDM Message Scheme**
+**Table: PLDM Message Scheme**
 
 .. image:: ./images/message-scheme.png
    :align: center
@@ -677,7 +677,7 @@ not PLDM requests. PLDM Command code 0x11 corresponds to the
 GetSensorReading and the payload can now be decoded, as detailed in
 the following table.
 
-*Table:* **PLDM Completion Codes**
+**Table: PLDM Completion Codes**
 
 +--------------+------------------------+---------------------------------+
 |     **Type** |     **Request Data**   |     **Value In Our Examples**   |
@@ -687,8 +687,8 @@ the following table.
 |     bool8    |     rearmEventState    |     0x00                        |
 +--------------+------------------------+---------------------------------+
 
-    Now the SC knows that the server BMC is requesting a sensor reading
-    with sensor ID 0x01.
+Now the SC knows that the server BMC is requesting a sensor reading
+with sensor ID 0x01.
 
 PLDM Response
 ~~~~~~~~~~~~~
@@ -700,7 +700,7 @@ PLDM packet gets built is also provided.
 
 The following table details the response for GetSensorReading.
 
-*Table:* **GetSensorReading Response**
+**Table: GetSensorReading Response**
 
 +---------------+--------------------------------+---------------------------------+
 |     **Type**  |     **Request Data**           |     **Value In Our Examples**   |
@@ -729,7 +729,7 @@ The response that gets plugged into the PLDM message scheme resembles the follow
 
 The PLDM message encapsulated inside MCTP response resembles the following table.
 
-*Table:* **PDLM Message in MCTP Response**
+**Table: PDLM Message in MCTP Response**
 
 
 The server BMC decodes the MCTP response it receives to obtain the sensor readings.

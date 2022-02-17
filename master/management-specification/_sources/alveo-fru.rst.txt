@@ -1,23 +1,23 @@
 Alveo™ FRU Support 
 ------------------
 
-    The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
+The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
 
-    ***Note*:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
-    
-    The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM's FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.
+**Note:** Only 2-byte FRU addressing is supported in Alveo™ FRU data. 1-byte (8-bit) FRU read requests are unsupported and will be responded with 0xFF.
 
-    Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.
+The satellite controller firmware accesses on-board EEPROM and emulates the traditional EEPROM's FRU data within the firmware. This enables server BMCs that are traditionally used to interface with a non-private EEPROM that resides in the same I2C bus, along with the satellite controller.
 
-    The maximum response bytes per transaction is 256, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 256 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent.
+Accessing the FRU data is supported via SMBus block write block read method, where block write provides a 2-byte FRU offset (address byte 0 or LS byte and address byte 1 MS byte) and the block read retrieves FRU data. The SMBus transaction with the repeated start option will be used to fetch the entire FRU data.
 
-    For the high-level FRU Storage Organization, see the figure below from UG1378 here.
+The maximum response per transaction is 255 bytes, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 255 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent. Additionally, BMC has the option to request smaller transaction from SC (i.e.) 16 or 32 bytes per transaction.
+
+For the high-level FRU Storage Organization, see the figure below:
 
 .. image:: ./images/FRU_organization.png
    :align: center
 
-Detailed FRU information like sections, length, field definition and description have been captured in UG1378: *Alveo™ FRU Data Specification* 
-(`UG1378 <https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1378-alveo-fru-data-specification.pdf>`__).
+Detailed FRU information like sections, length, field definition and description have been captured in  
+(`Alveo™ FRU Data Specification <https://xilinx.github.io/Alveo-Cards/master/FRU/index.html>`__).
 
     *Figure:* **FRU Random Read**
 
@@ -30,7 +30,7 @@ BYTE0, BYTE1…… BYTEN, STOP
 Where: [addr-byte0][addr-byte1] are FRU offsets (block writes)
 [BYTE0][BYTE1]… [BYTEN] are FRU data response (block reads).
 
-    ***Note*:** 2-byte FRU offset follows [LS Byte] [MS Byte].
+**Note:** 2-byte FRU offset follows [LS Byte] [MS Byte].
 
 Example of Read FRU Data Starting at Offset 0x0
                                                
@@ -57,7 +57,7 @@ Example of Read FRU Data Starting at Offset 50
 Block Write
 ~~~~~~~~~~~
 
-*Table:* **Block Write, Server BMC Request**
+**Table: Block Write, Server BMC Request**
 
 +-----------------+-------------------------+---------------------------------+
 |     **Server BMC Request**                                                  |
@@ -67,7 +67,7 @@ Block Write
 |                 |                         |     [Byte 1] – FRU Offset MSB   |
 +-----------------+-------------------------+---------------------------------+
 
-*Table:* **Block Write, Xilinx® Alveo™ Card Response**
+**Table: Block Write, Xilinx® Alveo™ Card Response**
 
 +-------------+------------------------------+
 |     **Xilinx Alveo™ Card Response**        |
@@ -78,7 +78,7 @@ Block Write
 Block Read
 ~~~~~~~~~~
 
-*Table:* **Block Read, Server BMC Request**
+**Table: Block Read, Server BMC Request**
 
 +------------+-----------+---------------------------------+
 |     **Server BMC Request**                               |
@@ -88,12 +88,12 @@ Block Read
 |            |           |     [Byte 1] – FRU offset MSB   |
 +------------+-----------+---------------------------------+
 
-*Table:* **Block Read, Xilinx Alveo™ Card Response**
+**Table: Block Read, Xilinx Alveo™ Card Response**
 
 +-------------+----------------------------------------+-------------------------+
 |     **Xilinx Alveo™ Card Response**                                            |
 +=============+========================================+=========================+
-| Data bytes  |     [Byte 0] [Byte 1] …. [Byte 255]]   |     256-byte FRU data   |
+| Data bytes  |     [Byte 0] [Byte 1] …. [Byte 254]]   |     255-byte FRU data   |
 +-------------+----------------------------------------+-------------------------+
 
 **Xilinx Support**
