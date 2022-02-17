@@ -20,7 +20,7 @@ The table below captures the PCIe information for the following Alveo™ product
 -  **Subsystem DID** : ** 0x000E**
 
 
-*Table:* **Alveo PCIe Device ID**
+**Table: Alveo PCIe Device ID**
 
 +-------------------------+----------------------------------------------+
 | **Card/Shell**          | **Device ID**                                |
@@ -51,11 +51,7 @@ The table below captures the PCIe information for the following Alveo™ product
 +-------------------------+----------------------------------------------+
 | U30 Golden              | 0xD03C                                       |
 +-------------------------+----------------------------------------------+
-| U30 XDMA                | PF0=0x503C PF1=0x503D PF2=0x503E PF3=0x503F  |
-+-------------------------+----------------------------------------------+
-| U30 Golden (2RP)        | 0xD13C                                       |
-+-------------------------+----------------------------------------------+
-| U30 XDMA 2RP            | PF0=0x513C PF1=0x513D PF2=0x513E PF3=0x513F  |
+| U30 (Production)        | PF0=0x513C PF1=0x513D PF2=0x513E PF3=0x513F  |
 +-------------------------+----------------------------------------------+
 | U55N                    | PF0=0x5058 PF1=0x5059 PF2=0x505A PF3=0x505B  |
 +-------------------------+----------------------------------------------+
@@ -73,7 +69,7 @@ PF -> Physical Function
 Temperature Limits
 ~~~~~~~~~~~~~~~~~~
 
-*Table:* **QSFP Temperature Limits**
+**Table: QSFP Temperature Limits**
 
 The following table captures the QSFP temperature limits for all QSFP capable Alveo™ products - U2xx(U200, U250, U280), U50x (U50, U50C, U50LV) , U55x (U55N, U55C) and VCK5000 products.
 
@@ -105,7 +101,7 @@ For additional thermal information, refer to the data sheet specific to the Alve
 
 -  `Alveo U50 <https://www.xilinx.com/support/documentation/data_sheets/ds965-u50.pdf>`__
 
-*Table:* **FPGA and Board Temperature Limits**
+**Table: FPGA and Board Temperature Limits**
 
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 |  **Sensor Name**                |     **Warning Limit**   |     **Critical Limit**   |     **Fatal Limit**   |
@@ -114,23 +110,25 @@ For additional thermal information, refer to the data sheet specific to the Alve
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | FPGA Device temperature         |     88°C                |     97°C                 |     107°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| Board temperature               |     100°C               |     110°C                |     125°C             |
+| Board temperature [4]           |     100°C               |     110°C                |     125°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 |     **U280**                                                                                                 |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Logical FPGA temperature [2]    |     88°C                |     97°C                 |     107°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| **U50, U50LV, U55N**                                                                                         |
+| Board temperature [4]           |     100°C               |     110°C                |     125°C             |
++---------------------------------+-------------------------+--------------------------+-----------------------+
+| **U50, U50LV, U55N/C**                                                                                       |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Logical FPGA temperature [2]    |     88°C                |     97°C                 |     107°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| Board temperature               |     100°C               |     110°C                |     125°C             |
+| Board temperature [4]           |     100°C               |     110°C                |     125°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | **U50C**                                                                                                     |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Logical FPGA temperature [2]    |     88°C                |     100°C                |     107°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| Board temperature               |     100°C               |     110°C                |     125°C             |
+| Board temperature [40]          |     100°C               |     110°C                |     125°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | **U30** [3]                                                                                                  |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
@@ -138,16 +136,16 @@ For additional thermal information, refer to the data sheet specific to the Alve
 |                                 |                         |                          |                       |
 | (Max of ZYNQ1 & ZYNQ2 FPGA)     |                         |                          |                       |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| Board temperature               |     90°C                |     95°C                 |     125°C             |
+| Board temperature               |     75°C                |     80°C                 |     85°C              |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 
 [2] Logical device temperature is maximum of FPGA die temperature and the HBM temperature.
 
 **Note:** Alveo™ U30 specific
 
-[3] The OTP (One Time Programmable) values for FPGA die temperature and Board temperature are 100°C and 125°C respectively. The OTP values are programmed onto the device at the time of Manufacturing. The SC FW, on boot-up, programs the temperature device and the automatically shuts down the ZYNQ devices when either of ZYNQ or board temperature exceeds the fatal limit.
+[3] The OTP (One Time Programmable) values are programmed onto the temperature sensor device at the time of Manufacturing. Additionally, on boot-up, SC also configures the temperature device to ensure the temperature sensor device automatically shuts down the ZYNQ devices when either ZYNQ or board temperature exceeds the fatal limit.
 
-[4] Board temperature is the maximum value among various onboard temperature sensors like inlet, outlet and VCCINT (PWM controller). 
+[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VCCINT (PWM controller). 
 
 ***Note*:** The SC FW automatically shuts down the power to FPGA when any of the temperature value exceeds the fatal limit.
 

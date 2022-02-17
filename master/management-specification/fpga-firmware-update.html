@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -22,7 +21,12 @@
 		<!-- Fonts -->
 		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
 
-	
+	<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="37701bd4-e5c0-4ee3-9329-e7475d0b13a7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
 		<!-- Google Tag Manager -->
 	<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
@@ -54,10 +58,9 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/doctools.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -69,8 +72,6 @@
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -247,33 +248,33 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Introduction</span></p>
+              <p class="caption"><span class="caption-text">Introduction</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">FPGA Flash Update Commands</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#x40-fpga-reset-device">0x40 - FPGA_RESET_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x41-fpga-get-fw-ver">0x41 - FPGA_GET_FW_VER</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x42-fpga-set-update-device">0x42 - FPGA_SET_UPDATE_DEVICE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x42-fpga-set-target-device">0x42 - FPGA_SET_TARGET_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x43-fpga-set-boot-device">0x43 - FPGA_SET_BOOT_DEVICE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x44-fpga-sc-set-write-enable">0x44 - FPGA_SC_SET_WRITE_ENABLE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x45-flash-set-write-enable">0x45 - FLASH_SET_WRITE_ENABLE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x46-flash-get-write-protect-states">0x46 - FLASH_GET_WRITE_PROTECT_STATES</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x47-flash-rx-data-block">0x47 - FLASH_RX_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x47-flash-tx-data-block">0x47 - FLASH_TX_DATA_BLOCK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x48-flash-block-crc-check">0x48 - FLASH_BLOCK_CRC_CHECK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x49-flash-sector-set-seq-num">0x49 - FLASH_SECTOR_SET_SEQ_NUM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x4a-flash-copy-firmware">0x4A - FLASH_COPY_FIRMWARE</a></li>
@@ -284,22 +285,26 @@
 <li class="toctree-l2"><a class="reference internal" href="#x4f-fpga-get-mac-status">0x4F - FPGA_GET_MAC_STATUS</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x50-fpga-set-image-size">0x50 - FPGA_SET_IMAGE_SIZE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x51-notify-wp-to-fpga">0x51 - NOTIFY_WP_TO_FPGA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x52-fpga-uart-debug-control">0x52 - FPGA_UART_DEBUG_CONTROL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x53-set-fpga-flash-readback-sector-range">0x53 - SET_FPGA_FLASH_READBACK_SECTOR_RANGE</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x54-fpga-flash-readback-rx-data-block">0x54 - FPGA_FLASH_READBACK_RX_DATA_BLOCK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#x55-get-fpga-flash-readback-sector-crc">0x55 - GET_FPGA_FLASH_READBACK_SECTOR_CRC</a></li>
 </ul>
 </li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">DMTF support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">References</span></p>
+<p class="caption"><span class="caption-text">References</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
 </ul>
@@ -373,1287 +378,1658 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="fpga-flash-update-commands">
+  <div class="section" id="fpga-flash-update-commands">
 <h1>FPGA Flash Update Commands<a class="headerlink" href="#fpga-flash-update-commands" title="Permalink to this headline">¶</a></h1>
-<blockquote>
-<div><p>In the Alveo™ U30, the satellite controller supports an out-of-band method of QSPI flash image upgrade. QSPI flash is where FPGA image is stored. Server BMC is expected to initiate and perform the upgrade process by sending the I2C commands to the satellite controller firmware.</p>
-<p><strong>*Note*:</strong> The satellite controller will perform I2C clock-stretching, wherever applicable, to perform the requested actions.</p>
-<p><strong>*Note*:</strong> The satellite controller firmware only supports 700 kHz mode on the SMBus (used for the FPGA FW update), therefore the upgrade process could take an extended amount of time. SMBus speed of 1MHz is currently untested and unsupported.</p>
-<p>The table below lists the commands supported/needed for QSPI flash upgrade. The following commands are currently supported only for Alveo U30</p>
-</div></blockquote>
-<ol class="arabic simple">
-<li><p>FPGA_GET_FW_VER</p></li>
-<li><p>FLASH_COPY_FIRMWARE</p></li>
-<li><p>FPGA_SET_KEY_NONCE</p></li>
-<li><p>FPGA_CALC_MAC</p></li>
-<li><p>FPGA_VERIFY_MAC</p></li>
-<li><p>FPGA_GET_MAC_STATUS</p></li>
-</ol>
-<p><em>Table:</em> <strong>FPGA Flash Upgrade Commands</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>SI NO</strong></p></th>
-<th class="head"><p><strong>Command</strong></p></th>
-<th class="head"><p><strong>Command Description</strong></p></th>
-<th class="head"><p><strong>Server BMC Action</strong></p></th>
-<th class="head"><p><strong>SC Action</strong></p></th>
+<p>In the Alveo™ U30 Hyperscaler only SKU, the satellite controller (SC) firmware supports an out-of-band method of FPGA flash image update, read-back and authentication. Server BMC shall initiate and perform all these operations by sending the I2C commands to the SC. FPGA flash operation commands are supported at I2C address 0x65 (0xCA in 8-bit). Currently, Satellite Controller supports only 100 KHz I2C speed for all the FPGA flash update commands mentioned in this section.</p>
+<p><strong>Note:</strong> The satellite controller will perform I2C clock-stretching, wherever applicable, to perform the requested actions.</p>
+<p><strong>Note:</strong> It is recommended for the BMC to add 2 seconds as inter-command interval.</p>
+<p>In addition to the FPGA flash update via OoB, SC also supports other FPGA flash related operations like:</p>
+<ul class="simple">
+<li>Enable or Disable Write Protect (WP#) settings</li>
+<li>FPGA flash image read-back</li>
+<li>Flash image authentication via MAC/HASH calculation</li>
+<li>Copy of flash image from one flash to another (F2F copy)</li>
+</ul>
+<p>The table below lists all the commands supported/needed for FPGA flash operations. Currently, the FPGA flash operation commands are supported only for Alveo™ U30.</p>
+<p><strong>Note:</strong> MAC in this chapter refers to Message Authentication Code and it can also be referred as HASH. MAC/HASH calculation of the entire or sometimes few select FPGA flash sectors is performed at the request of BMC, to validate the flash contents haven’t been tampered with.</p>
+<p><strong>Table: FPGA Flash Upgrade Commands</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%" />
+<col width="27%" />
+<col width="33%" />
+<col width="28%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
+<th class="head"><strong>Command Description</strong></th>
+<th class="head"><strong>Server BMC Action</strong></th>
+<th class="head"><strong>SC Action</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>1</p></td>
-<td><p>0x40</p></td>
-<td><p>FPGA_RESET_DEVICE</p></td>
-<td><p>B0 from BMC:</p>
+<tbody valign="top">
+<tr class="row-even"><td>0x40</td>
+<td>FPGA_RESET_DEVICE</td>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA devices</p>
-<p>0x02: SC FW</p>
+<p class="last">0x02: SC FW</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>2</p></td>
-<td><p>0x41</p></td>
-<td><p>FPGA_GET_FW_VER</p></td>
-<td><p>B0 from BMC:</p>
+<tr class="row-odd"><td>0x41</td>
+<td>FPGA_GET_FW_VER</td>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>B0 – Valid Byte</p>
+<td><p class="first">B0 – Valid Byte</p>
 <p>B1 - Minor revision</p>
-<p>B2 - Major revision</p>
+<p class="last">B2 - Major revision</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>3</p></td>
-<td><p>0x42</p></td>
-<td><p>FPGA_SET_UPDATE_DEVICE</p></td>
-<td><p>B0 from BMC</p>
+<tr class="row-even"><td>0x42</td>
+<td>FPGA_SET_TARGET_DEVICE</td>
+<td><p class="first">B0 from BMC</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>4</p></td>
-<td><p>0x43</p></td>
-<td><p>FPGA_SET_BOOT_DEVICE</p></td>
-<td><p>B0 from BMC:</p>
+<tr class="row-odd"><td>0x43</td>
+<td>FPGA_SET_BOOT_DEVICE</td>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>5</p></td>
-<td><p>0x44</p></td>
-<td><p>FPGA_SC_SET_WRITE</p>
+<tr class="row-even"><td>0x44</td>
+<td><p class="first">FPGA_SC_SET_WRITE</p>
 <p>_ENABLE</p>
 <p>Provides control to SC</p>
 <p>over WP# pins and enables</p>
-<p>SC to access QSPI flash</p>
+<p class="last">SC to access QSPI flash</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
 <p>B1 from BMC:</p>
 <p>0x01: WP enable</p>
-<p>0x02: WP disable</p>
+<p class="last">0x02: WP disable</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>6</p></td>
-<td><p>0x45</p></td>
-<td><p>FLASH_SET_WRITE_ENABLE</p>
+<tr class="row-odd"><td>0x45</td>
+<td><p class="first">FLASH_SET_WRITE_ENABLE</p>
 <p>Provides control to SC</p>
 <p>over WP# pins and enables</p>
-<p>FPGA to access QSPI flash</p>
+<p class="last">FPGA to access QSPI flash</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
 <p>B1 from BMC:</p>
 <p>0x01: WP enable</p>
-<p>0x02: WP disable</p>
+<p class="last">0x02: WP disable</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>7</p></td>
-<td><p>0x46</p></td>
-<td><p>FLASH_GET_WRITE</p>
-<p>_PROTECT_STATES</p>
+<tr class="row-even"><td>0x46</td>
+<td><p class="first">FLASH_GET_WRITE</p>
+<p class="last">_PROTECT_STATES</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
-<p>B1 from BMC:</p>
-<p>0x01: WP enable</p>
-<p>0x02: WP disable</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>Byte 0: SC WP Status</p>
+<td><p class="first">Byte 0: SC WP Status</p>
 <p>0x01: WP enabled</p>
 <p>0x02: WP disabled</p>
 <p>Byte 1: FPGA WP Status</p>
 <p>0x01: WP enabled</p>
-<p>0x02: WP disabled</p>
+<p class="last">0x02: WP disabled</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>8</p></td>
-<td><p>0x47</p></td>
-<td><p>FLASH_RX_DATA_BLOCK</p>
+<tr class="row-odd"><td>0x47</td>
+<td><p class="first">FLASH_TX_DATA_BLOCK</p>
 <p>SC accumulates 252 bytes</p>
 <p>from each transaction to</p>
 <p>form 64KB sector &amp; writes</p>
-<p>it into QSPI flash</p>
+<p class="last">it into QSPI flash</p>
 </td>
-<td><p>BMC sends data bytes</p>
-<p>D0…D251</p>
+<td><p class="first">BMC sends data bytes</p>
+<p class="last">D0, D1 … D251</p>
 </td>
-<td><p>N/A</p></td>
+<td>N/A</td>
 </tr>
-<tr class="row-even"><td><p>9</p></td>
-<td><p>0x48</p></td>
-<td><p>FLASH_BLOCK_CRC_CHECK</p>
+<tr class="row-even"><td>0x48</td>
+<td><p class="first">FLASH_BLOCK_CRC_CHECK</p>
 <p>SC compares CRC, writes 1</p>
 <p>sector to flash, rechecks</p>
-<p>CRC with FPGA device</p>
+<p class="last">CRC with FPGA device</p>
 </td>
-<td><p>BMC sends 8 byte CRC</p>
-<p>B1, B2 … B8</p>
+<td><p class="first">BMC sends 8 byte CRC</p>
+<p class="last">B0, B1 … B7</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>10</p></td>
-<td><p>0x49</p></td>
-<td><p>FLASH_SECTOR_SET_SEQ</p>
-<p>_NUM</p>
+<tr class="row-odd"><td>0x49</td>
+<td><p class="first">FLASH_SECTOR_SET_SEQ</p>
+<p class="last">_NUM</p>
 </td>
-<td><p>B0: Sector number (low byte)</p>
-<p>B0: Sector number (high byte)</p>
+<td><p class="first">B0: Sector number (low byte)</p>
+<p class="last">B1: Sector number (high byte)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>11</p></td>
-<td><p>0x4A</p></td>
-<td><p>FLASH_COPY_FIRMWARE</p></td>
-<td><p>B0: Source flash device</p>
+<tr class="row-even"><td>0x4A</td>
+<td>FLASH_COPY_FIRMWARE</td>
+<td><p class="first">B0: Source flash device</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
-<p>B0: Destination flash device</p>
+<p>B1: Destination flash device</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>12</p></td>
-<td><p>0x4B</p></td>
-<td><p>FPGA_GET_FIRMWARE</p>
-<p>_STATUS</p>
+<tr class="row-odd"><td>0x4B</td>
+<td><p class="first">FPGA_GET_FIRMWARE</p>
+<p class="last">_STATUS</p>
 </td>
-<td><p>N/A</p></td>
-<td><p>See table ‘Flash Operation</p>
+<td>N/A</td>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>13</p></td>
-<td><p>0x4C</p></td>
-<td><p>FPGA_SET_KEY_NONCE</p>
+<tr class="row-even"><td>0x4C</td>
+<td><p class="first">FPGA_SET_KEY_NONCE</p>
 <p>BMC sends key and nonce</p>
 <p>that’s randomly generated.</p>
 <p>SC stores both in internal</p>
-<p>flash (Non-volatile)</p>
+<p class="last">flash (Non-volatile)</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
 <p>B1 - B16: Key</p>
-<p>B17 – B28: Nonce</p>
+<p class="last">B17 – B28: Nonce</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>14</p></td>
-<td><p>0x4D</p></td>
-<td><p>FPGA_CALC_MAC</p>
+<tr class="row-odd"><td>0x4D</td>
+<td><p class="first">FPGA_CALC_MAC</p>
 <p>SC increments nonce by 1,</p>
 <p>calculates hash using the</p>
 <p>existing key &amp; new nonce,</p>
 <p>and stores MAC/hash value</p>
-<p>in SC’s internal flash</p>
+<p class="last">in SC’s internal flash</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>15</p></td>
-<td><p>0x4E</p></td>
-<td><p>FPGA_VERIFY_MAC</p>
+<tr class="row-even"><td>0x4E</td>
+<td><p class="first">FPGA_VERIFY_MAC</p>
 <p>SC calculates hash using</p>
 <p>existing key &amp; nonce, and</p>
 <p>stores MAC/hash value in</p>
-<p>SC’s internal flash</p>
+<p class="last">SC’s internal flash</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>See table ‘Flash Operation</p>
+<td><p class="first">See table ‘Flash Operation</p>
 <p>Return Codes’ for SC’s</p>
-<p>response</p>
+<p class="last">response</p>
 </td>
 </tr>
-<tr class="row-odd"><td><p>16</p></td>
-<td><p>0x4F</p></td>
-<td><p>FPGA_GET_MAC_STATUS</p>
+<tr class="row-odd"><td>0x4F</td>
+<td><p class="first">FPGA_GET_MAC_STATUS</p>
 <p>SC responds with status of</p>
 <p>MAC/has calculation or</p>
 <p>verification along with</p>
-<p>the 16-byte MAC value</p>
+<p class="last">the 16-byte MAC value</p>
 </td>
-<td><p>B0 from BMC:</p>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
 <p>B1 from BMC:</p>
 <p>0x01: Get CALC_MAC status</p>
-<p>0x02: Get VERIFY_MAC status</p>
+<p class="last">0x02: Get VERIFY_MAC status</p>
 </td>
-<td><p>Byte B0 from SC:</p>
+<td><p class="first">Byte B0 from SC:</p>
 <p>See table ‘Flash Operation</p>
 <p>Return Codes’ for</p>
 <p>response</p>
 <p>Bytes B1 - B16 from SC:</p>
-<p>16 byte MAC/hash value</p>
+<p class="last">16 byte MAC/hash value</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>17</p></td>
-<td><p>0x50</p></td>
-<td><p>FPGA_SET_IMAGE_SIZE</p></td>
-<td><p>B0 from BMC:</p>
+<tr class="row-even"><td>0x50</td>
+<td>FPGA_SET_IMAGE_SIZE</td>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
 <p>0x04: FPGA2 Recovery(if present)</p>
-<p>B1 - B5 from BMC:</p>
-<p>Size of QSPI image in bytes</p>
+<p>B1 - B4 from BMC (LSB first):</p>
+<p class="last">Size of QSPI image in bytes</p>
 </td>
-<td><p>N/A</p></td>
+<td>N/A</td>
 </tr>
-<tr class="row-odd"><td><p>18</p></td>
-<td><p>0x51</p></td>
-<td><p>NOTIFY_WP_TO_FPGA</p></td>
-<td><p>B0 from BMC:</p>
+<tr class="row-odd"><td>0x51</td>
+<td>NOTIFY_WP_TO_FPGA</td>
+<td><p class="first">B0 from BMC:</p>
 <p>0x01: FPGA1 Primary</p>
 <p>0x02: FPGA1 Recovery</p>
 <p>0x03: FPGA2 Primary (if present)</p>
-<p>0x04: FPGA2 Recovery(if present)</p>
+<p class="last">0x04: FPGA2 Recovery(if present)</p>
 </td>
-<td><p>Byte B0 from SC:</p>
+<td><p class="first">Byte B0 from SC:</p>
+<p>0x01: Operation Success</p>
+<p class="last">0x02: Operation failure</p>
+</td>
+</tr>
+<tr class="row-even"><td>0x52</td>
+<td>FPGA_UART_DEBUG_CONTROL</td>
+<td><p class="first">B0 from BMC:</p>
+<p>0x01: FPGA1</p>
+<p class="last">0x02: FPGA2</p>
+</td>
+<td><blockquote class="first">
+<div>Byte B0 from SC:</div></blockquote>
 <p>0x01: Operation Success</p>
 <p>0x02: Operation failure</p>
+<p class="last">0x03: Operation unsupported</p>
+</td>
+</tr>
+<tr class="row-odd"><td>0x53</td>
+<td><p class="first">SET_FPGA_FLASH_READBACK</p>
+<p class="last">_SECTOR_RANGE</p>
+</td>
+<td><p class="first">B0: Start sector num (low byte)</p>
+<p>B1: Start sector num (high byte)</p>
+<p>B2: End sector num (low byte)</p>
+<p class="last">B3: End sector num (high byte)</p>
+</td>
+<td><p class="first">See table ‘Flash Operation</p>
+<p>Return Codes’ for SC’s</p>
+<p class="last">response</p>
+</td>
+</tr>
+<tr class="row-even"><td>0x54</td>
+<td><p class="first">FPGA_FLASH_READBACK_RX</p>
+<p class="last">_DATA_BLOCK</p>
+</td>
+<td><p class="first">BMC sends repeated-start</p>
+<p class="last">I2C command</p>
+</td>
+<td><p class="first">SC sends 256 data bytes:</p>
+<p class="last">D0, D1 … D255</p>
+</td>
+</tr>
+<tr class="row-odd"><td>0x55</td>
+<td><p class="first">GET_FPGA_FLASH_READBACK</p>
+<p class="last">_SECTOR_CRC</p>
+</td>
+<td>N/A</td>
+<td><p class="first">SC sends 8-bytes of CRC :</p>
+<p class="last">D0, D1 … D7</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>Flash Operation Return Codes</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head"><p><strong>Response Code</strong></p></th>
-<th class="head"><p><strong>Description</strong></p></th>
+<p><strong>Table: Flash Operation Return Codes</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Response Code</strong></th>
+<th class="head"><strong>Description</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>0x00</p></td>
-<td><p>Reserved</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>0x00</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-odd"><td><p>0x01</p></td>
-<td><p>Operation success</p></td>
+<tr class="row-odd"><td>0x01</td>
+<td>Operation success</td>
 </tr>
-<tr class="row-even"><td><p>0x02</p></td>
-<td><p>Operation failed</p></td>
+<tr class="row-even"><td>0x02</td>
+<td>Operation failed</td>
 </tr>
-<tr class="row-odd"><td><p>0x03</p></td>
-<td><p>Operation Not Supported</p></td>
+<tr class="row-odd"><td>0x03</td>
+<td>Operation Not Supported</td>
 </tr>
-<tr class="row-even"><td><p>0x04</p></td>
-<td><p>Flash erase failed. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-even"><td>0x04</td>
+<td>Flash erase failed. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-odd"><td><p>0x05</p></td>
-<td><p>Flash write failed. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-odd"><td>0x05</td>
+<td>Flash write failed. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-even"><td><p>0x06</p></td>
-<td><p>Flash read failed. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-even"><td>0x06</td>
+<td>Flash read failed. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-odd"><td><p>0x07</p></td>
-<td><p>Flash CRC failed. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-odd"><td>0x07</td>
+<td>Flash CRC failed. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-even"><td><p>0x08</p></td>
-<td><p>Invalid Selection</p></td>
+<tr class="row-even"><td>0x08</td>
+<td>Invalid Flash Selection</td>
 </tr>
-<tr class="row-odd"><td><p>0x09</p></td>
-<td><p>FPGA_GENERAL_ERROR</p></td>
+<tr class="row-odd"><td>0x09</td>
+<td>FPGA_GENERAL_ERROR</td>
 </tr>
-<tr class="row-even"><td><p>0x0A</p></td>
-<td><p>FPGA_MAC_CALCULATION_INVALID</p></td>
+<tr class="row-even"><td>0x0A</td>
+<td>FPGA_MAC_CALCULATION_INVALID</td>
 </tr>
-<tr class="row-odd"><td><p>0x0B</p></td>
-<td><p>FPGA_INVALID_IMAGE_LENGTH</p></td>
+<tr class="row-odd"><td>0x0B</td>
+<td>FPGA_INVALID_IMAGE_LENGTH</td>
 </tr>
-<tr class="row-even"><td><p>0x0C</p></td>
-<td><p>QSPI SC disable WP failed. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-even"><td>0x0C</td>
+<td>QSPI SC disable WP failed. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-odd"><td><p>0x0D</p></td>
-<td><p>QSPI wrong MCS file format. Abort operation, rectify error and re-initiate from start</p></td>
+<tr class="row-odd"><td>0x0D</td>
+<td>QSPI wrong MCS file format. Abort operation, rectify error and re-initiate from start</td>
 </tr>
-<tr class="row-even"><td><p>0x0E</p></td>
-<td><p>Set the KEY and/or NONCE before proceeding for MAC Calculation</p></td>
+<tr class="row-even"><td>0x0E</td>
+<td>Set the KEY and/or NONCE before proceeding for MAC Calculation</td>
 </tr>
-<tr class="row-odd"><td><p>0x0F</p></td>
-<td><p>MAC calculation not performed. Please send command 0x4D before MAC verify</p></td>
+<tr class="row-odd"><td>0x0F</td>
+<td>MAC calculation not performed. Please send command 0x4D before MAC verify</td>
 </tr>
-<tr class="row-even"><td><p>0x10</p></td>
-<td><p>FLASH_RX_DATA_BLOCK command in-progress</p></td>
+<tr class="row-even"><td>0x10</td>
+<td>FLASH_TX_DATA_BLOCK command in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x11</p></td>
-<td><p>FPGA1 primary flash update in-progress</p></td>
+<tr class="row-odd"><td>0x11</td>
+<td>FPGA1 primary flash update in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x12</p></td>
-<td><p>FPGA1 recovery flash update in-progress</p></td>
+<tr class="row-even"><td>0x12</td>
+<td>FPGA1 recovery flash update in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x13</p></td>
-<td><p>FPGA2 primary flash update in-progress</p></td>
+<tr class="row-odd"><td>0x13</td>
+<td>FPGA2 primary flash update in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x14</p></td>
-<td><p>FPGA2 recovery flash update in-progress</p></td>
+<tr class="row-even"><td>0x14</td>
+<td>FPGA2 recovery flash update in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x15–0x1F</p></td>
-<td><p>Reserved</p></td>
+<tr class="row-odd"><td>0x15–0x1F</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-even"><td><p>0x20</p></td>
-<td><p>FLASH_BLOCK_CRC_CHECK command in-progress</p></td>
+<tr class="row-even"><td>0x20</td>
+<td>FLASH_BLOCK_CRC_CHECK command in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x21</p></td>
-<td><p>FPGA_CRC_CHECK_STATUS_IN_PROGRESS</p></td>
+<tr class="row-odd"><td>0x21</td>
+<td>FPGA_CRC_CHECK_STATUS_SECTOR_RESEND (Resend last sector (0x47))</td>
 </tr>
-<tr class="row-even"><td><p>0x22</p></td>
-<td><p>QSPI_SET_UPDATE_DEVICE_NOT_SENT (send command 0x42)</p></td>
+<tr class="row-even"><td>0x22</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-odd"><td><p>0x23</p></td>
-<td><p>QSPI_SC_SET_WRITE_NOT_ENABLED (send command 0x44)</p></td>
+<tr class="row-odd"><td>0x23</td>
+<td>QSPI_SET_UPDATE_DEVICE_NOT_SENT (send command 0x42)</td>
 </tr>
-<tr class="row-even"><td><p>0x24–0x2F</p></td>
-<td><p>Reserved</p></td>
+<tr class="row-even"><td>0x24</td>
+<td>QSPI_SC_SET_WRITE_NOT_ENABLED (send command 0x44)</td>
 </tr>
-<tr class="row-odd"><td><p>0x30</p></td>
-<td><p>FLASH_COPY_FIRMWARE command in-progress</p></td>
+<tr class="row-odd"><td>0x25–0x2F</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-even"><td><p>0x31</p></td>
-<td><p>FPGA1 primary to FPGA1 recovery flash copy in-progress</p></td>
+<tr class="row-even"><td>0x30</td>
+<td>FLASH_COPY_FIRMWARE command in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x32</p></td>
-<td><p>FPGA1 primary to FPGA2 primary flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x31</td>
+<td>FPGA1 primary to FPGA1 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x33</p></td>
-<td><p>FPGA1 primary to FPGA2 recovery flash copy in-progress</p></td>
+<tr class="row-even"><td>0x32</td>
+<td>FPGA1 primary to FPGA2 primary flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x34</p></td>
-<td><p>FPGA1 recovery to FPGA1 primary flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x33</td>
+<td>FPGA1 primary to FPGA2 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x35</p></td>
-<td><p>FPGA1 recovery to FPGA2 primary flash copy in-progress</p></td>
+<tr class="row-even"><td>0x34</td>
+<td>FPGA1 recovery to FPGA1 primary flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x36</p></td>
-<td><p>FPGA1 recovery to FPGA2 recovery flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x35</td>
+<td>FPGA1 recovery to FPGA2 primary flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x37</p></td>
-<td><p>FPGA2 primary to FPGA1 primary flash copy in-progress</p></td>
+<tr class="row-even"><td>0x36</td>
+<td>FPGA1 recovery to FPGA2 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x38</p></td>
-<td><p>FPGA2 primary to FPGA1 recovery flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x37</td>
+<td>FPGA2 primary to FPGA1 primary flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x39</p></td>
-<td><p>FPGA2 primary to FPGA2 recovery flash copy in-progress</p></td>
+<tr class="row-even"><td>0x38</td>
+<td>FPGA2 primary to FPGA1 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x3A</p></td>
-<td><p>FPGA2 recovery to FPGA1 primary flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x39</td>
+<td>FPGA2 primary to FPGA2 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x3B</p></td>
-<td><p>FPGA2 recovery to FPGA1 recovery flash copy in-progress</p></td>
+<tr class="row-even"><td>0x3A</td>
+<td>FPGA2 recovery to FPGA1 primary flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x3C</p></td>
-<td><p>FPGA2 recovery to FPGA2 primary flash copy in-progress</p></td>
+<tr class="row-odd"><td>0x3B</td>
+<td>FPGA2 recovery to FPGA1 recovery flash copy in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x3D–0x3F</p></td>
-<td><p>Reserved</p></td>
+<tr class="row-even"><td>0x3C</td>
+<td>FPGA2 recovery to FPGA2 primary flash copy in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x40</p></td>
-<td><p>FPGA_CALC_MAC command in-progress</p></td>
+<tr class="row-odd"><td>0x3D–0x3F</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-even"><td><p>0x41</p></td>
-<td><p>FPGA1 primary MAC calculation in-progress</p></td>
+<tr class="row-even"><td>0x40</td>
+<td>FPGA_CALC_MAC command in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x42</p></td>
-<td><p>FPGA1 recovery MAC calculation in-progress</p></td>
+<tr class="row-odd"><td>0x41</td>
+<td>FPGA1 primary MAC calculation in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x43</p></td>
-<td><p>FPGA2 primary MAC calculation in-progress</p></td>
+<tr class="row-even"><td>0x42</td>
+<td>FPGA1 recovery MAC calculation in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x44</p></td>
-<td><p>FPGA2 recovery MAC calculation in-progress</p></td>
+<tr class="row-odd"><td>0x43</td>
+<td>FPGA2 primary MAC calculation in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x45–0x4F</p></td>
-<td><p>Reserved</p></td>
+<tr class="row-even"><td>0x44</td>
+<td>FPGA2 recovery MAC calculation in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x50</p></td>
-<td><p>FPGA_VERIFY_MAC command in-progress</p></td>
+<tr class="row-odd"><td>0x45</td>
+<td>FPGA_KEY_NONCE update in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x51</p></td>
-<td><p>FPGA1 primary MAC verification in-progress</p></td>
+<tr class="row-even"><td>0x46–0x4F</td>
+<td>Reserved</td>
 </tr>
-<tr class="row-odd"><td><p>0x52</p></td>
-<td><p>FPGA1 recovery MAC verification in-progress</p></td>
+<tr class="row-odd"><td>0x50</td>
+<td>FPGA_VERIFY_MAC command in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x53</p></td>
-<td><p>FPGA2 primary MAC verification in-progress</p></td>
+<tr class="row-even"><td>0x51</td>
+<td>FPGA1 primary MAC verification in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0x54</p></td>
-<td><p>FPGA2 recovery MAC verification in-progress</p></td>
+<tr class="row-odd"><td>0x52</td>
+<td>FPGA1 recovery MAC verification in-progress</td>
 </tr>
-<tr class="row-even"><td><p>0x55–0xEF</p></td>
-<td><p>Reserved</p></td>
+<tr class="row-even"><td>0x53</td>
+<td>FPGA2 primary MAC verification in-progress</td>
 </tr>
-<tr class="row-odd"><td><p>0xFF</p></td>
-<td><p>FPGA_NO_OPERATION</p></td>
+<tr class="row-odd"><td>0x54</td>
+<td>FPGA2 recovery MAC verification in-progress</td>
+</tr>
+<tr class="row-even"><td>0x55–0x6F</td>
+<td>Reserved</td>
+</tr>
+<tr class="row-odd"><td>0x70</td>
+<td>MAC verification not performed. Please send command (0x4E) before fetching MAC verification status</td>
+</tr>
+<tr class="row-even"><td>0x71</td>
+<td>FPGA MAC Calculation/Verification failed. (Abort operation, re-initiate MAC Calculation/Verification)</td>
+</tr>
+<tr class="row-odd"><td>0x72</td>
+<td>EEPROM read failed</td>
+</tr>
+<tr class="row-even"><td>0x73</td>
+<td>EEPROM write failed</td>
+</tr>
+<tr class="row-odd"><td>0x74-0x7F</td>
+<td>Reserved</td>
+</tr>
+<tr class="row-even"><td>0x80</td>
+<td>FPGA flash data read-back in progress</td>
+</tr>
+<tr class="row-odd"><td>0x81</td>
+<td>FPGA flash data ready for read-back</td>
+</tr>
+<tr class="row-even"><td>0x82</td>
+<td>Invalid FPGA sector range. Check and resend within the valid range (0 - 2047)</td>
+</tr>
+<tr class="row-odd"><td>0x83–0xEF</td>
+<td>Reserved</td>
+</tr>
+<tr class="row-even"><td>0xFF</td>
+<td>FPGA_NO_OPERATION</td>
 </tr>
 </tbody>
 </table>
-<section id="x40-fpga-reset-device">
+<div class="section" id="x40-fpga-reset-device">
 <h2>0x40 - FPGA_RESET_DEVICE<a class="headerlink" href="#x40-fpga-reset-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC can send the FPGA_RESET_DEVICE command to reset FPGA
-device(s) or SC FW. For SC reset (warm reset), the satellite
-controller firmware responds with the status and reboots itself. In
-the Alveo U30 the reset command will reset both the FPGA devices
-(ZYNQ1 and ZYNQ2), due to an existing HW limitation.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_RESET_DEVICE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>The BMC can send the FPGA_RESET_DEVICE command to reset FPGA device(s) or SC FW. For SC reset (warm reset), the satellite
+controller firmware responds with the status and reboots itself. In Alveo U30, the reset command will reset both the FPGA devices
+(ZYNQ1 and ZYNQ2) and internally, both PS (Processing Subsystem) and PL (Programmable Logic) will reload from flash device.</p>
+<p><strong>Table: FPGA_RESET_DEVICE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x40</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x40</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01: FPGA devices</p>
-<p>0x02: SC FW</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA devices</p>
+<p class="last">0x02: SC FW</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_RESET_DEVICE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_RESET_DEVICE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x41-fpga-get-fw-ver">
+</div>
+<div class="section" id="x41-fpga-get-fw-ver">
 <h2>0x41 - FPGA_GET_FW_VER<a class="headerlink" href="#x41-fpga-get-fw-ver" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends this command to fetch the FW version running in either FPGA1 or FPGA2 device. This command is currently supported only in the Alveo U30 data accelerator card. The byte 0 (validity byte) in response from SC must be read first.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_GET_FW_VER Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>The BMC sends this command to fetch the FW version running in either FPGA1 or FPGA2 device. This command is currently supported only in the Alveo U30 data accelerator card. The byte 0 (validity byte) in response from SC must be read first.</p>
+<p><strong>Table: FPGA_GET_FW_VER Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x41</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x41</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01: FPGA1 primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA1 primary flash device</p>
 <p>0x02: FPGA1 recovery flash device</p>
 <p>0x03: FPGA2 primary flash device (if present)</p>
-<p>0x04: FPGA2 recovery flash device (if present)</p>
+<p class="last">0x04: FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_GET_FW_VER Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_GET_FW_VER Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="14%" />
+<col width="66%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p>
-<p>B1, B2</p>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td><p class="first">B0</p>
+<p class="last">B1, B2</p>
 </td>
-<td><p>B0 - Valid Byte</p>
+<td><p class="first">B0 - Valid Byte</p>
 <p>0x00 - Not supported (B1, B2 - Invalid)</p>
 <p>0x01 - Unknown or Reduced Service</p>
 <p>0x02 - reserved</p>
 <p>0x03 - No error; Valid B1 &amp; B2 bytes</p>
-<p>B1 – Minor version; B2 – Major version</p>
+<p class="last">B1 – Minor version; B2 – Major version</p>
 </td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x42-fpga-set-update-device">
-<h2>0x42 - FPGA_SET_UPDATE_DEVICE<a class="headerlink" href="#x42-fpga-set-update-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>BMC sends the FPGA_SET_UPDATE_DEVICE command to select the flash
+</div>
+<div class="section" id="x42-fpga-set-target-device">
+<h2>0x42 - FPGA_SET_TARGET_DEVICE<a class="headerlink" href="#x42-fpga-set-target-device" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends the FPGA_SET_TARGET_DEVICE command to select the flash
 device to initiate the FW upgrade.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SET_UPDATE_DEVICE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>NOTE:</strong> This command is not persistence across SC reboots. On boot-up, SC restores the default configuration (i.e.) Primary flash as teh target device.</p>
+<p><strong>Table: FPGA_SET_TARGET_DEVICE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x42</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x42</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01: FPGA1 primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA1 primary flash device</p>
 <p>0x02: FPGA1 recovery flash device</p>
 <p>0x03: FPGA2 primary flash device (if present)</p>
-<p>0x04: FPGA2 recovery flash device (if present)</p>
+<p class="last">0x04: FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SET_UPDATE_DEVICE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_SET_TARGET_DEVICE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x43-fpga-set-boot-device">
+</div>
+<div class="section" id="x43-fpga-set-boot-device">
 <h2>0x43 - FPGA_SET_BOOT_DEVICE<a class="headerlink" href="#x43-fpga-set-boot-device" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FPGA_SET_BOOT_DEVICE command to set the boot
+<p>The BMC sends the FPGA_SET_BOOT_DEVICE command to set the boot
 device. The SC FW stores this information in the internal flash memory and
 restores the configuration in case of server cool boot or power cycle.</p>
-<p><strong>*Note*:</strong> Primary flash device is selected as the boot
+<p><strong>Note:</strong> Primary flash device is selected as the boot
 device/default configuration in FPGA1 (and FPGA2 if present).</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SET_BOOT_DEVICE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: FPGA_SET_BOOT_DEVICE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x43</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x43</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01– FPGA1 primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01– FPGA1 primary flash device</p>
 <p>0x02– FPGA1 recovery flash device</p>
 <p>0x03– FPGA2 primary flash device (if present)</p>
-<p>0x04– FPGA2 recovery flash device (if present)</p>
+<p class="last">0x04– FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SET_BOOT_DEVICE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_SET_BOOT_DEVICE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="24%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte0</p></td>
-<td><p>0x01– Request success</p>
-<p>0x02– Request failed</p>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>Byte0</td>
+<td><p class="first">0x01– Request success</p>
+<p class="last">0x02– Request failed</p>
 </td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x44-fpga-sc-set-write-enable">
+</div>
+<div class="section" id="x44-fpga-sc-set-write-enable">
 <h2>0x44 - FPGA_SC_SET_WRITE_ENABLE<a class="headerlink" href="#x44-fpga-sc-set-write-enable" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FPGA_SC_SET_WRITE_ENABLE command to enable/disable write protect for SPI mode from the SC. This command must follow FPGA_SET_UPDATE_DEVICE. When the SC has write protect mode enabled, only the SC has the access to QSPI flash. SC can read/ write into the flash via SPI (x1 mode).</p>
-<p>For hyperscaler customers, by default, write protect from the satellite controller is enabled. For OEM customers, default mode will be set as WP# disabled and the SC doesn’t have the access to flash device. The SC FW configures this mode based on the FRU parameters written into its EEPROM.</p>
-<p><strong>*Note*:</strong> The SC will not store this configuration (from command 0x44)  in any persistence memory. A SC reboot or device power cycle results in loss of configuration. During the subsequent boot-up, the SC will restore the default configuration.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SC_SET_WRITE_ENABLE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>The BMC sends the FPGA_SC_SET_WRITE_ENABLE command to enable/disable write protect for SPI mode from the SC point of view. This command must follow FPGA_SET_TARGET_DEVICE. When the SC has write protect mode disabled, only the SC has the access to QSPI flash and only SC can write into the flash via SPI (x1 mode). In this case, FPGA can not read from FPGA flash.</p>
+<p>For both hyperscaler and OEM customers, by default, SC WP# is enabled (i.e.) FPGA has read-only access. The actual FPGA WP# state (write access) is controlled by command 0x45.</p>
+<p><strong>Note:</strong> The SC will not store this configuration (from command 0x44)  in any persistence memory. A SC reboot or device power cycle results in loss of configuration. During the subsequent boot-up, the SC will restore the default configuration (i.e.) WP enabled.</p>
+<p><strong>Table: FPGA_SC_SET_WRITE_ENABLE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x44</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x44</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01: FPGA1 primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA1 primary flash device</p>
 <p>0x02: FPGA1 recovery flash device</p>
 <p>0x03: FPGA2 primary flash device (if present)</p>
-<p>0x04: FPGA2 recovery flash device (if present)</p>
+<p class="last">0x04: FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte1</p></td>
-<td><p>0x01: WP enable</p>
-<p>0x02: WP disable</p>
+<tr class="row-even"><td>Byte1</td>
+<td><p class="first">0x01: WP enable</p>
+<p class="last">0x02: WP disable</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SC_SET_WRITE_ENABLE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_SC_SET_WRITE_ENABLE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x45-flash-set-write-enable">
+</div>
+<div class="section" id="x45-flash-set-write-enable">
 <h2>0x45 - FLASH_SET_WRITE_ENABLE<a class="headerlink" href="#x45-flash-set-write-enable" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC can send the FLASH_SET_WRITE_ENABLE command to enable/disable write protect the QSPI flash device in either ZYNQ
+<p>The BMC can send the FLASH_SET_WRITE_ENABLE command to enable/disable write protect the QSPI flash device in either ZYNQ
 device. This command must follow FPGA_SC_SET_WRITE_ENABLE for any FPGA flash FW upgrade.</p>
 <p>For Hyperscaler customers, by default, the FPGA flash devices are write protected and can only run in x2 SPI mode as a preferred/secured mode.</p>
-<blockquote>
-<div><p>When write protect is disabled, the QSPI flash device can be accessed in x1, x2, or x4 SPI Mode and FPGA has the write access to the QSPI devices. This is the default mode configured for OEM customers. SC FW configures this mode based on FRU parameters written into its EEPROM.</p>
-</div></blockquote>
-<p><strong>*Note*:</strong> The SC will not store this configuration (from command 0x45) in any persistence memory. A SC reboot or device power cycle results in the loss of configuration. During the subsequent boot-up, the SC will restore the default configuration.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FLASH_SET_WRITE_ENABLE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>When write protect is disabled, the QSPI flash device can be accessed in x1, x2, or x4 SPI Mode and FPGA has the write access to the QSPI devices. This is the default mode configured for OEM customers. SC FW configures this mode based on FRU parameters written into its EEPROM.</p>
+<p><strong>Note:</strong> The SC will not store this configuration (from command 0x45) in any persistence memory. A SC reboot or device power cycle results in the loss of configuration. During the subsequent boot-up, the SC will restore the default configuration (i.e.) WP enabled.</p>
+<p><strong>Table: FLASH_SET_WRITE_ENABLE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x45</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x45</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01: FPGA1 primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA1 primary flash device</p>
 <p>0x02: FPGA1 recovery flash device</p>
 <p>0x03: FPGA2 primary flash device (if present)</p>
-<p>0x04: FPGA2 recovery flash device (if present)</p>
+<p class="last">0x04: FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte1</p></td>
-<td><p>0x01: WP enable</p>
-<p>0x02: WP disable</p>
+<tr class="row-even"><td>Byte1</td>
+<td><p class="first">0x01: WP enable</p>
+<p class="last">0x02: WP disable</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FLASH_SET_WRITE_ENABLE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FLASH_SET_WRITE_ENABLE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x46-flash-get-write-protect-states">
+</div>
+<div class="section" id="x46-flash-get-write-protect-states">
 <h2>0x46 - FLASH_GET_WRITE_PROTECT_STATES<a class="headerlink" href="#x46-flash-get-write-protect-states" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC can send the FLASH_GET_WRITE_PROTECT_STATES command to
+<p>The BMC can send the FLASH_GET_WRITE_PROTECT_STATES command to
 get the write protect state for all the flash devices.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FLASH_GET_WRITE_PROTECT_STATES Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: FLASH_GET_WRITE_PROTECT_STATES Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x46</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x46</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>N/A</p></td>
-</tr>
-</tbody>
-</table>
-<p><em>Table:</em> <strong>FLASH_GET_WRITE_PROTECT_STATES Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
-</tr>
-</thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte0</p></td>
-<td><p>Byte 0: SC WP Status</p>
-<p>0x01: WP enabled ; 0x02: WP disabled</p>
-</td>
-</tr>
-<tr class="row-odd"><td></td>
-<td><p>Byte 1</p></td>
-<td><p>Byte 1: FPGA WP Status</p>
-<p>0x01: WP enabled ; 0x02: WP disabled</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01: FPGA1 primary flash device</p>
+<p>0x02: FPGA1 recovery flash device</p>
+<p>0x03: FPGA2 primary flash device (if present)</p>
+<p class="last">0x04: FPGA2 recovery flash device (if present)</p>
 </td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x47-flash-rx-data-block">
-<h2>0x47 - FLASH_RX_DATA_BLOCK<a class="headerlink" href="#x47-flash-rx-data-block" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends data blocks using the FLASH_RX_DATA_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA_SET_UPDATE_DEVICE, FPGA_SC_SET_WRITE_ENABLE, and FLASH_SET_WRITE_ENABLE commands.</p>
-<p><strong>*Note*:</strong> The maximum supported size of each I2C transaction is 252 bytes.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FLASH_RX_DATA_BLOCK Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: FLASH_GET_WRITE_PROTECT_STATES Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="18%" />
+<col width="18%" />
+<col width="64%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x47</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>Byte0</td>
+<td><p class="first">Byte 0: SC WP Status</p>
+<p class="last">0x01: WP enabled ; 0x02: WP disabled</p>
+</td>
 </tr>
-<tr class="row-odd"><td><p>Length byte 0</p></td>
-<td><p>Total number of bytes in the current I2C transaction (command)</p></td>
-</tr>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>D1, D2, … D252</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Byte 1</td>
+<td><p class="first">Byte 1: FPGA WP Status</p>
+<p class="last">0x01: WP enabled ; 0x02: WP disabled</p>
+</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FLASH_RX_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+</div>
+<div class="section" id="x47-flash-tx-data-block">
+<h2>0x47 - FLASH_TX_DATA_BLOCK<a class="headerlink" href="#x47-flash-tx-data-block" title="Permalink to this headline">¶</a></h2>
+<p>The BMC sends data blocks using the FLASH_TX_DATA_BLOCK command. Data (or payload) is the FW for QSPI flash devices. The SC accumulates 252 byte data from each transaction to build up 64 Kbyte blocks and write into QSPI flash. The sector size for QSPI flash is 64 Kbyte and the SC will cache 1 block of data in the internal SRAM before writing it to QSPI. This command must be preceded by the FPGA_SET_TARGET_DEVICE, FPGA_SC_SET_WRITE_ENABLE, and FLASH_SET_WRITE_ENABLE commands.</p>
+<p><strong>Note:</strong> The maximum supported size of each I2C transaction is 252 bytes.</p>
+<p><strong>Table: FLASH_TX_DATA_BLOCK Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="81%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x47</td>
+</tr>
+<tr class="row-odd"><td>Length byte 0</td>
+<td>Total number of bytes in the current I2C transaction (command)</td>
+</tr>
+<tr class="row-even"><td>Data bytes</td>
+<td>D1, D2, … D252</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x48-flash-block-crc-check">
+<p><strong>Table: FLASH_TX_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x48-flash-block-crc-check">
 <h2>0x48 - FLASH_BLOCK_CRC_CHECK<a class="headerlink" href="#x48-flash-block-crc-check" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FLASH_BLOCK_CRC_CHECK command to check the CRC from the previous block and tracks the number of bytes sent to the SC. After sending 64K bytes, the BMC sends this command to initiate CRC check. The BMC sends 64-bit CRC (data payload and start address of the block) for the previous 64 Kbyte block along with this command request. This command also indicates the completion of the 64 Kbyte block transfer from the BMC to the SC, which immediately
+<p>The BMC sends the FLASH_BLOCK_CRC_CHECK command to check the CRC from the previous block and tracks the number of bytes sent to the SC. After sending 64K bytes, the BMC sends this command to initiate CRC check. The BMC sends 64-bit CRC (data payload and start address of the block) for the previous 64 Kbyte block along with this command request. This command also indicates the completion of the 64 Kbyte block transfer from the BMC to the SC, which immediately
 returns the status CRC_CHECK_IN_PROGRESS. This command is a trigger for the SC to start all the flash write and CRC check
 operations in the background. The BMC can poll the FPGA_GET_FIRMWARE_STATUS command periodically for completion
 status before moving to next sector. See table ‘Flash Operation Return Codes’ for SC’s response</p>
-</div></blockquote>
 <p><em>Table 97:</em> <strong>FLASH_BLOCK_CRC_CHECK Server BMC Server</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<table border="1" class="docutils">
+<colgroup>
+<col width="42%" />
+<col width="58%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x48</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x48</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>D1 … D8</p>
-<p>64-bit CRC data</p>
+<tr class="row-odd"><td>Data bytes</td>
+<td><p class="first">D1 … D8</p>
+<p class="last">64-bit CRC data</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FLASH_BLOCK_CRC_CHECK Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FLASH_BLOCK_CRC_CHECK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x49-flash-sector-set-seq-num">
+</div>
+<div class="section" id="x49-flash-sector-set-seq-num">
 <h2>0x49 - FLASH_SECTOR_SET_SEQ_NUM<a class="headerlink" href="#x49-flash-sector-set-seq-num" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The FPGA flash FW image update needs to be implemented with the retry mechanism in both the server BMC and the Alveo SC.</p>
+<p>The FPGA flash FW image update needs to be implemented with the retry mechanism in both the server BMC and the Alveo SC.</p>
 <p>The BMC sends the FLASH_SECTOR_SET_SEQ_NUM command to set the sequence number (or the sector number) of the sector at which the SC needs to write into the FPGA Flash. This retry mechanism is needed to restart the FPGA FW upgrade process from the point where it was terminated previously. The termination reason could be a reboot of the SC FW, the BMC FW, power loss, or any user triggered event.</p>
 <p>When server BMC wants to restart the FPGA FW upgrade process from the middle, the BMC sends a valid 2-byte sequence number. The BMC may keep track of the sequence number and keep updating by 1 for every successful response from the SC for the command FLASH_BLOCK_CRC_CHECK.</p>
 <p>The SC will calculate the sector start address based on the sequence number and the fixed start offset (expected to be 0x0) of the FW inside flash. Responsibility is on the BMC to send the correct sequence number and its corresponding payload. Otherwise the SC may write into a non- contiguous flash sector and may end up corrupting the FW.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FLASH_SECTOR_SET_SEQ_NUM Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Note:</strong> The SC will not store the sector information in persistence memory. On boot-up, default value 0x00 will be assigned.</p>
+<p><strong>Table: FLASH_SECTOR_SET_SEQ_NUM Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="30%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x49</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x49</td>
 </tr>
-<tr class="row-odd"><td><p>Data bytes</p></td>
-<td><p>B0– Sector number (low byte)</p>
-<p>B1– Sector number (high byte)</p>
+<tr class="row-odd"><td>Data bytes</td>
+<td><p class="first">B0– Sector number (low byte)</p>
+<p class="last">B1– Sector number (high byte)</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FLASH_SECTOR_SET_SEQ_NUM Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FLASH_SECTOR_SET_SEQ_NUM Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>Byte0</p>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td><p class="first">Byte0</p>
 <p>0x01: Request success</p>
-<p>0x02: Request failed</p>
+<p class="last">0x02: Request failed</p>
 </td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4a-flash-copy-firmware">
+</div>
+<div class="section" id="x4a-flash-copy-firmware">
 <h2>0x4A - FLASH_COPY_FIRMWARE<a class="headerlink" href="#x4a-flash-copy-firmware" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FLASH_COPY_FIRMWARE command to initiate the copy of FW from one QSPI flash device to another. The BMC sends the source and destination flash devices via this command. Upon receiving this command the SC:</p>
-</div></blockquote>
-<ol class="arabic">
-<li><p>Copies the sector contents from the source device into 64 Kbyte SRAM within SC FW.</p></li>
-<li><p>Checks the CRC.</p></li>
-<li><p>Copies the contents into the destination device, checks the CRC, and updates the sector sequence number.</p></li>
-<li><p>If failure occurs in the middle of copy, erase all sectors in destination device (no retry support).</p></li>
-<li><p>If the CRC is copied successfully, proceed with next sector.</p></li>
-<li><p>The BMC can obtain the status of the copy from the FLASH_COPY_FIRMWARE_STATUS command.</p>
-<blockquote>
-<div><p><strong>*Note*:</strong> If the BMC sends another copy command while the previous copy is in-progress, the SC will ignore the request and respond appropriate error code. The BMC must check the status via the COPY_FIRMWARE_STATUS command and re-trigger. This command is currently supported only for Alveo U30.</p>
-</div></blockquote>
-</li>
+<p>The BMC sends the FLASH_COPY_FIRMWARE command to initiate the copy of FW from one QSPI flash device to another. The BMC sends the source and destination flash devices via this command. Upon receiving this command the SC:</p>
+<ol class="arabic simple">
+<li>Copies the sector contents from the source device into 64 Kbyte SRAM within SC FW.</li>
+<li>Checks the CRC.</li>
+<li>Copies the contents into the destination device, checks the CRC, and updates the sector sequence number.</li>
+<li>If failure occurs in the middle of copy, erase all sectors in destination device (no retry support).</li>
+<li>If the CRC is copied successfully, proceed with next sector.</li>
+<li>The BMC can obtain the status of the copy from the FLASH_COPY_FIRMWARE_STATUS command.</li>
 </ol>
-<p><em>Table:</em> <strong>FPGA_COPY_FIRMWARE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Note:</strong> If the BMC sends another copy command while the previous copy is in-progress, the SC will ignore the request and respond appropriate error code. The BMC must check the status via the COPY_FIRMWARE_STATUS command and re-trigger. This command is currently supported only for Alveo U30.</p>
+<p><strong>Table: FPGA_COPY_FIRMWARE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4A</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4A</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>B0 – Source flash device:</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">B0 – Source flash device:</p>
 <p>0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte1</p></td>
-<td><p>B1 – Destination flash device:</p>
+<tr class="row-even"><td>Byte1</td>
+<td><p class="first">B1 – Destination flash device:</p>
 <p>0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_COPY_FIRMWARE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_COPY_FIRMWARE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4b-fpga-get-firmware-status">
+</div>
+<div class="section" id="x4b-fpga-get-firmware-status">
 <h2>0x4B - FPGA_GET_FIRMWARE_STATUS<a class="headerlink" href="#x4b-fpga-get-firmware-status" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends the FPGA_GET_FIRMWARE_STATUS command to obtain the status of the previously triggered commands like
+<p>The BMC sends the FPGA_GET_FIRMWARE_STATUS command to obtain the status of the previously triggered commands like
 FLASH_BLOCK_CRC_CHECK and/or FLASH_COPY_FIRMWARE commands.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_GET_FIRMWARE_STATUS Server BMC request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Table: FPGA_GET_FIRMWARE_STATUS Server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4B</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4B</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>N/A</p></td>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_GET_FIRMWARE_STATUS Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_GET_FIRMWARE_STATUS Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4c-fpga-set-key-nonce">
+</div>
+<div class="section" id="x4c-fpga-set-key-nonce">
 <h2>0x4C - FPGA_SET_KEY_NONCE<a class="headerlink" href="#x4c-fpga-set-key-nonce" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>*Note*:</strong> This command is optional and only supported in Alveo U30.</p>
-<blockquote>
-<div><p>BMC provides the SC with a randomly generated key and nonce. The SC writes the 16-byte AES128 key and 96-bit (12-byte) nonce value to the SC internal flash storage. The SC provisions storage for one key and one nonce per flash device.</p>
-<p>SC uses 15-byte nonce, by padding 3 bytes (with 0x00) at the start, to the 12-byte nonce sent by BMC (i.e.) LSB 3 bytes are 0x00. In other words, Bytes[14-3] - 12-bytes of nonce sent by BMC, Bytes[2-0] - 0x00 0x00 0x00. BMC must use the exact nonce scheme to calculate the MAC value for comparison. The BMC is expected to select the target flash device.</p>
-</div></blockquote>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SET_KEY_NONCE Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>BMC provides the SC with a randomly generated key and nonce. The SC writes the 16-byte AES128 key and 96-bit (12-byte) nonce value to the Non-volatile memory. The SC provisions storage for one key and one nonce per flash device (non-volatile memory).</p>
+<p>SC uses 15-byte nonce, by padding 3 bytes (with 0x00) at the start, to the 12-byte nonce sent by BMC (i.e.) LSB 3 bytes are 0x00. In other words, Bytes[14-3] are the 12-bytes of nonce sent by BMC and Bytes[2-0] are 0x00 0x00 0x00.</p>
+<p>BMC must use the exact nonce scheme to calculate the MAC value for comparison. The BMC is expected to select the target flash device.</p>
+<p><strong>Table: FPGA_SET_KEY_NONCE Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4C</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4C</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>B0 – Target flash device:</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">B0 – Target flash device:</p>
 <p>0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte1 -16</p></td>
-<td><p>16-byte key</p></td>
+<tr class="row-even"><td>Byte1 -16</td>
+<td>16-byte key</td>
 </tr>
-<tr class="row-odd"><td><p>Byte17 - 28</p></td>
-<td><p>12-byte nonce</p></td>
+<tr class="row-odd"><td>Byte17 - 28</td>
+<td>12-byte nonce</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SET_KEY_NONCE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_SET_KEY_NONCE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4d-fpga-calc-mac">
+</div>
+<div class="section" id="x4d-fpga-calc-mac">
 <h2>0x4D - FPGA_CALC_MAC<a class="headerlink" href="#x4d-fpga-calc-mac" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><blockquote>
-<div><p><strong>*Note*:</strong> This command is optional. If sent, this command must be preceded by FPGA_SET_KEY_NONCE. This command is only supported in Alveo U30</p>
-</div></blockquote>
-<p>The BMC is expected to call the FPGA_CALC_MAC command after the entire flash image is written. The BMC is expected to select the target flash device. Upon receiving this command, the SC increments the stored nonce by 1, calculates the MAC of the 128 MByte region using the existing key and the new nonce value, and stores the MAC in the SC internal flash.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_CALC_MAC Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>Note:</strong> This command is optional. If sent, this command must be preceded by FPGA_SET_KEY_NONCE. This command is only supported in Alveo U30</p>
+<p>The BMC is expected to call the FPGA_CALC_MAC command after the entire flash image is written. The BMC is expected to select the target flash device. Upon receiving the command 0x4D, SC increments the stored nonce by 1, calculates the MAC of the entire 128 MByte region of the FPGA flash device, using the existing key and the new nonce. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.</p>
+<p><strong>Table: FPGA_CALC_MAC Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4D</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4D</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>B0 – Target flash device:</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">B0 – Target flash device:</p>
 <p>0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_CALC_MAC Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_CALC_MAC Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4e-fpga-verify-mac">
+</div>
+<div class="section" id="x4e-fpga-verify-mac">
 <h2>0x4E - FPGA_VERIFY_MAC<a class="headerlink" href="#x4e-fpga-verify-mac" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p><strong>NOTE:</strong> This command must be preceded by
-FPGA_SET_KEY_NONCE. This command is supported only in Alveo U30.*</p>
-<p>The BMC sends the FPGA_VERIFY_MAC command to validate the QSPI
-flash image. The SC calculates the Message Authentication Code (MAC)
-of the 128 MByte region using the existing key and existing nonce
-value and compares the resulting MAC to the stored MAC.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_VERIFY_MAC Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p><strong>NOTE:</strong> This command must be preceded by FPGA_SET_KEY_NONCE. This command is supported only in Alveo U30.</p>
+<p>The BMC sends the FPGA_VERIFY_MAC command to validate the FPGA flash image. The SC calculates the MAC/HASH of the entire 128 MByte region using the existing key and existing nonce value. The calculated MAC/HASH value is returned to BMC via the status command 0x4F. SC does not store the MAC/HASH value in Non-volatile memory.</p>
+<p><strong>Table: FPGA_VERIFY_MAC Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4E</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4E</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>B0 – Target flash device:</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">B0 – Target flash device:</p>
 <p>0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_VERIFY_MAC Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_VERIFY_MAC Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x4f-fpga-get-mac-status">
+</div>
+<div class="section" id="x4f-fpga-get-mac-status">
 <h2>0x4F - FPGA_GET_MAC_STATUS<a class="headerlink" href="#x4f-fpga-get-mac-status" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>This command is only supported in Alveo U30 card. The BMC sends the FPGA_GET_MAC_STATUS command to get the
-status of FPGA_CALC_MAC or FPGA_VERIFY_MAC command. SC responds with the status of MAC calculation or
-verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1 - Byte 16.</p>
-<p><strong>*Note*:</strong> Server BMC must use the same key and nonce that the satellite controller used to compute the MAC value to obtain same results. Refer 0x4C and 0x4D command description for details.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_GET_MAC_STATUS Server BMC Request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC Request</strong></p></th>
+<p>This command is only supported in Alveo U30 card. The BMC sends the FPGA_GET_MAC_STATUS command to get the
+status of FPGA_CALC_MAC or FPGA_VERIFY_MAC command. SC responds with the status of MAC/HASH calculation or
+verification (Byte 0) and 16-byte MAC/HASH value (Bytes 1-17) as response.</p>
+<p><strong>Note:</strong> Server BMC must use the same key and nonce that the satellite controller used to compute the MAC/HASH value to obtain same results. Refer 0x4C and 0x4D command description for details.</p>
+<p><strong>Table: FPGA_GET_MAC_STATUS Server BMC Request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x4F</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x4F</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01 - FPGA1 Primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte1</p></td>
-<td><p>0x01 – Get FPGA_CALC_MAC status</p>
-<p>0x02 – Get FPGA_VERIFY_MAC status</p>
+<tr class="row-even"><td>Byte1</td>
+<td><p class="first">0x01 – Get FPGA_CALC_MAC status</p>
+<p class="last">0x02 – Get FPGA_VERIFY_MAC status</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_GET_MAC_STATUS Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_GET_MAC_STATUS Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="16%" />
+<col width="69%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
-<tr class="row-odd"><td></td>
-<td><p>Bytes 1 - 16</p></td>
-<td><p>16 Byte MAC value (LSB first)</p></td>
+<tr class="row-odd"><td>&#160;</td>
+<td>Bytes 1 - 16</td>
+<td>16 Byte MAC value (LSB first)</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x50-fpga-set-image-size">
+</div>
+<div class="section" id="x50-fpga-set-image-size">
 <h2>0x50 - FPGA_SET_IMAGE_SIZE<a class="headerlink" href="#x50-fpga-set-image-size" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>The BMC sends this command to notify the SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 5 (4 bytes, unsigned) represents the size of flash image in bytes.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>FPGA_SET_IMAGE_SIZE server BMC request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC request</strong></p></th>
+<p>Optionally, BMC can send the command 0x50 to notify SC about the size of the FPGA image that it indents to update. The byte-0 selects the target FPGA flash device and the byte1 – byte 4 (4 bytes, unsigned, LSB first) represents the size of flash image in bytes.</p>
+<p><strong>NOTE:</strong> On boot-up, SC restores the image size to default 128 MBytes to address entire flash memory.</p>
+<p><strong>Table: FPGA_SET_IMAGE_SIZE server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x50</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x50</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01 - FPGA1 Primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
-<tr class="row-even"><td><p>Byte 1-5</p></td>
-<td><p>Size of QSPI image (in bytes)</p></td>
+<tr class="row-even"><td>Byte 1-4</td>
+<td>Size of QSPI image (in bytes)</td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>FPGA_SET_IMAGE_SIZE Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: FPGA_SET_IMAGE_SIZE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>See table ‘Flash Operation Return Codes’ for SC’s response</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
 </tr>
 </tbody>
 </table>
-</section>
-<section id="x51-notify-wp-to-fpga">
+</div>
+<div class="section" id="x51-notify-wp-to-fpga">
 <h2>0x51 - NOTIFY_WP_TO_FPGA<a class="headerlink" href="#x51-notify-wp-to-fpga" title="Permalink to this headline">¶</a></h2>
-<blockquote>
-<div><p>BMC sends this command to request SC to notify the FPGA device about WP status of the flash device. In turn, SC communicates the flash device WP status to FPGA via UART messages. BMC shall send this command prior to initiating the in-band QSPI FW update so that host OS can read the WP status from PCIe BAR config space.</p>
-</div></blockquote>
-<p><em>Table:</em> <strong>NOTIFY_WP_TO_FPGA server BMC request</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="2"><p><strong>Server BMC request</strong></p></th>
+<p>BMC sends this command to request SC to notify the FPGA device about WP status of the flash device. In turn, SC communicates the flash device WP status to FPGA via UART messages. BMC shall send this command prior to initiating the in-band QSPI FW update so that host OS can read the WP status from PCIe BAR config space.</p>
+<p><strong>Table: NOTIFY_WP_TO_FPGA server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Command code</p></td>
-<td><p>0x51</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x51</td>
 </tr>
-<tr class="row-odd"><td><p>Byte0</p></td>
-<td><p>0x01 - FPGA1 Primary flash device</p>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01 - FPGA1 Primary flash device</p>
 <p>0x02 - FPGA1 Recovery flash device</p>
 <p>0x03 - FPGA2 Primary flash device</p>
-<p>0x04 - FPGA2 Recovery flash device</p>
+<p class="last">0x04 - FPGA2 Recovery flash device</p>
 </td>
 </tr>
 </tbody>
 </table>
-<p><em>Table:</em> <strong>NOTIFY_WP_TO_FPGA Xilinx Alveo Card Response</strong></p>
-<table class="docutils align-default">
-<thead>
-<tr class="row-odd"><th class="head" colspan="3"><p><strong>Xilinx Alveo Card Response</strong></p></th>
+<p><strong>Table: NOTIFY_WP_TO_FPGA Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="28%" />
+<col width="13%" />
+<col width="59%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
 </tr>
 </thead>
-<tbody>
-<tr class="row-even"><td><p>Data bytes</p></td>
-<td><p>B0</p></td>
-<td><p>0x01: Operation Success; 0x02: Operation failure</p></td>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01: Operation Success</p>
+<p class="last">0x02: Operation failure</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x52-fpga-uart-debug-control">
+<h2>0x52 - FPGA_UART_DEBUG_CONTROL<a class="headerlink" href="#x52-fpga-uart-debug-control" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to FPGA to enable/disable the debug UART. SC communicates this information to the respective ZYNQ/FPGA device. By default, the debug UART is disabled during production settings and it can optionally be enabled for debug purposes.</p>
+<p><strong>Table: FPGA_UART_DEBUG_CONTROL server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="47%" />
+<col width="53%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x52</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td><p class="first">0x01 - FPGA1</p>
+<p class="last">0x02 - FPGA2</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: FPGA_UART_DEBUG_CONTROL Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="27%" />
+<col width="13%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td><p class="first">0x01: Operation Success</p>
+<p>0x02: Operation failure</p>
+<p class="last">0x03: Operation unsupported</p>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x53-set-fpga-flash-readback-sector-range">
+<h2>0x53 - SET_FPGA_FLASH_READBACK_SECTOR_RANGE<a class="headerlink" href="#x53-set-fpga-flash-readback-sector-range" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to set the start and end sectors for the FPGA flash content read-back. The range is between sectors 0 and 2047. SC fetches 1 sector at a time from FPGA flash device and transfers it to BMC via command 0x54.</p>
+<p><strong>Table: SET_FPGA_FLASH_READBACK_SECTOR_RANGE server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x53</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>Start sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>Byte1</td>
+<td>Start sector number (high byte)</td>
+</tr>
+<tr class="row-odd"><td>Byte2</td>
+<td>End sector number (low byte)</td>
+</tr>
+<tr class="row-even"><td>Byte3</td>
+<td>End sector number (high byte)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SET_FPGA_FLASH_READBACK_SECTOR_RANGE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="7%" />
+<col width="77%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>B0</td>
+<td>See table ‘Flash Operation Return Codes’ for SC’s response</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x54-fpga-flash-readback-rx-data-block">
+<h2>0x54 - FPGA_FLASH_READBACK_RX_DATA_BLOCK<a class="headerlink" href="#x54-fpga-flash-readback-rx-data-block" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command in repeated-start mode to read the data from FPGA flash. Before sending the command 0x54, BMC needs to send the following commands in sequence (i.e.) command 0x42 (set target device), command 0x53 (set sectors) and command 0x4B (poll the status).</p>
+<ul class="simple">
+<li>Upon requested, SC will read 1 sector (64 KB) from FPGA flash device, compares the CRC before signaling BMC about read-back readiness (via 0x4B command)</li>
+<li>After SC is ready with the payload, BMC can send the read-back command in repeated-start mode to fetch 1 sector of data. It takes 256 transactions to transfer 64 KB payload as SC sends 256 bytes per transaction. NOTE that SC can’t send partial transactions (i.e.) data less than 256 bytes.</li>
+<li>After successfully receiving 64 KB payload, BMC needs to read the sector CRC(via 0x55) before proceeding to read the next sector.</li>
+<li>BMC must poll the status command 0x4B (SC’s readiness for next sector) before proceeding to issue read-back command 0x54 for the next sector.</li>
+<li>No retry is supported in case of any failure/interruption in the middle of sector read-back.  But BMC can send the command 0x49 to force set the start sector from which it wants to resume/retry the read-back operation</li>
+<li>Upon receiving the updated start sector number (via 0x49 command), SC starts the read-back process from the beginning of the sector. Once again, BMC needs to follow the same sequence of commands (i.e.) poll the status command 0x4B before issuing 0x54.</li>
+</ul>
+<p><strong>Table: FPGA_FLASH_READBACK_RX_DATA_BLOCK server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x54</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>BMC sends repeated-start I2C command</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: FPGA_FLASH_READBACK_RX_DATA_BLOCK Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="29%" />
+<col width="49%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>D0, D1 … D255</td>
+<td>SC sends 256 data bytes</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="x55-get-fpga-flash-readback-sector-crc">
+<h2>0x55 - GET_FPGA_FLASH_READBACK_SECTOR_CRC<a class="headerlink" href="#x55-get-fpga-flash-readback-sector-crc" title="Permalink to this headline">¶</a></h2>
+<p>BMC sends this command to SC to get the CRC for the previously read-back sector (via command 0x54). SC returns the Micron’s CRC-64 back and BMC can use the 8-byte CRC data to compare with the CRC-64 calculated within.</p>
+<p><strong>Table: SET_FPGA_FLASH_READBACK_SECTOR_RANGE server BMC request</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="65%" />
+<col width="35%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="2"><strong>Server BMC Request</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Command code</td>
+<td>0x55</td>
+</tr>
+<tr class="row-odd"><td>Byte0</td>
+<td>N/A</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: SET_FPGA_FLASH_READBACK_SECTOR_RANGE Xilinx Alveo Card Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="25%" />
+<col width="55%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo Card Response</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Data bytes</td>
+<td>D0, D1, .. D7</td>
+<td>SC sends 8-bytes of Micron CRC-64</td>
 </tr>
 </tbody>
 </table>
@@ -1667,8 +2043,8 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></section>
-</section>
+<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+</div>
 
 
            </div>
@@ -1699,7 +2075,7 @@ verification via Byte 0 and 16-byte MAC value for BMC’s consumption via Byte 1
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on February 17, 2022.
       </span>
 
     </p>
