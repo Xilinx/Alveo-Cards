@@ -373,9 +373,9 @@ function OptanonWrapper() { }
 <div class="section" id="this-page-covers">
 <h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
 <p>Testing the power delivery to one or more Alveo cards</p>
-<p>Xilinx has two test tools, <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>.</p>
+<p>Xilinx has two test tools, <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">xbutil validate</a> and <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>.</p>
 <ul class="simple">
-<li><p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> is an XRT utility that does basic checks to determine the card is installed and operating correctly. It does not test the power envelope.  See <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> for additional details.</p></li>
+<li><p>The <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">xbutil validate</a> is an XRT utility that does basic checks to determine the card is installed and operating correctly. It does not test the power envelope.  See <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> for additional details.</p></li>
 <li><p>The <code class="docutils literal notranslate"><span class="pre">xbtest</span></code> utility provides extra card testing via different host applications and additional test kernels. This application will load up the FPGA to test on-card memory, host/card power delivery, and cooling. This test can help determine if the system is stable while the card is running accleration tasks.  See the <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a> for details.</p></li>
 </ul>
 </div>
@@ -390,7 +390,7 @@ function OptanonWrapper() { }
 <ol class="simple">
 <li><p><a class="reference internal" href="check-system-compatibility.html"><span class="doc">Check system compatibility</span></a></p></li>
 <li><p>Based on your card(s) and OS, download the correct version of xbtest from the <a class="reference external" href="https://www.xilinx.com/products/acceleration-solutions/xbtest.html">xbtest solutions page</a>.</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> and review the output to confirm the card is operating normally.</p>
+<li><p>Run <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">xbutil validate</a> and review the output to confirm the card is operating normally.</p>
 <ul class="simple">
 <li><p>If there are errors, go to <a class="reference internal" href="card-validation.html"><span class="doc">Card Validation</span></a> and resolve.</p></li>
 </ul>
@@ -412,8 +412,8 @@ function OptanonWrapper() { }
 <p>Vitis™ based applications in addition to the <code class="docutils literal notranslate"><span class="pre">xbtest</span></code> application require cards be installed with PCIe AUX power connected (where applicable) to allow full card power.  Without full power, these applications may not run correctly.</p>
 <p>For cards with PCIe AUX power connector, follow the instructions in the installation guide to install the PCIe AUX cable.</p>
 <p>The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  <code class="docutils literal notranslate"><span class="pre">xbtest</span></code>.  The U55C requires 115W.</p>
-<p>You can display the maximum available card power using <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> command as shown below.  If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is less than the maximum required, the server will not provide the power needed for the application.</p>
-<p>In this example, the <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is 150W, however the U200 card requires 225W and requires the PCIe AUX power connector to be connected.</p>
+<p>You can display the maximum available card power using <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine">xbmgmt examine</a> command as shown below.  If <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is less than the maximum required, the server will not provide the power needed for the application.</p>
+<p>In this example, the <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is 150W, however the U200 card requires 225W and requires the 8-pin PCIe AUX power connector to be connected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span>
 
 <span class="o">-----------------------------------------------------</span>
@@ -432,13 +432,17 @@ function OptanonWrapper() { }
 </div>
 <p>What to look for:</p>
 <ul class="simple">
-<li><p>Look for the value reported by <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code></p></li>
+<li><p>Look for the value reported by <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code></p>
+<ul>
 <li><p>Should be <code class="docutils literal notranslate"><span class="pre">225W</span></code> for U200, U250, and U280 cards being used in Vitis flows</p></li>
+<li><p>Should be <code class="docutils literal notranslate"><span class="pre">115W</span></code> or more for U55C card being used in Vitis flows</p></li>
+</ul>
+</li>
 </ul>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Delay testing until sufficient power can be supplied.</p></li>
-<li><p>Safely hook up 8-pin PCIe AUX power, see the <a class="reference external" href="card-install.html#card-installation-guides">Card installation guides</a></p></li>
+<li><p>Safely hook up PCIe AUX power, see the <a class="reference external" href="card-install.html#card-installation-guides">Card installation guides</a></p></li>
 </ul>
 </div>
 <hr class="docutils" />
@@ -590,7 +594,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on March 24, 2022.
       </span>
 
     </p>

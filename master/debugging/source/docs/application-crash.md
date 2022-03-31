@@ -42,7 +42,7 @@ Next steps:
 - - -
 ###  [Power delivery test](power-delivery.md) passes
 
-If both `xbutil validate` and the xbtest stress test pass. The system should have enough power delivery and cooling to run the card within specs.
+If both [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) and the xbtest stress test pass. The system should have enough power delivery and cooling to run the card within specs.
 
 Meaning:
 * The hardware passes the first round of testing with a known test application.

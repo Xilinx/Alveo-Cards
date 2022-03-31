@@ -271,6 +271,7 @@ function OptanonWrapper() { }
 <li class="toctree-l3"><a class="reference internal" href="#platform-re-install">Platform Re-Install</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#uninstalling-xrt">Uninstalling XRT</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#no-xrt-installed">No XRT installed</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#installing-offline">Installing offline</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#xilinx-support">Xilinx Support</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#license">License</a></li>
 </ul>
@@ -400,6 +401,11 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>Go to <a class="reference external" href="#installing-a-development-platform">Installing a development platform</a></p></li>
 </ul>
 </li>
+<li><p>Installing XRT on a machine that is offline</p>
+<ul>
+<li><p>Go to <a class="reference external" href="#installing-offline">Installing offline</a></p></li>
+</ul>
+</li>
 </ul>
 </div>
 <div class="section" id="you-will-need">
@@ -460,7 +466,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>If the SC image mismatches, run the flash command a second time</p></li>
 </ul>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> to get a list of user BDFs</p></li>
+<li><p>Run <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine">xbutil examine</a> to get a list of user BDFs</p></li>
 <li><p>For each user BDF, run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">--device</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code> to confirm the card install is working</p></li>
 <li><p>Optionally, download and <a class="reference external" href="#installing-a-development-platform">install the development platform</a></p></li>
 </ol>
@@ -486,7 +492,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </li>
 <li><p><a class="reference external" href="terminology.html#reboot-warm-boot-reset-system">Warm boot</a> the machine</p></li>
 <li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> to confirm the XRT version</p></li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> to see the user BDF for each installed card</p></li>
+<li><p>Run <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine">xbutil examine</a> to see the user BDF for each installed card</p></li>
 <li><p>For each card, confirm functionality by running <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
 </ol>
 </div>
@@ -519,7 +525,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
+<li><p>Run <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine">xbmgmt examine</a> to get the list of management BDFs</p></li>
 <li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
 <li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
@@ -552,7 +558,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
 <li><p>RHEL/CentOS: <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">yum</span> <span class="pre">install</span> <span class="pre">./&lt;platform_package_name&gt;.rpm</span></code></p></li>
 </ul>
 </li>
-<li><p>Run <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> to get the list of management BDFs</p></li>
+<li><p>Run <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine">xbmgmt examine</a> to get the list of management BDFs</p></li>
 <li><p>For each compatible card run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--device</span> <span class="pre">&lt;management</span> <span class="pre">BDF&gt;</span></code></p></li>
 <li><p><a class="reference external" href="terminology.html#cold-boot-power-cycle">Cold boot</a> the machine to update the FPGA</p></li>
 <li><p>Confirm each card validates using <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span> <span class="pre">-d</span> <span class="pre">&lt;user</span> <span class="pre">BDF&gt;</span></code></p></li>
@@ -610,6 +616,15 @@ It is not intended to be used standalone. If you are just starting to debug plea
 </ol>
 </div>
 <hr class="docutils" />
+<div class="section" id="installing-offline">
+<h3>Installing offline<a class="headerlink" href="#installing-offline" title="Permalink to this headline">¶</a></h3>
+<p>If you have a system that does not have direct access to the internet and wish to install XRT and platforms pacakges off line.</p>
+<ol class="simple">
+<li><p>For Ubuntu, see <a class="reference external" href="https://support.xilinx.com/s/article/XRT-Offline-install-steps-for-XRT-and-Alveo-platform-packages-on-Ubuntu">AR</a></p></li>
+<li><p>For CentOS or RedHat, see <a class="reference external" href="https://support.xilinx.com/s/article/XRT-Offline-install-steps-for-XRT-and-Alveo-platform-packages-on-Redhat-CentOS">AR</a></p></li>
+</ol>
+</div>
+<hr class="docutils" />
 <div class="section" id="xilinx-support">
 <h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
@@ -657,7 +672,7 @@ It is not intended to be used standalone. If you are just starting to debug plea
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on March 24, 2022.
       </span>
 
     </p>

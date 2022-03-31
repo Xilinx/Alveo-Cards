@@ -297,7 +297,7 @@ The `Branch:` field shows the XRT github branch. It is normally tied to a releas
 
 If the value is `Master`, you are using an un-official release.
 
- `Version`: indicates the build as seen via the `xbutil examine` example below:
+ `Version`: indicates the build as seen via the [xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine) example below:
 
 ```
 :~> xbutil examine
@@ -477,7 +477,7 @@ Devices present
 #### User BDF
 To display the user BDF values of installed cards, use the following command:
 
-`xbutil examine`
+[xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine)
 
 The user BDF values of installed cards are given in the square brackets under 'Devices present' and has the form `vvvv:xx:yy.1`.  In the below example, only one device is present and has a user BDF of `0000:af:00.1`.
 
@@ -792,7 +792,7 @@ Thermals
 XRT will log if there has been a critical event in `dmesg` similar to below:
 
 ```
-[93352.134536] xclmgmt 0000:a3:00.0: clock.m.25165825 ffff90a92b74a010 clock_status_check: Critical temperature or power event, kernel clocks have been stopped, run 'xbutil valiate -q' to continue. See AR 73398 for more details.
+[93352.134536] xclmgmt 0000:a3:00.0: clock.m.25165825 ffff90a92b74a010 clock_status_check: Critical temperature or power event, kernel clocks have been stopped.
 [93352.134643] xclmgmt 0000:a3:00.0: firewall.m.12582914 ffff90a92e634c10 check_firewall: AXI Firewall 3 tripped, status: 0x80004, bar offset 0x3000, resource ep_firewall_ctrl_user_00 1 0 1 axi_firewall
 [93352.134648] xclmgmt 0000:a3:00.0: firewall.m.12582914 ffff90a92e634c10 check_firewall: Firewall 0, ep ep_firewall_blp_ctrl_mgmt_00 1 0 1 axi_firewall, status: 0x0, bar offset 0x1f02000
 [93352.134652] xclmgmt 0000:a3:00.0: firewall.m.12582914 ffff90a92e634c10 check_firewall: Firewall 1, ep ep_firewall_blp_ctrl_user_00 1 0 1 axi_firewall, status: 0x0, bar offset 0x1f03000
@@ -822,7 +822,7 @@ If the limits are exceeded in either case, the device will be shut down. Often a
 
 This indicates the device was shutdown to protect it.
 
-You can also expect to see a firewall trip message in `xbutil examine` as shown below:
+You can also expect to see a firewall trip message in [xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine) as shown below:
 
 ```
 Card Power(W)

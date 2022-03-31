@@ -25,7 +25,9 @@ If you want to install:
   - Go to [Installing an older XRT](#installing-an-older-xrt)
 - A development platform to match a deployment platform
   - Go to [Installing a development platform](#installing-a-development-platform)
-
+- Installing XRT on a machine that is offline
+  - Go to [Installing offline](#installing-offline)
+  
 ## You Will Need
 
 Before modifying XRT, you need to:
@@ -66,7 +68,7 @@ If XRT is already installed and there is a new platform to be installed on the A
 1. Use `sudo xbmgmt examine --device <management BDF>` for each card to make sure the platform and the SC image on card match those installed on the system
    - Some platforms require a second flash to update the SC image
    - If the SC image mismatches, run the flash command a second time
-1. Run `xbutil examine` to get a list of user BDFs
+1. Run [xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine) to get a list of user BDFs
 1. For each user BDF, run `xbutil validate --device <user BDF>` to confirm the card install is working
 1. Optionally, download and [install the development platform](#installing-a-development-platform)
 
@@ -86,7 +88,7 @@ If XRT is already installed and you want to install a newer XRT version, follow 
    - RHEL/CentOS: `sudo yum install ./<xrt_package_name>.rpm`
 1. [Warm boot](terminology.md#reboot-warm-boot-reset-system) the machine
 1. Run `xbutil --version` to confirm the XRT version
-1. Run `xbutil examine` to see the user BDF for each installed card
+1. Run [xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine) to see the user BDF for each installed card
 1. For each card, confirm functionality by running `xbutil validate -d <user BDF>`
 
 - - -
@@ -107,7 +109,7 @@ If XRT is already installed and there is a older platform to be installed on the
 1. Install the replacement deployment package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<platform_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<platform_package_name>.rpm`
-1. Run `xbmgmt examine` to get the list of management BDFs
+1. Run [xbmgmt examine](https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine) to get the list of management BDFs
 1. For each compatible card run `sudo xbmgmt program --base --device <management BDF>`
 1. [Cold boot](terminology.md#cold-boot-power-cycle) the machine to update the FPGA
 1. Confirm each card validates using `xbutil validate -d <user BDF>`
@@ -131,7 +133,7 @@ If XRT is already installed and an older version of XRT is to be installed, foll
 1. Install the replacement deployment package on the system using one of the commands below
    - Ubuntu: `sudo apt install ./<platform_package_name>.deb`
    - RHEL/CentOS: `sudo yum install ./<platform_package_name>.rpm`
-1. Run `xbmgmt examine` to get the list of management BDFs
+1. Run [xbmgmt examine](https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine) to get the list of management BDFs
 1. For each compatible card run `sudo xbmgmt program --base --device <management BDF>`
 1. [Cold boot](terminology.md#cold-boot-power-cycle) the machine to update the FPGA
 1. Confirm each card validates using `xbutil validate -d <user BDF>`
@@ -177,6 +179,15 @@ Removing XRT will also remove any packages that depend on XRT, for example the d
 If you have Alveo cards in a system and no XRT drivers, treat this as a new install.
 
 1. Go to the [software install and card validation](card-install.md) of the appropriate install guide
+
+- - -
+
+### Installing offline
+
+If you have a system that does not have direct access to the internet and wish to install XRT and platforms pacakges off line.
+
+1. For Ubuntu, see [AR](https://support.xilinx.com/s/article/XRT-Offline-install-steps-for-XRT-and-Alveo-platform-packages-on-Ubuntu)
+2. For CentOS or RedHat, see [AR](https://support.xilinx.com/s/article/XRT-Offline-install-steps-for-XRT-and-Alveo-platform-packages-on-Redhat-CentOS)
 
 - - -
 

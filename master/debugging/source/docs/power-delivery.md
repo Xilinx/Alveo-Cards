@@ -13,8 +13,8 @@ This page will help guide you through steps to enure that your Alveo™ card can
 
 Testing the power delivery to one or more Alveo cards
 
-Xilinx has two test tools, `xbutil validate` and `xbtest`. 
-*  The `xbutil validate` is an XRT utility that does basic checks to determine the card is installed and operating correctly. It does not test the power envelope.  See [Card Validation](card-validation.md) for additional details. 
+Xilinx has two test tools, [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) and `xbtest`. 
+*  The [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) is an XRT utility that does basic checks to determine the card is installed and operating correctly. It does not test the power envelope.  See [Card Validation](card-validation.md) for additional details. 
 *  The `xbtest` utility provides extra card testing via different host applications and additional test kernels. This application will load up the FPGA to test on-card memory, host/card power delivery, and cooling. This test can help determine if the system is stable while the card is running accleration tasks.  See the [xbtest solutions page](https://www.xilinx.com/products/acceleration-solutions/xbtest.html) for details.
 
 ## You Will Need
@@ -27,7 +27,7 @@ Before starting to test the card, gather data
 
 1.  [Check system compatibility](check-system-compatibility.md)
 2.  Based on your card(s) and OS, download the correct version of xbtest from the [xbtest solutions page](https://www.xilinx.com/products/acceleration-solutions/xbtest.html).
-3.  Run `xbutil validate` and review the output to confirm the card is operating normally. 
+3.  Run [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) and review the output to confirm the card is operating normally. 
     *  If there are errors, go to [Card Validation](card-validation.md) and resolve.
 4.  Confirm card(s) are compatible with the host machine 
      * [Determine if the card is active or passive](common-steps.md#determine-active-or-passive-card)
@@ -46,10 +46,10 @@ For cards with PCIe AUX power connector, follow the instructions in the installa
 The U200, U250, and U280 cards require 225W of power to run Vitis™ acceleration loads and  `xbtest`.  The U55C requires 115W.
 
 
-You can display the maximum available card power using `xbmgmt examine` command as shown below.  If `Max power` is less than the maximum required, the server will not provide the power needed for the application.  
+You can display the maximum available card power using [xbmgmt examine](https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine) command as shown below.  If `Max power` is less than the maximum required, the server will not provide the power needed for the application.  
 
 
-In this example, the `Max power` is 150W, however the U200 card requires 225W and requires the PCIe AUX power connector to be connected.
+In this example, the `Max power` is 150W, however the U200 card requires 225W and requires the 8-pin PCIe AUX power connector to be connected.
 
 ```
  sudo xbmgmt examine -d 17:00.0
@@ -72,13 +72,14 @@ Device properties
 What to look for:
 
 - Look for the value reported by `Max power`
-- Should be `225W` for U200, U250, and U280 cards being used in Vitis flows
+  - Should be `225W` for U200, U250, and U280 cards being used in Vitis flows
+  - Should be `115W` or more for U55C card being used in Vitis flows
 
 
 Next steps:
 
 - Delay testing until sufficient power can be supplied.
-- Safely hook up 8-pin PCIe AUX power, see the [Card installation guides](card-install.md#card-installation-guides)  
+- Safely hook up PCIe AUX power, see the [Card installation guides](card-install.md#card-installation-guides)  
 
 - - -
 ###  Card is in a suitable machine

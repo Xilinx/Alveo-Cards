@@ -11,7 +11,7 @@ This can help to determine if any communication break has happened in the [SC](t
 
 ## This Page Covers
 
-This page covers issues observed when running the  `xbmgmt examine` and  `xbutil examine` commands and which can be related to SC issues.
+This page covers issues observed when running the  [xbmgmt examine](https://xilinx.github.io/XRT/master/html/xbmgmt.html#xbmgmt-examine) and  [xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine) commands and which can be related to SC issues.
 
 ## You Will Need
  

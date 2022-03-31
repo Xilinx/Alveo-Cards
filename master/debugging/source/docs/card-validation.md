@@ -6,11 +6,11 @@
 </table>
 
 # Card Validation
-The `xbutil` utility, which is installed with XRT, can be used to validate the [card installation](card-install.md) using the `xbutil validate` command. The command validates power connection, PCIe connection, SC version, as well as running various memory and bandwidth tests. Full details on this command can be found in the [XRT Documentation](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate).  If validation fails, indicated by `Validation failed` in the command output, the errors need to be addressed before the card can be used.
+The [xbutil utility](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil), which is installed with XRT, can be used to validate the [card installation](card-install.md) using the [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) command. The command validates power connection, PCIe connection, SC version, as well as running various memory and bandwidth tests. Full details on this command can be found in the [XRT Documentation](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate).  If validation fails, indicated by `Validation failed` in the command output, the errors need to be addressed before the card can be used.
 
 ## This Page Covers
 
-This page covers issues encountered when using `xbutil validate`.    If your issue is not covered, please post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
+This page covers issues encountered when using [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate).    If your issue is not covered, please post on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards).
 
 ## You Will Need
 
@@ -18,7 +18,7 @@ Before beginning debug:
 
 - Ensure the card, XRT, and the deployment packages are installed as part of the [card install](card-install.md)
 - Confirm the [platform and SC version](common-steps.md#display-card-and-host-platform-and-sc-versions) on the card and system match
-- Determine any failure mode(s) from running `xbutil validate`
+- Determine any failure mode(s) from running [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate)
 
 
 ## Common Cases
@@ -66,14 +66,14 @@ Next steps:
 Follow the steps below to reset system state.
 
 - Warm boot the machine
-- Run `xbutil validate`
+- Run [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate)
 - If issues persist
   - Run `xbmgmt examine -r all`
   - See if the resulting output is covered in [SC troubleshooting](sc-troubleshooting.md)
 
 - - -
 ### Hangs at start of validate test 	
-If `xbutil validate` output displays `Verify kernel: Running Test` for more than a minute and the test is not displaying any progress, the kernel has not successfully loaded and the `xbutil validate` command has hung.  An example of the output is shown below.
+If [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) output displays `Verify kernel: Running Test` for more than a minute and the test is not displaying any progress, the kernel has not successfully loaded and the [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) command has hung.  An example of the output is shown below.
 
 
 Example Output:
@@ -91,33 +91,41 @@ Next step:
 - - -
 ### Verify kernel test skipped
 
-For [DFX-2RP platforms](https://xilinx.github.io/XRT/master/html/platforms_partitions.html#two-stage-platforms) (also know as two stage platforms), the base partition needs to be flashed and the shell partition needs to be loaded prior to running `xbutil validate`.
+For [DFX-2RP platforms](https://xilinx.github.io/XRT/master/html/platforms_partitions.html#two-stage-platforms) (also know as two stage platforms), the base partition needs to be flashed and the shell partition needs to be loaded prior to running [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate).
 
-For DFX-2RP platforms such as u250_gen3x16_base_3, the `xbutil validate` command will skip tests, as shown below, if the shell partition has not been first been loaded.  
+For DFX-2RP platforms such as u250_gen3x16_base_3, the [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) command will skip tests if the shell partition has not been first been loaded.  In the output below, Test 4 is skipped with Details given as: `Verify xclbin not available or shell partition is not programmed. Skipping validation.` 
 
  ```
- xbutil validate -d d8:00.1
-Starting validation for 1 devices
+/opt/xilinx/xrt/bin/xbutil validate --device <user BDF> --verbose
 
-Validate Device           : [0000:d8:00.1]
-    Platform              : xilinx_u250_gen3x16_base_3
-    SC Version            : 4.6.11
-    Platform ID           : 0x0
--------------------------------------------------------------------------------
-Test 1 [0000:d8:00.1]     : Aux connection
-    Test Status           : [PASSED]
--------------------------------------------------------------------------------
-Test 2 [0000:d8:00.1]     : PCIE link
-    Test Status           : [PASSED]
--------------------------------------------------------------------------------
-Test 3 [0000:d8:00.1]     : SC version
-    Test Status           : [PASSED]
--------------------------------------------------------------------------------
-Test 4 [0000:d8:00.1]     : Verify kernel
-Test 5 [0000:d8:00.1]     : iops
-Test 6 [0000:d8:00.1]     : Bandwidth kernel
-Test 7 [0000:d8:00.1]     : vcu
-Validation completed. Please run the command '--verbose' option for more details
+Verbose: Enabling Verbosity
+Starting validation for 1 devices
+Validate Device : [0000:02:00.1]
+Platform : xilinx_u250_gen3x16_base_3
+SC Version : 4.6.11
+Platform ID : 0x0
+----------------------------------------------------------------------------
+---
+Test 1 [0000:02:00.1] : Aux connection
+Description : Check if auxiliary power is connected
+Test Status : [PASSED]
+----------------------------------------------------------------------------
+---
+Test 2 [0000:02:00.1] : PCIE link
+Description : Check if PCIE link is active
+Test Status : [PASSED]
+----------------------------------------------------------------------------
+---
+Test 3 [0000:02:00.1] : SC version
+Description : Check if SC firmware is up-to-date
+Test Status : [PASSED]
+----------------------------------------------------------------------------
+---
+Test 4 [0000:02:00.1] : Verify kernel
+Description : Run 'Hello World' kernel test
+Details : Verify xclbin not available or shell partition is not programmed. Skipping validation.
+Test Status : [SKIPPED]
+...
  ```
 
 Next step:
@@ -127,7 +135,7 @@ Next step:
 - - -
 ### PCIe link check PASSED with warning
 
-If you encounter `PCIE link check PASSED with warning` or `Device trained to lower spec` when running `xbutil validate`, XRT is encountering a PCIe link running slower than the platform limit. An example of these warnings is shown below.
+If you encounter `PCIE link check PASSED with warning` or `Device trained to lower spec` when running [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate), XRT is encountering a PCIe link running slower than the platform limit. An example of these warnings is shown below.
 
 ```
 ...
@@ -145,7 +153,7 @@ Next steps:
 - If the card is in a full speed slot:
   - Reseat the card, in a different slot if possible
   - Reboot the server
-  - Run `xbutil validate`
+  - Run [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate)
   - If issues persist go to next step
 - BIOS may be limiting link speed
 
@@ -180,9 +188,9 @@ Next steps:
 - - -
 
 ### AUX power not connected error
- For cards supporting >75W power, `xbutil validate` will display the following warning if the PCIe AUX power is not connected or not correctly delivering power.  Cards such as the U200/U250/U280 must have the PCIe AUX power connected to the card to deliver 225W required to run applications in the Vitis™ flow.
+ For cards supporting >75W power, [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) will display the following warning if the PCIe AUX power is not connected or not correctly delivering power.  Cards such as the U200/U250/U280 must have the PCIe AUX power connected to the card to deliver 225W required to run applications in the Vitis™ flow.
 
-Example of `xbutil validate` command warning for card without PCIe AUX power connected.
+Example of [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) command warning for card without PCIe AUX power connected.
  ```
  ~]$ xbutil validate -d 17:00.1
 ...
@@ -214,7 +222,7 @@ Next steps:
 - - -
 ### xclmgmt driver issues
 
-If the following error is displayed when running `xbutil validate`, it suggests the management driver is not working correctly.
+If the following error is displayed when running [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate), it suggests the management driver is not working correctly.
 
 ```
 Test 4 [0000:17:00.1]     : Verify kernel
@@ -248,7 +256,7 @@ Next steps:
 - - -
 ### Failed to find xclbin
 
-If the following message is displayed when running `xbutil validate` it suggests there is an issue with the installed deployment package.
+If the following message is displayed when running [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) it suggests there is an issue with the installed deployment package.
 
  ```
 Test 3 [0000:03:00.1]     : Verify kernel
