@@ -17,7 +17,7 @@ This page covers some of the package manager issues we have had reported. If you
 
 Before beginning debug, you need to:
 
-- Have [root/sudo permissions](common-steps.md#root-sudo-access)
+- Have [root/sudo permissions](common-steps.html#root-sudo-access)
 - Confirm [system compatibility](check-system-compatibility.md)
 - Determine which package(s) are failing and failure mode(s)
 
@@ -64,7 +64,7 @@ You need to be root to perform this command.
 ```
 
 Next steps:
- - [Confirm you have permission to install](common-steps.md#root-sudo-access)
+ - [Confirm you have permission to install](common-steps.html#root-sudo-access)
  - Repeat the install with `sudo command` or as root
 
 - - -
@@ -212,7 +212,7 @@ This occurs when there is a mismatch between kernel and kernel headers installed
 
 Next steps:
 
-- [Determine the Linux kernel version and headers](common-steps.md#determine-linux-kernel-and-header-information) required
+- [Determine the Linux kernel version and headers](common-steps.html#determine-linux-kernel-and-header-information) required
 - Confirm they match
 - If they do not, run the [xrtdeps.sh](https://github.com/Xilinx/XRT/blob/master/src/runtime_src/tools/scripts/xrtdeps.sh) script to install dependencies
 
@@ -251,9 +251,9 @@ If apt wants to downgrade a package, hit `n` and follow next steps.
 Next steps:
 
 - Confirm that a downgrade is wanted
-- [Capture a list of platforms installed on the system](common-steps.md#determine-xrt-packages-using-the-package-manager)
+- [Capture a list of platforms installed on the system](common-steps.html#determine-xrt-packages-using-the-package-manager)
 - Remove items to be downgrade with `apt remove` or `yum remove`
- - If this is for XRT, follow [remove XRT](common-steps.md#remove-xrt)
+ - If this is for XRT, follow [remove XRT](common-steps.html#remove-xrt)
 - Install desired packages with the desired versions with apt and yum
 
 Notes:
@@ -290,7 +290,7 @@ This occurs if you attempt to install a .rpm package using apt or a .deb package
 
 Next steps:
 
-- Determine the [machine OS](common-steps.md#determine-linux-release)
+- Determine the [machine OS](common-steps.html#determine-linux-release)
 - Use the correct set of OS and file type
   - Ubuntu: apt and .deb
   - RHEL/CentOS: yum and .rpm

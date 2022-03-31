@@ -21,7 +21,7 @@ Xilinx has two test tools, [xbutil validate](https://xilinx.github.io/XRT/master
 
 - A [Compatible host system](check-system-compatibility.md)
 - One or more Alveo cards
-- [Root/sudo permissions](common-steps.md#root-sudo-access)
+- [Root/sudo permissions](common-steps.html#root-sudo-access)
 
 Before starting to test the card, gather data
 
@@ -30,7 +30,7 @@ Before starting to test the card, gather data
 3.  Run [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) and review the output to confirm the card is operating normally. 
     *  If there are errors, go to [Card Validation](card-validation.md) and resolve.
 4.  Confirm card(s) are compatible with the host machine 
-     * [Determine if the card is active or passive](common-steps.md#determine-active-or-passive-card)
+     * [Determine if the card is active or passive](common-steps.html#determine-active-or-passive-card)
     *  Only test a passive card in server system with sufficient airflow.
     *   If a passive card is not in a [qualified host and card combination](https://www.xilinx.com/products/boards-and-kits/alveo/qualified-servers.html), you may need to manually increase server airflow by turning up the fan speed for the tests to pass.
 
@@ -79,7 +79,7 @@ What to look for:
 Next steps:
 
 - Delay testing until sufficient power can be supplied.
-- Safely hook up PCIe AUX power, see the [Card installation guides](card-install.md#card-installation-guides)  
+- Safely hook up PCIe AUX power, see the [Card installation guides](card-install.html#card-installation-guides)  
 
 - - -
 ###  Card is in a suitable machine
@@ -88,22 +88,22 @@ Alveo cards have two different cooling solutions
 * Actively cooled - the card has a fan intended to cool the card when installed in a workstation
 * Passively cooled - the card depends on host chassis airflow for cooling.
 
-See [Determine active or passive card](common-steps.md#determine-active-or-passive-card) to determine if a card is actively or passively cooled.
+See [Determine active or passive card](common-steps.html#determine-active-or-passive-card) to determine if a card is actively or passively cooled.
 Passively cooled cards should only be placed in a server with sufficient airflow.
 
 Next steps:
 
-- For active cards, go to [xbtest for testing power](power-delivery.md#xbtest-for-testing-power) below
+- For active cards, go to [xbtest for testing power](power-delivery.html#xbtest-for-testing-power) below
 - For passive cards, confirm the following:
   - Server airflow meets card requirements
     - The card can be damaged when operated in a system without sufficient airflow
   - Lid needs to be on the server for testing
-  - Go to [xbtest for testing power](power-delivery.md#xbtest-for-testing-power)
+  - Go to [xbtest for testing power](power-delivery.html#xbtest-for-testing-power)
 
 - - -
 ### Shell not listed in xbtest downloads below
 
-See [xbtest solutions page](https://www.xilinx.com/products/acceleration-solutions/xbtest.html) for supported plaforms.  To run xbtest, ensure the [platform running on the card and system](common-steps.md#display-card-and-host-platform-and-sc-versions) is supported.
+See [xbtest solutions page](https://www.xilinx.com/products/acceleration-solutions/xbtest.html) for supported plaforms.  To run xbtest, ensure the [platform running on the card and system](common-steps.html#display-card-and-host-platform-and-sc-versions) is supported.
 
 If the platform is not supported, you need to update the system and card with a supported platform.
 
@@ -118,7 +118,7 @@ If the card overheats or demands more power than the host system provides, the t
 
 Next Steps:
 
-- [Monitor the power and temperature](common-steps.md#monitor-card-power-and-temperature) to make sure the card is operating within temperature and power limits.
+- [Monitor the power and temperature](common-steps.html#monitor-card-power-and-temperature) to make sure the card is operating within temperature and power limits.
 
 
 - - -
@@ -166,7 +166,7 @@ STATUS   : POWER        : PWR_045:       94 sec. remaining; 76C; Power: raw 47.5
 STATUS   : POWER        : PWR_045:       93 sec. remaining; 76C; Power: raw 47.5W; Toggle Rate: 40.0%
 ```
 
-- [Monitor power and temperature](common-steps.md#monitor-card-power-and-temperature)
+- [Monitor power and temperature](common-steps.html#monitor-card-power-and-temperature)
 - Interrupt the test with `CTRL+C` if card temperature exceeds 95C or if the temperature suddenly falls.
 -  At the end of the test, a pass or fail is indicated.
    - A test pass shows card is good for acceleration loads.
