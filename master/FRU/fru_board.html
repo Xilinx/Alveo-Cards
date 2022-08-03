@@ -72,7 +72,6 @@ function OptanonWrapper() { }
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="FRU Product Info" href="fru_product.html" />
@@ -552,7 +551,7 @@ The values for this field are 0x58, 0x49, 0x4C, 0x49, 0x4E, and
 0x58.</p>
 <p><strong>Manufacturer Type/Length Byte</strong></p>
 <p>This value defines the type and length of the board manufacturer field.
-See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for information on the IPMI defined type/length byte format. The fixed
+See <span class="xref std std-ref">Appendix A</span> for information on the IPMI defined type/length byte format. The fixed
 value for this field is 0xC6, which is decoded as 8-bit ASCII +
 Latin , and 6 bytes long.</p>
 <p><strong>Product Name</strong></p>
@@ -563,7 +562,7 @@ If the value is less than the chosen board product name length, the
 remaining/ trailing bytes will occupy empty spaces.</p>
 <p><strong>Product Name Type/Length Byte</strong></p>
 <p>This value defines the type and length of the product name field.
-See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for information on the IPMI defined type/length byte format. The fixed value for this field
+See <span class="xref std std-ref">Appendix A</span> for information on the IPMI defined type/length byte format. The fixed value for this field
 is 0xD0, which is decoded as 8-bit ASCII + Latin 1, and 16 bytes
 long.</p>
 <p><strong>Board Serial Number</strong></p>
@@ -574,7 +573,7 @@ board. If the value is less than the chosen board serial number
 length, the remaining/ trailing bytes will occupy empty spaces.</p>
 <p><strong>Board Serial Number Type/Length Byte</strong></p>
 <p>This value defines the type and length of the board serial number
-field. See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for information on the IPMI defined type/length byte format. The fixed
+field. See <span class="xref std std-ref">Appendix A</span> for information on the IPMI defined type/length byte format. The fixed
 value for this field is 0xCE, which is decoded as 8-bit ASCII +
 Latin 1, and 14 bytes long.</p>
 <p><strong>Part Number</strong></p>
@@ -585,7 +584,7 @@ If the value is less than the chosen board part number length the
 remaining bytes are filled with 0x00.</p>
 <p><strong>Part Number Type/Length Byte</strong></p>
 <p>This value defines the type and length of the part number field.
-See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for information on the IPMI defined type/length byte format. The fixed value for this field is 0xC9, which is decoded as 8-bit ASCII + Latin 1, and 9 bytes long.</p>
+See <span class="xref std std-ref">Appendix A</span> for information on the IPMI defined type/length byte format. The fixed value for this field is 0xC9, which is decoded as 8-bit ASCII + Latin 1, and 9 bytes long.</p>
 <p><strong>FRU File ID</strong></p>
 <p>This field is used to indicate the version of the binary data used
 to program the FRU storage device. It is intended to aid with FRU
@@ -602,7 +601,7 @@ version identification.</p>
 <p>The Xilinx fixed value for this field is 0x00.</p>
 <p><strong>FRU File ID Type/Length Byte</strong></p>
 <p>This value defines the type and length of the FRU file ID field.
-See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for information on the IPMI
+See <span class="xref std std-ref">Appendix A</span> for information on the IPMI
 defined type/length byte format. The fixed value for this field is
 0x01, which is decoded as binary data, and 1 byte long.</p>
 <p><strong>End of Fields</strong></p>
@@ -611,7 +610,7 @@ defined type/length byte format. The fixed value for this field is
 <p>Pad with 0x00 until the board information area ends on an 8-byte
 boundary (relative to absolute offsets).</p>
 <p><strong>Board Area Checksum</strong></p>
-<p>See <a class="reference internal" href="appendix_a.html#appendix-a"><span class="std std-ref">Appendix A</span></a> for guidance.</p>
+<p>See <span class="xref std std-ref">Appendix A</span> for guidance.</p>
 <p><strong>Xilinx Support</strong></p>
 <p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
@@ -654,7 +653,7 @@ boundary (relative to absolute offsets).</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 17, 2022.
+        Last updated on March 30, 2022.
       </span>
 
     </p>
