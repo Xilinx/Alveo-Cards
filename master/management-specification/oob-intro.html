@@ -72,7 +72,6 @@ function OptanonWrapper() { }
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Alveo™ FRU Support" href="alveo-fru.html" />
@@ -433,7 +432,7 @@ supports three protocols. The protocols and the I2C slave address
 <p><strong>IPMI FRU support</strong></p>
 <p>SC FW supports IPMI field replaceable unit (FRU) data read at I2C slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte addressing mode is supported and the FRU data contents are explained
 in (<a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/FRU/index.html">Alveo FRU Data Specification</a>).</p>
-<p>See <a class="reference internal" href="alveo-fru.html#alveo-fru-support"><span class="std std-ref">Alveo™ FRU Support</span></a> for more details.</p>
+<p>See <span class="xref std std-ref">Alveo™ FRU Support</span> for more details.</p>
 <p><strong>Standard I2C/SMBus Communication</strong></p>
 <p>SC FW supports I2C/SMBus protocol based OoB communication at I2C
 slave address 0x65 (0xCA in 8-bit) and provides support for server
@@ -446,7 +445,7 @@ SMBus protocol:</p>
 <li>SC FW version number</li>
 <li>Critical Sensor Data Record (CSDR)</li>
 </ul>
-<p>See <a class="reference internal" href="std-smbus-commands.html#i2c-smbus-commands"><span class="std std-ref">I2C/SMBus Commands</span></a> I2C command implementation details.</p>
+<p>See <span class="xref std std-ref">I2C/SMBus Commands</span> I2C command implementation details.</p>
 <p>The following table is a comprehensive list of all OoB commands supported by SC using Standard I2C/SMBus protocols.</p>
 <p><strong>Table: List of standard I2C/SMBus commands</strong></p>
 <table border="1" class="docutils">
@@ -514,7 +513,7 @@ SMBus protocol:</p>
 <li><em>MCTP Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0236">[DSP0236]</a>)</li>
 <li><em>MCTP SMBus Binding Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0237">[DSP0237]</a>)</li>
 </ol>
-<p>See <a class="reference internal" href="dmtf-support.html#dmtf-implementation"><span class="std std-ref">DMTF Implementation</span></a> for more details</p>
+<p>See <span class="xref std std-ref">DMTF Implementation</span> for more details</p>
 <p>The following figure illustrates the PLDM over MCTP over SMBus binding specification stack.</p>
 <p><em>Figure:</em> PLDM Over MCTP Over SMBus Binding Specification Stack</p>
 <img alt="_images/DMTF_stack.png" class="align-center" src="_images/DMTF_stack.png" />
@@ -697,7 +696,7 @@ The following MCTP control commands are supported in the SC:</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 17, 2022.
+        Last updated on March 30, 2022.
       </span>
 
     </p>
