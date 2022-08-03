@@ -236,7 +236,7 @@ Test 4 [0000:17:00.1]     : Verify kernel
                             PID: 7099
                             UID: 16119
                             [Tue Sep 21 00:15:24 2021 GMT]
-                            HOST: xcodpeascoe41
+                            HOST: 
                             EXE: /opt/xilinx/xrt/test/validate.exe
                             [XRT] ERROR: No devices found
                             [XRT] ERROR: No devices found
