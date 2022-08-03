@@ -448,6 +448,7 @@ Available XRT releases along with download links are given in the table below.
 | ----------- | ----------- |
 |2021.1_pu1 <br> XRT 2.11.634 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb)</li>
 |2021.2 <br> XRT 2.12.427 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb)</li>
+|2022.1 <br> XRT 2.13.466 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_20.04-amd64-xrt.deb)</li>
 
 If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations).
 - - -
@@ -465,7 +466,7 @@ The [XRT documentation](https://xilinx.github.io/XRT/master/html/platforms.html#
 #### Management BDF
 To display the management BDF values of installed cards, use the following command:
 
-`sudo xbmgmt examine`
+`sudo /opt/xilinx/xrt/bin/xbmgmt examine`
 
 The management BDF values of installed cards are given in the square brackets under 'Devices present' and has the form `vvvv:xx:yy.0`.  In the below example, only one device is present and has a management BDF of `0000:af:00.0`.
 
@@ -477,7 +478,7 @@ Devices present
 #### User BDF
 To display the user BDF values of installed cards, use the following command:
 
-[xbutil examine](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-examine)
+`sudo /opt/xilinx/xrt/bin/xbutil examine`
 
 The user BDF values of installed cards are given in the square brackets under 'Devices present' and has the form `vvvv:xx:yy.1`.  In the below example, only one device is present and has a user BDF of `0000:af:00.1`.
 
@@ -494,7 +495,7 @@ Alveo card BDF values can also be displayed using the `lspci` Linux command:
 
 `sudo lspci -vd 10ee:`
 
-See [Card Not Recognized](card-not-recognized.md#card-not-recognized) for lspci field details.
+See [Card Not Recognized](card-not-recognized.md#confirm-system-recognizes-cards) for lspci field details. Alveo card PCIe IDs are discussed in the next section.
 
 In a multi card system you may need to cross reference `lspci` output and `xbmgmt examine --verbose` output to determine if there is a card missing.
 

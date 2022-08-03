@@ -1,233 +1,44 @@
-﻿
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
 
-
-<!DOCTYPE HTML>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-	<head>
-		<meta charset="utf-8">
-		
-		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
-		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<meta name="description"/>
-		<meta name="keywords"/>
-		<meta property="og:title" content=""/>
-		<meta property="og:description"/>
-		<!-- favicon -->
-		<link rel="icon" type="image/vnd.microsoft.icon" href="../_static/favicon.ico"/>
-		<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="../_static/favicon.ico"/>
-		<!-- Fonts -->
-		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
-
-	<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
-<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="37701bd4-e5c0-4ee3-9329-e7475d0b13a7" ></script>
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
 <script type="text/javascript">
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-		<!-- Google Tag Manager -->
-	<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
-	<!-- End Google Tag Manager -->
-	
-        <!-- Google Tag Manager -->
-        <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
-        <!-- End Google Tag Manager -->	
-
+  <title>Package Manager &mdash; Alveo Card Debug Guide  documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
   
-  
-  
-  
-
-  
-      <script type="text/javascript" src="../_static/js/jquery.min.js"></script>
-	  <script type="text/javascript" src="../_static/js/gtm.js"></script>
-  <script type="text/javascript" src="../_static/js/modernizr.min.js"></script>
-    <script type="text/javascript" src="../_static/js/d3dd8c60ed.js"></script>
-    <script type="text/javascript" src="../_static/js/common-ui-all.min.js"></script>
-    <script type="text/javascript" src="../_static/js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="../_static/js/CoveoJsSearch.Lazy.min.js"></script>
-    <script type="text/javascript" src="../_static/js/linkid.js"></script>
-    <script type="text/javascript" src="../_static/js/Searchbox.min.js"></script>
-    <script type="text/javascript" src="../_static/js/header-footer.min.js"></script>
-  
-    
-      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-    
-    <script type="text/javascript" src="../_static/js/theme.js"></script>
-
-    
-
-  
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/common-ui-all.min.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/header-footer.min.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/pro.min.css" media="all" />
+    <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="XRT Troubleshooting" href="xrt-troubleshooting.html" />
     <link rel="prev" title="Card Not Recognized" href="card-not-recognized.html" /> 
-	</head>
-	<body>
-		<div class="xilinx-bs3"/>
-		<div class="root responsivegrid">
-			<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 aem-Grid--large--16 aem-Grid--xlarge--16 aem-Grid--xxlarge--16 aem-Grid--xxxlarge--16 ">
- <div class="xilinxExperienceFragments experiencefragment aem-GridColumn aem-GridColumn--default--12">
+</head>
 
-    
-    
-
-    
-
-
-
-<div class="xf-content-height">
-    
-
-<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
-    
-    <div class="header parbase aem-GridColumn aem-GridColumn--default--12"><noindex>
-	<header data-component="header" class="site-header">
-		<nav class="navbar navbar-default">
-			<div class="container-fluid main-nav">
-				<div class="row">
-					<div class="navbar-column col-xs-4 col-sm-5">
-						<ul class="nav navbar-nav hidden-xs">
-							<li>
-									<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
-								</li>
-							<li>
-									<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
-								</li>
-							<li>
-									<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
-								</li>
-							</ul>
-							
-						<ul class="nav navbar-nav hidden-sm hidden-md hidden-lg">
-							<li>
-									<button data-target="#header-container-0" data-function="toggle">Solutions</button>
-								</li>
-							<li>
-									<button data-target="#header-container-1" data-function="toggle">Products</button>
-								</li>
-							<li>
-									<button data-target="#header-container-2" data-function="toggle">Company</button>
-								</li>
-							</ul>
-							
-						<div id="header-container-0" class="menu-container">
-								<div class="navbar-nav-container">
-									<ul class="nav navbar-nav">
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
-												</li>
-										</ul>
-									<button data-function="close-menu">
-										<span class="fal fa-times" aria-hidden="true"></span>
-									</button>
-								</div>
-							</div>
-							<div id="header-container-1" class="menu-container">
-								<div class="navbar-nav-container">
-									<ul class="nav navbar-nav">
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
-												</li>
-										</ul>
-									<button data-function="close-menu">
-										<span class="fal fa-times" aria-hidden="true"></span>
-									</button>
-								</div>
-							</div>
-							<div id="header-container-2" class="menu-container">
-								<div class="navbar-nav-container">
-									<ul class="nav navbar-nav">
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/applications.html&#39;;">Solutions</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/products/silicon-devices.html&#39;;">Products</button>
-												</li>
-										<li>
-												<button onclick="window.location.href=&#39;https://www.xilinx.com/about/company-overview.html&#39;;">Company</button>
-												</li>
-										</ul>
-									<button data-function="close-menu">
-										<span class="fal fa-times" aria-hidden="true"></span>
-									</button>
-								</div>
-							</div>
-							</div>
-					<div class="logo-column col-xs-4 col-sm-2">
-						<div class="logo">
-							<a target="_blank" href="https://www.xilinx.com/">
-								<img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-header-logo.svg?raw=true" title="Xilinx Inc"/>
-							</a>
-						</div>
-					</div>
-
-				</div>
-			</div>
-			</nav></header></noindex></div>
-		
-	
-</div>
-
-    
-</div>
-</div>
-
-<div class="calloutBanner parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16"><div class="callout-banner">
-    Xilinx is now a part of <a target="_blank" href="https://www.amd.com/en/corporate/xilinx-acquisition">AMD</a> |  <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Learn More</a>
-</div>
-</div>
-				<div class="parsys aem-GridColumn--xxxlarge--none aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
-						<div class="container-fluid">
-							<div class="row">
-							<div class="col-xs-12">
-   
+<body class="wy-body-for-nav"> 
   <div class="wy-grid-for-nav">
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
-        <div class="wy-side-nav-search" >
-          
-
-          
-            <a href="../README.html" class="icon icon-home" alt="Documentation Home"> Alveo Card Debug Guide
-          
-
-          
+        <div class="wy-side-nav-search">
+            <a href="../README.html" class="icon icon-home"> Alveo Card Debug Guide
+            <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
-
-          
-            
-            
-          
-
-          
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -235,27 +46,16 @@ function OptanonWrapper() { }
     <input type="hidden" name="area" value="default" />
   </form>
 </div>
-
-          
-        </div>
-
-      
-        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-            
-            
-            
-              
-            
-            
-              <p class="caption"><span class="caption-text">Home</span></p>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Home</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
 </ul>
-<p class="caption"><span class="caption-text">2021.1 XRT</span></p>
+<p class="caption" role="heading"><span class="caption-text">2021.1 XRT</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Issue Areas</span></p>
+<p class="caption" role="heading"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="card-install.html">Card Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="card-validation.html">Card Validation</a></li>
@@ -306,96 +106,51 @@ function OptanonWrapper() { }
 <li class="toctree-l1"><a class="reference internal" href="power-delivery.html">Power Delivery</a></li>
 <li class="toctree-l1"><a class="reference internal" href="common-steps.html">Common Steps</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Other Topics</span></p>
+<p class="caption" role="heading"><span class="caption-text">Other Topics</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="check-system-compatibility.html">Checking System Compatibility</a></li>
 <li class="toctree-l1"><a class="reference internal" href="terminology.html">Terminology</a></li>
 <li class="toctree-l1"><a class="reference internal" href="alveo-system.html">Alveo System</a></li>
 </ul>
 
-            
-			
-			<p class="caption"><span class="caption-text">This Page</span></p>
-				<ul class="current">
-				  <li class="toctree-l1"><a href="../_sources/docs/package-manager.md.txt"
-						rel="nofollow">Show Source</a></li>
-				</ul>
-          
         </div>
-        
       </div>
     </nav>
 
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" aria-label="top navigation">
-        
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
           <a href="../README.html">Alveo Card Debug Guide</a>
-        
       </nav>
 
-
       <div class="wy-nav-content">
-        
         <div class="rst-content">
-        
-          
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<div role="navigation" aria-label="breadcrumbs navigation">
-
+          <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-    
       <li><a href="../README.html" class="icon icon-home"></a> &raquo;</li>
-        
       <li>Package Manager</li>
-    
-    
       <li class="wy-breadcrumbs-aside">
-        
-            
             <a href="../_sources/docs/package-manager.md.txt" rel="nofollow"> View page source</a>
-          
-        
       </li>
-    
   </ul>
-
-  
   <hr/>
 </div>
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
-            
+             
   <table class="sphinxhide">
  <tr>
    <td align="center"><img src="https://www.xilinx.com/content/dam/xilinx/imgs/press/media-kits/corporate/xilinx-logo.png" width="30%"/><h1>Alveo Debug Guide</h1>
    </td>
  </tr>
 </table><div class="section" id="package-manager">
-<h1>Package Manager<a class="headerlink" href="#package-manager" title="Permalink to this headline">¶</a></h1>
+<h1>Package Manager<a class="headerlink" href="#package-manager" title="Permalink to this heading">¶</a></h1>
 <p>This page provides tips and tricks covering the interaction between XRT and platform packages and yum/apt. It is not intended to be used stand alone. If you are just starting to debug please consult the <a class="reference internal" href="../README.html"><span class="doc">main page</span></a> to determine the best starting point for your needs.</p>
 <div class="section" id="this-page-covers">
-<h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this headline">¶</a></h2>
+<h2>This Page Covers<a class="headerlink" href="#this-page-covers" title="Permalink to this heading">¶</a></h2>
 <p>This page covers some of the package manager issues we have had reported. If your issue is not covered, please do a web search.</p>
 </div>
 <div class="section" id="you-will-need">
-<h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this headline">¶</a></h2>
+<h2>You Will Need<a class="headerlink" href="#you-will-need" title="Permalink to this heading">¶</a></h2>
 <p>Before beginning debug, you need to:</p>
 <ul class="simple">
 <li><p>Have <a class="reference external" href="common-steps.html#root-sudo-access">root/sudo permissions</a></p></li>
@@ -404,10 +159,10 @@ function OptanonWrapper() { }
 </ul>
 </div>
 <div class="section" id="common-cases">
-<h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this headline">¶</a></h2>
+<h2>Common Cases<a class="headerlink" href="#common-cases" title="Permalink to this heading">¶</a></h2>
 <hr class="docutils" />
 <div class="section" id="installation-package-is-not-found">
-<h3>Installation package is not found<a class="headerlink" href="#installation-package-is-not-found" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package is not found<a class="headerlink" href="#installation-package-is-not-found" title="Permalink to this heading">¶</a></h3>
 <p>During installation, the package manager reports it can not find file(s) and a message similar to the following is displayed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install xrt_202010.2.6.655_18.04-amd64-xrt.deb
 Reading package lists... Done
@@ -431,10 +186,10 @@ E: Couldn&#39;t find any package by regex &#39;xrt_202010.2.6.655_18.04-amd64-xr
 </div>
 <hr class="docutils" />
 <div class="section" id="package-installation-fails-with-permission-denied">
-<h3>Package installation fails with permission denied<a class="headerlink" href="#package-installation-fails-with-permission-denied" title="Permalink to this headline">¶</a></h3>
+<h3>Package installation fails with permission denied<a class="headerlink" href="#package-installation-fails-with-permission-denied" title="Permalink to this heading">¶</a></h3>
 <p>XRT or platform packages will fail to install if you don’t have root permission.  Examples of the displayed error for apt and yum are shown below.</p>
 <div class="section" id="apt">
-<h4>apt<a class="headerlink" href="#apt" title="Permalink to this headline">¶</a></h4>
+<h4>apt<a class="headerlink" href="#apt" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./xrt_202010.2.6.655_18.04-amd64-xrt.deb
 E: Could not open lock file /var/lib/dpkg/lock-frontend - open (13: Permission denied)
 E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are you root?
@@ -442,7 +197,7 @@ E: Unable to acquire the dpkg frontend lock (/var/lib/dpkg/lock-frontend), are y
 </div>
 </div>
 <div class="section" id="yum">
-<h4>yum<a class="headerlink" href="#yum" title="Permalink to this headline">¶</a></h4>
+<h4>yum<a class="headerlink" href="#yum" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm
 Loaded plugins: fastestmirror, langpacks
 Repository &#39;UIM_install&#39; is missing name in configuration, using id
@@ -459,7 +214,7 @@ You need to be root to perform this command.
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-package-is-not-supported">
-<h3>Installation package is not supported<a class="headerlink" href="#installation-package-is-not-supported" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package is not supported<a class="headerlink" href="#installation-package-is-not-supported" title="Permalink to this heading">¶</a></h3>
 <p>The package manager says installation package is not supported as shown in the example below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./xrt_201920.2.3.1301_16.04-xrt.deb
 Reading package lists... Done
@@ -475,10 +230,10 @@ E: Unsupported file ./xrt_201920.2.3.1301_16.04-xrt.deb given on commandline
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-package-cannot-be-opened">
-<h3>Installation package cannot be opened<a class="headerlink" href="#installation-package-cannot-be-opened" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package cannot be opened<a class="headerlink" href="#installation-package-cannot-be-opened" title="Permalink to this heading">¶</a></h3>
 <p>The .deb/.rpm package is corrupt and there are errors indicating the package manager can not handle the file as shown in the examples below.</p>
 <div class="section" id="id1">
-<h4>apt<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h4>
+<h4>apt<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./foo.deb
 Reading package lists... Error!
 E: Sub-process Popen returned an error code (2)
@@ -489,7 +244,7 @@ E: The package lists or status file could not be parsed or opened.
 </div>
 </div>
 <div class="section" id="id2">
-<h4>yum<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h4>
+<h4>yum<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install foo.rpm
 Loaded plugins: fastestmirror, langpacks
 Repository &#39;UIM_install&#39; is missing name in configuration, using id
@@ -511,7 +266,7 @@ Error: Nothing to do
 </div>
 <hr class="docutils" />
 <div class="section" id="nothing-to-do-error">
-<h3>Nothing to do error<a class="headerlink" href="#nothing-to-do-error" title="Permalink to this headline">¶</a></h3>
+<h3>Nothing to do error<a class="headerlink" href="#nothing-to-do-error" title="Permalink to this heading">¶</a></h3>
 <p>During XRT installation, yum displays the message <code class="docutils literal notranslate"><span class="pre">Error:</span> <span class="pre">Nothing</span> <span class="pre">to</span> <span class="pre">do</span></code> as shown in the Red Hat example below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install ./xrt_202010.2.6.655_18.04-amd-xrt.deb
 Loaded plugins: fastestmirror, langpacks
@@ -539,7 +294,7 @@ Error: Nothing to do
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-package-dependency-error">
-<h3>Installation package dependency error<a class="headerlink" href="#installation-package-dependency-error" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package dependency error<a class="headerlink" href="#installation-package-dependency-error" title="Permalink to this heading">¶</a></h3>
 <p>Installation fails with <code class="docutils literal notranslate"><span class="pre">&quot;_</span> <span class="pre">Error:</span> <span class="pre">Package:</span> <span class="pre">&lt;name&gt;</span> <span class="pre">Requires</span> <span class="pre">&lt;dependency&gt;&quot;</span></code>.  Packages have dependencies on other packages and this occurs when one or more dependencies can not be found as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install ./xrt_202010.2.7.766_7.4.1708-x86_64-xrt.rpm
 Loaded plugins: langpacks, product-id, search-disabled-repos, subscription-manager
@@ -588,7 +343,7 @@ Error: Package: xrt-2.7.766-1.x86_64 (/xrt_202010.2.7.766_7.4.1708-x86_64-xrt)
 </div>
 <hr class="docutils" />
 <div class="section" id="kernel-header-error">
-<h3>Kernel header error<a class="headerlink" href="#kernel-header-error" title="Permalink to this headline">¶</a></h3>
+<h3>Kernel header error<a class="headerlink" href="#kernel-header-error" title="Permalink to this heading">¶</a></h3>
 <p>During XRT installation a message indicating kernel headers for the kernel have not been installed similar to the following is displayed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Building</span> <span class="k">for</span> <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">862.</span><span class="n">el7</span><span class="o">.</span><span class="n">x86_64</span>
 <span class="n">Module</span> <span class="n">build</span> <span class="k">for</span> <span class="n">kernel</span> <span class="mf">3.10.0</span><span class="o">-</span><span class="mf">862.</span><span class="n">el7</span><span class="o">.</span><span class="n">x86_64</span> <span class="n">was</span> <span class="n">skipped</span> <span class="n">since</span> <span class="n">the</span>
@@ -605,10 +360,10 @@ Error: Package: xrt-2.7.766-1.x86_64 (/xrt_202010.2.7.766_7.4.1708-x86_64-xrt)
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-package-is-older">
-<h3>Installation package is older<a class="headerlink" href="#installation-package-is-older" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package is older<a class="headerlink" href="#installation-package-is-older" title="Permalink to this heading">¶</a></h3>
 <p>During package installation, yum fails with <code class="docutils literal notranslate"><span class="pre">does</span> <span class="pre">not</span> <span class="pre">update</span> <span class="pre">installed</span> <span class="pre">package</span></code> or apt indicates the package will be <code class="docutils literal notranslate"><span class="pre">DOWNGRADED</span></code> as shown below.</p>
 <div class="section" id="id3">
-<h4>yum<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h4>
+<h4>yum<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install alveo/platforms/2020.1_web/xrt/xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm
 Loaded plugins: fastestmirror, langpacks
 Repository &#39;UIM_install&#39; is missing name in configuration, using id
@@ -619,7 +374,7 @@ alveo/platforms/2020.1_web/xrt/xrt_202010.2.6.655_7.4.1708-x86_64-xrt.rpm: does 
 </div>
 </div>
 <div class="section" id="id4">
-<h4>apt<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h4>
+<h4>apt<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>The following packages will be REMOVED:
   xilinx-u50lv-gen3x4-xdma-base xilinx-u50lv-gen3x4-xdma-validate
 The following packages will be DOWNGRADED:
@@ -649,7 +404,7 @@ Do you want to continue? [Y/n]
 </div>
 <hr class="docutils" />
 <div class="section" id="held-broken-packages-error">
-<h3>Held broken packages error<a class="headerlink" href="#held-broken-packages-error" title="Permalink to this headline">¶</a></h3>
+<h3>Held broken packages error<a class="headerlink" href="#held-broken-packages-error" title="Permalink to this heading">¶</a></h3>
 <p>Incorrectly using the installation package on the wrong OS can result in the error <code class="docutils literal notranslate"><span class="pre">you</span> <span class="pre">have</span> <span class="pre">held</span> <span class="pre">broken</span> <span class="pre">packages</span></code> as shown below.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo apt install ./xrt_202010.2.7.761_16.04-amd64-xrt.deb
 Reading package lists... Done
@@ -684,7 +439,7 @@ E: Unable to correct problems, you have held broken packages.
 </div>
 <hr class="docutils" />
 <div class="section" id="installation-package-missing-permissions">
-<h3>Installation package missing permissions<a class="headerlink" href="#installation-package-missing-permissions" title="Permalink to this headline">¶</a></h3>
+<h3>Installation package missing permissions<a class="headerlink" href="#installation-package-missing-permissions" title="Permalink to this heading">¶</a></h3>
 <p>The package install fails with one of the following errors:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">...couldn't</span> <span class="pre">be</span> <span class="pre">accessed</span> <span class="pre">by</span> <span class="pre">user</span> <span class="pre">'_apt'</span></code> or</p></li>
@@ -693,7 +448,7 @@ E: Unable to correct problems, you have held broken packages.
 </ul>
 <p>Examples of these errors are shown below.</p>
 <div class="section" id="id5">
-<h4>apt<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h4>
+<h4>apt<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h4>
 <ul class="simple">
 <li><p>Missing x permission</p></li>
 </ul>
@@ -707,13 +462,13 @@ E: Unable to correct problems, you have held broken packages.
 Reading package lists... Error!
 E: Sub-process Popen returned an error code (2)
 E: Encountered a section with no Package: header
-E: Problem with MergeList /proj/xcoswmktg/username/alveo/platforms/2020.1_web/U50lv_gen3x4_base2/18.04/xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb
+E: Problem with MergeList .../xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb
 E: The package lists or status file could not be parsed or opened.
 </pre></div>
 </div>
 </div>
 <div class="section" id="id6">
-<h4>yum<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h4>
+<h4>yum<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h4>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ sudo yum install foo.rpm
 Loaded plugins: fastestmirror, langpacks
 Repository &#39;UIM_install&#39; is missing name in configuration, using id
@@ -738,7 +493,7 @@ Error: Nothing to do
 </div>
 <hr class="docutils" />
 <div class="section" id="failed-to-create-xsabin">
-<h3>Failed to create xsabin<a class="headerlink" href="#failed-to-create-xsabin" title="Permalink to this headline">¶</a></h3>
+<h3>Failed to create xsabin<a class="headerlink" href="#failed-to-create-xsabin" title="Permalink to this heading">¶</a></h3>
 <p>When installing the deployment package, an error message similar to the following is displayed.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Failed</span> <span class="n">to</span> <span class="n">create</span> <span class="n">xsabin</span><span class="p">,</span>
 <span class="n">install</span> <span class="ow">is</span> <span class="n">incomplete</span>
@@ -753,7 +508,7 @@ Error: Nothing to do
 </div>
 <hr class="docutils" />
 <div class="section" id="program-base-fails-with-specified-base-not-found">
-<h3>Program base fails with specified base not found<a class="headerlink" href="#program-base-fails-with-specified-base-not-found" title="Permalink to this headline">¶</a></h3>
+<h3>Program base fails with specified base not found<a class="headerlink" href="#program-base-fails-with-specified-base-not-found" title="Permalink to this heading">¶</a></h3>
 <p>When flashing the card with the command <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--base</span> <span class="pre">--image</span> <span class="pre">&lt;base_platform_name&gt;</span> <span class="pre">--device</span> <span class="pre">&lt;bdf&gt;</span></code> returns <code class="docutils literal notranslate"><span class="pre">specified</span> <span class="pre">base</span> <span class="pre">not</span> <span class="pre">found</span></code> as shown in the example below, it indicates that the name of the specified base is not supported for the targeted card.  This may also occur if the specified base name is spelled incorrectly.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ sudo xbmgmt program --base --image invalid_name --device af:00.0
 XRT build version: 2.12.361
@@ -775,7 +530,7 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
 </div>
 <hr class="docutils" />
 <div class="section" id="item-not-covered-above">
-<h3>Item not covered above<a class="headerlink" href="#item-not-covered-above" title="Permalink to this headline">¶</a></h3>
+<h3>Item not covered above<a class="headerlink" href="#item-not-covered-above" title="Permalink to this heading">¶</a></h3>
 <p>This guide is not comprehensive package manager and your error condition may not be covered.</p>
 <p>Next steps:</p>
 <ul class="simple">
@@ -787,12 +542,12 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
 </div>
 <hr class="docutils" />
 <div class="section" id="xilinx-support">
-<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this headline">¶</a></h3>
+<h3>Xilinx Support<a class="headerlink" href="#xilinx-support" title="Permalink to this heading">¶</a></h3>
 <p>For additional support resources such as Answers, Documentation, Downloads, and Alerts, see the <a class="reference external" href="http://www.xilinx.com/support">Xilinx Support pages</a>. For additional assistance, post your question on the Xilinx Community Forums – <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
 <p>Have a suggestion, or found an issue please send an email to alveo_cards_debugging&#64;xilinx.com .</p>
 </div>
 <div class="section" id="license">
-<h3>License<a class="headerlink" href="#license" title="Permalink to this headline">¶</a></h3>
+<h3>License<a class="headerlink" href="#license" title="Permalink to this heading">¶</a></h3>
 <p>All software including scripts in this distribution are licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
 <a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
@@ -806,76 +561,8 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
 
 
            </div>
-           
           </div>
-          <footer>
-<!-- Atalwar: Moved the footer code to layout.html to resolve conflict with the Xilinx template -->
-</footer>
-
-        </div>
-      </div>
-
-
-	  <!-- Sphinx Page Footer block -->
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="xrt-troubleshooting.html" class="btn btn-neutral float-right" title="XRT Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="card-not-recognized.html" class="btn btn-neutral float-left" title="Card Not Recognized" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
-  
-
-  <hr/>
-
-  <div role="contentinfo" class="copyright">
-    <p class="footerinfo">
-      <span class="lastupdated">
-        Last updated on March 30, 2022.
-      </span>
-
-    </p>
-	<br>
-  </div>
-      </div>
-    </section>
-
-
-  
-
-  <script type="text/javascript">
-      jQuery(function () {
-          SphinxRtdTheme.Navigation.enable(true);
-      });
-  </script>
-
-   <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-
-  <script type="text/javascript" id="searchindexloader"></script>
-
-
-  
-  
-    
-  
-
-
-
-  <!--  Xilinx template footer block -->
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
-					<div class="xf-content-height">
-						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
-							<div class="footer parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
-								<noindex>
-                  <!-- make footer fixed - NileshP -->
+          
                   <style>
                         .footer {
                         position: fixed;
@@ -884,147 +571,64 @@ EXE: /opt/xilinx/xrt/bin/unwrapped/xbmgmt2
                         width: 100%;
                         }
                   </style>
-                  <!-- make footer fixed NileshP-->
-									<footer>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="card-not-recognized.html" class="btn btn-neutral float-left" title="Card Not Recognized" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xrt-troubleshooting.html" class="btn btn-neutral float-right" title="XRT Troubleshooting" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on July 27, 2022.
+      </span></p>
+  </div>
+
+
+
 										<div class="aem-Grid aem-Grid--16">
 											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
 												<div class="container-fluid sub-footer">
-													<div class="row">
-														<div class="footerSocial parbase">
-														
-															<div class="col-md-push-6 col-lg-push-6 col-md-6 col-lg-6">
-																<div class="lang-select dropup hidden-md hidden-lg">
-		<button data-toggle="dropdown">
-			<span class="fas fa-globe" aria-hidden="true"></span>
-			<span>
-				
-					English
-				</span>
-		<span class="far fa-angle-down" aria-hidden="true"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<li>
-				<a target="_blank" href="https://japan.xilinx.com/" target="_self">
-					日本語
-				</a>
-			</li>
-		<li>
-				<a target="_blank" href="https://china.xilinx.com/" target="_self">
-					简体中文
-				</a>
-			</li>
-		</ul>
-	</div>
-																<ul class="list-inline pull-right social-menu">
-																	<li>
-																		<a target="_blank" href="https://www.linkedin.com/company/xilinx">
-																		<span class="linkedin icon"></span>
-																		<span class="sr-only">Connect on LinkedIn</span>
-																		</a>
-																	</li>
-																	<li>
-																		<a target="_blank" href="https://www.twitter.com/XilinxInc">
-																		<span class="twitter icon"></span>
-																		<span class="sr-only">Follow us on Twitter</span>
-																		</a>
-																	</li>
-																	<li>
-																		<a target="_blank" href="https://www.facebook.com/XilinxInc">
-																		<span class="facebook icon"></span>
-																		<span class="sr-only">Connect on Facebook</span>
-																		</a>
-																	</li>
-																	<li>
-																		<a target="_blank" href="https://www.youtube.com/XilinxInc">
-																		<span class="youtube icon"></span>
-																		<span class="sr-only">Watch us on YouTube</span>
-																		</a>
-																	</li>
-																	<li>
-																		<a target="_blank" href="https://www.xilinx.com/registration/subscriber-signup.html">
-																		<span class="newsletter icon"></span>
-																		<span class="sr-only">Subscribe to Newsletter</span>
-																		</a>
-																	</li>
-																</ul>
-																	<div class="lang-select dropup hidden-xs hidden-sm">
-	<button data-toggle="dropdown">
-		<span class="fas fa-globe" aria-hidden="true"></span>
-		<span>
-			
-				English
-			</span>
-		<span class="far fa-angle-down" aria-hidden="true"></span>
-	</button>
-	<ul class="dropdown-menu">
-		<li>
-				<a target="_blank" href="https://japan.xilinx.com/" target="_self">
-					日本語
-				</a>
-			</li>
-		<li>
-				<a target="_blank" href="https://china.xilinx.com/" target="_self">
-					简体中文
-				</a>
-			</li>
-		</ul>
-	</div>
-															</div>
-														</div>
-														<div class="col-md-pull-5 col-lg-pull-5 col-md-5 col-lg-5">
-															<span class="copyright">©2022 Advanced Micro Devices, Inc</span>
-														</div>
 
-													</div>
-													                    <div class="movethisrowtoleft row">
+													                    <div class="row">
                         <div class="col-xs-24">
-                            <ul class="sub-menu">
-                                <li><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a></li>
-                                <li><a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a></li>
-								<li><a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a></li>
-                                <li><a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></li>
-                            </ul>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>
 											</div>
 										</div>
-									</footer>
-								</noindex>
-							</div>
-						</div>
-					</div>
-				</div>
-<div class="backToTop parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16"><noindex>
-    <span data-component="backToTopButton" class="backToTopButton loaded">
-        <ul>
-            <li>
-                <a href="https://www.author.xilinx.com/xx/rebrand/amd/en-amd-xilinx-header-footer.html#top" class="btn top">
-                    <span class="fas fa-angle-up" aria-hidden="true"></span>
-                </a>
-            </li>
-        </ul>
-    </span>
-</noindex></div>
-			</div>
-		</div>
+										
+</br>
 
 
-		<script>window.CQ = window.CQ || {}</script>
-		<script src="https://static.cloud.coveo.com/searchui/v2.4382/js/CoveoJsSearch.Lazy.min.js"></script>
-		<script>
-			var underscoreSetup = function () {
-			  _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
-			  _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
-			  _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
-			}
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
 
-			underscoreSetup();
-		</script>
-	</body>
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
 </html>
