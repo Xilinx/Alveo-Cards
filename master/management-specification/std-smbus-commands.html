@@ -72,7 +72,6 @@ function OptanonWrapper() { }
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
-  <link rel="stylesheet" href="_static/graphviz.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Satellite Controller Firmware Update Commands" href="sc-firmware-update.html" />
@@ -792,7 +791,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
 <h2>0x20–Critical Sensor Data Record (CSDR) Command<a class="headerlink" href="#x20critical-sensor-data-record-csdr-command" title="Permalink to this headline">¶</a></h2>
 <p><strong>Note:</strong> Currently, this command is only supported in Alveo™ U30 Hyperscaler only SKU.</p>
 <p>The CSDR command implementation is Block Read from server BMC’s perspective and SC sends the data LSB first (i.e.) Byte 0, Byte 1 … Byte 63 order.</p>
-<p>See Block Read command from <a class="reference internal" href="smbus2.0-protocol-recap.html#i2c-smbus-implementation-and-protocol-recap"><span class="std std-ref">I2C/SMBus Implementation and Protocol Recap</span></a> for more details.</p>
+<p>See Block Read command from <span class="xref std std-ref">I2C/SMBus Implementation and Protocol Recap</span> for more details.</p>
 <p>The following sensor information are packaged into the SDR response (64 bytes):</p>
 <ul class="simple">
 <li>Status: Contains TCRIT, PG, ZYNQ error and other status information.</li>
@@ -1730,7 +1729,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 17, 2022.
+        Last updated on March 30, 2022.
       </span>
 
     </p>
