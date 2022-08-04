@@ -15,11 +15,11 @@ Card installation consists of intalling the card into a server and software inst
 
 | Card | Installation guide                                                                                                                                                                                                     |
 | ---- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| U50  | [Alveo U50 Data Center Accelerator Card Installation Guide (UG1370)]( https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1370-u50-installation.pdf)                                   |
-| U55C  | [Alveo U55C Data Center Accelerator Card Installation Guide (UG1468)](https://www.xilinx.com/content/dam/xilinx/support/documentation/boards_and_kits/accelerator-cards/ug1468-alveo-u55c.pdf)                                 |
-| U200 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
-| U250 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf)                             |
-| U280 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://www.xilinx.com/cgi-bin/docs/bkdoc?k=accelerator-cards;v=latest;d=ug1301-getting-started-guide-alveo-accelerator-cards.pdf) |
+| U50  | [Alveo U50 Data Center Accelerator Card Installation Guide (UG1370)](https://docs.xilinx.com/v/u/en-US/ug1370-u50-installation)                                   |
+| U55C  | [Alveo U55C Data Center Accelerator Card Installation Guide (UG1468)](https://docs.xilinx.com/v/u/en-US/ug1468-alveo-u55c)                                 |
+| U200 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://docs.xilinx.com/r/en-US/ug1301-getting-started-guide-alveo-accelerator-cards)                             |
+| U250 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://docs.xilinx.com/r/en-US/ug1301-getting-started-guide-alveo-accelerator-cards)                             |
+| U280 | [Getting Started with Alveo Data Center Acceleration Cards (UG1301)](https://docs.xilinx.com/r/en-US/ug1301-getting-started-guide-alveo-accelerator-cards) |
 
 
 ## You Will Need

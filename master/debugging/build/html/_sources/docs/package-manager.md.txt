@@ -320,7 +320,7 @@ N: Download is performed unsandboxed as root as file '/scratch/alveo_cycle_test/
 Reading package lists... Error!
 E: Sub-process Popen returned an error code (2)
 E: Encountered a section with no Package: header
-E: Problem with MergeList /proj/xcoswmktg/username/alveo/platforms/2020.1_web/U50lv_gen3x4_base2/18.04/xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb
+E: Problem with MergeList .../xilinx-cmc-u50_1.0.20-2853996_all_18.04.deb
 E: The package lists or status file could not be parsed or opened.
 
 ```
