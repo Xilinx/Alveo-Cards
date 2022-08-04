@@ -4,7 +4,7 @@ Alveo Card Out-of-Band Management Specification for Server BMC
 ==============================================================
 
 
-.. image:: ./images/xilinx.png
+.. image:: ./images/amd.png
    :align: left
 
 This document describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30 and U55x Alveo™ Data Center Cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are standard I2C protocol and PLDM Over MCTP Over SMBus.
