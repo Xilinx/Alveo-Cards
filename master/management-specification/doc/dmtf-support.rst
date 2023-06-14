@@ -16,8 +16,8 @@ Currently, the following sensor readings are reported via PLDM Type-2 commands:
 
 	1. FPGA die/junction temperature 
 	2. Board temperature
-	3. QSFP0 temperature
-	4. QSFP1 temperature
+	3. QSFP0 temperature (if present)
+	4. QSFP1 temperature (if present)
 
 **Default SMBus 2.0 commands**
 
