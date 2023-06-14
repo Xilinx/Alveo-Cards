@@ -275,7 +275,7 @@ function OptanonWrapper() { }
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
 </ul>
@@ -377,6 +377,8 @@ peripherals reside on the auxiliary power domain (i.e.) 3V3_AUX.</p>
 <img alt="_images/sc_block_diagram.png" class="align-center" src="_images/sc_block_diagram.png" />
 <p><em>Figure:</em> Alveo U30 specific block diagram</p>
 <img alt="_images/u30_sc_block_diagram.png" class="align-center" src="_images/u30_sc_block_diagram.png" />
+<p><em>Figure:</em> Alveo V70 specific block diagram</p>
+<img alt="_images/v70_sc_vmc_block_diagram.png" class="align-center" src="_images/v70_sc_vmc_block_diagram.png" />
 <hr class="docutils" />
 <p><strong>Satellite Controller Firmware Version</strong></p>
 <p>Not all features described in this document are available in older
@@ -425,7 +427,7 @@ supports three protocols. The protocols and the I2C slave address
 </tr>
 <tr class="row-odd"><td>0x65</td>
 <td>0xCA</td>
-<td>Standard I2C commands</td>
+<td>ALVEO I2C commands</td>
 </tr>
 </tbody>
 </table>
@@ -433,7 +435,7 @@ supports three protocols. The protocols and the I2C slave address
 <p>SC FW supports IPMI field replaceable unit (FRU) data read at I2C slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte addressing mode is supported and the FRU data contents are explained
 in (<a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/FRU/index.html">Alveo FRU Data Specification</a>).</p>
 <p>See <span class="xref std std-ref">Alveo™ FRU Support</span> for more details.</p>
-<p><strong>Standard I2C/SMBus Communication</strong></p>
+<p><strong>ALVEO I2C/SMBus Communication</strong></p>
 <p>SC FW supports I2C/SMBus protocol based OoB communication at I2C
 slave address 0x65 (0xCA in 8-bit) and provides support for server
 BMC that does not accept PLDM or distributed management task force
@@ -443,11 +445,11 @@ SMBus protocol:</p>
 <li>Thermal sensors such as FPGA, max Board, max DIMM, and max QSFP temperature</li>
 <li>Total board power consumption</li>
 <li>SC FW version number</li>
-<li>Critical Sensor Data Record (CSDR)</li>
+<li>Critical Sensor Data Record (CSDR) - Specific to ALVEO U30 only</li>
 </ul>
 <p>See <span class="xref std std-ref">I2C/SMBus Commands</span> I2C command implementation details.</p>
-<p>The following table is a comprehensive list of all OoB commands supported by SC using Standard I2C/SMBus protocols.</p>
-<p><strong>Table: List of standard I2C/SMBus commands</strong></p>
+<p>The following table is a comprehensive list of all OoB commands supported by SC using ALVEO I2C/SMBus protocols.</p>
+<p><strong>Table: List of ALVEO I2C/SMBus commands</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="19%" />
@@ -520,10 +522,10 @@ SMBus protocol:</p>
 <p>The following sensor readings are reported via PLDM OoB:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li>FPGA die/junction temperature</li>
+<li>FPGA/Device temperature</li>
 <li>Board temperature</li>
-<li>QSFP0 temperature</li>
-<li>QSFP1 temperature</li>
+<li>QSFP0 temperature (if present)</li>
+<li>QSFP1 temperature (if present)</li>
 </ol>
 </div></blockquote>
 <p><strong>Default SMBus 2.0 commands</strong></p>

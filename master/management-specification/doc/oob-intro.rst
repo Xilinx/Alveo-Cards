@@ -30,6 +30,11 @@ peripherals reside on the auxiliary power domain (i.e.) 3V3_AUX.
 .. image:: ./images/u30_sc_block_diagram.png
    :align: center
 
+*Figure:* Alveo V70 specific block diagram
+
+.. image:: ./images/v70_sc_vmc_block_diagram.png
+   :align: center
+   
 -----------------------------------------------------------------------
 
 
@@ -67,7 +72,7 @@ supports three protocols. The protocols and the I2C slave address
 +-------------------------------+-------------------------------+---------------------------------+
 | 0x61                          |     0xC2                      |     Default SMBus (2.0) for ARP |
 +-------------------------------+-------------------------------+---------------------------------+
-| 0x65                          |     0xCA                      |     Standard I2C commands       |
+| 0x65                          |     0xCA                      |     ALVEO I2C commands          |
 +-------------------------------+-------------------------------+---------------------------------+
 
 **IPMI FRU support**
@@ -77,7 +82,7 @@ in (`Alveo FRU Data Specification <https://xilinx.github.io/Alveo-Cards/master/F
 
 See :ref:`Alveo™ FRU Support` for more details.
 
-**Standard I2C/SMBus Communication**
+**ALVEO I2C/SMBus Communication**
 
 SC FW supports I2C/SMBus protocol based OoB communication at I2C
 slave address 0x65 (0xCA in 8-bit) and provides support for server
@@ -91,14 +96,14 @@ SMBus protocol:
 
 -  SC FW version number
 
--  Critical Sensor Data Record (CSDR)
+-  Critical Sensor Data Record (CSDR) - Specific to ALVEO U30 only
 
 See :ref:`I2C/SMBus Commands` I2C command implementation details.
 
-The following table is a comprehensive list of all OoB commands supported by SC using Standard I2C/SMBus protocols. 
+The following table is a comprehensive list of all OoB commands supported by SC using ALVEO I2C/SMBus protocols. 
 
 
-**Table: List of standard I2C/SMBus commands**
+**Table: List of ALVEO I2C/SMBus commands**
 
 +------------------+---------------------------+----------------------------+-----------------------+
 | **Command Code** | **Sensor Name**           | **SMBus Transaction Type** | **Num of resp Bytes** |
@@ -142,10 +147,10 @@ The following figure illustrates the PLDM over MCTP over SMBus binding specifica
 
 The following sensor readings are reported via PLDM OoB:
 
-	1. FPGA die/junction temperature 
+	1. FPGA/Device temperature 
 	2. Board temperature
-	3. QSFP0 temperature
-	4. QSFP1 temperature
+	3. QSFP0 temperature (if present)
+	4. QSFP1 temperature (if present)
 
 **Default SMBus 2.0 commands**
 

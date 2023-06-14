@@ -271,7 +271,7 @@ function OptanonWrapper() { }
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal information</span></p>
+<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix A</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#alveo-pcie-information">Alveo™  PCIe Information</a></li>
@@ -366,7 +366,8 @@ function OptanonWrapper() { }
 -  U50x (U50, U50C, U50LV)
 -  U30
 -  U55N
--  VCK5000</p>
+-  VCK5000
+-  V70</p>
 <p><strong>NOTE:</strong> The following PCIe information are constant across all Alveo™ cards.</p>
 <ul class="simple">
 <li><strong>Vendor ID</strong>     : ** 0x10EE**</li>
@@ -438,6 +439,9 @@ function OptanonWrapper() { }
 </tr>
 <tr class="row-odd"><td>VCK5000 QDMA</td>
 <td>PF0=0x5048 PF1=0x5049 PF2=0x504A PF3=0x504B</td>
+</tr>
+<tr class="row-even"><td>V70 QDMA</td>
+<td>PF0=0x50B0 PF1=0x50B1 PF2=0x50B2 PF3=0x50B3</td>
 </tr>
 </tbody>
 </table>
@@ -552,7 +556,7 @@ function OptanonWrapper() { }
 <td>100°C</td>
 <td>107°C</td>
 </tr>
-<tr class="row-odd"><td>Board temperature [40]</td>
+<tr class="row-odd"><td>Board temperature [4]</td>
 <td>100°C</td>
 <td>110°C</td>
 <td>125°C</td>
@@ -570,6 +574,18 @@ function OptanonWrapper() { }
 <td>75°C</td>
 <td>80°C</td>
 <td>85°C</td>
+</tr>
+<tr class="row-odd"><td colspan="4"><strong>V70</strong></td>
+</tr>
+<tr class="row-even"><td>Max ACAP junction temperature</td>
+<td>97°C</td>
+<td>100°C</td>
+<td>105°C</td>
+</tr>
+<tr class="row-odd"><td>Board temperature</td>
+<td>105°C</td>
+<td>110°C</td>
+<td>150°C</td>
 </tr>
 </tbody>
 </table>
