@@ -54,6 +54,16 @@ Loading new XRT Linux kernel modules
 Installing MSD / MPD daemons
 ```
 
+In XRT versions 2022.2 and later, a table has been added at the end of the install:
+```
+| Components                   |      Status        |
+|------------------------------|--------------------|
+| XOCL & XCLMGMT Kernel Driver | Success            |
+| XRT USERSPACE                | Success            |
+| MPD/MSD                      | Success            |
+
+```
+
 - - -
 ### Install hits an issue while apt/yum are running
 
@@ -97,16 +107,30 @@ Next step:
 - - -
 ### XRT reports unknown driver version
 
-If [XRT](terminology.md#xrt) shows that `XOCL: unknown` or `XCLMGMT: unknown`, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command `xbutil --version` below:
+If [XRT](terminology.md#xrt) shows that `XOCL: unknown` or `XCLMGMT: unknown`, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command `xbutil examine` below:
 
 ```
-:~> xbutil --version
-Version              : 2.12.385
-Branch               : master
-Hash                 : daaee8839f2b1760d7715055e3d96630c0a3ae68
-Hash Date            : 2021-09-19 21:07:35
-XOCL                 : unknown, unknown
-XCLMGMT              : unknown, unknown
+:~> xbutil examine
+System Configuration
+  OS Name              : Linux
+  Release              : 5.15.0-50-generic
+  Version              : #56-Ubuntu SMP Tue Sep 20 13:23:26 UTC 2022
+  Machine              : x86_64
+  CPU Cores            : 12
+  Memory               : 46901 MB
+  Distribution         : Ubuntu 22.04.1 LTS
+  GLIBC                : 2.35
+  Model                : PowerEdge R740
+
+XRT
+  Version              : 2.15.225
+  Branch               : 2023.1
+  Hash                 : adf27adb3cfadc6e4c41d6db814159f1329b24f3
+  Hash Date            : 2023-05-03 10:13:19
+  XOCL                 : unknown, unknown
+  XCLMGMT              : unknown, unknown
+WARNING: xclmgmt version is unknown. Is xclmgmt driver loaded? Or is MSD/MPD running?
+
 ```
 
 Next steps:
@@ -150,11 +174,21 @@ Installed:
 Complete!
 ```
 
+In XRT versions 2022.2 and later, a table has been added at the end of the install and would look like below in a failed install:
+```
+| Components                   |      Status        |
+|------------------------------|--------------------|
+| XOCL & XCLMGMT Kernel Driver | Failed. Check build log : /var/lib/dkms/xrt/2.14.354/build/make.log
+| XRT USERSPACE                | Success            |
+| MPD/MSD                      | Success            |
+```
+
 Next steps:
 
 - Confirm the XRT version is supported by this OS release
    * [Determine the linux release](common-steps.md#determine-linux-release)
    * [Determine kernel headers](common-steps.md#determine-linux-kernel-and-header-information) match the release, and are installed correctly
+   * Check the XRT release notes ([UG1451](https://docs.xilinx.com/r/en-US/ug1451-xrt-release-notes)) for the OS support list
 - [Remove XRT](common-steps.md#remove-xrt)
 - Download the latest XRT from the [Alveo landing page](https://www.xilinx.com/products/boards-and-kits/alveo.html)
 - Re-install XRT
@@ -166,22 +200,20 @@ Next steps:
 
 ### No card is found
 
-If the `xbmgmt examine --verbose` command does not recognize the platform on the card it displays `0 devices present` as shown below.  
+If the `xbmgmt examine` command does not recognize the platform on the card it displays `0 devices present` as shown below.  
 
 ```
-:~> xbmgmt examine --verbose
-Verbose: Enabling Verbosity
-Verbose: SubCommand: examine
+:~> xbmgmt examine
 System Configuration
   OS Name              : Linux
-  Release              : 5.8.0-63-generic
-  Version              : #71~20.04.1-Ubuntu SMP Thu Jul 15 17:46:08 UTC 2021
+  Release              : 5.15.0-50-generic
+  Version              : #56-Ubuntu SMP Tue Sep 20 13:23:26 UTC 2022
   Machine              : x86_64
-  CPU Cores            : 8
-  Memory               : 64277 MB
-  Distribution         : Ubuntu 20.04.2 LTS
-  GLIBC                : 2.31
-  Model                : Precision
+  CPU Cores            : 12
+  Memory               : 46901 MB
+  Distribution         : Ubuntu 22.04.1 LTS
+  GLIBC                : 2.35
+  Model                : PowerEdge R740
 
 XRT
   Version              : 2.11.634
@@ -193,6 +225,11 @@ XRT
 
 Devices present
   0 devices found
+BDF  :  Shell  Platform UUID  Device ID  Device Ready*  
+--------------------------------------------------------
+
+
+* Devices that are not ready will have reduced functionality when using XRT tools
 ```
 
 If this occurs and `lspci` does recognize the card (displays `Kernel driver in use: xclmgmt` shown below), there is a communication issue between XRT and the card. Example output below:

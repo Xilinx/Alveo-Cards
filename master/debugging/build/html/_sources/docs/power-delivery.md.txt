@@ -54,12 +54,12 @@ In this example, the `Max power` is 150W, however the U200 card requires 225W an
 ```
  sudo xbmgmt examine -d 17:00.0
 
------------------------------------------------------
-1/1 [0000:17:00.0] : xilinx_u200_gen3x16_xdma_base_1
------------------------------------------------------
+-------------------------------------------------
+[0000:17:00.0] : xilinx_u200_gen3x16_xdma_base_2
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : 2129048AJ048
+  Serial Number        : 
 
 Device properties
   Type                 : u200

@@ -30,85 +30,78 @@ Before beginning debug, you need to:
 When the platform has been installed correctly, the partition and [SC](terminology.html#sc) version running on the FPGA and installed on the system will be identical.  The installed partitions can be displayed using the `xbmgmt examine -r platform` command.  An example output is shown below.
 
  ```
- ------------------------------------------------------
-1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : 50121119CSPC
+  Serial Number        : 
 
 Device properties
-  Type                 : u50
-  Name                 : ALVEO U50 PQ
-  Config Mode          : 7
-  Max Power            : 75W
+  Type                 : u55c
+  Name                 : ALVEO U55C
+  Config Mode          : 0x7
+  Max Power            : 225W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
 
 Flashable partitions installed in system
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
 
 
-  Mac Address          : 00:0A:35:06:6E:96
-                       : 00:0A:35:06:6E:97
-                       : 00:0A:35:06:6E:98
-                       : 00:0A:35:06:6E:99
+  Mac Address          : 00:0A:35:08:8C:AD
+                       : 00:0A:35:08:8C:AE
+                       : 00:0A:35:08:8C:AF
+                       : 00:0A:35:08:8C:B0
+                       : 00:0A:35:08:8C:B1
+                       : 00:0A:35:08:8C:B2
+                       : 00:0A:35:08:8C:B3
+                       : 00:0A:35:08:8C:B4
+
  ```
 Next step:
 - None, this is expected output
 
 - - -
-### xbmgmt examine -r platform returns `bad magic number` error
-
-If xbmgmt examine -r platform command returns `bad magic number` error as in the example below, there is a chance of a communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).  The CMC is not reading the pre-programmed magic number (0x74736574), an on card self check hex string.
-
- ```
- read reg ERROR
- ERROR: Failed to detect XMC, bad magic number: 7fff
- read reg ERROR
- ERROR: Failed to detect XMC, bad magic number: 7fff
- Card [0000:af:00.0]
-     Card type:                       u250
-     Flash type:                      SPI
-     Flashable partition running on FPGA:
-         xilinx_u250_xdma_201830_2,[ID=0x5d14fbe6],[SC=INACTIVE]
-     Flashable partitions installed in system:             
-         xilinx_u250_xdma_201830_2,[ID=0x5d14fbe6],[SC=4.2.0]
-
- ```
-Next steps:
-- Cold boot the system
-  - Perform `xbmgmt examine -r platform`
-- If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt examine -r platform`
-- If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
-
-- - -
 ### XMC not loaded
 
-If `xbmgmt examine -r platform` command returns `XMC not loaded` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
+If `xbmgmt examine -d <BDF>` command returns `XMC not loaded` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
 ```
+-------------------------------------------------
+[0000:01:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 ERROR: Failed to detect XMC, xmc.bin not loaded
 ERROR: Failed to detect XMC, xmc.bin not loaded
-ERROR: Failed to detect XMC, xmc.bin not loaded
-Card [0000:d8:00.0]
-    Card type:        u250
-    Flash type:       SPI
-    Flashable partition running on FPGA:
-        xilinx_u250_xdma_201830_2,[ID=0x5d14fbe6],[SC=INACTIVE]
-    Flashable partitions installed in system:    
-        xilinx_u250_xdma_201830_2,[ID=0x5d14fbe6],[SC=4.2.0]
+Flash properties
+  Type                 : spi
+  Serial Number        : N/A
+ 
+Device properties
+  Type                 : N/A
+  Name                 : N/A
+  Config Mode          : 0x1175d80
+  Max Power            : N/A
+
+ 
+Flashable partitions running on FPGA
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
+
+Flashable partitions installed in system
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+
+
 
  ```
 
@@ -117,71 +110,56 @@ Next steps:
  - [Reload XRT Drivers](common-steps.html#unload-reload-xrt-drivers)
  - If issue persists
    - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-   - Perform `xbmgmt examine -r platform`
+   - Perform `xbmgmt examine -d <BDF>`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt examine -r platform`
+  - Perform `xbmgmt examine -d <BDF>`
  - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
-
-
-- - -
-
-### XMC not ready
-
-If `xbmgmt examine -r platform` command returns `XMC not ready` error as shown below, there is communication break between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
-
- ```
- ERROR: XMC is not ready: 0x3
- ERROR: XMC is not ready: 0x3
- ERROR: XMC is not ready: 0x3
- Card [0000:a3:00.0]
-     Card type:          u50
-     Flash type:         SPI
-     Flashable partition running on FPGA:
-         xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=UNKNOWN]
-             Logic UUID:
-             f465b0a3ae8c64f619bc150384ace69b
-     Flashable partitions installed in system:
-         xilinx_u50_gen3x16_xdma_201920_3,[ID=0xf465b0a3ae8c64f6],[SC=5.0.27]
-             Logic UUID:
-             f465b0a3ae8c64f619bc150384ace69b
- ```
-Next steps:
-- Cold boot the system
-- Perform `xbmgmt examine -r platform`
-- If issue persists
-  - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt examine -r platform`
-- If issue persists
-  - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt examine -r platform`
-- If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
 - - -
 
 ### SC is not ready
 
-If `xbmgmt examine -r platform` command returns `SC is not ready ` error as shown below, there is communication break between the [SC](terminology.html#sc) and the [CMC](terminology.html#cmc).
+If `xbmgmt examine -d <BDF>` command returns `SC is not ready ` error as shown below, there is communication break between the [SC](terminology.html#sc) and the [CMC](terminology.html#cmc).
 
  ```
- ERROR: SC is not ready: 0x0
-  Card [0000:c3:00.0]
-  Card type: u50lv
-  Flash type: SPI
-  Flashable partition running on FPGA:
-  xilinx_u50lv_gen3x4_xdma_base_2,[ID=0xc74bda63fe95d0e8],[SC=UNKNOWN]
+-------------------------------------------------
+[0000:1a:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
+ERROR: SC is not ready: 0x0(NOT READY)
+ERROR: SC is not ready: 0x0(NOT READY)
+Flash properties
+  Type                 : spi
+  Serial Number        : N/A
+ 
+Device properties
+  Type                 : u55c
+  Name                 : N/A
+  Config Mode          : 0x154d060
+ 
+Flashable partitions running on FPGA
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : N/A
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
+
+Flashable partitions installed in system
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+
  ```
 
 Next steps:
 - Cold boot the system
-- Perform `xbmgmt examine -r platform`
+- Perform `xbmgmt examine -d <BDF>`
 - If issue persists
   - [Pull power](terminology.html#shutdown-and-unplug-pull-power) to the system
-  - Perform `xbmgmt examine -r platform`
+  - Perform `xbmgmt examine -d <BDF>`
 - If issue persists
   - [Reinstall the platforms](modifying-xrt-platform.html#platform-re-install)
-  - Perform `xbmgmt examine -r platform`
+  - Perform `xbmgmt examine -d <BDF>`
 - If these steps do not resolve the issue look on the [Xilinx forums](https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards)
 
 
@@ -190,12 +168,12 @@ Next steps:
 If xbmgmt examine -r platform command returns different number of digits of between the [SC](terminology.html#sc) versions for  `Flashable partition running on FPGA`, and `Flashable partitions installed in system`, there is a break in communication between [XRT](terminology.html#xrt) and the [CMC](terminology.html#cmc).
 
  ```
-------------------------------------------------------
-1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+------------------------------------------------
+[0000:04:00.0] : xilinx_u50_gen3x16_xdma_base_5
+------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : 50121119CSPC
+  Serial Number        : 
 
 Device properties
   Type                 : u50
@@ -204,15 +182,15 @@ Device properties
   Max Power            : 75W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
+  Platform             : xilinx_u50_gen3x16_xdma_base_5
   SC Version           : 5.0
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform UUID        : 44654095-25B4-C06A-EC6D-0B479D3FEBE8
+  Interface UUID       : 16E2362F-82D2-FEAB-3552-9DA27134B76D
 
 Flashable partitions installed in system
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Platform             : xilinx_u50_gen3x16_xdma_base_5
+  SC Version           : 5.2.20
+  Platform UUID        : 44654095-25B4-C06A-EC6D-0B479D3FEBE8
 
 
   Mac Address          : 00:0A:35:06:6E:96
@@ -237,35 +215,39 @@ Next steps:
 If `xbmgmt examine -r platform` command returns different [SC](terminology.html#sc) version displayed under  `Flashable partition running on FPGA`, and `Flashable partitions installed in system` sections as shown below, the card has not been flashed to the SC version used by in the system.  Both need to use the same SC version.
 
 ```
-------------------------------------------------------
-1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : 50121119CSPC
+  Serial Number        : 
 
 Device properties
-  Type                 : u50
-  Name                 : ALVEO U50 PQ
-  Config Mode          : 7
-  Max Power            : 75W
+  Type                 : u55c
+  Name                 : ALVEO U55C
+  Config Mode          : 0x7
+  Max Power            : 225W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.0.13
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.17
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
 
 Flashable partitions installed in system
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
 
 
-  Mac Address          : 00:0A:35:06:6E:96
-                       : 00:0A:35:06:6E:97
-                       : 00:0A:35:06:6E:98
-                       : 00:0A:35:06:6E:99
+  Mac Address          : 00:0A:35:08:8C:AD
+                       : 00:0A:35:08:8C:AE
+                       : 00:0A:35:08:8C:AF
+                       : 00:0A:35:08:8C:B0
+                       : 00:0A:35:08:8C:B1
+                       : 00:0A:35:08:8C:B2
+                       : 00:0A:35:08:8C:B3
+                       : 00:0A:35:08:8C:B4
 
 WARNING  : SC image on the device is not up-to-date.
 
@@ -282,9 +264,10 @@ Next steps:
 When `xbmgmt examine -r platform` command returns `GOLDEN ` under `Flashable partition running on FPGA` as shown below, the card is fresh from the factory or the has been returned to factory state.  The partition displayed under `Flashable partitions installed in system` shows only the partitions available on the system.
 
  ```
----------------------------------------
-1/1 [0000:04:00.0] : xilinx_u50_GOLDEN
----------------------------------------
+-----------------------------------
+[0000:5e:00.0] : xilinx_u50_GOLDEN
+-----------------------------------
+Warning: Device is not ready - Limited functionality available with XRT tools.
 Flash properties
   Type                 : spi
   Serial Number        : N/A
@@ -292,8 +275,7 @@ Flash properties
 Device properties
   Type                 : u50
   Name                 : N/A
-  Config Mode          : 0
-  Max Power            : N/A
+  Config Mode          : 0x130d3a00
 
 Flashable partitions running on FPGA
   Platform             : xilinx_u50_GOLDEN_9
@@ -301,9 +283,9 @@ Flashable partitions running on FPGA
   Platform ID          : N/A
 
 Flashable partitions installed in system
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Platform             : xilinx_u50_gen3x16_xdma_base_5
+  SC Version           : 5.2.20
+  Platform UUID        : 44654095-25B4-C06A-EC6D-0B479D3FEBE8
 
 WARNING  : Device is not up-to-date.
 
@@ -319,33 +301,37 @@ Next step:
 If `xbmgmt examine -r platform` command returns `Flashable partitions installed in system:   (None)` as shown below, it means the corresponding platform running on the FPGA has not been installed in the system. The partition displayed under `Flashable partitions running on FPGA` will show the partition flashed on the card.  The partitions on the card and system must match for applications to run.
 
 ```
-------------------------------------------------------
-1/1 [0000:04:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : 50121B39AN35
+  Serial Number        : XFL1P0345SA0
 
 Device properties
-  Type                 : u50
-  Name                 : ALVEO U50 PQ
-  Config Mode          : 7
-  Max Power            : 75W
+  Type                 : u55c
+  Name                 : ALVEO U55C
+  Config Mode          : 0x7
+  Max Power            : 225W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
 
 Flashable partitions installed in system
   <none found>        
 
 
-  Mac Address          : 00:0A:35:06:47:49
-                       : 00:0A:35:06:47:4A
-                       : 00:0A:35:06:47:4B
-                       : 00:0A:35:06:47:4C
+  Mac Address          : 00:0A:35:08:8C:AD
+                       : 00:0A:35:08:8C:AE
+                       : 00:0A:35:08:8C:AF
+                       : 00:0A:35:08:8C:B0
+                       : 00:0A:35:08:8C:B1
+                       : 00:0A:35:08:8C:B2
+                       : 00:0A:35:08:8C:B3
+                       : 00:0A:35:08:8C:B4
 
 WARNING  : No shell is installed on the system.
 
@@ -376,44 +362,27 @@ Next steps:
 If `xbutil examine -r thermal electrical -d <user BDF>` command reports a zero value in `FPGA TEMP`, `12V PEX` or `3V3 PEX` as shown in the example below, there is a chance of communication break between the [XRT](terminology.html#xrt)/[CMC](terminology.html#cmc)/[SC](terminology.html#sc) components.
 
 ```
-Temperature(C)
-PCB TOP FRONT   PCB TOP REAR    PCB BTM FRONT   VCCINT TEMP
-0               0               N/A             0
-FPGA TEMP       TCRIT Temp      FAN Presence    FAN Speed(RPM)
-0               0               P               N/A
-QSFP 0          QSFP 1          QSFP 2          QSFP 3
-N/A             N/A             N/A             N/A
-HBM TEMP
-N/A
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-Electrical(mV|mA)
-12V PEX         12V AUX         12V PEX Current 12V AUX Current
-0               N/A             0               N/A
-3V3 PEX         3V3 AUX         DDR VPP BOTTOM  DDR VPP TOP
-0               N/A             N/A             N/A
-
-
-*mockup*
-------------------------------------------------------
-1/1 [0000:82:00.1] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.1] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Thermals
-  PCB Top Front          : 0 C
-  PCB Top Rear           : 0 C
-  Cage0                  : 0 C
-  FPGA                   : 0 C
-  Int Vcc                : 0 C
+  Temperature            : Celcius
+  PCB Top Front          :     36 C
+  PCB Top Rear           :     32 C
+  FPGA                   :     38 C
+  Int Vcc                :     41 C
 
 Electrical
-  Max Power              : 75 Watts
+  Max Power              : 225 Watts
   Power                  : N/A Watts
   Power Warning          : false
 
   Power Rails            : Voltage   Current
-  12 Volts PCI Express   :  0 V,  	0 A
-  3.3 Volts PCI Express  :  0 V,  	0 A
-  Internal FPGA Vcc      :  0 V,  	0 A
-  Internal FPGA Vcc IO   :  0 V,  	0 A
+  12 Volts Auxillary     :  0 V,  0 A
+  12 Volts PCI Express   :  0 V,  0 A
+  3.3 Volts PCI Express  :  0 V,  0 A
+  Internal FPGA Vcc      :  0 V,  0 A
+  Internal FPGA Vcc IO   :  0 V,  00 A
   5.5 Volts System       :  0 V
   1.8 Volts Top          :  0 V
   0.9 Volts Vcc          :  0 V

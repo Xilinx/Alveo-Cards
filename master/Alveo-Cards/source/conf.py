@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'Alveo Cards Home'
-copyright = '2021-2022, Xilinx, Inc. Xilinx is now a part of AMD'
-author = 'Xilinx, Inc.'
+copyright = '2021-2023, Advanced Micro Devices, Inc.'
+author = 'Advanced Micro Devices, Inc.'
 
 # The short X.Y version
-# version = '2020.2'
+# version = '1.0'
 # The full version, including alpha/beta/rc tags
-# release = '2020.2'
-html_last_updated_fmt = 'August 3, 2022'
+# release = '1.0'
+html_last_updated_fmt = 'June 22, 2023'
 
 # -- General configuration ---------------------------------------------------
 
@@ -244,7 +244,7 @@ epub_exclude_files = ['search.html']
 # -- Options for rinoh ------------------------------------------
 
 
-rinoh_documents = [dict(doc='index',        # top-level file (index.rst)
+rinoh_documents = [dict(doc='kria_dfx_landing',        # top-level file (index.rst)
                         target='manual')]   # output file (manual.pdf)
 
 

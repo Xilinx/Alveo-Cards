@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Card Validation &mdash; Alveo Card Debug Guide  documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Card Validation &mdash; Alveo Card Debug Guide 2023.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Card Installation" href="card-install.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -39,6 +50,9 @@ function OptanonWrapper() { }
             <a href="../README.html" class="icon icon-home"> Alveo Card Debug Guide
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2023.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -50,10 +64,6 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">Home</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">2021.1 XRT</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
@@ -212,33 +222,29 @@ function OptanonWrapper() { }
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">xbutil</span> <span class="n">validate</span> <span class="o">--</span><span class="n">device</span> <span class="o">&lt;</span><span class="n">user</span> <span class="n">BDF</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">verbose</span>
 
 <span class="n">Verbose</span><span class="p">:</span> <span class="n">Enabling</span> <span class="n">Verbosity</span>
-<span class="n">Starting</span> <span class="n">validation</span> <span class="k">for</span> <span class="mi">1</span> <span class="n">devices</span>
-<span class="n">Validate</span> <span class="n">Device</span> <span class="p">:</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>
-<span class="n">Platform</span> <span class="p">:</span> <span class="n">xilinx_u250_gen3x16_base_3</span>
-<span class="n">SC</span> <span class="n">Version</span> <span class="p">:</span> <span class="mf">4.6.11</span>
-<span class="n">Platform</span> <span class="n">ID</span> <span class="p">:</span> <span class="mh">0x0</span>
-<span class="o">----------------------------------------------------------------------------</span>
-<span class="o">---</span>
-<span class="n">Test</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">Aux</span> <span class="n">connection</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">auxiliary</span> <span class="n">power</span> <span class="ow">is</span> <span class="n">connected</span>
-<span class="n">Test</span> <span class="n">Status</span> <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
-<span class="o">----------------------------------------------------------------------------</span>
-<span class="o">---</span>
-<span class="n">Test</span> <span class="mi">2</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">PCIE</span> <span class="n">link</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="ow">is</span> <span class="n">active</span>
-<span class="n">Test</span> <span class="n">Status</span> <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
-<span class="o">----------------------------------------------------------------------------</span>
-<span class="o">---</span>
-<span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">SC</span> <span class="n">version</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span>
-<span class="n">Test</span> <span class="n">Status</span> <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
-<span class="o">----------------------------------------------------------------------------</span>
-<span class="o">---</span>
-<span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span> <span class="p">:</span> <span class="n">Verify</span> <span class="n">kernel</span>
-<span class="n">Description</span> <span class="p">:</span> <span class="n">Run</span> <span class="s1">&#39;Hello World&#39;</span> <span class="n">kernel</span> <span class="n">test</span>
-<span class="n">Details</span> <span class="p">:</span> <span class="n">Verify</span> <span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span> <span class="ow">or</span> <span class="n">shell</span> <span class="n">partition</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">programmed</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span><span class="o">.</span>
-<span class="n">Test</span> <span class="n">Status</span> <span class="p">:</span> <span class="p">[</span><span class="n">SKIPPED</span><span class="p">]</span>
-<span class="o">...</span>
+<span class="n">Validate</span> <span class="n">Device</span>           <span class="p">:</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>
+   <span class="n">Platform</span>              <span class="p">:</span> <span class="n">xilinx_u250_gen3x16_base_4</span>
+   <span class="n">SC</span> <span class="n">Version</span>            <span class="p">:</span> <span class="mf">4.6.21</span>
+   <span class="n">Platform</span> <span class="n">ID</span>           <span class="p">:</span> <span class="n">F8DAC62E</span><span class="o">-</span><span class="mi">49</span><span class="n">D9</span><span class="o">-</span><span class="n">B0AA</span><span class="o">-</span><span class="n">E9FC</span><span class="o">-</span><span class="mi">6</span><span class="n">F260D9D0DFB</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">aux</span><span class="o">-</span><span class="n">connection</span> 
+   <span class="n">Description</span>           <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">auxiliary</span> <span class="n">power</span> <span class="ow">is</span> <span class="n">connected</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">2</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">pcie</span><span class="o">-</span><span class="n">link</span> 
+   <span class="n">Description</span>           <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">PCIE</span> <span class="n">link</span> <span class="ow">is</span> <span class="n">active</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">3</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">sc</span><span class="o">-</span><span class="n">version</span> 
+   <span class="n">Description</span>           <span class="p">:</span> <span class="n">Check</span> <span class="k">if</span> <span class="n">SC</span> <span class="n">firmware</span> <span class="ow">is</span> <span class="n">up</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">date</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
+<span class="n">Test</span> <span class="mi">4</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">1</span><span class="n">a</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">verify</span> 
+   <span class="n">Description</span>           <span class="p">:</span> <span class="n">Run</span> <span class="s1">&#39;Hello World&#39;</span> <span class="n">kernel</span> <span class="n">test</span>
+   <span class="n">Details</span>               <span class="p">:</span> <span class="n">Verify</span> <span class="n">xclbin</span> <span class="ow">not</span> <span class="n">available</span> <span class="ow">or</span> <span class="n">shell</span> <span class="n">partition</span> <span class="ow">is</span> <span class="ow">not</span>
+                           <span class="n">programmed</span><span class="o">.</span> <span class="n">Skipping</span> <span class="n">validation</span><span class="o">.</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">SKIPPED</span><span class="p">]</span>
+<span class="o">-------------------------------------------------------------------------------</span>
 </pre></div>
 </div>
 <p>Next step:</p>
@@ -309,12 +315,12 @@ function OptanonWrapper() { }
 <h3>AUX power not connected error<a class="headerlink" href="#aux-power-not-connected-error" title="Permalink to this heading">¶</a></h3>
 <p>For cards supporting &gt;75W power, <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">xbutil validate</a> will display the following warning if the PCIe AUX power is not connected or not correctly delivering power.  Cards such as the U200/U250/U280 must have the PCIe AUX power connected to the card to deliver 225W required to run applications in the Vitis™ flow.</p>
 <p>Example of <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate">xbutil validate</a> command warning for card without PCIe AUX power connected.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>~]$ xbutil validate -d 17:00.1
-...
-Test 1 [0000:17:00.1]     : Aux connection
-   Warning(s)            : Aux power is not connected
-                           Device is not stable for heavy acceleration tasks
-   Test Status           : [PASSED WITH WARNINGS]
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xbutil</span> <span class="n">validate</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.1</span>
+<span class="o">...</span>
+<span class="n">Test</span> <span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.1</span><span class="p">]</span>     <span class="p">:</span> <span class="n">Aux</span> <span class="n">connection</span>
+   <span class="ne">Warning</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>            <span class="p">:</span> <span class="n">Aux</span> <span class="n">power</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">connected</span>
+                           <span class="n">Device</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">stable</span> <span class="k">for</span> <span class="n">heavy</span> <span class="n">acceleration</span> <span class="n">tasks</span>
+   <span class="n">Test</span> <span class="n">Status</span>           <span class="p">:</span> <span class="p">[</span><span class="n">PASSED</span> <span class="n">WITH</span> <span class="n">WARNINGS</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Next steps:</p>
@@ -449,14 +455,6 @@ Test 1 [0000:17:00.1]     : Aux connection
            </div>
           </div>
           
-                  <style>
-                        .footer {
-                        position: fixed;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        }
-                  </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="card-install.html" class="btn btn-neutral float-left" title="Card Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -466,8 +464,8 @@ Test 1 [0000:17:00.1]     : Aux connection
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
-      <span class="lastupdated">Last updated on July 27, 2022.
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 
@@ -479,7 +477,7 @@ Test 1 [0000:17:00.1]     : Aux connection
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>
