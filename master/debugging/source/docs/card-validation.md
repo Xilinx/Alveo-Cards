@@ -99,33 +99,29 @@ For DFX-2RP platforms such as u250_gen3x16_base_3, the [xbutil validate](https:/
 /opt/xilinx/xrt/bin/xbutil validate --device <user BDF> --verbose
 
 Verbose: Enabling Verbosity
-Starting validation for 1 devices
-Validate Device : [0000:02:00.1]
-Platform : xilinx_u250_gen3x16_base_3
-SC Version : 4.6.11
-Platform ID : 0x0
-----------------------------------------------------------------------------
----
-Test 1 [0000:02:00.1] : Aux connection
-Description : Check if auxiliary power is connected
-Test Status : [PASSED]
-----------------------------------------------------------------------------
----
-Test 2 [0000:02:00.1] : PCIE link
-Description : Check if PCIE link is active
-Test Status : [PASSED]
-----------------------------------------------------------------------------
----
-Test 3 [0000:02:00.1] : SC version
-Description : Check if SC firmware is up-to-date
-Test Status : [PASSED]
-----------------------------------------------------------------------------
----
-Test 4 [0000:02:00.1] : Verify kernel
-Description : Run 'Hello World' kernel test
-Details : Verify xclbin not available or shell partition is not programmed. Skipping validation.
-Test Status : [SKIPPED]
-...
+Validate Device           : [0000:1a:00.1]
+    Platform              : xilinx_u250_gen3x16_base_4
+    SC Version            : 4.6.21
+    Platform ID           : F8DAC62E-49D9-B0AA-E9FC-6F260D9D0DFB
+-------------------------------------------------------------------------------
+Test 1 [0000:1a:00.1]     : aux-connection 
+    Description           : Check if auxiliary power is connected
+    Test Status           : [PASSED]
+-------------------------------------------------------------------------------
+Test 2 [0000:1a:00.1]     : pcie-link 
+    Description           : Check if PCIE link is active
+    Test Status           : [PASSED]
+-------------------------------------------------------------------------------
+Test 3 [0000:1a:00.1]     : sc-version 
+    Description           : Check if SC firmware is up-to-date
+    Test Status           : [PASSED]
+-------------------------------------------------------------------------------
+Test 4 [0000:1a:00.1]     : verify 
+    Description           : Run 'Hello World' kernel test
+    Details               : Verify xclbin not available or shell partition is not
+                            programmed. Skipping validation.
+    Test Status           : [SKIPPED]
+-------------------------------------------------------------------------------
  ```
 
 Next step:
@@ -192,7 +188,7 @@ Next steps:
 
 Example of [xbutil validate](https://xilinx.github.io/XRT/master/html/xbutil.html#xbutil-validate) command warning for card without PCIe AUX power connected.
  ```
- ~]$ xbutil validate -d 17:00.1
+ xbutil validate -d 17:00.1
 ...
 Test 1 [0000:17:00.1]     : Aux connection
     Warning(s)            : Aux power is not connected

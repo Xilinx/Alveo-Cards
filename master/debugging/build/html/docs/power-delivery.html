@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>Power Delivery &mdash; Alveo Card Debug Guide  documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Power Delivery &mdash; Alveo Card Debug Guide 2023.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Application Crash" href="application-crash.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -39,6 +50,9 @@ function OptanonWrapper() { }
             <a href="../README.html" class="icon icon-home"> Alveo Card Debug Guide
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2023.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -50,10 +64,6 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">Home</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">2021.1 XRT</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
@@ -171,12 +181,12 @@ function OptanonWrapper() { }
 <p>In this example, the <code class="docutils literal notranslate"><span class="pre">Max</span> <span class="pre">power</span></code> is 150W, however the U200 card requires 225W and requires the 8-pin PCIe AUX power connector to be connected.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">sudo</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">-</span><span class="n">d</span> <span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span>
 
-<span class="o">-----------------------------------------------------</span>
-<span class="mi">1</span><span class="o">/</span><span class="mi">1</span> <span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u200_gen3x16_xdma_base_1</span>
-<span class="o">-----------------------------------------------------</span>
+<span class="o">-------------------------------------------------</span>
+<span class="p">[</span><span class="mi">0000</span><span class="p">:</span><span class="mi">17</span><span class="p">:</span><span class="mf">00.0</span><span class="p">]</span> <span class="p">:</span> <span class="n">xilinx_u200_gen3x16_xdma_base_2</span>
+<span class="o">-------------------------------------------------</span>
 <span class="n">Flash</span> <span class="n">properties</span>
   <span class="n">Type</span>                 <span class="p">:</span> <span class="n">spi</span>
-  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> <span class="mi">2129048</span><span class="n">AJ048</span>
+  <span class="n">Serial</span> <span class="n">Number</span>        <span class="p">:</span> 
 
 <span class="n">Device</span> <span class="n">properties</span>
   <span class="n">Type</span>                 <span class="p">:</span> <span class="n">u200</span>
@@ -324,14 +334,6 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
            </div>
           </div>
           
-                  <style>
-                        .footer {
-                        position: fixed;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        }
-                  </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="application-crash.html" class="btn btn-neutral float-left" title="Application Crash" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -341,8 +343,8 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
-      <span class="lastupdated">Last updated on July 27, 2022.
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 
@@ -354,7 +356,7 @@ identified by interface_uuid = 4cda0ba9ab64b59c535adadf2e0b1930
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

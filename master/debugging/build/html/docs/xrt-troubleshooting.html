@@ -11,7 +11,14 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
-  <title>XRT Troubleshooting &mdash; Alveo Card Debug Guide  documentation</title>
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>XRT Troubleshooting &mdash; Alveo Card Debug Guide 2023.1 documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/_static/custom.css" type="text/css" />
@@ -31,7 +38,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Package Manager" href="package-manager.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -39,6 +50,9 @@ function OptanonWrapper() { }
             <a href="../README.html" class="icon icon-home"> Alveo Card Debug Guide
             <img src="../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
+              <div class="version">
+                2023.1
+              </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
@@ -50,10 +64,6 @@ function OptanonWrapper() { }
               <p class="caption" role="heading"><span class="caption-text">Home</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/index.html">Alveo Cards Landing Page</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">2021.1 XRT</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="xrt-2021-1.html">Command Updates</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Issue Areas</span></p>
 <ul class="current">
@@ -169,6 +179,14 @@ function OptanonWrapper() { }
 <span class="n">Installing</span> <span class="n">MSD</span> <span class="o">/</span> <span class="n">MPD</span> <span class="n">daemons</span>
 </pre></div>
 </div>
+<p>In XRT versions 2022.2 and later, a table has been added at the end of the install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Components</span>                   <span class="o">|</span>      <span class="n">Status</span>        <span class="o">|</span>
+<span class="o">|------------------------------|--------------------|</span>
+<span class="o">|</span> <span class="n">XOCL</span> <span class="o">&amp;</span> <span class="n">XCLMGMT</span> <span class="n">Kernel</span> <span class="n">Driver</span> <span class="o">|</span> <span class="n">Success</span>            <span class="o">|</span>
+<span class="o">|</span> <span class="n">XRT</span> <span class="n">USERSPACE</span>                <span class="o">|</span> <span class="n">Success</span>            <span class="o">|</span>
+<span class="o">|</span> <span class="n">MPD</span><span class="o">/</span><span class="n">MSD</span>                      <span class="o">|</span> <span class="n">Success</span>            <span class="o">|</span>
+</pre></div>
+</div>
 </div>
 <hr class="docutils" />
 <div class="section" id="install-hits-an-issue-while-apt-yum-are-running">
@@ -221,14 +239,27 @@ function OptanonWrapper() { }
 <hr class="docutils" />
 <div class="section" id="xrt-reports-unknown-driver-version">
 <h3>XRT reports unknown driver version<a class="headerlink" href="#xrt-reports-unknown-driver-version" title="Permalink to this heading">¶</a></h3>
-<p>If <a class="reference external" href="terminology.html#xrt">XRT</a> shows that <code class="docutils literal notranslate"><span class="pre">XOCL:</span> <span class="pre">unknown</span></code> or <code class="docutils literal notranslate"><span class="pre">XCLMGMT:</span> <span class="pre">unknown</span></code>, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">--version</span></code> below:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbutil</span> <span class="o">--</span><span class="n">version</span>
-<span class="n">Version</span>              <span class="p">:</span> <span class="mf">2.12.385</span>
-<span class="n">Branch</span>               <span class="p">:</span> <span class="n">master</span>
-<span class="n">Hash</span>                 <span class="p">:</span> <span class="n">daaee8839f2b1760d7715055e3d96630c0a3ae68</span>
-<span class="n">Hash</span> <span class="n">Date</span>            <span class="p">:</span> <span class="mi">2021</span><span class="o">-</span><span class="mi">09</span><span class="o">-</span><span class="mi">19</span> <span class="mi">21</span><span class="p">:</span><span class="mi">07</span><span class="p">:</span><span class="mi">35</span>
-<span class="n">XOCL</span>                 <span class="p">:</span> <span class="n">unknown</span><span class="p">,</span> <span class="n">unknown</span>
-<span class="n">XCLMGMT</span>              <span class="p">:</span> <span class="n">unknown</span><span class="p">,</span> <span class="n">unknown</span>
+<p>If <a class="reference external" href="terminology.html#xrt">XRT</a> shows that <code class="docutils literal notranslate"><span class="pre">XOCL:</span> <span class="pre">unknown</span></code> or <code class="docutils literal notranslate"><span class="pre">XCLMGMT:</span> <span class="pre">unknown</span></code>, XRT is not seeing the driver kernel modules. Without the drivers loaded, XRT will not be able to communicate with the card. This can be seen with the command <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> below:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>:~&gt; xbutil examine
+System Configuration
+  OS Name              : Linux
+  Release              : 5.15.0-50-generic
+  Version              : #56-Ubuntu SMP Tue Sep 20 13:23:26 UTC 2022
+  Machine              : x86_64
+  CPU Cores            : 12
+  Memory               : 46901 MB
+  Distribution         : Ubuntu 22.04.1 LTS
+  GLIBC                : 2.35
+  Model                : PowerEdge R740
+
+XRT
+  Version              : 2.15.225
+  Branch               : 2023.1
+  Hash                 : adf27adb3cfadc6e4c41d6db814159f1329b24f3
+  Hash Date            : 2023-05-03 10:13:19
+  XOCL                 : unknown, unknown
+  XCLMGMT              : unknown, unknown
+WARNING: xclmgmt version is unknown. Is xclmgmt driver loaded? Or is MSD/MPD running?
 </pre></div>
 </div>
 <p>Next steps:</p>
@@ -271,12 +302,21 @@ Consult the make.log in the build directory
 Complete!
 </pre></div>
 </div>
+<p>In XRT versions 2022.2 and later, a table has been added at the end of the install and would look like below in a failed install:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">|</span> <span class="n">Components</span>                   <span class="o">|</span>      <span class="n">Status</span>        <span class="o">|</span>
+<span class="o">|------------------------------|--------------------|</span>
+<span class="o">|</span> <span class="n">XOCL</span> <span class="o">&amp;</span> <span class="n">XCLMGMT</span> <span class="n">Kernel</span> <span class="n">Driver</span> <span class="o">|</span> <span class="n">Failed</span><span class="o">.</span> <span class="n">Check</span> <span class="n">build</span> <span class="n">log</span> <span class="p">:</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">dkms</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="mf">2.14.354</span><span class="o">/</span><span class="n">build</span><span class="o">/</span><span class="n">make</span><span class="o">.</span><span class="n">log</span>
+<span class="o">|</span> <span class="n">XRT</span> <span class="n">USERSPACE</span>                <span class="o">|</span> <span class="n">Success</span>            <span class="o">|</span>
+<span class="o">|</span> <span class="n">MPD</span><span class="o">/</span><span class="n">MSD</span>                      <span class="o">|</span> <span class="n">Success</span>            <span class="o">|</span>
+</pre></div>
+</div>
 <p>Next steps:</p>
 <ul class="simple">
 <li><p>Confirm the XRT version is supported by this OS release</p>
 <ul>
 <li><p><a class="reference external" href="common-steps.html#determine-linux-release">Determine the linux release</a></p></li>
 <li><p><a class="reference external" href="common-steps.html#determine-linux-kernel-and-header-information">Determine kernel headers</a> match the release, and are installed correctly</p></li>
+<li><p>Check the XRT release notes (<a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1451-xrt-release-notes">UG1451</a>) for the OS support list</p></li>
 </ul>
 </li>
 <li><p><a class="reference external" href="common-steps.html#remove-xrt">Remove XRT</a></p></li>
@@ -293,20 +333,18 @@ Complete!
 <hr class="docutils" />
 <div class="section" id="no-card-is-found">
 <h3>No card is found<a class="headerlink" href="#no-card-is-found" title="Permalink to this heading">¶</a></h3>
-<p>If the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">--verbose</span></code> command does not recognize the platform on the card it displays <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">present</span></code> as shown below.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbmgmt</span> <span class="n">examine</span> <span class="o">--</span><span class="n">verbose</span>
-<span class="n">Verbose</span><span class="p">:</span> <span class="n">Enabling</span> <span class="n">Verbosity</span>
-<span class="n">Verbose</span><span class="p">:</span> <span class="n">SubCommand</span><span class="p">:</span> <span class="n">examine</span>
+<p>If the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> command does not recognize the platform on the card it displays <code class="docutils literal notranslate"><span class="pre">0</span> <span class="pre">devices</span> <span class="pre">present</span></code> as shown below.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="o">~&gt;</span> <span class="n">xbmgmt</span> <span class="n">examine</span>
 <span class="n">System</span> <span class="n">Configuration</span>
   <span class="n">OS</span> <span class="n">Name</span>              <span class="p">:</span> <span class="n">Linux</span>
-  <span class="n">Release</span>              <span class="p">:</span> <span class="mf">5.8.0</span><span class="o">-</span><span class="mi">63</span><span class="o">-</span><span class="n">generic</span>
-  <span class="n">Version</span>              <span class="p">:</span> <span class="c1">#71~20.04.1-Ubuntu SMP Thu Jul 15 17:46:08 UTC 2021</span>
+  <span class="n">Release</span>              <span class="p">:</span> <span class="mf">5.15.0</span><span class="o">-</span><span class="mi">50</span><span class="o">-</span><span class="n">generic</span>
+  <span class="n">Version</span>              <span class="p">:</span> <span class="c1">#56-Ubuntu SMP Tue Sep 20 13:23:26 UTC 2022</span>
   <span class="n">Machine</span>              <span class="p">:</span> <span class="n">x86_64</span>
-  <span class="n">CPU</span> <span class="n">Cores</span>            <span class="p">:</span> <span class="mi">8</span>
-  <span class="n">Memory</span>               <span class="p">:</span> <span class="mi">64277</span> <span class="n">MB</span>
-  <span class="n">Distribution</span>         <span class="p">:</span> <span class="n">Ubuntu</span> <span class="mf">20.04.2</span> <span class="n">LTS</span>
-  <span class="n">GLIBC</span>                <span class="p">:</span> <span class="mf">2.31</span>
-  <span class="n">Model</span>                <span class="p">:</span> <span class="n">Precision</span>
+  <span class="n">CPU</span> <span class="n">Cores</span>            <span class="p">:</span> <span class="mi">12</span>
+  <span class="n">Memory</span>               <span class="p">:</span> <span class="mi">46901</span> <span class="n">MB</span>
+  <span class="n">Distribution</span>         <span class="p">:</span> <span class="n">Ubuntu</span> <span class="mf">22.04.1</span> <span class="n">LTS</span>
+  <span class="n">GLIBC</span>                <span class="p">:</span> <span class="mf">2.35</span>
+  <span class="n">Model</span>                <span class="p">:</span> <span class="n">PowerEdge</span> <span class="n">R740</span>
 
 <span class="n">XRT</span>
   <span class="n">Version</span>              <span class="p">:</span> <span class="mf">2.11.634</span>
@@ -318,6 +356,11 @@ Complete!
 
 <span class="n">Devices</span> <span class="n">present</span>
   <span class="mi">0</span> <span class="n">devices</span> <span class="n">found</span>
+<span class="n">BDF</span>  <span class="p">:</span>  <span class="n">Shell</span>  <span class="n">Platform</span> <span class="n">UUID</span>  <span class="n">Device</span> <span class="n">ID</span>  <span class="n">Device</span> <span class="n">Ready</span><span class="o">*</span>  
+<span class="o">--------------------------------------------------------</span>
+
+
+<span class="o">*</span> <span class="n">Devices</span> <span class="n">that</span> <span class="n">are</span> <span class="ow">not</span> <span class="n">ready</span> <span class="n">will</span> <span class="n">have</span> <span class="n">reduced</span> <span class="n">functionality</span> <span class="n">when</span> <span class="n">using</span> <span class="n">XRT</span> <span class="n">tools</span>
 </pre></div>
 </div>
 <p>If this occurs and <code class="docutils literal notranslate"><span class="pre">lspci</span></code> does recognize the card (displays <code class="docutils literal notranslate"><span class="pre">Kernel</span> <span class="pre">driver</span> <span class="pre">in</span> <span class="pre">use:</span> <span class="pre">xclmgmt</span></code> shown below), there is a communication issue between XRT and the card. Example output below:</p>
@@ -387,14 +430,6 @@ Complete!
            </div>
           </div>
           
-                  <style>
-                        .footer {
-                        position: fixed;
-                        left: 0;
-                        bottom: 0;
-                        width: 100%;
-                        }
-                  </style>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="package-manager.html" class="btn btn-neutral float-left" title="Package Manager" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
@@ -404,8 +439,8 @@ Complete!
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
-      <span class="lastupdated">Last updated on July 27, 2022.
+    <p>&#169; Copyright 2021-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 21, 2023.
       </span></p>
   </div>
 
@@ -417,7 +452,7 @@ Complete!
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

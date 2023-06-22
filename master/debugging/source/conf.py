@@ -25,14 +25,14 @@ sys.path.insert(0, os.path.abspath('docs'))
 # -- Project information -----------------------------------------------------
 
 project = 'Alveo Card Debug Guide'
-copyright = '2021-2022, Xilinx, Inc.'
-author = 'Xilinx, Inc.'
+copyright = '2021-2023, Advanced Micro Devices, Inc'
+author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
-# version = '1.0.2'
+version = '2023.1'
 # The full version, including alpha/beta/rc tags
-# release = '1.0.2'
-html_last_updated_fmt = 'July 27, 2022'
+release = '2023.1'
+html_last_updated_fmt = 'June 21, 2023'
 
 # -- General configuration ---------------------------------------------------
 

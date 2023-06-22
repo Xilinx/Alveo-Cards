@@ -4,12 +4,8 @@ Alveo Card Debug Guide
 
 Quickly isolate, debug, and resolve a wide range of Alveo™ card related issues within the Vitis™/XRT flow, from card install through to hardware validation.
 
-
-
-.. attention::
-   The guide has been updated based on the new default subcommands for the xbmgmt and xbutil tools found XRT 2021.1 release and greater (:doc:`docs/xrt-2021-1`).
-   
-   Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://github.com/Xilinx/Alveo-Cards/tree/2020.2_24Aug2021>`_.
+ 
+Debug support using XRT 2020.2 release and earlier can be found in this `previous release of this guide <https://github.com/Xilinx/Alveo-Cards/tree/2020.2_24Aug2021>`_.
 
 
 
@@ -144,12 +140,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
    Alveo Cards Landing Page <https://xilinx.github.io/Alveo-Cards/master/index.html>
 
-.. toctree::
-   :maxdepth: 3
-   :caption: 2021.1 XRT
-   :hidden:
 
-   Command Updates <docs/xrt-2021-1>
 
 .. toctree::
    :maxdepth: 3

@@ -64,7 +64,7 @@ It will display:
 2.  Model
 3.  BIOS version 
 
-As of 2020.2 XRT has support for the KVM hypervisor and virtual machines. The dmidecode output has enough information to confirm if XRT is running on a physical machine versus a virtual machine using the manufacturer and product name lines in the beginning of the report. You can also use this information to determine if the machine is a workstation or a server, with a web search.
+XRT has support for the KVM hypervisor and virtual machines. The dmidecode output has enough information to confirm if XRT is running on a physical machine versus a virtual machine using the manufacturer and product name lines in the beginning of the report. You can also use this information to determine if the machine is a workstation or a server, with a web search.
 
 A physical machine will report the manufacturer and model of the hardware. Common manufacturers include Dell, HP, SuperMicro and IBM.  An example of this output, for a Dell server, is displayed below.
 
@@ -104,30 +104,31 @@ Use the `cat /etc/*release` command to determine the Linux release
 
 ```
 :~> cat /etc/*release
-CentOS Linux release 8.2.2004 (Core) 
-NAME="CentOS Linux"
-VERSION="8 (Core)"
-ID="centos"
-ID_LIKE="rhel fedora"
-VERSION_ID="8"
-PLATFORM_ID="platform:el8"
-PRETTY_NAME="CentOS Linux 8 (Core)"
+NAME="Red Hat Enterprise Linux"
+VERSION="9.1 (Plow)"
+ID="rhel"
+ID_LIKE="fedora"
+VERSION_ID="9.1"
+PLATFORM_ID="platform:el9"
+PRETTY_NAME="Red Hat Enterprise Linux 9.1 (Plow)"
 ANSI_COLOR="0;31"
-CPE_NAME="cpe:/o:centos:centos:8"
-HOME_URL="https://www.centos.org/"
-BUG_REPORT_URL="https://bugs.centos.org/"
+LOGO="fedora-logo-icon"
+CPE_NAME="cpe:/o:redhat:enterprise_linux:9::baseos"
+HOME_URL="https://www.redhat.com/"
+DOCUMENTATION_URL="https://access.redhat.com/documentation/red_hat_enterprise_linux/9/"
+BUG_REPORT_URL="https://bugzilla.redhat.com/"
 
-CENTOS_MANTISBT_PROJECT="CentOS-8"
-CENTOS_MANTISBT_PROJECT_VERSION="8"
-REDHAT_SUPPORT_PRODUCT="centos"
-REDHAT_SUPPORT_PRODUCT_VERSION="8"
-
-CentOS Linux release 8.2.2004 (Core) 
+REDHAT_BUGZILLA_PRODUCT="Red Hat Enterprise Linux 9"
+REDHAT_BUGZILLA_PRODUCT_VERSION=9.1
+REDHAT_SUPPORT_PRODUCT="Red Hat Enterprise Linux"
+REDHAT_SUPPORT_PRODUCT_VERSION="9.1"
+Red Hat Enterprise Linux release 9.1 (Plow)
+Red Hat Enterprise Linux release 9.1 (Plow)
 ```
 
-In this example, the first line tells us the system is running CentOS 8.2
+In this example, the first line tells us the system is running RHEL 9.1
 
-Ubuntu or RHEL outputs look similar.
+Ubuntu or CentOS outputs look similar.
 
 - - -
 ### Determine Linux kernel and header information
@@ -293,7 +294,7 @@ Not all versions of XRT work with all platforms. To determine which XRT versions
 - - -
 ### Determine XRT version
 
-The `Branch:` field shows the XRT github branch. It is normally tied to a release like `2021.1` or `2021.2`.
+The `Branch:` field shows the XRT github branch. It is normally tied to a release like `2022.1` or `2022.2`.
 
 If the value is `Master`, you are using an un-official release.
 
@@ -303,25 +304,30 @@ If the value is `Master`, you are using an un-official release.
 :~> xbutil examine
 System Configuration
   OS Name              : Linux
-  Release              : 5.8.0-63-generic
-  Version              : #71~20.04.1-Ubuntu SMP Thu Jul 15 17:46:08 UTC 2021
+  Release              : 5.14.0-162.6.1.el9_1.x86_64
+  Version              : #1 SMP PREEMPT_DYNAMIC Fri Sep 30 07:36:03 EDT 2022
   Machine              : x86_64
-  CPU Cores            : 8
-  Memory               : 64277 MB
-  Distribution         : Ubuntu 20.04.2 LTS
-  GLIBC                : 2.31
-  Model                : Precision
+  CPU Cores            : 16
+  Memory               : 63788 MB
+  Distribution         : Red Hat Enterprise Linux 9.1 (Plow)
+  GLIBC                : 2.34
+  Model                : PowerEdge R730
 
 XRT
-  Version              : 2.11.634
-  Branch               : 2021.1
-  Hash                 : 5ad5998d67080f00bca5bf15b3838cf35e0a7b26
-  Hash Date            : 2021-06-08 22:08:45
-  XOCL                 : 2.11.634, 5ad5998d67080f00bca5bf15b3838cf35e0a7b26
-  XCLMGMT              : 2.11.634, 5ad5998d67080f00bca5bf15b3838cf35e0a7b26
+  Version              : 2.15.225
+  Branch               : 2023.1
+  Hash                 : adf27adb3cfadc6e4c41d6db814159f1329b24f3
+  Hash Date            : 2023-05-03 17:13:10
+  XOCL                 : 2.15.225, adf27adb3cfadc6e4c41d6db814159f1329b24f3
+  XCLMGMT              : 2.15.225, adf27adb3cfadc6e4c41d6db814159f1329b24f3
 
 Devices present
-  [0000:af:00.1] : xilinx_u250_gen3x16_xdma_shell_3_1
+BDF             :  Shell                            Platform UUID                         Device ID       Device Ready*  
+-------------------------------------------------------------------------------------------------------------------------
+[0000:82:00.1]  :  xilinx_u280_gen3x16_xdma_base_1  283BAB8F-654D-8674-968F-4DA57F7FA5D7  user(inst=128)  Yes            
+
+
+* Devices that are not ready will have reduced functionality when using XRT tools
 
 ```
 The XOCL and XCLMGMT versions must match. If not, XRT will not operate correctly.
@@ -338,19 +344,21 @@ You will want to determine which versions (if any) of the below packages are ins
 
 #### Ubuntu
 
-Determine the platform and xbtest packages with `sudo apt list | grep -i xilinx-`. The machine in the example below has the U250 DFX-2RP XDMA 3.1 deployment and development platforms installed; xbtest is not installed.
+Determine the platform and xbtest packages with `sudo apt list | grep -i xilinx-`. The machine in the example below has the U50 and U55C deployment platforms installed; xbtest is not installed.
 
 ```
-:~> sudo apt list | grep -i xilinx-
+:~> sudo apt list | grep -i xilinx
 
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
-xilinx-cmc-u200-u250/now 1.2.15-2.3186334 all [installed,local]
-xilinx-sc-fw-u200-u250/now 4.6.11-2.0766885 all [installed,local]
-xilinx-u250-gen3x16-base/now 3-3060459 all [installed,local]
-xilinx-u250-gen3x16-xdma-3.1-202020-1-dev/now 1-3233485 all [installed,local]
-xilinx-u250-gen3x16-xdma-shell/now 3.1-3063142 all [installed,local]
-xilinx-u250-gen3x16-xdma-validate/now 3.1-3061241 all [installed,local]
+xilinx-cmc-u50/now 1.0.40-3398385 all [installed,local]
+xilinx-cmc-u55/now 1.5.25-3395704 all [installed,local]
+xilinx-sc-fw-u50/now 5.2.20-1.6d4a0da all [installed,local]
+xilinx-sc-fw-u55/now 7.1.22-1.b8c3d15 all [installed,local]
+xilinx-u50-gen3x16-xdma-base/now 5-3499627 all [installed,local]
+xilinx-u50-gen3x16-xdma-validate/now 5-3499627 all [installed,local]
+xilinx-u55c-gen3x16-xdma-base/now 3-3494559 all [installed,local]
+xilinx-u55c-gen3x16-xdma-validate/now 3-3506150 all [installed,local]
 ```
 
 Determine the XRT package with `sudo apt list | grep -i xrt`. The example below has xrt 2.11.634 installed.
@@ -360,7 +368,7 @@ Determine the XRT package with `sudo apt list | grep -i xrt`. The example below 
 
 WARNING: apt does not have a stable CLI interface. Use with caution in scripts.
 
-xrt/now 2.11.634 amd64 [installed,local]
+xrt/now 2.15.225 amd64 [installed,local]
 ```
 
 Use [the XRT release table](common-steps.md#xrt-release-versions-and-download-locations)  to see if the XRT version is an official release.
@@ -449,6 +457,8 @@ Available XRT releases along with download links are given in the table below.
 |2021.1_pu1 <br> XRT 2.11.634 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_7.6.1810-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 16.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_16.04-amd64-xrt.deb)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202110.2.11.634_20.04-amd64-xrt.deb)</li>
 |2021.2 <br> XRT 2.12.427 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202120.2.12.427_20.04-amd64-xrt.deb)</li>
 |2022.1 <br> XRT 2.13.466 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202210.2.13.466_20.04-amd64-xrt.deb)</li>
+|2022.2 <br> XRT 2.14.354 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202220.2.14.354_7.9.2009-x86_64-xrt.rpm)</li><li>[RHEL/CentOS 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202220.2.14.354_8.1.1911-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202220.2.14.354_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202220.2.14.354_20.04-amd64-xrt.deb)</li><li>[Ubuntu 22.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202220.2.14.354_22.04-amd64-xrt.deb)</li>
+|2023.1 <br> XRT 2.15.225 |<li>[RHEL/CentOS 7.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_7.8.2003-x86_64-xrt.rpm)</li><li>[RHEL 8.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_8.1.1911-x86_64-xrt.rpm)</li><li>[RHEL 9.x](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_9.0-x86_64-xrt.rpm)</li><li>[Ubuntu 18.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_18.04-amd64-xrt.deb)</li><li>[Ubuntu 20.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_20.04-amd64-xrt.deb)</li><li>[Ubuntu 22.04](https://www.xilinx.com/bin/public/openDownload?filename=xrt_202310.2.15.225_22.04-amd64-xrt.deb)</li>
 
 If you are looking for an older XRT that uses the legacy commands go to the previous [XRT release versions and download locations](https://github.com/Xilinx/Alveo-Cards/blob/2020.2_24Aug2021/docs/common-steps.md#xrt-release-versions-and-download-locations).
 - - -
@@ -517,77 +527,83 @@ See [Displaying Card BDF Values](#displaying-card-bdf-values) for obtaining the 
 An output similar to this will be displayed.
 
 ```
-------------------------------------------------------
-1/1 [0000:af:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : XFL13K1ZFSI3
+  Serial Number        : XFL1P0345SA0
 
 Device properties
-  Type                 : u50
-  Name                 : ALVEO U50 PQ
-  Config Mode          : 7
-  Max Power            : 75W
+  Type                 : u55c
+  Name                 : ALVEO U55C
+  Config Mode          : 0x7
+  Max Power            : 225W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
 
 Flashable partitions installed in system
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
 
 
-  Mac Address          : 00:0A:35:0A:40:71
-                       : 00:0A:35:0A:40:72
-                       : 00:0A:35:0A:40:73
-                       : 00:0A:35:0A:40:74
+  Mac Address          : 00:0A:35:08:8C:AD
+                       : 00:0A:35:08:8C:AE
+                       : 00:0A:35:08:8C:AF
+                       : 00:0A:35:08:8C:B0
+                       : 00:0A:35:08:8C:B1
+                       : 00:0A:35:08:8C:B2
+                       : 00:0A:35:08:8C:B3
+                       : 00:0A:35:08:8C:B4
 ```
 
 When a card has successfully been installed and the firmware has been updated, both entries for `Platform` and `SC version` under `Flashable partitions running on FPGA` and `Flashable partitions installed in system` must match.  If they do not match, the system will be unable to correctly run applications on your card.
 
 To confirm they match, visually compare the 'Platform' and 'SC Version' entries under `Flashable partitions running on FPGA` and `Flashable partitions installed in system`.
 
-In the above example, the Platform (xilinx_u50_gen3x16_xdma_201920_3) and SC version (5.2.6) displayed under `Flashable partitions running on FPGA` and `Flashable partitions installed in system` both match.  If they don't match, follow the steps in the card's installation guide to install the deployment software.
+In the above example, the Platform (xilinx_u55c_gen3x16_xdma_base_3) and SC version (7.1.22) displayed under `Flashable partitions running on FPGA` and `Flashable partitions installed in system` both match.  If they don't match, follow the steps in the card's installation guide to install the deployment software.
 
-If the platform under `Flashable partitions running on FPGA` has the word `golden` in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card's installation guide.  See [Reverting the card to factory image](common-steps.md#reverting-the-card-to-factory-image) for details on the factory image.
+If the platform under `Flashable partitions running on FPGA` has the word `golden` or `recovery` in the name, the card is running the factory image and needs to be flashed before use.  To flash the card, follow the steps in the card's installation guide.  See [Reverting the card to factory image](common-steps.md#reverting-the-card-to-factory-image) for details on the factory image.
 
 Finally, if there is a platform displayed under `Flashable partition running on FPGA` but none under `Flashable partitions installed in system`, as shown in the example below, the deployment platform will first need to be installed on the system in order to run applications on the card.  Follow the steps in the card's installation guide to install the deployment software.
 
 ```
-sudo xbmgmt examine --device 0000:af:00.0
-
-------------------------------------------------------
-1/1 [0000:af:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Flash properties
   Type                 : spi
-  Serial Number        : XFL13K1ZFSI3
+  Serial Number        : XFL1P0345SA0
 
 Device properties
-  Type                 : u50
-  Name                 : ALVEO U50 PQ
-  Config Mode          : 7
-  Max Power            : 75W
+  Type                 : u55c
+  Name                 : ALVEO U55C
+  Config Mode          : 0x7
+  Max Power            : 225W
 
 Flashable partitions running on FPGA
-  Platform             : xilinx_u50_gen3x16_xdma_201920_3
-  SC Version           : 5.2.6
-  Platform UUID        : F465B0A3-AE8C-64F6-19BC-150384ACE69B
-  Interface UUID       : 862C7020-A250-293E-3203-6F19956669E5
+  Platform             : xilinx_u55c_gen3x16_xdma_base_3
+  SC Version           : 7.1.22
+  Platform UUID        : 97088961-FEAE-DA91-52A2-1D9DFD63CCEF
+  Interface UUID       : B7AC1ABE-1E3E-1CB6-86D5-A81232452676
 
 Flashable partitions installed in system
   <none found>        
 
 
-  Mac Address          : 00:0A:35:06:47:49
-                       : 00:0A:35:06:47:4A
-                       : 00:0A:35:06:47:4B
-                       : 00:0A:35:06:47:4C
+  Mac Address          : 00:0A:35:08:8C:AD
+                       : 00:0A:35:08:8C:AE
+                       : 00:0A:35:08:8C:AF
+                       : 00:0A:35:08:8C:B0
+                       : 00:0A:35:08:8C:B1
+                       : 00:0A:35:08:8C:B2
+                       : 00:0A:35:08:8C:B3
+                       : 00:0A:35:08:8C:B4
 
 WARNING  : No shell is installed on the system.
 ```
@@ -620,9 +636,9 @@ An active card shows as below
 ```
 sudo xbmgmt examine -d a6:00.0 -r mechanical
 
------------------------------------------------
-1/1 [0000:a6:00.0] : xilinx_u280_xdma_201920_3
------------------------------------------------
+-------------------------------------------------
+[0000:a6:00.0] : xilinx_u280_gen3x16_xdma_base_1
+-------------------------------------------------
 Mechanical
   Fans
     FPGA Fan 1
@@ -632,11 +648,11 @@ Mechanical
 
 A passive card shows as below
 ```
-sudo xbmgmt examine -r mechanical -d 82:00.0
+sudo xbmgmt examine -d 3b:00.0 -r mechanical
 
-------------------------------------------------------
-1/1 [0000:82:00.0] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.0] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Mechanical
   Fans
     Not present
@@ -680,55 +696,56 @@ Use the following command to display a card's maximum power along with its curre
 - 225W
     - 8 pin PCIe Aux power connected supplying 150W
 
-An example output is shown below.  The maximum power level for the card is 225W and displays the current power being consumed by the card at 23.88W.  It provides a breakdown of the various power rails.
+An example output is shown below.  The maximum power level for the card is 225W and displays the current power being consumed by the card at 16.035208W.  It provides a breakdown of the various power rails.
 
 ```
---------------------------------------------------------
-1/1 [0000:65:00.1] : xilinx_u250_gen3x16_xdma_shell_3_1
---------------------------------------------------------
+-------------------------------------------------
+[0000:82:00.1] : xilinx_u280_gen3x16_xdma_base_1
+-------------------------------------------------
 Electrical
   Max Power              : 225 Watts
-  Power                  : 23.882647 Watts
+  Power                  : 16.035208 Watts
   Power Warning          : false
 
   Power Rails            : Voltage   Current
-  12 Volts Auxillary     : 12.123 V,  0.847 A
-  12 Volts PCI Express   : 12.091 V,  1.126 A
-  3.3 Volts PCI Express  :  3.356 V
-  3.3 Volts Auxillary    :  3.342 V
-  Internal FPGA Vcc      :  0.851 V, 10.584 A
+  12 Volts Auxillary     :  0.436 V,  0.016 A
+  12 Volts PCI Express   : 12.254 V,  1.308 A
+  3.3 Volts PCI Express  :  3.282 V
+  3.3 Volts Auxillary    :  3.347 V
+  Internal FPGA Vcc      :  0.851 V,  4.672 A
   DDR Vpp Bottom         :  2.500 V
   DDR Vpp Top            :  2.500 V
-  5.5 Volts System       :  5.512 V
-  Vcc 1.2 Volts Top      :  1.198 V
-  Vcc 1.2 Volts Bottom   :  1.200 V
-  1.8 Volts Top          :  1.836 V
-  0.9 Volts Vcc          :  0.910 V
-  12 Volts SW            : 12.111 V
-  Mgt Vtt                :  1.205 V
+  5.5 Volts System       :  5.509 V
+  Vcc 1.2 Volts Top      :  1.205 V
+  Vcc 1.2 Volts Bottom   :  1.204 V
+  1.8 Volts Top          :  1.806 V
+  0.9 Volts Vcc          :  0.902 V
+  12 Volts SW            : 12.240 V
+  Mgt Vtt                :  1.204 V
+
 ```
 
 The following are the three key power rails:
 
--   12V PCI Express
+-   12 Volts PCI Express
     -   12V motherboard rail 
         -   +/- 8% Voltage tolerance
     -   Current should be =&lt;5.5A 
--   3V3 PCI Express
+-   3.3 Volts PCI Express
     -   3.3 Volt motherboard rail 
         -   +/- 9% Voltage tolerance
     -   Current should be =&lt; 3A
--   12V Auxillary (For U200/U250/U280)
+-   12 Volts Auxillary (For U55C/U200/U250/U280)
     -   These lines will report a near 0 value if PCIe Aux power is not supplied 
     -   Current should be =&lt;12.5A for 225W operation
 
 For the U50, the 3.3V rail powers the HBM while the 12V rail powers the rest of the card except the SC.  One can confirm the HBM power is within it's limits by looking at the `3.3 Volts PCI Express` Voltage and Current values.
 
 ```
-:~> xbutil examine -r thermal electrical -d 0000:83:00.1
-------------------------------------------------------
-1/1 [0000:83:00.1] : xilinx_u50_gen3x16_xdma_201920_3
-------------------------------------------------------
+:~> xbutil examine -r thermal electrical -d 0000:04:00.1
+------------------------------------------------
+[0000:04:00.1] : xilinx_u50_gen3x16_xdma_base_5
+------------------------------------------------
 Electrical
   Max Power              : 75 Watts
   Power                  : 65.196971 Watts
@@ -775,14 +792,15 @@ Use the following command to display the value of various temperature sensors on
 An example of the output is shown below
 
 ```
--------------------------------------------------------
-1/1 [0000:3b:00.1] : xilinx_x3522pv_gen4x8_xdma_base_1
--------------------------------------------------------
+-------------------------------------------------
+[0000:3b:00.1] : xilinx_u55c_gen3x16_xdma_base_3
+-------------------------------------------------
 Thermals
-  PCB Top Front          : 31 C
-  PCB Top Rear           : 33 C
-  FPGA                   : 42 C
-  Int Vcc                : 40 C
+  Temperature            : Celcius
+  PCB Top Front          :     36 C
+  PCB Top Rear           :     32 C
+  FPGA                   :     38 C
+  Int Vcc                :     41 C
 ```
 
 
