@@ -4,8 +4,22 @@
     </td>
  </tr>
  </table>
- 
 
+## Card Collateral
+
+Card support, including Vivado-based reference designs targeting features of the card to help you get started.
+
+### [UL3524](https://xilinx.github.io/Alveo-Cards/ull.html)
+
+The Alveo™ UL3524 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+
+<hr/>
+
+
+## [Debug Guide](https://xilinx.github.io/Alveo-Cards/master/debugging/README.html)
+
+
+Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT flow, from card installation through hardware validation.
 
 
 
@@ -43,4 +57,6 @@ For additional support resources such as Answers, Documentation, Downloads, and 
 
 <hr/>
 
-<p align="center"><sup>Copyright&copy; 2021 Xilinx</sup></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2021–2023 Advanced Micro Devices, Inc</sub></p>
+
+<p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>
