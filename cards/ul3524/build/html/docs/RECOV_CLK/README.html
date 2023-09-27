@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Recovered Clock Reference Design &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="PCIe DDR Reference Design" href="../PCIE_DDR/README.html" />
+    <link rel="prev" title="GTF Latency Benchmark Design" href="../GTF_Latency/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">GTF Recovery Clock</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#architecture-overview">Architecture Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gtf-placement-and-recovered-clock-routing">GTF Placement and Recovered Clock Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internal-recovered-clock-routing">Internal Recovered Clock Routing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gtf-mac">GTF MAC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#gtf-raw">GTF RAW</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-guidance">Additional Guidance</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#reconfiguring-qsfp-ports">Reconfiguring QSFP Ports</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#data-integrity-checking">Data Integrity Checking</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#frequency-measurements">Frequency Measurements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Recovered Clock Reference Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/RECOV_CLK/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="recovered-clock-reference-design">
+<h1>Recovered Clock Reference Design<a class="headerlink" href="#recovered-clock-reference-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>This reference design demonstrates how to setup the QSFP-DD Renesas device and route the recovered clock through Bank 65.</p>
+<p>Some highlights of the design include:</p>
+<ul class="simple">
+<li><p>Resetting and programming the Renesas device</p></li>
+<li><p>Data generator and checker logic</p></li>
+<li><p>Clock frequency monitor</p></li>
+<li><p>Details how to route GTF recovered clock to a pin</p></li>
+</ul>
+<p><strong>Requirements:</strong> This example design requires a QSFP-DD cable.  The design was tested using an Amphenol 1.0 meter QSFP-DD cable (part NDYYJR-0001).</p>
+<p><strong>Additional Documentation</strong></p>
+<p>The following links provide additional documentation, including simulation and HW Manager support.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a><br></p>
+<ul>
+<li><p>Describes the available simulation and description of waveforms</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a><br></p>
+<ul>
+<li><p>Provides instructions to run the design in hardware and interact with the design through the HW Manager.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="architecture-overview">
+<h2>Architecture Overview<a class="headerlink" href="#architecture-overview" title="Permalink to this heading">¶</a></h2>
+<p>The design incorporates a number of features and components required to perform basic GTF serial transmissions while including the ability manage the recovered clock routing and processing with the Renesas Jitter Cleaner chip.  The high-level block design diagram used in the design is shown below consisting of the following key blocks:</p>
+<ul class="simple">
+<li><p>GTF instance in MAC mode as a data stream generator (Bank 232)</p>
+<ul>
+<li><p>This GTF includes two FIFO’s to store and compare the Tx and Rx datastreams for data integrity checking</p></li>
+</ul>
+</li>
+<li><p>GTF instance in RAW mode utilized as simple loopback path (Bank 227)</p></li>
+<li><p>GPIO controller to program Renenas GPIO and reset pins</p></li>
+<li><p>Two I2C controllers</p>
+<ul>
+<li><p>One to program Renesas Jitter Cleaner (JC)</p></li>
+<li><p>One to enable and monitor QSFP-DD ports</p></li>
+</ul>
+</li>
+<li><p>Clock frequency monitors to measure various clock frequencies</p></li>
+<li><p>JTAG/AXI interface for HwManager access</p></li>
+</ul>
+<p><img alt="Block diagram of the Recovery Clock design" src="../../_images/recov_clk_system_diagram.png" /></p>
+<p><strong>Figure:</strong> Block diagram of the Recovery Clock design</p>
+<p>The two QSFP-DD ports are enabled by a set of state machines that automatically start once the FPGA is ready.  The state machines enable the four power domains for the four ports and configure the default settings for the low speed QSFP-DD signals.  Following the initial setup, the state machines continuously poll the QSFP ports monitoring for module insertions or removals, and apply resets accordingly.</p>
+<p>The two GTF modules are designed to provide a simple 4 channel data loop while only requiring one board:</p>
+<ul class="simple">
+<li><p>The MAC GTF user logic is a slighly modified version of it’s example design.  It is used as a traffic generator and monitor for basic data integrity checking.  The user provides a few parameters such as number of packets or continuous mode, test duration, and number of test cycles.  When enabled, this module will perform the desired transactions and report any error detection.  The MAC GTF design is also modified to route the GTF’s RXCLKOUT signal to the RECOV_CLK11_LVDS_P pin.</p></li>
+<li><p>The RAW GTF user logic is also slightly modifed from it’s example design.  The modified logic includes a small FIFO to connect the RXRAWDATA to the TXRAWDATA.  This logic simply reroutes the Rx data back through the Tx port.  It does not have error detection.</p></li>
+</ul>
+<p>The design also includes logic to program the Renesas Jitter cleaner.  First is a user accessible register array to program the JITT_GPIO and JITT_RESETn to configure the programming sequence of the jitter cleaner.  Second is logic to transmit a programming sequence via I2C to the jitter cleaner.  The sequence is orignally generated by Renesas development tool as simple txt file detailing a list of write functions.  This txt file will be converted into a special formated COE memory file that the user loads into a BRAM.  The user then initiates a state machine that will transfer the contents of the BRAM through an I2C controller to the jitter cleaner.</p>
+<p>This example design uses a Renesas example that reduces the SYNCE clock from 161Mhz to 100Mhz.  In conjunction with the frequency monitors, its allows the user to easily step through the programming sequence and verify the changes.  However, this specific test configuration is outside the operating range of the GTF thereby making the data loop nonfunctional.  But in demonstrating this procedure, it allows the user to apply their own valid Renensas sequences and monitor the affects on a fully functional test system.</p>
+<p>The frequency monitors consist of 8 timers that provide user visibility to the GTF’s SYNCE reference clocks.  This logic is self contained in a single module so the user can easily connect to other fabric clocks of interest.</p>
+</div>
+<div class="section" id="gtf-placement-and-recovered-clock-routing">
+<h2>GTF Placement and Recovered Clock Routing<a class="headerlink" href="#gtf-placement-and-recovered-clock-routing" title="Permalink to this heading">¶</a></h2>
+<p>The MAC GTF is placed in QSFP Port 0</p>
+<ul class="simple">
+<li><p>Bank 232 (Tx/Rx lines 1-4)</p></li>
+<li><p>GT Ref Clock: SYNCE_CLK16 (Q1 of Renesas JC)</p></li>
+<li><p>GT Recov Clock: RECOV_CLK11 via Bank 65</p></li>
+</ul>
+<p>The RAW GTF is placed in QSFP Port 3</p>
+<ul class="simple">
+<li><p>Bank 227 (Tx/Rx lines 1-4)</p></li>
+<li><p>GT Ref Clock: SYNCE_CLK11 (Q6 of Renesas JC)</p></li>
+</ul>
+<p>The following figure provides a high level diagram of the board connectivity for this design. QSFP-DD ports 1 and 4 are connected via an external QSFP cable, as show by the thick line in the diagram.<br />A couple of general notes:</p>
+<ul class="simple">
+<li><p>Any GTF bank can provide a recovered clock through the fabric to Bank 65 (RECOV_CLK10 and RECOV_CLK11).</p></li>
+<li><p>RECOV_CLK12 and RECOV_CLK13 are hardwired from the GTF’s in Banks 229 and 231 to a local dedicated FPGA pin. Hence, these board signals cannot be moved or redefined.</p></li>
+</ul>
+<p><img alt="Block diagram of board clock routing" src="../../_images/recov_clk_board_routing.png" /></p>
+<p><strong>Figure:</strong> Block diagram of board clock routing</p>
+</div>
+<div class="section" id="internal-recovered-clock-routing">
+<h2>Internal Recovered Clock Routing<a class="headerlink" href="#internal-recovered-clock-routing" title="Permalink to this heading">¶</a></h2>
+<p>Routing the RXOUTCLK from the GTF to a pin in Bank 65 requires specific resources and logic detailed below and shown in the following figure.</p>
+<ul class="simple">
+<li><p>An initial BUFG_GT is required to route the GTF clock onto the PL clock tree.</p>
+<ul>
+<li><p>The output of this BUFG_GT can be tapped for programmable logic and clock frequency measurements.</p></li>
+</ul>
+</li>
+<li><p>Routing the clock directly to a pin is not allowed so an ODDR instance can be configured to generate an output pattern that mirrors it’s source clock.  The DDR output can then be routed through the pin.</p></li>
+<li><p>An ODDR instance is required to route the clock to a pin as routing directly to a pin is not allowed.</p>
+<ul>
+<li><p>The ODDR should be configured to generate an output pattern that mirrors it’s source clock.</p></li>
+<li><p>The DDR output can then be routed through the pin.</p></li>
+</ul>
+</li>
+</ul>
+<p><img alt="Block diagram detailing how to route a GTF clock to an HDIO pin" src="../../_images/recov_clk_routing.png" /></p>
+<p><strong>Figure:</strong> Block diagram detailing how to route a GTF clock to an HDIO pin</p>
+<p><strong>NOTE</strong>: Consider including an XDC constraint to place the BUFG_GT close to the GTF common module generating the source clock.  Otherwise, Vivado may place the BUFG_GT in the wrong clock region. An example for this constraint is as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Add pblock for GTF Bank 227</span>
+create_pblock pblock_test
+resize_pblock <span class="o">[</span>get_pblocks pblock_test<span class="o">]</span> -add <span class="o">{</span> CLOCKREGION_X5Y3:CLOCKREGION_X5Y3 <span class="o">}</span>
+add_cells_to_pblock <span class="o">[</span>get_pblocks pblock_test<span class="o">]</span> <span class="o">[</span>get_cells gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gen_blk_multi_ch<span class="o">[</span><span class="m">0</span><span class="o">]</span>.u_bufg_gt_gtf_recov_clk<span class="o">]</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="gtf-mac">
+<h2>GTF MAC<a class="headerlink" href="#gtf-mac" title="Permalink to this heading">¶</a></h2>
+<p>The GTF MAC instance was generated using the GTF wizard.  The GTF Transceiver configuration preset field was set to <em>GTF-10G-MAC</em> in the GTF Wizard. All preset wizard settings from this configuration were unchanged. An image of the ‘Basic’ GTF Wizard tab is shown below for reference.</p>
+<p><img alt="GTF Wizard selection for 10Gbps Transceiver MAC Mode Configuration" src="../../_images/gtf_wizard_mac.png" /></p>
+<p><strong>Figure:</strong> GTF Wizard selection for 10Gbps Transceiver MAC Mode Configuration.  All other settings should be their default selection.</p>
+</div>
+<div class="section" id="gtf-raw">
+<h2>GTF RAW<a class="headerlink" href="#gtf-raw" title="Permalink to this heading">¶</a></h2>
+<p>The GTF RAW instance was generated using the GTF wizard.  The GTF Transceiver configuration preset field was set to <em>GTF-10G-RAW</em> in the GTF Wizard. All preset wizard settings from this configuration were unchanged. An image of the ‘Basic’ GTF Wizard tab is shown below for reference.</p>
+<p><img alt="GTF Wizard selection for 10Gbps Transceiver RAW Mode Configuration" src="../../_images/gtf_wizard_raw.png" /></p>
+<p><strong>Figure:</strong> GTF Wizard selection for 10Gbps Transceiver RAW Mode Configuration.  All other settings should be their default selection.</p>
+</div>
+<div class="section" id="additional-guidance">
+<h2>Additional Guidance<a class="headerlink" href="#additional-guidance" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="reconfiguring-qsfp-ports">
+<h3>Reconfiguring QSFP Ports<a class="headerlink" href="#reconfiguring-qsfp-ports" title="Permalink to this heading">¶</a></h3>
+<p>The design uses two GTF ports using 4 channels.  The number of channels can be quickly changed by using the NUM_CHANNEL parameter in the top file ‘RTL/clk_recov.v’
+The two GTFs are currently located in QSFP port 1 and 4 but can be moved if desired.  This user must consider changes in the XDC to reflect the GTF pinout, GTF resource (gtf channel and common) locations, and internal clock resource locations (such as BUFG_GT).
+Note: The reduction of GTF channels may result in critical warnings in the design build due to constraints for logic that has been removed and can be disregarded.</p>
+</div>
+<div class="section" id="data-integrity-checking">
+<h3>Data Integrity Checking<a class="headerlink" href="#data-integrity-checking" title="Permalink to this heading">¶</a></h3>
+<p>The design also include logic to perform data comparisons on the data sent to and received from the MAC GTF.  The following figure provides a high level depiction of how this is accomplished.</p>
+<p>In both data paths, the Tx/Rx_axis_tdata buses are sampled according to the valid state of the AXIS interface.  Four 16 bit samples are packed into a single 64 bit word and stored into a FIFO (one for Tx, one for Rx).  The two FIFO’s allow the data to be resync’d before being compared.</p>
+<p>The data compare logic monitors the FIFOs and determines when each has at least one stored entry.  The logic then reads them together and compares the outputs.  When working correctly, the TX FIFO will have more entries than the RX FIFO due to the latency of the data loop.</p>
+<p><img alt="Data Comparison Schematic Showing Data Collection FIFOs and Respective Clock Domains" src="../../_images/data_compare_diagram.png" /></p>
+<p><strong>Figure:</strong> Data Comparison Schematic Showing Data Collection FIFOs and Respective Clock Domains</p>
+<p>The following figure shows an example sequence of how data is collected from the RX AXIS port from the GTF, stored in the RX FIFO, and read by the data compare logic.  The example shows the original four 16b words in gtf_ch_rxaxistdata coming from the GTF (0x8AF0, 0x19B6, 0x73E4, 0x25CD) at 644Mhz.  These are packed and passed into the FIFO data write port (0x25CD_73E4_19B6_8AF0).  Soon after, the data compare logic reads 64b values from both the RX and TX FIFOs (the TX FIFO was written earlier) and checks their values.  Any bit errors will be identified and flagged by ‘fifo_rd_fcs_error’.</p>
+<p><img alt="RX Data concatenation, write to FIFO, and read from FIFO" src="../../_images/data_compare_wfm.png" /></p>
+<p><strong>Figure:</strong> RX Data concatenation, write to FIFO, and read from FIFO</p>
+<p>NOTE: Included in the RTL is an example placement for an ILA to debug any detected errors.  Beware that adding an ILA to each channel will negatively affect timing closure, so use cautiously.</p>
+</div>
+<div class="section" id="frequency-measurements">
+<h3>Frequency Measurements<a class="headerlink" href="#frequency-measurements" title="Permalink to this heading">¶</a></h3>
+<p>The default configuration of the example design connects the 8 GTF SYNCE reference clocks to the frequency monitor logic as shown below.  The user can change the clk_samp_* ports to any fabric accessible clock in the design.  A sample function (‘measure_frequency’) in the HwMgr scripts can be used as a template to read and calculate the measurements.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>freq_counter_top freq_counter_top <span class="o">(</span>
+    // System Interface
+    .sys_if_clk    <span class="o">(</span> sys_if_clk         <span class="o">)</span>,
+    .sys_if_rstn   <span class="o">(</span> sys_if_rstn        <span class="o">)</span>,
+    .sys_if_wen    <span class="o">(</span> sys_if_wen_1       <span class="o">)</span>,
+    .sys_if_addr   <span class="o">(</span> sys_if_addr_0      <span class="o">)</span>,
+    .sys_if_wdata  <span class="o">(</span> sys_if_wdata       <span class="o">)</span>,
+    .sys_if_rdata  <span class="o">(</span> sys_if_rdata_1     <span class="o">)</span>,
+    // Clock to be sampled....
+    .clk_samp_7    <span class="o">(</span> SYNCE_CLK17_OUT    <span class="o">)</span>,
+    .clk_samp_6    <span class="o">(</span> SYNCE_CLK16_OUT    <span class="o">)</span>,
+    .clk_samp_5    <span class="o">(</span> SYNCE_CLK15_OUT    <span class="o">)</span>,
+    .clk_samp_4    <span class="o">(</span> SYNCE_CLK14_OUT    <span class="o">)</span>,
+    .clk_samp_3    <span class="o">(</span> SYNCE_CLK13_OUT    <span class="o">)</span>,
+    .clk_samp_2    <span class="o">(</span> SYNCE_CLK12_OUT    <span class="o">)</span>,
+    .clk_samp_1    <span class="o">(</span> SYNCE_CLK11_OUT    <span class="o">)</span>,
+    .clk_samp_0    <span class="o">(</span> SYNCE_CLK10_OUT    <span class="o">)</span>
+<span class="o">)</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../GTF_Latency/README.html" class="btn btn-neutral float-left" title="GTF Latency Benchmark Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../PCIE_DDR/README.html" class="btn btn-neutral float-right" title="PCIe DDR Reference Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

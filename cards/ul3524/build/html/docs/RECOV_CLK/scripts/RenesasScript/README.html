@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Renesas Programming Conversion Script &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Renesas Programming Conversion Script</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/RECOV_CLK/scripts/RenesasScript/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="renesas-programming-conversion-script">
+<h1>Renesas Programming Conversion Script<a class="headerlink" href="#renesas-programming-conversion-script" title="Permalink to this heading">¶</a></h1>
+<p>The Renesas jitter cleaner device provides numerous capabilities and options which can be enabled via a large number of registers.  Understanding and re-configuring the device through these registers in the correct sequence can be complicated and error prone. Renesas, however, has a tool to generate the programming sequence as a simple text file.</p>
+<p>Since this file is not directly usable in the reference design, this Perl script converts the Renesas generated text file into a BRAM COE file (or Tcl script) which can be used by this reference design.</p>
+<p>This section provides an overview the:</p>
+<ul class="simple">
+<li><p>Renesas generated text file,</p></li>
+<li><p>Details on the Perl conversion script along with</p></li>
+<li><p>Example use cases.</p></li>
+</ul>
+<div class="section" id="renesas-programming-conversion-script-format">
+<h2>Renesas Programming Conversion Script Format<a class="headerlink" href="#renesas-programming-conversion-script-format" title="Permalink to this heading">¶</a></h2>
+<p>A sample segment of the Renesas programming script generated by the Renesas tool is shown below.  It is in text format and provides the programming sequence with each line consisting of the byte length, address offset, and write data to be programmed.  All numbers are assumed to be in hex format.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">########################################</span>
+<span class="c1"># I2C, OneByteAddresses</span>
+<span class="c1"># ClockMatrix (31.2)</span>
+<span class="c1"># 4/4/2023 2:27:07 PM</span>
+<span class="c1">########################################</span>
+
+Size: 0x4, Offset: FC, Data: 0x00C01020
+Size: 0x9, Offset: <span class="m">92</span>, Data: 0x0007002D3101000000
+Size: 0x12, Offset: 9B, Data: 0x00000000000000000000942369DC02FFFF00
+Size: 0x2, Offset: AD, Data: 0x008E
+Size: 0xE, Offset: AF, Data: 0x40800CB19A090000010200000000
+Size: 0x2, Offset: BD, Data: 0x0000
+</pre></div>
+</div>
+<p>Write data is transferred left to right.  For example, the following sequence…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Size: 0x4, Offset: FC, Data: 0x00C01020
+</pre></div>
+</div>
+<p>is sent in this byte order: (assumes 0xB0 is Device ID)</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th align="center">Device ID</th>
+<th align="center">Addr</th>
+<th align="center">D0</th>
+<th align="center">D1</th>
+<th align="center">D2</th>
+<th align="center">D3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">B0</td>
+<td align="center">FC</td>
+<td align="center">00</td>
+<td align="center">C0</td>
+<td align="center">10</td>
+<td align="center">20</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="programming-the-renesas-device">
+<h2>Programming the Renesas Device<a class="headerlink" href="#programming-the-renesas-device" title="Permalink to this heading">¶</a></h2>
+<p><strong>A quick background on how the provided reference design programs the Renesas device.</strong></p>
+<p>The reference design uses a BRAM and I2C controller to handle the Renesas I2C programming. The BRAM is loaded during synthesis via a COE file or is loaded dynamically via HwMgr’s Tcl console.  Once the BRAM is loaded, the user can launch the I2C controller to transfer the contents of the BRAM.</p>
+<p>Each BRAM entry consists of a 16-bit word containing a descriptor OpCode byte(15:8) and data byte(7:0).  The opcodes are described in the following table:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>OpCode</th>
+<th>Name</th>
+<th>Descrption</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x01</td>
+<td>DEV_ID_OP</td>
+<td>I2C 8-bit Device ID</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>SIZE_OP</td>
+<td>(Currently Not Used)</td>
+</tr>
+<tr>
+<td>0x04</td>
+<td>ADDR_OP</td>
+<td>Address Byte.  Indicates start of I2C sequence.</td>
+</tr>
+<tr>
+<td>0x08</td>
+<td>WDATA_OP</td>
+<td>Write Data Byte</td>
+</tr>
+<tr>
+<td>0x10</td>
+<td>WDATA_LAST_OP</td>
+<td>Write Data Byte.  Indicates last byte of I2C sequence.</td>
+</tr>
+<tr>
+<td>0x20</td>
+<td>RDATA_OP</td>
+<td>(Currently Not Used)</td>
+</tr>
+<tr>
+<td>0x80</td>
+<td>FINISHED_OP</td>
+<td>Indicates complete sequence is complete.</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="script-usage">
+<h2>Script Usage<a class="headerlink" href="#script-usage" title="Permalink to this heading">¶</a></h2>
+<p>The ‘txt_to_mem.pl’ is a Perl based translator script that converts the Renesas text file to the COE and Tcl scripts.  The basic usage is as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>perl ./txt_to_mem.pl -i &lt;input txt file&gt; -o &lt;output coe file&gt; -id &lt;target device ID <span class="o">(</span>0x format<span class="o">)</span>&gt;
+</pre></div>
+</div>
+<p>Below are a couple examples…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>./txt_to_mem.pl -i  seq_example.txt <span class="se">\</span>
+                -o  seq_example <span class="se">\</span>
+                -id 0xB0
+                
+./txt_to_mem.pl -i  RC38612_20221006_094953_programming_161MHz_to_100MHz_config13_v2.txt <span class="se">\</span>
+                -o  RC38612_20221006_094953_programming_161MHz_to_100MHz_config13_v2 <span class="se">\</span>
+                -id 0xB0
+</pre></div>
+</div>
+</div>
+<div class="section" id="output-coe-file-format">
+<h2>Output COE File Format<a class="headerlink" href="#output-coe-file-format" title="Permalink to this heading">¶</a></h2>
+<p>The script will generate a COE file which will look similar to the following example.  This file can be pre-loaded into the BRAM using Vivado before synthesis.  This example sets the Dev ID to 0xB0, sets the starting address to 0xFC, transfers data bytes 0x00, 0xc0, 0x10, 0x20 (last byte), and indicates the end of sequence (0x80FF)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nv">memory_initialization_radix</span><span class="o">=</span><span class="m">16</span><span class="p">;</span>
+<span class="nv">memory_initialization_vector</span><span class="o">=</span>
+01b0,
+<span class="m">0204</span>,
+04fc,
+<span class="m">0800</span>,
+08c0,
+<span class="m">0810</span>,
+<span class="m">1020</span>,
+80ff<span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="output-tcl-file-format">
+<h2>Output TCL File Format<a class="headerlink" href="#output-tcl-file-format" title="Permalink to this heading">¶</a></h2>
+<p>Alternately, the script will also generate a Tcl file which can be used to load the BRAM dynamically in HwMgr. This allows the user to try multiple programming sequences without having to rebuild the design. The generated Tcl example programs the same sequence as above.  The ‘hwchk_axil_write’ function is one of the design’s HwMgr helper functions to do a register write to the design via the JTAG/AXI interface.  Note that each line is written as a 32-bit value, but only the lower 16-bits are used.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hwchk_axil_write 0x00030000 0x00000000 0x000001b0
+hwchk_axil_write 0x00030000 0x00000004 0x00000204
+hwchk_axil_write 0x00030000 0x00000008 0x000004fc
+hwchk_axil_write 0x00030000 0x0000000c 0x00000800
+hwchk_axil_write 0x00030000 0x00000010 0x000008c0
+hwchk_axil_write 0x00030000 0x00000014 0x00000810
+hwchk_axil_write 0x00030000 0x00000018 0x00001020
+hwchk_axil_write 0x00030000 0x00000020 0x000080ff
+</pre></div>
+</div>
+</div>
+<div class="section" id="output-log-and-reg-file-formats">
+<h2>Output LOG and REG File Formats<a class="headerlink" href="#output-log-and-reg-file-formats" title="Permalink to this heading">¶</a></h2>
+<p>(These files are still in development and may not be fully accurate)
+The generated LOG file provides a humanized description of the generated COE and Tcl files to help with debug.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>instru<span class="o">[</span><span class="m">000</span><span class="o">]</span>  <span class="o">=</span> <span class="o">{</span> DEV_ID_OP     , <span class="m">2</span><span class="s1">&#39;hb0 };</span>
+<span class="s1">instru[001]  = { SIZE_OP       , 2&#39;</span>h04 <span class="o">}</span><span class="p">;</span>
+instru<span class="o">[</span><span class="m">002</span><span class="o">]</span>  <span class="o">=</span> <span class="o">{</span> ADDR_OP       , <span class="m">2</span><span class="s1">&#39;hfc };</span>
+<span class="s1">instru[003]  = { WDATA_OP      , 2&#39;</span>h00 <span class="o">}</span><span class="p">;</span>
+instru<span class="o">[</span><span class="m">004</span><span class="o">]</span>  <span class="o">=</span> <span class="o">{</span> WDATA_OP      , <span class="m">2</span><span class="s1">&#39;hc0 };</span>
+<span class="s1">instru[005]  = { WDATA_OP      , 2&#39;</span>h10 <span class="o">}</span><span class="p">;</span>
+instru<span class="o">[</span><span class="m">006</span><span class="o">]</span>  <span class="o">=</span> <span class="o">{</span> WDATA_LAST_OP , <span class="m">2</span><span class="s1">&#39;h20 };</span>
+<span class="s1">instru[007]  = { FINISHED_OP   , 8&#39;</span>hff <span class="o">}</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>The generated REG file provides another humanized description that attempts to provide register names based on Renesas documentation.  The scripts will often write across gaps in the register map rather than restart a new sequence, so some addresses may be unknown or not specifically named.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">[</span>fc<span class="o">]</span> Set Page Addr... 0xc000
+<span class="o">[</span>00fc<span class="o">]</span> unknown - may be an extension
+     <span class="o">[</span>00fc<span class="o">]</span>  0x00  PAGE_ADDR<span class="o">[</span><span class="m">7</span>:0<span class="o">]</span>
+     <span class="o">[</span>00fd<span class="o">]</span>  0xc0  PAGE_ADDR<span class="o">[</span><span class="m">15</span>:8<span class="o">]</span>
+     <span class="o">[</span>00fe<span class="o">]</span>  0x10  PAGE_ADDR<span class="o">[</span><span class="m">23</span>:16<span class="o">]</span>
+     <span class="o">[</span>00ff<span class="o">]</span>  0x20  PAGE_ADDR<span class="o">[</span><span class="m">31</span>:24<span class="o">]</span>
+<span class="o">[</span>c023<span class="o">]</span> unknown - may be an extension
+     <span class="o">[</span>c023<span class="o">]</span>  0x00  RESERVED
+     <span class="o">[</span>c024<span class="o">]</span>  0x81  GENERAL_STATUS.MAJ_REL Major release number.
+     <span class="o">[</span>c025<span class="o">]</span>  0x10  GENERAL_STATUS.MIN_REL Minor release number.
+     <span class="o">[</span>c026<span class="o">]</span>  0x20  GENERAL_STATUS.HOTFIX_REL Hotfix release number.
+<span class="o">[</span>c060<span class="o">]</span> unknown - may be an extension
+     <span class="o">[</span>c060<span class="o">]</span>  0x11  STATUS.DPLL2_REF_STAT DPLL <span class="m">2</span> input reference status.
+     <span class="o">[</span>c061<span class="o">]</span>  0x22  STATUS.DPLL3_REF_STAT DPLL <span class="m">3</span> input reference status.
+     <span class="o">[</span>c062<span class="o">]</span>  0x33  STATUS.DPLL4_REF_STAT DPLL <span class="m">4</span> input reference status.
+</pre></div>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: https://support.xilinx.com</p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

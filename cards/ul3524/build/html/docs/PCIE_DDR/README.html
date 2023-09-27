@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>PCIe DDR Reference Design &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="QDRII+ MIG Reference Design" href="../QDR_MIG/README.html" />
+    <link rel="prev" title="Recovered Clock Reference Design" href="../RECOV_CLK/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PCIE DDR</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-design-hierarchy">Reference Design Hierarchy</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#block-diagram">Block Diagram</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-description">Module Description</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#enabling-the-ddr-power-plane">Enabling the DDR Power Plane</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#ddr4-i-o-expander-must-be-taken-out-of-reset">DDR4 I/O expander must be taken out of reset</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#enable-ddr4-power-via-the-clkgen-i2c-bus">Enable DDR4 power via the CLKGEN I2C bus</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#memtest-function-descriptions">Memtest Function Descriptions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ddr4-memory-controller">DDR4 Memory Controller</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference">Reference</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tca6408apwr-register-map">TCA6408APWR Register Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ul3524-pinout">UL3524 Pinout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PCIe DDR Reference Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../_sources/docs/PCIE_DDR/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="pcie-ddr-reference-design">
+<h1>PCIe DDR Reference Design<a class="headerlink" href="#pcie-ddr-reference-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>This reference design demonstrates how to enable the DDR power plane through I2C commands.  In addition, a provided memory test is detailed, and can be used bring up the DDR and perform memory read/write functions.  Finally, recommended DDR4 memory controller IP settings are provided.</p>
+<p><strong>Additional Documentation</strong></p>
+<p>The following links provide additional documentation, including simulation and HW Manager support.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a><br></p>
+<ul>
+<li><p>Describes the available simulation and description of waveforms</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a><br></p>
+<ul>
+<li><p>Provides instructions to run the design in hardware and interact with the design through the HW Manager.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="reference-design-hierarchy">
+<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Permalink to this heading">¶</a></h2>
+<p>The design hierarchy block diagram is given below. The subsequent table provides descriptions of the key modules within the design.</p>
+<div class="section" id="block-diagram">
+<h3>Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this heading">¶</a></h3>
+<p><img alt="Block diagram of the PCIe DDR reference design" src="../../_images/pcie_ddr_des_hierarchy.png" /></p>
+<p><strong>Figure:</strong> Block diagram of the PCIe DDR reference design</p>
+</div>
+<div class="section" id="module-description">
+<h3>Module Description<a class="headerlink" href="#module-description" title="Permalink to this heading">¶</a></h3>
+<p><strong>Table:</strong> Description of design modules</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>File Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>system_reset.v</td>
+<td>Asserts system reset (<em>m_axi_arestn</em>) to 0 after FPGA startup.</td>
+</tr>
+<tr>
+<td>reg_axi_slave.v</td>
+<td>Translates AXI-Lite transactions for register bank access.</td>
+</tr>
+<tr>
+<td>reg_reference_logic.v</td>
+<td>A register bank with four 32b registers.</td>
+</tr>
+<tr>
+<td>axi_slave</td>
+<td>This module translates an AXI-Lite interface to a simple register access interface. If desired, this allows the reference design to connect to a larger design using an AXI interface. The i2c_sequencer automatically runs its state machine, so the user interface is optional. However, this interface can be included to allow the user to monitor the design, perform a manual reset, or add user functions.</td>
+</tr>
+<tr>
+<td>i2c_sequencer</td>
+<td>This module is the high level register sequencer that drives the overall process. It’s a simple state machine that sequences through the three register access described above. The logic sets up the req/ack interface to the i2c_axi_sequencer.</td>
+</tr>
+<tr>
+<td>i2c_axi_sequencer</td>
+<td>This module is a simple state machine that performs the required AXI commands for the I2C controller. A simple req/ack interface provides the device ID, command/address bytes, and optional write data. When the req is asserted, the state machine initializes the I2C controller, programs the output FIFO, starts the transfer and monitors the status. Read requests will return data when the transfer completes.</td>
+</tr>
+<tr>
+<td>axi_master</td>
+<td>This module translates a simple register access interface to the AXI-Lite interfaces required by the I2C controller IP.</td>
+</tr>
+<tr>
+<td>axi_iic_0</td>
+<td>This I2C controller module is generated from the Vivado IP Catalog. The user interface is an AXI-Lite interface.</td>
+</tr>
+<tr>
+<td>TCA6408A</td>
+<td>TI I/O expander with I2C interface. Allows us to enable the DDR power plane.</td>
+</tr>
+<tr>
+<td>ddr4_0</td>
+<td>This DDR memory controller is generated with the Memory Interface Generator from the Vivado IP Catalog. The user interface is an AXI interface.</td>
+</tr>
+<tr>
+<td>XDMA</td>
+<td>This PCIe DMA module is generated from the Vivado IP Catalog. The user interface is an AXI interface.</td>
+</tr>
+<tr>
+<td>AXI X-bar</td>
+<td>This AXI interconnect is generated from the Vivado IP Catalog. It connects XDMA (Master) to reg_reference_top (Slave 0) and ddr4_0 (Slave 1)</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> Descriptions of key modules.</p>
+</div>
+</div>
+<div class="section" id="enabling-the-ddr-power-plane">
+<h2>Enabling the DDR Power Plane<a class="headerlink" href="#enabling-the-ddr-power-plane" title="Permalink to this heading">¶</a></h2>
+<p>The DDR4 memory subsystem power (2V5_Vpp) is disabled upon power up and requires the following two steps to enable:</p>
+<ol class="simple">
+<li><p>DDR4 I/O expander must be taken out of reset.</p></li>
+<li><p>Enable DDR4 power via the CLKGEN I2C bus.</p></li>
+</ol>
+<p>The following figure shows the I2C bus connected to various devices on the card. The DDR4 I/O expander and subsequent DDR4 enable signal (EN_2V5_vpp) are shown at the top of the figure.</p>
+<p><img alt="Example DDR4 power control design" src="../../_images/ddr4_power_i2c.png" /></p>
+<p><strong>Figure:</strong> DDR4 Power Enable Communication Routing</p>
+<div class="section" id="ddr4-i-o-expander-must-be-taken-out-of-reset">
+<h3>DDR4 I/O expander must be taken out of reset<a class="headerlink" href="#ddr4-i-o-expander-must-be-taken-out-of-reset" title="Permalink to this heading">¶</a></h3>
+<p>Since the I/O expander device has an active-low reset pin connected to an external pull-down resister, it is necessary to take the expander device out of reset.  This is done by asserting reset pin, DDR_PSUIO_RESET (pin AU19).</p>
+</div>
+<div class="section" id="enable-ddr4-power-via-the-clkgen-i2c-bus">
+<h3>Enable DDR4 power via the CLKGEN I2C bus<a class="headerlink" href="#enable-ddr4-power-via-the-clkgen-i2c-bus" title="Permalink to this heading">¶</a></h3>
+<p>With the I/O expander out of reset, the DDR4 memory subsystem power can be controlled via the I2C I/O expander, address 0x42 (8-bit), via the FPGA CLKGEN I2C bus highlighted in the above figure. This is done by configuring both the output value and output enable registers of I/O expander port 0 pin (the remaining seven ports of the expander are not connected).  This is accomplished by writing the following two registers:</p>
+<ul class="simple">
+<li><p>Register 0x1 to set the output value.</p></li>
+<li><p>Register 0x3 to configure the output enable.</p></li>
+</ul>
+<p>The steps to perform this operation are shown in the following table.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Configuration Step</th>
+<th>I2C Sequence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set DDR (EN2V5_vpp) power enable pin on port 0</td>
+<td>0x42, 0x01, 0x01</td>
+<td>Programs output value register bit<br>0 = DDR4 power enable</td>
+</tr>
+<tr>
+<td>Enable output mode for port 0</td>
+<td>0x42, 0x03, 0xFE</td>
+<td>Programs output config register<br> (0=output, 1 = input)</td>
+</tr>
+<tr>
+<td>Optional step</td>
+<td>0x42, 0x00, restart, 0x43</td>
+<td>Read the P0 value to verify the programming by reading register 0x0 of the I/O expander</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> DDR4 I2C power enable steps</p>
+</div>
+</div>
+<div class="section" id="memtest-function-descriptions">
+<h2>Memtest Function Descriptions<a class="headerlink" href="#memtest-function-descriptions" title="Permalink to this heading">¶</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> is a simple C program that brings up the DDR I2C and the DDR IP and performs a memory test.</p>
+<p>Descriptions of the functions within <code class="docutils literal notranslate"><span class="pre">memetest.c</span></code> is given below.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Arguments</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>main</td>
+<td><code>-c cycle</code>: specify a number of cycles for memtest</td>
+<td>Brings up the DDR power plane and DDR memory. <br><br> Performs data integrity test on the DDR memory using <em>memtest</em></td>
+</tr>
+<tr>
+<td>memtest</td>
+<td><em>cycles</em>: number of words to write and read from the memory</td>
+<td>Sequentially load a block of DDR addresses with 32-bit PRBS. <br><br> Sequentially read back the same block and compare with expected values.</td>
+</tr>
+<tr>
+<td>gen_prbs32</td>
+<td><em>value</em>: non-zero value initializes the PRBS seed with the value provided and returns the value provided <br><br> If zero, it returns the computed PRBS value</td>
+<td>Generates a pseudorandom binary sequence.</td>
+</tr>
+<tr>
+<td>initialize_memory</td>
+<td><em>device0</em>: device BDF value</td>
+<td>Configures memory mapping of the UL3524 DDR memory regions.</td>
+</tr>
+<tr>
+<td>init_ddr</td>
+<td></td>
+<td>Pulls ddr_i2c (active high) out of reset first then the DDR memory controller (active low). The first bit controls the ddr_i2c reset and second bit contorls the DDR memory controller reset.</td>
+</tr>
+<tr>
+<td>write_reg</td>
+<td><em>region</em>: device memory region <br> <em>addr</em>: write address <br> <em>wdata</em>: write data</td>
+<td>Writes <em>wdata</em> to <em>addr</em> of <em>region</em>. Returns 0.</td>
+</tr>
+<tr>
+<td>read_reg</td>
+<td><em>region</em>: device memory region <br> <em>addr</em>: read address <br></td>
+<td>Read from <em>addr</em> of <em>region</em>. Returns read data.</td>
+</tr>
+<tr>
+<td>process_cmdline</td>
+<td><em>argc</em>: argument count <br> <em>argv</em>: argument vector</td>
+<td>Processes the command line arguments for <em>memtest</em>.</td>
+</tr>
+</tbody>
+</table><p><strong>Table 2.</strong> Descriptions of memtest.c functions and their arguments</p>
+</div>
+<div class="section" id="ddr4-memory-controller">
+<h2>DDR4 Memory Controller<a class="headerlink" href="#ddr4-memory-controller" title="Permalink to this heading">¶</a></h2>
+<p>When instantiating a DDR4 memory controller using the Vivado tools, it is recommended to use the parameters outlined in the following table.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Controller/PHY Mode [1]</td>
+<td>Ctrl and PHY layer</td>
+</tr>
+<tr>
+<td>Memory Dev. Interface Speed</td>
+<td>833 ps [2]</td>
+</tr>
+<tr>
+<td>Reference Input Clock</td>
+<td>300 MHz</td>
+</tr>
+<tr>
+<td>Memory Type/Config</td>
+<td>Components</td>
+</tr>
+<tr>
+<td>Memory Part</td>
+<td>MT40A2G8VA-062E</td>
+</tr>
+<tr>
+<td>Slot</td>
+<td>Single</td>
+</tr>
+<tr>
+<td>IO Voltage</td>
+<td>1.2V</td>
+</tr>
+<tr>
+<td>Burst Length</td>
+<td>8</td>
+</tr>
+<tr>
+<td>CAS Latency</td>
+<td>17</td>
+</tr>
+<tr>
+<td>CAS Wr Latency</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Data Width</td>
+<td>72</td>
+</tr>
+</tbody>
+</table><p><em>[1]  AXI4 interface will be enabled automatically. It can be disabled.</em></p>
+<p><em>[2] 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1</em></p>
+<p><strong>Table 2.</strong> DDR4 Memory Controller IP Parameter Settings</p>
+<p>When implementing the controller in your design, reference <em>FPGA Bank I/O Mapping</em> section in UG1585 for the allocated FPGA banks.</p>
+<p>Use the external 300 MHz reference clock supplied to HPIO 66. For additional details, see <em>Clocking</em> section in UG1585.</p>
+</div>
+<div class="section" id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="tca6408apwr-register-map">
+<h3>TCA6408APWR Register Map<a class="headerlink" href="#tca6408apwr-register-map" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Command Byte</th>
+<th>Register</th>
+<th>Power Up Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>Input Port</td>
+<td>xxxx xxxx</td>
+</tr>
+<tr>
+<td>0x01</td>
+<td>Output Port</td>
+<td>1111 1111</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>Polarity Inversion</td>
+<td>0000 0000</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Configuration (1=input, 0=output)</td>
+<td>1111 1111 (dflt = input)</td>
+</tr>
+</tbody>
+</table><p><strong>Table 3.</strong> Descriptions of the TCA6408APWR register map.</p>
+</div>
+<div class="section" id="ul3524-pinout">
+<h3>UL3524 Pinout<a class="headerlink" href="#ul3524-pinout" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Package Pin</th>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AU19</td>
+<td>DDR_PSUIO_RESET</td>
+<td>I/O Expander Resetb</td>
+</tr>
+<tr>
+<td>AR20</td>
+<td>CLKGEN_SCL_R</td>
+<td>I2C Clock</td>
+</tr>
+<tr>
+<td>AT20</td>
+<td>CLKGEN_SDA_R</td>
+<td>I2C Data</td>
+</tr>
+</tbody>
+</table><p><strong>Table 4.</strong> Descriptions of the UL3524 pinout.</p>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../RECOV_CLK/README.html" class="btn btn-neutral float-left" title="Recovered Clock Reference Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../QDR_MIG/README.html" class="btn btn-neutral float-right" title="QDRII+ MIG Reference Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

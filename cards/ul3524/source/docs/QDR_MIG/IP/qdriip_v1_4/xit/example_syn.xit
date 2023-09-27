@@ -1,0 +1,46 @@
+variable tcl_scope
+variable tcl_ipinst
+set tcl_scope xit
+set tcl_ipinst [ current_inst ]
+
+source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
+
+proc uniquify {vlnv_path from_file_path to_file_path from_replace to_replace} {
+
+  set to_filename  [add_ipfile -force -fileType systemVerilogSource -usedIn [ list synthesis implementation simulation ] $to_file_path]
+  
+  while {[gets_subcore_ipfile $vlnv_path $from_file_path line] >= 0} {
+    set new_line [regsub -all $from_replace $line $to_replace]
+    puts_ipfile $to_filename $new_line
+  }
+
+  close_subcore_ipfile $vlnv_path $from_file_path
+  close_ipfile $to_filename
+
+  return 0
+}
+
+set memName [string tolower [ getuser C0.ControllerType ] ]
+
+copy_ipfile  -force -fileType systemVerilogSource -usedIn [ list synthesis implementation simulation ]    data/dlib/ultrascale/qdriiplus_sram/tb/example_tb.sv            tb/example_tb.sv
+###################################
+## ATG Files##
+###################################
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_hw_tg.sv                        [current_outdir]/traffic_gen/qdriip_v1_4_hw_tg.sv                         mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_2to1_converter.sv            [current_outdir]/traffic_gen/qdriip_v1_4_tg_2to1_converter.sv             mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_addr_prbs.sv                 [current_outdir]/traffic_gen/qdriip_v1_4_tg_addr_prbs.sv                  mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_data_prbs_seed.sv            [current_outdir]/traffic_gen/qdriip_v1_4_tg_data_prbs_seed.sv             mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_data_prbs.sv                 [current_outdir]/traffic_gen/qdriip_v1_4_tg_data_prbs.sv                  mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_errchk.sv                    [current_outdir]/traffic_gen/qdriip_v1_4_tg_errchk.sv                     mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_fifo.sv                      [current_outdir]/traffic_gen/qdriip_v1_4_tg_fifo.sv                       mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_mpfifo.sv                    [current_outdir]/traffic_gen/qdriip_v1_4_tg_mpfifo.sv                     mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_instr_bram.sv                [current_outdir]/traffic_gen/qdriip_v1_4_tg_instr_bram.sv                 mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_pattern_gen_addr.sv          [current_outdir]/traffic_gen/qdriip_v1_4_tg_pattern_gen_addr.sv           mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_pattern_gen_data_bram.sv     [current_outdir]/traffic_gen/qdriip_v1_4_tg_pattern_gen_data_bram.sv      mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_pattern_gen_data_cal_cplx.sv [current_outdir]/traffic_gen/qdriip_v1_4_tg_pattern_gen_data_cal_cplx.sv  mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_pattern_gen_data.sv          [current_outdir]/traffic_gen/qdriip_v1_4_tg_pattern_gen_data.sv           mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_prbs_gen.sv                  [current_outdir]/traffic_gen/qdriip_v1_4_tg_prbs_gen.sv                   mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_top.sv                       [current_outdir]/traffic_gen/qdriip_v1_4_tg_top.sv                        mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_victim_data.sv               [current_outdir]/traffic_gen/qdriip_v1_4_tg_victim_data.sv                mem_v1_4_0 qdriip_v1_4_19]
+[uniquify xilinx.com:ip:mem:1.4 ip/traffic_gen/mem_v1_4_tg_arbiter.sv                   [current_outdir]/traffic_gen/qdriip_v1_4_tg_arbiter.sv                    mem_v1_4_0 qdriip_v1_4_19]
+###################################

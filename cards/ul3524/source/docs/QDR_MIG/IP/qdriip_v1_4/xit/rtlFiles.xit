@@ -1,0 +1,36 @@
+variable tcl_scope
+variable tcl_ipinst
+set tcl_scope xit
+set tcl_ipinst [ current_inst ]
+set InstName [ ::xit::current_inst ]
+set instDirPath [current_outdir]
+
+source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
+if { [getuser No_Controller] == 0} {
+          return
+}
+set memName [string tolower [ getuser C0.ControllerType ] ]
+ipx::add_cpu -quiet ${InstName} [ current_ipbom ]
+#######################################
+# Generate ELF and BMM files
+#######################################
+set Cur_Proj_LANGUAGE [string tolower [xit::get_project_property PREFHDL ]]
+set InstName [ ::xit::current_inst ]
+
+if {[regexp verilog $Cur_Proj_LANGUAGE]} {
+###VERILOG###
+copy_ipfile  -force -usedIn [ list synthesis implementation ] -scopedToRef "${InstName}" -scopedToCells {inst/cal/u_cal_riu/mcs0/inst/microblaze_I}  data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/calibration_0/Debug/calibration_qdrii.elf      sw/calibration_0/Debug/calibration_qdrii.elf
+set_property instance_path "inst/cal/u_cal_riu/mcs0/inst/microblaze_I" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+set_property bootloop_file "sw/calibration_0/Debug/calibration_qdrii.elf" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+  } else {
+###VHDL####
+copy_ipfile  -force -usedIn [ list synthesis implementation ] -scopedToRef "${InstName}" -scopedToCells {inst/cal/u_cal_riu/mcs0/U0/microblaze_I}  data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/calibration_0/Debug/calibration_qdrii.elf      sw/calibration_0/Debug/calibration_qdrii.elf
+set_property instance_path "inst/cal/u_cal_riu/mcs0/U0/microblaze_I" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+set_property bootloop_file "sw/calibration_0/Debug/calibration_qdrii.elf" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+}
+#set_property instance_path "inst/cal/u_cal_riu/mcs0/microblaze_I" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+#set_property bootloop_file "sw/calibration_0/Debug/calibration_qdrii.elf" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+set_property endian little [ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+set_property processor_type "MICROBLAZE-LE" [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+set_property is_visible false [ ipx::get_cpus ${InstName} -of_objects [ current_ipbom ] ]
+#######################################

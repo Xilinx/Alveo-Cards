@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="qdriip_ref_simple_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="qdriip_ref_simple_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="4,500.001 ns"></ZoomEndTime>
+      <Cursor1Time time="2,460.946 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="276"></NameColumnWidth>
+      <ValueColumnWidth column_width="78"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="24" />
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/CLK10_LVDS_300_P">
+      <obj_property name="ElementShortName">CLK10_LVDS_300_P</obj_property>
+      <obj_property name="ObjectShortName">CLK10_LVDS_300_P</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/CLK10_LVDS_300_N">
+      <obj_property name="ElementShortName">CLK10_LVDS_300_N</obj_property>
+      <obj_property name="ObjectShortName">CLK10_LVDS_300_N</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_cq_p">
+      <obj_property name="ElementShortName">qdriip_cq_p</obj_property>
+      <obj_property name="ObjectShortName">qdriip_cq_p</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_cq_n">
+      <obj_property name="ElementShortName">qdriip_cq_n</obj_property>
+      <obj_property name="ObjectShortName">qdriip_cq_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_k_p">
+      <obj_property name="ElementShortName">qdriip_k_p</obj_property>
+      <obj_property name="ObjectShortName">qdriip_k_p</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_k_n">
+      <obj_property name="ElementShortName">qdriip_k_n</obj_property>
+      <obj_property name="ObjectShortName">qdriip_k_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_w_n">
+      <obj_property name="ElementShortName">qdriip_w_n</obj_property>
+      <obj_property name="ObjectShortName">qdriip_w_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_r_n">
+      <obj_property name="ElementShortName">qdriip_r_n</obj_property>
+      <obj_property name="ObjectShortName">qdriip_r_n</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/qdriip_doff_n">
+      <obj_property name="ElementShortName">qdriip_doff_n</obj_property>
+      <obj_property name="ObjectShortName">qdriip_doff_n</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/qdriip_bw_n">
+      <obj_property name="ElementShortName">qdriip_bw_n[1:0]</obj_property>
+      <obj_property name="ObjectShortName">qdriip_bw_n[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/qdriip_sa">
+      <obj_property name="ElementShortName">qdriip_sa[21:0]</obj_property>
+      <obj_property name="ObjectShortName">qdriip_sa[21:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/qdriip_d">
+      <obj_property name="ElementShortName">qdriip_d[17:0]</obj_property>
+      <obj_property name="ObjectShortName">qdriip_d[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/qdriip_q">
+      <obj_property name="ElementShortName">qdriip_q[17:0]</obj_property>
+      <obj_property name="ObjectShortName">qdriip_q[17:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/NUM_WRITES">
+      <obj_property name="ElementShortName">NUM_WRITES[31:0]</obj_property>
+      <obj_property name="ObjectShortName">NUM_WRITES[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/qdriip_clk">
+      <obj_property name="ElementShortName">qdriip_clk</obj_property>
+      <obj_property name="ObjectShortName">qdriip_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/qdriip_rst_clk">
+      <obj_property name="ElementShortName">qdriip_rst_clk</obj_property>
+      <obj_property name="ObjectShortName">qdriip_rst_clk</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group50">
+      <obj_property name="label">AXI</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="group" fp_name="group48">
+         <obj_property name="label">AR</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_araddr">
+            <obj_property name="ElementShortName">axi_araddr[31:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_araddr[31:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_arlen">
+            <obj_property name="ElementShortName">axi_arlen[7:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_arlen[7:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_arvalid">
+            <obj_property name="ElementShortName">axi_arvalid</obj_property>
+            <obj_property name="ObjectShortName">axi_arvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_arready">
+            <obj_property name="ElementShortName">axi_arready</obj_property>
+            <obj_property name="ObjectShortName">axi_arready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group47">
+         <obj_property name="label">R</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_rdata">
+            <obj_property name="ElementShortName">axi_rdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_rdata[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_rresp">
+            <obj_property name="ElementShortName">axi_rresp[1:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_rresp[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_rvalid">
+            <obj_property name="ElementShortName">axi_rvalid</obj_property>
+            <obj_property name="ObjectShortName">axi_rvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_rlast">
+            <obj_property name="ElementShortName">axi_rlast</obj_property>
+            <obj_property name="ObjectShortName">axi_rlast</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_rready">
+            <obj_property name="ElementShortName">axi_rready</obj_property>
+            <obj_property name="ObjectShortName">axi_rready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group45">
+         <obj_property name="label">AW</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_awaddr">
+            <obj_property name="ElementShortName">axi_awaddr[31:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_awaddr[31:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_awlen">
+            <obj_property name="ElementShortName">axi_awlen[7:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_awlen[7:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_awvalid">
+            <obj_property name="ElementShortName">axi_awvalid</obj_property>
+            <obj_property name="ObjectShortName">axi_awvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_awready">
+            <obj_property name="ElementShortName">axi_awready</obj_property>
+            <obj_property name="ObjectShortName">axi_awready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group46">
+         <obj_property name="label">W</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_wlast">
+            <obj_property name="ElementShortName">axi_wlast</obj_property>
+            <obj_property name="ObjectShortName">axi_wlast</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_wdata">
+            <obj_property name="ElementShortName">axi_wdata[63:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_wdata[63:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_wstrb">
+            <obj_property name="ElementShortName">axi_wstrb[7:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_wstrb[7:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_wvalid">
+            <obj_property name="ElementShortName">axi_wvalid</obj_property>
+            <obj_property name="ObjectShortName">axi_wvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_wready">
+            <obj_property name="ElementShortName">axi_wready</obj_property>
+            <obj_property name="ObjectShortName">axi_wready</obj_property>
+         </wvobject>
+      </wvobject>
+      <wvobject type="group" fp_name="group49">
+         <obj_property name="label">B</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+         <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/axi_bresp">
+            <obj_property name="ElementShortName">axi_bresp[1:0]</obj_property>
+            <obj_property name="ObjectShortName">axi_bresp[1:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_bvalid">
+            <obj_property name="ElementShortName">axi_bvalid</obj_property>
+            <obj_property name="ObjectShortName">axi_bvalid</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/axi_bready">
+            <obj_property name="ElementShortName">axi_bready</obj_property>
+            <obj_property name="ObjectShortName">axi_bready</obj_property>
+         </wvobject>
+      </wvobject>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/done">
+      <obj_property name="ElementShortName">done</obj_property>
+      <obj_property name="ObjectShortName">done</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/init_calib_complete">
+      <obj_property name="ElementShortName">init_calib_complete</obj_property>
+      <obj_property name="ObjectShortName">init_calib_complete</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/start">
+      <obj_property name="ElementShortName">start</obj_property>
+      <obj_property name="ObjectShortName">start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/sys_rst">
+      <obj_property name="ElementShortName">sys_rst</obj_property>
+      <obj_property name="ObjectShortName">sys_rst</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/bridge_rd_error">
+      <obj_property name="ElementShortName">bridge_rd_error</obj_property>
+      <obj_property name="ObjectShortName">bridge_rd_error</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/qdriip_ref_simple_tb/DUT/bridge_wr_error">
+      <obj_property name="ElementShortName">bridge_wr_error</obj_property>
+      <obj_property name="ObjectShortName">bridge_wr_error</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/qdriip_ref_simple_tb/DUT/error_counter">
+      <obj_property name="ElementShortName">error_counter[3:0]</obj_property>
+      <obj_property name="ObjectShortName">error_counter[3:0]</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,17 @@
+########################################
+# I2C, OneByteAddresses
+# ClockMatrix (28.2)
+# 10/6/2022 9:50:49 AM
+########################################
+
+
+Size: 0x4, Offset: FC, Data: 0x00C01020
+Size: 0x4, Offset: FC, Data: 0x00811020
+Size: 0x4, Offset: FC, Data: 0x00C11020
+Size: 0xA, Offset: 60, Data: 0x00000000000000000000
+Size: 0x2, Offset: 6C, Data: 0x0000
+Size: 0x1, Offset: 70, Data: 0x00
+Size: 0x7, Offset: 71, Data: 0x00000000000000
+Size: 0x13, Offset: 80, Data: 0x00000000000000000000000000000000000C00
+Size: 0x8, Offset: 93, Data: 0x07002D3101000000
+Size: 0x14, Offset: 9B, Data: 0x88000000000000000000942369DC02FFFF00008E
