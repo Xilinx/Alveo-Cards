@@ -1,0 +1,22 @@
+
+namespace eval qdriip_v1_4 {
+
+variable tcl_scope
+variable tcl_ipinst
+set tcl_scope xit
+
+    proc update_boundary {} {
+
+	
+		if { [ string tolower [get_property CONFIG.Phy_Only [::ipxit::current_inst] ] ] != "complete_memory_controller" } {
+
+			
+		}			
+		
+    }
+    update_boundary
+	
+}    
+
+
+

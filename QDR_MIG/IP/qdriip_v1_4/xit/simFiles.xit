@@ -1,0 +1,51 @@
+variable tcl_scope
+variable tcl_ipinst
+set tcl_scope xit
+set tcl_ipinst [ current_inst ]
+set InstName [ ::xit::current_inst ]
+
+source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
+if { [getuser No_Controller] == 0} {
+          return
+}
+set memName [string tolower [ getuser C0.ControllerType ] ]
+#ipx::add_cpu CPU_0 [ current_ipbom ]
+
+copy_ipfile   -force -fileType verilogSource -usedIn {simulation}   data/dlib/ultrascale/qdriiplus_sram/tb/glbl.v                                          tb/glbl.v
+#copy_ipfile   -force -fileType verilogSource -usedIn {simulation}   data/dlib/ultrascale/qdriiplus_sram/tb/microblaze_mcs_0.sv                             tb/microblaze_mcs_0.sv
+
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/iob/qdriip_v1_4_qdriip_iob.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/iob/qdriip_v1_4_qdriip_iob_byte.sv
+
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_cal_addr_decode.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_cal.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_config_rom.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_debug_microblaze.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_phycal.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_phy.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_rd_bit_slip.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/phy/qdriip_v1_4_qdriip_xiphy.sv
+    
+#add_ipfile  -force -usedIn {simulation} -scopedToRef "${InstName}" -scopedToCells {inst/u_qdriip_phy/phycal/cal/mcs0} [current_outdir]/sw/microblaze_mcs_qdrii.bmm
+    
+#set_property instance_path "inst/u_qdriip_phy/phycal/cal/mcs0/microblaze_I" [ ipx::get_cpus CPU_0 -of_objects [ current_ipbom ] ]
+#set_property bootloop_file "[current_outdir]/sw/calibration_0/Debug/calibration_0.elf" [ ipx::get_cpus CPU_0 -of_objects [ current_ipbom ] ]    
+
+#set_property endian little [ipx::get_cpus CPU_0 -of_objects [ current_ipbom ] ]
+#set_property processor_type "MICROBLAZE-LE" [ ipx::get_cpus CPU_0 -of_objects [ current_ipbom ] ]
+#set_property is_visible false [ ipx::get_cpus CPU_0 -of_objects [ current_ipbom ] ]
+
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/clocking/qdriip_v1_4_infrastructure.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/clocking/qdriip_v1_4_clk_ibuf.sv
+#
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_tristate_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_riuor_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_control_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_byte_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_bitslice_wrapper.sv
+
+   if { [  string tolower [ getuser C0.QDRIIP_MCS_ECC]] == true } {
+copy_ipfile -force -fileType verilogSource -usedIn {simulation} data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB_ECC/bd_72aa_lmb_bram_I_0.mem tb/temp_mem.txt
+  } else {
+copy_ipfile -force -fileType verilogSource -usedIn {simulation} data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB/bd_72aa_lmb_bram_I_0.mem tb/temp_mem.txt
+  }

@@ -1,0 +1,182 @@
+2022.2:
+ * Version 1.4 (Rev. 19)
+ * Revision change in one or more subcores
+
+2022.1.2:
+ * Version 1.4 (Rev. 18)
+ * No changes
+
+2022.1.1:
+ * Version 1.4 (Rev. 18)
+ * No changes
+
+2022.1:
+ * Version 1.4 (Rev. 18)
+ * Revision change in one or more subcores
+
+2021.2.2:
+ * Version 1.4 (Rev. 17)
+ * General: No Updates
+
+2021.2.1:
+ * Version 1.4 (Rev. 16)
+ * No changes
+
+2021.2:
+ * Version 1.4 (Rev. 16)
+ * General: Added the artixuplus to FAMILY
+ * Revision change in one or more subcores
+
+2021.1.1:
+ * Version 1.4 (Rev. 15)
+ * Revision change in one or more subcores
+
+2021.1:
+ * Version 1.4 (Rev. 14)
+ * General: No Updates
+ * Revision change in one or more subcores
+
+2020.3:
+ * Version 1.4 (Rev. 13)
+ * Revision change in one or more subcores
+
+2020.2.2:
+ * Version 1.4 (Rev. 12)
+ * No changes
+
+2020.2.1:
+ * Version 1.4 (Rev. 12)
+ * General: Updated for 2020.2.1
+
+2020.2:
+ * Version 1.4 (Rev. 11)
+ * General: Updated for 2020.2
+ * Revision change in one or more subcores
+
+2020.1.1:
+ * Version 1.4 (Rev. 10)
+ * General: Updated for 2020.1.1
+
+2020.1:
+ * Version 1.4 (Rev. 9)
+ * General: Updated for 2020.1
+ * Revision change in one or more subcores
+
+2019.2.2:
+ * Version 1.4 (Rev. 8)
+ * No changes
+
+2019.2.1:
+ * Version 1.4 (Rev. 8)
+ * No changes
+
+2019.2:
+ * Version 1.4 (Rev. 8)
+ * General: Updated for 2019.2
+ * Revision change in one or more subcores
+
+2019.1.3:
+ * Version 1.4 (Rev. 7)
+ * No changes
+
+2019.1.2:
+ * Version 1.4 (Rev. 7)
+ * No changes
+
+2019.1.1:
+ * Version 1.4 (Rev. 7)
+ * No changes
+
+2019.1:
+ * Version 1.4 (Rev. 7)
+ * General: Updated for 2019.1
+ * Revision change in one or more subcores
+
+2018.3.1:
+ * Version 1.4 (Rev. 6)
+ * No changes
+
+2018.3:
+ * Version 1.4 (Rev. 6)
+ * General: Updated for 2018.3
+ * Revision change in one or more subcores
+
+2018.2:
+ * Version 1.4 (Rev. 5)
+ * General: Updated for 2018.2
+ * Revision change in one or more subcores
+
+2018.1:
+ * Version 1.4 (Rev. 4)
+ * General: Updated for 2018.1
+ * Revision change in one or more subcores
+
+2017.4:
+ * Version 1.4 (Rev. 3)
+ * General: Updated for 2017.4
+ * Revision change in one or more subcores
+
+2017.3:
+ * Version 1.4 (Rev. 2)
+ * Updated for 2017.3
+ * Revision change in one or more subcores
+
+2017.2:
+ * Version 1.4 (Rev. 1)
+ * Bug Fix: Fixed bugs for 2017.2
+ * Revision change in one or more subcores
+
+2017.1:
+ * Version 1.4
+ * Revision change in one or more subcores
+
+2016.4:
+ * Version 1.3 (Rev. 1)
+ * Bug Fix: PFD range checks in GUI for Manual M and D Reference Input clock selection.
+ * Bug Fix: Old PHY IPs Update to fix the Phy core generation & Stitching Optimization error in Locked IP Upgrade flow.
+ * Revision change in one or more subcores
+
+2016.3:
+ * Version 1.3
+ * Port Change: 
+ * Feature Enhancement: Microblaze MCS 3.0 support.
+ * Revision change in one or more subcores
+
+2016.2:
+ * Version 1.2 (Rev. 1)
+ * Support for Vivado 2016.2
+ * Revision change in one or more subcores
+
+2016.1:
+ * Version 1.2
+ * Support for Vivado 2016.1
+ * A Bitslice reset was added 20us after BISC has completed.
+ * Revision change in one or more subcores
+
+2015.4.2:
+ * Version 1.1
+ * No changes
+
+2015.4.1:
+ * Version 1.1
+ * No changes
+
+2015.4:
+ * Version 1.1
+ * Support for Vivado 2015.4
+ * Revision change in one or more subcores
+ * Fixed lint warnings
+ * Fixed a couple simulation issues
+ * Revision change in one or more subcores
+
+2015.3:
+ * Version 1.0
+ * ATG support added
+ * XSDB parameters enhanced
+ * Few calibration related fixes
+
+#
+# Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
+#
+

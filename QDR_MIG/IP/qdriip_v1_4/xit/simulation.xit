@@ -1,0 +1,21 @@
+variable tcl_scope
+variable tcl_ipinst
+set tcl_scope xit
+set tcl_ipinst [ current_inst ]
+
+source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
+if { [getuser No_Controller] == 0} {
+          return
+}
+set memName [string tolower [ getuser C0.ControllerType ] ]
+
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/clocking/qdriip_v1_4_clk_ibuf_mmcm.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/clocking/qdriip_v1_4_infrastructure.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/clocking/qdriip_v1_4_clk_ibuf.sv
+#
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_tristate_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_riuor_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_control_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_byte_wrapper.sv
+#add_ipfile -force -usedIn {simulation} [current_outdir]/rtl/xiphy_files/qdriip_v1_4_xiphy_bitslice_wrapper.sv
+
