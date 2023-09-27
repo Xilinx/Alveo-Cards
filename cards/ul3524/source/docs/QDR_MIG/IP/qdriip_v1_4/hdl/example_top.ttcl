@@ -1,0 +1,543 @@
+<: variable tcl_scope :>
+<: variable tcl_ipinst :>
+<: set tcl_scope xit :>
+<: set tcl_ipinst [current_inst] :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl :>
+<: if { [ string tolower [ getuser Phy_Only ] ] != "complete_memory_controller" }  {ttcl_return} :>
+<: setOutputDirectory "rtl/ip_top" :>
+<: setFileName example_top :>
+<: setFileExtension ".sv" :>
+<: setFileType "verilogSource" :>
+
+<: set memName [ getmodelparam C0.ControllerType ] :>
+
+/*
+Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: MIT
+*/
+
+//******************************************************************************
+//   ____  ____
+//  /   /\/   /
+// /___/  \  /    Vendor             : Xilinx
+// \   \   \/     Version            : 1.1
+//  \   \         Application        : QDRIIP
+//  /   /         Filename           : example_top.sv
+// /___/   /\     Date Last Modified : $Date: 2014/09/03 $
+// \   \  /  \    Date Created       : Thu Apr 18 2013
+//  \___\/\___\
+//
+// Device           : UltraScale
+// Design Name      : <: print ${memName} :>
+// Purpose          :
+//                    Top-level  module. This module serves both as an example,
+//                    and allows the user to synthesize a self-contained
+//                    design, which they can be used to test their hardware.
+//                    In addition to the memory controller,
+//                    the module instantiates:
+//                      1. Synthesizable testbench - used to model
+//                      user's backend logic and generate different
+//                      traffic patterns
+//
+// Reference        :
+// Revision History :
+//*****************************************************************************
+<:if { [ string tolower [ getmodelparam Debug_Signal ] ] == "enable" } {:>
+`ifdef MODEL_TECH
+    `ifndef CALIB_SIM
+       `define SIMULATION
+     `endif
+`elsif INCA
+    `ifndef CALIB_SIM
+       `define SIMULATION
+     `endif
+`elsif VCS
+    `ifndef CALIB_SIM
+       `define SIMULATION
+     `endif
+`elsif XILINX_SIMULATOR
+    `ifndef CALIB_SIM
+       `define SIMULATION
+     `endif
+`elsif _VCP
+    `ifndef CALIB_SIM
+       `define SIMULATION
+     `endif
+`endif
+<:}:>
+`ifdef MODEL_TECH
+    `define SIMULATION_MODE
+`elsif INCA
+    `define SIMULATION_MODE
+`elsif VCS
+    `define SIMULATION_MODE
+`elsif XILINX_SIMULATOR
+    `define SIMULATION_MODE
+`elsif _VCP
+    `define SIMULATION_MODE
+`endif
+
+`timescale 1ps/1ps
+module example_top # (
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+  `ifdef SIMULATION_MODE
+  parameter SIMULATION            = "TRUE", 
+  `else
+  parameter SIMULATION            = "FALSE",
+  `endif
+  parameter DATA_WIDTH     = <: print [ getmodelparam C${c}.${memType}_DATA_WIDTH ] :>,
+  parameter BURST_LENGTH   = <: print [ getmodelparam C${c}.${memType}_BURST_LEN ] :>,
+  parameter APP_DATA_WIDTH = <: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH] * [getmodelparam C${c}.${memType}_BURST_LEN ]}] :>,
+  parameter APP_ADDR_WIDTH = <: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_ADDR_WIDTH]}] :>
+  <:}:>
+  <:}:>
+  ) (
+  input                  sys_rst, // Common port for all controllers
+<:  if {([ get_project_property "ARCHITECTURE"] == "virtexuplusHBM") && (([ get_project_property "DEVICE"] == "xcu280" && [ get_project_property "PACKAGE"] == "fsvh2892") || ([ get_project_property "DEVICE"] == "xcu50" && [ get_project_property "PACKAGE"] == "fsvh2104"))} { :>
+    output                hbm_catrip_output,
+<:  } :>
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+  input                  c<=:c:>_sys_clk_p,
+  input                  c<=:c:>_sys_clk_n,
+
+  output [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH] - 1}] :>:0]          c<=:c:>_<: print [string tolower ${memType}]:>_d,
+  output [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_NUM_DEVICES] - 1}] :>:0]           c<=:c:>_<: print [string tolower ${memType}]:>_k_p,
+  output [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_NUM_DEVICES] - 1}] :>:0]           c<=:c:>_<: print [string tolower ${memType}]:>_k_n,
+  output [<: print [expr {([getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH]/9) - 1}] :>:0]           c<=:c:>_<: print [string tolower ${memType}]:>_bw_n,
+  output                 c<=:c:>_<: print [string tolower ${memType}]:>_r_n,
+  output                 c<=:c:>_<: print [string tolower ${memType}]:>_w_n,
+  output                 c<=:c:>_<: print [string tolower ${memType}]:>_doff_n,
+  output [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_ADDR_WIDTH] - 1}] :>:0]          c<=:c:>_<: print [string tolower ${memType}]:>_sa,
+  input  [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH] - 1}] :>:0]          c<=:c:>_<: print [string tolower ${memType}]:>_q,
+  input [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_NUM_DEVICES] - 1}] :>:0]            c<=:c:>_<: print [string tolower ${memType}]:>_cq_p,
+  input [<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_NUM_DEVICES] - 1}] :>:0]            c<=:c:>_<: print [string tolower ${memType}]:>_cq_n,
+
+  output                 c<=:c:>_init_calib_complete,
+  output                 c<=:c:>_data_compare_error
+  );
+
+
+  // Wire declarations
+  wire                          c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0;
+  wire [APP_DATA_WIDTH-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0;
+  wire [(APP_DATA_WIDTH/9)-1:0] c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n0;
+  wire                          c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0;
+  wire [APP_DATA_WIDTH-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0;
+  wire                          c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0;
+  wire                          c<=:c:>_<: print [string tolower ${memType}]:>_clk;
+  wire                          c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk;
+//  wire                          c<=:c:>_calib_error;
+  wire [APP_ADDR_WIDTH-1 : 0]   c<=:c:>_tb_app_addr0;
+  wire [2:0]                    c<=:c:>_tb_app_cmd;
+  wire                          c<=:c:>_tb_app_en;
+  wire [APP_ADDR_WIDTH-1 : 0]   c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_wr_addr0;
+  wire [APP_ADDR_WIDTH-1 : 0]   c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_rd_addr0;
+  wire [APP_ADDR_WIDTH-1 : 0]   c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0;
+  wire [APP_ADDR_WIDTH-1 : 0]   c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0;
+   <:if { [ string tolower [ getuser C${c}.[string toupper ${memType}]_MCS_ECC ] ] == "true" } {:>
+  wire c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ue;               
+  wire c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ce;              
+    <:}:>
+  wire                          dbg_clk;
+  wire [299:0]                  dbg_bus;
+  wire                          c<=:c:>_wr_rd_complete;
+  wire [APP_DATA_WIDTH-1:0]     exp_rd_data;
+   <:}:>
+   <:}:>
+
+<:if { [ string tolower [ getmodelparam Debug_Signal ] ] == "enable" } {:>
+ (*mark_debug  = "TRUE" *) wire [35:0] exp_rdata_r0;
+ (*mark_debug  = "TRUE" *) wire [35:0] exp_rdata_f0;
+ (*mark_debug  = "TRUE" *) wire [35:0] exp_rdata_r1;
+ (*mark_debug  = "TRUE" *) wire [35:0] exp_rdata_f1;
+ (*mark_debug  = "TRUE" *) wire [35:0] app_rdata_r0;
+ (*mark_debug  = "TRUE" *) wire [35:0] app_rdata_f0;
+ (*mark_debug  = "TRUE" *) wire [35:0] app_rdata_r1;
+ (*mark_debug  = "TRUE" *) wire [35:0] app_rdata_f1;
+ (*mark_debug  = "TRUE" *) wire        app_rvalid;
+<:}:>
+
+<:if { [ string tolower [ getuser System_Clock ] ] == "no_buffer" } {:>
+  //***********************************************************************
+  // Differential input clock input buffers
+  //***********************************************************************
+  wire c0_sys_clk_i;
+  wire c0_sys_clk_o;
+
+  IBUFDS #
+    (
+     .IBUF_LOW_PWR ("FALSE")
+     )
+    u_ibufg_sys_clk
+      (
+       .I  (c0_sys_clk_p),
+       .IB (c0_sys_clk_n),
+       .O  (c0_sys_clk_i)
+       );
+
+<:if { [ getmodelparam C0.SYSCLK_CENTER_INFO ] == "FALSE" } {:>
+  BUFG u__bufg_backbone
+    (
+     .O (c0_sys_clk_o),
+     .I (c0_sys_clk_i)
+     );
+<:} else { :>
+  assign c0_sys_clk_o = c0_sys_clk_i;
+<:}:>
+<:}:>
+
+  //***************************************************************************
+  // The User design is instantiated below. The memory interface ports are
+  // connected to the top-level and the application interface ports are
+  // connected to the traffic generator module. This provides a reference
+  // for connecting the memory controller to system.
+  //***************************************************************************
+  <: print [get_property PARAM_VALUE.Component_Name] :>  u_<: print [get_property PARAM_VALUE.Component_Name] :> (
+    .sys_rst                     (sys_rst),
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+<:if { [ string tolower [ getuser System_Clock ] ] == "differential" } {:>
+   .c<=:c:>_sys_clk_p                   (c<=:c:>_sys_clk_p),
+   .c<=:c:>_sys_clk_n                   (c<=:c:>_sys_clk_n),
+<:} else { :>
+   .c<=:c:>_sys_clk_i                   (c0_sys_clk_o),
+<:}:>
+    <:if { [ string tolower [ getmodelparam CLKOUT1_DIVIDE ]] != 0 } {:>
+    .addn_ui_clkout1                            (),
+    <:}:>
+    <:if { [ string tolower [ getmodelparam CLKOUT2_DIVIDE ]] != 0 } {:>
+    .addn_ui_clkout2                            (),
+    <:}:>
+    <:if { [ string tolower [ getmodelparam CLKOUT3_DIVIDE ]] != 0 } {:>
+    .addn_ui_clkout3                            (),
+    <:}:>
+    <:if { [ string tolower [ getmodelparam CLKOUT4_DIVIDE ]] != 0 } {:>
+    .addn_ui_clkout4                            (),
+    <:}:>
+    .c<=:c:>_init_calib_complete (c<=:c:>_init_calib_complete),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_clk                 (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk             (c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0         (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0        (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0        (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n0        ({<: print [ expr { ( [ getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH ]/9*[ getmodelparam C${c}.[string toupper ${memType}]_BURST_LEN ] )}] :>{1'b0}}),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0         (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0        (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0        (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0       (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0),
+  <:if { [ getmodelparam C${c}.[string toupper ${memType}]_BURST_LEN ]  == 2 } {:>
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd1         (1'b0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr1        ({APP_ADDR_WIDTH{1'b0}}),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data1        ({APP_DATA_WIDTH{1'b0}}),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n1        ({(APP_DATA_WIDTH/9){1'b0}}),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd1         (1'b0),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr1        ({APP_ADDR_WIDTH{1'b0}}),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data1        (),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid1       (),
+  <:}:>
+    .c<=:c:>_<: print [string tolower ${memType}]:>_d                   (c<=:c:>_<: print [string tolower ${memType}]:>_d),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_k_p                 (c<=:c:>_<: print [string tolower ${memType}]:>_k_p),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_k_n                 (c<=:c:>_<: print [string tolower ${memType}]:>_k_n),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_bw_n                (c<=:c:>_<: print [string tolower ${memType}]:>_bw_n),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_r_n                 (c<=:c:>_<: print [string tolower ${memType}]:>_r_n),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_w_n                 (c<=:c:>_<: print [string tolower ${memType}]:>_w_n),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_doff_n              (c<=:c:>_<: print [string tolower ${memType}]:>_doff_n),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_sa                  (c<=:c:>_<: print [string tolower ${memType}]:>_sa),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_q                   (c<=:c:>_<: print [string tolower ${memType}]:>_q),
+//    .c<=:c:>_<: print [string tolower ${memType}]:>_qvld                (c<=:c:>_<: print [string tolower ${memType}]:>_qvld),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_cq_p                (c<=:c:>_<: print [string tolower ${memType}]:>_cq_p),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_cq_n                (c<=:c:>_<: print [string tolower ${memType}]:>_cq_n),
+    <:if { [ string tolower [ getuser C${c}.[string toupper ${memType}]_MCS_ECC ] ] == "true" } {:>
+    .c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ue          (c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ue),
+    .c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ce          (c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ce),
+    <:}:>
+    .dbg_bus              (dbg_bus),
+    .dbg_clk              (dbg_clk)
+
+       <:}:>
+    <:}:>
+  );
+// End of User Design top instance
+
+<:if { [ string tolower [ getmodelparam Debug_Signal ] ] == "enable" } {:>
+
+   wire dbg_init_calib_complete;
+   wire dbg_data_compare_error;
+
+ // Debug cores instantiation
+   assign dbg_init_calib_complete = c<=:c:>_init_calib_complete;
+   assign dbg_data_compare_error  = c<=:c:>_data_compare_error;
+
+   assign app_rdata_r0 = dbg_bus[100+:DATA_WIDTH];
+   assign app_rdata_f0 = dbg_bus[136+:DATA_WIDTH];
+   assign app_rdata_r1 = dbg_bus[172+:DATA_WIDTH];
+   assign app_rdata_f1 = dbg_bus[208+:DATA_WIDTH];
+   assign app_rvalid   = c0_qdriip_app_rd_valid0;
+
+   assign exp_rdata_r0 = exp_rd_data[0*DATA_WIDTH+:DATA_WIDTH];
+   assign exp_rdata_f0 = exp_rd_data[1*DATA_WIDTH+:DATA_WIDTH];
+  <:if { [ getmodelparam C${c}.[string toupper ${memType}]_BURST_LEN ]  == 4 } {:>
+   assign exp_rdata_r1 = exp_rd_data[2*DATA_WIDTH+:DATA_WIDTH];
+   assign exp_rdata_f1 = exp_rd_data[3*DATA_WIDTH+:DATA_WIDTH];
+  <:} else { :>
+   assign exp_rdata_r1 = 36'd0;
+   assign exp_rdata_f1 = 36'd0;
+  <:}:>
+
+`ifdef SIMULATION
+`else
+   ila_qdriip u_ila_qdriip (
+      .clk     (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+      .probe0  (dbg_init_calib_complete),
+      .probe1  (dbg_data_compare_error),
+      .probe2  (app_rdata_r0),
+      .probe3  (app_rdata_f0),
+      .probe4  (app_rdata_r1),
+      .probe5  (app_rdata_f1),
+      .probe6  (app_rvalid),
+      .probe7  (exp_rdata_r0),
+      .probe8  (exp_rdata_f0),
+      .probe9  (exp_rdata_r1),
+      .probe10 (exp_rdata_f1)
+   );
+`endif
+ //End of Debug cores instantiation
+<:}:>
+
+//***************************************************************************
+// The example testbench module instantiated below drives traffic (patterns)
+// on the application interface of the memory controller
+//***************************************************************************
+// In QDRIIP, there are two test generators (TG) available for user to select:
+//  1) Simple Test Generator (STG)
+//  2) Advanced Test Generator (ATG)
+//
+<: if { [ string tolower [ getuser Example_TG ] ] == "advanced_tg" } { :>
+`define HW_TG_EN
+<:}:>
+
+  `ifndef HW_TG_EN
+    example_tb # (
+      .SIMULATION     (SIMULATION),
+      .APP_DATA_WIDTH (APP_DATA_WIDTH),
+      .APP_ADDR_WIDTH (APP_ADDR_WIDTH)
+    ) u_example_tb (
+    <: foreach c { 0 } { :>
+      <: set memTypes [list QDRIIP ] :>
+      <: foreach memType $memTypes { :>
+      .clk                                     (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+      .rst                                     (c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk),
+      .app_rdy                                 (1'b1),
+      .init_calib_complete                     (c<=:c:>_init_calib_complete),
+      .app_rd_data_valid                       (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0),
+      .app_rd_data                             (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0),
+      .app_wdf_rdy                             (1'b1),
+      .app_en                                  (c<=:c:>_tb_app_en),
+      .app_cmd                                 (c<=:c:>_tb_app_cmd),
+      .app_addr                                (c<=:c:>_tb_app_addr0),
+      .app_wdf_wren                            (),
+      .app_wdf_end                             (),
+      .app_wdf_mask                            (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n0),
+      .app_wdf_data                            (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0),
+      .wr_rd_complete                          (c<=:c:>_wr_rd_complete),
+      .compare_error                           (c<=:c:>_data_compare_error),
+      .exp_rd_data                             (exp_rd_data)
+      <:}:>
+      <:}:>
+    );
+  <: foreach c { 0 } { :>
+   <: set memTypes [list QDRIIP ] :>
+   <: foreach memType $memTypes { :>
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0 = c<=:c:>_tb_app_en & ~c<=:c:>_tb_app_cmd[0] ;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0 = c<=:c:>_tb_app_en &  c<=:c:>_tb_app_cmd[0] ;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0 = c<=:c:>_tb_app_addr0;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0 = c<=:c:>_tb_app_addr0;
+      <:}:>
+    <:}:>
+  `else
+    wire                          c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd;
+    wire                          c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd;
+    // VIO TG interface signals
+    wire                          vio_tg_status_done;
+    wire                          vio_tg_status_wr_done;
+    wire                          vio_tg_status_watch_dog_hang;
+    wire                          vio_tg_rst;
+    wire                          vio_tg_restart;
+    wire                          vio_tg_start;
+    wire                          vio_tg_err_chk_en;
+    wire                          vio_tg_err_clear;
+    wire                          vio_tg_err_continue;
+    wire                          vio_tg_pause;                          //
+    wire                          vio_tg_program_en;                     // 1
+    wire                          vio_tg_direct_instr_en;                // 1
+    wire [4:0]                    vio_tg_instr_num;                      // 5
+    wire [3:0]                    vio_tg_instr_addr_mode;                // 4
+    wire [3:0]                    vio_tg_instr_data_mode;                // 4
+    wire [3:0]                    vio_tg_instr_rw_mode;                  // 4
+    wire [2:0]                    vio_tg_instr_victim_mode;              // 3
+    wire [31:0]                   vio_tg_instr_num_of_iter;              // 32
+    wire [9:0]                    vio_tg_instr_m_nops_btw_n_burst_m;     // 10
+    wire [31:0]                   vio_tg_instr_m_nops_btw_n_burst_n;     // 32
+    wire [5:0]                    vio_tg_instr_nxt_instr;                // 6
+    (*mark_debug = "TRUE" *)   wire [3:0]                    vio_tg_status_state                ;   // TG_INSTR_SM_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_err_bit_valid        ;   // Intermediate error detected
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_err_bit              ;   // APP_DATA_WIDTH // Intermediate error bit pattern
+    (*mark_debug = "TRUE" *)   wire [APP_ADDR_WIDTH-1:0]     vio_tg_status_err_addr             ;   // APP_ADDR_WIDTH // Intermediate error address
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_exp_bit_valid        ;   // immediate expected bit
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_exp_bit              ;   // APP_DATA_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_read_bit_valid       ;   // immediate read data bit
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_read_bit             ;   // APP_DATA_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_first_err_bit_valid  ;   // first logged error bit and address
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_first_err_bit        ;   // APP_DATA_WIDTH
+    (*mark_debug = "TRUE" *)   wire [APP_ADDR_WIDTH-1:0]     vio_tg_status_first_err_addr       ;   // APP_ADDR_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_first_exp_bit_valid  ;   // first logged error, expected data and address
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_first_exp_bit        ;   // APP_DATA_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_first_read_bit_valid ;   // first logged error, read data and address
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_first_read_bit       ;   //APP_DATA_WIDTH
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_err_bit_sticky_valid ;   // Accumulated error detected
+    (*mark_debug = "TRUE" *)   wire [APP_DATA_WIDTH-1:0]     vio_tg_status_err_bit_sticky       ;   // APP_DATA_WIDTH // Accumulated error bit pattern
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_err_type_valid       ;   // Read/Write error detected
+    (*mark_debug = "TRUE" *)   wire                          vio_tg_status_err_type             ;   // Read/Write error type
+    wire [7:0]                    vio_tg_glb_victim_bit;
+    wire [3:0]                    vio_tg_glb_victim_aggr_delay;
+    wire [APP_ADDR_WIDTH-1:0]     vio_tg_glb_start_addr;
+    wire c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0_en;
+    wire c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0_en;
+    wire                          exp_rd_data_valid;
+    wire                          vio_tg_err_clear_all;
+
+   `ifdef SIMULATION
+      assign  vio_tg_pause                      = 'd0;
+      assign  vio_tg_rst                        = 'd0;
+      assign  vio_tg_restart                    = 'd0;
+      assign  vio_tg_err_chk_en                 = 'd1;
+      assign  vio_tg_err_clear                  = 'd0;
+      assign  vio_tg_err_clear_all              = 1'd0;
+      assign  vio_tg_err_continue               = 'd0;
+      assign  vio_tg_program_en                 = 'd0; // 1
+      assign  vio_tg_direct_instr_en            = 1'd0; // 1
+      assign  vio_tg_instr_num                  = 5'd0; // 5
+      assign  vio_tg_instr_addr_mode            = 4'd0; // 4
+      assign  vio_tg_instr_data_mode            = 4'd0; // 4
+      assign  vio_tg_instr_rw_mode              = 4'd2; // 4
+      assign  vio_tg_instr_victim_mode          = 3'd0; // 3
+      assign  vio_tg_instr_num_of_iter          = 32'd0; // 32
+      assign  vio_tg_instr_m_nops_btw_n_burst_m = 10'd0; // 10
+      assign  vio_tg_instr_m_nops_btw_n_burst_n = 32'd0; // 32
+      assign  vio_tg_instr_nxt_instr            = 6'd0; // 6
+      assign  vio_tg_glb_victim_bit             = 8'd0; // 8
+      assign  vio_tg_glb_victim_aggr_delay      = 'd0; //4
+      assign  vio_tg_glb_start_addr             = {APP_ADDR_WIDTH{1'b0}};  // APP_ADDR_WIDTH
+    `endif
+
+    qdriip_v1_4_19_hw_tg #(
+      .SIMULATION      (SIMULATION),
+      .MEM_TYPE        ("QDRIIP"),
+      .APP_DATA_WIDTH  (APP_DATA_WIDTH),        // DDR data bus width.
+      .APP_ADDR_WIDTH  (APP_ADDR_WIDTH),        // Address bus width of the
+      .APP_CMD_WIDTH   (1),
+      .NUM_DQ_PINS     (<: print [expr {[getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH]} ] :>),                    // DDR data bus width.
+      .nCK_PER_CLK     (BURST_LENGTH/2),
+      .CMD_PER_CLK     (1),
+      .DM_WIDTH        (9), // DQ bits per DM
+      .DEFAULT_MODE    ("2015_3")
+    ) u_mem_v1_4_0_hw_tg (
+      // ********* ALL SIGNALS AT THIS INTERFACE ARE ACTIVE HIGH SIGNALS ********/
+      .clk                                (c<=:c:>_<: print [string tolower ${memType}]:>_clk),                        // memory controller (MC) user interface (UI) clock
+      .rst                                (c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk || vio_tg_rst),       // MC UI reset signal.
+      .init_calib_complete                (c<=:c:>_init_calib_complete ),// MC calibration done signal coming from MC UI.
+      .app_rdy                            (1'b1),                                 // cmd fifo ready signal coming from MC UI.
+      .app_wdf_rdy                        (1'b1),                                 // write data fifo ready signal coming from MC UI.
+      .app_rd_data_valid                  (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0),              // CMD_PER_CLK// read data valid signal coming from MC UI
+      .app_rd_data                        (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0),               // APP_DATA_WIDTH // read data bus coming from MC UI
+      .app_cmd                            (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd),                // APP_CMD_WIDTH // command bus to the MC UI
+      .app_addr                           (c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_rd_addr0),               // APP_ADDR_WIDTH // address bus to the MC UI
+      .app_en                             (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0_en),                                     // command enable signal to MC UI.
+      .app_wdf_mask                       (),                                     // APP_DATA_WIDTH // write data mask signal which // is tied to 0 in this example.
+      .app_wdf_data                       (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0),               // APP_DATA_WIDTH  // write data bus to MC UI.
+      .app_wdf_end                        (),                                     // write burst end signal to MC UI
+      .app_wdf_wren                       (),                                     // write enable signal to MC UI
+      .app_wdf_en                         (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0_en),             // QDRIIP, write enable
+      .app_wdf_addr                       (c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_wr_addr0),               // APP_ADDR_WIDTH // QDRIIP, write address
+      .app_wdf_cmd                        (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd),                // APP_CMD_WIDTH // QDRIIP write command
+
+      .compare_error                      (c<=:c:>_data_compare_error),                              // Memory READ_DATA and example TB WRITE_DATA compare error.
+      .vio_tg_rst                         (vio_tg_rst),                           // TG reset TG
+      .vio_tg_start                       (1'b1),                           // TG reset TG
+      .vio_tg_restart                     (),                       // TG start (pos edge triggered)
+      .vio_tg_pause                       (),                         // TG pause (level signal)
+      .vio_tg_err_chk_en                  (vio_tg_err_chk_en),                    // If Error check is enabled (level signal), TG will stop after first error. Else, TG will continue on the rest of the programmed instructions
+      .vio_tg_err_clear                   (vio_tg_err_clear),                     // Clear Error detected (pos edge triggered)
+      .vio_tg_err_clear_all               (vio_tg_err_clear_all),                     // Clear Error detected (pos edge triggered)
+      .vio_tg_err_continue                (),                  // Continue run after Error detected (pos edge triggered)
+
+      // TG programming interface
+      // - instruction table programming interface
+      .vio_tg_instr_program_en            (1'b0),  // VIO to enable instruction programming
+      .vio_tg_direct_instr_en             (1'b0),  // VIO to enable direct instruction
+      .vio_tg_instr_num                   (5'd0),  // 5  // VIO to program instruction number
+      .vio_tg_instr_addr_mode             (4'd0),  // 4  // VIO to program address mode
+      .vio_tg_instr_data_mode             (4'd0),  // 4  // VIO to program data mode
+      .vio_tg_instr_rw_mode               (4'd0),  // 4  // VIO to program read/write mode
+      .vio_tg_instr_rw_submode            (2'd0),  // 4  // VIO to program read/write mode
+      .vio_tg_instr_victim_mode           (3'd0),  // 3  // VIO to program victim mode
+      .vio_tg_instr_victim_aggr_delay     (5'd0),  // 3  // VIO to program victim mode
+      .vio_tg_instr_victim_select         (3'd0),  // 3  // VIO to program victim mode
+      .vio_tg_instr_num_of_iter           (32'd0), // 32 // VIO to program number of iteration per instruction
+      .vio_tg_instr_m_nops_btw_n_burst_m  (10'd0), // 10 // VIO to program number of NOPs between BURSTs
+      .vio_tg_instr_m_nops_btw_n_burst_n  (32'd0), // 32 // VIO to program number of BURSTs between NOPs
+      .vio_tg_instr_nxt_instr             (6'd0),  // 6  // VIO to program next instruction pointer
+      .vio_tg_seed_program_en             (1'b0),   // 8 // Define Victim bit in data pattern
+      .vio_tg_seed_num                    (8'd0),   // 8 // Define Victim bit in data pattern
+      .vio_tg_seed                        (23'd0),   // 8 // Define Victim bit in data pattern
+      // - global parameter register
+      .vio_tg_glb_victim_bit              (8'd0),   // 8 // Define Victim bit in data pattern
+      .vio_tg_glb_start_addr              ({APP_ADDR_WIDTH{1'b0}}),   // APP_ADDR_WIDTH
+      .vio_tg_glb_qdriv_rw_submode        (2'd0),   // 8 // Define Victim bit in data pattern
+        // - status register
+      .vio_tg_status_state                (),      // TG_INSTR_SM_WIDTH
+      .vio_tg_status_err_bit_valid        (vio_tg_status_err_bit_valid),         // Intermediate error detected
+      .vio_tg_status_err_bit              (vio_tg_status_err_bit),               // APP_DATA_WIDTH // Intermediate error bit pattern
+      .vio_tg_status_err_cnt              (),
+      .vio_tg_status_err_addr             (vio_tg_status_err_addr),              // APP_ADDR_WIDTH // Intermediate error address
+      //.vio_tg_status_exp_bit_valid      (vio_tg_status_exp_bit_valid),         // immediate expected bit
+      //.vio_tg_status_exp_bit            (vio_tg_status_exp_bit),               // APP_DATA_WIDTH
+      .vio_tg_status_exp_bit_valid        (exp_rd_data_valid),         // immediate expected bit
+      .vio_tg_status_exp_bit              (exp_rd_data),               // APP_DATA_WIDTH
+      .vio_tg_status_read_bit_valid       (),        // immediate read data bit
+      .vio_tg_status_read_bit             (),              // APP_DATA_WIDTH
+      .vio_tg_status_first_err_bit_valid  (),   // first logged error bit and address
+      .vio_tg_status_first_err_bit        (),         // APP_DATA_WIDTH
+      .vio_tg_status_first_err_addr       (),        // APP_ADDR_WIDTH
+      .vio_tg_status_first_exp_bit_valid  (),   // first logged error, expected data and address
+      .vio_tg_status_first_exp_bit        (),         // APP_DATA_WIDTH
+      .vio_tg_status_first_read_bit_valid (),  // first logged error, read data and address
+      .vio_tg_status_first_read_bit       (),        //APP_DATA_WIDTH
+      .vio_tg_status_err_bit_sticky_valid (vio_tg_status_err_bit_sticky_valid),  // Accumulated error detected
+      .vio_tg_status_err_bit_sticky       (vio_tg_status_err_bit_sticky),        // APP_DATA_WIDTH // Accumulated error bit pattern
+      .vio_tg_status_err_cnt_sticky       (),
+      .vio_tg_status_err_type_valid       (vio_tg_status_err_type_valid),        // Read/Write error detected
+      .vio_tg_status_err_type             (vio_tg_status_err_type),              // Read/Write error type
+      .vio_tg_status_wr_done              (vio_tg_status_wr_done),               // In Write Read mode, this signal will be pulsed after every Write/Read cycle
+      .vio_tg_status_done                 (vio_tg_status_done),
+      .vio_tg_status_watch_dog_hang       (vio_tg_status_watch_dog_hang),        // Watch dog detected traffic stopped unexpectedly
+      .tg_qdriv_submode11_app_rd          (1'b0),
+      .tg_ila_debug                       ()                                     // 399
+    );
+  <: foreach c { 0 } { :>
+   <: set memTypes [list QDRIIP ] :>
+   <: foreach memType $memTypes { :>
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0 =  ~c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd & c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0_en;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0 =  c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd & c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0_en;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0 = c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_wr_addr0;
+    assign c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0 = c<=:c:>_<: print [string tolower ${memType}]:>_atg_app_rd_addr0;
+      <:}:>
+    <:}:>
+  `endif
+
+endmodule

@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="gtfwizard_0_example_top_sim_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="gtfwizard_0_example_top_sim" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 us"></ZoomStartTime>
+      <ZoomEndTime time="62.472450001 us"></ZoomEndTime>
+      <Cursor1Time time="47.266389830 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="286"></NameColumnWidth>
+      <ValueColumnWidth column_width="80"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="37" />
+   <wvobject fp_name="divider281" type="divider">
+      <obj_property name="label">TX AXIS from PL to GTF</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_clk">
+      <obj_property name="ElementShortName">tx_clk</obj_property>
+      <obj_property name="ObjectShortName">tx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tcan_start">
+      <obj_property name="ElementShortName">tx_axis_tcan_start</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tcan_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tready">
+      <obj_property name="ElementShortName">tx_axis_tready</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tready</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tvalid">
+      <obj_property name="ElementShortName">tx_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tsof">
+      <obj_property name="ElementShortName">tx_axis_tsof[1:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tsof[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tlast">
+      <obj_property name="ElementShortName">tx_axis_tlast[7:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tlast[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tdata">
+      <obj_property name="ElementShortName">tx_axis_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group316">
+      <obj_property name="label">misc</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_terr">
+         <obj_property name="ElementShortName">tx_axis_terr</obj_property>
+         <obj_property name="ObjectShortName">tx_axis_terr</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tpoison">
+         <obj_property name="ElementShortName">tx_axis_tpoison</obj_property>
+         <obj_property name="ObjectShortName">tx_axis_tpoison</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tpre">
+         <obj_property name="ElementShortName">tx_axis_tpre[7:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_axis_tpre[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tterm">
+         <obj_property name="ElementShortName">tx_axis_tterm[4:0]</obj_property>
+         <obj_property name="ObjectShortName">tx_axis_tterm[4:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider282" type="divider">
+      <obj_property name="label">RX AXIS from GTF to PL</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_clk">
+      <obj_property name="ElementShortName">rx_clk</obj_property>
+      <obj_property name="ObjectShortName">rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tvalid">
+      <obj_property name="ElementShortName">rx_axis_tvalid</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tsof">
+      <obj_property name="ElementShortName">rx_axis_tsof[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tsof[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tlast">
+      <obj_property name="ElementShortName">rx_axis_tlast[7:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tlast[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tdata">
+      <obj_property name="ElementShortName">rx_axis_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group317">
+      <obj_property name="label">misc</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_terr">
+         <obj_property name="ElementShortName">rx_axis_terr</obj_property>
+         <obj_property name="ObjectShortName">rx_axis_terr</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tpre">
+         <obj_property name="ElementShortName">rx_axis_tpre[7:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_axis_tpre[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tterm">
+         <obj_property name="ElementShortName">rx_axis_tterm[4:0]</obj_property>
+         <obj_property name="ObjectShortName">rx_axis_tterm[4:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider322" type="divider">
+      <obj_property name="label">Tx/Rx Reference Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_clk">
+      <obj_property name="ElementShortName">tx_clk</obj_property>
+      <obj_property name="ObjectShortName">tx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tcan_start">
+      <obj_property name="ElementShortName">tx_axis_tcan_start</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tcan_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_clk">
+      <obj_property name="ElementShortName">rx_clk</obj_property>
+      <obj_property name="ObjectShortName">rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tsof">
+      <obj_property name="ElementShortName">rx_axis_tsof[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tsof[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider341" type="divider">
+      <obj_property name="label">Tx Sample</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_clk">
+      <obj_property name="ElementShortName">tx_clk</obj_property>
+      <obj_property name="ObjectShortName">tx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/tx_axis_tcan_start">
+      <obj_property name="ElementShortName">tx_axis_tcan_start</obj_property>
+      <obj_property name="ObjectShortName">tx_axis_tcan_start</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/tx_pkt_sent">
+      <obj_property name="ElementShortName">tx_pkt_sent</obj_property>
+      <obj_property name="ObjectShortName">tx_pkt_sent</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/tx_pkt_sent_delay">
+      <obj_property name="ElementShortName">tx_pkt_sent_delay</obj_property>
+      <obj_property name="ObjectShortName">tx_pkt_sent_delay</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_clk">
+      <obj_property name="ElementShortName">rx_clk</obj_property>
+      <obj_property name="ObjectShortName">rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/sync_pkt_sent">
+      <obj_property name="ElementShortName">sync_pkt_sent</obj_property>
+      <obj_property name="ObjectShortName">sync_pkt_sent</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/push_sent">
+      <obj_property name="ElementShortName">push_sent</obj_property>
+      <obj_property name="ObjectShortName">push_sent</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/sent_time">
+      <obj_property name="ElementShortName">sent_time[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sent_time[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider526" type="divider">
+      <obj_property name="label">Rx Sample</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_clk">
+      <obj_property name="ElementShortName">rx_clk</obj_property>
+      <obj_property name="ObjectShortName">rx_clk</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/rx_axis_tsof">
+      <obj_property name="ElementShortName">rx_axis_tsof[1:0]</obj_property>
+      <obj_property name="ObjectShortName">rx_axis_tsof[1:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/rx_pkt_rcvd">
+      <obj_property name="ElementShortName">rx_pkt_rcvd</obj_property>
+      <obj_property name="ObjectShortName">rx_pkt_rcvd</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/sync_pkt_rcvd">
+      <obj_property name="ElementShortName">sync_pkt_rcvd</obj_property>
+      <obj_property name="ObjectShortName">sync_pkt_rcvd</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/rcvd_time">
+      <obj_property name="ElementShortName">rcvd_time[15:0]</obj_property>
+      <obj_property name="ObjectShortName">rcvd_time[15:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/gtfwizard_0_example_top_sim/u_exdes_top/i_gtfmac_vnc_core/i_latency/i_lat_mon/push_rcvd">
+      <obj_property name="ElementShortName">push_rcvd</obj_property>
+      <obj_property name="ObjectShortName">push_rcvd</obj_property>
+   </wvobject>
+</wave_config>

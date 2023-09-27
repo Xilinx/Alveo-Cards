@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>GTF MAC Synchronized Latency Benchmark Design &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GTF MAC Synchronized Latency Benchmark Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/GTF_Latency/Synchronized/GTFMAC_Latency_10G_Sync/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="gtf-mac-synchronized-latency-benchmark-design">
+<h1>GTF MAC Synchronized Latency Benchmark Design<a class="headerlink" href="#gtf-mac-synchronized-latency-benchmark-design" title="Permalink to this heading">¶</a></h1>
+<div class="section" id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>This reference design provides a GTF 10G latency benchmark environment used to measure and report GTF latency (TX → RX) operating in MAC mode.  The benchmark design demonstrates minimum latency and is not intended for a user design.  A <a class="reference internal" href="Scripts/README.html"><span class="doc">Scripts directory</span></a> contains scripts to run benchmark design in Vivado H/W Manager to reproduce reported latencies.</p>
+<p>The design and measurements are based on the following assumptions:</p>
+<ul class="simple">
+<li><p>GTF put in internal near-end loopback</p></li>
+<li><p>GTF TX and RX clocks are operate at the same frequency, approximately at  644MHz, with a 180 degrees phase shift.</p></li>
+<li><p>Neither the measured GTF receiver latency nor the GTF transmitter latency include protocol overheads, protocol framing, programmable logic (PL) latency, TX PL interface setup time, RX PL interface clock-to-out, package flight time, and other sources of latency.</p></li>
+<li><p>GTF latency is measured as the difference between start time (TX data is latched at GTF) and stop time (GTF registers the incoming TX data on the RX side)</p></li>
+</ul>
+<p><strong>Additional Documentation</strong></p>
+<p>The following links provide additional documentation, including simulation and HW Manager support.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a><br></p>
+<ul>
+<li><p>Describes the available simulation and description of waveforms</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a><br></p>
+<ul>
+<li><p>Provides instructions to run the design in hardware and interact with the design through the HW Manager.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h2>
+<p>The high-level block design diagram used to measure GTF latency in MAC mode is shown below.  It consists of the following key blocks:</p>
+<ul class="simple">
+<li><p>TX Frame generator</p></li>
+<li><p>GTF instantiated in MAC mode</p></li>
+<li><p>RX Monitor</p></li>
+<li><p>Latency Monitor</p></li>
+</ul>
+<p><img alt="gtf_mac_diagram_0" src="../../../../_images/gtf_mac_diagram_0.jpg" /></p>
+<p><strong>Figure:</strong> Block diagram of the GTF MAC Latency Measurement Design</p>
+<p>An overview of the operation of the design:</p>
+<ul class="simple">
+<li><p>GTF is initialized and placed in TX → RX near-end loopback mode</p></li>
+<li><p>The Tx FrameGen sends frames to the GTF transmit AXI-ST interface</p>
+<ul>
+<li><p>Send timestamp is captured</p></li>
+</ul>
+</li>
+<li><p>The Rx Monitor monitors the receive AXI-Stream activity</p>
+<ul>
+<li><p>Receive timestamp is captured</p></li>
+</ul>
+</li>
+<li><p>The Latency Monitor stores the timestamps into a FIFO which are subsequently serviced by system software</p></li>
+<li><p>The software computes the min/max/avg latency through the GTF</p></li>
+<li><p>Measurement activity can be captured on ILA.</p></li>
+<li><p>No data integrity checking is performed</p></li>
+</ul>
+</div>
+<div class="section" id="gtf-mac-dut">
+<h2>GTF MAC DUT<a class="headerlink" href="#gtf-mac-dut" title="Permalink to this heading">¶</a></h2>
+<p>The GTF MAC DUT was generated using the GTF wizard.  The GTF Transceiver configuration preset field was set to <em>GTF-10G-MAC</em> in the GTF Wizard, using near-end loopback mode. All preset wizard settings from this configuration were unchanged. An image of the ‘Basic’ GTF Wizard tab is shown below for reference.</p>
+<p><img alt="gtf_mac_wizard_settings" src="../../../../_images/gtf_mac_wizard_settings.png" />
+<strong>Figure:</strong> GTF Wizard MAC mode settings</p>
+</div>
+<div class="section" id="clock-routing">
+<h2>Clock Routing<a class="headerlink" href="#clock-routing" title="Permalink to this heading">¶</a></h2>
+<p>The GTF DUT is slightly modified to redefine the RXUSRCLK and TXUSRCLK.  By default, these clocks are generated independently from the GTF to drive the data paths in the programmable logic region.  The modified RTL uses the RXOUTCLK as a source to both RXUSRCLK and TXUSRCLK.  The two clocks are aligned with 180 degress of phase.</p>
+<p><img alt="gtfmac_phase_clock_routing" src="../../../../_images/gtfmac_phase_clock_routing.png" /></p>
+<p><strong>Figure:</strong> Modified GTF Wizard MAC clock routing</p>
+</div>
+<div class="section" id="tx-frame-generator">
+<h2>Tx Frame Generator<a class="headerlink" href="#tx-frame-generator" title="Permalink to this heading">¶</a></h2>
+<p>The Tx Frame Generator module generates a variable length stream of PRBS values that are routed through the Tx AXIS port of the GTF.</p>
+</div>
+<div class="section" id="rx-monitor">
+<h2>Rx Monitor<a class="headerlink" href="#rx-monitor" title="Permalink to this heading">¶</a></h2>
+<p>The Rx Monitor receives the loopback data via the Rx AXIS port from the GTF.  Although not enabled by default, this module can be configured to check the received PRBS stream and detect bit errors.</p>
+</div>
+<div class="section" id="latency-monitor">
+<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Permalink to this heading">¶</a></h2>
+<p>The latency monitor is a standalone block integrated into the benchmark design which captures transmit (TX) and receive (RX) timestamps based on a ‘send event’ and ‘receive event’ respectively.</p>
+<p>The latency monitor has a free running timer based in the Rx clock domain.  When the latency monitor is enabled, the send/receive pulses latch the timer value and store them in a BRAM FIFO.</p>
+<p>Software polls the FIFO status to determine when a Tx/Rx pair of timestamps are stored.  When available, software will pop the FIFO values and calculate the true latency.</p>
+<p>Both send event and receive event pulses are synchronized to the Rx clock domain using a rising edge pulse detection.</p>
+<p>The nature of the MAC mode operation in the GTF can result in different latency measurements.  The combination of processes such as MAC protocols and serialization effects can generate unoptimal latency measurements if the design uses data tracking through the GTF.  Instead, the most consistant measurement involves using Tx_axis_tstart as the send event and Rx_axis_tsof as the receive event.  This reflects a scenario when the GTF is in the best logic state to begin a packet transfer and when the first word is received.</p>
+<p><img alt="../../../../_images/gtf_mac_latency_pipeline.jpg" src="../../../../_images/gtf_mac_latency_pipeline.jpg" /></p>
+<p><strong>Figure:</strong> Latency Monitor Pipeline</p>
+</div>
+<div class="section" id="clock-domain-crossing-considerations">
+<h2>Clock Domain Crossing Considerations<a class="headerlink" href="#clock-domain-crossing-considerations" title="Permalink to this heading">¶</a></h2>
+<p>The design is modified from the GTF MAC example design to force the TxUsrClk and RxUsrClk clocks to be phase aligned at 180 degrees.</p>
+<p>This is accomplished by using a MMCM to generate the two user clocks from the GTF’s RXOUTCLK.  This allows Vivado to autogenerate ==related== constraints for the two user clocks.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">BUFG_GT</span> <span class="n">u_rxusrclk_inst</span> <span class="p">(</span>
+        <span class="o">.</span><span class="n">CE</span>      <span class="p">(</span> <span class="mi">1</span><span class="s1">&#39;b1             ),</span>
+        <span class="o">.</span><span class="n">CEMASK</span>  <span class="p">(</span> <span class="mi">1</span><span class="s1">&#39;b0             ),</span>
+        <span class="o">.</span><span class="n">CLR</span>     <span class="p">(</span> <span class="mi">1</span><span class="s1">&#39;b0             ),</span>
+        <span class="o">.</span><span class="n">CLRMASK</span> <span class="p">(</span> <span class="mi">1</span><span class="s1">&#39;b0             ),</span>
+        <span class="o">.</span><span class="n">DIV</span>     <span class="p">(</span> <span class="mi">3</span><span class="s1">&#39;d0             ),</span>
+        <span class="o">.</span><span class="n">I</span>       <span class="p">(</span> <span class="n">gtf_ch_rxoutclk</span>  <span class="p">),</span>
+        <span class="o">.</span><span class="n">O</span>       <span class="p">(</span> <span class="n">gtf_ch_rxbufgclk</span> <span class="p">)</span>
+    <span class="p">);</span>
+    
+    <span class="n">clk_wiz_1</span> <span class="n">phase_shift_mmcm_inst</span> <span class="p">(</span>
+        <span class="o">.</span><span class="n">reset</span>     <span class="p">(</span> <span class="o">~</span><span class="n">gtf_ch_rxprgdivresetdone</span> <span class="p">),</span>
+        <span class="o">.</span><span class="n">locked</span>    <span class="p">(</span> <span class="n">phase_shift_mmcm_lock</span>     <span class="p">),</span>
+        <span class="o">.</span><span class="n">clk_in1</span>   <span class="p">(</span> <span class="n">gtf_ch_rxbufgclk</span>          <span class="p">),</span>
+        <span class="o">.</span><span class="n">txusrclk</span>  <span class="p">(</span> <span class="n">gtf_ch_txusrclk</span>           <span class="p">),</span>
+        <span class="o">.</span><span class="n">rxusrclk</span>  <span class="p">(</span> <span class="n">gtf_ch_rxusrclk</span>           <span class="p">)</span>
+    <span class="p">);</span>
+</pre></div>
+</div>
+<p>Tx_axis_tcan_start is generated by the TxUsrClk and sampled in the latency monitor in the RxUsrClk.  This results in a known 1/2 clock cycle delay to be applied to the latency calculation.</p>
+</div>
+<div class="section" id="detailed-latency-calculations">
+<h2>Detailed Latency Calculations<a class="headerlink" href="#detailed-latency-calculations" title="Permalink to this heading">¶</a></h2>
+<p>The start time represents the time when Tx_axis_tcan_start is asserted by the GTF in the TxUsrClk domain.  The stop time represents the the clock edge when the Rx_axis_tsof value is asserted by the GTF in the RxUsrCLk domain.  The desired latency value should represent the time delta between these two events.  This is illustrated in the following figure.</p>
+<p><img alt="../../../../_images/gtf_mac_latency_calc.png" src="../../../../_images/gtf_mac_latency_calc.png" /></p>
+<p><strong>Figure:</strong> Latency measurement detailing adjustment calculation</p>
+<p>The timestamps collected in the latency monitor represent samples of the free running timer in hardware.  However software must perform a simple correction calculation to remove the non-GTF related delays.</p>
+<p>One clock cycle must be subtracted to compensate for the Rx sample delay to latch Rx_axis_tsof.  A half cycle delay must be added correlating to the Tx to Rx delay when sampling Tx_axis_tcan_start into the Rx clock domain. To generate a correct latency value, software must apply adjustment factor of 0.5 clocks to the timestamp delta.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Calculated</span> <span class="n">Latency</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rcvd</span> <span class="n">Timestamp</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Sent</span> <span class="n">Timestamp</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

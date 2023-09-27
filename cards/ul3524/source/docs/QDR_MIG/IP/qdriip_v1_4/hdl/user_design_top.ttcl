@@ -1,0 +1,578 @@
+<: variable tcl_scope :>
+<: variable tcl_ipinst :>
+<: set tcl_scope xit :>
+<: set tcl_ipinst [current_inst] :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl :>
+<: if { [ string tolower [ getuser Phy_Only ] ] != "complete_memory_controller" }  {ttcl_return} :>
+<: setOutputDirectory "rtl/ip_top" :>
+<: setFileName [ ttcl_string_concat [get_property PARAM_VALUE.Component_Name] "_qdriip" ] :>
+<: setFileExtension ".sv" :>
+<: setFileType "verilogSource" :>
+
+
+<: set memName [ getmodelparam C0.ControllerType ] :>
+
+/*
+Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: MIT
+*/
+
+//******************************************************************************
+//   ____  ____
+//  /   /\/   /
+// /___/  \  /    Vendor             : Xilinx
+// \   \   \/     Version            : 1.1
+//  \   \         Application        : QDRIIP
+//  /   /         Filename           : <: print [get_property PARAM_VALUE.Component_Name] :>_qdriip.sv
+// /___/   /\     Date Last Modified : $Date: 2014/09/03 $
+// \   \  /  \    Date Created       : Thu Apr 18 2013
+//  \___\/\___\
+//
+// Device           : UltraScale
+// Design Name      : <: print ${memName} :>
+// Purpose          :
+//   Top-level  module. This module can be instantiated in the
+//   system and interconnect as shown in user design wrapper file
+//   (user top module).
+// Reference        :
+// Revision History :
+//*****************************************************************************
+
+
+<: set datadir [ get_data_dir ] :>
+<: set fpgapart [ get_project_property "PART" ] :>
+<: set args [ list -part $fpgapart -datadir $datadir -ip $tcl_ipinst ] :>
+<: [ loadMigEngine "QDRIIP"] :>
+<: set content [ memory::memory_v1::Ip_memory_getLocModelParams "0" {*}$args ] :>
+`ifdef MODEL_TECH
+    `ifndef CALIB_SIM
+       `define SIMULATION
+    `endif
+`elsif INCA
+    `ifndef CALIB_SIM
+       `define SIMULATION
+    `endif
+`elsif VCS
+    `ifndef CALIB_SIM
+       `define SIMULATION
+    `endif
+`elsif XILINX_SIMULATOR
+    `ifndef CALIB_SIM
+       `define SIMULATION
+    `endif
+`elsif _VCP
+    `ifndef CALIB_SIM
+       `define SIMULATION
+    `endif
+`endif
+
+`timescale 1ps/1ps
+
+(*
+
+  X_MIG_OLYMPUS = 1,
+  X_ULTRASCALE_IO_FLOW = "xilinx.com:ip:qdriip_phy:1.4",
+  LIVE_DESIGN = 0,
+  MEM_CORE_VER = "xilinx.com:ip:mem:1.4",
+  PhyIP_CUSTOM_PART_ATTRIBUTES = "<: print [ getmodelparam CUSTOM_PART_ATTRIBUTES ] :>",
+  ControllerType = "qdriiplus_sram",
+  PhyIP_MemoryType = "<: print [ getuser C0.QDRIIP_MemoryType ] :>",
+  PhyIP_BurstLen = "<: print [ getuser C0.QDRIIP_BurstLen ] :>",
+  PhyIP_MemoryPart = "<: print [ getuser C0.QDRIIP_MemoryPart ] :>",
+  PhyIP_DataWidth = <: print [getuser C0.QDRIIP_DataWidth ] :>,
+  PhyIP_TimePeriod = <: print [getuser C0.QDRIIP_TimePeriod ] :>,
+  PhyIP_InputClockPeriod = <: print [ getmodelparam CAL_INPUT_CLK_PERIOD ] :>,
+  PhyIP_CLKFBOUT_MULT = "<: print [ getmodelparam C0.QDRIIP_CLKFBOUT_MULT ] :>",
+  PhyIP_DIVCLK_DIVIDE = "<: print [ getmodelparam C0.QDRIIP_DIVCLK_DIVIDE ] :>",
+  PhyIP_CLKOUT0_DIVIDE = "<: print [ getmodelparam C0.QDRIIP_CLKOUT0_DIVIDE ] :>",
+  PhyIP_CLKOUT1_DIVIDE = "<: print [ getmodelparam CLKOUT1_DIVIDE ] :>",
+  PhyIP_CLKOUT2_DIVIDE = "<: print [ getmodelparam CLKOUT2_DIVIDE ] :>",
+  PhyIP_CLKOUT3_DIVIDE = "<: print [ getmodelparam CLKOUT3_DIVIDE ] :>",
+  PhyIP_CLKOUT4_DIVIDE = "<: print [ getmodelparam CLKOUT4_DIVIDE ] :>",
+  PhyIP_VrefVoltage = "<: print [ getmodelparam C0.QDRIIP_VrefVoltage ] :>",
+  PhyIP_MemoryVoltage = "<: print [ getmodelparam C0.QDRIIP_MemoryVoltage ] :>",
+  PhyIP_IS_FROM_PHY = "<: print [ getuser IS_FROM_PHY ] :>",
+
+  PhyIP_Internal_Vref = "<: print [ getuser Internal_Vref ] :>",
+  PhyIP_System_Clock = "<: print [ getuser System_Clock ] :>",
+  PhyIP_Simulation_Mode = "<: print [ getuser Simulation_Mode ] :>",
+  PhyIP_Phy_Only = "Complete_Memory_Controller",
+  PhyIP_CLKOUTPHY_MODE = "<: print [ getmodelparam C0.QDRIIP_CLKOUTPHY_MODE ] :>",
+  PhyIP_DATA_WIDTH = <: print [getuser C0.QDRIIP_DataWidth ] :>,
+  PhyIP_DCI_CASCADE_CUTOFF = <: print [ getmodelparam C0.QDRIIP_DCI_CASCADE_CUTOFF ] :>,
+  PhyIP_MEM_DEVICE_WIDTH = <: print [ getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH ] :>,
+  PhyIP_DATABITS_PER_STROBE = <: print [ getmodelparam C0.QDRIIP_DATABITS_PER_STROBE ] :>,
+  PhyIP_ADDR_WIDTH = <: print [ getmodelparam C0.QDRIIP_ADDR_WIDTH ] :>,
+  PhyIP_NUM_DEVICES = <: print [ getmodelparam C0.QDRIIP_NUM_DEVICES ] :>,
+  PhyIP_tCK = <: print [ getmodelparam C0.QDRIIP_tCK ] :>
+*)
+
+(* dont_touch = "true" *) module <: print [get_property PARAM_VALUE.Component_Name] :>_qdriip # (
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+
+  parameter C_FAMILY                             = "<: print [ get_project_property "FAMILY"] :>",
+  parameter MEM_TYPE                             = "QDRIIP",
+  parameter MEM_LATENCY                          = "<: print [ getmodelparam C${c}.${memType}_MEM_READ_LATENCY ] :>",
+  parameter DATA_WIDTH                           = <: print [ getmodelparam C${c}.${memType}_DATA_WIDTH ] :>,
+  parameter ADDR_WIDTH                           = <: print [ getmodelparam C${c}.${memType}_ADDR_WIDTH ] :>,
+  parameter NUM_DEVICES                          = <: print [ getmodelparam C${c}.${memType}_NUM_DEVICES ] :>,
+  parameter BURST_LEN                            = <: print [ getmodelparam C${c}.${memType}_BURST_LEN ] :>,
+  parameter DBYTES                               = <: print [ expr { ( [ getmodelparam C${c}.[string toupper ${memType}]_DATA_WIDTH ]/9)}] :>,                                      // total data bytes. In QDR case for x18 it will be 2
+<:if { [ string tolower [ getuser C${c}.[string toupper ${memType}]_MCS_ECC ] ] == "true" } {:>
+    parameter         MCS_ECC_ENABLE       = "TRUE",
+<: } else { :>
+    parameter         MCS_ECC_ENABLE       = "FALSE",
+<:}:>
+  parameter MIG_PARAM_CHECKS                     = "FALSE", //"TRUE",
+  parameter FPGA			         = "<: print [ getProjectDevice]-[ getProjectPackage][ getProjectSpeedGrade]-[string tolower [get_project_property TEMPERATURE_GRADE]]-[ get_project_property SILICON_REVISION]:>",
+ <:if {[ string tolower [get_project_property "FAMILY"]] == "virtexuplus" || [ string tolower [get_project_property "FAMILY"]] == "kintexuplus" || [ string tolower [get_project_property "FAMILY"]] == "zynquplus" || [ get_project_property "FAMILY"] == "virtexuplusHBM" || [ get_project_property "FAMILY"] == "virtexuplus58g" || [get_project_property "FAMILY"] == "artixuplus"} {:>
+    parameter FAMILY                            = "ULTRASCALEPLUS",
+    <: } else { :>
+    parameter FAMILY                            = "ULTRASCALE",
+    <:}:>
+  parameter DEBUG_SIGNAL		         = "<: print [ getmodelparam Debug_Signal]:>",
+  parameter MEMORY_PART                          = "<: print [ getuser C0.QDRIIP_MemoryPart ] :>",
+  parameter integer COMPONENT_WIDTH	         = <: print [ getmodelparam C${c}.${memType}_MEM_DEVICE_WIDTH]:>,
+<:if { [ string tolower [ getuser System_Clock ] ] == "differential" } {:>
+  parameter SYSCLK_TYPE                             = "DIFFERENTIAL",
+                                                // input clock type
+<:} else { :>
+  parameter SYSCLK_TYPE                             = "NO_BUFFER",
+                                                // input clock type
+<:}:>   
+  `ifdef SIMULATION
+     parameter CAL_MODE                             = "SKIP",                                     //value configuration FAST, FULL
+<:if { [ string tolower [ getuser Simulation_Mode ] ] == "bfm" } {:>
+     parameter SIM_MODE                             = "BFM",
+<:} else { :>
+     parameter SIM_MODE                             = "FULL",
+<:}:>
+  `else
+     parameter CAL_MODE                             = "FULL",                                     //value configuration FAST, FULL
+     parameter SIM_MODE                             = "FULL",
+  `endif
+  parameter tCK                                     = <: print [ getmodelparam C${c}.${memType}_tCK ] :>,
+  parameter TCQ                                     = 100, //tCK/2,
+  parameter CLKIN_PERIOD_MMCM                       = <: print [ getmodelparam  CAL_INPUT_CLK_PERIOD ] :>,                                 // Input clock period
+  parameter CLKFBOUT_MULT_MMCM                      = <: print [ getmodelparam C${c}.${memType}_CLKFBOUT_MULT ] :>,             // write MMCM VCO multiplier
+  parameter DIVCLK_DIVIDE_MMCM                      = <: print [ getmodelparam C${c}.${memType}_DIVCLK_DIVIDE ] :>,             // write MMCM VCO divisor
+  parameter CLKOUT0_DIVIDE_MMCM                     = <: print [ getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE ] :>,        // VCO output divisor for MMCM clkout0
+ <:if { [ string tolower [ getmodelparam CLKOUT1_DIVIDE ]] != 0 } {:>
+  parameter CLKOUT1_DIVIDE_MMCM                     = <: print [ getmodelparam CLKOUT1_DIVIDE ] :>,       // VCO output divisor for MMCM clkout1
+ <:} else {:>
+  parameter CLKOUT1_DIVIDE_MMCM                     = <: print [ getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE ] :>,
+ <:}:>
+ <:if { [ string tolower [ getmodelparam CLKOUT2_DIVIDE ]] != 0 } {:>
+  parameter CLKOUT2_DIVIDE_MMCM                     = <: print [ getmodelparam CLKOUT2_DIVIDE ] :>,       // VCO output divisor for MMCM clkout2
+ <:} else {:>
+  parameter CLKOUT2_DIVIDE_MMCM                     = <: print [ getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE ] :>,
+ <:}:>
+ <:if { [ string tolower [ getmodelparam CLKOUT3_DIVIDE ]] != 0 } {:>
+  parameter CLKOUT3_DIVIDE_MMCM                     = <: print [ getmodelparam CLKOUT3_DIVIDE ] :>,       // VCO output divisor for MMCM clkout3
+ <:} else {:>
+  parameter CLKOUT3_DIVIDE_MMCM                     = <: print [ getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE ] :>,
+ <:}:>
+ <:if { [ string tolower [ getmodelparam CLKOUT4_DIVIDE ]] != 0 } {:>
+  parameter CLKOUT4_DIVIDE_MMCM                     = <: print [ getmodelparam CLKOUT4_DIVIDE ] :>,       // VCO output divisor for MMCM clkout4
+ <:} else {:>
+  parameter CLKOUT4_DIVIDE_MMCM                     = <: print [ getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE ] :>,
+ <:}:>
+  parameter         CLKOUT6_DIVIDE_MMCM  = <: print [ expr {[getmodelparam C${c}.${memType}_CLKOUT0_DIVIDE] * 2} ] :>,
+  parameter CLK_2TO1                                = "TRUE"
+   <: } :>
+   <: } :>
+
+  ) (
+
+  input                                sys_rst, // common port for all controllers
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+<:if { [ string tolower [ getuser System_Clock ] ] == "differential" } {:>
+  input                                 c<=:c:>_sys_clk_p,
+  input                                 c<=:c:>_sys_clk_n,
+<:} else { :>
+  input                                 c<=:c:>_sys_clk_i,
+<:}:>
+
+
+  // UI port-0
+  input                                 c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0,
+  input  [ADDR_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0,
+  input  [DATA_WIDTH*BURST_LEN-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0,
+  input  [(DATA_WIDTH/9)*BURST_LEN-1:0] c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n0,
+  input                                 c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0,
+  input  [ADDR_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0,
+  output [DATA_WIDTH*BURST_LEN-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0,
+
+  <:if { [ getmodelparam C${c}.${memType}_BURST_LEN ] == 2 } {:>
+  // UI port-1
+  input                                 c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd1,
+  input  [ADDR_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr1,
+  input  [DATA_WIDTH*BURST_LEN-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data1,
+  input  [(DATA_WIDTH/9)*BURST_LEN-1:0] c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n1,
+  input                                 c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd1,
+  input  [ADDR_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr1,
+  output [DATA_WIDTH*BURST_LEN-1:0]     c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data1,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid1,
+  <:}:>
+
+  // QDR ports
+  output [DATA_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_d,
+  output [NUM_DEVICES-1:0]              c<=:c:>_<: print [string tolower ${memType}]:>_k_p,
+  output [NUM_DEVICES-1:0]              c<=:c:>_<: print [string tolower ${memType}]:>_k_n,
+  output [DBYTES-1:0]                   c<=:c:>_<: print [string tolower ${memType}]:>_bw_n,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_r_n,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_w_n,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_doff_n,
+  output [ADDR_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_sa,
+  input  [DATA_WIDTH-1:0]               c<=:c:>_<: print [string tolower ${memType}]:>_q,
+  input  [NUM_DEVICES-1:0]              c<=:c:>_<: print [string tolower ${memType}]:>_cq_p,
+  input  [NUM_DEVICES-1:0]              c<=:c:>_<: print [string tolower ${memType}]:>_cq_n,
+  input  [NUM_DEVICES-1:0]              c<=:c:>_<: print [string tolower ${memType}]:>_qvld,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ue,
+  output                                c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ce,
+  // Debug ports
+  output [299:0] dbg_bus,
+  output         dbg_clk,
+  (* KEEP = "true" *) input  [36:0]  sl_iport0,
+  (* KEEP = "true" *) output [16:0]  sl_oport0,
+
+  output                               addn_ui_clkout1,
+  output                               addn_ui_clkout2,
+  output                               addn_ui_clkout3,
+  output                               addn_ui_clkout4,
+  // UI Status ports
+  output                               c<=:c:>_<: print [string tolower ${memType}]:>_clk,
+  output                               c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk,
+  output                               c<=:c:>_init_calib_complete
+  );
+
+  localparam RD_LATENCY_SKIP = (SIM_MODE == "BFM") ? 12 : 11 ;
+  
+  // Wire declarations
+  wire                          c<=:c:>_mmcm_clk_in;
+  wire                          riu_clk;
+  wire                          riu_clk_rst;
+  wire                          ub_rst_out;
+  wire                          reset_ub;
+  wire                          riu_access;
+
+  wire                          clb2phy_rden;
+  wire [31:0]                   all_nibbles_t_b;
+  wire                          en_vtc_riuclk;
+  wire                          vtc_complete_riuclk;
+  wire                          bisc_complete_riuclk;
+
+  wire [31:0]                   io_address_riuclk;
+  wire                          io_addr_strobe_riuclk;
+  wire                          io_write_strobe_riuclk;
+  wire [31:0]                   io_write_data_riuclk;
+  wire [31:0]                   riu2clb_rd_data_riuclk;
+  wire                          riu2clb_valid_riuclk;
+
+  wire [3:0]                    map_wr_cmd;
+  wire [3:0]                    map_rd_cmd;
+  wire [ADDR_WIDTH*4-1:0]       map_addr;
+  wire [DATA_WIDTH*4-1:0]       map_wr_data;
+  wire [DBYTES*4-1:0]           map_bw_n;
+  wire [(NUM_DEVICES*4)-1:0]    map_k;
+  wire [(NUM_DEVICES*4)-1:0]    map_k_n  ;
+  wire [3:0]                    map_doff ;
+  wire [(DATA_WIDTH*4)-1:0]     map_rd_data;
+
+  wire [3:0]                    cal_doff_n;
+  wire [(NUM_DEVICES*4)-1:0]    cal_k     ;
+  wire [3:0]                    cal_wps_n;
+  wire [ADDR_WIDTH*4-1:0]       cal_addr;
+  wire [DBYTES*4*9-1:0]         cal_dout;
+  wire [DBYTES*4-1:0]           cal_bws_n;
+  wire [3:0]                    cal_rps_n;
+  wire [2*DATA_WIDTH-1:0]       rd_data_slip ;
+  wire [2*DATA_WIDTH-1:0]       wr_data_slip ;
+  wire [2*DBYTES-1:0]           wr_bws_slip ;
+  wire [2:0]                    addr_slip;
+  wire [4:0]                    rd_valid_cnt;
+  wire [2*DATA_WIDTH-1:0]       fabric_slip ;
+  wire                          rd_valid_stg;
+  wire [DATA_WIDTH*4-1:0]       mcal_dqin;
+
+  wire                          traffic_clr_error;
+  wire [31:0]                   win_status;
+  (* keep = "TRUE" *) reg       div_clk_rst;
+  (* keep = "TRUE" *) reg       div_clk_rst_r1;
+  wire                          sys_clk_in;
+  wire                          pll_lock;
+  wire                          mmcm_lock;
+  wire                          riu_clk_mmcm;
+  wire                          pllGate;
+       <: } :>
+   <: } :>
+
+  always @(posedge c<=:c:>_<: print [string tolower ${memType}]:>_clk)
+    div_clk_rst_r1 <= div_clk_rst;
+
+  assign c<=:c:>_<: print [string tolower ${memType}]:>_rst_clk = div_clk_rst_r1;
+
+  qdriip_v1_4_19_infrastructure #
+    (
+     .CLKIN_PERIOD_MMCM   (CLKIN_PERIOD_MMCM),
+     .CLKFBOUT_MULT_MMCM  (CLKFBOUT_MULT_MMCM),
+     .DIVCLK_DIVIDE_MMCM  (DIVCLK_DIVIDE_MMCM),
+     .CLKOUT0_DIVIDE_MMCM (CLKOUT0_DIVIDE_MMCM),
+     .CLKOUT1_DIVIDE_MMCM (CLKOUT1_DIVIDE_MMCM),
+     .CLKOUT2_DIVIDE_MMCM (CLKOUT2_DIVIDE_MMCM),
+     .CLKOUT3_DIVIDE_MMCM (CLKOUT3_DIVIDE_MMCM),
+     .CLKOUT4_DIVIDE_MMCM (CLKOUT4_DIVIDE_MMCM),
+     .CLKOUT6_DIVIDE_MMCM (CLKOUT6_DIVIDE_MMCM),
+     .C_FAMILY            (C_FAMILY),
+     .TCQ                 (TCQ)
+     )
+  u_qdriip_infrastructure
+    (
+     .sys_rst          (sys_rst),
+     .sys_clk_in       (sys_clk_in),
+     .mmcm_clk_in      (c<=:c:>_mmcm_clk_in),
+     .pll_lock         (pll_lock),
+	 
+     .mmcm_lock        (mmcm_lock),
+     .div_clk          (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+     .riu_clk          (riu_clk_mmcm),
+     .addn_ui_clkout1  (addn_ui_clkout1),
+     .addn_ui_clkout2  (addn_ui_clkout2),
+     .addn_ui_clkout3  (addn_ui_clkout3),
+     .addn_ui_clkout4  (addn_ui_clkout4),
+     .dbg_clk          (dbg_clk),
+     .rstdiv0          (div_clk_rst),
+     .rstdiv1          (riu_clk_rst),
+     .reset_ub         (reset_ub),
+     .pllgate          (pllGate)
+     );
+
+assign   riu_clk = (CLK_2TO1 == "TRUE") ? riu_clk_mmcm : c0_qdriip_clk;
+
+  // PHY instance
+  <: print [get_property PARAM_VALUE.Component_Name] :>_phy u_mig_qdriip_phy (
+//    .sys_rst                   (sys_rst),
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+<:if { [ string tolower [ getuser System_Clock ] ] == "differential" } {:>
+    .sys_clk_p              (c<=:c:>_sys_clk_p),
+    .sys_clk_n              (c<=:c:>_sys_clk_n),
+<:} else { :>
+    .sys_clk_i              (c<=:c:>_sys_clk_i),
+<:}:>
+    .mmcm_clk_in            (c<=:c:>_mmcm_clk_in),
+//    .mcs2pll_rst            (ub_rst_out),
+//    .pll2mcs_rst            (reset_ub),
+//    .addn_ui_clkout1        (addn_ui_clkout1),
+//    .addn_ui_clkout2        (addn_ui_clkout2),
+//    .addn_ui_clkout3        (addn_ui_clkout3),
+//    .addn_ui_clkout4        (addn_ui_clkout4),
+//    .dbg_clk                (dbg_clk),
+    .ub_rst_out_riuclk      (ub_rst_out),
+    .sys_clk_in             (sys_clk_in),
+    .mmcm_lock              (mmcm_lock),
+    .fab_clk                (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+    .fab_clk_rst            (div_clk_rst),
+    .riu_clk                (riu_clk),
+    .riu_clk_rst            (riu_clk_rst),
+    .pllGate                (pllGate),
+    .pll_lock               (pll_lock),
+    .qdriip_d               (c<=:c:>_<: print [string tolower ${memType}]:>_d),
+    .qdriip_k_p             (c<=:c:>_<: print [string tolower ${memType}]:>_k_p),
+    .qdriip_k_n             (c<=:c:>_<: print [string tolower ${memType}]:>_k_n),
+    .qdriip_bw_n            (c<=:c:>_<: print [string tolower ${memType}]:>_bw_n),
+    .qdriip_r_n             (c<=:c:>_<: print [string tolower ${memType}]:>_r_n),
+    .qdriip_w_n             (c<=:c:>_<: print [string tolower ${memType}]:>_w_n),
+    .qdriip_doff_n          (c<=:c:>_<: print [string tolower ${memType}]:>_doff_n),
+    .qdriip_sa              (c<=:c:>_<: print [string tolower ${memType}]:>_sa),
+    .qdriip_q               (c<=:c:>_<: print [string tolower ${memType}]:>_q),
+    .qdriip_cq_p            (c<=:c:>_<: print [string tolower ${memType}]:>_cq_p),
+    .qdriip_cq_n            (c<=:c:>_<: print [string tolower ${memType}]:>_cq_n),
+
+    .wr_data_en_a           (all_nibbles_t_b),
+    .wr_data_en_b           (all_nibbles_t_b),
+    .all_nibbles_t_b_sel    (1'b1),
+//    .out_en_clk_slip        (4'b0),
+
+    .clb2phy_rden           (clb2phy_rden),
+    .vtc_complete           (vtc_complete_riuclk),
+    .bisc_complete          (bisc_complete_riuclk),
+    .en_vtc                 (en_vtc_riuclk),
+
+    .riu_access             (riu_access),
+    .mcs2phy_addr           (io_address_riuclk),
+    .mcs2phy_addr_strobe    (io_addr_strobe_riuclk),
+    .mcs2phy_wr_data_strobe (io_write_strobe_riuclk),
+    .mcs2phy_wr_data        (io_write_data_riuclk),
+    .phy2mcs_rd_data        (riu2clb_rd_data_riuclk),
+    .phy2mcs_valid          (riu2clb_valid_riuclk),
+
+    .map_wr_cmd             (map_wr_cmd),
+    .map_rd_cmd             (map_rd_cmd),
+    .map_addr               (map_addr),
+    .map_wr_data            (map_wr_data),
+    .map_bw_n               (map_bw_n),
+    .map_k                  (map_k),
+    .map_k_n                (map_k_n),
+    .map_doff               (map_doff),
+    .map_rd_data            (map_rd_data)
+   <: } :>
+   <: } :>
+     );
+
+  // Calibration instance
+ <: print [get_property PARAM_VALUE.Component_Name] :>_qdriip_cal # (
+     .ABITS            (ADDR_WIDTH),
+     .DBITS            (DATA_WIDTH),
+     .DBYTES           (DBYTES),
+     .BURST_LEN        (BURST_LEN),
+     .CAL_MODE         (CAL_MODE),
+     .MCS_ECC_ENABLE   (MCS_ECC_ENABLE),
+     .tCK              (tCK),
+     .TCQ              (TCQ),
+     .MEM_LATENCY      (MEM_LATENCY),
+     .NO_OF_DEVICES    (NUM_DEVICES),
+     .C_FAMILY         (C_FAMILY),
+     .SIM_MODE         (SIM_MODE)
+  ) cal (
+    .div_clk                (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+    .div_clk_rst            (div_clk_rst),
+    .riu_clk                (riu_clk),
+    .riu_clk_rst            (riu_clk_rst),
+    .ub_rst_out             (ub_rst_out),
+    .reset_ub               (reset_ub),
+    .LMB_UE                 (c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ue),
+    .LMB_CE                 (c<=:c:>_<: print [string tolower ${memType}]:>_mcs_lmb_ce),
+    .vtc_complete_riuclk    (vtc_complete_riuclk),
+    .bisc_complete_riuclk   (bisc_complete_riuclk),
+    .mcal_dqin              (mcal_dqin),
+    .en_vtc_riuclk          (en_vtc_riuclk),
+    .cal_done               (c<=:c:>_init_calib_complete),
+    .cal_doff_n             (cal_doff_n),
+    .cal_k                  (cal_k),
+    .cal_wps_n              (cal_wps_n),
+    .cal_addr               (cal_addr),
+    .cal_dout               (cal_dout),
+    .cal_bws_n              (cal_bws_n),
+    .cal_rps_n              (cal_rps_n),
+    .rd_data_slip           (rd_data_slip),
+    .wr_data_slip           (wr_data_slip),
+    .wr_bws_slip            (wr_bws_slip),
+    .addr_slip              (addr_slip),
+    .rd_valid_cnt           (rd_valid_cnt),
+    .fabric_slip            (fabric_slip),
+    .rd_valid_stg           (rd_valid_stg),
+    .all_nibbles_t_b        (all_nibbles_t_b),
+    .clb2phy_rden           (clb2phy_rden),
+
+    .riu_access             (riu_access),
+    .io_address_riuclk      (io_address_riuclk),
+    .io_addr_strobe_riuclk  (io_addr_strobe_riuclk),
+    .io_write_strobe_riuclk (io_write_strobe_riuclk),
+    .io_write_data_riuclk   (io_write_data_riuclk),
+    .riu2clb_rd_data_riuclk (riu2clb_rd_data_riuclk),
+    .riu2clb_valid_riuclk   (riu2clb_valid_riuclk),
+
+    .dbg_cal_bus            (dbg_bus),
+    .sl_iport0              (sl_iport0),
+    .sl_oport0              (sl_oport0),
+
+    .traffic_error          ({9*4*DBYTES {1'b0}}),
+    .traffic_clr_error      (traffic_clr_error),
+    .win_start              (4'b0),
+    .traffic_wr_done        (1'b0),
+    .win_status             (win_status)
+    );
+
+  qdriip_v1_4_19_datapath #(
+    .ABITS            (ADDR_WIDTH),
+    .DBITS            (DATA_WIDTH),
+    .DBYTES           (DBYTES),
+    .BURST_LEN        (BURST_LEN),
+    .CAL_MODE         (CAL_MODE),
+    .TCQ              (TCQ),
+    .MEM_LATENCY      (MEM_LATENCY),
+    .NO_OF_DEVICES    (NUM_DEVICES),
+    .SIM_MODE         (SIM_MODE),
+    .RD_LATENCY_SKIP  (RD_LATENCY_SKIP)
+    ) u_datapath (
+    <: foreach c { 0 } { :>
+       <: set memTypes [ list QDRIIP ] :>
+       <: foreach memType $memTypes { :>
+    .div_clk           (c<=:c:>_<: print [string tolower ${memType}]:>_clk),
+    .div_clk_rst       (div_clk_rst),
+
+    .cal_doff_n        (cal_doff_n),
+    .cal_k             (cal_k),
+    .cal_wps_n         (cal_wps_n),
+    .cal_addr          (cal_addr),
+    .cal_dout          (cal_dout),
+    .cal_bws_n         (cal_bws_n),
+    .cal_rps_n         (cal_rps_n),
+    .rd_data_slip      (rd_data_slip),
+    .wr_data_slip      (wr_data_slip),
+    .wr_bws_slip       (wr_bws_slip),
+    .addr_slip         (addr_slip),
+    .rd_valid_cnt      (rd_valid_cnt),
+    .fabric_slip       (fabric_slip),
+    .rd_valid_stg      (rd_valid_stg),
+    .cal_done          (c<=:c:>_init_calib_complete),
+
+    .app_wr_cmd0       (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd0),
+    .app_wr_addr0      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr0),
+    .app_wr_data0      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data0),
+    .app_wr_bw_n0      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n0),
+    .app_rd_cmd0       (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd0),
+    .app_rd_addr0      (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr0),
+    .app_rd_data0      (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data0),
+    .app_rd_valid0     (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid0),
+  <:if { [ getmodelparam C${c}.${memType}_BURST_LEN ] == 2 } {:>
+    .app_wr_cmd1       (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_cmd1),
+    .app_wr_addr1      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_addr1),
+    .app_wr_data1      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_data1),
+    .app_wr_bw_n1      (c<=:c:>_<: print [string tolower ${memType}]:>_app_wr_bw_n1),
+    .app_rd_cmd1       (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_cmd1),
+    .app_rd_addr1      (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_addr1),
+    .app_rd_data1      (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_data1),
+    .app_rd_valid1     (c<=:c:>_<: print [string tolower ${memType}]:>_app_rd_valid1),
+  <:} else {:>
+    .app_wr_cmd1       (1'b0),
+    .app_wr_addr1      ({ADDR_WIDTH{1'b0}}),
+    .app_wr_data1      ({(DATA_WIDTH*2){1'b0}}),
+    .app_wr_bw_n1      ({(DATA_WIDTH*2/9){1'b0}}),
+    .app_rd_cmd1       (1'b0),
+    .app_rd_addr1      ({ADDR_WIDTH{1'b0}}),
+    .app_rd_data1      (),
+    .app_rd_valid1     (),
+  <:}:>
+    .map_rd_data       (map_rd_data),
+    .map_wr_cmd        (map_wr_cmd),
+    .map_rd_cmd        (map_rd_cmd),
+    .map_addr          (map_addr),
+    .map_wr_data       (map_wr_data),
+    .map_bw_n          (map_bw_n),
+    .map_k             (map_k),
+    .map_k_n           (map_k_n),
+    .map_doff          (map_doff),
+    .rd_data_with_slip (mcal_dqin)
+   <: } :>
+   <: } :>
+     );
+
+
+//synthesis translate_off
+  generate
+    if (MIG_PARAM_CHECKS  == "TRUE") begin
+       `include "qdriip_v1_4_19_qdr2p_assert.vh"
+    end
+  endgenerate
+//synthesis translate_on
+
+endmodule
+<: [ unloadMigEngine "QDRIIP" ] :>

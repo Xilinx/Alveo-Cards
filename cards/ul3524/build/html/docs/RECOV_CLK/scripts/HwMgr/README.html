@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>GTF Recovery Clock Hardware Manager Tcl Scripts &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>GTF Recovery Clock Hardware Manager Tcl Scripts</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/RECOV_CLK/scripts/HwMgr/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="gtf-recovery-clock-hardware-manager-tcl-scripts">
+<h1>GTF Recovery Clock Hardware Manager Tcl Scripts<a class="headerlink" href="#gtf-recovery-clock-hardware-manager-tcl-scripts" title="Permalink to this heading">¶</a></h1>
+<p>This folder contains the Tcl scripts used to exercise the design with the hardware manager.</p>
+<div class="section" id="tcl-file-descriptions">
+<h2>Tcl File Descriptions<a class="headerlink" href="#tcl-file-descriptions" title="Permalink to this heading">¶</a></h2>
+<p>The script ‘runme.tcl’ in the <em>/scripts/HwMgr/</em> directory is the primary script that loads the other helper functions.  The following table provides a basic decription of the helper script file contents.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Script Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>runme.tcl</td>
+<td>Primary script to load all helper functions</td>
+</tr>
+<tr>
+<td>procs_gtf.tcl</td>
+<td>Functions related to GTF reset, configuration, and data flow</td>
+</tr>
+<tr>
+<td>procs_renesas.tcl</td>
+<td>Functions related to Renesas GPIO, reset, and I2C programming</td>
+</tr>
+<tr>
+<td>procs_system.tcl</td>
+<td>Common register access, user display, freq measurement functions</td>
+</tr>
+<tr>
+<td>addr_register.tcl</td>
+<td>Set a number of common system addresses accessible by the other functions</td>
+</tr>
+</tbody>
+</table></div>
+<div class="section" id="common-helper-functions">
+<h2>Common Helper Functions<a class="headerlink" href="#common-helper-functions" title="Permalink to this heading">¶</a></h2>
+<p>The following table lists the primary helper functions as a starting point most useful to the user.  After loading the helper functions, the functions can be run from the Vivado Tcl console.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>setup &lt;-help&gt; &lt;-n_chan 4&gt;</td>
+<td>Initializes the GTF's.  User can specify the number of channels (Default = 4). Use help parameter to print command usage.</td>
+</tr>
+<tr>
+<td>runme &lt;-help&gt; &lt;-n_chan 4&gt; &lt;-n_frames 0&gt; &lt;-n_cycles 1&gt; &lt;-delay 5000&gt;</td>
+<td>Initiates a data transfer. User can specify the number of channels, the number of packets sent (0 = continuous), number of test cycles, and the cycle duration (in ms). Use help parameter to print command usage.</td>
+</tr>
+<tr>
+<td>load_renesas_i2c_bram <COE filename></td>
+<td>Programs the COE memory file into the FPGA BRAM to later be sent the to JC</td>
+</tr>
+<tr>
+<td>load_renesas_i2c_bram <config #> <enable I2C xfer></td>
+<td>Switches the Renesas config mode.  Setting the I2c xfer to 1 will transfer the BRAM contents to the JC</td>
+</tr>
+<tr>
+<td>measure_frequency</td>
+<td>Samples the clocks connected to the frequency monitor and displays their frequencies in Mhz</td>
+</tr>
+</tbody>
+</table><p><strong>Table 1.</strong> Helper function descriptionsa</p>
+</div>
+<div class="section" id="example-default-usage">
+<h2>Example Default Usage<a class="headerlink" href="#example-default-usage" title="Permalink to this heading">¶</a></h2>
+<p>If desired, two prebuilt bitstreams (a 1 channel example, and a 4 channel example) are located in the projects ‘Example’ folder found here.  The default scripts assume a 4 channel design is loaded on the FPGA.</p>
+<p>Once the design’s bitstream has been loaded into the FPGA, use the Tcl console to cd to the folder containing the HwMgr scripts shown in this folder.
+In the Tcl Console, type ‘source ./runme.tcl’ to load the available helper functions.  Sourcing this file will automatically preload all the other include Tcl scripts.
+Next type ‘setup’ to reset, initialize and link the 4 GTF channels.
+If successful, type ‘runme’ to do a default transfer.  The default runme function will transmit 5 seconds of continuous data and will display a log similar to the following…</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Running Data Stream...</span>
+<span class="c1">#</span>
+Num <span class="nv">Channels</span>     <span class="o">=</span> <span class="m">4</span>
+Num <span class="nv">Cycles</span>       <span class="o">=</span> <span class="m">1</span>
+Num Frames/Cycle <span class="o">=</span> <span class="m">0</span> <span class="o">(</span>cont.<span class="o">)</span>
+Cycle Delay<span class="o">(</span>ms<span class="o">)</span>  <span class="o">=</span> <span class="m">5000</span>
+Cycle <span class="m">1</span> Channel <span class="m">0</span>, <span class="nv">Packets</span> <span class="o">=</span> <span class="m">78309826</span>, FIFO Wr <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322522</span>, FIFO RD <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322522</span>, FIFO ERR <span class="nv">Count</span> <span class="o">=</span> <span class="m">0</span>
+Cycle <span class="m">1</span> Channel <span class="m">1</span>, <span class="nv">Packets</span> <span class="o">=</span> <span class="m">78309826</span>, FIFO Wr <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322503</span>, FIFO RD <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322503</span>, FIFO ERR <span class="nv">Count</span> <span class="o">=</span> <span class="m">0</span>
+Cycle <span class="m">1</span> Channel <span class="m">2</span>, <span class="nv">Packets</span> <span class="o">=</span> <span class="m">78309826</span>, FIFO Wr <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322501</span>, FIFO RD <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322501</span>, FIFO ERR <span class="nv">Count</span> <span class="o">=</span> <span class="m">0</span>
+Cycle <span class="m">1</span> Channel <span class="m">3</span>, <span class="nv">Packets</span> <span class="o">=</span> <span class="m">78309826</span>, FIFO Wr <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322507</span>, FIFO RD <span class="nv">Count</span> <span class="o">=</span> <span class="m">587322507</span>, FIFO ERR <span class="nv">Count</span> <span class="o">=</span> <span class="m">0</span>
+<span class="c1">#</span>
+<span class="c1"># Complete...</span>
+<span class="c1">#</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="custom-test-runs">
+<h2>Custom Test Runs<a class="headerlink" href="#custom-test-runs" title="Permalink to this heading">¶</a></h2>
+<p>As detailed above, the setup and runme functions have default configurations for a 4 channel interface.  Using the command line parameter allows the user to generate different test configurations.</p>
+<p>Note: Both commands have a ‘-help’ parameter to display the their command line parameters in the Tcl Console.</p>
+<p><em><strong>“setup” command</strong></em>
+| Parameter | Default Value | Description |
+| — | — | — |
+| -help | N/A | Displays command usage |
+| -n_chan | 4 | Specifies number of channels to initialize |</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Example <span class="c1">#1 : Display command line parameters</span>
+
+    setup -help
+
+Example <span class="c1">#2 : Configure and initialize two channels   </span>
+
+    setup -n_chan <span class="m">2</span>
+</pre></div>
+</div>
+<p><em><strong>“runme” command</strong></em>
+| Parameter | Default Value | Description |
+| — | — | — |
+| -help | N/A | Displays command usage |
+| -n_chan | 4 | Specifies number of channels to use |
+| -n_frames | 0 | If 0, use continuous data transfer until cycle delay time is complete.  Otherwise indicates nubmer of packets to transfer |
+| -n_cycles | 1 | Specifies number of test iterations (cycles) to run |
+| -dekay | 5000 | Specifies delay in ms to run at iteration |</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>Example <span class="c1">#1 : Display command line parameters</span>
+
+    runme -help
+
+Example <span class="c1">#2 : Two channels operational with 3 iterations of 10 packets each.  </span>
+
+    runme -n_chan <span class="m">2</span>  -n_cycles <span class="m">3</span>  -n_frames <span class="m">10</span>
+
+Example <span class="c1">#3: Four channels operational (default) with five continuous(default) iterations of 1 minute (60000ms) each. </span>
+
+    runme -n_cycles <span class="m">5</span>  -delay <span class="m">60000</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: https://support.xilinx.com</p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

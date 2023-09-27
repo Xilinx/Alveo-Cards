@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Latency Measurement Test Script &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
+        <script src="../../../../../_static/jquery.js"></script>
+        <script src="../../../../../_static/underscore.js"></script>
+        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../../_static/doctools.js"></script>
+    <script src="../../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Latency Measurement Test Script</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../../_sources/docs/GTF_Latency/Synchronized/GTFMAC_Latency_10G_Sync/Scripts/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="latency-measurement-test-script">
+<h1>Latency Measurement Test Script<a class="headerlink" href="#latency-measurement-test-script" title="Permalink to this heading">¶</a></h1>
+<p>The scripts in this directory are used for collecting and computing the latency values of the GTF design.</p>
+<p>A high-level description of the scripts are given below.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Script Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>run_tests.tcl</td>
+<td>Perform latency measurement by resetting the and configuring the design, and collecting and computing latency</td>
+</tr>
+<tr>
+<td>helper.tcl</td>
+<td>Contain helper procedures that are called in <code>run_test.tcl</code></td>
+</tr>
+<tr>
+<td>config_ila_mac.tcl</td>
+<td>Configure the ILA by setting trigger logic to <strong>lat_mon_rcv_event_ila</strong> == 1'b1</td>
+</tr>
+<tr>
+<td>config_ila_raw.tcl</td>
+<td>Configure the ILA by setting trigger logic to <strong>lat_mon_rcv_event_ila</strong> == 1'b1</td>
+</tr>
+</tbody>
+</table><p><strong>Table.</strong> Descriptions of the latency measurement scripts.</p>
+<div class="section" id="test-parameters">
+<h2>Test Parameters<a class="headerlink" href="#test-parameters" title="Permalink to this heading">¶</a></h2>
+<p>This section provides an overview of the test parameters and instructions on how to change them.</p>
+<div class="section" id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h3>
+<p>The table below gives a brief description and allowable values for each parameter.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>test_mode</td>
+<td>0: FIFO test mode: this mode collects send and receive times of each packet in memory to be processed later on the host <br><br> 1: Continous test mode: this mode accumulates the delta between the send and receive time of each packet and calculates the min and max inside the design.</td>
+</tr>
+<tr>
+<td>loopback_mode</td>
+<td>0: Configures the design for near-end loopback <br><br> 1: Configures the design for far-end loopback</td>
+</tr>
+<tr>
+<td>num_test</td>
+<td>Set the number of test iterations <br><br> Incase of continous test mode, num_test defaults to 1</td>
+</tr>
+<tr>
+<td>pkt_cnt</td>
+<td>Set the number of packets to send per test <br><br> Maximum number of packets that can be sent per test in FIFO test mode is 4084</td>
+</tr>
+</tbody>
+</table><p><strong>Table.</strong> Description of test parameters for the latency measurement scripts.</p>
+</div>
+<div class="section" id="changing-the-parameters">
+<h3>Changing the Parameters<a class="headerlink" href="#changing-the-parameters" title="Permalink to this heading">¶</a></h3>
+<p>Test parameters can be set by changing the values for the following variables in <code class="docutils literal notranslate"><span class="pre">run_tests.tcl</span></code>.</p>
+<div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="c"># 0: FIFO test mode</span>
+<span class="c"># 1: Continuos test mode</span>
+<span class="k">set</span><span class="w"> </span><span class="o">::</span>test_mode<span class="w"> </span><span class="mi">0</span>
+
+<span class="c"># 0: Near-end</span>
+<span class="c"># 1: Far-end</span>
+<span class="k">set</span><span class="w"> </span><span class="o">::</span>loopback_mode<span class="w"> </span><span class="mi">0</span>
+
+<span class="c"># Number of test iterations</span>
+<span class="k">set</span><span class="w"> </span><span class="o">::</span>num_test<span class="w"> </span><span class="mi">1</span>
+
+<span class="c"># Number of packets to send per test</span>
+<span class="k">set</span><span class="w"> </span><span class="o">::</span>pkt_cnt<span class="w"> </span><span class="mi">250</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="helper-tcl-descriptions">
+<h2><code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code> Descriptions<a class="headerlink" href="#helper-tcl-descriptions" title="Permalink to this heading">¶</a></h2>
+<p>Descriptions of the procedures in <code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code> are given below.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Procedure Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>reset_design</td>
+<td>Reset the entire rdesign by toggling <code>hb_gtwiz_reset_all_in</code></td>
+</tr>
+<tr>
+<td>reg_wr {address value}</td>
+<td>Perform a JTAG-AXI write</td>
+</tr>
+<tr>
+<td>reg_rd {address}</td>
+<td>Perform a JTAG-AXI read</td>
+</tr>
+<tr>
+<td>hex2dec {largeHex}</td>
+<td>Convert a hex value to decimal</td>
+</tr>
+<tr>
+<td>bringup</td>
+<td>Assuming device has been programmed, and a master reset (hb_gtwiz_reset_all) has been applied to the board or via VIO <ul> <li> Collect the configured data rate from the GTF (ctl_rx_data_rate and ctl_tx_data_rate) </li> <li> Enable gtf_ch_rx_userrdy and gtf_ch_tx_userrdy </li> <li> Configure loopback mode </li> <li> Reset the TX PMA by toggling RXPMARESET </li> <li> Check RXUSRCLK </li> <li> Reset the RX path by toggling GTRXRESET </li> <li> Intitate bitslip if configured as 10G </li> <li> Check for RX MAC block lock and link status </li> </ul></td>
+</tr>
+<tr>
+<td>send_pkts</td>
+<td>Initiates a batch send <ul> <li> Set the frame count </li> <li> Set up the DUT and the benchmark (setup_vnc) </li> <li> Enable the frame generator and monitor </li> <li> Poll for completion by checking if the frame generator is disabled and the latency monitor is done </li>  <li> Collect latency records (get_latency) </li> </ul></td>
+</tr>
+<tr>
+<td>setup_vnc</td>
+<td>Configure the DUT and the benchmark with the settings for the latency measurement <ul> <li> Collect the configured data rate from the GTF (ctl_rx_data_rate and ctl_tx_data_rate) </li> <li> TX </li> <ul> <li> Enable FCS insertion by the TX core </li> <li> Enable FCS error checking </li> <li> Disable custom preamble </li> <li> Enable FCS insertion by the TX core </li> </ul> <li> RX </li> <ul> <li> Enable FCS error checking </li> <li> Disable custom preamble </li> </ul> </ul></td>
+</tr>
+<tr>
+<td>get_latency</td>
+<td>For FIFO test mode <ul> <li> Collect individual latency records from the FIFO </li> <li> Calculate min, avg, and max </li> </ul></td>
+</tr>
+<tr>
+<td>get_latency_cont</td>
+<td>For continous test mode <ul> <li> Collect min, max, and delta accumulator values from the latency monitor </li> <li> Calculate the average by dividing the delta accumulator value by the number of packets recorded </li> </ul></td>
+</tr>
+</tbody>
+</table><p><strong>Table.</strong> Descriptions of the procedures in <code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code>.</p>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

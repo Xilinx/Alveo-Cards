@@ -1,0 +1,321 @@
+﻿<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>PCIe DDR Reference Design: HW Manager Support &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PCIe DDR Reference Design: HW Manager Support</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/PCIE_DDR/Docs/hw_manager_support.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="pcie-ddr-reference-design-hw-manager-support">
+<h1>PCIe DDR Reference Design: HW Manager Support<a class="headerlink" href="#pcie-ddr-reference-design-hw-manager-support" title="Permalink to this heading">¶</a></h1>
+<p>This section provides instructions on how to</p>
+<ul class="simple">
+<li><p>Observe the behavior of the design via ILA through the HW Manager and</p></li>
+<li><p>Run a memory test on the DDR memory (Linux machine)</p></li>
+</ul>
+<div class="section" id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<p><a class="reference internal" href="../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the following files:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">./PCIE_DDR/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/sherman.bit</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">./PCIE_DDR/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/sherman.ltx</span></code></p></li>
+</ul>
+</div>
+<div class="section" id="ilas">
+<h2>ILAs<a class="headerlink" href="#ilas" title="Permalink to this heading">¶</a></h2>
+<p>The four included ILAs, described in the table below, provide a way to observe and verify the behavior of the design on HW.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>hw_ila_1</td>
+<td>Connects to the internal DDR I2C signals.</td>
+</tr>
+<tr>
+<td>hw_ila_2</td>
+<td>Connects to the AXI Lite interface to the control registers.</td>
+</tr>
+<tr>
+<td>hw_ila_3</td>
+<td>Connects to the DDR AXI interface.</td>
+</tr>
+<tr>
+<td>hw_ila_4</td>
+<td>connects to the PCIE AXI output interface.</td>
+</tr>
+</tbody>
+</table><p><strong>Table 1.</strong> Description of signals captured by the ILAs</p>
+<div class="section" id="ila-setup-instructions">
+<h3>ILA Setup Instructions<a class="headerlink" href="#ila-setup-instructions" title="Permalink to this heading">¶</a></h3>
+<ol class="simple">
+<li><p>On the Tcl console, enter the following command: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">./PCIE_DDR/Scripts/config_ila.tcl</span></code></p>
+<ul class="simple">
+<li><p>The AXI triggers are setup for AWVALID or ARVALID to go high.</p></li>
+<li><p>The I2C trigger is setup for when reset is deasserted.</p></li>
+</ul>
+</li>
+<li><p>Right click on the device (xcvu2p_0) and click on <em>Refresh Device</em>.</p></li>
+</ol>
+</div>
+</div>
+<div class="section" id="memory-test">
+<h2>Memory Test<a class="headerlink" href="#memory-test" title="Permalink to this heading">¶</a></h2>
+<p>In addition to the ILA, the DDR memory can be tested via a <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> program.
+The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP and performs a memory test using 32-bit PRBS data. More detail on <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> can be found in <a class="reference external" href="./design.html#memtest-function-descriptions">PCIe DDR Reference Design: Overview</a>.</p>
+<div class="section" id="running-the-memory-test">
+<h3>Running the Memory Test<a class="headerlink" href="#running-the-memory-test" title="Permalink to this heading">¶</a></h3>
+<p>Instructions on how to run <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> are given below.</p>
+<ol class="simple">
+<li><p>Display the card BDF and region 1 and 2 values which will be used in <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code>.</p></li>
+</ol>
+<ul class="simple">
+<li><p>Run the following command to determine the card BDF(power cycle the card before executing this cmd): <br><code class="docutils literal notranslate"><span class="pre">lspci</span> <span class="pre">-vv</span> <span class="pre">-d</span> <span class="pre">10ee:</span></code></p></li>
+</ul>
+<p>An example output of this command is given below.  In this example, the following BDF and region 1 and 2 values are:</p>
+<ul class="simple">
+<li><p>BDF = 0000:01:00.0  (must be of the form 0000:00:00.0)</p></li>
+<li><p>Region 0 = 0xc0000000</p></li>
+<li><p>Region 1 = 0x80000000</p></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo lspci -vv -d 10ee:
+<span class="go">01:00.0 Serial controller: Xilinx Corporation Device 9048 (prog-if 01 [16450])</span>
+<span class="go">Subsystem: Xilinx Corporation Device 0007</span>
+<span class="go">Control: I/O+ Mem+ BusMaster- SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-</span>
+<span class="go">Status: Cap+ 66MHz- UDF- FastB2B- ParErr- DEVSEL=fast &gt;TAbort- &lt;TAbort- &lt;MAbort- &gt;SERR- &lt;PERR- INTx-</span>
+<span class="go">Interrupt: pin A routed to IRQ 16</span>
+<span class="go">Region 0: Memory at c0000000 (32-bit, non-prefetchable) [size=128K]</span>
+<span class="go">Region 1: Memory at 80000000 (32-bit, non-prefetchable) [size=1G]</span>
+<span class="go">Capabilities: &lt;access denied&gt; </span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Edit the following <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> code to match the BDF and region values of the card installed obtained in the previous step</p>
+<ul class="simple">
+<li><p>device0 - set to the BDF value (must be of the form 0000:00:00.0)</p></li>
+<li><p>region0_address - set to the ‘Region 0’ value</p></li>
+<li><p>region1_address - set to the ‘Region 1’ value</p></li>
+</ul>
+</li>
+</ol>
+<p><code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> code to modify is shown below:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Global Variables...
+char  device0<span class="o">[</span><span class="m">32</span><span class="o">]</span>     <span class="o">=</span> <span class="s2">&quot;0000:01:00.0&quot;</span><span class="p">;</span>
+void* <span class="nv">region0_address</span> <span class="o">=</span> <span class="o">(</span>void*<span class="o">)</span>0xc0000000<span class="p">;</span>
+void* <span class="nv">region1_address</span> <span class="o">=</span> <span class="o">(</span>void*<span class="o">)</span>0x80000000<span class="p">;</span>
+</pre></div>
+</div>
+<ol class="simple">
+<li><p>Compile the code:<br><code class="docutils literal notranslate"><span class="pre">gcc</span> <span class="pre">./memtest.c</span> <span class="pre">-o</span> <span class="pre">memtest.exe</span></code></p></li>
+<li><p>Run the program (Note: must run as sudo):<br><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">./memtest.exe</span> <span class="pre">[-c</span> <span class="pre">#cycles]</span></code></p>
+<ul class="simple">
+<li><p>-c : specifies the number of 32-bit addresses to write/read</p></li>
+</ul>
+</li>
+</ol>
+<p>Example output when memtest runs successfully:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo ./memtest.exe -c <span class="m">1000</span>
+Initializing Memory Pointers...
+Enabling DDR power and DDR IP...
+Starting memtest
+running <span class="m">1000</span> cycles
+...memtest <span class="nb">complete</span> 
+</pre></div>
+</div>
+<p>Example output if memtest encounters data errors:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># INDEX = READ DATA - REFERENCE DATA</span>
+<span class="o">[</span>READ<span class="o">]</span> ERROR :: <span class="nv">0x00000020</span> <span class="o">=</span> 0x00000023 - 0x00000011
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="example-ila-waveforms">
+<h2>Example ILA Waveforms<a class="headerlink" href="#example-ila-waveforms" title="Permalink to this heading">¶</a></h2>
+<p>ILA 2 monitors the AXI interface to the I2C control registers.
+<img alt="pcie_ddr_ila_2" src="../../../_images/pcie_ddr_ila_2.jpg" /></p>
+<p>ILA 3 monitors the AXI interface to the DDR data interface.
+<img alt="pcie_ddr_ila_3" src="../../../_images/pcie_ddr_ila_3.jpg" /></p>
+<p>ILA 4 monitors the primary AXI interface from the PCIE XDMA IP.
+<img alt="pcie_ddr_ila_4" src="../../../_images/pcie_ddr_ila_4.jpg" /></p>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

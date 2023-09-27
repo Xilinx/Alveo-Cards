@@ -1,0 +1,40 @@
+{
+   "ActiveEmotionalView":"Default View",
+   "Addressing View_Layers":"/ARESETN_0_1:false|/ACLK_0_1:false|",
+   "Addressing View_ScaleFactor":"1.0",
+   "Addressing View_TopLeft":"-740,-352",
+   "Default View_Layers":"/ARESETN_0_1:true|/ACLK_0_1:true|",
+   "Default View_ScaleFactor":"1.0",
+   "Default View_TopLeft":"-701,-240",
+   "Display-PortTypeClock":"true",
+   "Display-PortTypeReset":"true",
+   "DisplayPinAutomationMissing":"1",
+   "DisplayPinsOfHiddenNets":"1",
+   "DisplayTieOff":"1",
+   "ExpandedHierarchyInLayout":"",
+   "Interfaces View_Layers":"/ARESETN_0_1:false|/ACLK_0_1:false|",
+   "Interfaces View_ScaleFactor":"1.0",
+   "Interfaces View_TopLeft":"-608,-287",
+   "Reduced Jogs_Layers":"/ARESETN_0_1:true|/ACLK_0_1:true|",
+   "Reduced Jogs_ScaleFactor":"1.0",
+   "Reduced Jogs_TopLeft":"-603,-217",
+   "guistr":"# # String gsaved with Nlview 7.0r4  2019-12-20 bk=1.5203 VDI=41 GEI=36 GUI=JA:10.0 TLS
+#  -string -flagsOSRD
+preplace port M00_AXI_0 -pg 1 -lvl 2 -x 350 -y 140 -defaultsOSRD
+preplace port M01_AXI_0 -pg 1 -lvl 2 -x 350 -y 160 -defaultsOSRD
+preplace port S00_AXI_0 -pg 1 -lvl 0 -x 0 -y 60 -defaultsOSRD
+preplace port M02_AXI_0 -pg 1 -lvl 2 -x 350 -y 180 -defaultsOSRD
+preplace port port-id_ACLK_0 -pg 1 -lvl 0 -x 0 -y 80 -defaultsOSRD
+preplace port port-id_ARESETN_0 -pg 1 -lvl 0 -x 0 -y 100 -defaultsOSRD
+preplace inst axi_interconnect_0 -pg 1 -lvl 1 -x 180 -y 160 -defaultsOSRD
+preplace netloc ACLK_0_1 1 0 1 30 80n
+preplace netloc ARESETN_0_1 1 0 1 20 100n
+preplace netloc S00_AXI_0_1 1 0 1 NJ 60
+preplace netloc axi_interconnect_0_M00_AXI 1 1 1 NJ 140
+preplace netloc axi_interconnect_0_M01_AXI 1 1 1 NJ 160
+preplace netloc axi_interconnect_0_M02_AXI 1 1 1 NJ 180
+levelinfo -pg 1 0 180 350
+pagesize -pg 1 -db -bbox -sgen -140 0 480 320
+"
+}
+0

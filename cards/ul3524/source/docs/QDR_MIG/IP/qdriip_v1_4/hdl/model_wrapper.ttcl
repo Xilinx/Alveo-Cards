@@ -1,0 +1,248 @@
+<: setOutputDirectory "tb" :>
+<: setFileName [ ttcl_string_concat [string tolower [getmodelparam C0.ControllerType]] "_model_wrapper"] :>
+<: setFileExtension ".sv" :>
+<: setFileType "verilogSource" :>
+<: variable tcl_scope :>
+<: variable tcl_ipinst :>
+<: set tcl_scope xit :>
+<: set tcl_ipinst [current_inst] :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl :>
+
+<: set memName [ getmodelparam C0.ControllerType ] :>
+
+/*
+Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: MIT
+*/
+
+//******************************************************************************
+//   ____  ____
+//  /   /\/   /
+// /___/  \  /    Vendor             : Xilinx
+// \   \   \/     Version            : 1.0
+//  \   \         Application        : MIG
+//  /   /         Filename           : <: print [ ttcl_string_concat [string tolower [getmodelparam C0.ControllerType]] "_model_wrapper"]:>.sv
+// /___/   /\     Date Last Modified : $Date: $
+// \   \  /  \    Date Created       : Wed Apr 20 2016
+//  \___\/\___\
+//
+// Device           : UltraScale
+// Design Name      : Model_wrapper
+// Purpose          :
+// Reference        :
+// Revision History :
+//*****************************************************************************
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 36 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 4 } {:>
+    module cyqdr2_b4
+    (
+    input TCK,
+    input TMS,
+    input TDI,
+    output TDO,
+    input  [36-1:0] D,
+    inout  [36-1:0] Q,
+    input [18:0] A, 
+    input K,
+    input Kb,
+    input RPSb, 
+    input WPSb,
+    input BWS0b,
+    input BWS1b,
+    input BWS2b,
+    input BWS3b,
+    inout CQ,
+    inout CQb,
+    input ZQ,
+    input DOFF,
+    output QVLD
+     );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 18 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 4 } {:>
+    module cyqdr2_b4
+    (
+    input TCK,
+    input TMS,
+    input TDI,
+    output TDO,
+    input  [18-1:0] D,
+    inout  [18-1:0] Q,
+    input [18:0] A, 
+    input K,
+    input Kb,
+    input RPSb, 
+    input WPSb,
+    input BWS0b,
+    input BWS1b,
+    inout CQ,
+    inout CQb,
+    input ZQ,
+    input DOFF,
+    output QVLD
+    );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 36 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2.5" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 4 } {:>
+   module cyqdr2_b4
+   (
+   input TCK,
+   input TMS,
+   input TDI,
+   output TDO,
+   input  [36-1:0] D,
+   inout  [36-1:0] Q,
+   input [18:0] A, 
+   input K,
+   input Kb,
+   input RPSb, 
+   input WPSb,
+   input BWS0b,
+   input BWS1b,
+   input BWS2b,
+   input BWS3b,
+   inout CQ,
+   inout CQb,
+   input ZQ,
+   input DOFF,
+   input ODT,
+   output QVLD
+    );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 18 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2.5" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 4 } {:>
+   module cyqdr2_b4
+   (
+   input TCK,
+   input TMS,
+   input TDI,
+   output TDO,
+   input  [18-1:0] D,
+   inout  [18-1:0] Q,
+   input [18:0] A, 
+   input K,
+   input Kb,
+   input RPSb, 
+   input WPSb,
+   input BWS0b,
+   input BWS1b,
+   inout CQ,
+   inout CQb,
+   input ZQ,
+   input DOFF,
+   input ODT,
+   output QVLD
+   );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 36 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 2 } {:>
+  module cyqdr2_b2
+  (
+  input TCK,
+  input TMS,
+  input TDI,
+  output TDO,
+  input  [36-1:0] D,
+  inout  [36-1:0] Q,
+  input [18:0] A, 
+  input K,
+  input K_n,
+  input RPS_n, 
+  input WPS_n,
+  input BW0_n,
+  input BW1_n,
+  input BW2_n,
+  input BW3_n,
+  inout CQ,
+  inout CQ_n,
+  input ZQ,
+  input DOFF_b,
+  input ODT,
+  output QVLD
+   );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 18 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 2 } {:>
+  module cyqdr2_b2
+  (
+  input TCK,
+  input TMS,
+  input TDI,
+  output TDO,
+  input  [18-1:0] D,
+  inout  [18-1:0] Q,
+  input [18:0] A, 
+  input K,
+  input K_n,
+  input RPS_n, 
+  input WPS_n,
+  input BW0_n,
+  input BW1_n,
+  inout CQ,
+  inout CQ_n,
+  input ZQ,
+  input DOFF_b,
+  input ODT,
+  output QVLD
+  );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 36 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2.5" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 2 } {:>
+  module cyqdr2_b2
+  (
+  input TCK,
+  input TMS,
+  input TDI,
+  output TDO,
+  input  [36-1:0] D,
+  inout  [36-1:0] Q,
+  input [18:0] A, 
+  input K,
+  input K_n,
+  input RPS_n, 
+  input WPS_n,
+  input BW0_n,
+  input BW1_n,
+  input BW2_n,
+  input BW3_n,
+  inout CQ,
+  inout CQ_n,
+  input ZQ,
+  input DOFF_b,
+  input ODT,
+  output QVLD
+   );
+<:}:>
+
+<:if { [getmodelparam C0.QDRIIP_MEM_DEVICE_WIDTH] == 18 &&  [ getmodelparam C0.QDRIIP_MEM_READ_LATENCY] == "2.5" &&  [ getmodelparam C0.QDRIIP_BURST_LEN ] == 2 } {:>
+  module cyqdr2_b2
+  (
+  input TCK,
+  input TMS,
+  input TDI,
+  output TDO,
+  input  [18-1:0] D,
+  inout  [18-1:0] Q,
+  input [18:0] A, 
+  input K,
+  input K_n,
+  input RPS_n, 
+  input WPS_n,
+  input BW0_n,
+  input BW1_n,
+  inout CQ,
+  inout CQ_n,
+  input ZQ,
+  input DOFF_b,
+  input ODT,
+  output QVLD
+  );
+<:}:>
+
+initial
+begin : cypress_sim
+    $display("THE qdriiplus_sram_model_wrapper.sv FILE GENERATED DURING EXAMPLE DESIGN IS A DUMMY MEMORY MODEL FILE");
+    $display("TO RUN SIMULATION WITH CYPRESS SIMULATION MODEL, REMOVE THE qdriiplus_sram_model_wrapper.sv FILE, AND ADD APPROPRIATE CYPRESS SIMULATION MODEL FILE TO THE PROJECT ");
+    $finish;
+end
+
+endmodule
