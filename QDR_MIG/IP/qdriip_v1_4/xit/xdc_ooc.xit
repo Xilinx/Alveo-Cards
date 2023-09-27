@@ -1,0 +1,11 @@
+source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
+variable tcl_scope
+set tcl_scope xit
+
+if { [getuser No_Controller] == 0} {
+          return
+}
+set InstName [ ::xit::current_inst ]
+set ipfile [ add_ipfile -force -processingOrder early -usedIn [ list out_of_context synthesis implementation ] "par/${InstName}_ooc.xdc" ]
+puts_ipfile $ipfile {# This constraints file is not used in normal top-down synthesis (the default flow of Vivado)}
+close_ipfile $ipfile

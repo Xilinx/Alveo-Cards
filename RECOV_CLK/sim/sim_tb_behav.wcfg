@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="iic_pkg" />
+            <top_module name="ipif_pkg" />
+            <top_module name="sim_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="129,715.448754 ns"></ZoomStartTime>
+      <ZoomEndTime time="129,755.035913 ns"></ZoomEndTime>
+      <Cursor1Time time="129,719.490247 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="230"></NameColumnWidth>
+      <ValueColumnWidth column_width="145"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="19" />
+   <wvobject type="group" fp_name="group72">
+      <wvobject type="logic" fp_name="/sim_tb/JITT_RESETN">
+         <obj_property name="ElementShortName">JITT_RESETN</obj_property>
+         <obj_property name="ObjectShortName">JITT_RESETN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI5">
+         <obj_property name="ElementShortName">JITT1_GPOI5</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI5</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI4">
+         <obj_property name="ElementShortName">JITT1_GPOI4</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI4</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI3">
+         <obj_property name="ElementShortName">JITT1_GPOI3</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI3</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI2">
+         <obj_property name="ElementShortName">JITT1_GPOI2</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI2</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI1">
+         <obj_property name="ElementShortName">JITT1_GPOI1</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI1</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT1_GPOI0">
+         <obj_property name="ElementShortName">JITT1_GPOI0</obj_property>
+         <obj_property name="ObjectShortName">JITT1_GPOI0</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI5">
+         <obj_property name="ElementShortName">JITT2_GPOI5</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI5</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI4">
+         <obj_property name="ElementShortName">JITT2_GPOI4</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI4</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI3">
+         <obj_property name="ElementShortName">JITT2_GPOI3</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI3</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI2">
+         <obj_property name="ElementShortName">JITT2_GPOI2</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI2</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI1">
+         <obj_property name="ElementShortName">JITT2_GPOI1</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI1</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/JITT2_GPOI0">
+         <obj_property name="ElementShortName">JITT2_GPOI0</obj_property>
+         <obj_property name="ObjectShortName">JITT2_GPOI0</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/FPGA_MUX0_RSTN">
+         <obj_property name="ElementShortName">FPGA_MUX0_RSTN</obj_property>
+         <obj_property name="ObjectShortName">FPGA_MUX0_RSTN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/FPGA_MUX1_RSTN">
+         <obj_property name="ElementShortName">FPGA_MUX1_RSTN</obj_property>
+         <obj_property name="ObjectShortName">FPGA_MUX1_RSTN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/QSFPDD0_IO_RESET_B">
+         <obj_property name="ElementShortName">QSFPDD0_IO_RESET_B</obj_property>
+         <obj_property name="ObjectShortName">QSFPDD0_IO_RESET_B</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/QSFPDD1_IO_RESET_B">
+         <obj_property name="ElementShortName">QSFPDD1_IO_RESET_B</obj_property>
+         <obj_property name="ObjectShortName">QSFPDD1_IO_RESET_B</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/QSFPDD2_IO_RESET_B">
+         <obj_property name="ElementShortName">QSFPDD2_IO_RESET_B</obj_property>
+         <obj_property name="ObjectShortName">QSFPDD2_IO_RESET_B</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/QSFPDD3_IO_RESET_B">
+         <obj_property name="ElementShortName">QSFPDD3_IO_RESET_B</obj_property>
+         <obj_property name="ObjectShortName">QSFPDD3_IO_RESET_B</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/CLKGEN_SDA">
+         <obj_property name="ElementShortName">CLKGEN_SDA</obj_property>
+         <obj_property name="ObjectShortName">CLKGEN_SDA</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/CLKGEN_SCL">
+         <obj_property name="ElementShortName">CLKGEN_SCL</obj_property>
+         <obj_property name="ObjectShortName">CLKGEN_SCL</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/FPGA_SDA_R">
+         <obj_property name="ElementShortName">FPGA_SDA_R</obj_property>
+         <obj_property name="ObjectShortName">FPGA_SDA_R</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/FPGA_SCL_R">
+         <obj_property name="ElementShortName">FPGA_SCL_R</obj_property>
+         <obj_property name="ObjectShortName">FPGA_SCL_R</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/refclk_300">
+         <obj_property name="ElementShortName">refclk_300</obj_property>
+         <obj_property name="ObjectShortName">refclk_300</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/refclk_300_rst">
+         <obj_property name="ElementShortName">refclk_300_rst</obj_property>
+         <obj_property name="ObjectShortName">refclk_300_rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/SYNCE_CLK_LVDS_P">
+         <obj_property name="ElementShortName">SYNCE_CLK_LVDS_P</obj_property>
+         <obj_property name="ObjectShortName">SYNCE_CLK_LVDS_P</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/axi_aclk">
+         <obj_property name="ElementShortName">axi_aclk</obj_property>
+         <obj_property name="ObjectShortName">axi_aclk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/axi_aresetn">
+         <obj_property name="ElementShortName">axi_aresetn</obj_property>
+         <obj_property name="ObjectShortName">axi_aresetn</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_araddr">
+         <obj_property name="ElementShortName">s_axil_araddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_araddr[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_arvalid">
+         <obj_property name="ElementShortName">s_axil_arvalid</obj_property>
+         <obj_property name="ObjectShortName">s_axil_arvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_rready">
+         <obj_property name="ElementShortName">s_axil_rready</obj_property>
+         <obj_property name="ObjectShortName">s_axil_rready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_awaddr">
+         <obj_property name="ElementShortName">s_axil_awaddr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_awaddr[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_awvalid">
+         <obj_property name="ElementShortName">s_axil_awvalid</obj_property>
+         <obj_property name="ObjectShortName">s_axil_awvalid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_wdata">
+         <obj_property name="ElementShortName">s_axil_wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_wvalid">
+         <obj_property name="ElementShortName">s_axil_wvalid</obj_property>
+         <obj_property name="ObjectShortName">s_axil_wvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_bready">
+         <obj_property name="ElementShortName">s_axil_bready</obj_property>
+         <obj_property name="ObjectShortName">s_axil_bready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_awprot">
+         <obj_property name="ElementShortName">s_axil_awprot[2:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_awprot[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_wstrb">
+         <obj_property name="ElementShortName">s_axil_wstrb[3:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_wstrb[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_arprot">
+         <obj_property name="ElementShortName">s_axil_arprot[2:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_arprot[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_arready">
+         <obj_property name="ElementShortName">s_axil_arready</obj_property>
+         <obj_property name="ObjectShortName">s_axil_arready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_rdata">
+         <obj_property name="ElementShortName">s_axil_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_rdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_rresp">
+         <obj_property name="ElementShortName">s_axil_rresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_rresp[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_rvalid">
+         <obj_property name="ElementShortName">s_axil_rvalid</obj_property>
+         <obj_property name="ObjectShortName">s_axil_rvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_awready">
+         <obj_property name="ElementShortName">s_axil_awready</obj_property>
+         <obj_property name="ObjectShortName">s_axil_awready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_wready">
+         <obj_property name="ElementShortName">s_axil_wready</obj_property>
+         <obj_property name="ObjectShortName">s_axil_wready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/s_axil_bvalid">
+         <obj_property name="ElementShortName">s_axil_bvalid</obj_property>
+         <obj_property name="ObjectShortName">s_axil_bvalid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb/s_axil_bresp">
+         <obj_property name="ElementShortName">s_axil_bresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">s_axil_bresp[1:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider73" type="divider">
+      <obj_property name="label">GTF Serial I/O</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/gtf_ch_gtftxp_0">
+      <obj_property name="ElementShortName">gtf_ch_gtftxp_0[0:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_gtftxp_0[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/gtf_ch_gtftxp_1">
+      <obj_property name="ElementShortName">gtf_ch_gtftxp_1[0:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_gtftxp_1[0:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider122" type="divider">
+      <obj_property name="label">MAC GTF TX AXIS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistready">
+      <obj_property name="ElementShortName">gtf_ch_txaxistready[0:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_txaxistready[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistvalid">
+      <obj_property name="ElementShortName">gtf_ch_txaxistvalid[0:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_txaxistvalid[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus765">
+      <obj_property name="label">gtf_ch_txaxistdata[15:0]</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistdata[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_txaxistlast">
+      <obj_property name="ElementShortName">gtf_ch_txaxistlast[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_txaxistlast[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider74" type="divider">
+      <obj_property name="label">MAC GTF RX AXIS</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistvalid">
+      <obj_property name="ElementShortName">gtf_ch_rxaxistvalid[0:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_rxaxistvalid[0:0]</obj_property>
+   </wvobject>
+   <wvobject type="vbus" fp_name="vbus766">
+      <obj_property name="label">gtf_ch_rxaxistdata[15:0]</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[15]">
+         <obj_property name="ElementShortName">[15]</obj_property>
+         <obj_property name="ObjectShortName">[15]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[14]">
+         <obj_property name="ElementShortName">[14]</obj_property>
+         <obj_property name="ObjectShortName">[14]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[13]">
+         <obj_property name="ElementShortName">[13]</obj_property>
+         <obj_property name="ObjectShortName">[13]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[12]">
+         <obj_property name="ElementShortName">[12]</obj_property>
+         <obj_property name="ObjectShortName">[12]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[11]">
+         <obj_property name="ElementShortName">[11]</obj_property>
+         <obj_property name="ObjectShortName">[11]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[10]">
+         <obj_property name="ElementShortName">[10]</obj_property>
+         <obj_property name="ObjectShortName">[10]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[9]">
+         <obj_property name="ElementShortName">[9]</obj_property>
+         <obj_property name="ObjectShortName">[9]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[8]">
+         <obj_property name="ElementShortName">[8]</obj_property>
+         <obj_property name="ObjectShortName">[8]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[7]">
+         <obj_property name="ElementShortName">[7]</obj_property>
+         <obj_property name="ObjectShortName">[7]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[6]">
+         <obj_property name="ElementShortName">[6]</obj_property>
+         <obj_property name="ObjectShortName">[6]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[5]">
+         <obj_property name="ElementShortName">[5]</obj_property>
+         <obj_property name="ObjectShortName">[5]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[4]">
+         <obj_property name="ElementShortName">[4]</obj_property>
+         <obj_property name="ObjectShortName">[4]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[3]">
+         <obj_property name="ElementShortName">[3]</obj_property>
+         <obj_property name="ObjectShortName">[3]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[2]">
+         <obj_property name="ElementShortName">[2]</obj_property>
+         <obj_property name="ObjectShortName">[2]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[1]">
+         <obj_property name="ElementShortName">[1]</obj_property>
+         <obj_property name="ObjectShortName">[1]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistdata[0]">
+         <obj_property name="ElementShortName">[0]</obj_property>
+         <obj_property name="ObjectShortName">[0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/i_gtfmac/gtf_ch_rxaxistlast">
+      <obj_property name="ElementShortName">gtf_ch_rxaxistlast[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gtf_ch_rxaxistlast[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider75" type="divider">
+      <obj_property name="label">Data Compare ILA</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/\gtfmac_hwchk_core_gen[0].i_gtfmac_hwchk_core /ila_mac_fifo_top/fifo_rd_fifo_clk">
+      <obj_property name="ElementShortName">fifo_rd_fifo_clk</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_fifo_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/\gtfmac_hwchk_core_gen[0].i_gtfmac_hwchk_core /ila_mac_fifo_top/fifo_rd_fcs_rden">
+      <obj_property name="ElementShortName">fifo_rd_fcs_rden</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_fcs_rden</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/\gtfmac_hwchk_core_gen[0].i_gtfmac_hwchk_core /ila_mac_fifo_top/fifo_rd_fcs_data_tx">
+      <obj_property name="ElementShortName">fifo_rd_fcs_data_tx[69:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_fcs_data_tx[69:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/\gtfmac_hwchk_core_gen[0].i_gtfmac_hwchk_core /ila_mac_fifo_top/fifo_rd_fcs_data_rx">
+      <obj_property name="ElementShortName">fifo_rd_fcs_data_rx[69:0]</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_fcs_data_rx[69:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb/clk_recov/gtf_top_0/u_gtfwizard_0_example_gtfmac_top/\gtfmac_hwchk_core_gen[0].i_gtfmac_hwchk_core /ila_mac_fifo_top/fifo_rd_fcs_error">
+      <obj_property name="ElementShortName">fifo_rd_fcs_error</obj_property>
+      <obj_property name="ObjectShortName">fifo_rd_fcs_error</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,2575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spirit:component xmlns:xilinx="http://www.xilinx.com" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <spirit:vendor>xilinx.com</spirit:vendor>
+  <spirit:library>ip</spirit:library>
+  <spirit:name>qdriip</spirit:name>
+  <spirit:version>1.4</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>C0_SYS_CLK</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="diff_clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="interface" spirit:name="diff_clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK_N</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>c0_sys_clk_n</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK_P</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>c0_sys_clk_p</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.C0_SYS_CLK" xilinx:dependency="( C0.ControllerType == &quot;QDRIIPLUS_SRAM&quot; ) &amp;&amp; (spirit:decode(id(&apos;PARAM_VALUE.System_Clock&apos;)) = &quot;Differential&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>C0_SYS_CLK_I</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>c0_sys_clk_i</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.C0_SYS_CLK_I" xilinx:dependency="( C0.ControllerType == &quot;QDRIIPLUS_SRAM&quot; ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.System_Clock&apos;)) = &quot;No_Buffer&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ADDN_UI_CLKOUT1</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>addn_ui_clkout1</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT1.FREQ_HZ" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT1_FREQ_HZ&apos;))*1000000)">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>PHASE</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT1.PHASE" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT1_PHASE&apos;))">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_ASYNC_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT1.ASSOCIATED_ASYNC_RESET">c0_aresetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.ADDN_UI_CLKOUT1" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT1_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ADDN_UI_CLKOUT2</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>addn_ui_clkout2</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT2.FREQ_HZ" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT2_FREQ_HZ&apos;))*1000000)">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>PHASE</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT2.PHASE" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT2_PHASE&apos;))">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_ASYNC_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT2.ASSOCIATED_ASYNC_RESET">c0_aresetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.ADDN_UI_CLKOUT2" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT2_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ADDN_UI_CLKOUT3</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>addn_ui_clkout3</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT3.FREQ_HZ" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT3_FREQ_HZ&apos;))*1000000)">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>PHASE</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT3.PHASE" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT3_PHASE&apos;))">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_ASYNC_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT3.ASSOCIATED_ASYNC_RESET">c0_aresetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.ADDN_UI_CLKOUT3" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT3_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>ADDN_UI_CLKOUT4</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="clock_rtl" spirit:version="1.0"/>
+      <spirit:master/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>CLK</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>addn_ui_clkout4</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>FREQ_HZ</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT4.FREQ_HZ" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT4_FREQ_HZ&apos;))*1000000)">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>PHASE</spirit:name>
+          <spirit:value spirit:format="float" spirit:resolve="dependent" spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT4.PHASE" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.M_ADDN_UI_CLKOUT4_PHASE&apos;))">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ASSOCIATED_ASYNC_RESET</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.ADDN_UI_CLKOUT4.ASSOCIATED_ASYNC_RESET">c0_aresetn</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+      <spirit:vendorExtensions>
+        <xilinx:busInterfaceInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="BUSIF_ENABLEMENT.ADDN_UI_CLKOUT4" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT4_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:busInterfaceInfo>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>SYSTEM_RESET</spirit:name>
+      <spirit:busType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset" spirit:version="1.0"/>
+      <spirit:abstractionType spirit:vendor="xilinx.com" spirit:library="signal" spirit:name="reset_rtl" spirit:version="1.0"/>
+      <spirit:slave/>
+      <spirit:connectionRequired>true</spirit:connectionRequired>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>RST</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>sys_rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>POLARITY</spirit:name>
+          <spirit:value spirit:id="BUSIFPARAM_VALUE.SYSTEM_RESET.POLARITY">ACTIVE_LOW</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>xilinx_elaborateports</spirit:name>
+        <spirit:displayName>Elaborate Ports</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:elaborate.ports</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaborateports_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaborateports_xilinx_com_ip_microblaze_mcs_3_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaborateports_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>29ced6f3</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_elaboratesubcores</spirit:name>
+        <spirit:displayName>Elaborate Sub-Cores</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:elaborate.subcores</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaboratesubcores_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaboratesubcores_xilinx_com_ip_microblaze_mcs_3_0__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaboratesubcores_xilinx_com_ip_ila_6_2__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_elaboratesubcores_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>b1f5babf</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_examplesscriptext</spirit:name>
+        <spirit:displayName>Examples Script Extension</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:examples.scriptext</spirit:envIdentifier>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_examplesscriptext_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>aa4aa817</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_examplessimulation</spirit:name>
+        <spirit:displayName>Examples Simulation</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:examples.simulation</spirit:envIdentifier>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_examplessimulation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>310410a2</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_examplessynthesis</spirit:name>
+        <spirit:displayName>Examples Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:examples.synthesis</spirit:envIdentifier>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_examplessynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>56c586ae</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_xpgui</spirit:name>
+        <spirit:displayName>UI Layout</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xgui.ui</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_xpgui_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>554f5e00</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_productguide</spirit:name>
+        <spirit:displayName>Product Guide</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:docs.productguide</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_productguide_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesis</spirit:name>
+        <spirit:displayName>Synthesis</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis</spirit:envIdentifier>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesis_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>4319bc63</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_anylanguagesynthesiswrapper</spirit:name>
+        <spirit:displayName>Synthesis Wrapper</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:synthesis.wrapper</spirit:envIdentifier>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_anylanguagesynthesiswrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>cee1dd26</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_upgradescripts</spirit:name>
+        <spirit:displayName>Upgrade Tcl functions</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:upgrade.script</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_upgradescripts_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>8c962715</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_utilityxitfiles</spirit:name>
+        <spirit:displayName>Utility XIT/TTCL</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:xit.util</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_utilityxitfiles_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_utilityxitfiles_xilinx_com_ip_mem_1_4__ref_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_utilityxitfiles_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>d7281983</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_verilogsimulationwrapper</spirit:name>
+        <spirit:displayName>Verilog Simulation Wrapper</spirit:displayName>
+        <spirit:envIdentifier>verilogSource:vivado.xilinx.com:simulation.wrapper</spirit:envIdentifier>
+        <spirit:language>verilog</spirit:language>
+        <spirit:modelName>qdriip_v1_4_19</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_verilogsimulationwrapper_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>viewChecksum</spirit:name>
+            <spirit:value>5fea0eee</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:view>
+      <spirit:view>
+        <spirit:name>xilinx_versioninformation</spirit:name>
+        <spirit:displayName>Version Information</spirit:displayName>
+        <spirit:envIdentifier>:vivado.xilinx.com:docs.versioninfo</spirit:envIdentifier>
+        <spirit:fileSetRef>
+          <spirit:localName>xilinx_versioninformation_view_fileset</spirit:localName>
+        </spirit:fileSetRef>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>c0_init_calib_complete</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>dbg_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.dbg_clk" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_sys_clk_p</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_sys_clk_p" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.System_Clock&apos;)) = &quot;Differential&quot; )">true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_sys_clk_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_sys_clk_n" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.System_Clock&apos;)) = &quot;Differential&quot; )">true</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_sys_clk_i</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_sys_clk_i" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.System_Clock&apos;)) = &quot;No_Buffer&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>dbg_bus</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long">299</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.dbg_bus" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_d</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_d" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_k_p</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_NUM_DEVICES&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_k_p" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_k_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_NUM_DEVICES&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_k_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_bw_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))/9)-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_bw_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_r_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_r_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_w_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_w_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_doff_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_doff_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_sa</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_sa" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_q</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_q" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_cq_p</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_NUM_DEVICES&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_cq_p" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_cq_n</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_NUM_DEVICES&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_cq_n" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_cmd0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_cmd0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_addr0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_addr0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_data0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))*spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_data0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_bw_n0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))/9)*(spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;)))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_bw_n0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_cmd0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_cmd0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_addr0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_addr0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_data0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))*spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_data0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_valid0</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_valid0" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_cmd1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_cmd1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_addr1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_addr1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_data1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))*spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_data1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_wr_bw_n1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="(spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))/9)*(spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;)))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_wr_bw_n1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_cmd1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_cmd1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_addr1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+          <spirit:driver>
+            <spirit:defaultValue spirit:format="long">0</spirit:defaultValue>
+          </spirit:driver>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_addr1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_data1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left spirit:format="long" spirit:resolve="dependent" spirit:dependency="spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH&apos;))*spirit:decode(id(&apos;MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN&apos;))-1">0</spirit:left>
+            <spirit:right spirit:format="long">0</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic_vector</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_data1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_app_rd_valid1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_app_rd_valid1" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_BurstLen&apos;)) = 2 )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_clk" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_rst_clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_rst_clk" xilinx:dependency="( spirit:decode(id(&apos;MODELPARAM_VALUE.C0.ControllerType&apos;)) = &quot;QDRIIPLUS_SRAM&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>addn_ui_clkout1</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.addn_ui_clkout1" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT1_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>addn_ui_clkout2</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.addn_ui_clkout2" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT2_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>addn_ui_clkout3</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.addn_ui_clkout3" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT3_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>addn_ui_clkout4</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.addn_ui_clkout4" xilinx:dependency="( spirit:decode(id(&apos;PARAM_VALUE.No_Controller&apos;)) > 0 ) &amp;&amp; ( spirit:decode(id(&apos;PARAM_VALUE.ADDN_UI_CLKOUT4_FREQ_HZ&apos;)) != &quot;NONE&quot; )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>sys_rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>wire</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_mcs_lmb_ce</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_mcs_lmb_ce" xilinx:dependency="(( C0.ControllerType == &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_MCS_ECC&apos;)) = true ) )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>c0_qdriip_mcs_lmb_ue</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>std_logic</spirit:typeName>
+              <spirit:viewNameRef>xilinx_anylanguagesynthesis</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+        <spirit:vendorExtensions>
+          <xilinx:portInfo>
+            <xilinx:enablement>
+              <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PORT_ENABLEMENT.c0_qdriip_mcs_lmb_ue" xilinx:dependency="(( C0.ControllerType == &quot;QDRIIPLUS_SRAM&quot; ) and ( spirit:decode(id(&apos;PARAM_VALUE.C0.QDRIIP_MCS_ECC&apos;)) = true ) )">false</xilinx:isEnabled>
+            </xilinx:enablement>
+          </xilinx:portInfo>
+        </spirit:vendorExtensions>
+      </spirit:port>
+    </spirit:ports>
+    <spirit:modelParameters>
+      <spirit:modelParameter xsi:type="spirit:nameValueTypeType">
+        <spirit:name>C0.ControllerType</spirit:name>
+        <spirit:displayName>ControllerType</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.ControllerType">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.APP_ADDR_WIDTH</spirit:name>
+        <spirit:displayName>App Address Width</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.APP_ADDR_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MCS_ECC</spirit:name>
+        <spirit:displayName>MCS ECC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MCS_ECC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.MEM_TYPE</spirit:name>
+        <spirit:displayName>MEM TYPE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.MEM_TYPE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.BUFG_LOC_1</spirit:name>
+        <spirit:displayName>BUFG LOC1</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.BUFG_LOC_1">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.BUFG_LOC_2</spirit:name>
+        <spirit:displayName>BUFG LOC1</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.BUFG_LOC_2">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.BUFG_DIV_LOC_1</spirit:name>
+        <spirit:displayName>BUFG DIV LOC1</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.BUFG_DIV_LOC_1">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.BUFG_DIV_LOC_2</spirit:name>
+        <spirit:displayName>BUFG DIV LOC2</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.BUFG_DIV_LOC_2">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_SLICE_LOC</spirit:name>
+        <spirit:displayName>PBLOCK SLICE LOC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_SLICE_LOC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_RAMB36_LOC</spirit:name>
+        <spirit:displayName>PBLOCK RAMB36 LOC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_RAMB36_LOC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_RAMB18_LOC</spirit:name>
+        <spirit:displayName>PBLOCK RAMB18 LOC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_RAMB18_LOC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_SLICE_LOC_SC</spirit:name>
+        <spirit:displayName>PBLOCK SLICE LOC SC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_SLICE_LOC_SC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_RAMB36_LOC_SC</spirit:name>
+        <spirit:displayName>PBLOCK RAMB36 LOC SC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_RAMB36_LOC_SC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.PBLOCK_RAMB18_LOC_SC</spirit:name>
+        <spirit:displayName>PBLOCK RAMB18 LOC SC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.PBLOCK_RAMB18_LOC_SC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.MMCM_IDX_BANK</spirit:name>
+        <spirit:displayName>MMCM IDX BANK</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.MMCM_IDX_BANK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.CENTER_BANK_CLOCK_REGION</spirit:name>
+        <spirit:displayName>CENTER BANK CLOCK REGION</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.CENTER_BANK_CLOCK_REGION">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.CENTER_BANK_MMCME3_ADV_SITE</spirit:name>
+        <spirit:displayName>CENTER BANK MMCME3 ADV SITE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.CENTER_BANK_MMCME3_ADV_SITE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.SYSCLK_CENTER_INFO</spirit:name>
+        <spirit:displayName>SYSCLK CENTER INFO</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.SYSCLK_CENTER_INFO">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DATA_WIDTH</spirit:name>
+        <spirit:displayName>DATA WIDTH</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DATA_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MemoryVoltage</spirit:name>
+        <spirit:displayName>MEM VOLTAGE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MemoryVoltage">1.5V</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_VrefVoltage</spirit:name>
+        <spirit:displayName>Vref Voltage</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_VrefVoltage">0.75</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_ADDR_WIDTH</spirit:name>
+        <spirit:displayName>ADDR WIDTH</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_ADDR_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEMORY_TYPE</spirit:name>
+        <spirit:displayName>MEMORY TYPE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEMORY_TYPE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_NUM_DEVICES</spirit:name>
+        <spirit:displayName>NUM DEVICES</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_NUM_DEVICES">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_BANK_WIDTH</spirit:name>
+        <spirit:displayName>BANK WIDTH</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_BANK_WIDTH">4</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_BURST_LEN</spirit:name>
+        <spirit:displayName>BURST LEN</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_BURST_LEN">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_READ_LATENCY</spirit:name>
+        <spirit:displayName>MEM READ LATENCY</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_READ_LATENCY">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_tCK</spirit:name>
+        <spirit:displayName>CLK PERIOD</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_tCK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_SPEED_GRADE</spirit:name>
+        <spirit:displayName>SPEED GRADE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_SPEED_GRADE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_DENSITY</spirit:name>
+        <spirit:displayName>MEM DENSITY</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_DENSITY">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_DENSITY_MB</spirit:name>
+        <spirit:displayName>MEM DENSITY MB</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_DENSITY_MB">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_DENSITY_GB</spirit:name>
+        <spirit:displayName>MEM DENSITY GB</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_DENSITY_GB">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_COMP_DENSITY</spirit:name>
+        <spirit:displayName>MEM COMP DENSITY</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_COMP_DENSITY">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_DEVICE_WIDTH</spirit:name>
+        <spirit:displayName>MEM DEVICE WIDTH</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_DEVICE_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DATABITS_PER_STROBE</spirit:name>
+        <spirit:displayName>DATABITS PER STROBE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DATABITS_PER_STROBE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_MEM_COMP_WIDTH</spirit:name>
+        <spirit:displayName>MEM COMP WIDTH</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_MEM_COMP_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DCI_CASCADE_CUTOFF</spirit:name>
+        <spirit:displayName>DCI Cascade Cutoff</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DCI_CASCADE_CUTOFF">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CAL_INPUT_CLK_PERIOD</spirit:name>
+        <spirit:displayName>Calculated Input Clock Period</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CAL_INPUT_CLK_PERIOD">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_CLKIN_PERIOD</spirit:name>
+        <spirit:displayName>CLKIN PERIOD</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_CLKIN_PERIOD">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_CLKFBOUT_MULT</spirit:name>
+        <spirit:displayName>CLKFBOUT MULT</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_CLKFBOUT_MULT">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DIVCLK_DIVIDE</spirit:name>
+        <spirit:displayName>DIVCLK DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DIVCLK_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_CLKOUT0_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT0 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_CLKOUT0_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_CLKOUTPHY_MODE</spirit:name>
+        <spirit:displayName>CLKOUTPHY MODE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_CLKOUTPHY_MODE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_nCK_PER_CLK</spirit:name>
+        <spirit:displayName>nCK PER CLK</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_nCK_PER_CLK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_PLLCLK_SRC</spirit:name>
+        <spirit:displayName>PLLCLK SRC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_PLLCLK_SRC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DIV_MODE</spirit:name>
+        <spirit:displayName>DIV MODE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DIV_MODE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_REFCLK_SRC</spirit:name>
+        <spirit:displayName>REFCLK SRC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_REFCLK_SRC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_CTRL_CLK</spirit:name>
+        <spirit:displayName>CTRL CLK</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_CTRL_CLK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_GCLK_SRC</spirit:name>
+        <spirit:displayName>GCLK SRC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_GCLK_SRC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_INIT</spirit:name>
+        <spirit:displayName>INIT</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_INIT">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_TRI_OUTPUT_PHASE_90</spirit:name>
+        <spirit:displayName>TRI OUTPUT PHASE 90</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_TRI_OUTPUT_PHASE_90">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_SERIAL_MODE</spirit:name>
+        <spirit:displayName>SERIAL MODE</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_SERIAL_MODE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_TRI_DELAY_VAL</spirit:name>
+        <spirit:displayName>TRI_DELAY_VAL</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_TRI_DELAY_VAL">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_READ_IDLE_COUNT</spirit:name>
+        <spirit:displayName>READ IDLE COUNT</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_READ_IDLE_COUNT">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_ROUNDING_FACTOR</spirit:name>
+        <spirit:displayName>ROUNDING FACTOR</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_ROUNDING_FACTOR">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_XIPHY_DATA_WIDTH</spirit:name>
+        <spirit:displayName>XIPHY DATA WIDTH</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_XIPHY_DATA_WIDTH">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_DCI_SRC</spirit:name>
+        <spirit:displayName>DCI SRC</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_DCI_SRC">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_IDLY_VT_TRACK</spirit:name>
+        <spirit:displayName>IDLY VT TRACK</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_IDLY_VT_TRACK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_ODLY_VT_TRACK</spirit:name>
+        <spirit:displayName>ODLY VT TRACK</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_ODLY_VT_TRACK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_QDLY_VT_TRACK</spirit:name>
+        <spirit:displayName>QDLY VT TRACK</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_QDLY_VT_TRACK">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_RXGATE_EXTEND</spirit:name>
+        <spirit:displayName>RXGATE EXTEND</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_RXGATE_EXTEND">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>C0.QDRIIP_IS_CUSTOM</spirit:name>
+        <spirit:displayName>IS CUSTOM</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C0.QDRIIP_IS_CUSTOM">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CUSTOM_PART_ATTRIBUTES</spirit:name>
+        <spirit:displayName>custom_part_attributes</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CUSTOM_PART_ATTRIBUTES">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT1_FREQ_HZ</spirit:name>
+        <spirit:displayName>CLKOUT1 FREQ HZ</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT1_FREQ_HZ">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT2_FREQ_HZ</spirit:name>
+        <spirit:displayName>CLKOUT2 FREQ HZ</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT2_FREQ_HZ">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT3_FREQ_HZ</spirit:name>
+        <spirit:displayName>CLKOUT3 FREQ HZ</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT3_FREQ_HZ">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT4_FREQ_HZ</spirit:name>
+        <spirit:displayName>CLKOUT4 FREQ HZ</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT4_FREQ_HZ">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT1_PHASE</spirit:name>
+        <spirit:displayName>CLKOUT1 PHASE</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT1_PHASE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT2_PHASE</spirit:name>
+        <spirit:displayName>CLKOUT2 PHASE</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT2_PHASE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT3_PHASE</spirit:name>
+        <spirit:displayName>CLKOUT3 PHASE</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT3_PHASE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>M_ADDN_UI_CLKOUT4_PHASE</spirit:name>
+        <spirit:displayName>CLKOUT4 PHASE</spirit:displayName>
+        <spirit:value spirit:format="float" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.M_ADDN_UI_CLKOUT4_PHASE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CLKOUT0_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT0 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLKOUT0_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CLKOUT1_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT1 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLKOUT1_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CLKOUT2_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT2 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLKOUT2_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CLKOUT3_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT3 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLKOUT3_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>CLKOUT4_DIVIDE</spirit:name>
+        <spirit:displayName>CLKOUT4 DIVIDE</spirit:displayName>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.CLKOUT4_DIVIDE">0</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>Debug_Signal</spirit:name>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.Debug_Signal">Disable</spirit:value>
+      </spirit:modelParameter>
+      <spirit:modelParameter>
+        <spirit:name>Simulation_Mode</spirit:name>
+        <spirit:displayName>Simulation Mode</spirit:displayName>
+        <spirit:value spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.Simulation_Mode">0</spirit:value>
+      </spirit:modelParameter>
+    </spirit:modelParameters>
+  </spirit:model>
+  <spirit:choices>
+    <spirit:choice>
+      <spirit:name>choice_list_05e918cd</spirit:name>
+      <spirit:enumeration>Complete_Memory_Controller</spirit:enumeration>
+      <spirit:enumeration>Phy_Only_Single</spirit:enumeration>
+      <spirit:enumeration>Phy_Only_PingPong</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_0d46048e</spirit:name>
+      <spirit:enumeration>Disable</spirit:enumeration>
+      <spirit:enumeration>Enable</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_17949ddb</spirit:name>
+      <spirit:enumeration>Differential</spirit:enumeration>
+      <spirit:enumeration>No_Buffer</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_2fc3e24b</spirit:name>
+      <spirit:enumeration>ON</spirit:enumeration>
+      <spirit:enumeration>OFF</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_37c18244</spirit:name>
+      <spirit:enumeration>18</spirit:enumeration>
+      <spirit:enumeration>36</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_45f2655d</spirit:name>
+      <spirit:enumeration>NONE</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_61cc82b5</spirit:name>
+      <spirit:enumeration>Differential</spirit:enumeration>
+      <spirit:enumeration>Single_Ended</spirit:enumeration>
+      <spirit:enumeration>No_Buffer</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_7fe13915</spirit:name>
+      <spirit:enumeration>Custom</spirit:enumeration>
+      <spirit:enumeration>reset</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_8ed308b1</spirit:name>
+      <spirit:enumeration>4</spirit:enumeration>
+      <spirit:enumeration>2</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_921b6fed</spirit:name>
+      <spirit:enumeration>Custom</spirit:enumeration>
+      <spirit:enumeration>sysclk1_300</spirit:enumeration>
+      <spirit:enumeration>sysclk2_300</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_a201bf0a</spirit:name>
+      <spirit:enumeration>CY7C2565XV18-633BZXC</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_abca591f</spirit:name>
+      <spirit:enumeration>6</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_be8a10ff</spirit:name>
+      <spirit:enumeration>0</spirit:enumeration>
+      <spirit:enumeration>1</spirit:enumeration>
+      <spirit:enumeration>2</spirit:enumeration>
+      <spirit:enumeration>3</spirit:enumeration>
+      <spirit:enumeration>4</spirit:enumeration>
+      <spirit:enumeration>5</spirit:enumeration>
+      <spirit:enumeration>6</spirit:enumeration>
+      <spirit:enumeration>7</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_c76d437f</spirit:name>
+      <spirit:enumeration>SIMPLE_TG</spirit:enumeration>
+      <spirit:enumeration>ADVANCED_TG</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_e3dd3c2f</spirit:name>
+      <spirit:enumeration>Components</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_f8947d27</spirit:name>
+      <spirit:enumeration>None</spirit:enumeration>
+      <spirit:enumeration>QDRIIPLUS_SRAM</spirit:enumeration>
+    </spirit:choice>
+    <spirit:choice>
+      <spirit:name>choice_list_f8b85575</spirit:name>
+      <spirit:enumeration>BFM</spirit:enumeration>
+      <spirit:enumeration>Unisim</spirit:enumeration>
+    </spirit:choice>
+  </spirit:choices>
+  <spirit:fileSets>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaborateports_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>elaborate/ports.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaborateports_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="qdriip_phy" xilinx:version="1.4" xilinx:coreRevision="0">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaborateports_xilinx_com_ip_microblaze_mcs_3_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="microblaze_mcs" xilinx:version="3.0" xilinx:coreRevision="20">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaboratesubcores_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>elaborate/elaborate.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaboratesubcores_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="qdriip_phy" xilinx:version="1.4" xilinx:coreRevision="0">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaboratesubcores_xilinx_com_ip_microblaze_mcs_3_0__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="microblaze_mcs" xilinx:version="3.0" xilinx:coreRevision="20">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_elaboratesubcores_xilinx_com_ip_ila_6_2__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="ila" xilinx:version="6.2" xilinx:coreRevision="12">
+            <xilinx:mode xilinx:name="create_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_examplesscriptext_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>hdl/example_design_post_process.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_examplessimulation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xit/simFiles.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/model_wrapper.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/sim_tb_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/example_syn.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/example_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/microblaze_mcs.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_examplessynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xit/example_syn.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/example_xdc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/example_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_xpgui_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/qdriip_v1_4.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+        <spirit:userFileType>XGUI_VERSION_2</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_productguide_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>http://www.xilinx.com/cgi-bin/docs/ipdoc?c=qdriip;v=v1_4;d=pg150-ultrascale-memory-ip.pdf</spirit:name>
+        <spirit:userFileType>pdf</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesis_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xit/rtlFiles.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/rtl_sim.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/xdc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/user_design_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal_riu.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+        <spirit:userFileType>USED_IN_implementation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_simulation</spirit:userFileType>
+        <spirit:userFileType>USED_IN_synthesis</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_anylanguagesynthesiswrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>hdl/top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_upgradescripts_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/qdriip_upgrade.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_utilityxitfiles_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xgui/qdriip_upgrade.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xgui/qdriip_v1_4.tcl</spirit:name>
+        <spirit:fileType>tclSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_hw_tg.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_hw_tg_qdriv.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_2to1_converter.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_addr_prbs.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_arbiter.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_data_prbs.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_data_prbs_seed.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_errchk.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_fifo.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_instr_bram.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_pattern_gen_addr.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_pattern_gen_data.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_pattern_gen_data_bram.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_prbs_gen.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_top.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/common/traffic_gen/qdriip_v1_4_tg_victim_data.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/example_syn.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/example_top.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/example_xdc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/misc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/rtl_sim.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/rtlFiles.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/simFiles.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/simulation.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/xdc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/xdc_ooc.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal_riu.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/example_design_post_process.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/example_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/microblaze_mcs.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/model_wrapper.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/sim_tb_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/user_design_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/xdc.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/calibration_0/Debug/calibration_qdrii.elf</spirit:name>
+        <spirit:userFileType>elf</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB_ECC/bd_72aa.bmm</spirit:name>
+        <spirit:userFileType>bmm</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB_ECC/bd_72aa_lmb_bram_I_0.mem</spirit:name>
+        <spirit:userFileType>mem</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB/bd_72aa.bmm</spirit:name>
+        <spirit:userFileType>bmm</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/prototype_qdr2/sw/UB_BRAM_64KB/bd_72aa_lmb_bram_I_0.mem</spirit:name>
+        <spirit:userFileType>mem</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/ip_top/qdriip_v1_4_qdr2p_assert.vh</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal_addr_decode.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal_f2r_sync.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal_fab.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal_r2f_sync.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_cal_riu.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_config_rom.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_datapath.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_debug_microblaze.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_rd_bit_slip.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_sync.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/rtl/cal/qdriip_v1_4_xsdb_bram.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/tb/microblaze_mcs_0.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/tb/example_tb.sv</spirit:name>
+        <spirit:fileType>systemVerilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/tb/glbl.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>data/dlib/ultrascale/qdriiplus_sram/tb/bidir_delay.v</spirit:name>
+        <spirit:fileType>verilogSource</spirit:fileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_utilityxitfiles_xilinx_com_ip_qdriip_phy_1_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="qdriip_phy" xilinx:version="1.4" xilinx:coreRevision="0">
+            <xilinx:mode xilinx:name="read_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_utilityxitfiles_xilinx_com_ip_mem_1_4__ref_view_fileset</spirit:name>
+      <spirit:vendorExtensions>
+        <xilinx:subCoreRef>
+          <xilinx:componentRef xilinx:vendor="xilinx.com" xilinx:library="ip" xilinx:name="mem" xilinx:version="1.4" xilinx:coreRevision="0">
+            <xilinx:mode xilinx:name="read_mode"/>
+          </xilinx:componentRef>
+        </xilinx:subCoreRef>
+      </spirit:vendorExtensions>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_verilogsimulationwrapper_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>xit/simulation.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>xit/rtl_sim.xit</spirit:name>
+        <spirit:userFileType>xit</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/user_design_top.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/cal_riu.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+      <spirit:file>
+        <spirit:name>hdl/microblaze_mcs.ttcl</spirit:name>
+        <spirit:userFileType>ttcl</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+    <spirit:fileSet>
+      <spirit:name>xilinx_versioninformation_view_fileset</spirit:name>
+      <spirit:file>
+        <spirit:name>doc/qdriip_v1_4_changelog.txt</spirit:name>
+        <spirit:userFileType>text</spirit:userFileType>
+      </spirit:file>
+    </spirit:fileSet>
+  </spirit:fileSets>
+  <spirit:description>Memory Interface Generator for generating QDRIIPLUS_SRAM  interfaces for Ultrascale Architecture</spirit:description>
+  <spirit:parameters>
+    <spirit:parameter>
+      <spirit:name>C0.ControllerType</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0.ControllerType" spirit:choiceRef="choice_list_f8947d27" spirit:order="2">None</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>IOPowerReduction</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.IOPowerReduction" spirit:choiceRef="choice_list_2fc3e24b" spirit:order="3">OFF</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Enable_SysPorts</spirit:name>
+      <spirit:displayName>Auto assign static ports</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.Enable_SysPorts" spirit:order="4">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Phy_Only</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Phy_Only" spirit:choiceRef="choice_list_05e918cd" spirit:order="5">Complete_Memory_Controller</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>RESET_BOARD_INTERFACE</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.RESET_BOARD_INTERFACE" spirit:choiceRef="choice_list_7fe13915" spirit:order="6">Custom</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.RESET_BOARD_INTERFACE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0_CLOCK_BOARD_INTERFACE</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0_CLOCK_BOARD_INTERFACE" spirit:choiceRef="choice_list_921b6fed" spirit:order="7">Custom</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:enablement>
+            <xilinx:isEnabled xilinx:resolve="dependent" xilinx:id="PARAM_ENABLEMENT.C0_CLOCK_BOARD_INTERFACE">true</xilinx:isEnabled>
+          </xilinx:enablement>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>IS_FROM_PHY</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.IS_FROM_PHY" spirit:order="8">1</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Example_TG</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Example_TG" spirit:choiceRef="choice_list_c76d437f" spirit:order="9">SIMPLE_TG</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DIFF_TERM_SYSCLK</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.DIFF_TERM_SYSCLK" spirit:order="10">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_TimePeriod</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_TimePeriod" spirit:order="11" spirit:minimum="10" spirit:maximum="10000" spirit:rangeType="long">10</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_InputClockPeriod</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_InputClockPeriod" spirit:choiceRef="choice_list_abca591f" spirit:order="12">6</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_Specify_MandD</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_Specify_MandD" spirit:order="13">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_CLKFBOUT_MULT</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_CLKFBOUT_MULT" spirit:order="14" spirit:minimum="0" spirit:maximum="5000" spirit:rangeType="long">10</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_DIVCLK_DIVIDE</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_DIVCLK_DIVIDE" spirit:order="15" spirit:minimum="0" spirit:maximum="5000" spirit:rangeType="long">1</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_CLKOUT0_DIVIDE</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_CLKOUT0_DIVIDE" spirit:order="16" spirit:minimum="0" spirit:maximum="5000" spirit:rangeType="long">4</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_MemoryType</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_MemoryType" spirit:choiceRef="choice_list_e3dd3c2f" spirit:order="17">Components</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_BurstLen</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_BurstLen" spirit:choiceRef="choice_list_8ed308b1" spirit:order="18">4</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_MemoryPart</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_MemoryPart" spirit:choiceRef="choice_list_a201bf0a" spirit:order="19">CY7C2565XV18-633BZXC</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_DataWidth</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_DataWidth" spirit:choiceRef="choice_list_37c18244" spirit:order="20">36</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_MemoryName</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_MemoryName" spirit:order="21">MainMemory</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_CustomParts</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_CustomParts" spirit:order="22">no_file_loaded</spirit:value>
+      <spirit:vendorExtensions>
+        <xilinx:parameterInfo>
+          <xilinx:parameterType>file_csv</xilinx:parameterType>
+        </xilinx:parameterInfo>
+      </spirit:vendorExtensions>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_isCustom</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_isCustom" spirit:order="23">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>ADDN_UI_CLKOUT1_FREQ_HZ</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.ADDN_UI_CLKOUT1_FREQ_HZ" spirit:choiceRef="choice_list_45f2655d" spirit:order="24">NONE</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>ADDN_UI_CLKOUT2_FREQ_HZ</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.ADDN_UI_CLKOUT2_FREQ_HZ" spirit:choiceRef="choice_list_45f2655d" spirit:order="25">NONE</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>ADDN_UI_CLKOUT3_FREQ_HZ</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.ADDN_UI_CLKOUT3_FREQ_HZ" spirit:choiceRef="choice_list_45f2655d" spirit:order="26">NONE</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>ADDN_UI_CLKOUT4_FREQ_HZ</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.ADDN_UI_CLKOUT4_FREQ_HZ" spirit:choiceRef="choice_list_45f2655d" spirit:order="27">NONE</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>C0.QDRIIP_MCS_ECC</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.C0.QDRIIP_MCS_ECC" spirit:order="28">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>MCS_DBG_EN</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.MCS_DBG_EN" spirit:order="29">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Component_Name</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Component_Name" spirit:order="1">mig_v7_0_0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>No_Controller</spirit:name>
+      <spirit:value spirit:format="long" spirit:resolve="user" spirit:id="PARAM_VALUE.No_Controller" spirit:choiceRef="choice_list_be8a10ff" spirit:order="100">0</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>System_Clock</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.System_Clock" spirit:choiceRef="choice_list_17949ddb" spirit:order="200">Differential</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Reference_Clock</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Reference_Clock" spirit:choiceRef="choice_list_61cc82b5" spirit:order="300">Differential</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Debug_Signal</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Debug_Signal" spirit:choiceRef="choice_list_0d46048e" spirit:order="400">Disable</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>IO_Power_Reduction</spirit:name>
+      <spirit:displayName>IO_Power_Reduction</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.IO_Power_Reduction" spirit:order="500">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>DCI_Cascade</spirit:name>
+      <spirit:displayName>DCI Cascade</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.DCI_Cascade" spirit:order="600">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Default_Bank_Selections</spirit:name>
+      <spirit:displayName>Default Bank Selections</spirit:displayName>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.Default_Bank_Selections" spirit:order="700">false</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Simulation_Mode</spirit:name>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.Simulation_Mode" spirit:choiceRef="choice_list_f8b85575" spirit:order="800">BFM</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>Internal_Vref</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.Internal_Vref" spirit:order="801">true</spirit:value>
+    </spirit:parameter>
+    <spirit:parameter>
+      <spirit:name>QDRII_GSI_EN</spirit:name>
+      <spirit:value spirit:format="bool" spirit:resolve="user" spirit:id="PARAM_VALUE.QDRII_GSI_EN" spirit:order="802">true</spirit:value>
+    </spirit:parameter>
+  </spirit:parameters>
+  <spirit:vendorExtensions>
+    <xilinx:coreExtensions>
+      <xilinx:supportedFamilies>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">aartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">akintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">artix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">artix7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">aspartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">azynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">everesteaes1</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">kintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">kintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qartix7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qartix7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qkintex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qkintex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qvirtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qvirtex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">qzynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">spartan7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">versal</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">virtex7</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">virtex7l</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynq</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynquplus{xazu(.*)-(sbva484|sfva625)-.*}</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynquplus{xck26-sfvc784-.*}</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynquplus{xczu(.*)-(sbva484|sbva625|sfva625)-(.*)-(.*)-(.*)}</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynquplus{xczu(.*)-(sbva484|sbva625|sfva625|ubva530)-(.*)-(.*)}</xilinx:family>
+        <xilinx:family xilinx:lifeCycle="Not-Supported">zynquplus{xqzu(.*)-(sfra484)-.*}</xilinx:family>
+      </xilinx:supportedFamilies>
+      <xilinx:taxonomies>
+        <xilinx:taxonomy>/Memories_&amp;_Storage_Elements/External_Memory_Interface</xilinx:taxonomy>
+      </xilinx:taxonomies>
+      <xilinx:displayName>QDRII+ SRAM (MIG)</xilinx:displayName>
+      <xilinx:autoFamilySupportLevel>level_2</xilinx:autoFamilySupportLevel>
+      <xilinx:supportsAutoSLRs>false</xilinx:supportsAutoSLRs>
+      <xilinx:coreRevision>19</xilinx:coreRevision>
+      <xilinx:upgrades>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:4.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:4.1</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:4.2</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:5.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:6.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:6.1</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:7.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:mig:7.1</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:qdriip:1.0</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:qdriip:1.1</xilinx:canUpgradeFrom>
+        <xilinx:canUpgradeFrom>xilinx.com:ip:qdriip:1.2</xilinx:canUpgradeFrom>
+      </xilinx:upgrades>
+      <xilinx:coreCreationDateTime>2022-09-07T05:50:19Z</xilinx:coreCreationDateTime>
+    </xilinx:coreExtensions>
+    <xilinx:packagingInfo>
+      <xilinx:xilinxVersion>2022.2</xilinx:xilinxVersion>
+      <xilinx:checksum xilinx:scope="busInterfaces" xilinx:value="a3684943"/>
+      <xilinx:checksum xilinx:scope="fileGroups" xilinx:value="13e471a0"/>
+      <xilinx:checksum xilinx:scope="ports" xilinx:value="7a7e47fc"/>
+      <xilinx:checksum xilinx:scope="hdlParameters" xilinx:value="a9881471"/>
+      <xilinx:checksum xilinx:scope="parameters" xilinx:value="493614ce"/>
+    </xilinx:packagingInfo>
+  </spirit:vendorExtensions>
+</spirit:component>

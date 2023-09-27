@@ -1,0 +1,25 @@
+<: setFileName example_design_post_process :>
+<: setFileExtension ".tcl" :>
+<: variable tcl_scope :>
+<: variable tcl_ipinst :>
+<: set tcl_scope xit :>
+<: set tcl_ipinst [current_inst] :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl :>
+
+## Post process the example design
+
+puts "Post processing the example_design"
+set_property top example_top [current_fileset]
+set_property top sim_tb_top [get_filesets sim_1]
+
+<: set memName [ getmodelparam C0.ControllerType ] :>
+<: if { [ string tolower [ getmodelparam Debug_Signal ] ] == "enable" } {:>
+create_ip -name ila -vendor xilinx.com -library ip -module_name ila_qdriip
+set_property -dict [ list CONFIG.C_NUM_OF_PROBES {11} CONFIG.C_PROBE2_WIDTH {36} CONFIG.C_PROBE3_WIDTH {36} CONFIG.C_PROBE4_WIDTH {36} CONFIG.C_PROBE5_WIDTH {36}  CONFIG.C_PROBE6_WIDTH {1} CONFIG.C_PROBE7_WIDTH {36} CONFIG.C_PROBE8_WIDTH {36} CONFIG.C_PROBE9_WIDTH {36} CONFIG.C_PROBE10_WIDTH {36} ] [get_ips ila_qdriip]
+generate_target all [get_ips ila_qdriip]
+<:}:>
+
+set bd_path [get_files *.bd]
+regexp -all {bd_.*\/(bd_.*).bd} $bd_path var var1
+set bd_name "./imports/$var1\_lmb_bram_I_0.mem"
+file copy -force ./imports/temp_mem.txt $bd_name 

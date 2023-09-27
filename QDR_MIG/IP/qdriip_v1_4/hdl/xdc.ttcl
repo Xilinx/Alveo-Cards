@@ -1,0 +1,54 @@
+<: setFileName "mig" :>
+<: setFileExtension ".xdc" :>
+<: variable tcl_scope :>
+<: variable tcl_ipinst :>
+<: set tcl_scope xit :>
+<: set tcl_ipinst [ current_inst ] :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl :>
+<: source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/utility.tcl :>
+<: source_ipfile xgui/mappy.tcl :>
+<: load librdi_iptasks[info sharedlibextension] :>
+
+
+
+<:variable pin2loc                                                                       :>
+<:array unset pin2loc									 :>
+<:array set pin2loc {} 									 :>
+<:											 :>
+<:proc check { prefix par bank byte pin } {						 :>
+<:    variable pin2loc									 :>
+<:    variable b2a									 :>
+<:    set port [ getuser $par ]								 :>
+<:    if { $port == "NONE" } { 								 :>
+<:	return										 :>
+<:    }											 :>
+<:    ## byte is vrp,vrn or number							 :>
+<:    if { $byte != "vrp"  && $byte != "vrn" } {					 :>
+<:	set byte byte$byte								 :>
+<:    }											 :>
+<:    set pin2loc($prefix$port) $b2a($bank,$byte.pin$pin)					 :>
+<:    											 :>
+<:}											 :>
+<:											 :>
+<:foreach c {  0 1 2 3 4 5 6 7 } {							 :>
+<:    set mx [ memx $c ]								 :>
+<:    if { $mx == "none" } continue;							 :>
+<:    set prefix c${c}_${mx}_								 :>
+<:    foreach b { 0 1 2 } {								 :>
+<:	set bank [ getuser c$c.loc.bank$b ]						 :>
+<:	if { $bank == "NONE" } {							 :>
+<:	    continue;									 :>
+<:	}										 :>
+<:	check $prefix c$c.loc.bank$b.vrp.pin0 $bank  vrp 0				 :>
+<:	check $prefix c$c.loc.bank$b.vrn.pin0 $bank  vrn 0				 :>
+<:	foreach t { 0 1 2 3 } {								 :>
+<:	    foreach p { 0 1 2 3 4 5 6 7 9 10 11 12 } {					 :>
+<:		check $prefix c$c.loc.bank$b.byte$t.pin$p $bank  $t $p		 :>
+<:	    }										 :>
+<:	}										 :>
+<:    }											 :>
+<:}											 :>
+<:											 :>
+<:foreach pin [ lsort [ array names pin2loc ] ] {					 :>
+set_property PACKAGE_PIN <:print $pin2loc($pin):>  [ get_ports {<:print $pin:>} ]
+<:}                                                                                      :>
