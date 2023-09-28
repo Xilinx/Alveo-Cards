@@ -1,3 +1,9 @@
+/*
+Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: MIT
+*/
+ 
+
 //	Copyright ? 2013.	GSI Technology
 //	apps@gsitechnology.com
 //  v 1.00  04/29/13    Jeff Daugherty  1) Created 

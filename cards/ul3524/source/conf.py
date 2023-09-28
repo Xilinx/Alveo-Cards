@@ -32,7 +32,7 @@ author = 'Advanced Micro Devices, Inc'
 version = 'UL3524'
 # The full version, including alpha/beta/rc tags
 release = 'UL3524'
-html_last_updated_fmt = 'September 20, 2023'
+html_last_updated_fmt = 'September 28, 2023'
 
 # -- General configuration ---------------------------------------------------
 

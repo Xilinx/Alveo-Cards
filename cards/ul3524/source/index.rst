@@ -8,7 +8,7 @@ UL3524 Design Support
    :caption: UL3524
    :hidden:
 
-   Home <https://pages.gitenterprise.xilinx.com/ACPI/Reference-Designs/>
+   Home <https://xilinx.github.io/Alveo-Cards/cards/ul3524.html>
    On GitHub <https://github.com/Xilinx/Alveo-Cards/tree/ul3524>
 
 
@@ -65,20 +65,9 @@ Each reference design is located in their respective sub-directory.
    * - :doc:`Renesas I2C Programming <./docs/Renesas_I2C_Programming/README>`
      - Program the Renesas devices via I2C using a state machine. Includes script to convert Renesas programming script file to ``.coe`` BRAM file format.
 
+   * - :doc:`./docs/FINN_Latency/README`
+     - Example design which shows how to use a FINN-generated MLP IP block on the ULL
 
-
-
-
-
-Reference Design Support
-=================================================
-
-The following links provide support to use the reference designs.
-
-* :doc:`Loading a reference design <./docs/Docs/loading_ref_proj>`
-* :doc:`Simulating a reference design <./docs/Docs/simulating_a_design>`
-* :doc:`Building a reference design <./docs/Docs/building_a_design>`
-* :doc:`Programming a reference design to the card <./docs/Docs/programming_the_device>`
 
 
 
@@ -93,6 +82,20 @@ The following links provide support to use the reference designs.
    QDR MIG <./docs/QDR_MIG/README>
    QSFP I2C <./docs/QSFP_I2C/README>
    Renesas I2C Programming <./docs/Renesas_I2C_Programming/README>
+   FINN_Latency <./docs/FINN_Latency/README>
+
+
+
+Reference Design Support
+=================================================
+
+The following links provide support to use the reference designs.
+
+* :doc:`Loading a reference design <./docs/Docs/loading_ref_proj>`
+* :doc:`Simulating a reference design <./docs/Docs/simulating_a_design>`
+* :doc:`Building a reference design <./docs/Docs/building_a_design>`
+* :doc:`Programming a reference design to the card <./docs/Docs/programming_the_device>`
+
 
 
 .. toctree::
@@ -169,4 +172,3 @@ For additional documentation, please refer to the `UL3524 product page <https://
 
 
 For support, contact your FAE or refer to support resources at `support.xilinx.com <https://support.xilinx.com>`__.
-

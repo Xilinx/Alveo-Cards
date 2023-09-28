@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>FINN Latency Measurement Design &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/cards/ul3524.html">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../README.html">FINN_Latency</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>FINN Latency Measurement Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../_sources/docs/FINN_Latency/Docs/design.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="finn-latency-measurement-design">
+<h1>FINN Latency Measurement Design<a class="headerlink" href="#finn-latency-measurement-design" title="Permalink to this heading">¶</a></h1>
+<p>This section provides a detailed overview of the RTL design used in conjunction with the benchmark environment to measure FINN MLP latency. This parameterization resulted in a 37 cycle latency. This is derived in the simulation analysis found here <a class="reference internal" href="simulation.html"><span class="doc">Simulation Analysis</span></a>.</p>
+<div class="section" id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h2>
+<p>The high-level block design diagram used to measure FINN latency is shown below.  It consists of the following key blocks:</p>
+<ul class="simple">
+<li><p>FINN MLP IP</p></li>
+<li><p>Stimulus Generator</p></li>
+<li><p>Internal Logic Analyzer</p></li>
+<li><p>Clock Manager</p></li>
+<li><p>Reset Synchronizer</p></li>
+</ul>
+<p><img alt="Block diagram of the FINN Latency Measurement Design" src="../../../_images/blockDiagramFINNLat.png" /></p>
+<p><strong>Figure 1:</strong> Block diagram of the FINNLatency Measurement Design</p>
+<p>An overview of the operation of the design:</p>
+<ul class="simple">
+<li><p>MMCM (clock Generator) synchronizes to the 300 MHz board clock</p></li>
+<li><p>MMCM generates a 320 MHz system clock</p></li>
+<li><p>MMCM asserts lock which is used as system reset</p>
+<ul>
+<li><p>LOCK is synchronized to the 320 MHz clock</p></li>
+<li><p>LOCK is active high</p></li>
+<li><p>Stimulus generator has an active high reset</p></li>
+<li><p>FINN MLP IP has an active low reset</p></li>
+</ul>
+</li>
+<li><p>The stimulus generator drives the FINN input AXI interface</p>
+<ul>
+<li><p>TVALID is driven from the block</p></li>
+<li><p>TDATA is asserted for 10 clocks</p></li>
+<li><p>FINN core requires 10 clocks of data at 60 bits per cycle</p></li>
+</ul>
+</li>
+</ul>
+<p>All functions are held in reset until LOCK asserts. LOCK is used as the synchronous reset. The stimulus is applied continuously in a loop to the FINN block which allows measurement in simulation and in hardware of the IP latency.</p>
+</div>
+<div class="section" id="finn-mlp-ip">
+<h2>FINN MLP IP<a class="headerlink" href="#finn-mlp-ip" title="Permalink to this heading">¶</a></h2>
+<p>The FINN MLP IP was generated using the FINN compiler.</p>
+<p>Details for FINN IP generation can be found <a class="reference internal" href="../IP/README.html"><span class="doc">HERE</span></a>.</p>
+</div>
+<div class="section" id="stimulus-generator">
+<h2>STIMULUS GENERATOR<a class="headerlink" href="#stimulus-generator" title="Permalink to this heading">¶</a></h2>
+<p>The stimulus generator creates the TVALID and TDATA signals for the FINN block. For this example design TREADY from FINN is left unconnected and the FINN core is not permitted to back pressure the stimulus generator.</p>
+<p>Stimulus Genertion occurs on a 128 cycle period.</p>
+<ul class="simple">
+<li><p>The data output for the first 20 clocks is 64 bits of 0. TVALID is deasserted.</p></li>
+<li><p>The data output for the next 10 clocks, cycle 21 to 30, is 64’hABCDABCDEFABCDEF which causes the FINN output to evaluate to ‘1’. TVALID is asserted</p></li>
+<li><p>The data output for the next 54 clock is 64 bits of 0 with TVALID deasserted.</p></li>
+<li><p>The data output for clocks 84 to 93 is 64’h0 with TVALID asserted.</p></li>
+<li><p>The data output for clocks 94 to 128 is 64’h0 with TVALID deasserted.</p></li>
+</ul>
+<p>The cycle repeats continuously. Simulation results of this behavior are found in this link. <a class="reference internal" href="simulation.html"><span class="doc">Simulation Documentation</span></a></p>
+</div>
+<div class="section" id="clock-manager">
+<h2>CLOCK MANAGER<a class="headerlink" href="#clock-manager" title="Permalink to this heading">¶</a></h2>
+<p>A clock manager IP block is generated to provide a reset and 320 MHz clock.</p>
+<p>The ULL platform provides a 300 MHz user clock on ports AW18(N)/AW19(P). This clock is conditioned to provide a 320 MHz clock. The design can run much faster but cannot run at the 644 MHz GTF clock rate. 320 MHz was chosen as approximately half the GTF clock. Implementations have been successfull at the 400 MHz clock rate.</p>
+<p><img alt="CLK CORE PARAMETERS" src="../../../_images/clk1.PNG" /></p>
+<p><img alt="CLK CORE PARAMETERS" src="../../../_images/clk2.PNG" /></p>
+</div>
+<div class="section" id="internal-logic-analyzer">
+<h2>INTERNAL LOGIC ANALYZER<a class="headerlink" href="#internal-logic-analyzer" title="Permalink to this heading">¶</a></h2>
+<p>The ILA core is built using the IP catalog. The depth of 4096 is arbitrary and could easily be reduced for the purposes of this investigation. The Stimulus Generator creates stimulus on a 128 bit cycle and there is start up time for the core so a minimum recommended depth would be 256 bits with 512 being a good compromise if space is limited.</p>
+<p><img alt="ILA CORE PARAMETERIZATION" src="../../../_images/ila1.PNG" /></p>
+<p>5 Ports are required to evaluate the FINN core in a hardware environment. The chosen platform is the UL3524. While there are 8 output bits captured only the LSB is valid. The FINN compiler creates an 8 bit port but for this design only the LSB is significant.</p>
+<ul class="simple">
+<li><p>Probe 0 is a 64 bit port that captures the TDATA input to the FINN MLP.</p></li>
+<li><p>Probe 1 is a 1 bit port that captures TVALID which qualifies the 64-bit input TDATA signal.</p></li>
+<li><p>Probe 2 is 1 bit port that captures the TREADY signal which is an input to the FINN core to provide back pressure to the FINN core. It is tied high as back pressure is not tested in this example.</p></li>
+<li><p>Probe 3 is an 8 bit port that captures the 8 bit FINN  output. Only the LSB is relevant.</p></li>
+<li><p>Probe 4 is a 1 bit port that captures TVALID sourced from the FINN core which qualifies the output result.</p></li>
+</ul>
+<p><img alt="ILA CORE PORTS" src="../../../_images/ila2.PNG" /></p>
+</div>
+<div class="section" id="reset-synchronizer">
+<h2>RESET SYNCHRONIZER<a class="headerlink" href="#reset-synchronizer" title="Permalink to this heading">¶</a></h2>
+<p>The system reset is derived from the LOCK signal which is generated in the 300 MHz domain. This system synchronizes the reset to the 320 MHz domain. This particular circuit is used in many other ULL reference designs and is parameterized to 3 stages in this implementation.</p>
+<p><img alt="RESET SYNCHRONIZER" src="../../../_images/synRst1.PNG" /></p>
+</div>
+<div class="section" id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 28, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
