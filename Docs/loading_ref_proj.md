@@ -9,20 +9,21 @@
 
 ## Overview
 
-Details how to load a reference design and create the Vivado project.
+Details how to create and load a Vivado reference design.
 
-## Instructions
-
-Use the `setup.tcl` script to load a specific reference design.
-
-The script will:
+Each reference design has a Tcl-script (`setup.tcl`) which allows the design to be recreated.  The script will:
 
 * Create the project
 * Add source RTL files to the project
-* Generate any IP needed
-* Generate any IPI block design needed
+* Generate IP (if applicable)
+* Generate IPI block design (if applicable)
 
-NOTE: Ensure you have read/write access to the folders.
+
+## Instructions
+
+Use the steps below to load and recreate a reference design.
+
+**NOTE:** Prior to running the script, ensure you have folder read/write access.
 
 1. Open Vivado (either GUI or Tcl mode)
    * If opening the GUI, enter CTRL+Shift+T to open the Tcl console window
@@ -32,13 +33,13 @@ NOTE: Ensure you have read/write access to the folders.
 cd ./<reference_design_name>/Vivado_Project/
 ```
 
-1. Run the following TCL script from within the Vivado TCL command line to create and load the design:
+3. Run the following Tcl script from within the Vivado Tcl command line to create and load the design:
 
 ```bash
 source ./setup.tcl
 ```
 
-1. A directory with all the project files will be created in:
+4. A directory with all the project files will be created in:
 
 ```bash
 ./<reference_design_name>/Vivado_Project/<project_name>

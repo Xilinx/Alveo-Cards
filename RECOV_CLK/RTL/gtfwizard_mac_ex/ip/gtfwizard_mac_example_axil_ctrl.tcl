@@ -1,3 +1,8 @@
+#
+# Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: MIT
+#
+
 
 ################################################################
 # This is a generated script based on design: gtfwizard_mac_example_axil_ctrl

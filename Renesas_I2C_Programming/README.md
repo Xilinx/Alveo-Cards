@@ -13,14 +13,6 @@ This reference design demonstrates how to program the Renesas devices via I2C in
 
 In addition to the design, an included PERL script can be used to convert Renesas programming file into a BRAM memory file (.coe), used by the design.
 
-**Additional Documentation**
-
-The following links provide additional documentation, including simulation and HW Manager support.
-
-* [Simulation](./Docs/simulation.md)<br>
-  * Describes the available simulation and description of waveforms
-* [HW Manager Support](./Docs/hw_manager_support.md)<br>
-  * Provides instructions to run the design in hardware and interact with the design through the HW Manager.
 
 ## Reference Design Hierarchy
 

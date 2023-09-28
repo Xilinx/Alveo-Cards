@@ -126,13 +126,13 @@ The GTF RAW instance was generated using the GTF wizard.  The GTF Transceiver co
 
 ## Additional Guidance
 
-# Reconfiguring QSFP Ports
+### Reconfiguring QSFP Ports
 
 The design uses two GTF ports using 4 channels.  The number of channels can be quickly changed by using the NUM_CHANNEL parameter in the top file 'RTL/clk_recov.v'
 The two GTFs are currently located in QSFP port 1 and 4 but can be moved if desired.  This user must consider changes in the XDC to reflect the GTF pinout, GTF resource (gtf channel and common) locations, and internal clock resource locations (such as BUFG_GT).
 Note: The reduction of GTF channels may result in critical warnings in the design build due to constraints for logic that has been removed and can be disregarded.
 
-# Data Integrity Checking
+### Data Integrity Checking
 
 The design also include logic to perform data comparisons on the data sent to and received from the MAC GTF.  The following figure provides a high level depiction of how this is accomplished.  
 
@@ -152,7 +152,7 @@ The following figure shows an example sequence of how data is collected from the
 
 NOTE: Included in the RTL is an example placement for an ILA to debug any detected errors.  Beware that adding an ILA to each channel will negatively affect timing closure, so use cautiously.
 
-# Frequency Measurements
+### Frequency Measurements
 
 The default configuration of the example design connects the 8 GTF SYNCE reference clocks to the frequency monitor logic as shown below.  The user can change the clk_samp_* ports to any fabric accessible clock in the design.  A sample function ('measure_frequency') in the HwMgr scripts can be used as a template to read and calculate the measurements.
 

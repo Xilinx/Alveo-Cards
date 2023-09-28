@@ -45,8 +45,6 @@ Note: the design should include an system VIO that shows link and reset status, 
 7.  Once loaded, type 'reset_design' to reset the design and stabilize the GTF link.
 8.  Type 'runme' in the TCL command line window.  By default, this will collect 100 samples and display the Tx/Rx sample times, the delta between the two, and the corrected latency in clock cycles.
 
-![construction](../docs/images/construction.png)
-
 ## Support
 For additional documentation, please refer to the [UL3524 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html) and the [UL3524 Lounge](https://www.xilinx.com/member/ull-ea.html).
 
