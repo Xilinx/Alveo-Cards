@@ -1,4 +1,4 @@
-﻿<table class="sphinxhide" width="100%">
+<table class="sphinxhide" width="100%">
  <tr width="100%">
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
@@ -52,11 +52,11 @@ Instructions to run the GTF latency measurement test are given below.
 
 Two output files are generated in the "Test_Output" folder once we run the run_tests.tcl. A csv file and a log file.They have the same contents but in a different format.
 
-An example of the generated output log from `run_tests.tcl` is shown below.  There will be **num_test** tests, with each test transferring **pkt_cnt** frames.  In the example output below, **num_test** is 10 and **pkt_cnt** is 250.  These and other parameters can be changed from their default values if needed. For more information regarding the test parameters, please refer [the scripts documentation](../Scripts/README.html#test-parameters).
+An example of the generated output log from `run_tests.tcl` is shown below.  There will be **num_test** tests, with each test transferring **pkt_cnt** frames.  In the example output below, **num_test** is 10 and **pkt_cnt** is 250.  These and other parameters can be changed from their default values if needed. For more information regarding the test parameters, please refer [the scripts documentation](../Scripts/README.md#test-parameters).
 
 Each line displays the minimum, average and maximum (min/avg/max) measured latency values for a given test along with the latency distributions in terms of clock cycles. The average latency value is the sum of all latency values for a test, divided by **pck_cnt**.  
 
-Variations in the measured latency values are expected and describe [here](../../../README.html#variations-on-measured-latency).
+Variations in the measured latency values are expected and describe [here](../../../README.md#variations-on-measured-latency).
 
 ```bash
 ============================

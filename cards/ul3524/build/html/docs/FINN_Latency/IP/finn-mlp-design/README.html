@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>FINN MLP Design &mdash; Ultra Low Latency Trading UL3524 documentation</title>
+      <link rel="stylesheet" href="../../../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
+        <script src="../../../../_static/jquery.js"></script>
+        <script src="../../../../_static/underscore.js"></script>
+        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../../../_static/doctools.js"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3524
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3524</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/cards/ul3524.html">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3524">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../GTF_Latency/README.html">GTF Latency Benchmark</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../RECOV_CLK/README.html">GTF Recovery Clock</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../PCIE_DDR/README.html">PCIE DDR</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QDR_MIG/README.html">QDR MIG</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../QSFP_I2C/README.html">QSFP I2C</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../README.html">FINN_Latency</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>FINN MLP Design</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../../../../_sources/docs/FINN_Latency/IP/finn-mlp-design/README.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><div class="section" id="finn-mlp-design">
+<h1>FINN MLP Design<a class="headerlink" href="#finn-mlp-design" title="Permalink to this heading">¶</a></h1>
+<p>The base for the FINN MLP design is taken directly from the opensource <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-MLP</a> example design.</p>
+<p>For the FINN Latency reference design, the <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-MLP</a> example is modified as detailed in <a class="reference external" href="#modifications">the following section</a>.</p>
+<p>This reference design is not intended to be a FINN tutorial.</p>
+<p>To learn about using the FINN compiler, quantisation and re-training with Brevitas, and generating customised FINN IP blocks, please refer to the official <a class="reference external" href="https://finn.readthedocs.io/">FINN Documentation</a>.</p>
+<div class="section" id="modifications">
+<h2>Modifications<a class="headerlink" href="#modifications" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="#targeting-a-specific-part">Targeting a specific part</a> describes how to generate FINN IP for the UL3524.</p></li>
+<li><p><a class="reference external" href="#improving-performance-through-folding">Improving performance through folding</a> adjusts the PE and SIMD parameters for each layer to achieve the desired latency based on available FPGA resources.</p></li>
+</ul>
+<div class="section" id="targeting-a-specific-part">
+<h3>Targeting a specific part<a class="headerlink" href="#targeting-a-specific-part" title="Permalink to this heading">¶</a></h3>
+<p>While FINN does provide support for various platforms, it can also target specific parts. In the case of targeting a specific part, a stitched IP is generated and can then be integrated into a larger Vivado project.</p>
+<p>To configure the target part, the <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/ul3524/FINN_Latency/IP/finn-mlp-design/build.py">design build script</a> needs to be modified. Specifically, change the value of <em>fpga_part</em>. In this example, the UL3524 part <em>xcvu2p-fsvj2104-3-e</em> is being targeted.</p>
+<p>For further information on FINN build configurations, see the <a class="reference external" href="https://finn.readthedocs.io/en/latest/source_code/finn.builder.html#finn.builder.build_dataflow_config.DataflowBuildConfig">FINN API</a>.</p>
+</div>
+<div class="section" id="improving-performance-through-folding">
+<h3>Improving performance through folding<a class="headerlink" href="#improving-performance-through-folding" title="Permalink to this heading">¶</a></h3>
+<p>One of the key features of FINN is the ability to fully unfold a network to improve performance and optimize a model to take full advantage of the available resources on the FPGA. This is achieved by adjusting the parallelization parameters (PE &amp; SIMD). See the <a class="reference external" href="https://github.com/Xilinx/finn/blob/dev/notebooks/advanced/3_folding.ipynb">FINN Tutorial on Folding</a> for a walkthrough of exactly how this works.</p>
+<p>The model generated by FINN looks like this:</p>
+<p><img alt="Stitched IP Onnx Model" src="../../../../_images/stitched_ip_model.png" /></p>
+<p>Each layer has been translated to a MatrixVectorActivation(MVAU) IP block. The input and output of each layer can also be identified which is necessary for folding.</p>
+<p>When folding, there are some rules which must be considered. In the case of MVAUs, the input and output sizes (MW and MH respectively), PE and SIMD are subject to the following constraints:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>MW % SIMD == 0
+MH % PE == 0
+</pre></div>
+</div>
+<p>Total folding for an MVAU is defined as:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>Total folding = (MH/PE) x (MW/SIMD)
+</pre></div>
+</div>
+<p>Ideally, the total folding for each layer would be 1 meaning each layer should only take 1 cycle to complete.</p>
+<p>E.g. for L1:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>MW = 600
+SIMD = 600
+MH = 64
+PE = 64
+
+Total folding = (64/64) x (600/600) = 1
+</pre></div>
+</div>
+<p>This is unfortunately not currently possible due to a HLS limitation found during the development of this example. See the <a class="reference external" href="#limitations">Limitations</a> section for further details.</p>
+<p>The final folding configurations for this example can be found <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/ul3524/FINN_Latency/IP/finn-mlp-design/folding_config.json">here</a>. These are the values used to generate the prebuilt example. They are pulled into the build in the build script at this <a class="reference external" href="./build.py#L24">line</a>. Either modify the json file directly or point to a new config if changing the parameter values.</p>
+<div class="section" id="limitations">
+<h4>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h4>
+<p>While building this example, a number of limitations where identified:</p>
+<ul class="simple">
+<li><p>There is a Vitis HLS bitwidth limit which prevents fully unfolding this model. The constraint is the following:</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SIMD*PE*Weight_width &lt; 8192
+</pre></div>
+</div>
+<p>To fully unfold this model, the first layer alone would need <em>SIMD=600</em> and <em>PE=64</em> which is far beyond this constraint. This is a known issue and will hopefully be resolved in the near future.</p>
+<ul class="simple">
+<li><p>FINN generates a number of reports based on estimated results. While these can be a useful indicator, they provided to be very unreliable/inaccurate during development. This is being investigated by the FINN team.</p></li>
+</ul>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on September 28, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="FINN_Latency_Top_TB_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="FINN_Latency_Top_TB" />
+            <top_module name="glbl" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,000.000 ns"></ZoomEndTime>
+      <Cursor1Time time="260.241 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="286"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="22" />
+   <wave_markers>
+      <marker label="" time="1000000" />
+      <marker label="" time="998122" />
+      <marker label="" time="996244" />
+      <marker label="" time="693055" />
+   </wave_markers>
+   <wvobject fp_name="divider122" type="divider">
+      <obj_property name="label">EXTERNAL CLOCK (300 MHz)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/clk">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/clkn">
+      <obj_property name="ElementShortName">clkn</obj_property>
+      <obj_property name="ObjectShortName">clkn</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider123" type="divider">
+      <obj_property name="label">CLOCK MANAGER OUTPUT (320 MHz)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider168" type="divider">
+      <obj_property name="label">(derived from 300 MHz board clock)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/sys_clk">
+      <obj_property name="ElementShortName">sys_clk</obj_property>
+      <obj_property name="ObjectShortName">sys_clk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/locked">
+      <obj_property name="ElementShortName">locked</obj_property>
+      <obj_property name="ObjectShortName">locked</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider124" type="divider">
+      <obj_property name="label">RESET DERIVED FROM MMCM LOCK SIGNAL</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider125" type="divider">
+      <obj_property name="label">(synchronized)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/sys_rst">
+      <obj_property name="ElementShortName">sys_rst</obj_property>
+      <obj_property name="ObjectShortName">sys_rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider87" type="divider">
+      <obj_property name="label">FINN CORE OUTPUT PORT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/m_axis_0_tvalid_r1">
+      <obj_property name="ElementShortName">m_axis_0_tvalid_r1</obj_property>
+      <obj_property name="ObjectShortName">m_axis_0_tvalid_r1</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/m_axis_0_tdata_r1">
+      <obj_property name="ElementShortName">m_axis_0_tdata_r1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_0_tdata_r1[7:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider88" type="divider">
+      <obj_property name="label">FINN CORE STIMULUS INPUT</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/tvalid_out">
+      <obj_property name="ElementShortName">tvalid_out</obj_property>
+      <obj_property name="ObjectShortName">tvalid_out</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/stimulus_out">
+      <obj_property name="ElementShortName">stimulus_out[63:0]</obj_property>
+      <obj_property name="ObjectShortName">stimulus_out[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="divider121" type="divider">
+      <obj_property name="label">ILA CAPTURE</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/tready_from_finn">
+      <obj_property name="ElementShortName">tready_from_finn</obj_property>
+      <obj_property name="ObjectShortName">tready_from_finn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/m_axis_0_tvalid">
+      <obj_property name="ElementShortName">m_axis_0_tvalid</obj_property>
+      <obj_property name="ObjectShortName">m_axis_0_tvalid</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/m_axis_0_tdata">
+      <obj_property name="ElementShortName">m_axis_0_tdata[7:0]</obj_property>
+      <obj_property name="ObjectShortName">m_axis_0_tdata[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/tvalid_out_reg">
+      <obj_property name="ElementShortName">tvalid_out_reg</obj_property>
+      <obj_property name="ObjectShortName">tvalid_out_reg</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/FINN_Latency_Top_TB/i_FINN_Latency_Top/stimulus_out_reg">
+      <obj_property name="ElementShortName">stimulus_out_reg[63:0]</obj_property>
+      <obj_property name="ObjectShortName">stimulus_out_reg[63:0]</obj_property>
+   </wvobject>
+</wave_config>
