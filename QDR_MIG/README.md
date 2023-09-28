@@ -43,7 +43,7 @@ The block diagram of the design hierarchy is given below. The subsequent table p
 
 ## QDRII+ MIG Configuration
 
-Prior to creating a design with QDR-II+, you must add the GSI QDRII+ MIG IP to your Vivado library before use found [here](./IP/qdriip_v1_4). To add to your library, follow the steps outline in *Vivado Design Suite User Guide: Creating and Packaging Custom IP ([UG1118](https://docs.xilinx.com/r/en-US/ug1118-vivado-creating-packaging-custom-ip/Creating-and-Packaging-Custom-IP))*.
+Prior to creating a design with QDR-II+, you must add the GSI QDRII+ MIG IP to your Vivado library before use found in the *qdriip_v1_4* directory [here](./IP/README.md). To add to your library, follow the steps outline in *Vivado Design Suite User Guide: Creating and Packaging Custom IP ([UG1118](https://docs.xilinx.com/r/en-US/ug1118-vivado-creating-packaging-custom-ip/Creating-and-Packaging-Custom-IP))*.
 
 Since the MIG only supports a single QDR instance, two MIG controllers must be instantiated to connect to both external interfaces on the card.
 

@@ -8,10 +8,10 @@
 # Scripts Folder 
 
 ## HwMgr
-[This folder](./HwMgr) contains the hardware manager Tcl scripts to exercise the example design.
+[This folder](./HwMgr/README.md) contains the hardware manager Tcl scripts to exercise the example design.
 
 ## RenesasScript
-[This folder](./RenesasScript) contains scripts to convert Renesas programming scripts into BRAM formatted COE files.  The COE file contents will be transferred to the the Renesas jitter cleaner using an I2C controller.
+[This folder](./RenesasScript/README.md) contains scripts to convert Renesas programming scripts into BRAM formatted COE files.  The COE file contents will be transferred to the the Renesas jitter cleaner using an I2C controller.
 
 ## Support
 For additional documentation, please refer to the [UL3524 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html) and the [UL3524 Lounge](https://www.xilinx.com/member/ull-ea.html).

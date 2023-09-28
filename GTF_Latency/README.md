@@ -28,8 +28,8 @@ The base latency values represent the minimum latency values measured in hardwar
 
 The following 10G GTF Latency benchmark designs are available.
 
-* [GTF 10G RAW Mode Latency Synchronized](./Synchronized/GTFRAW_Latency_10G_Sync)
-* [GTF 10G MAC Mode Latency Synchronized](./Synchronized/GTFMAC_Latency_10G_Sync)
+* [GTF 10G RAW Mode Latency Synchronized](./Synchronized/GTFRAW_Latency_10G_Sync/README.md)
+* [GTF 10G MAC Mode Latency Synchronized](./Synchronized/GTFMAC_Latency_10G_Sync/README.md)
 
 In both the RAW and MAC benchmark designs, the GTF TXUSRCLK and RXUSRCLK clocks operate at the same frequency, but 180 degrees out of phase.
 

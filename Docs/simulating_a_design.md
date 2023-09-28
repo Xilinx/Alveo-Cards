@@ -16,7 +16,8 @@ Details how to simulate a reference design using the provided waveform **.wcfg**
 Use the following steps to simulate the reference design:
 
 1. Start Vivado and load the project (see [Loading a Reference Design](./loading_ref_proj.md))
-2. Select *Simulation->Run Simulation* from within Vivado.  All reference designs come with a simulation waveform file.<br>
+2. Select *Simulation->Run Simulation* from within Vivado.  
+
 This will:
  * Start the Vivado simulator,
  * Load the waveform **.wcfg** file and
@@ -25,6 +26,8 @@ This will:
 4. The simulation will run until completed.
 
 Update the desired signals in the waveform and rerun as necessary.
+
+**Note:** All reference designs come with a simulation waveform **.wcfg** file.
 
 ## Next Steps
 

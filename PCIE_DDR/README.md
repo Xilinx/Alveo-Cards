@@ -60,7 +60,8 @@ The DDR4 memory subsystem power (2V5_Vpp) is disabled upon power up and requires
 
 The following figure shows the I2C bus connected to various devices on the card. The DDR4 I/O expander and subsequent DDR4 enable signal (EN_2V5_vpp) are shown at the top of the figure.
 
-![Example DDR4 power control design](./Docs/Images/./Docs/Images/ddr4_power_i2c.png)
+![Example DDR4 power control design](./Docs/Images/ddr4_power_i2c.png)
+
 **Figure:** DDR4 Power Enable Communication Routing 
 
 ### DDR4 I/O expander must be taken out of reset
@@ -107,24 +108,25 @@ Descriptions of the functions within `memetest.c` is given below.
 
 When instantiating a DDR4 memory controller using the Vivado tools, it is recommended to use the parameters outlined in the following table.
 
-| Parameter        | Value                           |
+| Parameter        | Value                           			|
 |------------------|------------------------------------|
-| Controller/PHY Mode ^   | Ctrl and PHY layer |
-| Memory Dev. Interface Speed | 833 ps ^^    |
-| Reference Input Clock   | 300 MHz    |
-| Memory Type/Config   | Components   |
-| Memory Part     | MT40A2G8VA-062E  |
-| Slot       | Single    |
-| IO Voltage     | 1.2V     |
-| Burst Length     | 8      |
-| CAS Latency     | 17     |
-| CAS Wr Latency    | 12     |
-| Data Width     | 72     |
+| Controller/PHY Mode [1]   			| Ctrl and PHY layer	|
+| Memory Dev. Interface Speed 			| 833 ps [2]			|
+| Reference Input Clock   				| 300 MHz				|
+| Memory Type/Config   					| Components			|
+| Memory Part     						| MT40A2G8VA-062E		|
+| Slot       							| Single				|
+| IO Voltage     						| 1.2V					|
+| Burst Length							| 8						|
+| CAS Latency     						| 17					|
+| CAS Wr Latency						| 12					|
+| Data Width							| 72					|
 
-```bash
-^  AXI4 interface will be enabled automatically. It can be disabled.
-^^ 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1
-```
+*[1]  AXI4 interface will be enabled automatically. It can be disabled.*
+
+*[2] 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1*
+
+
 
 **Table 2.** DDR4 Memory Controller IP Parameter Settings
 

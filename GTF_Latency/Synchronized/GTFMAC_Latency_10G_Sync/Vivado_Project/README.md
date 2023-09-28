@@ -8,4 +8,4 @@
 # Vivado Project
 This folder contains scripts for recreating reference design Vivado projects and for configuring the HW Manager elements (e.g., ILA, VIO, etc.). 
 
-To load and create this reference design using the provided *setup.tcl* script, see [Loading a Reference Design Vivado Project](../../Docs/loading_ref_proj.md).
+To load and create this reference design using the provided *setup.tcl* script, see [Loading a Reference Design Vivado Project](../../../../Docs/loading_ref_proj.md).

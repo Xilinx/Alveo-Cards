@@ -5,11 +5,11 @@
  </tr>
 </table>
 
-# GTF RAW Synchronized Latency Measurement Design
+# GTF RAW Synchronized Latency Benchmark Design
 
 ## Description
 
-This reference design provides a GTF 10G latency benchmark environment used to measure and report GTF latency (TX → RX) operating in RAW mode.  The benchmark design demonstrates minimum latency and is not intended for a user design.  A [Scripts directory](.Scripts/README.md) contains scripts to run benchmark design in Vivado H/W Manager to reproduce reported latencies.
+This reference design provides a GTF 10G latency benchmark environment used to measure and report GTF latency (TX → RX) operating in RAW mode.  The benchmark design demonstrates minimum latency and is not intended for a user design.  A [Scripts directory](./Scripts/README.md) contains scripts to run benchmark design in Vivado H/W Manager to reproduce reported latencies.
 
 The design and measurements are based on the following assumptions:
 
@@ -90,7 +90,6 @@ The Rx Monitor outputs the PRBS lock status to the link status logic and latency
 ## Latency Monitor
 
 The latency monitor captures the event markers from the error injection logic (Tx) and Rx monitor.  These events are used to sample timestamps that represent when a data pattern is latched into the GTF TxRawData port and when it’s detected back in the Rx Monitor.  
-(need more here!!!!)
 
 ## System Clock/Reset
 
