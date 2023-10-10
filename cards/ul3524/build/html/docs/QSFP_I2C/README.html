@@ -629,14 +629,42 @@ three modules.</p>
 </table><p>By default, the I/O expanders are configured for input only, so the LPMODE, MODSELL and RESETL signals will not be driven until initialized.</p>
 <p>The following table illustrates how QSFP1 can be initialized.  Similar steps must be taken to initialized the other expanders.</p>
 <p>*<strong>Table:</strong> Example Configuring QSFP1 I/O Expander</p>
-<p>|Function							|Sequence    				|Description											|
-|—								|—						|—													|
-|Disable PCA9545A (0xE0)			| 0x42, 0xE0, 0x00   		|Gates I2C communication to QSFP0 and QSFP1 expanders	|
-|Disable PCA9545A (0xE4)			| 0x42, 0xE4, 0x00			|Gates I2C communication to QSFP2 and QSFP3 expanders	|
-|Enable Port 2 of PCA9545A (0xE0)	| 0x42, 0xE0, 0x04			|Enables I2C routing to QSFP							|
-|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x01, 0x10			|Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)		|
-|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x03, 0xE6			|Configures output enables for pins 0,3,4				|</p>
-</div>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function</th>
+<th>Sequence</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disable PCA9545A (0xE0)</td>
+<td>0x42, 0xE0, 0x00</td>
+<td>Gates I2C communication to QSFP0 and QSFP1 expanders</td>
+</tr>
+<tr>
+<td>Disable PCA9545A (0xE4)</td>
+<td>0x42, 0xE4, 0x00</td>
+<td>Gates I2C communication to QSFP2 and QSFP3 expanders</td>
+</tr>
+<tr>
+<td>Enable Port 2 of PCA9545A (0xE0)</td>
+<td>0x42, 0xE0, 0x04</td>
+<td>Enables I2C routing to QSFP</td>
+</tr>
+<tr>
+<td>Program QSFP1 TCA6008A (0x40)</td>
+<td>0x40, 0x01, 0x10</td>
+<td>Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)</td>
+</tr>
+<tr>
+<td>Program QSFP1 TCA6008A (0x40)</td>
+<td>0x40, 0x03, 0xE6</td>
+<td>Configures output enables for pins 0,3,4</td>
+</tr>
+</tbody>
+</table></div>
 <div class="section" id="detailed-example-of-programming-steps">
 <h3>Detailed Example of Programming Steps<a class="headerlink" href="#detailed-example-of-programming-steps" title="Permalink to this heading">¶</a></h3>
 <p>The following table steps provide a complete example for enabling the power domains and configuration for QSPF-DD1. Once power is enabled, the same procedure can be modified to access the other three modules.</p>
