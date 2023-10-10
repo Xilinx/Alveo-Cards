@@ -1,4 +1,4 @@
-<table class="sphinxhide" width="100%">
+﻿<table class="sphinxhide" width="100%">
  <tr width="100%">
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
@@ -42,7 +42,7 @@ The four included ILAs, described in the table below, provide a way to observe a
 ## Memory Test
 
 In addition to the ILA, the DDR memory can be tested via a `memtest.c` program.
-The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP and performs a memory test using 32-bit PRBS data. More detail on `memtest.c` can be found in [PCIe DDR Reference Design: Overview](./design.md#memtest-function-descriptions).
+The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP and performs a memory test using 32-bit PRBS data. More detail on `memtest.c` can be found in [PCIe DDR Reference Design: Overview](./design.html#memtest-function-descriptions).
 
 ### Running the Memory Test
 
