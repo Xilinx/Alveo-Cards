@@ -216,14 +216,13 @@ The following table illustrates how QSFP1 can be initialized.  Similar steps mus
 
 ***Table:** Example Configuring QSFP1 I/O Expander
 
-|Function							|Sequence    				|Description											|
-|---								|---						|---													|
-|Disable PCA9545A (0xE0)			| 0x42, 0xE0, 0x00   		|Gates I2C communication to QSFP0 and QSFP1 expanders	|
-|Disable PCA9545A (0xE4)			| 0x42, 0xE4, 0x00			|Gates I2C communication to QSFP2 and QSFP3 expanders	|
-|Enable Port 2 of PCA9545A (0xE0)	| 0x42, 0xE0, 0x04			|Enables I2C routing to QSFP							|
-|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x01, 0x10			|Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)		|
-|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x03, 0xE6			|Configures output enables for pins 0,3,4				|
-
+| Function                         | Sequence         | Description                                          |
+|----------------------------------|------------------|------------------------------------------------------|
+| Disable PCA9545A (0xE0)          | 0x42, 0xE0, 0x00 | Gates I2C communication to QSFP0 and QSFP1 expanders |
+| Disable PCA9545A (0xE4)          | 0x42, 0xE4, 0x00 | Gates I2C communication to QSFP2 and QSFP3 expanders |
+| Enable Port 2 of PCA9545A (0xE0) | 0x42, 0xE0, 0x04 | Enables I2C routing to QSFP                          |
+| Program QSFP1 TCA6008A (0x40)    | 0x40, 0x01, 0x10 | Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)      |
+| Program QSFP1 TCA6008A (0x40)    | 0x40, 0x03, 0xE6 | Configures output enables for pins 0,3,4             |
 
 ### Detailed Example of Programming Steps
 
