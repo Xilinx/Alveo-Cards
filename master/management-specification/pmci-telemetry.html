@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>PMCI Support &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PLDM Telemetry" href="pldm-t2-telemetry.html" />
+    <link rel="prev" title="Alveo™ FRU Support" href="alveo-fru.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Satellite Controller
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PMCI Support</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mctp-control-messages">MCTP control messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pldm-telemetry-commands">PLDM Telemetry Commands</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sample-pldm-transaction">Sample PLDM Transaction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pldm-request">PLDM Request</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pldm-response">PLDM Response</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Satellite Controller</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PMCI Support</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pmci-telemetry.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="pmci-support">
+<h1>PMCI Support<a class="headerlink" href="#pmci-support" title="Permalink to this headline">¶</a></h1>
+<p>Alveo™ products supports PLDM over MCTP over SMBus at slave address 0x18 (0x30 in 8-bit). The latest sensor information is stored locally in SC FW and is reported to server BMC via PLDM Type-2 commands. Sensor information is reported to the BMC via the platform descriptor record (PDR).</p>
+<p><strong>PLDM Over MCTP Over SMBus Protocol</strong></p>
+<p>SC firmware supports the SMBus discovery via the default SMBus 2.0 at I2C slave address 0x61 (0xC2 in 8-bit) and the MCTP/PLDM protocol at I2C slave address 0x18 (0x30 in 8-bit). Alveo OoB implementation adheres to the following DMTF specifications:</p>
+<ol class="arabic simple">
+<li><em>MCTP Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0236">[DSP0236]</a>)</li>
+<li><em>MCTP SMBus Binding Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0237">[DSP0237]</a>)</li>
+<li><em>PLDM Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0240">[DSP0240]</a>)</li>
+<li><em>PLDM for Platform Monitoring and Control Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0248">[DSP0248]</a>)</li>
+</ol>
+<p><strong>Default SMBus 2.0 commands</strong></p>
+<p>For the purposes of SMBus address discovery (at default SMBus address 0xC2 (8-bit)), Alveo™ cards are ‘Fixed and Non-Discoverable Device’. Only Get UDID (general) and Get UDID (directed) commands are supported.</p>
+<div class="section" id="mctp-control-messages">
+<h2>MCTP control messages<a class="headerlink" href="#mctp-control-messages" title="Permalink to this headline">¶</a></h2>
+<p>The following MCTP control commands are supported in the SC:</p>
+<p><strong>Table: Supported MCTP control commands and description</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="23%" />
+<col width="7%" />
+<col width="70%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
+<th class="head"><strong>ID</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>Set Endpoint ID</td>
+<td>0x01</td>
+<td>Assigns an EID to the endpoint at the given physical address</td>
+</tr>
+<tr class="row-odd"><td>Get Endpoint ID</td>
+<td>0x02</td>
+<td>Returns the EID presently assigned to an endpoint</td>
+</tr>
+<tr class="row-even"><td>Get Endpoint UUID</td>
+<td>0x03</td>
+<td>Retrieves a per-device unique UUID associated with the endpoint</td>
+</tr>
+<tr class="row-odd"><td>Get MCTP Version Support</td>
+<td>0x04</td>
+<td>Lists which versions of the MCTP control protocol are supported on an endpoint</td>
+</tr>
+<tr class="row-even"><td>Get Message Type Support</td>
+<td>0x05</td>
+<td>Lists the message types that an endpoint supports</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="pldm-telemetry-commands">
+<h2>PLDM Telemetry Commands<a class="headerlink" href="#pldm-telemetry-commands" title="Permalink to this headline">¶</a></h2>
+<p>The following PLDM Type-0 (Control &amp; Discovery) commands are supported in the SC:</p>
+<p><strong>Table: Supported PLDM Type-0 commands and description</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="15%" />
+<col width="7%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
+<th class="head"><strong>ID</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SetTID</td>
+<td>0x01</td>
+<td>Sets the terminus ID (TID) for a PLDM terminus</td>
+</tr>
+<tr class="row-odd"><td>GetTID</td>
+<td>0x02</td>
+<td>Returns the present TID setting for a PLDM terminus</td>
+</tr>
+<tr class="row-even"><td>GetPLDMVersion</td>
+<td>0x03</td>
+<td>Returns versions for PLDM base &amp; type specification</td>
+</tr>
+<tr class="row-odd"><td>GetPLDMTypes</td>
+<td>0x04</td>
+<td>Returns PLDM type capabilities and list of the supported PLDM types</td>
+</tr>
+<tr class="row-even"><td>GetPLDMCommands</td>
+<td>0x05</td>
+<td>Returns PLDM command capabilities supported for a specific PLDM type and version</td>
+</tr>
+</tbody>
+</table>
+<p>The following PLDM Type-2 (Numeric, Effecter &amp; PDR) commands are supported in the SC:</p>
+<p><strong>Table: Supported PLDM Type-2 commands and description</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="7%" />
+<col width="71%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command</strong></th>
+<th class="head"><strong>ID</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>SetNumericSensorEnable</td>
+<td>0x10</td>
+<td>Command to set the operational state of the sensor</td>
+</tr>
+<tr class="row-odd"><td>GetSensorReading</td>
+<td>0x11</td>
+<td>Returns present reading and threshold event state values from a numeric sensor</td>
+</tr>
+<tr class="row-even"><td>GetSensorThresholds</td>
+<td>0x12</td>
+<td>Returns the present threshold settings for a PLDM numeric sensor</td>
+</tr>
+<tr class="row-odd"><td>SetNumericEffecterEnable</td>
+<td>0x30</td>
+<td>Command is used to enable or disable Effecter operation</td>
+</tr>
+<tr class="row-even"><td>SetNumericEffecterValue</td>
+<td>0x31</td>
+<td>Command is used to set the value for a PLDM Numeric Effecter</td>
+</tr>
+<tr class="row-odd"><td>GetNumericEffecterValue</td>
+<td>0x32</td>
+<td>Command is used to return the present numeric setting of a PLDM Numeric Effecter</td>
+</tr>
+<tr class="row-even"><td>GetPDRRepositoryInfo</td>
+<td>0x50</td>
+<td>Returns size &amp; number of records in PDR and time stamps on last PRD update</td>
+</tr>
+<tr class="row-odd"><td>GetPDR</td>
+<td>0x51</td>
+<td>Returns individual PDRs from a PDR repository</td>
+</tr>
+<tr class="row-even"><td>GetPDRRepoSignature</td>
+<td>0x53</td>
+<td>Returns a signature that changes when the PDR repo has been changed</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="sample-pldm-transaction">
+<h2>Sample PLDM Transaction<a class="headerlink" href="#sample-pldm-transaction" title="Permalink to this headline">¶</a></h2>
+<p>This section examines a sample PLDM request and response message. For this example, the BMC on the server has a I2C address of 0x20 and the SC has an I2C address of 0xCE.</p>
+</div>
+<div class="section" id="pldm-request">
+<h2>PLDM Request<a class="headerlink" href="#pldm-request" title="Permalink to this headline">¶</a></h2>
+<p>The PLDM request originates from the server BMC and SC FW receives this request via I2C interface at address 0xCE. The MCTP packet encapsulation and the different fields are explained in the <em>MCTP SMBus/I2C Transport Binding Specification</em></p>
+<blockquote>
+<div><em>Figure:</em> <strong>PLDM Request</strong></div></blockquote>
+<img alt="_images/BMC-request.png" class="align-center" src="_images/BMC-request.png" />
+<p>A request sent from the BMC to the SC will resemble the following table.</p>
+<img alt="_images/SC-request.png" class="align-center" src="_images/SC-request.png" />
+<p>The blue section is the PLDM message that can be decoded, as explained in the <em>PLDM Base Specification</em></p>
+<p><strong>Table: PLDM Message Payload</strong></p>
+<img alt="_images/payload.png" class="align-center" src="_images/payload.png" />
+<p><strong>*Note*:</strong> The PLDM completion code is present only in PDM response
+messages.</p>
+<p>The blue section in the previous message decoded using the PLDM message scheme resembles the following figure.</p>
+<p><strong>Table: PLDM Message Scheme</strong></p>
+<img alt="_images/message-scheme.png" class="align-center" src="_images/message-scheme.png" />
+<p>Hdr and PLDM completion code field only applies to PLDM responses,
+not PLDM requests. PLDM Command code 0x11 corresponds to the
+GetSensorReading and the payload can now be decoded, as detailed in
+the following table.</p>
+<p><strong>Table: PLDM Completion Codes</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="34%" />
+<col width="46%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Request Data</strong></th>
+<th class="head"><strong>Value In Our Examples</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>uint16</td>
+<td>Sensor ID</td>
+<td>0x0001</td>
+</tr>
+<tr class="row-odd"><td>bool8</td>
+<td>rearmEventState</td>
+<td>0x00</td>
+</tr>
+</tbody>
+</table>
+<p>Now the SC knows that the server BMC is requesting a sensor reading
+with sensor ID 0x01.</p>
+</div>
+<div class="section" id="pldm-response">
+<h2>PLDM Response<a class="headerlink" href="#pldm-response" title="Permalink to this headline">¶</a></h2>
+<p>The SC frames the response to each valid PLDM request in the background and
+sends the response in SMBus master mode. This section provides a detailed explanation
+of how the SC PLDM packets. Additionally, the details about how MCTP packets are within each
+PLDM packet gets built is also provided.</p>
+<p>The following table details the response for GetSensorReading.</p>
+<p><strong>Table: GetSensorReading Response</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="19%" />
+<col width="40%" />
+<col width="41%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Type</strong></th>
+<th class="head"><strong>Request Data</strong></th>
+<th class="head"><strong>Value In Our Examples</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>enum8</td>
+<td>completionCode</td>
+<td>0x00</td>
+</tr>
+<tr class="row-odd"><td>enum8</td>
+<td>sensorDataSize</td>
+<td>0x02</td>
+</tr>
+<tr class="row-even"><td>enum8</td>
+<td>sensorOperationalState</td>
+<td>0x00</td>
+</tr>
+<tr class="row-odd"><td>enum8</td>
+<td>sensoreventMessageEnable</td>
+<td>0x00</td>
+</tr>
+<tr class="row-even"><td>enum8</td>
+<td>presentState</td>
+<td>0x01</td>
+</tr>
+<tr class="row-odd"><td>enum8</td>
+<td>previousState</td>
+<td>0x00</td>
+</tr>
+<tr class="row-even"><td>enum8</td>
+<td>eventState</td>
+<td>0x01</td>
+</tr>
+<tr class="row-odd"><td>uint16</td>
+<td>presentReading</td>
+<td>0x002A</td>
+</tr>
+</tbody>
+</table>
+<p>The response that gets plugged into the PLDM message scheme resembles the following table.</p>
+<img alt="_images/response.png" class="align-center" src="_images/response.png" />
+<p>The PLDM message encapsulated inside MCTP response resembles the following table.</p>
+<p><strong>Table: PDLM Message in MCTP Response</strong></p>
+<p>The server BMC decodes the MCTP response it receives to obtain the sensor readings.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
+<p><strong>License</strong></p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
+<p>You may obtain a copy of the CC-BY-4.0 License at
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="alveo-fru.html" class="btn btn-neutral float-left" title="Alveo™ FRU Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pldm-t2-telemetry.html" class="btn btn-neutral float-right" title="PLDM Telemetry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on March 30, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

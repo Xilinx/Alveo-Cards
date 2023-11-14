@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>SPDM Attestation &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Alveo I2C Telemetry" href="alveo-I2C-telemetry.html" />
+    <link rel="prev" title="PLDM IFWI Update" href="pldm-t5-update.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Satellite Controller
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SPDM Attestation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#spdm-over-smbus">SPDM Over SMBus</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#cerberus-compliance">Cerberus Compliance</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Satellite Controller</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>SPDM Attestation</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/spdm-attestation.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="spdm-attestation">
+<h1>SPDM Attestation<a class="headerlink" href="#spdm-attestation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="spdm-over-smbus">
+<h2>SPDM Over SMBus<a class="headerlink" href="#spdm-over-smbus" title="Permalink to this headline">¶</a></h2>
+<p>Alveo™ supports SPDM Over MCTP Over SMBus at slave address 0x30 (8-bit). MA35D SC supports the SPDM discovery and attestation via SPDM over MCTP over SMBus.</p>
+<ol class="arabic simple">
+<li><em>SPDM Spec v1.1</em> (<a class="reference external" href="https://www.dmtf.org/sites/default/files/standards/documents/DSP0274_1.1.0.pdf">[DSP0274]</a>)</li>
+<li><em>SPDM over MCTP Binding Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0275">[DSP0275]</a>)</li>
+</ol>
+<p>For the SPDM discovery, the following commands are supported by SC (SPDM responder):</p>
+<ol class="arabic simple">
+<li>GET_VERSION</li>
+<li>GET_CAPABILITIES</li>
+<li>NEGOTIATE_ALGORITHMS</li>
+</ol>
+<p>For the run-time attestation, the following commands are supported by SC (SPDM responder):</p>
+<ol class="arabic simple">
+<li>GET_MEASUREMENTS</li>
+<li>RESPOND_IF_READY</li>
+</ol>
+<p><strong>Table: Supported SPDM commands and description</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="14%" />
+<col width="18%" />
+<col width="68%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
+<th class="head"><strong>Command</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>0x84</td>
+<td>GET_VERSION</td>
+<td>Command to retrieve the SPDM version of the endpoint</td>
+</tr>
+<tr class="row-odd"><td>0xE1</td>
+<td>GET_CAPABILITIES</td>
+<td>Command to retrieve the SPDM capabilities of the endpoint</td>
+</tr>
+<tr class="row-even"><td>0xE3</td>
+<td>NEGOTIATE_ALGORITHMS</td>
+<td>Command to negotiate cryptographic algorithms</td>
+</tr>
+<tr class="row-odd"><td>0xE0</td>
+<td>GET_MEASUREMENTS</td>
+<td>Command to retrieve firmware measurements in the form of measurements blocks</td>
+</tr>
+<tr class="row-even"><td>0xFF</td>
+<td>RESPOND_IF_READY</td>
+<td>Get the response to the original request upon receipt of ResponseNotReady error code</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> SC does not support measurement of all blocks queried at once. When Cerberus/BMC sends GET_MEASUREMENTS command with MeasOperation = 0xFF, SC responds with error response packet with Error Code = 0x01 (Invalid Request).</p>
+<p><strong>Capabilities</strong></p>
+<p>SC supports the following capabilities:</p>
+<ol class="arabic simple">
+<li>CACHE_CAP - 1b</li>
+<li>MEAS_CAP - 01b</li>
+</ol>
+<p><strong>Algorithms</strong></p>
+<ol class="arabic simple">
+<li>SC imports Mbed TLS v3.4.0 as a library to handle cryptographic hash operations.</li>
+<li>For hashing/measurements, SC firmware advertises SHA_384 as MeasurementHashAlgo and BaseHashSel in ALGORITHMS response.</li>
+<li>For SPDM measurement digest, SC uses SHA3_384 to calculate the hash.</li>
+</ol>
+<p><strong>Firmware Measurements</strong></p>
+<p>In MA35D, there are 10 firmware components that are measurable, including the firmware images stored in both the flash partitions (Active &amp; Backup).</p>
+<ol class="arabic simple">
+<li>Satellite Controller (SC) firmware - A &amp; B</li>
+<li>ASIC1: eSecure firmware - A &amp; B</li>
+<li>ASIC1: ZSPNano firmware - A &amp; B</li>
+<li>ASIC2: eSecure firmware - A &amp; B</li>
+<li>ASIC2: ZSPNano firmware - A &amp; B</li>
+</ol>
+<p><strong>NOTE:</strong> Signature and Challenge are not supported.</p>
+<p><strong>Timing specification for SPDM messages</strong></p>
+<p><strong>Table: SPDM timing spec</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="16%" />
+<col width="67%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Timing Parameter</strong></th>
+<th class="head"><strong>Value</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>RTT</td>
+<td>Requestor specific</td>
+<td>Set by BMC; Max time for SPDM round trip message at transport layer SMBus</td>
+</tr>
+<tr class="row-odd"><td>ST1</td>
+<td>100 ms</td>
+<td>Max amount of time before SC must response to non-crypto requests</td>
+</tr>
+<tr class="row-even"><td>T1</td>
+<td>Requestor specific</td>
+<td>Min amount of time BMC should wait before issuing a retry for requests</td>
+</tr>
+<tr class="row-odd"><td>CT</td>
+<td>134.21 s</td>
+<td>Max time in which SC must response to crypto messages</td>
+</tr>
+<tr class="row-even"><td>T2</td>
+<td>Requestor specific</td>
+<td>Min amount of time BMC shall wait before issuing a retry for requests</td>
+</tr>
+<tr class="row-odd"><td>RDT</td>
+<td>536.87 s</td>
+<td>Min delay when SC can’t complete response within CT; Provide this value as Error response</td>
+</tr>
+<tr class="row-even"><td>WT</td>
+<td>Requestor specific</td>
+<td>Min time BMC must wait before issuing RESPOND_IF_READY request message</td>
+</tr>
+<tr class="row-odd"><td>WT_MAX</td>
+<td>Requestor specific</td>
+<td>Max wait time BMC must issue RESPOND_IF_READY unless the BMC issued that request earlier</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cerberus-compliance">
+<h2>Cerberus Compliance<a class="headerlink" href="#cerberus-compliance" title="Permalink to this headline">¶</a></h2>
+<p>Adhering to Cerberus discovery &amp; attestation requirements, the measurements are sent in the following process:</p>
+<p><strong>Discovery flow</strong></p>
+<ol class="arabic simple">
+<li>Cerberus sends the GET_MEASUREMENT command with MeasOperation = 0 (i.e.) Byte offset 3, Param 2</li>
+<li>SC responds with total # of measurement indices = 15</li>
+<li>Cerberus sends the GET_MEASUREMENT command with MeasOperation = 15</li>
+<li>SC responds with QueryDeviceIdentifiers Data structure in raw bit stream (see table below)</li>
+</ol>
+<img alt="_images/ma35d-query-dev-id-table.png" class="align-center" src="_images/ma35d-query-dev-id-table.png" />
+<p><strong>Attestation flow</strong></p>
+<p>In the Attestation flow, Cerberus creates a mapping of CoRIM file, one per MA35D firmware component, based on the # of FW measurements and their version numbers. Version set # are monotonically increasing values to prevent roll-back attacks.</p>
+<ol class="arabic simple">
+<li>Cerberus sends GET_MEASUREMENT command with MeasOperation = 1, 2… or 14 (i.e.) one at a time</li>
+<li>SC responds with the measurement for that component.</li>
+<li>Cerberus maps the responses within the corresponding Co_MID# and Co_RIM# as below:</li>
+</ol>
+<dl class="docutils">
+<dt>Co_RIM1</dt>
+<dd><dl class="first last docutils">
+<dt>Co_MID1</dt>
+<dd><ol class="first last arabic simple">
+<li>MEAS_ID_1   // 9-bytes Unique ID (raw bit stream) - Concatenation of MEAS_IDs 2, 7 &amp; 12</li>
+<li>MEAS_ID_2   // ASIC1/2 eSecure A &amp; B version set (raw bit stream)</li>
+<li>MEAS_ID_3   // ASIC1: eSecure A hash</li>
+<li>MEAS_ID_4   // ASIC1: eSecure B hash</li>
+<li>MEAS_ID_5   // ASIC2: eSecure A hash</li>
+<li>MEAS_ID_6   // ASIC2: eSecure B hash</li>
+<li>MEAS_ID_7   // ASIC1/2 ZSP A &amp; B version set (raw bit stream)</li>
+<li>MEAS_ID_8   // ASIC1: ZSP A hash</li>
+<li>MEAS_ID_9   // ASIC1: ZSP B hash</li>
+<li>MEAS_ID_10 // ASIC2: ZSP A hash</li>
+<li>MEAS_ID_11 // ASIC2: ZSP B hash</li>
+<li>MEAS_ID_12 // SC: SC A &amp; B version set (raw bit stream)</li>
+<li>MEAS_ID_13 // SC: SC A hash</li>
+<li>MEAS_ID_14 // SC: SC B hash</li>
+</ol>
+</dd>
+</dl>
+</dd>
+</dl>
+<p><strong>NOTE:</strong> The 1st Measurement Index is a 9-bytes unique ID, which is nothing but the concatenation of version numbers of eSecure, ZSP &amp; SC firwmare components (3-bytes each) in that respective order.</p>
+<p><strong>CoRIM Reference Measurement File</strong></p>
+<p>In the scope of MA35D, <a class="reference external" href="https://github.com/veraison/corim/tree/main/cocli">[colci]</a> is used to generate a <a class="reference external" href="https://datatracker.ietf.org/wg/cose/about/">[COSE_Sign1]</a> CoRIM structure that describes the measurements that are obtained via SPDM at runtime.</p>
+<img alt="_images/ma35d-corim-file-gen-process.png" class="align-center" src="_images/ma35d-corim-file-gen-process.png" />
+<p><em>Figure:</em> CoRIM reference measurement file generation</p>
+<img alt="_images/ma35d-corim-file.png" class="align-center" src="_images/ma35d-corim-file.png" />
+<p><em>Figure:</em> CoRIM reference measurement file</p>
+<p>The Measurement array “key” value is used to map to the SPDM Measurement Index (SPDM IDX N in previous figure). Cocli JSON Input examples - Measurements [0] – Raw Measurement and Measurements [1] - Digest are shown in the figure below.</p>
+<img alt="_images/ma35d-cocli-json-input.png" class="align-center" src="_images/ma35d-cocli-json-input.png" />
+<p><em>Figure:</em> Cocli JSON Input Example</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
+<p><strong>License</strong></p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
+<p>You may obtain a copy of the CC-BY-4.0 License at
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pldm-t5-update.html" class="btn btn-neutral float-left" title="PLDM IFWI Update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="alveo-I2C-telemetry.html" class="btn btn-neutral float-right" title="Alveo I2C Telemetry" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on March 30, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

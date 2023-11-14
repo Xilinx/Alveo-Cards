@@ -18,7 +18,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
 })(window,document,'script','dataLayer','GTM-5RHQV7');</script>
 <!-- End Google Tag Manager -->
-  <title>Satellite Controller Firmware Update Commands &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <title>SC Firmware Update &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
@@ -30,8 +30,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="FPGA Flash Update Commands" href="fpga-firmware-update.html" />
-    <link rel="prev" title="I2C/SMBus Commands" href="std-smbus-commands.html" /> 
+    <link rel="next" title="U30 FPGA FW update" href="fpga-firmware-update.html" />
+    <link rel="prev" title="Alveo I2C Telemetry" href="alveo-I2C-telemetry.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -57,17 +57,33 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Satellite Controller Firmware Update Commands</a><ul>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">SC Firmware Update</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#x31-get-sc-status-sc-firmware">0x31 - GET_SC_STATUS (SC firmware)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#x32-enable-bsl-mode">0x32 - ENABLE_BSL_MODE</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#bsl-communication">BSL Communication</a></li>
@@ -88,21 +104,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
-</ul>
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 <p class="caption"><span class="caption-text">References</span></p>
 <ul>
@@ -123,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Satellite Controller Firmware Update Commands</li>
+      <li>SC Firmware Update</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/sc-firmware-update.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -133,12 +141,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="satellite-controller-firmware-update-commands">
-<h1>Satellite Controller Firmware Update Commands<a class="headerlink" href="#satellite-controller-firmware-update-commands" title="Permalink to this headline">¶</a></h1>
-<p>In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method
-of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW.
-After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.</p>
-<p><strong>Note:</strong> Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.</p>
+  <div class="section" id="sc-firmware-update">
+<h1>SC Firmware Update<a class="headerlink" href="#sc-firmware-update" title="Permalink to this headline">¶</a></h1>
+<p>In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.</p>
+<p><strong>Note:</strong> Currently, the SC FW upgrades are always force upgrades, there is no version check supported by MSP’s Bootloader. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.</p>
 <p>The following table lists the commands supported/needed for the FW upgrade.</p>
 <p><strong>Table: BMC to SC Commands</strong></p>
 <table border="1" class="docutils">
@@ -1611,8 +1617,8 @@ AC power cycle of the server.</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Xilinx Support</strong></p>
-<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -1621,7 +1627,7 @@ AC power cycle of the server.</p>
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
 </div>
 
 
@@ -1630,8 +1636,8 @@ AC power cycle of the server.</p>
           
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="std-smbus-commands.html" class="btn btn-neutral float-left" title="I2C/SMBus Commands" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="fpga-firmware-update.html" class="btn btn-neutral float-right" title="FPGA Flash Update Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="alveo-I2C-telemetry.html" class="btn btn-neutral float-left" title="Alveo I2C Telemetry" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="fpga-firmware-update.html" class="btn btn-neutral float-right" title="U30 FPGA FW update" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

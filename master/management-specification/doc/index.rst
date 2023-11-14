@@ -7,7 +7,7 @@ Alveo Card Out-of-Band Management Specification for Server BMC
 .. image:: ./images/amd.png
    :align: left
 
-This document describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30, U55x, VCK5000 and V70 Alveo™ Data Center Cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are standard I2C protocol and PLDM Over MCTP Over SMBus.
+This document describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30, U55x, VCK5000, V70, Avalon UL3524 and MA35D Alveo™ Data Center Cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are Alveo I2C and PLDM Over MCTP Over SMBus.
 	
 ---------------------------------------------------------------------------------------------------------------
 
@@ -17,49 +17,59 @@ This document describes out-of-band (OoB) support available for the U200, U250, 
 
    oob-intro.rst
 
-
 .. toctree::
    :maxdepth: 1
-   :caption: Alveo FRU
+   :caption: Alveo IPMI FRU
 
    alveo-fru.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: Standard I2C/SMBus commands
+   :caption: PMCI support
 
-   std-smbus-commands.rst
+   pmci-support.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: SC firwmare update via OoB
+   :caption: PLDM telemetry
+
+   pldm-t2-telemetry.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: MA35D IFWI update
+
+   pldm-t5-update.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: SPDM attestation
+
+   spdm-attestation.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Alveo I2C Telemetry
+
+   alveo-I2C-telemetry.rst
+
+.. toctree::
+   :maxdepth: 1
+   :caption: SC FW update
 
    sc-firmware-update.rst
 
-
 .. toctree::
    :maxdepth: 1
-   :caption: FPGA firwmare update via OoB
+   :caption: U30 FPGA FW update
 
    fpga-firmware-update.rst
 
 .. toctree::
    :maxdepth: 1
-   :caption: DMTF support
+   :caption: PCIe and thermal info
 
-   dmtf-support.rst
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Appendix A: PCIe and thermal info
-
-   appendix_a.rst
-
-.. toctree::
-   :maxdepth: 1
-   :caption: Appendix B: SMBus 2.0 protocol recap
-
-   smbus2.0-protocol-recap.rst
+   appendix-a.rst
 
 .. toctree::
    :maxdepth: 1
@@ -67,9 +77,9 @@ This document describes out-of-band (OoB) support available for the U200, U250, 
 
    references.rst
 
-**Xilinx Support**
+**AMD Support**
 
-For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards AMD/Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
 **License**
 
@@ -88,4 +98,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 .. raw:: html
 
-	<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
+	<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p>
