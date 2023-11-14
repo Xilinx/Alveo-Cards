@@ -1,5 +1,5 @@
 Alveo™ FRU Support 
-------------------
+==================
 
 The satellite controller firmware supports FRU data via a dedicated I2C slave address 0x50 (0xA0 in 8-bit). Alveo™ FRU implementation is fully compliant with Intelligent Platform Management Interface (IPMI) FRU specification v1.0 r1.3
 
@@ -16,13 +16,16 @@ For the high-level FRU Storage Organization, see the figure below:
 .. image:: ./images/FRU_organization.png
    :align: center
 
+*Figure:* FRU Layout
+
 Detailed FRU information like sections, length, field definition and description have been captured in  
 (`Alveo™ FRU Data Specification <https://xilinx.github.io/Alveo-Cards/master/FRU/index.html>`__).
 
-    *Figure:* **FRU Random Read**
 
 .. image:: ./images/FRU_random_read.png
    :align: center
+
+*Figure:* FRU Random Read
 
 Format: START, SA+W, addr-byte0, addr-byte1, RepeatedSTART, SA+R,
 BYTE0, BYTE1…… BYTEN, STOP
@@ -67,10 +70,10 @@ Block Write
 |                 |                         |     [Byte 1] – FRU Offset MSB   |
 +-----------------+-------------------------+---------------------------------+
 
-**Table: Block Write, Xilinx® Alveo™ Card Response**
+**Table: Block Write, Alveo™ Card Response**
 
 +-------------+------------------------------+
-|     **Xilinx Alveo™ Card Response**        |
+|     **Alveo™ Card Response**               |
 +=============+==============================+
 | Data bytes  |     ACK sent by I2C Driver   |
 +-------------+------------------------------+
@@ -83,22 +86,22 @@ Block Read
 +------------+-----------+---------------------------------+
 |     **Server BMC Request**                               |
 +============+===========+=================================+
-| Data bytes |     N/A   |     [Byte 0] – FRU offset LSB   |
+| Data bytes |     N/A   |     [Byte 0] - FRU offset LSB   |
 |            |           |                                 |
-|            |           |     [Byte 1] – FRU offset MSB   |
+|            |           |     [Byte 1] - FRU offset MSB   |
 +------------+-----------+---------------------------------+
 
 **Table: Block Read, Xilinx Alveo™ Card Response**
 
 +-------------+----------------------------------------+-------------------------+
-|     **Xilinx Alveo™ Card Response**                                            |
+|     **Alveo™ Card Response**                                                   |
 +=============+========================================+=========================+
-| Data bytes  |     [Byte 0] [Byte 1] …. [Byte 254]]   |     255-byte FRU data   |
+| Data bytes  |     [Byte 0] [Byte 1] ... [Byte 254]]  |     255-byte FRU data   |
 +-------------+----------------------------------------+-------------------------+
 
-**Xilinx Support**
+**AMD Support**
 
-For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards AMD/Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
 **License**
 
@@ -117,4 +120,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 .. raw:: html
 
-	<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
+	<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p>

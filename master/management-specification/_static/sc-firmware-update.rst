@@ -1,11 +1,9 @@
-Satellite Controller Firmware Update Commands
----------------------------------------------
+SC Firmware Update
+------------------
 
-In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method
-of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. 
-After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.
+In the Alveo™ U30 Hyperscaler only SKU, the satellite controller supports out-of-band method of SC FW upgrade in Xilinx® Alveo™ cards. The out-of-band SC FW update is supported at I2C address 0x65 (0xCA in 8-bit). Server BMC is expected to initiate the FW upgrade process by sending I2C commands to the SC FW. After the initial handshake with the SC FW, the server BMC will need to communicate with the MSP432 boot loader (BSL) to transfer the FW into MSP Flash and complete the upgrade process.
 
-**Note:** Currently, the SC FW upgrades are always force upgrades, there is no version check currently in place. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.
+**Note:** Currently, the SC FW upgrades are always force upgrades, there is no version check supported by MSP's Bootloader. The old FW file will be overwritten by the new FW. Server BMC is expected to check and decide if the SC FW upgrade is needed. I2C speed of only 100 KHz is supported for all the commands mentioned in this chapter.
 
 The following table lists the commands supported/needed for the FW upgrade.
 
@@ -879,9 +877,9 @@ At the end of each transaction, BMC must perform CRC check and then only proceed
 | CKH           | CRC High byte       |
 +---------------+---------------------+
 
-**Xilinx Support**
+**AMD Support**
 
-For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards AMD/Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
 **License**
 
@@ -900,4 +898,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 .. raw:: html
 
-	<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
+	<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p>

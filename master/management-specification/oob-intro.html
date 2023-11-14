@@ -61,33 +61,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 <p class="caption"><span class="caption-text">References</span></p>
 <ul>
@@ -120,46 +128,40 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
              
   <div class="section" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
-<p>Xilinx® Alveo™ Data Center cards use the following two communication channels for management.</p>
-<p><em>Out-of-band communication channel:</em>
-The satellite controller communicates with the server baseboard management controller (BMC)
-via SMBus/I2C interface to provide out-of-band card management functionalities.</p>
-<p><em>In-band communication channel:</em>
-The PCIe interface provides in-band management to host for card programming and communication of sensor
-information, such as power and temperature. The host CPU communicates across PCIe to the card management controller (CMC)
-residing on the FPGA, which has a connection to the satellite controller. The CMC firmware (running in MicroBlaze™ on the FPGA)
-and the satellite controller firmware (running in MSP432 MCU) communicates via the UART channel using a Xilinx proprietary
-protocol. All sensor information are passed from the satellite controller to the host through this in-band channel.</p>
+<p>AMD/Xilinx® Alveo™ Data Center products use the following two communication channels for card management.</p>
+<p><strong>Out-of-band communication:</strong>
+The Satellite Controller (SC) firmware communicates with the server Baseboard Management Controller (BMC) via SMBus/I2C interface to provide out-of-band card management functionalities.</p>
+<p><strong>In-band communication:</strong>
+The PCIe interface provides In-band management to host for card programming and sensor telemetry. The host CPU communicates via PCIe to the Card Management Controller (CMC) firmware, which runs in MicroBlaze™ on the FPGA. CMC firmware communicates with SC firmware through the UART using a proprietary protocol. All sensor telemetry are passed from the SC firmware to the host through this in-band channel.</p>
 <div class="section" id="satellite-controller-sc">
 <h2>Satellite Controller (SC)<a class="headerlink" href="#satellite-controller-sc" title="Permalink to this headline">¶</a></h2>
-<p>The satellite controller firmware runs on TI’s MSP432 device and is an essential component of Alveo card management, providing in-band and OoB communication mechanisms. The MSP432 MCU, EEPROM and few select
-peripherals reside on the auxiliary power domain (i.e.) 3V3_AUX.</p>
-<p><em>Figure:</em> Alveo communication path block diagram</p>
+<p>The satellite controller firmware runs on an external micro-controller unit (MCU) and is an essential component of Alveo card management, providing in-band and OoB communication mechanisms. The MCU, EEPROM and few other
+peripherals reside on the standby power domain (i.e.) 3V3_AUX.</p>
+<p><strong>Alveo™ U2xx, U5x, UL3xxx</strong></p>
+<p>In Alveo™ U200, U250, U280, U50, U50LV, U55C, U55N &amp; UL3524 products, SC firwmare running in external MCU monitors all the sensor data via I2C/PMBus. For In-Band telemetry, the sensor data is sent through the UART channel from SC to CMC firmware (running in within the FPGA), which then gets passed on to host drivers (XRT). For OoB telemetry with server BMC, SC supports I2C/SMBus based protocols.</p>
 <img alt="_images/sc_block_diagram.png" class="align-center" src="_images/sc_block_diagram.png" />
-<p><em>Figure:</em> Alveo U30 specific block diagram</p>
+<p><em>Figure:</em> Alveo™ U2xx, U50x, U55x, UL3524 block diagram</p>
+<p><strong>Alveo™ U30</strong></p>
+<p>In Alveo™ U30 product, SC firwmare running in external MCU monitors all the sensor data via I2C. For In-Band telemetry, the sensor data is sent through the UART channels from SC to CMCs (running inside both ZYNQ devices), which then gets passed on to host drivers (XRT). For OoB telemetry with server BMC, SC supports I2C/SMBus based protocols. Additionally, SC supports OoB based FPGA firwmare updates via SMBus and hence has direct SPI accesses to the qSPI flash devices.</p>
 <img alt="_images/u30_sc_block_diagram.png" class="align-center" src="_images/u30_sc_block_diagram.png" />
-<p><em>Figure:</em> Alveo V70 specific block diagram</p>
+<p><em>Figure:</em> Alveo™ U30 block diagram</p>
+<p><strong>Alveo™ V70</strong></p>
+<p>In Alveo™ V70 product, SC firwmare runs in external MCU. The Versal Managment Controller (VMC) firmware running in Realtime Processing Unit (RPU) within PS subsystem, monitors all the sensor data via I2C and sends them to UC through the UART channel. For OoB telemetry with server BMC, SC supports I2C/SMBus based protocols. For In-band telemetry, VMC sends the sensor data to the host drivers (XRT) via PCIe.</p>
 <img alt="_images/v70_sc_vmc_block_diagram.png" class="align-center" src="_images/v70_sc_vmc_block_diagram.png" />
+<p><em>Figure:</em> Alveo™ V70 block diagram</p>
+<p><strong>Alveo™ MA35D</strong></p>
+<p>In Alveo™ MA35D product, SC firwmare running in external MCU monitors all the sensor data via PMBus/I2C. For In-Band telemetry, the sensor data is sent through I2C from SC to ZSP firmware (running inside both SuperNova ASIC devices), which then gets passed on to host drivers (mautil). For OoB telemetry with server BMC, SC supports I2C/SMBus based protocols. Additionally, SC supports OoB based ASIC firwmare updates via SMBus and hence has direct SPI accesses to the SPI flash devices.</p>
+<img alt="_images/ma35d_sc_block_diagram.png" class="align-center" src="_images/ma35d_sc_block_diagram.png" />
+<p><em>Figure:</em> Alveo™ MA35D block diagram</p>
 <hr class="docutils" />
 <p><strong>Satellite Controller Firmware Version</strong></p>
-<p>Not all features described in this document are available in older
-SC FW. Refer to <em>Alveo Data Center Accelerator Card Platforms User
-Guide</em>
-(<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1120-alveo-platforms.pdf">UG1120</a>)
-to ensure the latest FW is being used.</p>
+<p>Not all features described in this document are available in older SC FW. Refer to <em>Alveo Data Center Accelerator Card Platforms User
+Guide</em> (<a class="reference external" href="https://www.xilinx.com/support/documentation/boards_and_kits/accelerator-cards/ug1120-alveo-platforms.pdf">UG1120</a>) to ensure the latest FW is being used.</p>
 </div>
 <div class="section" id="out-of-band-communication">
 <h2>Out-of-Band Communication<a class="headerlink" href="#out-of-band-communication" title="Permalink to this headline">¶</a></h2>
-<p>When installed in a server, the SC FW communicates with server BMC.
-The main purpose of OoB communication is to respond to requests that
-originate from server BMC. It uses this information to take action
-related to power and thermal management (i.e., to ramp-up fans or
-send requests to throttle down power consumption). The MSP432 and
-the sensors and peripherals it accesses reside on the AUX 3.3V
-always-on power domain.</p>
-<p>The SMBus/I2C is used for OoB communication. The OoB communication
-supports three protocols. The protocols and the I2C slave address
-(both 7-bit and 8-bit) are given in the following table.</p>
+<p>When installed in a server, the SC FW communicates with server BMC.  The main purpose of OoB communication is to respond to requests that originate from server BMC. It uses this information to take action  related to power and thermal management (i.e.) to ramp-up fans or send in-band requests to throttle frequency (where supported) to reduce power consumption.</p>
+<p>Currently, only SMBus/I2C is used for OoB communication. The OoB communication supports three protocols. The protocols and their respective I2C slave address (both 7-bit and 8-bit) are given in the following table.</p>
 <p><strong>Table: Slave Addresses and Corresponding Protocols</strong></p>
 <table border="1" class="docutils">
 <colgroup>
@@ -170,13 +172,13 @@ supports three protocols. The protocols and the I2C slave address
 <thead valign="bottom">
 <tr class="row-odd"><th class="head"><strong>I2C Slave Address (7-bit)</strong></th>
 <th class="head"><strong>I2C Slave Address (8-bit)</strong></th>
-<th class="head"><strong>Protocol/Features Supported</strong></th>
+<th class="head"><strong>Protocols Supported</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>0x18</td>
 <td>0x30</td>
-<td>Standard PLDM/MCTP</td>
+<td>Standard MCTP/PLDM/SPDM</td>
 </tr>
 <tr class="row-odd"><td>0x50</td>
 <td>0xA0</td>
@@ -188,237 +190,98 @@ supports three protocols. The protocols and the I2C slave address
 </tr>
 <tr class="row-odd"><td>0x65</td>
 <td>0xCA</td>
-<td>ALVEO I2C commands</td>
+<td>ALVEO I2C protocol</td>
 </tr>
 </tbody>
 </table>
 <p><strong>IPMI FRU support</strong></p>
 <p>SC FW supports IPMI field replaceable unit (FRU) data read at I2C slave address 0x50 (0xA0 in 8-bit). For FRU data access, 2-byte addressing mode is supported and the FRU data contents are explained
 in (<a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/FRU/index.html">Alveo FRU Data Specification</a>).</p>
-<p>See <span class="xref std std-ref">Alveo™ FRU Support</span> for more details.</p>
-<p><strong>ALVEO I2C/SMBus Communication</strong></p>
-<p>SC FW supports I2C/SMBus protocol based OoB communication at I2C
-slave address 0x65 (0xCA in 8-bit) and provides support for server
-BMC that does not accept PLDM or distributed management task force
-(DMTF) specifications. The following information is exposed via I2C/
-SMBus protocol:</p>
-<ul class="simple">
-<li>Thermal sensors such as FPGA, max Board, max DIMM, and max QSFP temperature</li>
-<li>Total board power consumption</li>
-<li>SC FW version number</li>
-<li>Critical Sensor Data Record (CSDR) - Specific to ALVEO U30 only</li>
-</ul>
-<p>See <span class="xref std std-ref">I2C/SMBus Commands</span> I2C command implementation details.</p>
-<p>The following table is a comprehensive list of all OoB commands supported by SC using ALVEO I2C/SMBus protocols.</p>
-<p><strong>Table: List of ALVEO I2C/SMBus commands</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="19%" />
-<col width="28%" />
-<col width="29%" />
-<col width="24%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>Command Code</strong></th>
-<th class="head"><strong>Sensor Name</strong></th>
-<th class="head"><strong>SMBus Transaction Type</strong></th>
-<th class="head"><strong>Num of resp Bytes</strong></th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>01h</td>
-<td>Max DIMM temperature</td>
-<td>Read bytes</td>
-<td>1</td>
-</tr>
-<tr class="row-odd"><td>02h</td>
-<td>Max Board temperature</td>
-<td>Read bytes</td>
-<td>1</td>
-</tr>
-<tr class="row-even"><td>03h</td>
-<td>Board power consumption</td>
-<td>Read words</td>
-<td>2</td>
-</tr>
-<tr class="row-odd"><td>04h</td>
-<td>SC FW version</td>
-<td>Read bytes</td>
-<td>4</td>
-</tr>
-<tr class="row-even"><td>05h</td>
-<td>FPGA die temperature</td>
-<td>Read bytes</td>
-<td>1</td>
-</tr>
-<tr class="row-odd"><td>06h</td>
-<td>Max QSFP temperature</td>
-<td>Read bytes</td>
-<td>1</td>
-</tr>
-<tr class="row-even"><td>0Fh</td>
-<td>Reset FPGA</td>
-<td>Write byte</td>
-<td>1</td>
-</tr>
-<tr class="row-odd"><td>20h</td>
-<td>CSDR</td>
-<td>Block read</td>
-<td>64</td>
-</tr>
-</tbody>
-</table>
+<p><strong>ALVEO I2C Protocol</strong></p>
+<p>Satellite Controller firmware supports I2C protocol based OoB communication at I2C slave address 0x65 (0xCA in 8-bit) and provides support for server BMC that does not accept MCTP/PLDM protocols, which are part of Distributed Management Task Force (DMTF) specifications.</p>
 <p><strong>PLDM Over MCTP Over SMBus Protocol</strong></p>
 <p>SC supports the SMBus discovery via the default SMBus 2.0 at I2C slave address 0x61 (0xC2 in 8-bit) and the MCTP/PLDM protocol at I2C slave address 0x18 (0x30 in 8-bit). Alveo OoB implementation adheres to the following DMTF specifications:</p>
 <ol class="arabic simple">
-<li><em>PLDM Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0240">[DSP0240]</a>)</li>
-<li><em>PLDM for Platform Monitoring and Control Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0248">[DSP0248]</a>)</li>
-<li><em>MCTP Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0236">[DSP0236]</a>)</li>
+<li><em>MCTP Base Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0236">[DSP0236]</a>)</li>
 <li><em>MCTP SMBus Binding Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0237">[DSP0237]</a>)</li>
+<li><em>PLDM Base Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0240">[DSP0240]</a>)</li>
+<li><em>PLDM for Platform Monitoring and Control Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0248">[DSP0248]</a>)</li>
+<li><em>PLDM for FW Update Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0267">[DSP0267]</a>)</li>
+<li><em>SPDM Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0274">[DSP0274]</a>)</li>
+<li><em>SPDM over MCTP Binding Spec</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0275">[DSP0275]</a>)</li>
 </ol>
-<p>See <span class="xref std std-ref">DMTF Implementation</span> for more details</p>
-<p>The following figure illustrates the PLDM over MCTP over SMBus binding specification stack.</p>
-<p><em>Figure:</em> PLDM Over MCTP Over SMBus Binding Specification Stack</p>
-<img alt="_images/DMTF_stack.png" class="align-center" src="_images/DMTF_stack.png" />
-<p>The following sensor readings are reported via PLDM OoB:</p>
-<blockquote>
-<div><ol class="arabic simple">
-<li>FPGA/Device temperature</li>
-<li>Board temperature</li>
-<li>QSFP0 temperature (if present)</li>
-<li>QSFP1 temperature (if present)</li>
-</ol>
-</div></blockquote>
-<p><strong>Default SMBus 2.0 commands</strong></p>
-<p>For the purposes of SMBus address discovery (at default SMBus address 0xC2 (8-bit)), Alveo cards are ‘Fixed and Non-Discoverable Device’. Only Get UDID (general) and Get UDID (directed) commands are supported.</p>
-<p><strong>MCTP control messages</strong>
-The following MCTP control commands are supported in the SC:</p>
-<p><strong>Table: Supported MCTP control commands and description</strong></p>
+<p><strong>NOTE:</strong> Not all AMD/Xilinx® Alveo™ Data Center products support all the DMTF protocols. The following table provides the list of features/protocols supported in respective Alveo™ products.</p>
+<p><strong>Table: List of supported OoB Protocols in Alveo™ products</strong></p>
 <table border="1" class="docutils">
 <colgroup>
-<col width="23%" />
-<col width="7%" />
-<col width="70%" />
+<col width="37%" />
+<col width="37%" />
+<col width="26%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>Command</strong></th>
-<th class="head"><strong>ID</strong></th>
-<th class="head"><strong>Description</strong></th>
+<tr class="row-odd"><th class="head" colspan="2"><strong>OoB Protocol</strong></th>
+<th class="head"><strong>Version</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
-<tr class="row-even"><td>Set Endpoint ID</td>
-<td>0x01</td>
-<td>Assigns an EID to the endpoint at the given physical address</td>
+<tr class="row-even"><td colspan="3"><strong>Alveo™ U200, U250, U280, U50, U50LV, U30, U55C, U55N, UL3xxx &amp; V70</strong></td>
 </tr>
-<tr class="row-odd"><td>Get Endpoint ID</td>
-<td>0x02</td>
-<td>Returns the EID presently assigned to an endpoint</td>
+<tr class="row-odd"><td colspan="2">IPMI FRU support</td>
+<td>1.3</td>
 </tr>
-<tr class="row-even"><td>Get Endpoint UUID</td>
-<td>0x03</td>
-<td>Retrieves a per-device unique UUID associated with the endpoint</td>
+<tr class="row-even"><td colspan="2">ALVEO I2C protocol based telemetry</td>
+<td>Unversioned</td>
 </tr>
-<tr class="row-odd"><td>Get MCTP Version Support</td>
-<td>0x04</td>
-<td>Lists which versions of the MCTP control protocol are supported on an endpoint</td>
+<tr class="row-odd"><td colspan="2">SMBus discovery</td>
+<td>2.0</td>
 </tr>
-<tr class="row-even"><td>Get Message Type Support</td>
-<td>0x05</td>
-<td>Lists the message types that an endpoint supports</td>
+<tr class="row-even"><td colspan="2">MCTP Control Messages</td>
+<td>1.3.0</td>
 </tr>
-</tbody>
-</table>
-<p><strong>PLDM commands</strong></p>
-<p>The following PLDM commands are supported in the SC:</p>
-<p><strong>Table: Supported PLDM commands and description</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="20%" />
-<col width="7%" />
-<col width="73%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>Command</strong></th>
-<th class="head"><strong>ID</strong></th>
-<th class="head"><strong>Description</strong></th>
+<tr class="row-odd"><td colspan="2">PLDM Type 0 Control and Discovery</td>
+<td>1.0.0</td>
 </tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>SetTID</td>
-<td>0x01</td>
-<td>Sets the terminus ID (TID) for a PLDM terminus</td>
+<tr class="row-even"><td colspan="2">PLDM Type 2 Sensor Telemetry</td>
+<td>1.2.0</td>
 </tr>
-<tr class="row-odd"><td>GetTID</td>
-<td>0x02</td>
-<td>Returns the present TID setting for a PLDM terminus</td>
+<tr class="row-odd"><td colspan="3"><strong>Alveo™ U30 Additional features</strong></td>
 </tr>
-<tr class="row-even"><td>GetPLDMVersion</td>
-<td>0x03</td>
-<td>Returns versions for PLDM base &amp; type specification</td>
+<tr class="row-even"><td colspan="2">ALVEO I2C protocol based FPGA &amp; SC FW updates via I2C</td>
+<td>1.0</td>
 </tr>
-<tr class="row-odd"><td>GetPLDMTypes</td>
-<td>0x04</td>
-<td>Returns PLDM type capabilities and list of the supported PLDM types</td>
+<tr class="row-odd"><td colspan="2">ALVEO I2C protocol FW measurements</td>
+<td>1.0</td>
 </tr>
-<tr class="row-even"><td>GetPLDMCommands</td>
-<td>0x05</td>
-<td>Returns PLDM command capabilities supported for a specific PLDM type and version</td>
+<tr class="row-even"><td colspan="3"><strong>Alveo™ MA35D</strong></td>
 </tr>
-<tr class="row-odd"><td>GetSensorReading</td>
-<td>0x11</td>
-<td>Returns present reading and threshold event state values from a numeric sensor</td>
+<tr class="row-odd"><td colspan="2">IPMI FRU support</td>
+<td>1.3</td>
 </tr>
-<tr class="row-even"><td>GetSensorThresholds</td>
-<td>0x12</td>
-<td>Returns the present threshold settings for a PLDM numeric sensor</td>
+<tr class="row-even"><td colspan="2">ALVEO I2C protocol based telemetry</td>
+<td>Unsupported</td>
 </tr>
-<tr class="row-odd"><td>GetPDRRepositoryInfo</td>
-<td>0x50</td>
-<td>Returns size &amp; number of records in PDR and time stamps on last PRD update</td>
+<tr class="row-odd"><td colspan="2">SMBus discovery</td>
+<td>2.0</td>
 </tr>
-<tr class="row-even"><td>GetPDR</td>
-<td>0x51</td>
-<td>Returns individual PDRs from a PDR repository</td>
+<tr class="row-even"><td colspan="2">MCTP Control Messages</td>
+<td>1.3.1</td>
 </tr>
-<tr class="row-odd"><td>GetPDRRepoSignature</td>
-<td>0x53</td>
-<td>Returns a signature that changes when the PDR repo has been changed</td>
+<tr class="row-odd"><td colspan="2">PLDM Type 0 Control and Discovery</td>
+<td>1.1.0</td>
+</tr>
+<tr class="row-even"><td colspan="2">PLDM Type 2 Sensor Telemetry</td>
+<td>1.2.2</td>
+</tr>
+<tr class="row-odd"><td colspan="2">PLDM Type 5 Firmware update</td>
+<td>1.0.0</td>
+</tr>
+<tr class="row-even"><td colspan="2">SPDM Attestation</td>
+<td>1.1.0</td>
 </tr>
 </tbody>
 </table>
-<p>These PLDM commands are categorized into type 0 and type 2, as detailed in the following table.</p>
-<p><strong>Table: Supported Type 0 and Type 2 PLDM commands</strong></p>
-<table border="1" class="docutils">
-<colgroup>
-<col width="49%" />
-<col width="51%" />
-</colgroup>
-<thead valign="bottom">
-<tr class="row-odd"><th class="head"><strong>PLDM Type 0 Commands</strong></th>
-<th class="head"><strong>PLDM Type 2 Commands</strong></th>
-</tr>
-</thead>
-<tbody valign="top">
-<tr class="row-even"><td>SetTID (0x01)</td>
-<td>SetTID (0x01)</td>
-</tr>
-<tr class="row-odd"><td>GetTID (0x02)</td>
-<td>GetTID (0x02)</td>
-</tr>
-<tr class="row-even"><td>GetPLDMVersion (0x03)</td>
-<td>GetSensorReading (0x11)</td>
-</tr>
-<tr class="row-odd"><td>GetPLDMTypes (0x04)</td>
-<td>GetSensorThresholds (0x12)</td>
-</tr>
-<tr class="row-even"><td>GetPLDMCommands (0x05)</td>
-<td>GetPDRRepositoryInfo (0x50)</td>
-</tr>
-</tbody>
-</table>
-<p><strong>Xilinx Support</strong></p>
-<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -427,7 +290,7 @@ The following MCTP control commands are supported in the SC:</p>
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
 </div>
 
 

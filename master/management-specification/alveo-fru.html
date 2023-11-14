@@ -30,7 +30,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="I2C/SMBus Commands" href="std-smbus-commands.html" />
+    <link rel="next" title="PMCI Support" href="pmci-support.html" />
     <link rel="prev" title="Introduction" href="oob-intro.html" /> 
 </head>
 
@@ -57,7 +57,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Alveo™ FRU Support</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#block-write">Block Write</a></li>
@@ -65,29 +65,37 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 <p class="caption"><span class="caption-text">References</span></p>
 <ul>
@@ -127,11 +135,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The maximum response per transaction is 255 bytes, as set by the underlying I2C driver. For example, in-order to fetch the FRU data of 300 bytes length, the server BMC is expected to send two repeated START transactions. For the first transaction, the satellite controller firmware sends 255 FRU bytes. For the second transaction, 44 FRU bytes + 212 bytes of 0xFF are sent. Additionally, BMC has the option to request smaller transaction from SC (i.e.) 16 or 32 bytes per transaction.</p>
 <p>For the high-level FRU Storage Organization, see the figure below:</p>
 <img alt="_images/FRU_organization.png" class="align-center" src="_images/FRU_organization.png" />
+<p><em>Figure:</em> FRU Layout</p>
 <p>Detailed FRU information like sections, length, field definition and description have been captured in
 (<a class="reference external" href="https://xilinx.github.io/Alveo-Cards/master/FRU/index.html">Alveo™ FRU Data Specification</a>).</p>
-<blockquote>
-<div><em>Figure:</em> <strong>FRU Random Read</strong></div></blockquote>
 <img alt="_images/FRU_random_read.png" class="align-center" src="_images/FRU_random_read.png" />
+<p><em>Figure:</em> FRU Random Read</p>
 <p>Format: START, SA+W, addr-byte0, addr-byte1, RepeatedSTART, SA+R,
 BYTE0, BYTE1…… BYTEN, STOP</p>
 <p>Where: [addr-byte0][addr-byte1] are FRU offsets (block writes)
@@ -185,14 +193,14 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 </tr>
 </tbody>
 </table>
-<p><strong>Table: Block Write, Xilinx® Alveo™ Card Response</strong></p>
+<p><strong>Table: Block Write, Alveo™ Card Response</strong></p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="30%" />
 <col width="70%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head" colspan="2"><strong>Xilinx Alveo™ Card Response</strong></th>
+<tr class="row-odd"><th class="head" colspan="2"><strong>Alveo™ Card Response</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
@@ -218,8 +226,8 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 <tbody valign="top">
 <tr class="row-even"><td>Data bytes</td>
 <td>N/A</td>
-<td><p class="first">[Byte 0] – FRU offset LSB</p>
-<p class="last">[Byte 1] – FRU offset MSB</p>
+<td><p class="first">[Byte 0] - FRU offset LSB</p>
+<p class="last">[Byte 1] - FRU offset MSB</p>
 </td>
 </tr>
 </tbody>
@@ -232,18 +240,18 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 <col width="32%" />
 </colgroup>
 <thead valign="bottom">
-<tr class="row-odd"><th class="head" colspan="3"><strong>Xilinx Alveo™ Card Response</strong></th>
+<tr class="row-odd"><th class="head" colspan="3"><strong>Alveo™ Card Response</strong></th>
 </tr>
 </thead>
 <tbody valign="top">
 <tr class="row-even"><td>Data bytes</td>
-<td>[Byte 0] [Byte 1] …. [Byte 254]]</td>
+<td>[Byte 0] [Byte 1] … [Byte 254]]</td>
 <td>255-byte FRU data</td>
 </tr>
 </tbody>
 </table>
-<p><strong>Xilinx Support</strong></p>
-<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -252,7 +260,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
 </div>
 
 
@@ -262,7 +270,7 @@ BYTE0, BYTE1…… BYTEN, STOP</p>
 				  
 				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="oob-intro.html" class="btn btn-neutral float-left" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="std-smbus-commands.html" class="btn btn-neutral float-right" title="I2C/SMBus Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pmci-support.html" class="btn btn-neutral float-right" title="PMCI Support" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

@@ -1,16 +1,18 @@
 Appendix A
 ----------
 
-Alveo™  PCIe Information
-~~~~~~~~~~~~~~~~~~~~~~~~
+Alveo™  PCIe Info
+~~~~~~~~~~~~~~~~~
 
 The table below captures the PCIe information for the following Alveo™ products:
 -  U2xx(U200, U250, U280)
 -  U50x (U50, U50C, U50LV)
 -  U30
--  U55N
+-  U55C, U55N
 -  VCK5000
 -  V70
+-  UL3xxx
+-  MA35D
 
 **NOTE:** The following PCIe information are constant across all Alveo™ cards.
 
@@ -66,26 +68,30 @@ The table below captures the PCIe information for the following Alveo™ product
 +-------------------------+----------------------------------------------+
 | V70PQ2 QDMA             | PF0=0x50B0 PF1=0x50B1 PF2=0x50B2 PF3=0x50B3  |
 +-------------------------+----------------------------------------------+
+| UL3xxx                  | PF0=0x50C0 PF1=0x50C1 PF2=0x50C2 PF3=0x50C3  |
++-------------------------+----------------------------------------------+
+| MA35D                   | PF0=0x5070 PF1=0x5071 PF2=0x5072 PF3=0x5073  |
++-------------------------+----------------------------------------------+
 
 
 PF -> Physical Function
 **lspci command usage:** sudo lspci -s :03:00.0 -vv
 
 
-Temperature Limits
-~~~~~~~~~~~~~~~~~~
-
-**Table: QSFP Temperature Limits**
+Thermal Limits
+~~~~~~~~~~~~~~
 
 The following table captures the QSFP temperature limits for all QSFP capable Alveo™ products - U2xx(U200, U250, U280), U50x (U50, U50C, U50LV) , U55x (U55N, U55C) and VCK5000 products.
+
+**Table: QSFP Temperature Limits**
 
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 |  **Sensor Name**                |     **Warning Limit**   |     **Critical Limit**   |     **Fatal Limit**   |
 +=================================+=========================+==========================+=======================+
-| QSFP temperature [1]            |                         |                          |                       |
-|                                 |                         |                          |                       |
+| QSFP temperature [1]                                                                                         |
++---------------------------------+-------------------------+--------------------------+-----------------------+                                 
 | Commercial Type                 |     65°C                |     70°C                 |     75°C              |
-|                                 |                         |                          |                       |
++---------------------------------+-------------------------+--------------------------+-----------------------+
 | Industrial Type                 |     80°C                |     85°C                 |     90°C              |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 
@@ -107,7 +113,7 @@ For additional thermal information, refer to the data sheet specific to the Alve
 
 -  `Alveo U50 <https://www.xilinx.com/support/documentation/data_sheets/ds965-u50.pdf>`__
 
-**Table: FPGA and Board Temperature Limits**
+**Table: FPGA/ACAP/ASIC and Board Thermal Limits**
 
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 |  **Sensor Name**                |     **Warning Limit**   |     **Critical Limit**   |     **Fatal Limit**   |
@@ -148,22 +154,40 @@ For additional thermal information, refer to the data sheet specific to the Alve
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 | Max ACAP junction temperature   |     97°C                |     100°C                |     105°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
-| Board temperature               |     105°C               |     110°C                |     150°C             |
+| Board temperature [4]           |     105°C               |     110°C                |     150°C             |
 +---------------------------------+-------------------------+--------------------------+-----------------------+
 
 [2] Logical device temperature is maximum of FPGA die temperature and the HBM temperature.
 
 **Note:** Alveo™ U30 specific
-
 [3] The OTP (One Time Programmable) values are programmed onto the temperature sensor device at the time of Manufacturing. Additionally, on boot-up, SC also configures the temperature device to ensure the temperature sensor device automatically shuts down the ZYNQ devices when either ZYNQ or board temperature exceeds the fatal limit.
 
-[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VCCINT (PWM controller). 
+[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VRs. 
 
-***Note*:** The SC FW automatically shuts down the power to FPGA when any of the temperature value exceeds the fatal limit.
+**Note:** The SC FW automatically shuts down the power to Accelerator device (FPGA/ACAP/ASIC) when any of the temperature value exceeds the fatal limit.
 
-**Xilinx Support**
+MA35D sensor threshold limits
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+The following table lists the threshold values for various thermal and electrical sensors in MA35D product: 
+
+.. image:: ./images/ma35d-thresholds.png
+    :align: center
+	
+**NOTE:** The threshold values (Warning, Critical & Fatal) are provided to BMC via PLDM PDRs. 
+
+When any one of the following sensors reach their respective Fatal limits, Satellite Controller autonomously resets (i.e.) shuts down power to both the SuperNova ASIC devices.
+
+1. Outlet Temperature
+2. ASIC1/2 Temperatures
+3. Normalized VRM Temperature
+4. 3v3 Pex Voltage & Current
+5. 12v Pex Voltage & Current
+
+
+**AMD Support**
+
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards AMD/Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
 **License**
 
@@ -182,4 +206,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 .. raw:: html
 
-        <p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
+	<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p>

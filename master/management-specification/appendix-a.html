@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Appendix A &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Additional Resources" href="references.html" />
+    <link rel="prev" title="U30 FPGA FW update" href="fpga-firmware-update.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Satellite Controller
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Appendix A</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#alveo-pcie-info">Alveo™  PCIe Info</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#thermal-limits">Thermal Limits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ma35d-sensor-threshold-limits">MA35D sensor threshold limits</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Satellite Controller</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Appendix A</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/appendix-a.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="appendix-a">
+<h1>Appendix A<a class="headerlink" href="#appendix-a" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="alveo-pcie-info">
+<h2>Alveo™  PCIe Info<a class="headerlink" href="#alveo-pcie-info" title="Permalink to this headline">¶</a></h2>
+<p>The table below captures the PCIe information for the following Alveo™ products:
+-  U2xx(U200, U250, U280)
+-  U50x (U50, U50C, U50LV)
+-  U30
+-  U55C, U55N
+-  VCK5000
+-  V70
+-  UL3xxx
+-  MA35D</p>
+<p><strong>NOTE:</strong> The following PCIe information are constant across all Alveo™ cards.</p>
+<ul class="simple">
+<li><strong>Vendor ID</strong>     : ** 0x10EE**</li>
+<li><strong>Subsystem VID</strong> : ** 0x10EE**</li>
+<li><strong>Subsystem DID</strong> : ** 0x000E**</li>
+</ul>
+<p><strong>Table: Alveo PCIe Device ID</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="35%" />
+<col width="65%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Card/Shell</strong></th>
+<th class="head"><strong>Device ID</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>U200 Golden</td>
+<td>0xD000</td>
+</tr>
+<tr class="row-odd"><td>U200 XDMA &amp; 2RP</td>
+<td>PF0=0x5000 PF1=0x5001 PF2=0x5002 PF3=0x5003</td>
+</tr>
+<tr class="row-even"><td>U200 QDMA</td>
+<td>PF0=0x5010 PF1=0x5011 PF2=0x5012 PF3=0x5013</td>
+</tr>
+<tr class="row-odd"><td>U250 Golden</td>
+<td>0xD004</td>
+</tr>
+<tr class="row-even"><td>U250 XDMA &amp; 2RP</td>
+<td>PF0=0x5004 PF1=0x5005 PF2=0x5006 PF3=0x5007</td>
+</tr>
+<tr class="row-odd"><td>U250 QDMA</td>
+<td>PF0=0x5014 PF1=0x5015 PF2=0x5016 PF3=0x5017</td>
+</tr>
+<tr class="row-even"><td>U280 Golden</td>
+<td>0xD00C</td>
+</tr>
+<tr class="row-odd"><td>U280 XDMA</td>
+<td>PF0=0x500C PF1=0x500D PF2=0x500E PF3=0x500F</td>
+</tr>
+<tr class="row-even"><td>U50 Golden</td>
+<td>0xD020</td>
+</tr>
+<tr class="row-odd"><td>U50 XDMA</td>
+<td>PF0=0x5020 PF1=0x5021 PF2=0x5022 PF3=0x5023</td>
+</tr>
+<tr class="row-even"><td>U50LV XMDA</td>
+<td>PF0=0x5060 PF1=0x5061 PF2=0x5062 PF3=0x5063</td>
+</tr>
+<tr class="row-odd"><td>U50C</td>
+<td>PF0=0x506C PF1=0x506D PF2=0x506E PF3=0x506F</td>
+</tr>
+<tr class="row-even"><td>U30 Golden</td>
+<td>0xD03C</td>
+</tr>
+<tr class="row-odd"><td>U30 (Production)</td>
+<td>PF0=0x513C PF1=0x513D PF2=0x513E PF3=0x513F</td>
+</tr>
+<tr class="row-even"><td>U55N</td>
+<td>PF0=0x5058 PF1=0x5059 PF2=0x505A PF3=0x505B</td>
+</tr>
+<tr class="row-odd"><td>U55C</td>
+<td>PF0=0x505C PF1=0x505D PF2=0x505E PF3=0x505F</td>
+</tr>
+<tr class="row-even"><td>VCK5000 XDMA</td>
+<td>PF0=0x5044 PF1=0x5045 PF2=0x5046 PF3=0x5047</td>
+</tr>
+<tr class="row-odd"><td>VCK5000 QDMA</td>
+<td>PF0=0x5048 PF1=0x5049 PF2=0x504A PF3=0x504B</td>
+</tr>
+<tr class="row-even"><td>V70 QDMA</td>
+<td>PF0=0x5094 PF1=0x5095 PF2=0x5096 PF3=0x5097</td>
+</tr>
+<tr class="row-odd"><td>V70PQ2 QDMA</td>
+<td>PF0=0x50B0 PF1=0x50B1 PF2=0x50B2 PF3=0x50B3</td>
+</tr>
+<tr class="row-even"><td>UL3xxx</td>
+<td>PF0=0x50C0 PF1=0x50C1 PF2=0x50C2 PF3=0x50C3</td>
+</tr>
+<tr class="row-odd"><td>MA35D</td>
+<td>PF0=0x5070 PF1=0x5071 PF2=0x5072 PF3=0x5073</td>
+</tr>
+</tbody>
+</table>
+<p>PF -&gt; Physical Function
+<strong>lspci command usage:</strong> sudo lspci -s :03:00.0 -vv</p>
+</div>
+<div class="section" id="thermal-limits">
+<h2>Thermal Limits<a class="headerlink" href="#thermal-limits" title="Permalink to this headline">¶</a></h2>
+<p>The following table captures the QSFP temperature limits for all QSFP capable Alveo™ products - U2xx(U200, U250, U280), U50x (U50, U50C, U50LV) , U55x (U55N, U55C) and VCK5000 products.</p>
+<p><strong>Table: QSFP Temperature Limits</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="23%" />
+<col width="24%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Sensor Name</strong></th>
+<th class="head"><strong>Warning Limit</strong></th>
+<th class="head"><strong>Critical Limit</strong></th>
+<th class="head"><strong>Fatal Limit</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="4">QSFP temperature [1]</td>
+</tr>
+<tr class="row-odd"><td>Commercial Type</td>
+<td>65°C</td>
+<td>70°C</td>
+<td>75°C</td>
+</tr>
+<tr class="row-even"><td>Industrial Type</td>
+<td>80°C</td>
+<td>85°C</td>
+<td>90°C</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Notes:</strong></p>
+<p>[1] QSFP temperature limits may vary based on the device OEM (manufacturer) and model. For thermal references, QSFP devices are broadly categorized as Commercial or Industrial type.</p>
+<p>Wherever supported by the QSFP device, SC FW accesses the ‘Max case temperature’ via I2C read at register offset 190 as per the SFF-8636 2.10a specification and dynamically sets the device specific critical thermal limit. For QSFP devices that doesn’t support SFF-8636 spec, SC FW assigns the critical limit as 70°C for Commercial (when register offset 190 returns 0x00) or 85°C for Industrial (when register returns 0xFF).</p>
+<ul class="simple">
+<li>Warning limit = (Max case temperature - 5)</li>
+<li>Critical limit = Max case temperature</li>
+<li>Fatal limit = (Max case temperature + 5)</li>
+</ul>
+<p>For additional thermal information, refer to the data sheet specific to the Alveo™ product:</p>
+<ul class="simple">
+<li><a class="reference external" href="https://www.xilinx.com/support/documentation/data_sheets/ds962-u200-u250.pdf">Alveo U200/U250</a></li>
+<li><a class="reference external" href="https://www.xilinx.com/support/documentation/data_sheets/ds963-u280.pdf">Alveo U280</a></li>
+<li><a class="reference external" href="https://www.xilinx.com/support/documentation/data_sheets/ds965-u50.pdf">Alveo U50</a></li>
+</ul>
+<p><strong>Table: FPGA/ACAP/ASIC and Board Thermal Limits</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="31%" />
+<col width="23%" />
+<col width="24%" />
+<col width="21%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Sensor Name</strong></th>
+<th class="head"><strong>Warning Limit</strong></th>
+<th class="head"><strong>Critical Limit</strong></th>
+<th class="head"><strong>Fatal Limit</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="4"><strong>U200/U250</strong></td>
+</tr>
+<tr class="row-odd"><td>FPGA Device temperature</td>
+<td>88°C</td>
+<td>97°C</td>
+<td>107°C</td>
+</tr>
+<tr class="row-even"><td>Board temperature [4]</td>
+<td>100°C</td>
+<td>110°C</td>
+<td>125°C</td>
+</tr>
+<tr class="row-odd"><td colspan="4"><strong>U280</strong></td>
+</tr>
+<tr class="row-even"><td>Logical FPGA temperature [2]</td>
+<td>88°C</td>
+<td>97°C</td>
+<td>107°C</td>
+</tr>
+<tr class="row-odd"><td>Board temperature [4]</td>
+<td>100°C</td>
+<td>110°C</td>
+<td>125°C</td>
+</tr>
+<tr class="row-even"><td colspan="4"><strong>U50, U50LV, U55N/C</strong></td>
+</tr>
+<tr class="row-odd"><td>Logical FPGA temperature [2]</td>
+<td>88°C</td>
+<td>97°C</td>
+<td>107°C</td>
+</tr>
+<tr class="row-even"><td>Board temperature [4]</td>
+<td>100°C</td>
+<td>110°C</td>
+<td>125°C</td>
+</tr>
+<tr class="row-odd"><td colspan="4"><strong>U50C</strong></td>
+</tr>
+<tr class="row-even"><td>Logical FPGA temperature [2]</td>
+<td>88°C</td>
+<td>100°C</td>
+<td>107°C</td>
+</tr>
+<tr class="row-odd"><td>Board temperature [4]</td>
+<td>100°C</td>
+<td>110°C</td>
+<td>125°C</td>
+</tr>
+<tr class="row-even"><td colspan="4"><strong>U30</strong> [3]</td>
+</tr>
+<tr class="row-odd"><td><p class="first">Max FPGA junction temperature</p>
+<p class="last">(Max of ZYNQ1 &amp; ZYNQ2 FPGA)</p>
+</td>
+<td>90°C</td>
+<td>95°C</td>
+<td>100°C</td>
+</tr>
+<tr class="row-even"><td>Board temperature</td>
+<td>75°C</td>
+<td>80°C</td>
+<td>85°C</td>
+</tr>
+<tr class="row-odd"><td colspan="4"><strong>V70</strong></td>
+</tr>
+<tr class="row-even"><td>Max ACAP junction temperature</td>
+<td>97°C</td>
+<td>100°C</td>
+<td>105°C</td>
+</tr>
+<tr class="row-odd"><td>Board temperature [4]</td>
+<td>105°C</td>
+<td>110°C</td>
+<td>150°C</td>
+</tr>
+</tbody>
+</table>
+<p>[2] Logical device temperature is maximum of FPGA die temperature and the HBM temperature.</p>
+<p><strong>Note:</strong> Alveo™ U30 specific
+[3] The OTP (One Time Programmable) values are programmed onto the temperature sensor device at the time of Manufacturing. Additionally, on boot-up, SC also configures the temperature device to ensure the temperature sensor device automatically shuts down the ZYNQ devices when either ZYNQ or board temperature exceeds the fatal limit.</p>
+<p>[4] Board temperature is the maximum value among various on-board temperature sensors like inlet, outlet and VRs.</p>
+<p><strong>Note:</strong> The SC FW automatically shuts down the power to Accelerator device (FPGA/ACAP/ASIC) when any of the temperature value exceeds the fatal limit.</p>
+</div>
+<div class="section" id="ma35d-sensor-threshold-limits">
+<h2>MA35D sensor threshold limits<a class="headerlink" href="#ma35d-sensor-threshold-limits" title="Permalink to this headline">¶</a></h2>
+<p>The following table lists the threshold values for various thermal and electrical sensors in MA35D product:</p>
+<img alt="_images/ma35d-thresholds.png" class="align-center" src="_images/ma35d-thresholds.png" />
+<p><strong>NOTE:</strong> The threshold values (Warning, Critical &amp; Fatal) are provided to BMC via PLDM PDRs.</p>
+<p>When any one of the following sensors reach their respective Fatal limits, Satellite Controller autonomously resets (i.e.) shuts down power to both the SuperNova ASIC devices.</p>
+<ol class="arabic simple">
+<li>Outlet Temperature</li>
+<li>ASIC1/2 Temperatures</li>
+<li>Normalized VRM Temperature</li>
+<li>3v3 Pex Voltage &amp; Current</li>
+<li>12v Pex Voltage &amp; Current</li>
+</ol>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
+<p><strong>License</strong></p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
+<p>You may obtain a copy of the CC-BY-4.0 License at
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
+</div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="fpga-firmware-update.html" class="btn btn-neutral float-left" title="U30 FPGA FW update" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="references.html" class="btn btn-neutral float-right" title="Additional Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on March 30, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,5 +1,5 @@
-FPGA Flash Update Commands
---------------------------
+U30 FPGA FW update
+------------------
 
 In the Alveo™ U30 Hyperscaler only SKU, the satellite controller (SC) firmware supports an out-of-band method of FPGA flash image update, read-back and authentication. Server BMC shall initiate and perform all these operations by sending the I2C commands to the SC. FPGA flash operation commands are supported at I2C address 0x65 (0xCA in 8-bit). Currently, Satellite Controller supports only 100 KHz I2C speed for all the FPGA flash update commands mentioned in this section. 
 
@@ -1167,9 +1167,9 @@ BMC sends this command to SC to get the CRC for the previously read-back sector 
 | Data bytes  | D0, D1, .. D7   | SC sends 8-bytes of Micron CRC-64   |
 +-------------+-----------------+-------------------------------------+
 
-**Xilinx Support**
+**AMD Support**
 
-For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
+For support resources such as answers, documentation, downloads, and forums, see the `Alveo Accelerator Cards AMD/Xilinx Community Forum <https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo>`_.
 
 **License**
 
@@ -1188,4 +1188,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 .. raw:: html
 
-	<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p>
+	<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p>

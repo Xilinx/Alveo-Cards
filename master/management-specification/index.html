@@ -56,33 +56,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 <p class="caption"><span class="caption-text">References</span></p>
 <ul>
@@ -116,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <div class="section" id="alveo-card-out-of-band-management-specification-for-server-bmc">
 <h1>Alveo Card Out-of-Band Management Specification for Server BMC<a class="headerlink" href="#alveo-card-out-of-band-management-specification-for-server-bmc" title="Permalink to this headline">¶</a></h1>
 <img alt="_images/amd.png" class="align-left" src="_images/amd.png" />
-<p>This document describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30, U55x, VCK5000 and V70 Alveo™ Data Center Cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are standard I2C protocol and PLDM Over MCTP Over SMBus.</p>
+<p>This document describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30, U55x, VCK5000, V70, Avalon UL3524 and MA35D Alveo™ Data Center Cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are Alveo I2C and PLDM Over MCTP Over SMBus.</p>
 <hr class="docutils" />
 <div class="toctree-wrapper compound">
 <p class="caption"><span class="caption-text">Introduction</span></p>
@@ -125,45 +133,57 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="std-smbus-commands.html">I2C/SMBus Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">
@@ -172,8 +192,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
 </ul>
 </div>
-<p><strong>Xilinx Support</strong></p>
-<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards Xilinx Community Forum</a>.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
 <p><strong>License</strong></p>
 <p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
 <p>You may obtain a copy of the License at
@@ -182,7 +202,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>You may obtain a copy of the CC-BY-4.0 License at
 <a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
 <p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
-<p align="center"><sup>XD038 | &copy; Copyright 2021 Xilinx, Inc.</sup></p></div>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
 
 
            </div>

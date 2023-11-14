@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html class="writer-html4" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>PLDM Telemetry &mdash; Satellite Controller  documentation</title><link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PLDM IFWI Update" href="pldm-t5-update.html" />
+    <link rel="prev" title="PMCI Support" href="pmci-support.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Satellite Controller
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption"><span class="caption-text">Introduction</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">PLDM Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
+</ul>
+<p class="caption"><span class="caption-text">References</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="references.html">Additional Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Satellite Controller</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>PLDM Telemetry</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/pldm-t2-telemetry.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="pldm-telemetry">
+<h1>PLDM Telemetry<a class="headerlink" href="#pldm-telemetry" title="Permalink to this headline">¶</a></h1>
+<p>Alveo™ supports PLDM Over MCTP Over SMBus at slave address 0x30 (8-bit). The latest sensor information is stored locally in SC FW and is reported to server BMC via PLDM Type-2 commands. Sensor information is reported to the BMC via the platform descriptor record (PDR).</p>
+<p><strong>PLDM Over MCTP Over SMBus Protocol</strong></p>
+<p>Alveo™ PLDM implementation adheres to the following DMTF specifications:</p>
+<ol class="arabic simple">
+<li><em>PLDM Base Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0240">[DSP0240]</a>)</li>
+<li><em>PLDM for Platform Monitoring and Control Specification</em> (<a class="reference external" href="https://www.dmtf.org/dsp/DSP0248">[DSP0248]</a>)</li>
+</ol>
+<p><strong>List of supported PLDM Type-2 commands</strong></p>
+<p><strong>Numeric Sensor commands</strong></p>
+<ol class="arabic simple">
+<li>SetNumericSensorEnable</li>
+<li>GetSensorReading</li>
+<li>GetSensorThresholds</li>
+</ol>
+<p><strong>Effecter commands</strong></p>
+<ol class="arabic simple">
+<li>SetNumericEffecterEnable</li>
+<li>SetNumericEffecterValue</li>
+<li>GetNumericEffecterValue</li>
+</ol>
+<p><strong>NOTE:</strong> Effecter commands are supported only in Alveo™ MA35D product</p>
+<p><strong>PDR repository commands</strong></p>
+<ol class="arabic simple">
+<li>GetPDRRepositoryInfo</li>
+<li>GetPDR</li>
+<li>GetPDRRepositorySignature</li>
+</ol>
+<p><strong>PLDM PDR types</strong></p>
+<p><strong>Table: List of supported PDR types</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="37%" />
+<col width="37%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>PDR Type Number</strong></th>
+<th class="head"><strong>PDR Type Name</strong></th>
+<th class="head"><strong>Notes</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>1 (0x01)</td>
+<td>Terminus Locator PDR</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>2 (0x02)</td>
+<td>Numeric Sensor PDR</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>6 (0x06)</td>
+<td>Sensor Auxiliary Names PDR</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>9 (0x09)</td>
+<td>Numeric Effecter PDR</td>
+<td>Supported only in MA35D</td>
+</tr>
+<tr class="row-even"><td>13 (0x0D)</td>
+<td>Effecter Auxiliary Names PDR</td>
+<td>Supported only in MA35D</td>
+</tr>
+</tbody>
+</table>
+<p><strong>PLDM sensors</strong></p>
+<p><strong>Table: List of Numeric sensors supported in Alveo™ products</strong></p>
+<p>Applicable to Alveo™ U200, U250, U280, U50, U50LV, U30, U55C, U55N, UL3xxx &amp; V70 products.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="28%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Sensor ID</strong></th>
+<th class="head"><strong>Sensor Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="3"><strong>Numeric sensor - Thermal</strong></td>
+</tr>
+<tr class="row-odd"><td>1 (0x01)</td>
+<td>FPGA  Temperature</td>
+<td>Consolidated FPGA die/junction temperature</td>
+</tr>
+<tr class="row-even"><td>2 (0x02)</td>
+<td>Board Temperature</td>
+<td>Max of (Inlet, outlet, VRM) temperature</td>
+</tr>
+<tr class="row-odd"><td>3 (0x03)</td>
+<td>QSFP0 Temperature</td>
+<td>QSFP0 temperature when present (N/A for U30, U55C, UL3xxx &amp; V70)</td>
+</tr>
+<tr class="row-even"><td>4 (0x04)</td>
+<td>QSFP1 Temperature</td>
+<td>QSFP1 temperature when present ((N/A for U30, U55C, UL3xxx &amp; V70)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: List of Numeric sensors supported in MA35D product</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="28%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Sensor ID</strong></th>
+<th class="head"><strong>Sensor Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="3"><strong>Numeric sensor - Thermal</strong></td>
+</tr>
+<tr class="row-odd"><td>1 (0x01)</td>
+<td>ASIC1 Temperature</td>
+<td>ASIC device temperature retrieved from ASIC1</td>
+</tr>
+<tr class="row-even"><td>2 (0x02)</td>
+<td>ASIC2 Temperature</td>
+<td>ASIC device temperature retrieved from ASIC2</td>
+</tr>
+<tr class="row-odd"><td>3 (0x03)</td>
+<td>Inlet Temperature</td>
+<td>Board Inlet temperature sensor (placed near IO bracket)</td>
+</tr>
+<tr class="row-even"><td>4 (0x04)</td>
+<td>Normalized VRM Temperature</td>
+<td>Normalized temperature sensor value from the Voltage Regulators (VRM)</td>
+</tr>
+<tr class="row-odd"><td colspan="3"><strong>Numeric sensor - Electrical</strong></td>
+</tr>
+<tr class="row-even"><td>5 (0x05)</td>
+<td>3v3 Aux Voltage</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>6 (0x06)</td>
+<td>3v3 Pex Voltage</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>7 (0x07)</td>
+<td>12v Pex Voltage</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>8 (0x08)</td>
+<td>ASIC1 Voltage</td>
+<td>ASIC voltage retrieved from ASIC1</td>
+</tr>
+<tr class="row-even"><td>9 (0x09)</td>
+<td>ASIC2 Voltage</td>
+<td>ASIC voltage retrieved from ASIC2</td>
+</tr>
+<tr class="row-odd"><td>10 (0x0A)</td>
+<td>3v3 Aux Current</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>11 (0x0B)</td>
+<td>3v3 Pex Current</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>12 (0x0C)</td>
+<td>12v Pex Current</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>13 (0x0D)</td>
+<td>Total Power</td>
+<td>Total Power consumption of the MA35D board</td>
+</tr>
+<tr class="row-odd"><td colspan="3"><strong>Numeric sensor - Firmware Versions</strong></td>
+</tr>
+<tr class="row-even"><td>14 (0x0E)</td>
+<td>SC FW Version</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>15 (0x0F)</td>
+<td>ASIC1 ZSP FW Version</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>16 (0x10)</td>
+<td>ASIC2 ZSP FW Version</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>27 (0x1B)</td>
+<td>ASIC1 eSecure FW Version</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>28 (0x1C)</td>
+<td>ASIC2 eSecure FW Version</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td colspan="3"><strong>Numeric sensor - ASIC Info - Heartbeat, Errors &amp; PCIe</strong></td>
+</tr>
+<tr class="row-even"><td>17 (0x11)</td>
+<td>ASIC1 Heartbeat sensor</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>18 (0x12)</td>
+<td>ASIC2 Heartbeat sensor</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>19 (0x13)</td>
+<td>ASIC1 PCIe Correctable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>20 (0x14)</td>
+<td>ASIC2 PCIe Correctable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>21 (0x15)</td>
+<td>ASIC1 PCIe Uncorrectable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>22 (0x16)</td>
+<td>ASIC2 PCIe Uncorrectable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>23 (0x17)</td>
+<td>ASIC1 ECC Correctable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>24 (0x18)</td>
+<td>ASIC2 ECC Correctable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>25 (0x19)</td>
+<td>ASIC1 ECC Uncorrectable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>26 (0x1A)</td>
+<td>ASIC2 ECC Uncorrectable Errors</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>29 (0x1D)</td>
+<td>ASIC1 PCIe Link Speed</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>30 (0x1E)</td>
+<td>ASIC2 PCIe Link Speed</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>31 (0x1F)</td>
+<td>ASIC1 PCIe Link Width</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>32 (0x20)</td>
+<td>ASIC2 PCIe Link Width</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Table: List of Effecters sensors supported in MA35D product</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="12%" />
+<col width="28%" />
+<col width="60%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head"><strong>Sensor ID</strong></th>
+<th class="head"><strong>Sensor Name</strong></th>
+<th class="head"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td colspan="3"><strong>Effecters - Resets and SPI flash WP config</strong></td>
+</tr>
+<tr class="row-odd"><td>1 (0x01)</td>
+<td>ASIC1 reset</td>
+<td>Effector to reset ASIC1; SC resets ASIC1 via GPIO signal</td>
+</tr>
+<tr class="row-even"><td>2 (0x02)</td>
+<td>ASIC2 reset</td>
+<td>Effector to reset ASIC2; SC resets ASIC1 via GPIO signal</td>
+</tr>
+<tr class="row-odd"><td>3 (0x03)</td>
+<td>SC reset</td>
+<td>Effector to soft reset MSP432 MCU</td>
+</tr>
+<tr class="row-even"><td>4 (0x04)</td>
+<td>ASIC1 SPI flash WP set</td>
+<td>Effector to enable/disable ASIC1 flash Write Protect; Default: WP enable</td>
+</tr>
+<tr class="row-odd"><td>5 (0x05)</td>
+<td>ASIC2 SPI flash WP set</td>
+<td>Effector to enable/disable ASIC2 flash Write Protect; Default: WP enable</td>
+</tr>
+</tbody>
+</table>
+<p><strong>NOTE:</strong> Effecter values range between 0x00 and 0x01. For ASIC/SC resets, sending 0x01 results in reset. For flash Write Protects, sending 0x01 disables WP and 0x00 enables it back.</p>
+<p><strong>AMD Support</strong></p>
+<p>For support resources such as answers, documentation, downloads, and forums, see the <a class="reference external" href="https://forums.xilinx.com/t5/Alveo-Accelerator-Cards/bd-p/alveo">Alveo Accelerator Cards AMD/Xilinx Community Forum</a>.</p>
+<p><strong>License</strong></p>
+<p>Licensed under the Apache License, Version 2.0 (the “License”); you may not use this file except in compliance with the License.</p>
+<p>You may obtain a copy of the License at
+<a class="reference external" href="http://www.apache.org/licenses/LICENSE-2.0">http://www.apache.org/licenses/LICENSE-2.0</a></p>
+<p>All images and documentation, including all debug and support documentation, are licensed under the Creative Commons (CC) Attribution 4.0 International License (the “CC-BY-4.0 License”); you may not use this file except in compliance with the CC-BY-4.0 License.</p>
+<p>You may obtain a copy of the CC-BY-4.0 License at
+<a class="reference external" href="https://creativecommons.org/licenses/by/4.0/">https://creativecommons.org/licenses/by/4.0/</a></p>
+<p>Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an “AS IS” BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.</p>
+<p align="center"><sup>XD038 | &copy; Copyright 2023, Advanced Micro Devices Inc.</sup></p></div>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="pmci-support.html" class="btn btn-neutral float-left" title="PMCI Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="pldm-t5-update.html" class="btn btn-neutral float-right" title="PLDM IFWI Update" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021-2022, Xilinx, Inc..
+      <span class="lastupdated">Last updated on March 30, 2022.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

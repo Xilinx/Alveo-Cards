@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script type="text/javascript" src="_static/doctools.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Satellite Controller Firmware Update Commands" href="sc-firmware-update.html" />
-    <link rel="prev" title="Alveo™ FRU Support" href="alveo-fru.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -57,44 +55,41 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="oob-intro.html">Introduction</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Alveo FRU</span></p>
+<p class="caption"><span class="caption-text">Alveo IPMI FRU</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="alveo-fru.html">Alveo™ FRU Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Standard I2C/SMBus commands</span></p>
-<ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">I2C/SMBus Commands</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#x01maximum-dimm-temperature">0x01–Maximum DIMM Temperature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x02maximum-board-temperature">0x02–Maximum Board Temperature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x03board-power-consumption">0x03–Board Power Consumption</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x04satellite-controller-firmware-version">0x04–Satellite Controller Firmware Version</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x05maximum-fpga-die-temperature">0x05–Maximum FPGA Die Temperature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x06maximum-qsfp-temperature">0x06–Maximum QSFP Temperature</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x0freset-fpga">0x0F–Reset FPGA</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#x20critical-sensor-data-record-csdr-command">0x20–Critical Sensor Data Record (CSDR) Command</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#critical-sensor-data-record-csdr-command-response">Critical Sensor Data Record (CSDR) Command Response</a></li>
-</ul>
-</li>
-</ul>
-<p class="caption"><span class="caption-text">SC firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PMCI support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">Satellite Controller Firmware Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pmci-support.html">PMCI Support</a></li>
 </ul>
-<p class="caption"><span class="caption-text">FPGA firwmare update via OoB</span></p>
+<p class="caption"><span class="caption-text">PLDM telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">FPGA Flash Update Commands</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t2-telemetry.html">PLDM Telemetry</a></li>
 </ul>
-<p class="caption"><span class="caption-text">DMTF support</span></p>
+<p class="caption"><span class="caption-text">MA35D IFWI update</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dmtf-support.html">DMTF Implementation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pldm-t5-update.html">PLDM IFWI Update</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix A: PCIe and thermal info</span></p>
+<p class="caption"><span class="caption-text">SPDM attestation</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="appendix_a.html">Appendix A</a></li>
+<li class="toctree-l1"><a class="reference internal" href="spdm-attestation.html">SPDM Attestation</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Appendix B: SMBus 2.0 protocol recap</span></p>
+<p class="caption"><span class="caption-text">Alveo I2C Telemetry</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="smbus2.0-protocol-recap.html">I2C/SMBus Implementation and Protocol Recap</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alveo-I2C-telemetry.html">Alveo I2C Telemetry</a></li>
+</ul>
+<p class="caption"><span class="caption-text">SC FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="sc-firmware-update.html">SC Firmware Update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">U30 FPGA FW update</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="fpga-firmware-update.html">U30 FPGA FW update</a></li>
+</ul>
+<p class="caption"><span class="caption-text">PCIe and thermal info</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="appendix-a.html">Appendix A</a></li>
 </ul>
 <p class="caption"><span class="caption-text">References</span></p>
 <ul>
@@ -1466,10 +1461,7 @@ the FPGA. Wherever applicable, SC has the capability to reset the FPGA. This fea
           </div>
           
 				  
-				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="alveo-fru.html" class="btn btn-neutral float-left" title="Alveo™ FRU Support" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="sc-firmware-update.html" class="btn btn-neutral float-right" title="Satellite Controller Firmware Update Commands" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
-    </div>
+				  <footer>
 
   <hr/>
 
