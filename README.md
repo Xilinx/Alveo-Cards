@@ -23,13 +23,6 @@ Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT 
 
 
 
-## [Debug Guide](https://xilinx.github.io/Alveo-Cards/master/debugging/README.html)
-
-
-Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT flow, from card installation through hardware validation.
-
-
-
 
 ## [Out-of-Band Management Specification](https://xilinx.github.io/Alveo-Cards/master/management-specification/index.html)
 
