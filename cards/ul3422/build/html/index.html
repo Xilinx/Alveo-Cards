@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>UL3422 Design Support &mdash; Ultra Low Latency Trading  documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Renesas I2C Reference Design" href="docs/Renesas_I2C_Programming/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="#" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3422
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3422</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/cards/ul3422.html">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3422">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/QSFP_I2C/README.html">QSFP I2C</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="docs/Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="docs/Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+      <li>UL3422 Design Support</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ul3422-design-support">
+<h1>UL3422 Design Support<a class="headerlink" href="#ul3422-design-support" title="Permalink to this heading">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>This repository provides AMD Alveo UL3422 card support including Vivado based reference designs targeting features of the card.</p>
+</section>
+<section id="reference-designs">
+<h2>Reference Designs<a class="headerlink" href="#reference-designs" title="Permalink to this heading">¶</a></h2>
+<p>Available reference designs are summarized in the following table. Each reference design includes:</p>
+<ul class="simple">
+<li><p>High-level design overview including attributes, performance, limitations and usage</p></li>
+<li><p>Simulation waveform files with waveform descriptions to better understand the design</p></li>
+<li><p>Hardware design files along with ILA / VIO configuration files allowing greater control and visibility into the design</p></li>
+</ul>
+<p>Each reference design is located in their respective sub-directory.</p>
+<table class="docutils align-default" id="id1">
+<caption><span class="caption-number">Table 1 </span><span class="caption-text">Available Reference Designs</span><a class="headerlink" href="#id1" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 30.0%" />
+<col style="width: 70.0%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Reference Design</p></th>
+<th class="head"><p>Summary</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="docs/Renesas_I2C_Programming/README.html"><span class="doc">Renesas I2C Programming</span></a></p></td>
+<td><p>Program the Renesas devices via I2C using a state machine. Includes script to convert Renesas programming script file to <code class="docutils literal notranslate"><span class="pre">.coe</span></code> BRAM file format.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="docs/QSFP_I2C/README.html"><span class="doc">QSFP I2C</span></a></p></td>
+<td><p>Enable QSFP module power planes and side-band signals via I2C interface.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="toctree-wrapper compound">
+</div>
+<section id="reference-design-support">
+<h3>Reference Design Support<a class="headerlink" href="#reference-design-support" title="Permalink to this heading">¶</a></h3>
+<p>The following links provide support to use the reference designs.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="docs/Docs/loading_ref_proj.html"><span class="doc">Loading a reference design</span></a></p></li>
+<li><p><a class="reference internal" href="docs/Docs/simulating_a_design.html"><span class="doc">Simulating a reference design</span></a></p></li>
+<li><p><a class="reference internal" href="docs/Docs/building_a_design.html"><span class="doc">Building a reference design</span></a></p></li>
+<li><p><a class="reference internal" href="docs/Docs/programming_the_device.html"><span class="doc">Programming a reference design to the card</span></a></p></li>
+</ul>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<section id="supported-cards">
+<h3>Supported Cards<a class="headerlink" href="#supported-cards" title="Permalink to this heading">¶</a></h3>
+<p>The following card is supported by the reference designs in this repository:</p>
+<ul class="simple">
+<li><p>UL3422</p></li>
+</ul>
+</section>
+<section id="vivado-design-support">
+<h3>Vivado Design Support<a class="headerlink" href="#vivado-design-support" title="Permalink to this heading">¶</a></h3>
+<div class="toctree-wrapper compound">
+</div>
+<p>The reference designs require the following Vivado release:</p>
+<ul class="simple">
+<li><p>Vivado ©️ 2023.2</p></li>
+</ul>
+<p>The following links provide support on the Vivado flow:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="docs/Docs/vivado_design_flow.html"><span class="doc">Vivado Design Flow</span></a></p></li>
+<li><p><a class="reference download internal" download="" href="_downloads/463eae614c0690585f8d74325598ceb5/ul3422.xdc"><code class="xref download docutils literal notranslate"><span class="pre">UL3422</span> <span class="pre">XDC</span> <span class="pre">file</span></code></a></p></li>
+</ul>
+<p>The <a class="reference external" href="https://support.xilinx.com/s/article/000035539">Alveo UL Cards Master Release Notes</a> provides support resources such as known issues and release notes. For additional assistance, post your question on the AMD Community Forums: <a class="reference external" href="https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards">Alveo Accelerator Card</a>.</p>
+</section>
+<section id="hardware-requirements">
+<h3>Hardware Requirements<a class="headerlink" href="#hardware-requirements" title="Permalink to this heading">¶</a></h3>
+<p>To program the device from the Vivado HW Manager, you need either of the following:</p>
+<ul class="simple">
+<li><p>Micro-B USB cable</p></li>
+<li><p>Alveo Debug Kit (ADK). See <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/accessories.html">Alveo Accessories</a> to purchase.</p></li>
+</ul>
+</section>
+<section id="support">
+<h3>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h3>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html">UL3422 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3422 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at <a class="reference external" href="https://support.xilinx.com">support.xilinx.com</a>.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="docs/Renesas_I2C_Programming/README.html" class="btn btn-neutral float-right" title="Renesas I2C Reference Design" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 10, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

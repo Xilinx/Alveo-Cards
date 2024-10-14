@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>QSFP I2C Reference Design &mdash; Ultra Low Latency Trading  documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Loading a Reference Design Vivado Project" href="../Docs/loading_ref_proj.html" />
+    <link rel="prev" title="Renesas I2C Reference Design" href="../Renesas_I2C_Programming/README.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                UL3422
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">UL3422</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/Alveo-Cards/cards/ul3422.html">Home</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/tree/ul3422">On GitHub</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Designs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../Renesas_I2C_Programming/README.html">Renesas I2C Programming</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">QSFP I2C</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#description">Description</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reference-design-hierarchy">Reference Design Hierarchy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#card-details">Card Details</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#qsfp-dd-card-logic-overview">QSFP-DD Card Logic Overview</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qsfp-power-enable">QSFP Power Enable</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#qsfp-dd-i2c-topology">QSFP-DD I2C Topology</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#i2c-peripheral-resets">I2C Peripheral Resets</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#i2c-operations">I2C Operations</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#powering-on-off-the-qsfp-dd-domains">Powering On/Off the QSFP-DD Domains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-reading-qsfp-sideband-signals">Configuring/Reading QSFP Sideband Signals</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-i2c-sequences-for-common-functions">Example I2C Sequences for Common Functions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id1">Powering On/Off the QSFP-DD Domains</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#accessing-low-speed-sideband-control-status-signals">Accessing Low Speed Sideband Control/Status Signals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-qsfp-dd-module-i2c-access">Example QSFP-DD Module I2C Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#example-qsfp-dd-low-speed-sideband-access">Example QSFP-DD Low Speed Sideband Access</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#detailed-example-of-programming-steps">Detailed Example of Programming Steps</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#jtag-axi-access">JTAG AXI Access</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#references">References</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tca6408apwr-register-map">TCA6408APWR Register Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pca9545a-register-map">PCA9545A Register Map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ul3422-pinout">UL3422 Pinout</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#support">Support</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/loading_ref_proj.html">Loading a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/simulating_a_design.html">Simulating a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/building_a_design.html">Building a design</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/programming_the_device.html">Programming the device</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Vivado Design Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../Docs/vivado_design_flow.html">Vivado Design Flow</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Ultra Low Latency Trading</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>QSFP I2C Reference Design</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <table class="sphinxhide" width="100%">
+ <tr width="100%">
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3422 Ultra Low Latency Trading</h1>
+    </td>
+ </tr>
+</table><section id="qsfp-i2c-reference-design">
+<h1>QSFP I2C Reference Design<a class="headerlink" href="#qsfp-i2c-reference-design" title="Permalink to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+<p>This reference design demonstrates how to enable QSFP modules, power planes, and sideband signals via I2C interface.</p>
+<p><strong>Additional Documentation</strong></p>
+<p>The following links provide additional documentation, including simulation and HW Manager support.</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a><br></p>
+<ul>
+<li><p>Describes the available simulation and description of waveforms</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a><br></p>
+<ul>
+<li><p>Provides instructions to run the design in hardware and interact with the design through the HW Manager.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="reference-design-hierarchy">
+<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Permalink to this heading">¶</a></h2>
+<p>A high-level block diagram of the reference design module hierarchy <em>qsfp_i2c_top</em> (shown in greeen) including the QSFP I2C endpoints (shown in blue) is shown in the following figure.  A description of functionality of the design modules are given in the following table.</p>
+<p><img alt="Description of design modules" src="../../_images/qsfp_i2c_diagram.png" /></p>
+<p><strong>Table:</strong> Description of design modules</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Name</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>jtag_axi_0</td>
+<td>This module interfaces with the Vivado hardware manager via JTAG to provide access to internal control and status registers via AXI-lite interface.</td>
+</tr>
+<tr>
+<td>reg_qsfp_i2c_top</td>
+<td>This module contains an AXI Lite accessible register array that controls the design. Once I2C commands are configured, the module initiates the transfer to the i2c_axi_sequencer.</td>
+</tr>
+<tr>
+<td>i2c_axi_sequencer</td>
+<td>This module implements a state-machine that performs the required AXI commands for the I2C controller. A simple req/ack interface provides the device ID, command/address bytes, and optional write data. When the req is asserted, the state machine initializes the I2C controller, programs the output FIFO, starts the transfer and monitors the status. Read requests will return data when the transfer completes.</td>
+</tr>
+<tr>
+<td>axi_master</td>
+<td>This module translates a simple register access interface to the AXI-Lite interfaces required by the I2C controller IP.</td>
+</tr>
+<tr>
+<td>axi_iic_0</td>
+<td>This I2C controller module is generated from the Vivado IP Catalog. The user interface is an AXI-Lite interface.</td>
+</tr>
+</tbody>
+</table></section>
+<section id="card-details">
+<h2>Card Details<a class="headerlink" href="#card-details" title="Permalink to this heading">¶</a></h2>
+<section id="qsfp-dd-card-logic-overview">
+<h3>QSFP-DD Card Logic Overview<a class="headerlink" href="#qsfp-dd-card-logic-overview" title="Permalink to this heading">¶</a></h3>
+<p>The following gives a high-level overview of the QSFP-DD logic.  Specific details are given further below.</p>
+<ul class="simple">
+<li><p>Power domains for each QSFP-DD are separately controlled via I2C I/O expander, device ID 0x42 (8-bit).</p></li>
+<li><p>QDFP-DD I2C ports and low speed sideband signals are accessed through a pair of I2C switches:</p>
+<ul>
+<li><p>I2C Switch 0</p>
+<ul>
+<li><p>Device ID is 0xE0 (8-bit)</p></li>
+<li><p>Connects to QSFP-DD 1 and 2</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Each I2C switch has two I2C targets for each associated QSFP-DD:</p>
+<ul>
+<li><p>An I/O expander to control/monitor the following low speed QSFP-DD sideband signals</p>
+<ul>
+<li><p>LPMODE</p></li>
+<li><p>INITL</p></li>
+<li><p>MODPRSL</p></li>
+<li><p>MODSELL</p></li>
+<li><p>RESETL</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>A direct I2C connection to the QSPF-DD module’s I2C port.</p></li>
+</ul>
+</section>
+<section id="qsfp-power-enable">
+<h3>QSFP Power Enable<a class="headerlink" href="#qsfp-power-enable" title="Permalink to this heading">¶</a></h3>
+<p>Each QSFP module on the UL3422 card has an independent power plane which can be enabled independently via the FPGA I2C interface.  The below schematic capture image shows the FPGA I2C interface and I/O expander device (TCA6408APWR).  Each QSFP module can be enabled by asserting the respective enable signals QSFPDD_1_EN, QSFPDD_2_EN. These signals are map to I/O expander ports P3 and P5, respectively which are controlled by the FPGA I2C interface.</p>
+<p>Additionally, power good status for each QSFP power plane (QSFPDD_1PG, QSFPDD_2_PG) can be read from ports P2,or P4 respectively. See section <a class="reference external" href="#powering-onoff-the-qsfp-dd-domains">Powering On/Off the QSFP-DD Domains</a> for details.</p>
+<p>This I/O expander is enabled by default, but can be reset by deasserting FPGA_OC_RSTn.</p>
+<p><img alt="Schematic capture of I/O expander logic" src="../../_images/image1.png" />
+<strong>Figure:</strong> Schematic capture of I/O expander logic</p>
+<p>Asserting the power enable pins is done by performing two I2C transfers:</p>
+<ul class="simple">
+<li><p>Program I2C register 0x1 to assert the desired pin(s), and</p></li>
+<li><p>Program I2C register 0x3 to 0x55 set the enable pin(s) as outputs and the power good status pins as inputs.</p></li>
+</ul>
+</section>
+<section id="qsfp-dd-i2c-topology">
+<h3>QSFP-DD I2C Topology<a class="headerlink" href="#qsfp-dd-i2c-topology" title="Permalink to this heading">¶</a></h3>
+<p>As shown in the following figure, the card uses a combination of I2C switches (PCA9545A) and I/O expanders (TCA6408A) to access and control power and sideband signals for both of the QSFP-DD modules.  For clarity, only QSFP-DD0 I/O expander sideband signals are shown. The other QSFP-DD I/O expanders have identical sideband signals but are not explicitly shown.  To access/control particular QSFP signals requires enabling particular combination of I2C switches and I/O expanders.</p>
+<p><strong>Note: Each I/O expander (one per QSFP-DD) has the same I2C device ID (0x40).</strong></p>
+<p><img alt="QSFP_port_and_sideband_control_block_diagram" src="../../_images/UL3422_qsfp_i2c.jpg" /></p>
+<p><strong>Figure:</strong> QSFP port and sideband control block diagram</p>
+</section>
+<section id="i2c-peripheral-resets">
+<h3>I2C Peripheral Resets<a class="headerlink" href="#i2c-peripheral-resets" title="Permalink to this heading">¶</a></h3>
+<p>Each I2C I/O expander and switch component has an active-Low reset connected to the FPGA. All components have an external pullup resister and therefore will be enabled following a power reset. However, they can also be manually controlled by the FPGA using the following pins:</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Signal</th>
+<th>Peripheral</th>
+<th>FPGA Pin</th>
+<th>External Pullup</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>FPGA_MUX_RSTn</td>
+<td>Switches 0</td>
+<td>G14</td>
+<td>3.3V</td>
+</tr>
+<tr>
+<td>FPGA_MUX_RSTn</td>
+<td>Power enable expander</td>
+<td>G15</td>
+<td>3.3V</td>
+</tr>
+<tr>
+<td>QSFPDD1_IO_RESET_B</td>
+<td>QSFP-DD 1 I/O expander</td>
+<td>H16</td>
+<td>3.3V</td>
+</tr>
+<tr>
+<td>QSFPDD2_IO_RESET_B</td>
+<td>QSFP-DD 2 I/O expander</td>
+<td>F15</td>
+<td>3.3V</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> I2C peripheral resets</p>
+</section>
+</section>
+<section id="i2c-operations">
+<h2>I2C Operations<a class="headerlink" href="#i2c-operations" title="Permalink to this heading">¶</a></h2>
+<section id="powering-on-off-the-qsfp-dd-domains">
+<h3>Powering On/Off the QSFP-DD Domains<a class="headerlink" href="#powering-on-off-the-qsfp-dd-domains" title="Permalink to this heading">¶</a></h3>
+<p>Enabling or disabling the individual QSFP-DD power domains is achieved by configuring a TCA6408APWR I/O expander. Even bits/pins should be configured as inputs and reflect the power good status of each domain. Odd bits/pins should be configured as outputs and control the power enables for each domain as shown in the following table.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Bit</th>
+<th>Function</th>
+<th>Direction</th>
+<th>Signal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>Unused</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>1</td>
+<td>Unused</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>2</td>
+<td>QSFP-DD 1 Power Good</td>
+<td>Input</td>
+<td>QSFP1 PG</td>
+</tr>
+<tr>
+<td>3</td>
+<td>QSFP-DD 1 Power Enable</td>
+<td>Output</td>
+<td>QSFP1 EN</td>
+</tr>
+<tr>
+<td>4</td>
+<td>QSFP-DD 2 Power Good</td>
+<td>Input</td>
+<td>QSFP2 PG</td>
+</tr>
+<tr>
+<td>5</td>
+<td>QSFP-DD 2 Power Enable</td>
+<td>Output</td>
+<td>QSFP2 EN</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Unused</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>7</td>
+<td>Unused</td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> QSFP-DD Power Good/Enable Bit Allocation</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function</th>
+<th>I2C</th>
+<th>Sequence Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set power enable pins</td>
+<td>0x42, 0x01, 0xAA</td>
+<td>Programs output value register.</td>
+</tr>
+<tr>
+<td>Enable output mode for even numbered pin</td>
+<td>0x42, 0x03, 0x55</td>
+<td>Programs output config register (0 = output, 1 = input)</td>
+</tr>
+<tr>
+<td>Read power good status</td>
+<td>0x42,0x00, (I2C restart), 0x43, (read data)</td>
+<td>Reads input value register</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> Power Expander Example Programming</p>
+</section>
+<section id="configuring-reading-qsfp-sideband-signals">
+<h3>Configuring/Reading QSFP Sideband Signals<a class="headerlink" href="#configuring-reading-qsfp-sideband-signals" title="Permalink to this heading">¶</a></h3>
+<p>Once enabled, the QSFP sideband signals are configured by configuring two PCA9545A I2C switch devices to route the I2C to the TCA6408A I/O Expander controlling the target QSFP sideband signals. This is done by a series of I2C transfers.</p>
+<ol class="simple">
+<li><p>Configure both PCA9545A (ID’s 0xE0 and 0xE4) to route the I2C path.</p></li>
+<li><p>Configure the output pin value and output enable for the targeted TCA6408A</p></li>
+</ol>
+<p><strong>WARNING: Each TCA6408A has an ID of 0x40, so the I2C switches must be configured to route to only <u>ONE</u> such device to prevent bus contention.</strong></p>
+<p>Each TCA6408A is enabled by means of pull-up resisters to RESET_B as shown in the following figure. This can be manually overwritten by driving the respective QSFPDDx_IO_RESET_B signal from the FPGA.  See section <a class="reference external" href="#i2c-peripheral-resets">I2C Peripheral Resets</a> for details.</p>
+<p><img alt="image2" src="../../_images/image2.png" /></p>
+</section>
+</section>
+<section id="example-i2c-sequences-for-common-functions">
+<h2>Example I2C Sequences for Common Functions<a class="headerlink" href="#example-i2c-sequences-for-common-functions" title="Permalink to this heading">¶</a></h2>
+<section id="id1">
+<h3>Powering On/Off the QSFP-DD Domains<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h3>
+<p>Enabling or disabling the individual QSFP-DD power domains is achieved by configuring the TCA6408APWR I/O expander that drives the power enable signals.</p>
+<p>The following table details three steps to configure the I/O expander, enable the outputs, and read back the power good values for verification.</p>
+<p><strong>Table:</strong> QSFP-DD Power Good/Enable Bit Allocation</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function</th>
+<th>I2C</th>
+<th>Sequence Detail</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Set power enable pins</td>
+<td>0x42, 0x01, 0xAA</td>
+<td>Programs output value register.</td>
+</tr>
+<tr>
+<td>Enable output mode for even numbered pin</td>
+<td>0x42, 0x03, 0x55</td>
+<td>Programs output config register (0 = output, 1 = input)</td>
+</tr>
+<tr>
+<td>Read power good status</td>
+<td>0x42,0x00, (restart), 0x43, (read data)</td>
+<td>Reads input value register</td>
+</tr>
+</tbody>
+</table></section>
+<section id="accessing-low-speed-sideband-control-status-signals">
+<h3>Accessing Low Speed Sideband Control/Status Signals<a class="headerlink" href="#accessing-low-speed-sideband-control-status-signals" title="Permalink to this heading">¶</a></h3>
+<p>Before accessing one of the QSFP-DD module’s I2C port or sideband expander, it is necessary to first program both I2C switches to configure the appropriate routing.</p>
+<p><strong>IMPORTANT! Because of duplicate target device IDs, the switches must have only one target path enabled at a time. This can be managed by performing two I2C sequences when changing targets using the following reference table.</strong></p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Target</th>
+<th>First I2C Sequence</th>
+<th>Second I2C Sequence</th>
+<th>Selected Mux 0 Port</th>
+<th>Selected Mux1 Port</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>QSFP-DD 1</td>
+<td>Sideband</td>
+<td>0xE0, 0x04</td>
+<td>0xE4, 0x00 2</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>QSFP-DD 1</td>
+<td>I2C</td>
+<td>0xE0, 0x08</td>
+<td>0xE4, 0x00 3</td>
+<td>Disabled</td>
+</tr>
+<tr>
+<td>QSFP-DD 2</td>
+<td>Sideband</td>
+<td>0xE0, 0x00</td>
+<td>0xE4, 0x01</td>
+<td>Disabled 0</td>
+</tr>
+<tr>
+<td>QSFP-DD 2</td>
+<td>I2C</td>
+<td>0xE0, 0x00</td>
+<td>0xE4, 0x02</td>
+<td>Disabled 1</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> I2C Switch Settings to Access QSFP-DD Low Speed Sideband Signal</p>
+</section>
+<section id="example-qsfp-dd-module-i2c-access">
+<h3>Example QSFP-DD Module I2C Access<a class="headerlink" href="#example-qsfp-dd-module-i2c-access" title="Permalink to this heading">¶</a></h3>
+<p>Assuming the power domains are enabled correctly the following example shows how to access
+the QSFP-DD 3 module’s I2C port. The same procedure can be modified to access the other
+three modules.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function</th>
+<th>DevID</th>
+<th>Addr/Cmd</th>
+<th>Write Data</th>
+<th>Read Data</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Deselect Mux0 Ports</td>
+<td>0xE0</td>
+<td>0x00</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Disable Mux0</td>
+</tr>
+<tr>
+<td>Select QSFP-DD3 I2C via Mux 1</td>
+<td>0xE4</td>
+<td>0x08</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Select Port 4 of Mux1</td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> QSPF-DD3 I2C Access Example</p>
+</section>
+<section id="example-qsfp-dd-low-speed-sideband-access">
+<h3>Example QSFP-DD Low Speed Sideband Access<a class="headerlink" href="#example-qsfp-dd-low-speed-sideband-access" title="Permalink to this heading">¶</a></h3>
+<p>Each QSFP-DD low speed sideband signals are connected to a TCA6408A I/O expander, whose pinouts are detailed in the following table.  Access to these signals involves configuring the PCA9545A I2C Switches to route to the targeted I/O expander, then configuring or reading the I/O expander.</p>
+<p><strong>Table:</strong> QSFP sideband signal definition</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Pin</th>
+<th>Signal Name</th>
+<th>Input/Output</th>
+<th>Output Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>LPMODE</td>
+<td>Output</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>INTL</td>
+<td>Input</td>
+<td>0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>MODPRSL</td>
+<td>Input</td>
+<td>0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>MODSELL</td>
+<td>Output</td>
+<td>0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>RESETL</td>
+<td>Output</td>
+<td>1</td>
+</tr>
+<tr>
+<td>5</td>
+<td>N/C</td>
+<td>Input</td>
+<td>0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>N/C</td>
+<td>Input</td>
+<td>0</td>
+</tr>
+<tr>
+<td>7</td>
+<td>N/C</td>
+<td>Input</td>
+<td>0</td>
+</tr>
+</tbody>
+</table><p>By default, the I/O expanders are configured for input only, so the LPMODE, MODSELL and RESETL signals will not be driven until initialized.</p>
+<p>The following table illustrates how QSFP1 can be initialized.  Similar steps must be taken to initialized the other expanders.</p>
+<p>*<strong>Table:</strong> Example Configuring QSFP1 I/O Expander</p>
+<p>|Function							|Sequence    				|Description											|
+|—								|—						|—													|
+|Disable PCA9545A (0xE0)			| 0x42, 0xE0, 0x00   		|Gates I2C communication to QSFP0 and QSFP1 expanders	|
+|Disable PCA9545A (0xE4)			| 0x42, 0xE4, 0x00			|Gates I2C communication to QSFP2 and QSFP3 expanders	|
+|Enable Port 2 of PCA9545A (0xE0)	| 0x42, 0xE0, 0x04			|Enables I2C routing to QSFP							|
+|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x01, 0x10			|Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)		|
+|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x03, 0xE6			|Configures output enables for pins 0,3,4				|</p>
+</section>
+<section id="detailed-example-of-programming-steps">
+<h3>Detailed Example of Programming Steps<a class="headerlink" href="#detailed-example-of-programming-steps" title="Permalink to this heading">¶</a></h3>
+<p>The following table steps provide a complete example for enabling the power domains and configuration for QSPF-DD1. Once power is enabled, the same procedure can be modified to access the other three modules.</p>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>Function</th>
+<th>DevID</th>
+<th>Addr/Cmd</th>
+<th>Write Data</th>
+<th>Read Data</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Disable Switch 0</td>
+<td>0xE0</td>
+<td>0x0</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Disable all ports</td>
+</tr>
+<tr>
+<td>Enable QSFP-DD Power for all ports</td>
+<td>0x42</td>
+<td>0x01</td>
+<td>0xAA</td>
+<td>N/A</td>
+<td>Set Output Value<br>1 = Enabled, 0 = Disabled</td>
+</tr>
+<tr>
+<td></td>
+<td>0x42</td>
+<td>0x03</td>
+<td>0x55</td>
+<td>N/A</td>
+<td>Config Output Enable<br>1 = Input, 0 = output</td>
+</tr>
+<tr>
+<td>Check for Power<br>Good Status</td>
+<td>0x42</td>
+<td>0x00</td>
+<td>N/A</td>
+<td>Bit 0: QSFP-DD 0<br>Bit 2: QSFP-DD 1<br>Bit 4: QSFP-DD 2<br>Bit 6: QSFP-DD 3</td>
+<td>1 = Good Status</td>
+</tr>
+<tr>
+<td>Select QSFP-DD 1 Sideband</td>
+<td>0xE0</td>
+<td>0x04</td>
+<td>N/A</td>
+<td>N/A</td>
+<td>Select Port 2 of Mux0</td>
+</tr>
+<tr>
+<td>Configure QSFP-DD 1 Sideband Output Values</td>
+<td>0x40</td>
+<td>0x01</td>
+<td>0x10<br> Bit 0 = LPMODE<br>Bit 1 = MODSEL<br>Bit 4 = RESETL<br></td>
+<td>N/A</td>
+<td>Once the endpoint has been identified via the switch configuration, the desired output values of the I2C expander must be established by programming register 1 of the I2C expander. The three bits shown on the left are outputs to the QSFP-DD modules. See the QSFP-DD documentation to determine the desired values of these signals.</td>
+</tr>
+<tr>
+<td>Configure QSFP-DD 0 Sideband Output Enables</td>
+<td>0x40</td>
+<td>0x03</td>
+<td>0xE6<br>Bit 0 = LPMODE<br>Bit 1 = MODSEL<br>Bit 4 = RESETL</td>
+<td>N/A</td>
+<td>Enable outputs for bits 0,1 and 4</td>
+</tr>
+<tr>
+<td>Check for Module Present</td>
+<td>0x40</td>
+<td>0x00</td>
+<td>N/A</td>
+<td>Check Bit 3<br>0 = installed<br>1 = not installed<br></td>
+<td></td>
+</tr>
+</tbody>
+</table><p><strong>Table:</strong> QSPF-DD1 Power and Control Enabling Example</p>
+</section>
+</section>
+<section id="jtag-axi-access">
+<h2>JTAG AXI Access<a class="headerlink" href="#jtag-axi-access" title="Permalink to this heading">¶</a></h2>
+<p>By setting the USE_JTAG_AXI parameter in the top source file, the user can connect to the design using Vivado Hardware Manager via a JTAG interface.  The following table illustrates the register map for this configuration to control the associated board resets for the I2C peripheral components and initiate I2C transfers.</p>
+<p><strong>Table:</strong> Register map</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">Addr</span>    <span class="n">Register</span> <span class="n">Description</span>
+<span class="o">----</span>    <span class="o">----------------------------------</span>
+<span class="mh">0x0000</span>  <span class="n">I2C</span> <span class="n">Control</span> <span class="o">-</span> <span class="n">Writing</span> <span class="n">to</span> <span class="n">this</span> <span class="n">register</span> <span class="n">initiates</span> <span class="n">an</span> <span class="n">I2C</span> <span class="n">read</span><span class="o">/</span><span class="n">write</span> <span class="n">transfer</span><span class="o">.</span>
+                      <span class="n">Write</span> <span class="n">this</span> <span class="n">register</span> <span class="n">AFTER</span> <span class="n">setting</span> <span class="n">the</span> <span class="n">I2C</span> <span class="n">address</span> <span class="ow">and</span> <span class="n">write</span> <span class="n">data</span> <span class="n">registers</span> <span class="o">-</span> <span class="n">defined</span> <span class="n">below</span><span class="o">.</span>
+            <span class="n">Bit</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>  <span class="n">Description</span>
+            <span class="mi">31</span>      <span class="mi">1</span><span class="o">=</span><span class="n">Read</span> <span class="n">Operation</span><span class="p">,</span> <span class="mi">0</span><span class="o">=</span><span class="n">Write</span> <span class="n">Operation</span>   
+            <span class="mi">30</span>      <span class="mi">1</span><span class="o">=</span><span class="n">Operation</span> <span class="n">Complete</span><span class="p">,</span> <span class="n">clears</span> <span class="n">when</span> <span class="n">this</span> <span class="n">register</span> <span class="ow">is</span> <span class="n">written</span> <span class="n">to</span>
+            <span class="mi">7</span><span class="p">:</span><span class="mi">0</span>     <span class="mi">8</span><span class="o">-</span><span class="n">bit</span> <span class="n">I2C</span> <span class="n">Device</span> <span class="n">ID</span> <span class="p">(</span><span class="n">Do</span> <span class="ow">not</span> <span class="nb">set</span> <span class="n">RW</span> <span class="n">bit</span> <span class="mi">0</span><span class="p">)</span> 
+        
+<span class="mh">0x0004</span>  <span class="n">I2C</span> <span class="n">Address</span> <span class="o">-</span> <span class="n">Specifies</span> <span class="n">the</span> <span class="mi">8</span><span class="o">-</span><span class="n">bit</span> <span class="n">I2C</span> <span class="n">register</span> <span class="n">address</span>
+            <span class="n">Bits</span>    <span class="n">Description</span>
+            <span class="mi">7</span><span class="p">:</span><span class="mi">0</span>     <span class="n">I2C</span> <span class="n">Address</span>
+
+<span class="mh">0x0008</span>  <span class="n">I2C</span> <span class="n">Write</span> <span class="n">Data</span> <span class="o">-</span> <span class="n">For</span> <span class="n">write</span> <span class="n">operations</span><span class="p">,</span> <span class="n">this</span> <span class="n">specifies</span> <span class="n">the</span> <span class="mi">8</span><span class="o">-</span><span class="n">bit</span> <span class="n">data</span> <span class="n">to</span> <span class="n">be</span> <span class="n">written</span>
+            <span class="n">Bits</span>    <span class="n">Description</span>
+            <span class="mi">7</span><span class="p">:</span><span class="mi">0</span>     <span class="n">I2C</span> <span class="n">Write</span> <span class="n">Data</span>
+
+<span class="mh">0x000C</span>  <span class="n">I2C</span> <span class="n">Read</span> <span class="n">Data</span> <span class="o">-</span> <span class="n">For</span> <span class="n">read</span> <span class="n">operations</span><span class="p">,</span> <span class="n">the</span> <span class="n">returned</span> <span class="mi">8</span><span class="o">-</span><span class="n">bit</span> <span class="n">data</span> <span class="ow">is</span> <span class="n">stored</span> <span class="ow">in</span> <span class="n">this</span> <span class="n">register</span>
+            <span class="n">Bits</span>    <span class="n">Description</span>
+            <span class="mi">7</span><span class="p">:</span><span class="mi">0</span>     <span class="n">I2C</span> <span class="n">Read</span> <span class="n">Data</span>
+
+<span class="mh">0x0010</span>  <span class="n">RESETB</span> <span class="o">-</span> <span class="n">this</span> <span class="n">register</span> <span class="n">controls</span> <span class="n">the</span> <span class="n">various</span> <span class="n">I</span><span class="o">/</span><span class="n">O</span> <span class="n">resets</span> <span class="n">to</span> <span class="n">QSFP</span> <span class="n">related</span> <span class="n">peripherals</span> 
+            <span class="n">Bit</span>     <span class="n">Description</span>
+            <span class="mi">6</span>       <span class="n">I2C</span> <span class="n">Resetn</span> <span class="o">-</span> <span class="p">(</span><span class="n">reset</span> <span class="n">to</span> <span class="n">internal</span> <span class="n">I2C</span> <span class="n">controller</span><span class="p">)</span>
+            <span class="mi">5</span>       <span class="n">Unused</span>       
+            <span class="mi">4</span>       <span class="n">QSFPDD2_IO_RESET_B</span>       
+            <span class="mi">3</span>       <span class="n">QSFPDD1_IO_RESET_B</span>       
+            <span class="mi">2</span>       <span class="n">Unused</span>       
+            <span class="mi">1</span>       <span class="n">FPGA_MUX1_RSTN</span>
+            <span class="mi">0</span>       <span class="n">FPGA_MUX0_RSTN</span>       
+</pre></div>
+</div>
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">¶</a></h2>
+<p>TCA6408A product details can be found <a class="reference external" href="https://www.ti.com/product/TCA6408A">here</a>.<br>
+PCA9545A product details can be found <a class="reference external" href="https://www.ti.com/product/PCA9545A">here</a>.</p>
+<section id="tca6408apwr-register-map">
+<h3>TCA6408APWR Register Map<a class="headerlink" href="#tca6408apwr-register-map" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>Command Byte</strong></th>
+<th><strong>Register</strong></th>
+<th><strong>Power Up Default</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0x00</td>
+<td>Input Port</td>
+<td>xxxx xxxx</td>
+</tr>
+<tr>
+<td>0x01</td>
+<td>Output Port</td>
+<td>1111 1111</td>
+</tr>
+<tr>
+<td>0x02</td>
+<td>Polarity Inversion</td>
+<td>0000 0000</td>
+</tr>
+<tr>
+<td>0x03</td>
+<td>Configuration (1=input, 0=output)</td>
+<td>1111 1111 (dflt = input)</td>
+</tr>
+</tbody>
+</table></section>
+<section id="pca9545a-register-map">
+<h3>PCA9545A Register Map<a class="headerlink" href="#pca9545a-register-map" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>B7</strong></th>
+<th><strong>B6</strong></th>
+<th><strong>B5</strong></th>
+<th><strong>B4</strong></th>
+<th><strong>B3</strong></th>
+<th><strong>B2</strong></th>
+<th><strong>B1</strong></th>
+<th><strong>B0</strong></th>
+<th><strong>Command</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>0</td>
+<td>Channel 0 Disabled</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td>Channel 0 Enabled</td>
+</tr>
+<tr>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>0</td>
+<td>x</td>
+<td>Channel 1 Disabled</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td>Channel 1 Enabled</td>
+</tr>
+<tr>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>0</td>
+<td>x</td>
+<td>x</td>
+<td>Channel 2 Disabled</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td>Channel 2 Enabled</td>
+</tr>
+<tr>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>0</td>
+<td>x</td>
+<td>x</td>
+<td>x</td>
+<td>Channel 3 Disabled</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td>Channel 3 Enabled</td>
+</tr>
+</tbody>
+</table></section>
+<section id="ul3422-pinout">
+<h3>UL3422 Pinout<a class="headerlink" href="#ul3422-pinout" title="Permalink to this heading">¶</a></h3>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th><strong>Package Pin</strong></th>
+<th><strong>Name</strong></th>
+<th><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AU19</td>
+<td>DDR_PSUIO_RESET</td>
+<td>I/O Expander Resetb</td>
+</tr>
+<tr>
+<td>AR20</td>
+<td>CLKGEN_SCL_R</td>
+<td>I2C Clock</td>
+</tr>
+<tr>
+<td>AT20</td>
+<td>CLKGEN_SDA_R</td>
+<td>I2C Data</td>
+</tr>
+</tbody>
+</table></section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+<p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html">UL3422 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3422 Lounge</a>.</p>
+<p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
+<hr class="sphinxhide"></hr><p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
+
+
+           </div>
+          </div>
+          
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../Renesas_I2C_Programming/README.html" class="btn btn-neutral float-left" title="Renesas I2C Reference Design" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../Docs/loading_ref_proj.html" class="btn btn-neutral float-right" title="Loading a Reference Design Vivado Project" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 10, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
