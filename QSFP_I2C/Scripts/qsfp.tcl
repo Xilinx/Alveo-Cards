@@ -1,7 +1,7 @@
-#
-# Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-# SPDX-License-Identifier: MIT
-#
+# 
+# Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: X11
+# 
 
 # ################################################################################
 #
@@ -12,7 +12,6 @@
 # I2c device id's....
 set DEV_ID_POWER    0x42
 set DEV_ID_MUX0     0xE0
-set DEV_ID_MUX1     0xE4
 set DEV_ID_QSFP_SB  0x40
 set DEV_ID_QSFP_I2C 0xA0
 
@@ -107,16 +106,12 @@ proc select_qsfp_sb {index} {
     puts "-- Select Gate Mux's to QSFP $index SB"
     if { $index == 0} {
         i2c_wr $DEV_ID_MUX0 0x01 0x01
-        i2c_wr $DEV_ID_MUX1 0x00 0x00
     } elseif { $index == 1} {
         i2c_wr $DEV_ID_MUX0 0x04 0x04
-        i2c_wr $DEV_ID_MUX1 0x00 0x00
     } elseif { $index == 2} {
         i2c_wr $DEV_ID_MUX0 0x00 0x00
-        i2c_wr $DEV_ID_MUX1 0x01 0x01
     } elseif { $index == 3} {
         i2c_wr $DEV_ID_MUX0 0x00 0x00
-        i2c_wr $DEV_ID_MUX1 0x04 0x04
     }   
 }
  
@@ -127,16 +122,12 @@ proc select_qsfp_i2c {index} {
     puts "-- Select Gate Mux's to QSFP $index I2C"
     if { $index == 0} {
         i2c_wr $DEV_ID_MUX0 0x02 0x02
-        i2c_wr $DEV_ID_MUX1 0x00 0x00
     } elseif { $index == 1} {
         i2c_wr $DEV_ID_MUX0 0x08 0x08
-        i2c_wr $DEV_ID_MUX1 0x00 0x00
     } elseif { $index == 2} {
         i2c_wr $DEV_ID_MUX0 0x00 0x00
-        i2c_wr $DEV_ID_MUX1 0x02 0x02
     } elseif { $index == 3} {
         i2c_wr $DEV_ID_MUX0 0x00 0x00
-        i2c_wr $DEV_ID_MUX1 0x08 0x08
     }   
 }
  
@@ -144,7 +135,7 @@ proc select_qsfp_i2c {index} {
  # Disables the power planes for all QSFP Modules
  proc disable_qsfp_power {} {
     global DEV_ID_POWER
-    puts "-- Disable Power to QSFP 1-4  (set output value and output enable)"
+    puts "-- Disable Power to QSFP 1-2  (set output value and output enable)"
     i2c_rd $DEV_ID_POWER 0x0
     i2c_wr $DEV_ID_POWER 0x1 0x00
     i2c_wr $DEV_ID_POWER 0x3 0x55
@@ -155,7 +146,7 @@ proc select_qsfp_i2c {index} {
 # Enables the power planes for all QSFP Modules
 proc enable_qsfp_power {} {
     global DEV_ID_POWER
-    puts "-- Enable Power to QSFP 1-4  (set output value and output enable)"
+    puts "-- Enable Power to QSFP 1-2  (set output value and output enable)"
     i2c_rd $DEV_ID_POWER 0x0
     i2c_wr $DEV_ID_POWER 0x1 0xAA
     i2c_wr $DEV_ID_POWER 0x3 0x55

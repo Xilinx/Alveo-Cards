@@ -1,104 +1,187 @@
+<!--
+Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: X11
+-->
 <?xml version="1.0" encoding="UTF-8"?>
 <wave_config>
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="sim_top_behav.wdb" id="1">
+      <db_ref path="sim_tb_top_behav.wdb" id="1">
          <top_modules>
             <top_module name="glbl" />
-            <top_module name="iic_pkg" />
-            <top_module name="ipif_pkg" />
-            <top_module name="sim_top" />
+            <top_module name="sim_tb_top" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="7,525.570330 us"></ZoomStartTime>
-      <ZoomEndTime time="7,968.663545 us"></ZoomEndTime>
-      <Cursor1Time time="7,541.949755 us"></Cursor1Time>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="8.105538170 ms"></ZoomEndTime>
+      <Cursor1Time time="3.071572359 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="246"></NameColumnWidth>
+      <NameColumnWidth column_width="242"></NameColumnWidth>
       <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="21" />
-   <wvobject type="logic" fp_name="/sim_top/c0_sys_clk_p">
-      <obj_property name="ElementShortName">c0_sys_clk_p</obj_property>
-      <obj_property name="ObjectShortName">c0_sys_clk_p</obj_property>
+   <WVObjectSize size="23" />
+   <wvobject fp_name="divider176" type="divider">
+      <obj_property name="label">System Signals</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/c0_sys_clk_n">
-      <obj_property name="ElementShortName">c0_sys_clk_n</obj_property>
-      <obj_property name="ObjectShortName">c0_sys_clk_n</obj_property>
+   <wvobject type="logic" fp_name="/sim_tb_top/refclk_300">
+      <obj_property name="ElementShortName">refclk_300</obj_property>
+      <obj_property name="ObjectShortName">refclk_300</obj_property>
    </wvobject>
-   <wvobject type="group" fp_name="group56">
+   <wvobject type="logic" fp_name="/sim_tb_top/refclk_300_rst">
+      <obj_property name="ElementShortName">refclk_300_rst</obj_property>
+      <obj_property name="ObjectShortName">refclk_300_rst</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/i2c_sda">
+   <wvobject type="logic" fp_name="/sim_tb_top/i2c_sda">
       <obj_property name="ElementShortName">i2c_sda</obj_property>
       <obj_property name="ObjectShortName">i2c_sda</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/i2c_scl">
+   <wvobject type="logic" fp_name="/sim_tb_top/i2c_scl">
       <obj_property name="ElementShortName">i2c_scl</obj_property>
       <obj_property name="ObjectShortName">i2c_scl</obj_property>
    </wvobject>
    <wvobject fp_name="divider165" type="divider">
+      <obj_property name="label">Seq to IIC AXI </obj_property>
+      <obj_property name="DisplayName">label</obj_property>
    </wvobject>
-   <wvobject fp_name="divider176" type="divider">
-   </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/aclk">
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/i2c_sequencer/aclk">
       <obj_property name="ElementShortName">aclk</obj_property>
       <obj_property name="ObjectShortName">aclk</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/aresetn">
-      <obj_property name="ElementShortName">aresetn</obj_property>
-      <obj_property name="ObjectShortName">aresetn</obj_property>
+   <wvobject type="group" fp_name="group43">
+      <obj_property name="label">AR Bus</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_araddr">
+         <obj_property name="ElementShortName">m_axi_araddr[8:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_araddr[8:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_arvalid">
+         <obj_property name="ElementShortName">m_axi_arvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_arvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_arready">
+         <obj_property name="ElementShortName">m_axi_arready</obj_property>
+         <obj_property name="ObjectShortName">m_axi_arready</obj_property>
+      </wvobject>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/start_pulse">
+   <wvobject type="group" fp_name="group45">
+      <obj_property name="label">B Bus</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_bresp">
+         <obj_property name="ElementShortName">m_axi_bresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_bresp[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_bready">
+         <obj_property name="ElementShortName">m_axi_bready</obj_property>
+         <obj_property name="ObjectShortName">m_axi_bready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_bvalid">
+         <obj_property name="ElementShortName">m_axi_bvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_bvalid</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group44">
+      <obj_property name="label">AW Bus</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_awaddr">
+         <obj_property name="ElementShortName">m_axi_awaddr[8:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_awaddr[8:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_awvalid">
+         <obj_property name="ElementShortName">m_axi_awvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_awvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_awready">
+         <obj_property name="ElementShortName">m_axi_awready</obj_property>
+         <obj_property name="ObjectShortName">m_axi_awready</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group47">
+      <obj_property name="label">W Bus</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_wdata">
+         <obj_property name="ElementShortName">m_axi_wdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_wstrb">
+         <obj_property name="ElementShortName">m_axi_wstrb[3:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wstrb[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_wvalid">
+         <obj_property name="ElementShortName">m_axi_wvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wvalid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_wready">
+         <obj_property name="ElementShortName">m_axi_wready</obj_property>
+         <obj_property name="ObjectShortName">m_axi_wready</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group46">
+      <obj_property name="label">R Bus</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_rdata">
+         <obj_property name="ElementShortName">m_axi_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rdata[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_rresp">
+         <obj_property name="ElementShortName">m_axi_rresp[1:0]</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rresp[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_rready">
+         <obj_property name="ElementShortName">m_axi_rready</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/m_axi_rvalid">
+         <obj_property name="ElementShortName">m_axi_rvalid</obj_property>
+         <obj_property name="ObjectShortName">m_axi_rvalid</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider48" type="divider">
+      <obj_property name="label">Sequencer</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/i2c_sequencer/aclk">
+      <obj_property name="ElementShortName">aclk</obj_property>
+      <obj_property name="ObjectShortName">aclk</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/i2c_sequencer/start_pulse">
       <obj_property name="ElementShortName">start_pulse</obj_property>
       <obj_property name="ObjectShortName">start_pulse</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_wr_req">
-      <obj_property name="ElementShortName">seq_axi_wr_req</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_wr_req</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_rd_req">
-      <obj_property name="ElementShortName">seq_axi_rd_req</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_rd_req</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_addr">
-      <obj_property name="ElementShortName">seq_axi_addr[8:0]</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_addr[8:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_wdata">
-      <obj_property name="ElementShortName">seq_axi_wdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_wdata[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_ack">
-      <obj_property name="ElementShortName">seq_axi_ack</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_ack</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/seq_axi_rdata">
-      <obj_property name="ElementShortName">seq_axi_rdata[31:0]</obj_property>
-      <obj_property name="ObjectShortName">seq_axi_rdata[31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/cmd_ptr">
-      <obj_property name="ElementShortName">cmd_ptr[15:0]</obj_property>
-      <obj_property name="ObjectShortName">cmd_ptr[15:0]</obj_property>
-      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/instru">
-      <obj_property name="ElementShortName">instru[15:0]</obj_property>
-      <obj_property name="ObjectShortName">instru[15:0]</obj_property>
-   </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/cmd_finished">
-      <obj_property name="ElementShortName">cmd_finished</obj_property>
-      <obj_property name="ObjectShortName">cmd_finished</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/cstate">
+   <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/i2c_sequencer/cstate">
       <obj_property name="ElementShortName">cstate[31:0]</obj_property>
       <obj_property name="ObjectShortName">cstate[31:0]</obj_property>
    </wvobject>
-   <wvobject type="logic" fp_name="/sim_top/jc_i2c_top/i2c_sequencer/sim_finished">
-      <obj_property name="ElementShortName">sim_finished</obj_property>
-      <obj_property name="ObjectShortName">sim_finished</obj_property>
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_wr_req">
+      <obj_property name="ElementShortName">seq_axi_wr_req</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_wr_req</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_rd_req">
+      <obj_property name="ElementShortName">seq_axi_rd_req</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_rd_req</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_addr">
+      <obj_property name="ElementShortName">seq_axi_addr[8:0]</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_addr[8:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_wdata">
+      <obj_property name="ElementShortName">seq_axi_wdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_wdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_wstrb">
+      <obj_property name="ElementShortName">seq_axi_wstrb[3:0]</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_wstrb[3:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_rdata">
+      <obj_property name="ElementShortName">seq_axi_rdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_rdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/u_renesas_i2c_top/seq_axi_ack">
+      <obj_property name="ElementShortName">seq_axi_ack</obj_property>
+      <obj_property name="ObjectShortName">seq_axi_ack</obj_property>
    </wvobject>
 </wave_config>

@@ -1,6 +1,8 @@
+# 
+# Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: X11
 #
-# Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-# SPDX-License-Identifier: MIT
+# 
 #
 
 Below are some examples for how to convert the sequence script file to a BRAM coe file..

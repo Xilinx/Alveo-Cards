@@ -1,6 +1,6 @@
 /*
-Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-SPDX-License-Identifier: MIT
+Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: X11
 */
 
 //------------------------------------------------------------------------------
@@ -37,7 +37,7 @@ localparam WRITE_OP        = 1'b0 ;
 
 localparam DEV_ID_POWER     = 8'h42 ;
 localparam DEV_ID_MUX0      = 8'hE0 ;
-localparam DEV_ID_MUX1      = 8'hE4 ;
+//localparam DEV_ID_MUX1      = 8'hE4 ;
 localparam DEV_ID_QSFP_SB   = 8'h40 ;
 localparam DEV_ID_QSFP_I2C  = 8'hA0 ;
 
@@ -51,10 +51,10 @@ reg [24:0] instru [0:7];
 initial
 begin
     // Select and Scan
-    instru[00]  = { WRITE_OP, DEV_ID_POWER, 8'h01, 8'h00 }; 
-    instru[01]  = { WRITE_OP, DEV_ID_POWER, 8'h03, 8'h55 }; 
-    instru[02]  = { WRITE_OP, DEV_ID_POWER, 8'h01, 8'hAA }; 
-    instru[03]  = { WRITE_OP, DEV_ID_POWER, 8'h03, 8'h55 };  
+    instru[00]  = { WRITE_OP, DEV_ID_POWER, 8'h01, 8'h00}; // 8'h01, 8'h00 }; // power off
+    instru[01]  = { WRITE_OP, DEV_ID_POWER, 8'h03, 8'h14}; // 8'h03, 8'h55 }; // PG on pins 2,4, EN on 3,5
+    instru[02]  = { WRITE_OP, DEV_ID_POWER, 8'h01, 8'h28}; // 8'h01, 8'hAA }; // power on
+    instru[03]  = { WRITE_OP, DEV_ID_POWER, 8'h03, 8'h14}; // 8'h03, 8'h55 }; //  
 end
 
            
@@ -110,17 +110,17 @@ begin
         ST_RST      : nstate = ST_START ;
         ST_START    : if (start) nstate = ST_START_0 ;
 
-        // Select Mux0
+        // Init Output Value...Power Off
         ST_START_0  : nstate = ST_PAUSE_0 ;
         ST_PAUSE_0  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_0 ;       
-        ST_DELAY_0  : if ( timer_zero) nstate = ST_START_1 ;
+        ST_DELAY_0  : if ( timer_zero) nstate = ST_START_2 ;
 
-        // Select Mux1
+        // Init Output Config...
         ST_START_1  : nstate = ST_PAUSE_1 ;
         ST_PAUSE_1  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_1 ;       
         ST_DELAY_1  : if ( timer_zero ) nstate = ST_START_2 ;
 
-        // Init Output Value...
+        // Init Output Value...Power On
         ST_START_2  : nstate = ST_PAUSE_2 ;
         ST_PAUSE_2  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_2 ;       
         ST_DELAY_2  : if ( timer_zero ) nstate = ST_START_3 ;

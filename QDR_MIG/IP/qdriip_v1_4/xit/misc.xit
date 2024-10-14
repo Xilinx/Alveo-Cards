@@ -1,7 +1,0 @@
-variable tcl_scope
-variable tcl_ipinst
-set tcl_scope xit
-set tcl_ipinst [ current_inst ]
-
-source_subcore_ipfile xilinx.com:ip:mem:1.4 utility/db.tcl
-set memName [string tolower [ getuser C0.ControllerType ] ]

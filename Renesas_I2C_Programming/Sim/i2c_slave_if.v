@@ -1,6 +1,6 @@
 /*
-Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-SPDX-License-Identifier: MIT
+Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: X11
 */
 
 `timescale 1ns / 1ns

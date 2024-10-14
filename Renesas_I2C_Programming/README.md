@@ -1,6 +1,6 @@
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3422 Ultra Low Latency Trading</h1>
     </td>
  </tr>
 </table>
@@ -34,12 +34,12 @@ Details about the design:
 
 ## Renesas Device IDs
 
-The UL3524 card has two Renesas devices.  Both are connected via the CLKGEN_SDA/SCL interface and have the device IDs shown in the following table.  See UG1585 for additional details.
+The UL3422 card has two Renesas devices.  Both are connected via the CLKGEN_SDA/SCL interface and have the device IDs shown in the following table.  See UG1585 for additional details.
 
 | Renesas Device Description | Device ID (8-bit HEX) |
 |---|---|
 | Jitter Cleaner 1 (QSFP-DD Port)| 0xB0|
-| Jitter Cleaner 2 (Expansion Port)| 0xB2|
+
 
 **Table: Renesas Device IDs**
 
@@ -53,9 +53,6 @@ The following three schematic snippets show the connection of the I2C lines (CLK
 
 **Figure: Jitter Cleaner 1 CLKGEN_SDA/SCL lines**
 
-![Jitter Cleaner 2 CLKGEN_SDA/SCL lines](./Docs/Images/renesas_0xB2.png)
-
-**Figure: Jitter Cleaner 2 CLKGEN_SDA/SCL lines**
 
 ## Converting a Renesas programming script to a BRAM coe file
 
@@ -152,9 +149,13 @@ Use the following instructions to run the Renasas to .coe conversion script.
 
 ## Support
 
-For additional documentation, please refer to the [UL3524 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html) and the [UL3524 Lounge](https://www.xilinx.com/member/ull-ea.html).
+For additional documentation, please refer to the [UL3422 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html) and the [UL3422 Lounge](https://www.xilinx.com/member/ull-ea.html).
 
 For support, contact your FAE or refer to support resources at: <https://support.xilinx.com>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p>
+
+
+<hr class="sphinxhide"></hr>
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p>
 
 <p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

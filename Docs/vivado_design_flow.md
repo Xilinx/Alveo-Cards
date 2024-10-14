@@ -1,6 +1,6 @@
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3422 Ultra Low Latency Trading</h1>
     </td>
  </tr>
 </table>
@@ -13,11 +13,11 @@ Provides Vivado design flow support.
 
 ## Vivado XDC Files
 
-The UL3524 Xilinx Design Constraints (XDC) file is located here [located here](../XDC/README.md).
+The UL3422 Xilinx Design Constraints (XDC) file is located here [located here](../XDC/README.md).
 
 ## Creating a Vivado RTL Project
 
-Currently with the XDC-based Vivado design flow, the UL3524 FPGA part is not currently visible via the Vivado GUI part selection window. Consequently, a project based on the UL3524 FPGA part must be created via the TCL command line.  Use the following steps to create a new project:
+Currently with the XDC-based Vivado design flow, the UL3422 FPGA part is not currently visible via the Vivado GUI part selection window. Consequently, a project based on the UL3422 FPGA part must be created via the TCL command line.  Use the following steps to create a new project:
 
 1. Launch Vivado tools.
 2. In the Tcl console, run the following command:
@@ -107,9 +107,9 @@ To program the card via the xbflash2 utility, a flashed and running design must 
 
 Use the following to flash a card with xbflash2.
 
-**Note:** The following steps assume the UL3524 card has the original manufacturing image installed.
+**Note:** The following steps assume the UL3422 card has the original manufacturing image installed.
 
-When flashing a card with xbflash2 command, it is necessary to include the offset of the QUAD SPI IP/flash controller. The UL3524 manufacturing image offset is `0x1F06000`.
+When flashing a card with xbflash2 command, it is necessary to include the offset of the QUAD SPI IP/flash controller. The UL3422 manufacturing image offset is `0x1F06000`.
 
 To flash a card with this offset, use the following command:
 
@@ -134,7 +134,7 @@ The following is required:
 * Machine with terminal program
 * Micro-B USB cable or ADK2 cable
 
-1. Shut down and unplug power to the machine, and install the card (see Alveo UL3524 Installation Guide UG1584).
+1. Shut down and unplug power to the machine, and install the card (see Alveo UL3422 Installation Guide UG1643).
 2. Connect the USB cable between the card (either front or rear USB port) and a laptop running a terminal program.
 3. Power up the machine.
 4. Within the terminal program, connect to the serial port attached to the SC:
@@ -166,7 +166,7 @@ d. Enter `6` to display the board information. It will display an output similar
 Card details, such as board Rev and base MAC address (MAC0), will be displayed.
 ```
 ------------------------------------------------
-Product Name : ALVEO UL3524
+Product Name : ALVEO UL3422
 Board Rev : C
 Board Serial : xxxxxxxxxxxx
 Num of MAC ID's (HEX): 64
@@ -191,10 +191,13 @@ BSL build ID : 0016
 
 ## Support
 
-For additional documentation, please refer to the [UL3524 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html) and the [UL3524 Lounge](https://www.xilinx.com/member/ull-ea.html).
+For additional documentation, please refer to the [UL3422 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html) and the [UL3422 Lounge](https://www.xilinx.com/member/ull-ea.html).
 
 For support, contact your FAE or refer to support resources at: <https://support.xilinx.com>
 
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p>
+
+<hr class="sphinxhide"></hr>
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p>
 
 <p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

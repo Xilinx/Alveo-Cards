@@ -1,6 +1,6 @@
 <table class="sphinxhide" width="100%">
  <tr width="100%">
-    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
+    <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3422 Ultra Low Latency Trading</h1>
     </td>
  </tr>
 </table>
@@ -24,7 +24,7 @@ The following links provide additional documentation, including simulation and H
 
 A high-level block diagram of the reference design module hierarchy *qsfp_i2c_top* (shown in greeen) including the QSFP I2C endpoints (shown in blue) is shown in the following figure.  A description of functionality of the design modules are given in the following table.
 
-![Description of design modules](./Docs/Images/qsfp_i2c_diagram.jpg)
+![Description of design modules](./Docs/Images/qsfp_i2c_diagram.png)
 
 **Table:** Description of design modules
 
@@ -47,11 +47,8 @@ The following gives a high-level overview of the QSFP-DD logic.  Specific detail
 * QDFP-DD I2C ports and low speed sideband signals are accessed through a pair of I2C switches:
   * I2C Switch 0
     * Device ID is 0xE0 (8-bit)
-    * Connects to QSFP-DD 0 and 1
+    * Connects to QSFP-DD 1 and 2
 
-  * I2C Switch 1
-    * Device ID is 0xE4 (8-bit)
-    * Connects to QSFP-DD 2 and 3
 
 * Each I2C switch has two I2C targets for each associated QSFP-DD:
   * An I/O expander to control/monitor the following low speed QSFP-DD sideband signals
@@ -66,9 +63,9 @@ The following gives a high-level overview of the QSFP-DD logic.  Specific detail
 
 ### QSFP Power Enable
 
-Each QSFP module on the UL3524 card has an independent power plane which can be enabled independently via the FPGA I2C interface.  The below schematic capture image shows the FPGA I2C interface and I/O expander device (TCA6408APWR).  Each QSFP module can be enabled by asserting the respective enable signals QSFPDD_0_EN, QSFPDD_1_EN, QSFPDD_2_EN & QSFPDD_3_EN. These signals are map to I/O expander ports P1, P3, P5, and P7 respectively which are controlled by the FPGA I2C interface.
+Each QSFP module on the UL3422 card has an independent power plane which can be enabled independently via the FPGA I2C interface.  The below schematic capture image shows the FPGA I2C interface and I/O expander device (TCA6408APWR).  Each QSFP module can be enabled by asserting the respective enable signals QSFPDD_1_EN, QSFPDD_2_EN. These signals are map to I/O expander ports P3 and P5, respectively which are controlled by the FPGA I2C interface.
 
-Additionally, power good status for each QSFP power plane (QSFPDD_0_PG, QSFPDD_1_PG, QSFPDD_2_PG & QSFPDD_3_PG) can be read from ports P0, P2, P4 and/or P6 respectively. See section [Powering On/Off the QSFP-DD Domains](#powering-onoff-the-qsfp-dd-domains) for details.
+Additionally, power good status for each QSFP power plane (QSFPDD_1PG, QSFPDD_2_PG) can be read from ports P2,or P4 respectively. See section [Powering On/Off the QSFP-DD Domains](#powering-onoff-the-qsfp-dd-domains) for details.
 
 This I/O expander is enabled by default, but can be reset by deasserting FPGA_OC_RSTn.
 
@@ -82,11 +79,11 @@ Asserting the power enable pins is done by performing two I2C transfers:
 
 ### QSFP-DD I2C Topology
 
-As shown in the following figure, the card uses a combination of I2C switches (PCA9545A) and I/O expanders (TCA6408A) to access and control power and sideband signals for all four QSFP-DD modules.  For clarity, only QSFP-DD0 I/O expander sideband signals are shown. The other QSFP-DD I/O expanders have identical sideband signals but are not explicitly shown.  To access/control particular QSFP signals requires enabling particular combination of I2C switches and I/O expanders.
+As shown in the following figure, the card uses a combination of I2C switches (PCA9545A) and I/O expanders (TCA6408A) to access and control power and sideband signals for both of the QSFP-DD modules.  For clarity, only QSFP-DD0 I/O expander sideband signals are shown. The other QSFP-DD I/O expanders have identical sideband signals but are not explicitly shown.  To access/control particular QSFP signals requires enabling particular combination of I2C switches and I/O expanders.
 
   **Note: Each I/O expander (one per QSFP-DD) has the same I2C device ID (0x40).**
 
-![QSFP_port_and_sideband_control_block_diagram](./Docs/Images/QSFP_port_and_sideband_control_block_diagram.png)
+![QSFP_port_and_sideband_control_block_diagram](./Docs/Images/UL3422_qsfp_i2c.jpg)
 
 **Figure:** QSFP port and sideband control block diagram
 
@@ -96,12 +93,11 @@ Each I2C I/O expander and switch component has an active-Low reset connected to 
 
 | Signal | Peripheral | FPGA Pin | External Pullup |
 |---|---|---|---|
-|FPGA_MUX0_RSTn |Switches 0 & 1 |G14 |3.3V|
-|FPGA_MUX1_RSTn |Power enable expander |G15 |3.3V|
-|QSFPDD0_IO_RESET_B |QSFP-DD 0 I/O expander| M16 |3.3V|
+|FPGA_MUX_RSTn |Switches 0  |G14 |3.3V|
+|FPGA_MUX_RSTn |Power enable expander |G15 |3.3V|
 |QSFPDD1_IO_RESET_B |QSFP-DD 1 I/O expander |H16 |3.3V|
 |QSFPDD2_IO_RESET_B |QSFP-DD 2 I/O expander |F15 |3.3V|
-|QSFPDD3_IO_RESET_B |QSFP-DD 3 I/O expander |G16 |3.3V|
+
 
 **Table:** I2C peripheral resets
 
@@ -113,14 +109,14 @@ Enabling or disabling the individual QSFP-DD power domains is achieved by config
 
 |Bit |Function |Direction|Signal|
 |---|---|---|---|
-|0 |QSFP-DD 0 Power Good  |Input |QSFP0 PG|
-|1 |QSFP-DD 0 Power Enable  |Output |QSFP0 EN|
+|0 |Unused  |  |  |
+|1 |Unused  |  |  |
 |2 |QSFP-DD 1 Power Good  |Input |QSFP1 PG|
 |3 |QSFP-DD 1 Power Enable  |Output |QSFP1 EN|
 |4 |QSFP-DD 2 Power Good  |Input |QSFP2 PG|
 |5 |QSFP-DD 2 Power Enable  |Output |QSFP2 EN|
-|6 |QSFP-DD 3 Power Good  |Input |QSFP3 PG|
-|7 |QSFP-DD 3 Power Enable  |Output |QSFP3 EN|
+|6 |Unused |  | |
+|7 |Unused  |  | |
 
 **Table:** QSFP-DD Power Good/Enable Bit Allocation
 
@@ -128,7 +124,7 @@ Enabling or disabling the individual QSFP-DD power domains is achieved by config
 |---|---|---|
 |Set power enable pins       |0x42, 0x01, 0xAA        |Programs output value register.       |
 |Enable output mode for even numbered pin |0x42, 0x03, 0x55        |Programs output config register (0 = output, 1 = input) |
-|Read power good status      |0x42,0x00, (restart), 0x43, (read data) |Reads input value register        |
+|Read power good status      |0x42,0x00, (I2C restart), 0x43, (read data) |Reads input value register        |
 
 **Table:** Power Expander Example Programming
 
@@ -171,14 +167,11 @@ Before accessing one of the QSFP-DD module’s I2C port or sideband expander, it
 
 |Target |First I2C Sequence| Second I2C Sequence| Selected Mux 0 Port| Selected Mux1 Port|
 |---|---|---|---|---|
-|QSFP-DD 0 |Sideband |0xE0, 0x01 |0xE4, 0x00 0  |Disabled |
-|QSFP-DD 0 |I2C   |0xE0, 0x02 |0xE4, 0x00 1  |Disabled |
 |QSFP-DD 1 |Sideband |0xE0, 0x04 |0xE4, 0x00 2  |Disabled |
 |QSFP-DD 1 |I2C   |0xE0, 0x08 |0xE4, 0x00 3  |Disabled |
 |QSFP-DD 2 |Sideband |0xE0, 0x00 |0xE4, 0x01  |Disabled 0 |
 |QSFP-DD 2 |I2C   |0xE0, 0x00 |0xE4, 0x02  |Disabled 1 |
-|QSFP-DD 3 |Sideband |0xE0, 0x00 |0xE4, 0x04  |Disabled 2 |
-|QSFP-DD 3 |I2C   |0xE0, 0x00 |0xE4, 0x08  |Disabled 3 |
+
 
 **Table:** I2C Switch Settings to Access QSFP-DD Low Speed Sideband Signal
 
@@ -216,13 +209,14 @@ The following table illustrates how QSFP1 can be initialized.  Similar steps mus
 
 ***Table:** Example Configuring QSFP1 I/O Expander
 
-| Function                         | Sequence         | Description                                          |
-|----------------------------------|------------------|------------------------------------------------------|
-| Disable PCA9545A (0xE0)          | 0x42, 0xE0, 0x00 | Gates I2C communication to QSFP0 and QSFP1 expanders |
-| Disable PCA9545A (0xE4)          | 0x42, 0xE4, 0x00 | Gates I2C communication to QSFP2 and QSFP3 expanders |
-| Enable Port 2 of PCA9545A (0xE0) | 0x42, 0xE0, 0x04 | Enables I2C routing to QSFP                          |
-| Program QSFP1 TCA6008A (0x40)    | 0x40, 0x01, 0x10 | Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)      |
-| Program QSFP1 TCA6008A (0x40)    | 0x40, 0x03, 0xE6 | Configures output enables for pins 0,3,4             |
+|Function							|Sequence    				|Description											|
+|---								|---						|---													|
+|Disable PCA9545A (0xE0)			| 0x42, 0xE0, 0x00   		|Gates I2C communication to QSFP0 and QSFP1 expanders	|
+|Disable PCA9545A (0xE4)			| 0x42, 0xE4, 0x00			|Gates I2C communication to QSFP2 and QSFP3 expanders	|
+|Enable Port 2 of PCA9545A (0xE0)	| 0x42, 0xE0, 0x04			|Enables I2C routing to QSFP							|
+|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x01, 0x10			|Sets RESETL, clears LPMODE, MODSEL (pins 0,3,4)		|
+|Program QSFP1 TCA6008A (0x40) 		| 0x40, 0x03, 0xE6			|Configures output enables for pins 0,3,4				|
+
 
 ### Detailed Example of Programming Steps
 
@@ -231,12 +225,10 @@ The following table steps provide a complete example for enabling the power doma
 |Function        |DevID    |Addr/Cmd    |Write Data    |Read Data    |Description|
 |---|---|---|---|---|---|
 |Disable Switch 0      |0xE0    |0x0     |N/A      |N/A                    |Disable all ports        |
-|Disable Switch 0      |0xE4    |0x0     |N/A      |N/A                    |Disable all ports                              |
 |Enable QSFP-DD Power for all ports |0x42    |0x01     |0xAA      |N/A                    |Set Output Value<br>1 = Enabled, 0 = Disabled |
 |         |0x42    |0x03     |0x55      |N/A                    |Config Output Enable<br>1 = Input, 0 = output |
 |Check for Power<br>Good Status  |0x42    |0x00     |N/A      |Bit 0: QSFP-DD 0<br>Bit 2: QSFP-DD 1<br>Bit 4: QSFP-DD 2<br>Bit 6: QSFP-DD 3 |1 = Good Status        |
 |Select QSFP-DD 1 Sideband   |0xE0    |0x04     |N/A      |N/A                    |Select Port 2 of Mux0       |
-|         |0xE4    |0x00     |N/A      |N/A                    |Disable Mux1         |
 |Configure QSFP-DD 1 Sideband Output Values |0x40  |0x01     |0x10<br> Bit 0 = LPMODE<br>Bit 1 = MODSEL<br>Bit 4 = RESETL<br>| N/A          |Once the endpoint has been identified via the switch configuration, the desired output values of the I2C expander must be established by programming register 1 of the I2C expander. The three bits shown on the left are outputs to the QSFP-DD modules. See the QSFP-DD documentation to determine the desired values of these signals.|
 |Configure QSFP-DD 0 Sideband Output Enables  |0x40 |0x03 |0xE6<br>Bit 0 = LPMODE<br>Bit 1 = MODSEL<br>Bit 4 = RESETL      |N/A         |Enable outputs for bits 0,1 and 4|
 |Check for Module Present   |0x40    |0x00     |N/A      |Check Bit 3<br>0 = installed<br>1 = not installed<br>| |
@@ -275,10 +267,10 @@ By setting the USE_JTAG_AXI parameter in the top source file, the user can conne
     0x0010  RESETB - this register controls the various I/O resets to QSFP related peripherals 
                 Bit     Description
                 6       I2C Resetn - (reset to internal I2C controller)
-                5       QSFPDD3_IO_RESET_B       
+                5       Unused       
                 4       QSFPDD2_IO_RESET_B       
                 3       QSFPDD1_IO_RESET_B       
-                2       QSFPDD0_IO_RESET_B       
+                2       Unused       
                 1       FPGA_MUX1_RSTN
                 0       FPGA_MUX0_RSTN       
 
@@ -330,7 +322,7 @@ PCA9545A product details can be found [here](https://www.ti.com/product/PCA9545A
 | x      | x      | x      | x      | 0      | x      | x      | x      | Channel 3 Disabled |
 |        |        |        |        | 1      |        |        |        | Channel 3 Enabled  |
 
-### UL3524 Pinout
+### UL3422 Pinout
 
 | **Package Pin** | **Name**        | **Description**     |
 |-----------------|-----------------|---------------------|
@@ -340,9 +332,13 @@ PCA9545A product details can be found [here](https://www.ti.com/product/PCA9545A
 
 ## Support
 
-For additional documentation, please refer to the [UL3524 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html) and the [UL3524 Lounge](https://www.xilinx.com/member/ull-ea.html).
+For additional documentation, please refer to the [UL3422 product page](https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html) and the [UL3422 Lounge](https://www.xilinx.com/member/ull-ea.html).
 
 For support, contact your FAE or refer to support resources at: <https://support.xilinx.com>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p>
+
+
+<hr class="sphinxhide"></hr>
+
+<p class="sphinxhide" align="center"><sub>Copyright © 2024 Advanced Micro Devices, Inc.</sub></p>
 
 <p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p>

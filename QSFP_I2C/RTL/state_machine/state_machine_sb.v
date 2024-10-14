@@ -1,6 +1,6 @@
 /*
-Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-SPDX-License-Identifier: MIT
+Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: X11
 */
 
 //------------------------------------------------------------------------------
@@ -50,7 +50,7 @@ localparam WRITE_OP        = 1'b0 ;
 
 localparam DEV_ID_POWER     = 8'h42 ;
 localparam DEV_ID_MUX0      = 8'hE0 ;
-localparam DEV_ID_MUX1      = 8'hE4 ;
+//localparam DEV_ID_MUX1      = 8'hE4 ;
 localparam DEV_ID_QSFP_SB   = 8'h40 ;
 localparam DEV_ID_QSFP_I2C  = 8'hA0 ;
 
@@ -65,19 +65,18 @@ initial
 begin
     // Select and Init...
     instru[00]  = { WRITE_OP, DEV_ID_MUX0,    MUX0_VALUE, MUX0_VALUE }; 
-    instru[01]  = { WRITE_OP, DEV_ID_MUX1,    MUX1_VALUE, MUX1_VALUE }; 
+    //instru[01]  = { WRITE_OP, DEV_ID_MUX1,    MUX1_VALUE, MUX1_VALUE }; 
     instru[02]  = { WRITE_OP, DEV_ID_QSFP_SB, 8'h01, 8'h00 }; 
     instru[03]  = { WRITE_OP, DEV_ID_QSFP_SB, 8'h03, 8'h06 }; 
-
+    
     // Read Value
     instru[04]  = { READ_OP,  DEV_ID_QSFP_SB, 8'h00, 8'h00 }; 
-
+    
     // Reset
     instru[05]  = { WRITE_OP, DEV_ID_QSFP_SB, 8'h01, 8'h00 }; 
-
+    
     // Enable
     instru[06]  = { WRITE_OP, DEV_ID_QSFP_SB, 8'h01, 8'h10 }; 
-
 end
 
            
@@ -95,9 +94,9 @@ localparam ST_START      = 'h01;
 localparam ST_START_0    = 'h02;
 localparam ST_PAUSE_0    = 'h03;
 localparam ST_DELAY_0    = 'h04;
-localparam ST_START_1    = 'h05;
-localparam ST_PAUSE_1    = 'h06;
-localparam ST_DELAY_1    = 'h07;
+//localparam ST_START_1    = 'h05;
+//localparam ST_PAUSE_1    = 'h06;
+//localparam ST_DELAY_1    = 'h07;
 localparam ST_START_2    = 'h08;
 localparam ST_PAUSE_2    = 'h09;
 localparam ST_DELAY_2    = 'h0a;
@@ -137,13 +136,13 @@ begin
         // Select Mux0
         ST_START_0  : nstate = ST_PAUSE_0 ;
         ST_PAUSE_0  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_0 ;       
-        ST_DELAY_0  : if ( timer_zero) nstate = ST_START_1 ;
+        ST_DELAY_0  : if ( timer_zero) nstate = ST_START_2 ;
 
         // Select Mux1
-        ST_START_1  : nstate = ST_PAUSE_1 ;
-        ST_PAUSE_1  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_1 ;       
-        ST_DELAY_1  : if      ( timer_zero &&  init_r) nstate = ST_START_2 ;
-                      else if ( timer_zero && !init_r) nstate = ST_START_4 ;
+        //ST_START_1  : nstate = ST_PAUSE_1 ;
+        //ST_PAUSE_1  : if ( IO_CONTROL_CMPLT ) nstate = ST_DELAY_1 ;       
+        //ST_DELAY_1  : if      ( timer_zero &&  init_r) nstate = ST_START_2 ;
+        //              else if ( timer_zero && !init_r) nstate = ST_START_4 ;
                       
         // Init Output Value...
         ST_START_2  : nstate = ST_PAUSE_2 ;
@@ -194,12 +193,12 @@ begin
     if (rst)
         timer <= 'h0;
     else if ((nstate == ST_PAUSE_0) || 
-             (nstate == ST_PAUSE_1) || 
              (nstate == ST_PAUSE_2) || 
              (nstate == ST_PAUSE_3) || 
              (nstate == ST_PAUSE_4) || 
              (nstate == ST_PAUSE_5) || 
              (nstate == ST_PAUSE_6) ) 
+             //(nstate == ST_PAUSE_1) || 
         //timer <= 'h0080;
         timer <= 'h0400;
     else
@@ -242,12 +241,12 @@ begin
         IO_CONTROL_ID    <= instru[0][23:16];
         IO_ADDR_ADDR     <= instru[0][15:8];
         IO_WDATA_WDATA   <= instru[0][7:0];
-    end else if (nstate == ST_START_1) begin
-        IO_CONTROL_PULSE <= 'h1;
-        IO_CONTROL_RW    <= instru[1][24];
-        IO_CONTROL_ID    <= instru[1][23:16];
-        IO_ADDR_ADDR     <= instru[1][15:8];
-        IO_WDATA_WDATA   <= instru[1][7:0];
+    //end else if (nstate == ST_START_1) begin
+    //    IO_CONTROL_PULSE <= 'h1;
+    //    IO_CONTROL_RW    <= instru[1][24];
+    //    IO_CONTROL_ID    <= instru[1][23:16];
+    //    IO_ADDR_ADDR     <= instru[1][15:8];
+    //    IO_WDATA_WDATA   <= instru[1][7:0];
     end else if (nstate == ST_START_2) begin
         IO_CONTROL_PULSE <= 'h1;
         IO_CONTROL_RW    <= instru[2][24];

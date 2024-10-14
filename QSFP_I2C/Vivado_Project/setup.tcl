@@ -1,9 +1,16 @@
-#
-# Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-# SPDX-License-Identifier: MIT
+# 
+# Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+# SPDX-License-Identifier: X11
+# 
 #
 
 # Typical usage: source ./setup.tcl
+
+# ------------------------------------------------------
+#
+# Setup Environment/Project
+#
+# ------------------------------------------------------
 
 # Create the project and directory structure
 set _script_dir_ [eval pwd]
@@ -15,51 +22,95 @@ set _proj_name_ project_1
 set _part_name_ xcvu2p-fsvj2104-3-e
 set _proj_path_ ${_script_dir_}/${_proj_name_}
 
+# Remove project folder if already exists...
+if { [file exist ${_origin_dir_}/Vivado_project/${_proj_name_}] == 1 } {
+    file delete ${_origin_dir_}/Vivado_project/${_proj_name_}
+}
+
 create_project -force ${_proj_name_} ${_proj_path_} -part ${_part_name_}
 
-# Add various sources to the project
-add_files ${_origin_dir_}/RTL
+# ------------------------------------------------------
+#
+# Add Source Files...
+#
+# ------------------------------------------------------
 
-add_files -norecurse -fileset constrs_1 ${_origin_dir_}/XDC/constraint.xdc
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/state_machine/state_machine_pwr.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/state_machine/state_machine_sb.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/state_machine/state_machine_top.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/axi_master.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/i2c_axi_sequencer.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/qsfp_i2c_top.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/reg_axi_slave.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/reg_qsfp_i2c_logic.v
+add_files -norecurse -scan_for_includes ${_origin_dir_}/RTL/reg_qsfp_i2c_top.v
 
-add_files -fileset sim_1 ${_origin_dir_}/Sim
+# ------------------------------------------------------
+#
+# Add Simulation Files...
+#
+# ------------------------------------------------------
+#add_files -fileset sim_1 ${_origin_dir_}/Sim/
 
-# Generate I2C Wizard IP
-create_ip -name axi_iic -vendor xilinx.com -library ip -version 2.1 -module_name axi_iic_0
-set_property -dict [list CONFIG.AXI_ACLK_FREQ_MHZ {50}] [get_ips axi_iic_0]
+set_property SOURCE_SET sources_1 [get_filesets sim_1]
+add_files -fileset sim_1 -norecurse ${_origin_dir_}/Sim/i2c_slave_if.v
+add_files -fileset sim_1 -norecurse ${_origin_dir_}/Sim/pca9545a.v
+add_files -fileset sim_1 -norecurse ${_origin_dir_}/Sim/tca6406a.v
+add_files -fileset sim_1 -norecurse ${_origin_dir_}/Sim/sim_tb.sv
+add_files -fileset sim_1 -norecurse ${_origin_dir_}/Sim/sim_top_behav.wcfg
 
-# Generate ILA Wizard IP
-create_ip -name ila -vendor xilinx.com -library ip -version 6.2 -module_name ila_0
-set_property -dict [list \
-  CONFIG.C_DATA_DEPTH {65536} \
-  CONFIG.C_INPUT_PIPE_STAGES {1} \
-  CONFIG.C_NUM_OF_PROBES {10} \
-] [get_ips ila_0]
+update_compile_order -fileset sim_1
 
-# Generate JTAG to AXI Master IP
-create_ip -name jtag_axi -vendor xilinx.com -library ip -version 1.2 -module_name jtag_axi_0
-set_property CONFIG.PROTOCOL {2} [get_ips jtag_axi_0]
 
-# Generate Clock Wizard IP
-create_ip -name clk_wiz -vendor xilinx.com -library ip -version 6.0 -module_name clk_wiz_0
-set_property -dict [list \
-  CONFIG.CLKIN1_JITTER_PS {33.330000000000005} \
-  CONFIG.CLKOUT1_JITTER {116.415} \
-  CONFIG.CLKOUT1_PHASE_ERROR {77.836} \
-  CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {50.000} \
-  CONFIG.MMCM_CLKFBOUT_MULT_F {4.000} \
-  CONFIG.MMCM_CLKIN1_PERIOD {3.333} \
-  CONFIG.MMCM_CLKIN2_PERIOD {10.0} \
-  CONFIG.MMCM_CLKOUT0_DIVIDE_F {24.000} \
-  CONFIG.PRIM_IN_FREQ {300} \
-  CONFIG.PRIM_SOURCE {Differential_clock_capable_pin} \
-  CONFIG.USE_RESET {false} \
-] [get_ips clk_wiz_0]
+# ------------------------------------------------------
+#
+# Add Constraint Files...
+#
+# ------------------------------------------------------
+#add_files -fileset constrs_1 -norecurse ${_origin_dir_}/XDC/const_timing.xdc
+#add_files -fileset constrs_1 -norecurse ${_origin_dir_}/XDC/ul3422.xdc
+add_files -fileset constrs_1 -norecurse ${_origin_dir_}/XDC/ul3524.xdc
 
-# Set top Module...
-set_property top qsfp_i2c_top [current_fileset]
+# ------------------------------------------------------
+#
+# Add IP Sources...
+#
+# ------------------------------------------------------
 
-# Update compile order...
+source ${_origin_dir_}/IP/axi_iic_0_ip.tcl
+source ${_origin_dir_}/IP/clk_wiz_0_ip.tcl
+source ${_origin_dir_}/IP/ila_0_ip.tcl
+source ${_origin_dir_}/IP/jtag_axi_0_ip.tcl
+
+# ------------------------------------------------------
+#
+# Misc. Project Settings....
+#
+# ------------------------------------------------------
+
+#
+# Project uses the full UL3422 XDC.  Unused constraints will generate Critical Warnings.
+# These command will suppress the following messages...
+
+# -- 'set_property' expects at least one object.
+set_msg_config -suppress -id {Common 17-55}
+
+# -- command failed: can't read "variable": no such variable (reported during synthesis)
+set_msg_config -suppress -id {Common 17-1548}
+
+# -- Could not find module 'jtag_axi_0'. The XDC file <build folder>/sources_1/ip/jtag_axi_0/constraints/jtag_axi.xdc will not be read for any cell of this module.
+#  jtag_axi_0 may be 
+set_msg_config -suppress -id {Designutils 20-1280}
+
+
+#
+# Finish Environment Setup...
+#
+
+#set_property STEPS.PLACE_DESIGN.ARGS.DIRECTIVE ExtraNetDelay_low [get_runs impl_1]
+
+set_property top  qsfp_i2c_top  [get_filesets sources_1]
+set_property top  sim_tb_top    [get_filesets sim_1]
 update_compile_order -fileset sources_1
 update_compile_order -fileset sim_1
 
