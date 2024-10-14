@@ -1,0 +1,184 @@
+########################################################################################################################
+UL3422 Design Support
+########################################################################################################################
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: UL3422
+   :hidden:
+
+   Home <https://xilinx.github.io/Alveo-Cards/cards/ul3422.html>
+   On GitHub <https://github.com/Xilinx/Alveo-Cards/tree/ul3422>
+
+
+
+
+*********************************
+Overview
+*********************************
+
+
+This repository provides AMD Alveo UL3422 card support including Vivado based reference designs targeting features of the card.
+
+
+
+
+
+****************************************************
+Reference Designs
+****************************************************
+
+Available reference designs are summarized in the following table. Each reference design includes:
+
+* High-level design overview including attributes, performance, limitations and usage
+* Simulation waveform files with waveform descriptions to better understand the design
+* Hardware design files along with ILA / VIO configuration files allowing greater control and visibility into the design  
+
+Each reference design is located in their respective sub-directory.
+
+
+
+
+.. list-table::  Available Reference Designs
+   :widths: 30 70
+   :header-rows: 1
+   
+   * - Reference Design
+     - Summary
+
+   * - :doc:`Renesas I2C Programming <./docs/Renesas_I2C_Programming/README>`
+     - Program the Renesas devices via I2C using a state machine. Includes script to convert Renesas programming script file to ``.coe`` BRAM file format.
+
+   * - :doc:`QSFP I2C <./docs/QSFP_I2C/README>`
+     - Enable QSFP module power planes and side-band signals via I2C interface.
+..
+   * - :doc:`GTF Recovery Clock <./docs/RECOV_CLK/README>`
+     - Demonstrates how to setup the QSFP-DD Renesas device and route the GTF recovered clock through Bank 65.
+
+   * - :doc:`PCIE DDR <./docs/PCIE_DDR/README>`
+     - DDR I2C and MIG bring-up and validation through PCIe.
+
+   * - :doc:`QDR MIG <./docs/QDR_MIG/README>`
+     - Interface with the QDRII+ memory montroller through AXI.
+
+   * - :doc:`./docs/FINN_Latency/README`
+     - Example design which shows how to use a FINN-generated MLP IP block on the ULL
+	 
+   * - :doc:`GTF Latency Benchmark <./docs/GTF_Latency/README>`
+     - Benchmark design used to measure and report GTF in MAC and RAW 10G latency.
+
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Reference Designs
+   :hidden:
+
+   Renesas I2C Programming <./docs/Renesas_I2C_Programming/README>
+   QSFP I2C <./docs/QSFP_I2C/README>
+..   GTF Latency Benchmark <./docs/GTF_Latency/README>
+   GTF Recovery Clock <./docs/RECOV_CLK/README>
+   PCIE DDR <./docs/PCIE_DDR/README>
+   QDR MIG <./docs/QDR_MIG/README>
+
+
+   FINN_Latency <./docs/FINN_Latency/README>
+
+
+
+Reference Design Support
+=================================================
+
+The following links provide support to use the reference designs.
+
+* :doc:`Loading a reference design <./docs/Docs/loading_ref_proj>`
+* :doc:`Simulating a reference design <./docs/Docs/simulating_a_design>`
+* :doc:`Building a reference design <./docs/Docs/building_a_design>`
+* :doc:`Programming a reference design to the card <./docs/Docs/programming_the_device>`
+
+
+
+.. toctree::
+   :maxdepth: 1
+   :caption: Reference Design Support
+   :hidden:
+
+   Loading a design  <./docs/Docs/loading_ref_proj>
+   Simulating a design  <./docs/Docs/simulating_a_design>
+   Building a design  <./docs/Docs/building_a_design>
+   Programming the device  <./docs/Docs/programming_the_device>
+
+
+
+
+
+
+Supported Cards
+=================================================
+
+The following card is supported by the reference designs in this repository:
+
+* UL3422
+
+
+
+
+Vivado Design Support
+=================================================
+
+
+
+.. toctree::
+   :maxdepth: 3
+   :caption: Vivado Design Support
+   :hidden:
+
+   Vivado Design Flow <./docs/Docs/vivado_design_flow>
+
+
+
+The reference designs require the following Vivado release:
+
+* Vivado ©️ 2023.2
+
+
+
+The following links provide support on the Vivado flow:
+
+* :doc:`Vivado Design Flow <./docs/Docs/vivado_design_flow>`
+* :download:`UL3422 XDC file <./docs/Renesas_I2C_Programming/XDC/ul3422.xdc>`
+
+
+The `Alveo UL Cards Master Release Notes <https://support.xilinx.com/s/article/000035539>`__ provides support resources such as known issues and release notes. For additional assistance, post your question on the AMD Community Forums: `Alveo Accelerator Card <https://support.xilinx.com/s/topic/0TO2E000000YKXlWAO/alveo-accelerator-cards>`_.
+
+
+
+
+
+Hardware Requirements
+=================================================
+
+To program the device from the Vivado HW Manager, you need either of the following:
+
+* Micro-B USB cable
+* Alveo Debug Kit (ADK). See `Alveo Accessories <https://www.xilinx.com/products/boards-and-kits/alveo/accessories.html>`__ to purchase.
+
+
+
+Support
+===================================
+
+For additional documentation, please refer to the `UL3422 product page <https://www.xilinx.com/products/boards-and-kits/alveo/ul3422.html>`__ and the `UL3422 Lounge <https://www.xilinx.com/member/ull-ea.html>`__.
+
+
+For support, contact your FAE or refer to support resources at `support.xilinx.com <https://support.xilinx.com>`__.
+
+
+
+
+.. Copyright © 2024 Advanced Micro Devices, Inc
+
+.. `Terms and Conditions <https://www.amd.com/en/corporate/copyright>`_.

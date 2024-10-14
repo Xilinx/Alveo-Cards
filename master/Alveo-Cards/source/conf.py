@@ -12,33 +12,33 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
+
+
 import os
 import sys
 import recommonmark
 from recommonmark.transform import AutoStructify
 from recommonmark.parser import CommonMarkParser
-
+from datetime import datetime
 # sys.path.insert(0, os.path.abspath('.'))
 sys.path.insert(0, os.path.abspath('_ext'))
 sys.path.insert(0, os.path.abspath('docs'))
 
+
 # -- Project information -----------------------------------------------------
+# https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
+
+author = 'Advanced Micro Devices, Inc'
 project = 'Alveo Cards Home'
-copyright = '2021-2023, Advanced Micro Devices, Inc.'
-author = 'Advanced Micro Devices, Inc.'
+project_u = project.replace(' ', '_')
+copyright = '2021-' + datetime.now().strftime("%Y") + ', ' + author
 
-# The short X.Y version
-# version = '1.0'
-# The full version, including alpha/beta/rc tags
-# release = '1.0'
-html_last_updated_fmt = 'September 27, 2023'
 
-# -- General configuration ---------------------------------------------------
+html_last_updated_fmt = datetime.now().strftime("%B %d, %Y")
 
-# If your documentation needs a minimal Sphinx version, state it here.
-#
-# needs_sphinx = '1.0'
+
+# needs_sphinx = '5.0'
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom

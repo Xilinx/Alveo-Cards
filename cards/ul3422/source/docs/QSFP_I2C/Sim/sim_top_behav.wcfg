@@ -1,0 +1,237 @@
+<!-- 
+(c) Copyright 2019-2022 Xilinx, Inc. All rights reserved.
+(c) Copyright 2022-2024 Advanced Micro Devices, Inc. All rights reserved.
+This file contains confidential and proprietary information
+of Xilinx, Inc. and is protected under U.S. and
+international copyright and other intellectual property
+laws.
+DISCLAIMER
+This disclaimer is not a license and does not grant any
+rights to the materials distributed herewith. Except as
+otherwise provided in a valid license issued to you by
+Xilinx, and to the maximum extent permitted by applicable
+law: (1) THESE MATERIALS ARE MADE AVAILABLE "AS IS" AND
+WITH ALL FAULTS, AND XILINX HEREBY DISCLAIMS ALL WARRANTIES
+AND CONDITIONS, EXPRESS, IMPLIED, OR STATUTORY, INCLUDING
+BUT NOT LIMITED TO WARRANTIES OF MERCHANTABILITY, NON-
+INFRINGEMENT, OR FITNESS FOR ANY PARTICULAR PURPOSE; and
+(2) Xilinx shall not be liable (whether in contract or tort,
+including negligence, or under any other theory of
+liability) for any loss or damage of any kind or nature
+related to, arising under or in connection with these
+materials, including for any direct, or any indirect,
+special, incidental, or consequential loss or damage
+(including loss of data, profits, goodwill, or any type of
+loss or damage suffered as a result of any action brought
+by a third party) even if such damage or loss was
+reasonably foreseeable or Xilinx had been advised of the
+possibility of the same.
+CRITICAL APPLICATIONS
+Xilinx proddcts are not designed or intended to be fail-
+safe, or for use in any application requiring fail-safe
+performance, such as life-support or safety devices or
+systems, Class III medical devices, nuclear facilities,
+applications related to the deployment of airbags, or any
+other applications that could lead to death, personal
+injury, or severe property or environmental damage
+(individually and collectively, "Critical
+Applications"). Customer assumes the sole risk and
+liability of any use of Xilinx proddcts in Critical
+Applications, subject only to applicable laws and
+regulations governing limitations on proddct liability.
+THIS COPYRIGHT NOTICE AND DISCLAIMER MUST BE RETAINED AS
+PART OF THIS FILE AT ALL TIMES.
+-->
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sim_tb_top_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="sim_tb_top" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000000 ms"></ZoomStartTime>
+      <ZoomEndTime time="15.153657779 ms"></ZoomEndTime>
+      <Cursor1Time time="1.806157065 ms"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="250"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="18" />
+   <wvobject type="group" fp_name="group22">
+      <obj_property name="label">Power State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_pwr/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_pwr/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_pwr/start">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_pwr/complete">
+         <obj_property name="ElementShortName">complete</obj_property>
+         <obj_property name="ObjectShortName">complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_pwr/dbg_cstate">
+         <obj_property name="ElementShortName">dbg_cstate[7:0]</obj_property>
+         <obj_property name="ObjectShortName">dbg_cstate[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group35">
+      <obj_property name="label">QSFP 0 State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_0/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_0/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_0/start">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_0/complete">
+         <obj_property name="ElementShortName">complete</obj_property>
+         <obj_property name="ObjectShortName">complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_0/cstate">
+         <obj_property name="ElementShortName">cstate[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cstate[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group41">
+      <obj_property name="label">QSFP 1 State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_1/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_1/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_1/start">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_1/complete">
+         <obj_property name="ElementShortName">complete</obj_property>
+         <obj_property name="ObjectShortName">complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_1/cstate">
+         <obj_property name="ElementShortName">cstate[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cstate[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group47">
+      <obj_property name="label">QSFP 2 State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_2/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_2/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_2/start">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_2/complete">
+         <obj_property name="ElementShortName">complete</obj_property>
+         <obj_property name="ObjectShortName">complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_2/cstate">
+         <obj_property name="ElementShortName">cstate[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cstate[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group53">
+      <obj_property name="label">QSFP 3 State Machine</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_3/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_3/rst">
+         <obj_property name="ElementShortName">rst</obj_property>
+         <obj_property name="ObjectShortName">rst</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_3/start">
+         <obj_property name="ElementShortName">start</obj_property>
+         <obj_property name="ObjectShortName">start</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_3/complete">
+         <obj_property name="ElementShortName">complete</obj_property>
+         <obj_property name="ObjectShortName">complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/sim_tb_top/u_qsfp_i2c_top/\genblk1.state_machine_top /state_machine_sb_3/cstate">
+         <obj_property name="ElementShortName">cstate[7:0]</obj_property>
+         <obj_property name="ObjectShortName">cstate[7:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="divider28" type="divider">
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/i2c_sda">
+      <obj_property name="ElementShortName">i2c_sda</obj_property>
+      <obj_property name="ObjectShortName">i2c_sda</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/i2c_scl">
+      <obj_property name="ElementShortName">i2c_scl</obj_property>
+      <obj_property name="ObjectShortName">i2c_scl</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/fpga_mux_rstn">
+      <obj_property name="ElementShortName">fpga_mux_rstn</obj_property>
+      <obj_property name="ObjectShortName">fpga_mux_rstn</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/qsfpdd1_io_reset_b">
+      <obj_property name="ElementShortName">qsfpdd1_io_reset_b</obj_property>
+      <obj_property name="ObjectShortName">qsfpdd1_io_reset_b</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sim_tb_top/qsfpdd2_io_reset_b">
+      <obj_property name="ElementShortName">qsfpdd2_io_reset_b</obj_property>
+      <obj_property name="ObjectShortName">qsfpdd2_io_reset_b</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_pwr">
+      <obj_property name="ElementShortName">gpio_pwr[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_pwr[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_sw0">
+      <obj_property name="ElementShortName">gpio_sw0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_sw0[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_sw1">
+      <obj_property name="ElementShortName">gpio_sw1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_sw1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_qsfp_0">
+      <obj_property name="ElementShortName">gpio_qsfp_0[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_qsfp_0[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_qsfp_1">
+      <obj_property name="ElementShortName">gpio_qsfp_1[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_qsfp_1[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_qsfp_2">
+      <obj_property name="ElementShortName">gpio_qsfp_2[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_qsfp_2[7:0]</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sim_tb_top/gpio_qsfp_3">
+      <obj_property name="ElementShortName">gpio_qsfp_3[7:0]</obj_property>
+      <obj_property name="ObjectShortName">gpio_qsfp_3[7:0]</obj_property>
+   </wvobject>
+</wave_config>

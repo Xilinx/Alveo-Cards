@@ -13,8 +13,8 @@ Card Collateral
    :caption: Card Collateral
    :hidden:
 
-   UL3524 <https://xilinx.github.io/Alveo-Cards/ull.html>
-
+   UL3422 <https://xilinx.github.io/Alveo-Cards/cards/ul3422.html>
+   UL3524 <https://xilinx.github.io/Alveo-Cards/cards/ul3524.html>
 
 
 
@@ -23,11 +23,19 @@ Card support, including Vivado-based reference designs targeting features of the
 
 
 
-
-`UL3524 <../../../../ull.html>`_
+`UL3422 <../../../../cards/ul3422.html>`_
 ----------------------------------------------------------------
 
-The Alveo™ UL3524  features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+The Alveo™ UL3422 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+
+
+
+
+`UL3524 <../../../../cards/ul3524.html>`_
+----------------------------------------------------------------
+
+The Alveo™ UL3524 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+
 
 
 
