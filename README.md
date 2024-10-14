@@ -9,9 +9,14 @@
 
 Card support, including Vivado-based reference designs targeting features of the card to help you get started.
 
-### [UL3524](https://xilinx.github.io/Alveo-Cards/ull.html)
+### [UL3422](https://xilinx.github.io/Alveo-Cards/cards/ul3422.html)
 
-The Alveo™ UL3524 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+The Alveo™ UL3422 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
+
+
+### [UL3524](https://xilinx.github.io/Alveo-Cards/cards/ul3524.html)
+
+The Alveo UL3524 features low latency GTF transceiver architecture to achieve less than 3ns latency for world-class trade execution. This repository contains reference designs to evaluate latency and performance, as well as test other features of the card.
 
 <hr/>
 
@@ -28,7 +33,7 @@ Quickly isolate, debug, and resolve a wide range of issues within the Vitis/XRT 
 
 
 
-Describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30 and U55x Alveo™ data center cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are standard I2C protocol and PLDM Over MCTP Over SMBus.
+Describes out-of-band (OoB) support available for the U200, U250, U280, U50x, U30 and U55x Alveo data center cards. Out-of-band support is implemented in the Satellite Controller (SC) firmware, which supports communication with the server Board Management Controller (BMC) over the SMBus/I2C interface on the PCIe® edge connector. The underlying protocols supported are standard I2C protocol and PLDM Over MCTP Over SMBus.
 
 
 
