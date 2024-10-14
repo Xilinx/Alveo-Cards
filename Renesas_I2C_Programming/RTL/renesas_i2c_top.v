@@ -1,17 +1,17 @@
 /*
-Copyright (c) 2023, Advanced Micro Devices, Inc. All rights reserved.
-SPDX-License-Identifier: MIT
+Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved.
+SPDX-License-Identifier: X11
 */
 
 
 module renesas_i2c_top #(
     parameter SIMULATION = "false"
 ) (
-    input  wire     CLK13_LVDS_300_P,
-    input  wire     CLK13_LVDS_300_N,
+    input  wire     clk_sys_lvds_300_p,
+    input  wire     clk_sys_lvds_300_n,
                     
-    inout  wire     CLKGEN_SDA ,
-    inout  wire     CLKGEN_SCL
+    inout  wire     clkgen_sda_r ,
+    inout  wire     clkgen_scl_r
 );
  
 localparam AXI_ADDR_WIDTH_0 = 9;
@@ -30,8 +30,8 @@ wire s_axi_aresetn  ;
 // -----------------------------------------------------------
 clk_wiz_0 clk_wiz_0 
  (
-    .clk_in1_p  ( CLK13_LVDS_300_P ),
-    .clk_in1_n  ( CLK13_LVDS_300_N ),
+    .clk_in1_p  ( clk_sys_lvds_300_p ),
+    .clk_in1_n  ( clk_sys_lvds_300_n ),
     .clk_out1   ( s_axi_aclk       ),
     .locked     ( s_axi_aresetn    )
  );
@@ -234,8 +234,8 @@ axi_iic_0 axi_iic_0 (
   );                                   
 
 
-IOBUF IOBUF_SDA( .IO(CLKGEN_SDA), .I(sda_o), .O(sda_i), .T(sda_t));
-IOBUF IOBUF_SCL( .IO(CLKGEN_SCL), .I(scl_o), .O(scl_i), .T(scl_t));
+IOBUF IOBUF_SDA( .IO(clkgen_sda_r), .I(sda_o), .O(sda_i), .T(sda_t));
+IOBUF IOBUF_SCL( .IO(clkgen_scl_r), .I(scl_o), .O(scl_i), .T(scl_t));
 
 
 // -----------------------------------------------------------
