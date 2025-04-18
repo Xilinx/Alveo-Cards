@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -123,10 +121,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="finn-on-ul3524">
-<h1>FINN on UL3524<a class="headerlink" href="#finn-on-ul3524" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+</table><section id="finn-on-ul3524">
+<h1>FINN on UL3524<a class="headerlink" href="#finn-on-ul3524" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This reference design demonstrates the latency of a data stream through a <a class="reference external" href="https://finn.readthedocs.io/en/latest/">FINN</a> IP block on the UL3524.</p>
 <p>The <a class="reference external" href="https://github.com/xilinx/finn">FINN compiler</a> is an open source tool that generates Quantized Neural Network (QNN) Hardware IP blocks targeting AMD FPGAs.
 q<code class="docutils literal notranslate"><span class="pre">3</span></code>
@@ -135,26 +133,26 @@ q<code class="docutils literal notranslate"><span class="pre">3</span></code>
 <p>The output of FINN is in the form of a “Stitched IP” block, which can be integrated into a custom FPGA design with Vivado™ IP Integrator.</p>
 <p>This design is not a complete solution, but rather a demonstration of how the FINN tool can be used to generate a FINN IP block targeting the UL3524 board.</p>
 <p>As a starting point, the well documented <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-mlp</a> example is modified to target the UL3524. In addition, the <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-mlp</a> configuration is modified to minimize data latency through the block.</p>
-</div>
-<div class="section" id="building-the-design">
-<h2>Building the Design<a class="headerlink" href="#building-the-design" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="building-the-design">
+<h2>Building the Design<a class="headerlink" href="#building-the-design" title="Link to this heading">¶</a></h2>
 <p>For General instructions refer to this link <a class="reference internal" href="../Docs/loading_ref_proj.html"><span class="doc">Design Creation</span></a>
 The setup.tcl file for FINN_Latency in particular runs extra steps including synthesis and implementation. This is necessary because there are constraint conflicts that must be removed or critical warnings are reported. The details can be observed in the <code class="docutils literal notranslate"><span class="pre">setup.tcl</span></code> file found here <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/ul3524/FINN_Latency/Vivado_Project/setup.tcl">FINN Latency setup.tcl</a></p>
-</div>
-<div class="section" id="sections">
-<h2>Sections<a class="headerlink" href="#sections" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="sections">
+<h2>Sections<a class="headerlink" href="#sections" title="Link to this heading">¶</a></h2>
 <p>The following links provide additional design details, including simulation and HW Manager support.</p>
 <p><a class="reference internal" href="IP/README.html"><span class="doc">FINN IP Generation</span></a></p>
 <p><a class="reference internal" href="Docs/design.html"><span class="doc">Design Overivew</span></a></p>
 <p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a></p>
 <p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a></p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

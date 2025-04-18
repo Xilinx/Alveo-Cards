@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,19 +113,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="qdrii-mig-reference-design-hw-manager-support">
-<h1>QDRII+ MIG Reference Design: HW Manager Support<a class="headerlink" href="#qdrii-mig-reference-design-hw-manager-support" title="Permalink to this heading">¶</a></h1>
+</table><section id="qdrii-mig-reference-design-hw-manager-support">
+<h1>QDRII+ MIG Reference Design: HW Manager Support<a class="headerlink" href="#qdrii-mig-reference-design-hw-manager-support" title="Link to this heading">¶</a></h1>
 <p>The design’s functionalities are verified on the board through the HW Manager. This section provides instructions on how to set up the VIO signals to interact with the design and demonstrates the correct functionalities of the MIG self-calibration and AXI transactions through the MIG status tab and ILA.</p>
-<div class="section" id="programming-the-device">
-<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<section id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Link to this heading">¶</a></h2>
 <p><a class="reference internal" href="../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the following files:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">./QDR_MIG/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/qdriip_ref_simple_top.bit</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">./QDR_MIG/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/qdriip_ref_simple_top.ltx</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="using-ila-vio">
-<h2>Using ILA / VIO<a class="headerlink" href="#using-ila-vio" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="using-ila-vio">
+<h2>Using ILA / VIO<a class="headerlink" href="#using-ila-vio" title="Link to this heading">¶</a></h2>
 <p>Use the following steps to add signals to the VIO window:</p>
 <ol class="simple">
 <li><p>Open Vivado HW Manager and program the device</p></li>
@@ -181,35 +179,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p>Additional or different signals can be added to the design by re-configuring and re-instantiating the VIO IP in the Vivado project.</p>
-</div>
-<div class="section" id="mig-calibration">
-<h2>MIG Calibration<a class="headerlink" href="#mig-calibration" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="mig-calibration">
+<h2>MIG Calibration<a class="headerlink" href="#mig-calibration" title="Link to this heading">¶</a></h2>
 <p>The QDRII+ MIG performs self calibration after a system reset. You can view the MIG status by selecting the MIG tab on the HW Manager. The correct operation of the calibration stages can be confirmed there along with the overall calibration status and more detailed information about the margins and the center point.</p>
 <p><img alt="MIG Status" src="../../../_images/mig_cal.png" /></p>
 <p>Figure: MIG window with calibration passing status</p>
 <p>More information about memory calibration can be found on <a class="reference external" href="https://docs.xilinx.com/api/khub/documents/NxaDKjH9BQF5nh4fRma_7g/content?Ft-Calling-App=ft%2Fturnkey-portal&amp;Ft-Calling-App-Version=4.0.11&amp;filename=pg150-ultrascale-memory-ip.pdf#G24.305944">Ch. 17 of UltraScale Architecture-Based FPGAs Memory IP Product Guide (PG150)</a>.</p>
-</div>
-<div class="section" id="ila">
-<h2>ILA<a class="headerlink" href="#ila" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="ila">
+<h2>ILA<a class="headerlink" href="#ila" title="Link to this heading">¶</a></h2>
 <p>The design’s AXI transactions can be monitored and verified with the ILA.</p>
-<div class="section" id="write">
-<h3>Write<a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<section id="write">
+<h3>Write<a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <p><img alt="ILA Write" src="../../../_images/ila_write.png" /></p>
 <p>Figure: ILA waveform of the AXI write transactions. Handshaking of the write addresses and data can be observed along with the linearly increasing address and data.</p>
-</div>
-<div class="section" id="read">
-<h3>Read<a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="read">
+<h3>Read<a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
 <p><img alt="ILA Read" src="../../../_images/ila_read.png" /></p>
 <p>Figure: ILA waveform of the AXI read transactions. Handshaking of the read addresses can be observed along with read data that have the same values as the write data.</p>
 <p>Additional or different signals can be added to the design by re-configuring and re-instantiating the ILA IP in the Vivado project.</p>
-</div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,12 +113,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="qsfp-i2c-reference-design-hw-manager-support">
-<h1>QSFP I2C Reference Design: HW Manager Support<a class="headerlink" href="#qsfp-i2c-reference-design-hw-manager-support" title="Permalink to this heading">¶</a></h1>
+</table><section id="qsfp-i2c-reference-design-hw-manager-support">
+<h1>QSFP I2C Reference Design: HW Manager Support<a class="headerlink" href="#qsfp-i2c-reference-design-hw-manager-support" title="Link to this heading">¶</a></h1>
 <p>This section provides instructions to observe the behavior of the design through the HW Manager.
 In addition, the included script provides reference code demonstrating communication with the card.  Details of the script functions are detailed below.</p>
-<div class="section" id="programming-the-device">
-<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<section id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p><a class="reference internal" href="../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the following files:</p></li>
 </ol>
@@ -136,14 +134,14 @@ In addition, the included script provides reference code demonstrating communica
 <li><p>Set up ILA trigger as desired.</p></li>
 <li><p>Trigger all the ILAs by clicking on <em>Run trigger for this ILA core</em></p></li>
 </ul>
-</div>
-<div class="section" id="ila">
-<h2>ILA<a class="headerlink" href="#ila" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="ila">
+<h2>ILA<a class="headerlink" href="#ila" title="Link to this heading">¶</a></h2>
 <p>An ILA is included in the design to observe and verify the behavior of the design on HW.</p>
 <p><strong>NOTE</strong>: It is necessary to enable ILAs in order to capture and view the waveform.</p>
-</div>
-<div class="section" id="tcl-script">
-<h2>Tcl Script<a class="headerlink" href="#tcl-script" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tcl-script">
+<h2>Tcl Script<a class="headerlink" href="#tcl-script" title="Link to this heading">¶</a></h2>
 <p>A provided script (located at <code class="docutils literal notranslate"><span class="pre">Scripts/qsfp.tcl</span></code>) contains three top-level functions to help facilitate basic QSFP operations which are summarized in the following table.</p>
 <p><strong>Note</strong>: All functions operate on QSFP 0 but can be modified or expanded to operate on any number of the four available QSFP ports.</p>
 <table border="1" class="docutils">
@@ -172,8 +170,8 @@ In addition, the included script provides reference code demonstrating communica
 </tr>
 </tbody>
 </table><p><strong>TABLE</strong>: Top-level QSFP Tcl Functions</p>
-<div class="section" id="running-the-scripts">
-<h3>Running the Scripts<a class="headerlink" href="#running-the-scripts" title="Permalink to this heading">¶</a></h3>
+<section id="running-the-scripts">
+<h3>Running the Scripts<a class="headerlink" href="#running-the-scripts" title="Link to this heading">¶</a></h3>
 <p>Prior to running the script, ensure the bit file has been programmed.</p>
 <ol>
 <li><p>In the Vivado Tcl console, change the working directory to the following:</p>
@@ -270,14 +268,14 @@ In addition, the included script provides reference code demonstrating communica
 </div>
 </li>
 </ol>
-</div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

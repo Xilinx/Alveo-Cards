@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,19 +113,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="gtf-latency-synchronized-design">
-<h1>GTF Latency Synchronized Design<a class="headerlink" href="#gtf-latency-synchronized-design" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="setting-up-the-design">
-<h2>Setting Up the Design<a class="headerlink" href="#setting-up-the-design" title="Permalink to this heading">¶</a></h2>
+</table><section id="gtf-latency-synchronized-design">
+<h1>GTF Latency Synchronized Design<a class="headerlink" href="#gtf-latency-synchronized-design" title="Link to this heading">¶</a></h1>
+<section id="setting-up-the-design">
+<h2>Setting Up the Design<a class="headerlink" href="#setting-up-the-design" title="Link to this heading">¶</a></h2>
 <p>The following steps will create a local project folder and load the required design elements.  Once complete, the design can be built or simulated using the normal Vivado design flows.  Once the design has been built, it can be reloaded by loaded the xpr project file in the Vivado_Project/project_1 build folder.</p>
 <ol class="simple">
 <li><p>Cd to this folder (Vivado_Project)</p></li>
 <li><p>Launch vivado</p></li>
 <li><p>Type ‘source ./setup.tcl’ in the TCL command line</p></li>
 </ol>
-</div>
-<div class="section" id="simulating-the-design">
-<h2>Simulating the Design<a class="headerlink" href="#simulating-the-design" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="simulating-the-design">
+<h2>Simulating the Design<a class="headerlink" href="#simulating-the-design" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>If not done already, set up the design as described above</p></li>
 <li><p>Once loaded, click on ‘Run Simulation’ in the Flow Navigator window.</p></li>
@@ -137,9 +135,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>The simulator will build and start the design.  The first latency measurement will occur around 150us as shown in the figure below.  You will need to click on the ‘Run’ button to extend the simulation far enough to see this event.</p></li>
 </ol>
 <p><img alt="Building the Design" src="../../../../../_images/simulation_0.png" /></p>
-</div>
-<div class="section" id="building-the-design">
-<h2>Building the Design<a class="headerlink" href="#building-the-design" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="building-the-design">
+<h2>Building the Design<a class="headerlink" href="#building-the-design" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>If not done already, set up the design as described above</p></li>
 <li><p>Once loaded, click on ‘Run Implementation’ in the Flow Navigator window.</p></li>
@@ -147,9 +145,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>If all looks good, click on ‘Generate Bitstream’ to create the bitfile.</p></li>
 </ol>
 <p>Note: the design should include an system VIO that shows link and reset status, along with an ILA in the Rx PRBS calculation module to show the Tx and Rx data progression used to generate event triggers to the latency logic.</p>
-</div>
-<div class="section" id="running-the-design">
-<h2>Running the Design<a class="headerlink" href="#running-the-design" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="running-the-design">
+<h2>Running the Design<a class="headerlink" href="#running-the-design" title="Link to this heading">¶</a></h2>
 <ol class="simple">
 <li><p>Generate the bitfile as described above and copy the generated bitfile (bit) and debug probes files(ltx) to your local machine.</p></li>
 <li><p>Also create local copies of the tcl scripts from the project’s ‘scripts folder’</p></li>
@@ -160,13 +158,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Once loaded, type ‘reset_design’ to reset the design and stabilize the GTF link.</p></li>
 <li><p>Type ‘runme’ in the TCL command line window.  By default, this will collect 100 samples and display the Tx/Rx sample times, the delta between the two, and the corrected latency in clock cycles.</p></li>
 </ol>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: https://support.xilinx.com</p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

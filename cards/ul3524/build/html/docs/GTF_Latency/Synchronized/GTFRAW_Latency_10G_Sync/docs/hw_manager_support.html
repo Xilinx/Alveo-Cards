@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,8 +113,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="gtf-raw-synchronized-latency-measurement-in-hardware">
-<h1>GTF RAW Synchronized Latency Measurement in Hardware<a class="headerlink" href="#gtf-raw-synchronized-latency-measurement-in-hardware" title="Permalink to this heading">¶</a></h1>
+</table><section id="gtf-raw-synchronized-latency-measurement-in-hardware">
+<h1>GTF RAW Synchronized Latency Measurement in Hardware<a class="headerlink" href="#gtf-raw-synchronized-latency-measurement-in-hardware" title="Link to this heading">¶</a></h1>
 <p>This section provides steps to run the GTF RAW benchmark design and to measure and report GTF RAW latency on the UL3524 via the Vivado HW Manager.</p>
 <p>The key steps to run the benchmark design are:</p>
 <ol class="simple">
@@ -133,8 +131,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>A Tcl-based script allows running the design in hardware.  It initializes the GTF, transfers a predefined number of frames and computes latency based on the recorded TX and RX timestamps.</p></li>
 </ul>
 <p>These steps are described in detail below.</p>
-<div class="section" id="programming-the-device">
-<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<section id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Link to this heading">¶</a></h2>
 <p>It is necessary to program the device prior to running the GTF benchmark design.  <strong>Be sure to build the design prior to following these steps.</strong></p>
 <ol class="simple">
 <li><p><a class="reference internal" href="../../../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the bitfile (<em>.bit) and ILA debug (</em>.ltx) files located in the following sub-directory (assumes the design was built within <em>Vivado_Project</em>:</p></li>
@@ -142,9 +140,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">./Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="running-the-latency-measurement-test">
-<h2>Running the Latency Measurement Test<a class="headerlink" href="#running-the-latency-measurement-test" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="running-the-latency-measurement-test">
+<h2>Running the Latency Measurement Test<a class="headerlink" href="#running-the-latency-measurement-test" title="Link to this heading">¶</a></h2>
 <p>Instructions to run the GTF latency measurement test are given below.</p>
 <ol class="simple">
 <li><p>In the Vivado Tcl console, change the working directory to:</p>
@@ -163,38 +161,38 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ol>
-<div class="section" id="example-output-files">
-<h3>Example Output Files<a class="headerlink" href="#example-output-files" title="Permalink to this heading">¶</a></h3>
+<section id="example-output-files">
+<h3>Example Output Files<a class="headerlink" href="#example-output-files" title="Link to this heading">¶</a></h3>
 <p>Two output files are generated in the “Test_Output” folder once we run the run_tests.tcl. A csv file and a log file.They have the same contents but in a different format.</p>
-<p>An example of the generated output log from <code class="docutils literal notranslate"><span class="pre">run_tests.tcl</span></code> is shown below.  There will be <strong>num_test</strong> tests, with each test transferring <strong>pkt_cnt</strong> frames.  In the example output below, <strong>num_test</strong> is 10 and <strong>pkt_cnt</strong> is 250.  These and other parameters can be changed from their default values if needed. For more information regarding the test parameters, please refer <a class="reference external" href="../Scripts/README.html#test-parameters">the scripts documentation</a>.</p>
+<p>An example of the generated output log from <code class="docutils literal notranslate"><span class="pre">run_tests.tcl</span></code> is shown below.  There will be <strong>num_test</strong> tests, with each test transferring <strong>pkt_cnt</strong> frames.  In the example output below, <strong>num_test</strong> is 10 and <strong>pkt_cnt</strong> is 250.  These and other parameters can be changed from their default values if needed. For more information regarding the test parameters, please refer <a class="reference external" href="../Scripts/README.md#test-parameters">the scripts documentation</a>.</p>
 <p>Each line displays the minimum, average and maximum (min/avg/max) measured latency values for a given test along with the latency distributions in terms of clock cycles. The average latency value is the sum of all latency values for a test, divided by <strong>pck_cnt</strong>.</p>
-<p>Variations in the measured latency values are expected and describe <a class="reference external" href="../../../README.html#variations-on-measured-latency">here</a>.</p>
+<p>Variations in the measured latency values are expected and describe <a class="reference external" href="../../../README.md#variations-on-measured-latency">here</a>.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="o">==========================================================================================</span>
-Test Number: <span class="m">0</span>
-Latency <span class="o">(</span>min/avg/max<span class="o">)</span>:  <span class="m">1</span>.500ns / <span class="m">1</span>.500ns / <span class="m">1</span>.500ns
-Clk Cnts  <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>  / <span class="m">250</span>  / <span class="m">0</span> / <span class="m">0</span>
-Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>% / <span class="m">100</span>% / <span class="m">0</span>% / <span class="m">0</span>%
+Test<span class="w"> </span>Number:<span class="w"> </span><span class="m">0</span>
+Latency<span class="w"> </span><span class="o">(</span>min/avg/max<span class="o">)</span>:<span class="w">  </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns
+Clk<span class="w"> </span>Cnts<span class="w">  </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span><span class="w">  </span>/<span class="w"> </span><span class="m">250</span><span class="w">  </span>/<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>
+Percent<span class="w">   </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%
 <span class="o">==========================================================================================</span>
 
 <span class="o">==========================================================================================</span>
-Test Number: <span class="m">1</span>
-Latency <span class="o">(</span>min/avg/max<span class="o">)</span>:  <span class="m">1</span>.500ns / <span class="m">1</span>.500ns / <span class="m">1</span>.500ns
-Clk Cnts  <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>  / <span class="m">250</span>  / <span class="m">0</span> / <span class="m">0</span>
-Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>% / <span class="m">100</span>% / <span class="m">0</span>% / <span class="m">0</span>%
+Test<span class="w"> </span>Number:<span class="w"> </span><span class="m">1</span>
+Latency<span class="w"> </span><span class="o">(</span>min/avg/max<span class="o">)</span>:<span class="w">  </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns
+Clk<span class="w"> </span>Cnts<span class="w">  </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span><span class="w">  </span>/<span class="w"> </span><span class="m">250</span><span class="w">  </span>/<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>
+Percent<span class="w">   </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%
 <span class="o">==========================================================================================</span>
 
 <span class="o">==========================================================================================</span>
-Test Number: <span class="m">2</span>
-Latency <span class="o">(</span>min/avg/max<span class="o">)</span>:  <span class="m">1</span>.500ns / <span class="m">1</span>.500ns / <span class="m">1</span>.500ns
-Clk Cnts  <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>  / <span class="m">250</span>  / <span class="m">0</span> / <span class="m">0</span>
-Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>% / <span class="m">100</span>% / <span class="m">0</span>% / <span class="m">0</span>%
+Test<span class="w"> </span>Number:<span class="w"> </span><span class="m">2</span>
+Latency<span class="w"> </span><span class="o">(</span>min/avg/max<span class="o">)</span>:<span class="w">  </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns
+Clk<span class="w"> </span>Cnts<span class="w">  </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span><span class="w">  </span>/<span class="w"> </span><span class="m">250</span><span class="w">  </span>/<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>
+Percent<span class="w">   </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%
 <span class="o">==========================================================================================</span>
 
 <span class="o">==========================================================================================</span>
-Test Number: <span class="m">3</span>
-Latency <span class="o">(</span>min/avg/max<span class="o">)</span>:  <span class="m">1</span>.500ns / <span class="m">1</span>.500ns / <span class="m">1</span>.500ns
-Clk Cnts  <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>  / <span class="m">250</span>  / <span class="m">0</span> / <span class="m">0</span>
-Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1</span>.5, <span class="m">2</span>.5, <span class="m">3</span>.5<span class="o">)</span>: <span class="m">0</span>% / <span class="m">100</span>% / <span class="m">0</span>% / <span class="m">0</span>%
+Test<span class="w"> </span>Number:<span class="w"> </span><span class="m">3</span>
+Latency<span class="w"> </span><span class="o">(</span>min/avg/max<span class="o">)</span>:<span class="w">  </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns<span class="w"> </span>/<span class="w"> </span><span class="m">1</span>.500ns
+Clk<span class="w"> </span>Cnts<span class="w">  </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span><span class="w">  </span>/<span class="w"> </span><span class="m">250</span><span class="w">  </span>/<span class="w"> </span><span class="m">0</span><span class="w"> </span>/<span class="w"> </span><span class="m">0</span>
+Percent<span class="w">   </span><span class="o">(</span><span class="m">0</span>.5,<span class="w"> </span><span class="m">1</span>.5,<span class="w"> </span><span class="m">2</span>.5,<span class="w"> </span><span class="m">3</span>.5<span class="o">)</span>:<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">100</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%<span class="w"> </span>/<span class="w"> </span><span class="m">0</span>%
 <span class="o">==========================================================================================</span>
 </pre></div>
 </div>
@@ -212,10 +210,10 @@ Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1<
 </pre></div>
 </div>
 <p><strong>Figure:</strong> Example csv output</p>
-</div>
-</div>
-<div class="section" id="ila">
-<h2>ILA<a class="headerlink" href="#ila" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="ila">
+<h2>ILA<a class="headerlink" href="#ila" title="Link to this heading">¶</a></h2>
 <p>An ILA is included in the design to allow one to observe and verify the behavior of the design on HW. The ILA in the design is connected to the Rx PRBS error detection logic.</p>
 <p>The ILA, all the signals are clocked by <code class="docutils literal notranslate"><span class="pre">RXUSRCLK</span></code>, and TXDATAIN is the sampled TxRawData bus sampled in the Rx clock domain. The two clocks have the same frequency and are 180 degrees out of phase in order to provide consistant delays for clock domain crossing.</p>
 <p><strong>NOTE</strong>: It is necessary to enable ILAs in order to capture and view the waveforms.</p>
@@ -233,13 +231,13 @@ Percent   <span class="o">(</span><span class="m">0</span>.5, <span class="m">1<
 </ul>
 <p>It also shows the corrupted PRBS value (inverted 0x0004) that identifies the start of the latency measurement.</p>
 <p>It also shows when the corrupted word is detected in the Rx PRBS monitor (expected value is 0x0004, actual value is 0xFFFB).</p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

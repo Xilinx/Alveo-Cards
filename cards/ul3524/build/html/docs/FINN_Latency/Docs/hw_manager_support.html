@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,8 +113,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="finn-mlp-ip-latency-measurement-in-hardware">
-<h1>FINN MLP IP Latency Measurement in Hardware<a class="headerlink" href="#finn-mlp-ip-latency-measurement-in-hardware" title="Permalink to this heading">¶</a></h1>
+</table><section id="finn-mlp-ip-latency-measurement-in-hardware">
+<h1>FINN MLP IP Latency Measurement in Hardware<a class="headerlink" href="#finn-mlp-ip-latency-measurement-in-hardware" title="Link to this heading">¶</a></h1>
 <p>This section provides steps to run the FINN Latency benchmark design and to measure FINN latency on the UL3524 via the Vivado HW Manager.</p>
 <p>The key steps to run the benchmark design are:</p>
 <ol class="simple">
@@ -124,8 +122,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Manually measure latency via the Marker functionality in the hardware manager waveform viewer.</p></li>
 </ol>
 <p>These steps are described in detail below.</p>
-<div class="section" id="programming-the-device">
-<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<section id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Link to this heading">¶</a></h2>
 <p>It is necessary to program the device with the reference design prior to running the FINN Latency benchmark design.  Be sure to build the design prior to following these steps.</p>
 <ol class="simple">
 <li><p>DETAILED PROGRAMMING STEPS FOUND HERE : <a class="reference internal" href="../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the following files: <code class="docutils literal notranslate"><span class="pre">{PROJ_DIR}/FINN_Latency/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/gtfmac_vnc_top.bit</span></code> AND <code class="docutils literal notranslate"><span class="pre">{PROJ_DIR}/FINN_Latency/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/gtfmac_vnc_top.ltx</span></code>, where PROJ_DIR is the directory path to the FINN_Latency design.</p></li>
@@ -136,23 +134,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p><img alt="run_trigger" src="../../../_images/hw_ila.PNG" /></p>
 <p><strong>NOTE</strong>: ILA waveform capture does not impact the latency results.  It can be used to observe and verify the behavior of the design on hardware.</p>
-</div>
-<div class="section" id="latency-measurementment">
-<h2>Latency Measurementment<a class="headerlink" href="#latency-measurementment" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="latency-measurementment">
+<h2>Latency Measurementment<a class="headerlink" href="#latency-measurementment" title="Link to this heading">¶</a></h2>
 <p>Waveform markers are added to the design by using the “add marker” function and then dragging a marker to aligh with the required edges. The first edge to select is the edge associated with the rising edge of TVALID on the slave port, which also aligns with first data, 64 bit TDATA. The next edge to align is the rising edge of TVALID on the output, master port. This marks the beginning of the clock cycle which contains data.</p>
 <p>READ the clock cycle latency directly from the waveform. The total time in nanoseconds is 37 * 3.125ns at 320 MHz clock rate.</p>
 <p><img alt="measure_latency" src="../../../_images/hw_ila2.PNG" /></p>
-</div>
-<div class="section" id="ila">
-<h2>ILA<a class="headerlink" href="#ila" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="ila">
+<h2>ILA<a class="headerlink" href="#ila" title="Link to this heading">¶</a></h2>
 <p>An ILA is included in the design to allow observation and verification of the behavior on HW. The ILA in the design is connected to the required pins on the FINN core. These pins can be seen in the waveform. TVALID and TDATA inputs to the slave port are captured. On the output master port TVALID and TDATA are captured along with TREADY, although this signal is held high.</p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

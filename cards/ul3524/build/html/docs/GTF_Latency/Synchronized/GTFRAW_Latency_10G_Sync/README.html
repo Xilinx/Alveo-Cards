@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,10 +113,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="gtf-raw-synchronized-latency-benchmark-design">
-<h1>GTF RAW Synchronized Latency Benchmark Design<a class="headerlink" href="#gtf-raw-synchronized-latency-benchmark-design" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+</table><section id="gtf-raw-synchronized-latency-benchmark-design">
+<h1>GTF RAW Synchronized Latency Benchmark Design<a class="headerlink" href="#gtf-raw-synchronized-latency-benchmark-design" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This reference design provides a GTF 10G latency benchmark environment used to measure and report GTF latency (TX → RX) operating in RAW mode.  The benchmark design demonstrates minimum latency and is not intended for a user design.  A <a class="reference internal" href="Scripts/README.html"><span class="doc">Scripts directory</span></a> contains scripts to run benchmark design in Vivado H/W Manager to reproduce reported latencies.</p>
 <p>The design and measurements are based on the following assumptions:</p>
 <ul class="simple">
@@ -141,9 +139,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
 <p>The high-level block diagram for the RAW GTF latency design is shown below.  It consists of the following key blocks:</p>
 <ul class="simple">
 <li><p>GTF DUT Example (RAW) with changes/additions to…</p>
@@ -176,47 +174,47 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>The software polls the latency monitor, pulls the timestamps when they are available, and computes the latency through the GTF.</p></li>
 <li><p>Error detection and measurement activity can be captured using ILA’s.</p></li>
 </ul>
-</div>
-<div class="section" id="gtf-raw-dut">
-<h2>GTF RAW DUT<a class="headerlink" href="#gtf-raw-dut" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gtf-raw-dut">
+<h2>GTF RAW DUT<a class="headerlink" href="#gtf-raw-dut" title="Link to this heading">¶</a></h2>
 <p>The GTF RAW DUT was generated using Vivado’s GTF wizard.  The GTF transceiver configuration preset field was set to GTF-10G-RAW in the GTF Wizard.  All preset wizard settings for this configuration were unchanged.  An image of the ‘Basic’ GTF Wizard tab is shown below for reference.</p>
 <p><img alt="GTF Wizard Config Window for RAW 10Gbps" src="../../../../_images/gtf_config.png" /></p>
 <p><strong>Figure:</strong> GTF Wizard Config Window for RAW 10Gbps</p>
-</div>
-<div class="section" id="clock-routing">
-<h2>Clock Routing<a class="headerlink" href="#clock-routing" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="clock-routing">
+<h2>Clock Routing<a class="headerlink" href="#clock-routing" title="Link to this heading">¶</a></h2>
 <p>The GTF DUT is slightly modified to redefine the RXUSRCLK and TXUSRCLK. By default, these clocks are generated independently from the GTF to drive the data paths in the programmable logic region. The modified RTL uses the RXOUTCLK as a source to both RXUSRCLK and TXUSRCLK. The two clocks are aligned with 180 degrees of phase.</p>
 <p><img alt="Clock Routing Modifications from Example Design" src="../../../../_images/phase_clock_routing.png" /></p>
 <p><strong>Figure:</strong> Clock Routing Modifications from Example Design</p>
-</div>
-<div class="section" id="prbs-txrawdata-generator">
-<h2>PRBS TxRawData Generator<a class="headerlink" href="#prbs-txrawdata-generator" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="prbs-txrawdata-generator">
+<h2>PRBS TxRawData Generator<a class="headerlink" href="#prbs-txrawdata-generator" title="Link to this heading">¶</a></h2>
 <p>The PRBS TxRawData generator module generates a continuous stream of 16bit PRBS values that are fed to the TxRawData port of the GTF.  The stream is used as a sync pattern used by the Rx Monitor to help determine when the system link is stable.</p>
-</div>
-<div class="section" id="error-injection-logic">
-<h2>Error Injection Logic<a class="headerlink" href="#error-injection-logic" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="error-injection-logic">
+<h2>Error Injection Logic<a class="headerlink" href="#error-injection-logic" title="Link to this heading">¶</a></h2>
 <p>The Tx generator creates a deterministic continuous data stream to the GTF.  To generate a Tx event for the latency monitor, the error injection logic will invert the TxRawData value for a single clock cycle.  This interruption will result in a PRBS error in the Rx Monitor.</p>
 <p>Software can control the number and rate of injection events by setting two control registers.  The logic is then enabled by setting a bit in the system control register.  Once the operation has been completed, the error injection logic disables and allows the Tx data stream to continue as normal.</p>
-</div>
-<div class="section" id="prbs-rxrawdata-monitor">
-<h2>PRBS RxRawData Monitor<a class="headerlink" href="#prbs-rxrawdata-monitor" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="prbs-rxrawdata-monitor">
+<h2>PRBS RxRawData Monitor<a class="headerlink" href="#prbs-rxrawdata-monitor" title="Link to this heading">¶</a></h2>
 <p>The PRBS RxRawData monitor is a pipeline module that continuously samples the RxRawData bus from the GTF.  This data sample is likely not bit-aligned and therefore does not immediately reflect the corresponding TxRawData stream.  The Rx monitor performs a sequence of bit shifting the sample data while attempting to recreate the PRBS stream.  If the data is bit aligned, the logic should be able to calculate the next Rx data sample.  Once the PRBS sequence is stable, the logic locks in the bit alignment and continues to monitor the incoming data stream.</p>
 <p>The Rx Monitor outputs the PRBS lock status to the link status logic and latency monitor.  Before the system is finished initializing, PRBS error indicates that the GTF needs more time to complete its link initialization process.  After the system becomes stable, single PRBS errors indicate injected error events.</p>
-</div>
-<div class="section" id="latency-monitor">
-<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="latency-monitor">
+<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Link to this heading">¶</a></h2>
 <p>The latency monitor captures the event markers from the error injection logic (Tx) and Rx monitor.  These events are used to sample timestamps that represent when a data pattern is latched into the GTF TxRawData port and when it’s detected back in the Rx Monitor.</p>
-</div>
-<div class="section" id="system-clock-reset">
-<h2>System Clock/Reset<a class="headerlink" href="#system-clock-reset" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="system-clock-reset">
+<h2>System Clock/Reset<a class="headerlink" href="#system-clock-reset" title="Link to this heading">¶</a></h2>
 <p>This module a basic logic block to provide basic freerunning clocks and resets for the AXI interfaces.</p>
-</div>
-<div class="section" id="vio-system">
-<h2>VIO System<a class="headerlink" href="#vio-system" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="vio-system">
+<h2>VIO System<a class="headerlink" href="#vio-system" title="Link to this heading">¶</a></h2>
 <p>This module is a basic VIO to quickly display system status such as link status, reset settings, etc.</p>
-</div>
-<div class="section" id="detailed-rx-monitor-logic">
-<h2>Detailed Rx Monitor Logic<a class="headerlink" href="#detailed-rx-monitor-logic" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="detailed-rx-monitor-logic">
+<h2>Detailed Rx Monitor Logic<a class="headerlink" href="#detailed-rx-monitor-logic" title="Link to this heading">¶</a></h2>
 <p>The Rx Monitor is a register pipeline that samples and bit aligns the RxRawData bus while monitoring the expected PRBS data stream and reporting status for the system and latency monitor.  This pipeline is detailed in the following figure:</p>
 <p><img alt="Rx Monitor Pipeline" src="../../../../_images/rx_monitor_pipeline.png" /></p>
 <p><strong>Figure:</strong> Rx Monitor Pipeline</p>
@@ -236,45 +234,45 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Until the GTF link is stable, the Rx monitor will report a large number of PRBS errors.  Eventually, the Rx monitor will bit align the data stream and will stop reporting PRBS errors.  At this point, the status logic will monitor for errors and eventually declare that the link is stable.</p>
 <p>During the latency measurements, PRBS errors are intentionally inserted into the TxRawData data stream.  Reporting these errors to the system link status logic will incorrectly result in resetting the GTF.   To prevent this, the Rx monitor filters out single event PRBS errors attributing them to intentional errors.  Only “large scale” PRBS errors are reported to the link status logic.</p>
 <p>However, all PRBS errors are reported to the latency monitor.  Once the system is stable and the latency monitor is enabled, the PRBS errors are used to sample timestamps for Rx events.</p>
-</div>
-<div class="section" id="detailed-latency-monitor-logic">
-<h2>Detailed Latency Monitor Logic<a class="headerlink" href="#detailed-latency-monitor-logic" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="detailed-latency-monitor-logic">
+<h2>Detailed Latency Monitor Logic<a class="headerlink" href="#detailed-latency-monitor-logic" title="Link to this heading">¶</a></h2>
 <p>The latency monitor uses signals from the data stream logic to sample timestamps for send and receive events.  The timestamp pipeline is detailed in the figure below.</p>
 <p>Both pattern send and pattern receive pulses are synchronized to the Rx clock domain using a rising edge pulse detection.  As mentioned above in the latency monitor description, the pattern receive pulse (aka PRBS error detected) is two clock cycles wide so only the first clock cycle is valid.</p>
 <p>The latency monitor has a free running timer based in the Rx clock domain.  When the latency monitor is enabled, the send/receive pulses latch the timer value and store them in a BRAM FIFO.</p>
 <p>Software polls the FIFO status to determine when a Tx/Rx pair of timestamps are stored.  When available, software will pop the FIFO values and calculate the true latency.</p>
 <p><img alt="Latency Monitor Pipeline" src="../../../../_images/latency_pipeline.png" /></p>
 <p><strong>Figure:</strong> Latency Monitor Pipeline</p>
-</div>
-<div class="section" id="clock-domain-crossing-considerations">
-<h2>Clock Domain Crossing Considerations<a class="headerlink" href="#clock-domain-crossing-considerations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="clock-domain-crossing-considerations">
+<h2>Clock Domain Crossing Considerations<a class="headerlink" href="#clock-domain-crossing-considerations" title="Link to this heading">¶</a></h2>
 <p>The design is modified from the GTF RAW example design to force the TxUsrClk and RxUsrClk clocks to be phase aligned at 180 degrees.</p>
 <p>This is accomplished by using a MMCM to generate the two user clocks from the GTF’s RXOUTGCLK.  This allows Vivado to autogenerate ==related== constraints for the two user clocks.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>    BUFG_GT u_rxusrclk_inst (
-        .CE      ( 1&#39;b1             ),
-        .CEMASK  ( 1&#39;b0             ),
-        .CLR     ( 1&#39;b0             ),
-        .CLRMASK ( 1&#39;b0             ),
-        .DIV     ( 3&#39;d0             ),
-        .I       ( gtf_ch_rxoutclk  ),
-        .O       ( gtf_ch_rxbufgclk )
-    );
-    
-    clk_wiz_1 phase_shift_mmcm_inst (
-        .reset     ( ~gtf_ch_rxprgdivresetdone ),
-        .locked    ( phase_shift_mmcm_lock     ),
-        .clk_in1   ( gtf_ch_rxbufgclk          ),
-        .txusrclk  ( gtf_ch_txusrclk           ),
-        .rxusrclk  ( gtf_ch_rxusrclk           )
-    );
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>BUFG_GT<span class="w"> </span>u_rxusrclk_inst<span class="w"> </span><span class="o">(</span>
+<span class="w">        </span>.CE<span class="w">      </span><span class="o">(</span><span class="w"> </span><span class="m">1</span><span class="s1">&#39;b1             ),</span>
+<span class="s1">        .CEMASK  ( 1&#39;</span>b0<span class="w">             </span><span class="o">)</span>,
+<span class="w">        </span>.CLR<span class="w">     </span><span class="o">(</span><span class="w"> </span><span class="m">1</span><span class="s1">&#39;b0             ),</span>
+<span class="s1">        .CLRMASK ( 1&#39;</span>b0<span class="w">             </span><span class="o">)</span>,
+<span class="w">        </span>.DIV<span class="w">     </span><span class="o">(</span><span class="w"> </span><span class="m">3</span><span class="err">&#39;</span>d0<span class="w">             </span><span class="o">)</span>,
+<span class="w">        </span>.I<span class="w">       </span><span class="o">(</span><span class="w"> </span>gtf_ch_rxoutclk<span class="w">  </span><span class="o">)</span>,
+<span class="w">        </span>.O<span class="w">       </span><span class="o">(</span><span class="w"> </span>gtf_ch_rxbufgclk<span class="w"> </span><span class="o">)</span>
+<span class="w">    </span><span class="o">)</span><span class="p">;</span>
+<span class="w">    </span>
+<span class="w">    </span>clk_wiz_1<span class="w"> </span>phase_shift_mmcm_inst<span class="w"> </span><span class="o">(</span>
+<span class="w">        </span>.reset<span class="w">     </span><span class="o">(</span><span class="w"> </span>~gtf_ch_rxprgdivresetdone<span class="w"> </span><span class="o">)</span>,
+<span class="w">        </span>.locked<span class="w">    </span><span class="o">(</span><span class="w"> </span>phase_shift_mmcm_lock<span class="w">     </span><span class="o">)</span>,
+<span class="w">        </span>.clk_in1<span class="w">   </span><span class="o">(</span><span class="w"> </span>gtf_ch_rxbufgclk<span class="w">          </span><span class="o">)</span>,
+<span class="w">        </span>.txusrclk<span class="w">  </span><span class="o">(</span><span class="w"> </span>gtf_ch_txusrclk<span class="w">           </span><span class="o">)</span>,
+<span class="w">        </span>.rxusrclk<span class="w">  </span><span class="o">(</span><span class="w"> </span>gtf_ch_rxusrclk<span class="w">           </span><span class="o">)</span>
+<span class="w">    </span><span class="o">)</span><span class="p">;</span>
 </pre></div>
 </div>
 <p>An example for these autogenerated constraints is shown in the following figure from an implemented design.  The schematic trace shows a Tx sent event launched with txusrclk but sampled by rxusrclk.  Running a timing report through this net returns a requirement of 0.776ns which is half the frequency of txusrclk and rxusrclk.  This indicates that vivado is constraining the clock domain crossings bewtween the two related clocks.</p>
 <p><img alt="Tx/Rx clock domain crossing implementation results" src="../../../../_images/cdc_txrx_example.png" /></p>
 <p><strong>Figure:</strong> Tx/Rx clock domain crossing implementation results</p>
-</div>
-<div class="section" id="detailed-latency-calculations">
-<h2>Detailed Latency Calculations<a class="headerlink" href="#detailed-latency-calculations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="detailed-latency-calculations">
+<h2>Detailed Latency Calculations<a class="headerlink" href="#detailed-latency-calculations" title="Link to this heading">¶</a></h2>
 <p>The desired latency value should represent the time for a data word being sampled on the TxRawData port to when it is launched onto RxRawData port.  This is detailed in the following figure.</p>
 <p>The start time represents the rising edge of TxUsrClk that is sampling the TxRawData value.  The stop time represents the RxUsrClk edge that launches the RxRawData value that contains the first bit of the original TxRawData.<br /><em>Because the RxRawData value is not bit aligned, the original TxRawData value will be spread across two RxUsrClk cycles.  Therefore it’s determined that the stop time qualifier shall be the location of the first received bit of the original TxRawData value in the RxUsrClk domain.</em></p>
 <p><img alt="Latency measurement definition" src="../../../../_images/latency_definition.png" /></p>
@@ -287,9 +285,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>For this example, the measured latency is 8 clock cycles.  This is corrected by subtracting the TxSentEvent delay (0.5) cycles, RxSentEvent delay (1.0 cycles), Rx pipeline delay (4 cycles), and the Rx sample delay (1 cycle) which totals 6.5 clocks.  The calculated measurement matches the actual latency value of 1.5 cycles.</p>
 <p><img alt="Detailed latency measurement with correction calculation" src="../../../../_images/latency_calculation.png" /></p>
 <p><strong>Figure:</strong> Detailed latency measurement with correction calculation</p>
-</div>
-<div class="section" id="register-interface">
-<h2>Register Interface<a class="headerlink" href="#register-interface" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="register-interface">
+<h2>Register Interface<a class="headerlink" href="#register-interface" title="Link to this heading">¶</a></h2>
 <p>The design implements a JTAG AXI instance to allow interfacing using Vivado hardware manager.   Below is a table that details the registers accesible from this AXI port.</p>
 <table border="1" class="docutils">
 <thead>
@@ -408,13 +406,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>Timestamp for Rx event</td>
 </tr>
 </tbody>
-</table></div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</table></section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
