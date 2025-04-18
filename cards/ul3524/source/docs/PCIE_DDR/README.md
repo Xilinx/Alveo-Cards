@@ -15,9 +15,9 @@ This reference design demonstrates how to enable the DDR power plane through I2C
 
 The following links provide additional documentation, including simulation and HW Manager support.
 
-* [Simulation](./Docs/simulation.md)<br>
+* [Simulation](./Docs/simulation.md)
   * Describes the available simulation and description of waveforms
-* [HW Manager Support](./Docs/hw_manager_support.md)<br>
+* [HW Manager Support](./Docs/hw_manager_support.md)
   * Provides instructions to run the design in hardware and interact with the design through the HW Manager.
 
 ## Reference Design Hierarchy
@@ -60,8 +60,7 @@ The DDR4 memory subsystem power (2V5_Vpp) is disabled upon power up and requires
 
 The following figure shows the I2C bus connected to various devices on the card. The DDR4 I/O expander and subsequent DDR4 enable signal (EN_2V5_vpp) are shown at the top of the figure.
 
-![Example DDR4 power control design](./Docs/Images/ddr4_power_i2c.png)
-
+![Example DDR4 power control design](./Docs/Images/./Docs/Images/ddr4_power_i2c.png)
 **Figure:** DDR4 Power Enable Communication Routing 
 
 ### DDR4 I/O expander must be taken out of reset
@@ -108,31 +107,30 @@ Descriptions of the functions within `memetest.c` is given below.
 
 When instantiating a DDR4 memory controller using the Vivado tools, it is recommended to use the parameters outlined in the following table.
 
-| Parameter        | Value                           			|
+| Parameter        | Value                           |
 |------------------|------------------------------------|
-| Controller/PHY Mode [1]   			| Ctrl and PHY layer	|
-| Memory Dev. Interface Speed 			| 833 ps [2]			|
-| Reference Input Clock   				| 300 MHz				|
-| Memory Type/Config   					| Components			|
-| Memory Part     						| MT40A2G8VA-062E		|
-| Slot       							| Single				|
-| IO Voltage     						| 1.2V					|
-| Burst Length							| 8						|
-| CAS Latency     						| 17					|
-| CAS Wr Latency						| 12					|
-| Data Width							| 72					|
+| Controller/PHY Mode ^   | Ctrl and PHY layer |
+| Memory Dev. Interface Speed | 833 ps ^^    |
+| Reference Input Clock   | 300 MHz    |
+| Memory Type/Config   | Components   |
+| Memory Part     | MT40A2G8VA-062E  |
+| Slot       | Single    |
+| IO Voltage     | 1.2V     |
+| Burst Length     | 8      |
+| CAS Latency     | 17     |
+| CAS Wr Latency    | 12     |
+| Data Width     | 72     |
 
-*[1]  AXI4 interface will be enabled automatically. It can be disabled.*
-
-*[2] 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1*
-
-
+```bash
+^  AXI4 interface will be enabled automatically. It can be disabled.
+^^ 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1
+```
 
 **Table 2.** DDR4 Memory Controller IP Parameter Settings
 
-When implementing the controller in your design, reference *FPGA Bank I/O Mapping* section in UG1585 for the allocated FPGA banks.
+When implementing the controller in your design, reference [FPGA Bank I/O Mapping](https://docs.amd.com/access/sources/dita/topic?url=ds1009-ul3524&resourceid=rbs1651264494190.html&ft:locale=en-US) in the *Alveo UL3524 Ultra Low Latency Trading Data Sheet (DS1009)* ([DS1009](https://docs.amd.com/go/en-US/ds1009-ul3524)).
 
-Use the external 300 MHz reference clock supplied to HPIO 66. For additional details, see *Clocking* section in UG1585.
+Use the external 300 MHz reference clock supplied to HPIO 66. For additional details, see [Clocking](https://docs.amd.com/access/sources/dita/topic?url=ds1009-ul3524&resourceid=qfz1651273891405.html&ft:locale=en-US) in the *Alveo UL3524 Ultra Low Latency Trading Data Sheet (DS1009)* ([DS1009](https://docs.amd.com/go/en-US/ds1009-ul3524)).
 
 ## Reference
 

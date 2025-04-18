@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,17 +113,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="qdrii-mig-reference-design-simulation">
-<h1>QDRII+ MIG Reference Design: Simulation<a class="headerlink" href="#qdrii-mig-reference-design-simulation" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="running-the-simulation">
-<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Permalink to this heading">¶</a></h2>
+</table><section id="qdrii-mig-reference-design-simulation">
+<h1>QDRII+ MIG Reference Design: Simulation<a class="headerlink" href="#qdrii-mig-reference-design-simulation" title="Link to this heading">¶</a></h1>
+<section id="running-the-simulation">
+<h2>Running the Simulation<a class="headerlink" href="#running-the-simulation" title="Link to this heading">¶</a></h2>
 <p>To run a simulation of the design, follow the instructions detailed <a class="reference internal" href="../../Docs/simulating_a_design.html"><span class="doc">here</span></a>.</p>
-</div>
-<div class="section" id="simulation-behavior">
-<h2>Simulation Behavior<a class="headerlink" href="#simulation-behavior" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="simulation-behavior">
+<h2>Simulation Behavior<a class="headerlink" href="#simulation-behavior" title="Link to this heading">¶</a></h2>
 <p>This section will outline the expected simulation behavior of the qdriip_ref_simple_tb. It will go through an example AXI write and read transaction and show the corresponding QDRII+ write and read operation.</p>
-<div class="section" id="write">
-<h3>Write<a class="headerlink" href="#write" title="Permalink to this heading">¶</a></h3>
+<section id="write">
+<h3>Write<a class="headerlink" href="#write" title="Link to this heading">¶</a></h3>
 <p>The following waveforms show an example of an AXI write to the memory address <strong>0x0000_0008</strong>.</p>
 <p><img alt="AXI Write" src="../../../_images/wave_0.png" /></p>
 <p><strong>Figure:</strong> An example of AXI write address and data handshake and sampling of a QDRII+ write command. Starting from the leftmost marker:</p>
@@ -144,9 +142,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Sampling of <em>qdriip_d[17:0]</em> (<strong>0x1_feff</strong>) on the posedge of <em>qdriip_k_n</em></p></li>
 </ol>
 <p><strong>Note</strong>: Each byte of the AXI write data gets XOR’ed for an odd parity bit. E.g. 0xfff7 -&gt; 0x1_fff7.</p>
-</div>
-<div class="section" id="read">
-<h3>Read<a class="headerlink" href="#read" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="read">
+<h3>Read<a class="headerlink" href="#read" title="Link to this heading">¶</a></h3>
 <p>The following waveforms show an example of an AXI read to the memory address <strong>0x0000_0008</strong>.</p>
 <p><img alt="AXI Read" src="../../../_images/wave_2.png" /></p>
 <p><strong>Figure:</strong> An example of AXI read address handshake and sampling of the corresponding QDRII+ read command. Starting from the leftmost marker:</p>
@@ -166,14 +164,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><em>qdriip_cq_p/n</em> are the echo clock returned from the memory derived from <em>qdriip_k_p/n</em> and are used as strobes.</p>
 <p><img alt="AXI Read" src="../../../_images/wave_4.png" /></p>
 <p><strong>Figure:</strong> Waveform of the handshake of an AXI read data <em>m_axi_rdata</em> (<strong>0xffff_ffff_ffff_fff7</strong>).</p>
-</div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

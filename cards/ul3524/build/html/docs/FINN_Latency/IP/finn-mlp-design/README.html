@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,26 +113,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="finn-mlp-design">
-<h1>FINN MLP Design<a class="headerlink" href="#finn-mlp-design" title="Permalink to this heading">¶</a></h1>
+</table><section id="finn-mlp-design">
+<h1>FINN MLP Design<a class="headerlink" href="#finn-mlp-design" title="Link to this heading">¶</a></h1>
 <p>The base for the FINN MLP design is taken directly from the opensource <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-MLP</a> example design.</p>
 <p>For the FINN Latency reference design, the <a class="reference external" href="https://github.com/Xilinx/finn-examples/tree/main/build/cybersecurity-mlp">Cybersecurity-MLP</a> example is modified as detailed in <a class="reference external" href="#modifications">the following section</a>.</p>
 <p>This reference design is not intended to be a FINN tutorial.</p>
 <p>To learn about using the FINN compiler, quantisation and re-training with Brevitas, and generating customised FINN IP blocks, please refer to the official <a class="reference external" href="https://finn.readthedocs.io/">FINN Documentation</a>.</p>
-<div class="section" id="modifications">
-<h2>Modifications<a class="headerlink" href="#modifications" title="Permalink to this heading">¶</a></h2>
+<section id="modifications">
+<h2>Modifications<a class="headerlink" href="#modifications" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="#targeting-a-specific-part">Targeting a specific part</a> describes how to generate FINN IP for the UL3524.</p></li>
 <li><p><a class="reference external" href="#improving-performance-through-folding">Improving performance through folding</a> adjusts the PE and SIMD parameters for each layer to achieve the desired latency based on available FPGA resources.</p></li>
 </ul>
-<div class="section" id="targeting-a-specific-part">
-<h3>Targeting a specific part<a class="headerlink" href="#targeting-a-specific-part" title="Permalink to this heading">¶</a></h3>
+<section id="targeting-a-specific-part">
+<h3>Targeting a specific part<a class="headerlink" href="#targeting-a-specific-part" title="Link to this heading">¶</a></h3>
 <p>While FINN does provide support for various platforms, it can also target specific parts. In the case of targeting a specific part, a stitched IP is generated and can then be integrated into a larger Vivado project.</p>
 <p>To configure the target part, the <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/ul3524/FINN_Latency/IP/finn-mlp-design/build.py">design build script</a> needs to be modified. Specifically, change the value of <em>fpga_part</em>. In this example, the UL3524 part <em>xcvu2p-fsvj2104-3-e</em> is being targeted.</p>
 <p>For further information on FINN build configurations, see the <a class="reference external" href="https://finn.readthedocs.io/en/latest/source_code/finn.builder.html#finn.builder.build_dataflow_config.DataflowBuildConfig">FINN API</a>.</p>
-</div>
-<div class="section" id="improving-performance-through-folding">
-<h3>Improving performance through folding<a class="headerlink" href="#improving-performance-through-folding" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="improving-performance-through-folding">
+<h3>Improving performance through folding<a class="headerlink" href="#improving-performance-through-folding" title="Link to this heading">¶</a></h3>
 <p>One of the key features of FINN is the ability to fully unfold a network to improve performance and optimize a model to take full advantage of the available resources on the FPGA. This is achieved by adjusting the parallelization parameters (PE &amp; SIMD). See the <a class="reference external" href="https://github.com/Xilinx/finn/blob/dev/notebooks/advanced/3_folding.ipynb">FINN Tutorial on Folding</a> for a walkthrough of exactly how this works.</p>
 <p>The model generated by FINN looks like this:</p>
 <p><img alt="Stitched IP Onnx Model" src="../../../../_images/stitched_ip_model.png" /></p>
@@ -160,8 +158,8 @@ Total folding = (64/64) x (600/600) = 1
 </div>
 <p>This is unfortunately not currently possible due to a HLS limitation found during the development of this example. See the <a class="reference external" href="#limitations">Limitations</a> section for further details.</p>
 <p>The final folding configurations for this example can be found <a class="reference external" href="https://github.com/Xilinx/Alveo-Cards/blob/ul3524/FINN_Latency/IP/finn-mlp-design/folding_config.json">here</a>. These are the values used to generate the prebuilt example. They are pulled into the build in the build script at this <a class="reference external" href="./build.py#L24">line</a>. Either modify the json file directly or point to a new config if changing the parameter values.</p>
-<div class="section" id="limitations">
-<h4>Limitations<a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h4>
+<section id="limitations">
+<h4>Limitations<a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h4>
 <p>While building this example, a number of limitations where identified:</p>
 <ul class="simple">
 <li><p>There is a Vitis HLS bitwidth limit which prevents fully unfolding this model. The constraint is the following:</p></li>
@@ -173,10 +171,10 @@ Total folding = (64/64) x (600/600) = 1
 <ul class="simple">
 <li><p>FINN generates a number of reports based on estimated results. While these can be a useful indicator, they provided to be very unreliable/inaccurate during development. This is being investigated by the FINN team.</p></li>
 </ul>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
-</div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
+</section>
+</section>
 
 
            </div>

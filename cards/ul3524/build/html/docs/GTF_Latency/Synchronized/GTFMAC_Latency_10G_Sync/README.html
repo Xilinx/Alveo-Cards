@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js"></script>
-        <script src="../../../../_static/jquery.js"></script>
-        <script src="../../../../_static/underscore.js"></script>
-        <script src="../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../_static/doctools.js"></script>
+        <script src="../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,10 +113,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="gtf-mac-synchronized-latency-benchmark-design">
-<h1>GTF MAC Synchronized Latency Benchmark Design<a class="headerlink" href="#gtf-mac-synchronized-latency-benchmark-design" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+</table><section id="gtf-mac-synchronized-latency-benchmark-design">
+<h1>GTF MAC Synchronized Latency Benchmark Design<a class="headerlink" href="#gtf-mac-synchronized-latency-benchmark-design" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This reference design provides a GTF 10G latency benchmark environment used to measure and report GTF latency (TX → RX) operating in MAC mode.  The benchmark design demonstrates minimum latency and is not intended for a user design.  A <a class="reference internal" href="Scripts/README.html"><span class="doc">Scripts directory</span></a> contains scripts to run benchmark design in Vivado H/W Manager to reproduce reported latencies.</p>
 <p>The design and measurements are based on the following assumptions:</p>
 <ul class="simple">
@@ -141,9 +139,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="architecture">
-<h2>Architecture<a class="headerlink" href="#architecture" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="architecture">
+<h2>Architecture<a class="headerlink" href="#architecture" title="Link to this heading">¶</a></h2>
 <p>The high-level block design diagram used to measure GTF latency in MAC mode is shown below.  It consists of the following key blocks:</p>
 <ul class="simple">
 <li><p>TX Frame generator</p></li>
@@ -171,29 +169,29 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Measurement activity can be captured on ILA.</p></li>
 <li><p>No data integrity checking is performed</p></li>
 </ul>
-</div>
-<div class="section" id="gtf-mac-dut">
-<h2>GTF MAC DUT<a class="headerlink" href="#gtf-mac-dut" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="gtf-mac-dut">
+<h2>GTF MAC DUT<a class="headerlink" href="#gtf-mac-dut" title="Link to this heading">¶</a></h2>
 <p>The GTF MAC DUT was generated using the GTF wizard.  The GTF Transceiver configuration preset field was set to <em>GTF-10G-MAC</em> in the GTF Wizard, using near-end loopback mode. All preset wizard settings from this configuration were unchanged. An image of the ‘Basic’ GTF Wizard tab is shown below for reference.</p>
 <p><img alt="gtf_mac_wizard_settings" src="../../../../_images/gtf_mac_wizard_settings.png" />
 <strong>Figure:</strong> GTF Wizard MAC mode settings</p>
-</div>
-<div class="section" id="clock-routing">
-<h2>Clock Routing<a class="headerlink" href="#clock-routing" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="clock-routing">
+<h2>Clock Routing<a class="headerlink" href="#clock-routing" title="Link to this heading">¶</a></h2>
 <p>The GTF DUT is slightly modified to redefine the RXUSRCLK and TXUSRCLK.  By default, these clocks are generated independently from the GTF to drive the data paths in the programmable logic region.  The modified RTL uses the RXOUTCLK as a source to both RXUSRCLK and TXUSRCLK.  The two clocks are aligned with 180 degress of phase.</p>
 <p><img alt="gtfmac_phase_clock_routing" src="../../../../_images/gtfmac_phase_clock_routing.png" /></p>
 <p><strong>Figure:</strong> Modified GTF Wizard MAC clock routing</p>
-</div>
-<div class="section" id="tx-frame-generator">
-<h2>Tx Frame Generator<a class="headerlink" href="#tx-frame-generator" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="tx-frame-generator">
+<h2>Tx Frame Generator<a class="headerlink" href="#tx-frame-generator" title="Link to this heading">¶</a></h2>
 <p>The Tx Frame Generator module generates a variable length stream of PRBS values that are routed through the Tx AXIS port of the GTF.</p>
-</div>
-<div class="section" id="rx-monitor">
-<h2>Rx Monitor<a class="headerlink" href="#rx-monitor" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="rx-monitor">
+<h2>Rx Monitor<a class="headerlink" href="#rx-monitor" title="Link to this heading">¶</a></h2>
 <p>The Rx Monitor receives the loopback data via the Rx AXIS port from the GTF.  Although not enabled by default, this module can be configured to check the received PRBS stream and detect bit errors.</p>
-</div>
-<div class="section" id="latency-monitor">
-<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="latency-monitor">
+<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Link to this heading">¶</a></h2>
 <p>The latency monitor is a standalone block integrated into the benchmark design which captures transmit (TX) and receive (RX) timestamps based on a ‘send event’ and ‘receive event’ respectively.</p>
 <p>The latency monitor has a free running timer based in the Rx clock domain.  When the latency monitor is enabled, the send/receive pulses latch the timer value and store them in a BRAM FIFO.</p>
 <p>Software polls the FIFO status to determine when a Tx/Rx pair of timestamps are stored.  When available, software will pop the FIFO values and calculate the true latency.</p>
@@ -201,9 +199,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The nature of the MAC mode operation in the GTF can result in different latency measurements.  The combination of processes such as MAC protocols and serialization effects can generate unoptimal latency measurements if the design uses data tracking through the GTF.  Instead, the most consistant measurement involves using Tx_axis_tstart as the send event and Rx_axis_tsof as the receive event.  This reflects a scenario when the GTF is in the best logic state to begin a packet transfer and when the first word is received.</p>
 <p><img alt="../../../../_images/gtf_mac_latency_pipeline.jpg" src="../../../../_images/gtf_mac_latency_pipeline.jpg" /></p>
 <p><strong>Figure:</strong> Latency Monitor Pipeline</p>
-</div>
-<div class="section" id="clock-domain-crossing-considerations">
-<h2>Clock Domain Crossing Considerations<a class="headerlink" href="#clock-domain-crossing-considerations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="clock-domain-crossing-considerations">
+<h2>Clock Domain Crossing Considerations<a class="headerlink" href="#clock-domain-crossing-considerations" title="Link to this heading">¶</a></h2>
 <p>The design is modified from the GTF MAC example design to force the TxUsrClk and RxUsrClk clocks to be phase aligned at 180 degrees.</p>
 <p>This is accomplished by using a MMCM to generate the two user clocks from the GTF’s RXOUTCLK.  This allows Vivado to autogenerate ==related== constraints for the two user clocks.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">BUFG_GT</span> <span class="n">u_rxusrclk_inst</span> <span class="p">(</span>
@@ -226,9 +224,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>Tx_axis_tcan_start is generated by the TxUsrClk and sampled in the latency monitor in the RxUsrClk.  This results in a known 1/2 clock cycle delay to be applied to the latency calculation.</p>
-</div>
-<div class="section" id="detailed-latency-calculations">
-<h2>Detailed Latency Calculations<a class="headerlink" href="#detailed-latency-calculations" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="detailed-latency-calculations">
+<h2>Detailed Latency Calculations<a class="headerlink" href="#detailed-latency-calculations" title="Link to this heading">¶</a></h2>
 <p>The start time represents the time when Tx_axis_tcan_start is asserted by the GTF in the TxUsrClk domain.  The stop time represents the the clock edge when the Rx_axis_tsof value is asserted by the GTF in the RxUsrCLk domain.  The desired latency value should represent the time delta between these two events.  This is illustrated in the following figure.</p>
 <p><img alt="../../../../_images/gtf_mac_latency_calc.png" src="../../../../_images/gtf_mac_latency_calc.png" /></p>
 <p><strong>Figure:</strong> Latency measurement detailing adjustment calculation</p>
@@ -237,13 +235,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">*</span> <span class="n">Calculated</span> <span class="n">Latency</span> <span class="o">=</span> <span class="p">(</span><span class="n">Rcvd</span> <span class="n">Timestamp</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">Sent</span> <span class="n">Timestamp</span><span class="p">)</span> <span class="o">-</span> <span class="mf">0.5</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

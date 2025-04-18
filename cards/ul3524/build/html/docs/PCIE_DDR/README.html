@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -138,36 +136,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="pcie-ddr-reference-design">
-<h1>PCIe DDR Reference Design<a class="headerlink" href="#pcie-ddr-reference-design" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+</table><section id="pcie-ddr-reference-design">
+<h1>PCIe DDR Reference Design<a class="headerlink" href="#pcie-ddr-reference-design" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This reference design demonstrates how to enable the DDR power plane through I2C commands.  In addition, a provided memory test is detailed, and can be used bring up the DDR and perform memory read/write functions.  Finally, recommended DDR4 memory controller IP settings are provided.</p>
 <p><strong>Additional Documentation</strong></p>
 <p>The following links provide additional documentation, including simulation and HW Manager support.</p>
 <ul class="simple">
-<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a><br></p>
+<li><p><a class="reference internal" href="Docs/simulation.html"><span class="doc">Simulation</span></a></p>
 <ul>
 <li><p>Describes the available simulation and description of waveforms</p></li>
 </ul>
 </li>
-<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a><br></p>
+<li><p><a class="reference internal" href="Docs/hw_manager_support.html"><span class="doc">HW Manager Support</span></a></p>
 <ul>
 <li><p>Provides instructions to run the design in hardware and interact with the design through the HW Manager.</p></li>
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="reference-design-hierarchy">
-<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="reference-design-hierarchy">
+<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Link to this heading">¶</a></h2>
 <p>The design hierarchy block diagram is given below. The subsequent table provides descriptions of the key modules within the design.</p>
-<div class="section" id="block-diagram">
-<h3>Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this heading">¶</a></h3>
+<section id="block-diagram">
+<h3>Block Diagram<a class="headerlink" href="#block-diagram" title="Link to this heading">¶</a></h3>
 <p><img alt="Block diagram of the PCIe DDR reference design" src="../../_images/pcie_ddr_des_hierarchy.png" /></p>
 <p><strong>Figure:</strong> Block diagram of the PCIe DDR reference design</p>
-</div>
-<div class="section" id="module-description">
-<h3>Module Description<a class="headerlink" href="#module-description" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="module-description">
+<h3>Module Description<a class="headerlink" href="#module-description" title="Link to this heading">¶</a></h3>
 <p><strong>Table:</strong> Description of design modules</p>
 <table border="1" class="docutils">
 <thead>
@@ -227,24 +225,24 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table:</strong> Descriptions of key modules.</p>
-</div>
-</div>
-<div class="section" id="enabling-the-ddr-power-plane">
-<h2>Enabling the DDR Power Plane<a class="headerlink" href="#enabling-the-ddr-power-plane" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="enabling-the-ddr-power-plane">
+<h2>Enabling the DDR Power Plane<a class="headerlink" href="#enabling-the-ddr-power-plane" title="Link to this heading">¶</a></h2>
 <p>The DDR4 memory subsystem power (2V5_Vpp) is disabled upon power up and requires the following two steps to enable:</p>
 <ol class="simple">
 <li><p>DDR4 I/O expander must be taken out of reset.</p></li>
 <li><p>Enable DDR4 power via the CLKGEN I2C bus.</p></li>
 </ol>
 <p>The following figure shows the I2C bus connected to various devices on the card. The DDR4 I/O expander and subsequent DDR4 enable signal (EN_2V5_vpp) are shown at the top of the figure.</p>
-<p><img alt="Example DDR4 power control design" src="../../_images/ddr4_power_i2c.png" /></p>
-<p><strong>Figure:</strong> DDR4 Power Enable Communication Routing</p>
-<div class="section" id="ddr4-i-o-expander-must-be-taken-out-of-reset">
-<h3>DDR4 I/O expander must be taken out of reset<a class="headerlink" href="#ddr4-i-o-expander-must-be-taken-out-of-reset" title="Permalink to this heading">¶</a></h3>
+<p><img alt="Example DDR4 power control design" src="docs/PCIE_DDR/Docs/Images/Docs/Images/ddr4_power_i2c.png" />
+<strong>Figure:</strong> DDR4 Power Enable Communication Routing</p>
+<section id="ddr4-i-o-expander-must-be-taken-out-of-reset">
+<h3>DDR4 I/O expander must be taken out of reset<a class="headerlink" href="#ddr4-i-o-expander-must-be-taken-out-of-reset" title="Link to this heading">¶</a></h3>
 <p>Since the I/O expander device has an active-low reset pin connected to an external pull-down resister, it is necessary to take the expander device out of reset.  This is done by asserting reset pin, DDR_PSUIO_RESET (pin AU19).</p>
-</div>
-<div class="section" id="enable-ddr4-power-via-the-clkgen-i2c-bus">
-<h3>Enable DDR4 power via the CLKGEN I2C bus<a class="headerlink" href="#enable-ddr4-power-via-the-clkgen-i2c-bus" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="enable-ddr4-power-via-the-clkgen-i2c-bus">
+<h3>Enable DDR4 power via the CLKGEN I2C bus<a class="headerlink" href="#enable-ddr4-power-via-the-clkgen-i2c-bus" title="Link to this heading">¶</a></h3>
 <p>With the I/O expander out of reset, the DDR4 memory subsystem power can be controlled via the I2C I/O expander, address 0x42 (8-bit), via the FPGA CLKGEN I2C bus highlighted in the above figure. This is done by configuring both the output value and output enable registers of I/O expander port 0 pin (the remaining seven ports of the expander are not connected).  This is accomplished by writing the following two registers:</p>
 <ul class="simple">
 <li><p>Register 0x1 to set the output value.</p></li>
@@ -277,10 +275,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table:</strong> DDR4 I2C power enable steps</p>
-</div>
-</div>
-<div class="section" id="memtest-function-descriptions">
-<h2>Memtest Function Descriptions<a class="headerlink" href="#memtest-function-descriptions" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="memtest-function-descriptions">
+<h2>Memtest Function Descriptions<a class="headerlink" href="#memtest-function-descriptions" title="Link to this heading">¶</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> is a simple C program that brings up the DDR I2C and the DDR IP and performs a memory test.</p>
 <p>Descriptions of the functions within <code class="docutils literal notranslate"><span class="pre">memetest.c</span></code> is given below.</p>
 <table border="1" class="docutils">
@@ -334,9 +332,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table 2.</strong> Descriptions of memtest.c functions and their arguments</p>
-</div>
-<div class="section" id="ddr4-memory-controller">
-<h2>DDR4 Memory Controller<a class="headerlink" href="#ddr4-memory-controller" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="ddr4-memory-controller">
+<h2>DDR4 Memory Controller<a class="headerlink" href="#ddr4-memory-controller" title="Link to this heading">¶</a></h2>
 <p>When instantiating a DDR4 memory controller using the Vivado tools, it is recommended to use the parameters outlined in the following table.</p>
 <table border="1" class="docutils">
 <thead>
@@ -347,12 +345,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </thead>
 <tbody>
 <tr>
-<td>Controller/PHY Mode [1]</td>
+<td>Controller/PHY Mode ^</td>
 <td>Ctrl and PHY layer</td>
 </tr>
 <tr>
 <td>Memory Dev. Interface Speed</td>
-<td>833 ps [2]</td>
+<td>833 ps ^^</td>
 </tr>
 <tr>
 <td>Reference Input Clock</td>
@@ -391,16 +389,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>72</td>
 </tr>
 </tbody>
-</table><p><em>[1]  AXI4 interface will be enabled automatically. It can be disabled.</em></p>
-<p><em>[2] 833 ps = 1200 MHz, PHY to Ctrl Freq Ratio= 4:1</em></p>
-<p><strong>Table 2.</strong> DDR4 Memory Controller IP Parameter Settings</p>
-<p>When implementing the controller in your design, reference <em>FPGA Bank I/O Mapping</em> section in UG1585 for the allocated FPGA banks.</p>
-<p>Use the external 300 MHz reference clock supplied to HPIO 66. For additional details, see <em>Clocking</em> section in UG1585.</p>
+</table><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>^<span class="w">  </span>AXI4<span class="w"> </span>interface<span class="w"> </span>will<span class="w"> </span>be<span class="w"> </span>enabled<span class="w"> </span>automatically.<span class="w"> </span>It<span class="w"> </span>can<span class="w"> </span>be<span class="w"> </span>disabled.
+^^<span class="w"> </span><span class="m">833</span><span class="w"> </span><span class="nv">ps</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="m">1200</span><span class="w"> </span>MHz,<span class="w"> </span>PHY<span class="w"> </span>to<span class="w"> </span>Ctrl<span class="w"> </span>Freq<span class="w"> </span><span class="nv">Ratio</span><span class="o">=</span><span class="w"> </span><span class="m">4</span>:1
+</pre></div>
 </div>
-<div class="section" id="reference">
-<h2>Reference<a class="headerlink" href="#reference" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="tca6408apwr-register-map">
-<h3>TCA6408APWR Register Map<a class="headerlink" href="#tca6408apwr-register-map" title="Permalink to this heading">¶</a></h3>
+<p><strong>Table 2.</strong> DDR4 Memory Controller IP Parameter Settings</p>
+<p>When implementing the controller in your design, reference <a class="reference external" href="https://docs.amd.com/access/sources/dita/topic?url=ds1009-ul3524&amp;resourceid=rbs1651264494190.html&amp;ft:locale=en-US">FPGA Bank I/O Mapping</a> in the <em>Alveo UL3524 Ultra Low Latency Trading Data Sheet (DS1009)</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ds1009-ul3524">DS1009</a>).</p>
+<p>Use the external 300 MHz reference clock supplied to HPIO 66. For additional details, see <a class="reference external" href="https://docs.amd.com/access/sources/dita/topic?url=ds1009-ul3524&amp;resourceid=qfz1651273891405.html&amp;ft:locale=en-US">Clocking</a> in the <em>Alveo UL3524 Ultra Low Latency Trading Data Sheet (DS1009)</em> (<a class="reference external" href="https://docs.amd.com/go/en-US/ds1009-ul3524">DS1009</a>).</p>
+</section>
+<section id="reference">
+<h2>Reference<a class="headerlink" href="#reference" title="Link to this heading">¶</a></h2>
+<section id="tca6408apwr-register-map">
+<h3>TCA6408APWR Register Map<a class="headerlink" href="#tca6408apwr-register-map" title="Link to this heading">¶</a></h3>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -432,9 +432,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table 3.</strong> Descriptions of the TCA6408APWR register map.</p>
-</div>
-<div class="section" id="ul3524-pinout">
-<h3>UL3524 Pinout<a class="headerlink" href="#ul3524-pinout" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="ul3524-pinout">
+<h3>UL3524 Pinout<a class="headerlink" href="#ul3524-pinout" title="Link to this heading">¶</a></h3>
 <table border="1" class="docutils">
 <thead>
 <tr>
@@ -461,14 +461,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table 4.</strong> Descriptions of the UL3524 pinout.</p>
-</div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

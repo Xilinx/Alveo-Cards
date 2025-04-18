@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -127,10 +125,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="qdrii-mig-reference-design">
-<h1>QDRII+ MIG Reference Design<a class="headerlink" href="#qdrii-mig-reference-design" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="description">
-<h2>Description<a class="headerlink" href="#description" title="Permalink to this heading">¶</a></h2>
+</table><section id="qdrii-mig-reference-design">
+<h1>QDRII+ MIG Reference Design<a class="headerlink" href="#qdrii-mig-reference-design" title="Link to this heading">¶</a></h1>
+<section id="description">
+<h2>Description<a class="headerlink" href="#description" title="Link to this heading">¶</a></h2>
 <p>This reference design demonstrates how to interface with the QDRII+ MIG IP through an AXI-QDRII+ bridge. It validates the correct pinout to the QDRII+ interface and reference clocks. In addition, it also performs data integrity checks by writing and subsequently reading data. The design behavior can be validated on HW via ILA and VIO.</p>
 <p><strong>Additional Documentation</strong></p>
 <p>The following links provide additional documentation, including simulation and HW Manager support.</p>
@@ -146,17 +144,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="reference-design-hierarchy">
-<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="reference-design-hierarchy">
+<h2>Reference Design Hierarchy<a class="headerlink" href="#reference-design-hierarchy" title="Link to this heading">¶</a></h2>
 <p>The block diagram of the design hierarchy is given below. The subsequent table provides descriptions of the key modules within the design.</p>
-<div class="section" id="block-diagram">
-<h3>Block Diagram<a class="headerlink" href="#block-diagram" title="Permalink to this heading">¶</a></h3>
+<section id="block-diagram">
+<h3>Block Diagram<a class="headerlink" href="#block-diagram" title="Link to this heading">¶</a></h3>
 <p><img alt="Design Hierarchy" src="../../_images/ref_des_hier.png" /></p>
 <p><strong>Figure:</strong> Reference design hierarchy diagram.</p>
-</div>
-<div class="section" id="module-description">
-<h3>Module Description<a class="headerlink" href="#module-description" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="module-description">
+<h3>Module Description<a class="headerlink" href="#module-description" title="Link to this heading">¶</a></h3>
 <p><strong>Table:</strong> Description of design modules</p>
 <table border="1" class="docutils">
 <thead>
@@ -183,10 +181,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <td>QDRII+ Memory Controller generated with the MIG.</td>
 </tr>
 </tbody>
-</table></div>
-</div>
-<div class="section" id="qdrii-mig-configuration">
-<h2>QDRII+ MIG Configuration<a class="headerlink" href="#qdrii-mig-configuration" title="Permalink to this heading">¶</a></h2>
+</table></section>
+</section>
+<section id="qdrii-mig-configuration">
+<h2>QDRII+ MIG Configuration<a class="headerlink" href="#qdrii-mig-configuration" title="Link to this heading">¶</a></h2>
 <p>Prior to creating a design with QDR-II+, you must add the GSI QDRII+ MIG IP to your Vivado library before use found in the <em>qdriip_v1_4</em> directory <a class="reference internal" href="IP/README.html"><span class="doc">here</span></a>. To add to your library, follow the steps outline in <em>Vivado Design Suite User Guide: Creating and Packaging Custom IP (<a class="reference external" href="https://docs.xilinx.com/r/en-US/ug1118-vivado-creating-packaging-custom-ip/Creating-and-Packaging-Custom-IP">UG1118</a>)</em>.</p>
 <p>Since the MIG only supports a single QDR instance, two MIG controllers must be instantiated to connect to both external interfaces on the card.</p>
 <p>The QDR memory controller does not have any configuration interface or registers as it has been built specifically for the QDR device.</p>
@@ -224,13 +222,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tbody>
 </table><p><strong>Table:</strong> Settings for QDR MIG IP — Basic tab</p>
 <p>More information can be found on <a class="reference external" href="https://docs.xilinx.com/api/khub/documents/NxaDKjH9BQF5nh4fRma_7g/content?Ft-Calling-App=ft%2Fturnkey-portal&amp;Ft-Calling-App-Version=4.0.11&amp;filename=pg150-ultrascale-memory-ip.pdf#G21.274376">Section IV of UltraScale Architecture-Based FPGAs Memory IP Product Guide (PG150)</a>.</p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

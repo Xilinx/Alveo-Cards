@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -48,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -131,12 +129,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="gtf-latency-benchmark-design">
-<h1>GTF Latency Benchmark Design<a class="headerlink" href="#gtf-latency-benchmark-design" title="Permalink to this heading">¶</a></h1>
+</table><section id="gtf-latency-benchmark-design">
+<h1>GTF Latency Benchmark Design<a class="headerlink" href="#gtf-latency-benchmark-design" title="Link to this heading">¶</a></h1>
 <p>This section provides a high-level overview of the GTF 10G latency benchmark environments used to measure and report GTF MAC and RAW mode latency values.  The benchmark designs are used to demonstrate minimum latency and are not intended for a user design.</p>
 <p>Latency results can be recreated using the benchmark designs running in hardware or simulation.</p>
-<div class="section" id="measured-latency-values">
-<h2>Measured Latency Values<a class="headerlink" href="#measured-latency-values" title="Permalink to this heading">¶</a></h2>
+<section id="measured-latency-values">
+<h2>Measured Latency Values<a class="headerlink" href="#measured-latency-values" title="Link to this heading">¶</a></h2>
 <p>The following table list the measured base latency for MAC and RAW GTF modes of operation in hardware.</p>
 <table border="1" class="docutils">
 <thead>
@@ -157,9 +155,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tbody>
 </table><p><strong>Table:</strong> GTF Base Measured Latency Results</p>
 <p>The base latency values represent the minimum latency values measured in hardware. It may require running the benchmark test multiple times in order to observe the minimum GTF latency value.</p>
-</div>
-<div class="section" id="benchmark-overview">
-<h2>Benchmark Overview<a class="headerlink" href="#benchmark-overview" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="benchmark-overview">
+<h2>Benchmark Overview<a class="headerlink" href="#benchmark-overview" title="Link to this heading">¶</a></h2>
 <p>The following 10G GTF Latency benchmark designs are available.</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="Synchronized/GTFRAW_Latency_10G_Sync/README.html"><span class="doc">GTF 10G RAW Mode Latency Synchronized</span></a></p></li>
@@ -217,9 +215,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>TABLE: benchmark Directory Structure and Summaries</strong></p>
-</div>
-<div class="section" id="benchmark-latency-design-and-measurement-assumptions">
-<h2>Benchmark Latency Design and Measurement Assumptions<a class="headerlink" href="#benchmark-latency-design-and-measurement-assumptions" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="benchmark-latency-design-and-measurement-assumptions">
+<h2>Benchmark Latency Design and Measurement Assumptions<a class="headerlink" href="#benchmark-latency-design-and-measurement-assumptions" title="Link to this heading">¶</a></h2>
 <p>The benchmark latency design and measurements are based on the following assumptions:</p>
 <ul class="simple">
 <li><p>GTF put in internal near-end loopback</p></li>
@@ -227,9 +225,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Neither the measured GTF receiver latency nor the GTF transmitter latency include protocol overheads, protocol framing, programmable logic (PL) latency, TX PL interface setup time, RX PL interface clock-to-out, package flight time, and other sources of latency.</p></li>
 <li><p>GTF latency is measured as the difference between start time (TX data is latched at GTF) and stop time (GTF registers the incoming TX data on the RX side)</p></li>
 </ul>
-</div>
-<div class="section" id="latency-measurement">
-<h2>Latency Measurement<a class="headerlink" href="#latency-measurement" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="latency-measurement">
+<h2>Latency Measurement<a class="headerlink" href="#latency-measurement" title="Link to this heading">¶</a></h2>
 <p>GTF latency is measured as the difference between start time (TX data is latched at GTF) and stop time (GTF registers the incoming TX data on the RX side).  The benchmark uses an RTL design to measure latency in hardware by latching the value of a single free running counter when TimeTx and TimeRx events occur and computing the delta.</p>
 <p>The following image illustrates a general representation of the GTF latency measurement.  It shows both TXUSRCLK and RXUSRCLK at the same frequency but out of phase.  (Note: the benchmark designs intentionally align the two clocks 180 degrees out of phase)</p>
 <ul class="simple">
@@ -237,12 +235,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>The latency stop time is triggered at TimeRx corresponding to the RXUSRCLK edge when the GTF launches the RX data back into the PL fabric.  It does not represent the first sampling RXUSRCLK edge in the PL fabric, which occurs on the subsequent RXUSRCLK cycle.</p></li>
 </ul>
 <p><img alt="Variations on Measured Latency" src="../../_images/gtf_mac_latency_desc.jpg" /></p>
-</div>
-<div class="section" id="variations-on-measured-latency">
-<h2>Variations on Measured Latency<a class="headerlink" href="#variations-on-measured-latency" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="variations-on-measured-latency">
+<h2>Variations on Measured Latency<a class="headerlink" href="#variations-on-measured-latency" title="Link to this heading">¶</a></h2>
 <p>Variations on measured latency values using the benchmark can be attributed to protocol overheads, protocol framing, PL latency, TX PL interface setup time, RX PL interface clock-to-out, package flight time, and TX and RX clock phase differences. A brief description of these impacts is given below.</p>
-<div class="section" id="impact-of-protocol-overhead-on-measured-latency">
-<h3>Impact of protocol overhead on measured latency<a class="headerlink" href="#impact-of-protocol-overhead-on-measured-latency" title="Permalink to this heading">¶</a></h3>
+<section id="impact-of-protocol-overhead-on-measured-latency">
+<h3>Impact of protocol overhead on measured latency<a class="headerlink" href="#impact-of-protocol-overhead-on-measured-latency" title="Link to this heading">¶</a></h3>
 <p>In MAC mode, protocol overhead and framing, controlled by the gearbox within the MAC block will impact the latency.  The impact of the codeword overhead on latency are detailed below:</p>
 <ul class="simple">
 <li><p>The AXI-S interface has 16/64b bus, and the MAC converts it to 66b codeword (adding 2 extra bits per 64 bits).</p></li>
@@ -251,15 +249,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Lowest latency occurs when the gearbox is aligned with first bytes of the start of packet</p></li>
 <li><p>The gearbox goes through a fixed sequence (33 cycle loop) and the latency is fixed based on when the start of the packet is with respect the gearbox sequence.</p></li>
 </ul>
-</div>
-<div class="section" id="impact-of-txusrclk-and-rxusrclk-phase-differences-on-measured-latency">
-<h3>Impact of TXUSRCLK and RXUSRCLK phase differences on measured latency<a class="headerlink" href="#impact-of-txusrclk-and-rxusrclk-phase-differences-on-measured-latency" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="impact-of-txusrclk-and-rxusrclk-phase-differences-on-measured-latency">
+<h3>Impact of TXUSRCLK and RXUSRCLK phase differences on measured latency<a class="headerlink" href="#impact-of-txusrclk-and-rxusrclk-phase-differences-on-measured-latency" title="Link to this heading">¶</a></h3>
 <p>The benchmark performs all latency monitoring in the RXUSRCLK domain.  Consequently, the TimeTx timestamp is synchronized from TXUSRCLK to RXUSRCLK clock domain.  The logic used to synchronize TXUSRCLK events to the RXUSRCLK domain will result in different latency depending on the phase relationship between the two clocks.  (For details, see Latency Monitor section below).</p>
 <p>NOTE: Depending on the phase relationship between the TXUSRCLK and RXUSRCLK, differences in measured latency will be observed. RXUSRCLK and TXUSRCLK phase can change every time the GTF is reset. The benchmark uses a fixed phase delay in order to minimize the latency variation and total latency.</p>
-</div>
-</div>
-<div class="section" id="latency-monitor">
-<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="latency-monitor">
+<h2>Latency Monitor<a class="headerlink" href="#latency-monitor" title="Link to this heading">¶</a></h2>
 <p>This section provides an overview of the Latency Monitor logic which is common to both the MAC and RAW mode latency designs.</p>
 <p>The latency monitor is a standalone block integrated into the benchmark design which computes the latency based on transmit (TX) and receive (RX) events.  Both the MAC mode and RAW mode latency designs use the same latency monitor logic. The only difference are the qualification of the send and receive events based on their data streams.</p>
 <p>In MAC mode, these events are defined as:</p>
@@ -286,9 +284,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p><strong>Figure:</strong> Latency monitor block diagram</p>
 <p>All latency measurements are performed in the RXUSRCLK clock domain, including the free running counter used to capture the timestamp.  The ‘send event’ occurs in the TXUSERCLK clock domain and is synchronized into the RXUSRCLK domain using a clock synchronization/metastability circuit.  In hardware, this synchronization requires three cycles as shown in the following synchronization sequence diagram, where the TX Data Sent event toggles Tx_pkt_sent, which is synchronized to the RXUSRCLK domain, subsequently creating the Pkt_sent pulse which latches the TX start time.</p>
 <p>Since the ‘receive event’ is already in the RXUSRCLK domain it does not need synchronizing.  However, it is nonetheless sent through an identical synchronizer to match the delay of the ‘send event’.</p>
-</div>
-<div class="section" id="measured-latency-adjustment">
-<h2>Measured Latency Adjustment<a class="headerlink" href="#measured-latency-adjustment" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="measured-latency-adjustment">
+<h2>Measured Latency Adjustment<a class="headerlink" href="#measured-latency-adjustment" title="Link to this heading">¶</a></h2>
 <p>At times TimeTx and TimeRX, received and transmit timestamps SENT_TIME and RCVD_TIME are latched based on a free-running counter. The timestamps are stored in two FIFOs which can subsequently be read via the PIF/AXI interface.</p>
 <p>Using these timestamps, latency is computed using the following equation.</p>
 <p><code class="docutils literal notranslate"><span class="pre">LATENCY</span> <span class="pre">=</span> <span class="pre">ABS(RCVD_TIME</span> <span class="pre">-</span> <span class="pre">SENT_TIME)</span> <span class="pre">-</span> <span class="pre">ADJ_FACTOR</span></code></p>
@@ -314,13 +312,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p>Multiplying the computed latency by the period of the clock driving the counter, gives the TX → RX latency in ns.</p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

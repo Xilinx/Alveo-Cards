@@ -1,7 +1,8 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
-        <script src="../../../_static/jquery.js"></script>
-        <script src="../../../_static/underscore.js"></script>
-        <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
     <link rel="search" title="Search" href="../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,23 +113,23 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="pcie-ddr-reference-design-hw-manager-support">
-<h1>PCIe DDR Reference Design: HW Manager Support<a class="headerlink" href="#pcie-ddr-reference-design-hw-manager-support" title="Permalink to this heading">¶</a></h1>
+</table><section id="pcie-ddr-reference-design-hw-manager-support">
+<h1>PCIe DDR Reference Design: HW Manager Support<a class="headerlink" href="#pcie-ddr-reference-design-hw-manager-support" title="Link to this heading">¶</a></h1>
 <p>This section provides instructions on how to</p>
 <ul class="simple">
 <li><p>Observe the behavior of the design via ILA through the HW Manager and</p></li>
 <li><p>Run a memory test on the DDR memory (Linux machine)</p></li>
 </ul>
-<div class="section" id="programming-the-device">
-<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Permalink to this heading">¶</a></h2>
+<section id="programming-the-device">
+<h2>Programming the Device<a class="headerlink" href="#programming-the-device" title="Link to this heading">¶</a></h2>
 <p><a class="reference internal" href="../../Docs/programming_the_device.html"><span class="doc">Connect to the card via the HW Manager and program the FPGA</span></a> with the following files:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">./PCIE_DDR/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/sherman.bit</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">./PCIE_DDR/Vivado_Project/&lt;project_name&gt;/&lt;project_name&gt;.runs/impl_1/sherman.ltx</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="ilas">
-<h2>ILAs<a class="headerlink" href="#ilas" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="ilas">
+<h2>ILAs<a class="headerlink" href="#ilas" title="Link to this heading">¶</a></h2>
 <p>The four included ILAs, described in the table below, provide a way to observe and verify the behavior of the design on HW.</p>
 <table border="1" class="docutils">
 <thead>
@@ -159,8 +157,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table 1.</strong> Description of signals captured by the ILAs</p>
-<div class="section" id="ila-setup-instructions">
-<h3>ILA Setup Instructions<a class="headerlink" href="#ila-setup-instructions" title="Permalink to this heading">¶</a></h3>
+<section id="ila-setup-instructions">
+<h3>ILA Setup Instructions<a class="headerlink" href="#ila-setup-instructions" title="Link to this heading">¶</a></h3>
 <ol class="simple">
 <li><p>On the Tcl console, enter the following command: <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">./PCIE_DDR/Scripts/config_ila.tcl</span></code></p>
 <ul class="simple">
@@ -170,14 +168,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Right click on the device (xcvu2p_0) and click on <em>Refresh Device</em>.</p></li>
 </ol>
-</div>
-</div>
-<div class="section" id="memory-test">
-<h2>Memory Test<a class="headerlink" href="#memory-test" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="memory-test">
+<h2>Memory Test<a class="headerlink" href="#memory-test" title="Link to this heading">¶</a></h2>
 <p>In addition to the ILA, the DDR memory can be tested via a <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> program.
-The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP and performs a memory test using 32-bit PRBS data. More detail on <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> can be found in <a class="reference external" href="./design.html#memtest-function-descriptions">PCIe DDR Reference Design: Overview</a>.</p>
-<div class="section" id="running-the-memory-test">
-<h3>Running the Memory Test<a class="headerlink" href="#running-the-memory-test" title="Permalink to this heading">¶</a></h3>
+The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP and performs a memory test using 32-bit PRBS data. More detail on <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> can be found in <a class="reference external" href="./design.md#memtest-function-descriptions">PCIe DDR Reference Design: Overview</a>.</p>
+<section id="running-the-memory-test">
+<h3>Running the Memory Test<a class="headerlink" href="#running-the-memory-test" title="Link to this heading">¶</a></h3>
 <p>Instructions on how to run <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> are given below.</p>
 <ol class="simple">
 <li><p>Display the card BDF and region 1 and 2 values which will be used in <code class="docutils literal notranslate"><span class="pre">memtest.c</span></code>.</p></li>
@@ -191,7 +189,7 @@ The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP 
 <li><p>Region 0 = 0xc0000000</p></li>
 <li><p>Region 1 = 0x80000000</p></li>
 </ul>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo lspci -vv -d 10ee:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>lspci<span class="w"> </span>-vv<span class="w"> </span>-d<span class="w"> </span>10ee:
 <span class="go">01:00.0 Serial controller: Xilinx Corporation Device 9048 (prog-if 01 [16450])</span>
 <span class="go">Subsystem: Xilinx Corporation Device 0007</span>
 <span class="go">Control: I/O+ Mem+ BusMaster- SpecCycle- MemWINV- VGASnoop- ParErr- Stepping- SERR- FastB2B- DisINTx-</span>
@@ -212,10 +210,10 @@ The program, which runs on a Linux system, brings up the DDR I2C and the DDR IP 
 </li>
 </ol>
 <p><code class="docutils literal notranslate"><span class="pre">memtest.c</span></code> code to modify is shown below:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>// Global Variables...
-char  device0<span class="o">[</span><span class="m">32</span><span class="o">]</span>     <span class="o">=</span> <span class="s2">&quot;0000:01:00.0&quot;</span><span class="p">;</span>
-void* <span class="nv">region0_address</span> <span class="o">=</span> <span class="o">(</span>void*<span class="o">)</span>0xc0000000<span class="p">;</span>
-void* <span class="nv">region1_address</span> <span class="o">=</span> <span class="o">(</span>void*<span class="o">)</span>0x80000000<span class="p">;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>//<span class="w"> </span>Global<span class="w"> </span>Variables...
+char<span class="w">  </span>device0<span class="o">[</span><span class="m">32</span><span class="o">]</span><span class="w">     </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;0000:01:00.0&quot;</span><span class="p">;</span>
+void*<span class="w"> </span><span class="nv">region0_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>void*<span class="o">)</span>0xc0000000<span class="p">;</span>
+void*<span class="w"> </span><span class="nv">region1_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">(</span>void*<span class="o">)</span>0x80000000<span class="p">;</span>
 </pre></div>
 </div>
 <ol class="simple">
@@ -227,36 +225,36 @@ void* <span class="nv">region1_address</span> <span class="o">=</span> <span cla
 </li>
 </ol>
 <p>Example output when memtest runs successfully:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo ./memtest.exe -c <span class="m">1000</span>
-Initializing Memory Pointers...
-Enabling DDR power and DDR IP...
-Starting memtest
-running <span class="m">1000</span> cycles
-...memtest <span class="nb">complete</span> 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>./memtest.exe<span class="w"> </span>-c<span class="w"> </span><span class="m">1000</span>
+Initializing<span class="w"> </span>Memory<span class="w"> </span>Pointers...
+Enabling<span class="w"> </span>DDR<span class="w"> </span>power<span class="w"> </span>and<span class="w"> </span>DDR<span class="w"> </span>IP...
+Starting<span class="w"> </span>memtest
+running<span class="w"> </span><span class="m">1000</span><span class="w"> </span>cycles
+...memtest<span class="w"> </span><span class="nb">complete</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>Example output if memtest encounters data errors:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># INDEX = READ DATA - REFERENCE DATA</span>
-<span class="o">[</span>READ<span class="o">]</span> ERROR :: <span class="nv">0x00000020</span> <span class="o">=</span> 0x00000023 - 0x00000011
+<span class="o">[</span>READ<span class="o">]</span><span class="w"> </span>ERROR<span class="w"> </span>::<span class="w"> </span><span class="nv">0x00000020</span><span class="w"> </span><span class="o">=</span><span class="w"> </span>0x00000023<span class="w"> </span>-<span class="w"> </span>0x00000011
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="example-ila-waveforms">
-<h2>Example ILA Waveforms<a class="headerlink" href="#example-ila-waveforms" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="example-ila-waveforms">
+<h2>Example ILA Waveforms<a class="headerlink" href="#example-ila-waveforms" title="Link to this heading">¶</a></h2>
 <p>ILA 2 monitors the AXI interface to the I2C control registers.
 <img alt="pcie_ddr_ila_2" src="../../../_images/pcie_ddr_ila_2.jpg" /></p>
 <p>ILA 3 monitors the AXI interface to the DDR data interface.
 <img alt="pcie_ddr_ila_3" src="../../../_images/pcie_ddr_ila_3.jpg" /></p>
 <p>ILA 4 monitors the primary AXI interface from the PCIE XDMA IP.
 <img alt="pcie_ddr_ila_4" src="../../../_images/pcie_ddr_ila_4.jpg" /></p>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>

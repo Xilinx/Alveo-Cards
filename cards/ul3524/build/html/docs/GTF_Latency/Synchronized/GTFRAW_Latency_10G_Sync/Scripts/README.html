@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../../../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../../../../" id="documentation_options" src="../../../../../_static/documentation_options.js"></script>
-        <script src="../../../../../_static/jquery.js"></script>
-        <script src="../../../../../_static/underscore.js"></script>
-        <script src="../../../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../../../../_static/doctools.js"></script>
+        <script src="../../../../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../../../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../../../genindex.html" />
     <link rel="search" title="Search" href="../../../../../search.html" /> 
@@ -46,7 +45,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../../../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../../../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -115,8 +113,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="latency-measurement-test-script">
-<h1>Latency Measurement Test Script<a class="headerlink" href="#latency-measurement-test-script" title="Permalink to this heading">¶</a></h1>
+</table><section id="latency-measurement-test-script">
+<h1>Latency Measurement Test Script<a class="headerlink" href="#latency-measurement-test-script" title="Link to this heading">¶</a></h1>
 <p>The scripts in this directory are used for collecting and computing the latency values of the GTF design.</p>
 <p>A high-level description of the scripts are given below.</p>
 <table border="1" class="docutils">
@@ -145,11 +143,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table.</strong> Descriptions of the latency measurement scripts.</p>
-<div class="section" id="test-parameters">
-<h2>Test Parameters<a class="headerlink" href="#test-parameters" title="Permalink to this heading">¶</a></h2>
+<section id="test-parameters">
+<h2>Test Parameters<a class="headerlink" href="#test-parameters" title="Link to this heading">¶</a></h2>
 <p>This section provides an overview of the test parameters and instructions on how to change them.</p>
-<div class="section" id="overview">
-<h3>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h3>
+<section id="overview">
+<h3>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h3>
 <p>The table below gives a brief description and allowable values for each parameter.</p>
 <table border="1" class="docutils">
 <thead>
@@ -177,9 +175,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table.</strong> Description of test parameters for the latency measurement scripts.</p>
-</div>
-<div class="section" id="changing-the-parameters">
-<h3>Changing the Parameters<a class="headerlink" href="#changing-the-parameters" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="changing-the-parameters">
+<h3>Changing the Parameters<a class="headerlink" href="#changing-the-parameters" title="Link to this heading">¶</a></h3>
 <p>Test parameters can be set by changing the values for the following variables in <code class="docutils literal notranslate"><span class="pre">run_tests.tcl</span></code>.</p>
 <div class="highlight-tcl notranslate"><div class="highlight"><pre><span></span><span class="c"># 0: FIFO test mode</span>
 <span class="c"># 1: Continuos test mode</span>
@@ -196,10 +194,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <span class="k">set</span><span class="w"> </span><span class="o">::</span>pkt_cnt<span class="w"> </span><span class="mi">250</span>
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="helper-tcl-descriptions">
-<h2><code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code> Descriptions<a class="headerlink" href="#helper-tcl-descriptions" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="helper-tcl-descriptions">
+<h2><code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code> Descriptions<a class="headerlink" href="#helper-tcl-descriptions" title="Link to this heading">¶</a></h2>
 <p>Descriptions of the procedures in <code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code> are given below.</p>
 <table border="1" class="docutils">
 <thead>
@@ -247,8 +245,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table><p><strong>Table.</strong> Descriptions of the procedures in <code class="docutils literal notranslate"><span class="pre">helper.tcl</span></code>.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

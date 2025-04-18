@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,11 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/documentation_options.js?v=7119873a"></script>
+        <script src="../../_static/doctools.js?v=9bcbadda"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -47,7 +46,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Ultra Low Latency Trading
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 UL3524
@@ -130,18 +128,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <td align="center"><img src="https://raw.githubusercontent.com/Xilinx/Image-Collateral/main/xilinx-logo.png" width="30%"/><h1>UL3524 Ultra Low Latency Trading</h1>
     </td>
  </tr>
-</table><div class="section" id="vivado-design-flow">
-<h1>Vivado Design Flow<a class="headerlink" href="#vivado-design-flow" title="Permalink to this heading">¶</a></h1>
-<div class="section" id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+</table><section id="vivado-design-flow">
+<h1>Vivado Design Flow<a class="headerlink" href="#vivado-design-flow" title="Link to this heading">¶</a></h1>
+<section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">¶</a></h2>
 <p>Provides Vivado design flow support.</p>
-</div>
-<div class="section" id="vivado-xdc-files">
-<h2>Vivado XDC Files<a class="headerlink" href="#vivado-xdc-files" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="vivado-xdc-files">
+<h2>Vivado XDC Files<a class="headerlink" href="#vivado-xdc-files" title="Link to this heading">¶</a></h2>
 <p>The UL3524 Xilinx Design Constraints (XDC) file is located here <a class="reference internal" href="../XDC/README.html"><span class="doc">located here</span></a>.</p>
-</div>
-<div class="section" id="creating-a-vivado-rtl-project">
-<h2>Creating a Vivado RTL Project<a class="headerlink" href="#creating-a-vivado-rtl-project" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="creating-a-vivado-rtl-project">
+<h2>Creating a Vivado RTL Project<a class="headerlink" href="#creating-a-vivado-rtl-project" title="Link to this heading">¶</a></h2>
 <p>Currently with the XDC-based Vivado design flow, the UL3524 FPGA part is not currently visible via the Vivado GUI part selection window. Consequently, a project based on the UL3524 FPGA part must be created via the TCL command line.  Use the following steps to create a new project:</p>
 <ol class="simple">
 <li><p>Launch Vivado tools.</p></li>
@@ -154,9 +152,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;path&gt;</span></code> is the path where you want to create the project</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">&lt;part</span> <span class="pre">number&gt;</span></code> is the Vivado FPGA part number: <code class="docutils literal notranslate"><span class="pre">XCVU2P-FSVJ2104-3-E</span></code></p></li>
 </ul>
-</div>
-<div class="section" id="device-configuration">
-<h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="device-configuration">
+<h2>Device Configuration<a class="headerlink" href="#device-configuration" title="Link to this heading">¶</a></h2>
 <p>The Alveo accelerator card supports two FPGA configuration modes:</p>
 <ul class="simple">
 <li><p>Quad SPI flash memory</p></li>
@@ -164,9 +162,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 <p>The FPGA bank 0 mode pins are hardwired to master SPI mode M[2:0] = 001 with pull-up/down resistors. At power up, the FPGA is configured by the QSPI flash device using the primary serial configuration mode. Refer to the XDC for recommended configuration parameters specified via the various BITSTREAM.CONFIG constraints.</p>
 <p>For complete details on configuring the FPGA, see the <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug570-ultrascale-configuration">UltraScale Architecture Configuration User Guide (UG570)</a>.</p>
-</div>
-<div class="section" id="mcs-file-generation">
-<h2>MCS File Generation<a class="headerlink" href="#mcs-file-generation" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="mcs-file-generation">
+<h2>MCS File Generation<a class="headerlink" href="#mcs-file-generation" title="Link to this heading">¶</a></h2>
 <p>This section outlines the steps to generate the MCS file.</p>
 <p>The MCS file represents the PROM image which is loaded onto the FPGA at power on. It is generated using the <em>write_cfgmem</em> tool. This section outlines the steps to generate and program the MCS file. Prior to generating the MCS file, ensure your project XDC file sets the following properties. Recommended values are given in the XDC file.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">CONFIG_VOLTAGE</span>
@@ -215,12 +213,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table><p><strong>TABLE</strong>: write_cfgmem Parameter Settings</p>
 <p><em>[1] Address 0x00000000 through 0x01001FFF is a write protected region which holds the card’s golden recovery image and cannot be written to. The user_config_region_offset setting cannot be within this range.</em></p>
 <p>For additional details on write_cfgmem, see the <a class="reference external" href="https://docs.xilinx.com/v/u/en-US/ug570-ultrascale-configuration">UltraScale Architecture Configuration User Guide (UG570)</a>.</p>
-</div>
-<div class="section" id="card-programming">
-<h2>Card Programming<a class="headerlink" href="#card-programming" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="card-programming">
+<h2>Card Programming<a class="headerlink" href="#card-programming" title="Link to this heading">¶</a></h2>
 <p>After the MCS file has been generated, use one of the following methods to flash the FPGA on the Alveo data center accelerator card.</p>
-<div class="section" id="programming-via-vivado-hardware-manager">
-<h3>Programming via Vivado Hardware Manager<a class="headerlink" href="#programming-via-vivado-hardware-manager" title="Permalink to this heading">¶</a></h3>
+<section id="programming-via-vivado-hardware-manager">
+<h3>Programming via Vivado Hardware Manager<a class="headerlink" href="#programming-via-vivado-hardware-manager" title="Link to this heading">¶</a></h3>
 <p>This section details how to flash the Alveo data center accelerator card FPGA using the Vivado hardware manager. Detailed steps for programming the FPGA are outlined in the chapter titled Programming the FPGA Device in the Vivado Design Suite User Guide: Programming and Debugging
 (UG908).</p>
 <ol class="simple">
@@ -233,9 +231,9 @@ c. Click OK.</p></li>
 <li><p>After programming has completed, disconnect the card in the hardware manager, power off the server and card, and disconnect the JTAG programming cable from the Alveo accelerator card.</p></li>
 <li><p>Perform a cold reboot on the host machine to complete the card update.</p></li>
 </ol>
-</div>
-<div class="section" id="programming-via-xbflash2">
-<h3>Programming via xbflash2<a class="headerlink" href="#programming-via-xbflash2" title="Permalink to this heading">¶</a></h3>
+</section>
+<section id="programming-via-xbflash2">
+<h3>Programming via xbflash2<a class="headerlink" href="#programming-via-xbflash2" title="Link to this heading">¶</a></h3>
 <p>This section details how to flash the Alveo data center accelerator card FPGA using the AMD board flash utility (xbflash2). Xbflash2 is a standalone command line utility used to flash a custom Vivado flow MCS image onto an Alveo card or to revert a card running a Vivado design back to its golden image over PCIe. Because it communicates directly with the card through the PCIe BAR, it does not require Xilinx Runtime (XRT) drivers (xocl/xclmgmt) to be installed or a programming cable. For xbflash2 command details, refer to the <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xbflash2.html">xbflash2 command documentation</a>.</p>
 <p>To program the card via the xbflash2 utility, a flashed and running design must have a flash controller (via the AXI Quad SPI IP) with proper configurations and mapping to the PCIe BAR.</p>
 <p><strong>TIP:</strong> <em>The manufacturing image (sometimes referred to as the golden image) comes pre-installed on new cards with the flash controller incorporated.</em></p>
@@ -252,10 +250,10 @@ c. Click OK.</p></li>
 <p>After running this command, the new image will be flashed to your card.</p>
 <p>Perform a cold reboot on the host machine to complete the card update.</p>
 <p>See <a class="reference external" href="https://support.xilinx.com/s/article/Alveo-Updating-Vivado-images-via-PCIe-with-xbflash">Updating Vivado images via PCIe with xbflash</a> for how to incorporate a flash controller in your design to enable xbflash.</p>
-</div>
-</div>
-<div class="section" id="accessing-card-details-via-uart">
-<h2>Accessing Card Details via UART<a class="headerlink" href="#accessing-card-details-via-uart" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="accessing-card-details-via-uart">
+<h2>Accessing Card Details via UART<a class="headerlink" href="#accessing-card-details-via-uart" title="Link to this heading">¶</a></h2>
 <p>To identify information about your card, such as its revision, use the following steps to connect to the card SC via UART.</p>
 <p>The following is required:</p>
 <ul class="simple">
@@ -320,13 +318,13 @@ Card details, such as board Rev and base MAC address (MAC0), will be displayed.<
 <span class="o">------------------------------------------------</span>
 </pre></div>
 </div>
-</div>
-<div class="section" id="support">
-<h2>Support<a class="headerlink" href="#support" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="support">
+<h2>Support<a class="headerlink" href="#support" title="Link to this heading">¶</a></h2>
 <p>For additional documentation, please refer to the <a class="reference external" href="https://www.xilinx.com/products/boards-and-kits/alveo/ul3524.html">UL3524 product page</a> and the <a class="reference external" href="https://www.xilinx.com/member/ull-ea.html">UL3524 Lounge</a>.</p>
 <p>For support, contact your FAE or refer to support resources at: <a class="reference external" href="https://support.xilinx.com">https://support.xilinx.com</a></p>
-<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></div>
-</div>
+<p class="sphinxhide" align="center"><sub>Copyright © 2020–2023 Advanced Micro Devices, Inc</sub></p><p class="sphinxhide" align="center"><sup><a href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a></sup></p></section>
+</section>
 
 
            </div>
