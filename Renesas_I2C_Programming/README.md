@@ -13,6 +13,14 @@ This reference design demonstrates how to program the Renesas devices via I2C in
 
 In addition to the design, an included PERL script can be used to convert Renesas programming file into a BRAM memory file (.coe), used by the design.
 
+**Additional Documentation**
+
+The following links provide additional documentation, including simulation and HW Manager support.
+
+* [Simulation](./Docs/simulation.md)
+  * Describes the available simulation and description of waveforms
+* [HW Manager Support](./Docs/hw_manager_support.md)
+  * Provides instructions to run the design in hardware and interact with the design through the HW Manager.
 
 ## Reference Design Hierarchy
 
@@ -34,7 +42,7 @@ Details about the design:
 
 ## Renesas Device IDs
 
-The UL3524 card has two Renesas devices.  Both are connected via the CLKGEN_SDA/SCL interface and have the device IDs shown in the following table.  See UG1585 for additional details.
+The UL3524 card has two Renesas devices.  Both are connected via the CLKGEN_SDA/SCL interface and have the device IDs shown in the following table. For additional details, see [Jitter Attenuator](https://docs.amd.com/access/sources/dita/topic?url=ds1009-ul3524&resourceid=ler1651273896378.html&ft:locale=en-US) in the *Alveo UL3524 Ultra Low Latency Trading Data Sheet (DS1009)* ([DS1009](https://docs.amd.com/go/en-US/ds1009-ul3524)).
 
 | Renesas Device Description | Device ID (8-bit HEX) |
 |---|---|
